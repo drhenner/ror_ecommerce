@@ -1,0 +1,10 @@
+<%- if attributes.empty? -%>
+  <%% form.inputs %>
+<%- else -%>
+  <%% form.inputs do %>
+  <%- for attribute in attributes -%>
+    <%%= form.input :<%= attribute.name %>, :label => '<%= attribute.name.titleize %>' %>
+  <%- end -%>
+  <%% end %>
+<%- end -%>
+  <%%= form.buttons %>

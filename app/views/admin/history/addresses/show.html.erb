@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @address.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @address.last_name %>
+</p>
+
+<p>
+  <b>Address1:</b>
+  <%= @address.address1 %>
+</p>
+
+<p>
+  <b>Address2:</b>
+  <%= @address.address2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @address.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @address.state_id %>
+</p>
+
+<p>
+  <b>Zip code:</b>
+  <%= @address.zip_code %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_history_order_address_path(@order, @address) %> |
+<%= link_to 'Back', admin_history_order_addresses_path(@order) %>

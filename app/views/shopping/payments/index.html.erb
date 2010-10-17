@@ -1,0 +1,21 @@
+<h1>Listing shopping_payments</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shopping_payments.each do |shopping_payment| %>
+  <tr>
+    <td><%= link_to 'Show', shopping_payment %></td>
+    <td><%= link_to 'Edit', edit_shopping_payment_path(shopping_payment) %></td>
+    <td><%= link_to 'Destroy', shopping_payment, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Payment', new_shopping_payment_path %>

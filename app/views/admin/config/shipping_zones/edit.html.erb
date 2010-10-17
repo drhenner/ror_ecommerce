@@ -1,0 +1,9 @@
+<h1>Editing Shipping Zone</h1>
+
+
+<%= form_for(@shipping_zone, :as => :shipping_zone, :url => admin_config_shipping_zone_path(@shipping_zone)) do |f| %>
+  <%= render :partial =>  'form', :locals => {:f => f} %>
+<% end %>
+
+<%= link_to 'Show', admin_config_shipping_zone_path(@shipping_zone) %> |
+<%= link_to 'Back', admin_config_shipping_zones_path %>

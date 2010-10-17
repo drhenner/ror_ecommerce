@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Percentage:</b>
+  <%= @tax_rate.percentage %>
+</p>
+
+<p>
+  <b>Product type:</b>
+  <%= @tax_rate.tax_status.name %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @tax_rate.state.name %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @tax_rate.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @tax_rate.end_date %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @tax_rate.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_config_tax_rate_path(@tax_rate) %> |
+<%= link_to 'Back', admin_config_tax_rates_path %>

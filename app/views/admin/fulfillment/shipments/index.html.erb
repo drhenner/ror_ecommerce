@@ -1,0 +1,43 @@
+<% if @order %>
+  <h2>Shipments for Order # <%= @order.number %> </h2>
+<% else %>
+  <h2>Shipments </h2>
+<% end %>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Shipped at</th>
+    <th>Tracking</th>
+    <th>State</th>
+    <th>Items</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shipments.each do |shipment| %>
+  <% if shipment.has_items? %>
+      <tr>
+        <td><%= shipment.number %></td>
+        <td><%= I18n.localize(shipment.shipped_at, :format => :us_time) if shipment.shipped_at %></td>
+        <td><%= shipment.tracking %></td>
+        <td><%= shipment.state %></td>
+        <td>
+          <%= raw shipment.order_items.collect {|item| item.variant.product_name }.join('<br/>')  %>
+
+        </td>
+        <td><%= link_to 'Show', admin_fulfillment_shipment_path(shipment) %></td>
+        <td><%= link_to 'Edit', edit_admin_fulfillment_shipment_path(shipment) %></td>
+        <td>
+          <% unless shipment.shipped? %>
+            <%= button_to 'Mark Shipped', 
+                          ship_admin_fulfillment_shipment_path(shipment), 
+                          :confirm => "Are you sure?", 
+                          :method => :put %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+<% end %>
+</table>
+

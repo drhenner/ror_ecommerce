@@ -1,0 +1,15 @@
+<fieldset id="admin-product-items" 
+          style='float:left;' 
+          class='span-11 <%= item_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
+  <p class='field'>
+    <div style='float:right;'>
+      <%= remove_child_link('remove', item_form) %>
+    </div>
+      <%= item_form.hidden_field  :order_item_id %>
+      <%#= item_form.hidden_field  :updated_by %>
+    
+    Return Item: <%= order_item.variant.product_name %> <%= number_to_currency order_item.total %><br/>
+    Return Condition: <%= item_form.select  :return_condition_id, @return_conditions, :include_blank => true %><br/>
+    Return Reason:    <%= item_form.select  :return_reason_id,    @return_reasons, :include_blank => true %><br/>
+  </p>
+</fieldset>

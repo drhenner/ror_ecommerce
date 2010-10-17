@@ -1,0 +1,26 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag "admin/index_grid" %>
+<% end %>
+<%= render :partial => '/admin/merchandise/sub_header'%>
+
+<h2> Product Types </h2>
+
+<div id="admin_product_types_page_wrapper">
+  <div id="admin_product_types_grid_wrapper" class='column'>
+    <%= raw jqgrid("Product Types", "admin_product_types_grid", admin_merchandise_product_types_path,
+      [
+        { :field => "display_name",   :label => "Name",     :width => 355,  :resizable => false }
+      ]
+    ) %>
+  </div>
+
+  <div id="admin_new_product_type_button" class="admin_new_button last">
+    <%= link_to "New Type", new_admin_merchandise_product_type_path, :class => "button", :id => "new_product_type_button" %>
+  </div>
+</div>
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %>
+
+<script>
+  Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/merchandise/product_types'));
+</script>

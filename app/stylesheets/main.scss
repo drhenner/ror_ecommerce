@@ -1,0 +1,393 @@
+@import "compass";
+@import "blueprint";
+
+#header_wrapper {
+  @include span(24);
+  @include last;
+  
+  //background-image: url(../../images/logos/hadean_wide.png);
+  background-color: #57B;
+  h1, h3, a {
+    color: #EEE;
+  }
+  
+}
+
+@mixin left-text($buffer: 4px) {
+  text-align: left;
+  padding-left: $buffer;
+}
+
+@mixin padding($pad: 5px) {
+  padding: $pad;
+}
+
+@mixin margin($pad: 4px) {
+  margin: $pad;
+}
+
+@mixin left-right-margin($pad: 4px) {
+  margin-left: $pad;
+  margin-right: $pad;
+}
+@mixin top-rounded($radius: 4px) {
+  -moz-border-radius:$radius $radius 0px 0px;
+  -webkit-border-radius:$radius $radius 0px 0px;
+  behavior:url(border-radius.htc);
+}
+
+
+@mixin bottom-rounded($radius: 4px) {
+  -moz-border-radius:0px 0px $radius $radius;
+  -webkit-border-radius:0px 0px $radius $radius;
+  behavior:url(border-radius.htc);
+}
+
+@mixin rounded($radius: 4px) {
+  -moz-border-radius:$radius;
+  -webkit-border-radius:$radius;
+  behavior:url(border-radius.htc);
+}
+
+@mixin admin-page-wrapper($width: 24) {
+  @include span($width);
+  @include last;
+}
+
+@mixin admin-grid-wrapper($width: 18) {
+  @include span($width);
+}
+
+@mixin admin-new-button($width: 6) {
+  @include column($width);
+  @include last;
+}
+
+@mixin admin-form-wrapper($width: 10) {
+  @include span($width);
+  p {
+    @include span(10);
+    }
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: transparent;
+}
+
+.left-text {
+  text-align: left;
+}
+
+.left-text-4 {
+  @include left-text(4px);
+}
+
+.left-text-8 {
+  @include left-text(8px);
+}
+
+.rounded-2 {
+  @include rounded(2px);
+}
+
+.rounded-4 {
+  @include rounded(4px);
+}
+.rounded-6 {
+  @include rounded(6px);
+}
+
+.rounded-8 {
+  @include rounded(8px);
+}
+
+.padding-5 {
+  @include padding(5px);
+}
+
+.padding-10 {
+  @include padding(10px);
+}
+
+#admin-property-names {
+  @include admin-form-wrapper;
+  }
+
+
+// properties admin page
+#admin_properties_page_wrapper {
+  @include admin-page-wrapper;
+}
+#admin_properties_grid_wrapper {
+  @include admin-grid-wrapper;
+}
+
+#admin_new_property_button {
+  @include admin-new-button;
+}
+
+// product_types admin page
+#admin_product_types_page_wrapper {
+  @include admin-page-wrapper;
+}
+#admin_product_types_grid_wrapper {
+  @include admin-grid-wrapper;
+}
+
+#admin_new_product_type_button {
+  @include admin-new-button;
+}
+
+
+#admin-product_type-names {
+  @include admin-form-wrapper;
+  }
+  
+// admin-prototype-names admin page
+
+#admin_prototypes_page_wrapper {
+  @include admin-page-wrapper;
+}
+#admin_prototypes_grid_wrapper {
+  @include admin-grid-wrapper;
+}
+#admin_new_prototype_type_button {
+  @include admin-new-button;
+}
+#admin-prototype-names {
+  @include admin-form-wrapper;
+}
+  
+.property_form {
+  display: inline;
+  text-align: left;
+}
+.roman-list li {
+  list-style: upper-roman;
+}
+
+textarea.height-20 {
+  height:2em;
+}
+
+textarea.height-30 {
+  height:3em;
+}
+textarea.height-40 {
+  height:4em;
+}
+
+textarea.height-50 {
+  height:5em;
+}
+
+.selectlist-list {
+  list-style: none;
+  margin:     0;
+  padding:    0;
+}
+
+.selectlist-item {
+  // Icon from http://pinvoke.com/ 
+  background:     #fff url(../images/cross-circle.png) no-repeat right center;
+  border-left:    solid 1px #eee;
+  border-top:     solid 1px #eee;
+  border-right:   solid 2px #ccc;
+  border-bottom:  solid 2px #ccc;
+  cursor:         pointer;
+  padding:        0.2em 0.3em;
+  margin:         1px 0;
+}
+
+#admin-product-names {
+  margin:     0  0  0.5em;
+  padding:    0.3em;
+}
+
+// HEADER DIVs includes search , cart button, wish button
+
+#header_bar {
+  @include span(24);
+  @include inline-block;
+  background-color: #57B;
+  @include last;
+  @include bottom-rounded(9px)
+}
+
+#header_sub_bar {
+  @include span(23);
+  @include last;
+  
+  margin-left:  18px;
+  // @include inline-block;
+  background-color: #8AE;
+  @include rounded(9px);
+  border:   solid 2px #68C;
+}
+
+#search_bar {
+  @include span(18);
+  @include float-left;
+  @include inline-block;
+  text-align: left;
+}
+
+#layout-search {
+  margin-left:  5px; 
+  color:        #EEE;
+  font-weight:  bolder;
+  font-size:    large;
+}
+
+#cart_items_button {
+  @include float-right;
+  @include inline-block;
+}
+#wish_items_button {
+  @include float-right;
+  @include inline-block;
+}
+
+// Layout for application
+
+li {
+  list-style: none;
+}
+input.text, input.title, input[type="text"], input[type="password"] {
+  background-color: white;
+  margin: 0.15em 0;
+  padding: 5px;
+}
+
+#content_wrapper {
+  padding-top: 4px;
+}
+
+.flash_error {
+  @include error;
+}
+
+.flash_notice {
+  @include notice;
+}
+
+// Main welcome page
+#right_side_panel {
+  text-align: left;
+}
+
+// Product page
+
+#submit_add_to_cart {
+  cursor: pointer;
+}
+
+.variant_border {
+  padding: 3px;
+  margin-bottom: 3px;
+  border:   solid 2px #ddc;
+  @include rounded(8px);
+  background-color: #EED;
+  cursor: pointer;
+}
+
+.variant_select {
+  text-align: left;
+}
+
+.ui-datepicker-calendar table {
+  margin: 0;
+}
+.ui-datepicker-calendar table th , .ui-datepicker-calendar table td {
+  padding: 0; 
+  text-align: center;
+}
+
+.individual-cart-item {
+  border-bottom:   solid 1px #dcd;
+}
+
+// bordered line items
+
+.line_items_blue {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #D0D8EF;
+  background-color: #f0f8ff;
+  margin-bottom: 3px;
+}
+
+.line_item_green {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #D0EFD8;
+  background-color: #f0fff8;
+  margin-bottom: 3px;
+}
+
+.line_item_green:hover {
+  background-color: #e0ffe8;
+}
+
+.line_item_red {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #EFD0D8;
+  background-color: #fff0f8;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.line_item_red:hover {
+  background-color: #ffe0e8;
+}
+
+.line_item_blue {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #D0D8EF;
+  background-color: #f0f8ff;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.line_item_yellow {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #ddc;
+  background-color: #EED;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.line_item_light_gray {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #ECECEC;
+  background-color: #F6F6F6;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.line_item_gray {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #ddd;
+  background-color: #EEE;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.top_border td {
+  border-top:   solid 2px #ddd;
+}
+
+// jQuery 
+
+button.ui-button {
+  text-shadow: 0 0 0 #000;
+}

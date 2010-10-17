@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Supplier:</b>
+  <%= @purchase_order.supplier_id %>
+</p>
+
+<p>
+  <b>Invoice number:</b>
+  <%= @purchase_order.invoice_number %>
+</p>
+
+<p>
+  <b>Tracking number:</b>
+  <%= @purchase_order.tracking_number %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @purchase_order.notes %>
+</p>
+
+<p>
+  <b>Ordered at:</b>
+  <%= @purchase_order.ordered_at %>
+</p>
+
+<p>
+  <b>Estimated arrival on:</b>
+  <%= @purchase_order.estimated_arrival_on %>
+</p>
+
+<p>
+  <b>Is received:</b>
+  <%= @purchase_order.display_received  %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_inventory_receiving_path(@purchase_order) %> |
+<%= link_to 'View all POs', admin_inventory_purchase_orders_path %>

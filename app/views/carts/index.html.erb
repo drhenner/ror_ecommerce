@@ -1,0 +1,29 @@
+<h1>Listing carts</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Variant</th>
+    <th>Active</th>
+    <th>Item type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @carts.each do |cart| %>
+  <tr>
+    <td><%= cart.user_id %></td>
+    <td><%= cart.variant_id %></td>
+    <td><%= cart.active %></td>
+    <td><%= cart.item_type_id %></td>
+    <td><%= link_to 'Show', cart %></td>
+    <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
+    <td><%= link_to 'Destroy', cart, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cart', new_cart_path %>

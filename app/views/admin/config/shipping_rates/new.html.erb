@@ -1,0 +1,7 @@
+<h1>New Shipping Rate</h1>
+
+<%= semantic_form_for(:shipping_rate, @shipping_rate, :url => admin_config_shipping_rates_path) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<%= link_to 'Back', admin_config_shipping_rates_path %>

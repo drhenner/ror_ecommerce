@@ -1,0 +1,26 @@
+
+  <% if @shipping_method.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shipping_method.errors.count, "error") %> prohibited this Shipping Method from being saved:</h2>
+
+      <ul>
+      <% @shipping_method.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.input :name %>
+  </div>
+
+  <div class="field">
+    <%= f.input :shipping_zone_id, :as => :select, 
+                                   :collection => @shipping_zones %>
+  </div>
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>

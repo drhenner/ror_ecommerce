@@ -1,0 +1,57 @@
+<h2> Product: <%= @product.name %> (<%= '*' if @variant.master %><%= @variant.sku %>)</h2>
+<fieldset id="admin-product-names" class='span-12'>
+
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :variant, :sku %>
+</div>
+<div class='span-6 last'>
+  <%= @variant.sku %>
+</div>
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :variant, :price %>
+</div>
+<div class='span-6 last'>
+  <%= @variant.price %>
+</div>
+
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :variant, :cost %>
+</div>
+<div class='span-6 last'>
+  <%= @variant.cost %>
+</div>
+
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :variant, :count_on_hand %>
+</div>
+<div class='span-6 last'>
+  <%= @variant.count_on_hand %>
+</div>
+
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :variant, :count_pending_to_customer %>
+</div>
+<div class='span-6 last'>
+  <%= @variant.count_pending_to_customer %>
+</div>
+
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :variant, :count_pending_from_supplier %>
+</div>
+<div class='span-6 last'>
+  <%= @variant.count_pending_from_supplier %>
+</div>
+</fieldset>
+
+<fieldset id="admin-product-properties" class='span-12'>
+  <legend>Properties</legend>
+  <% @variant.variant_properties.each do |variant_prop|  %>
+    <%= variant_prop.property.identifing_name %>: <%= variant_prop.description %>
+  <% end %>
+</fieldset>

@@ -1,0 +1,47 @@
+<% if @cart_items.nil? || @cart_items.empty? %>
+  <h5> Your cart is currently empty</h5>
+<% else %>
+  <div class='span-18 last'>
+    <h5>You currently have the following in your cart: </h5>
+    <div class='span-9 rounded-10 line_item_blue'>
+      <h4> Items in your Cart:</h4>
+      <ul>
+      <% @cart_items.each_with_index do |item, i| %>
+        <li id='cart-item-<%= i %>' class='individual-cart-item'>
+        <% photo_url = item.variant.product.primary_image_url %>
+            <%= image_tag(photo_url) if photo_url %>
+            (<%= item.quantity %>) 
+            <%= item.variant.product_name %> 
+            <%= link_to 'remove', shopping_cart_item_path(item, :variant_id => item.variant_id), 
+                                  :method => :delete %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+    <% unless @saved_cart_items.empty? %>
+      <div class='span-9 rounded-10 line_item_blue'>
+        <h4>Saved Items:</h4>
+        <ul>
+        <% @saved_cart_items.each_with_index do |item, i| %>
+          <li id='saved-cart-item-<%= i %>' class='individual-cart-item'>
+          <% photo_url = item.variant.product.primary_image_url %>
+              <%= image_tag(photo_url) if photo_url %>
+              <%#= link_to 'Move to Cart', move_to_shopping_cart_item_path(item, 
+                                                                          :variant_id => item.variant_id),
+                                          :method     => 'put' %>
+              (<%= item.quantity %>) 
+              <%= item.variant.product_name %> 
+              <%= link_to 'remove', shopping_cart_item_path(item, :variant_id => item.variant_id), 
+                                    :method => :delete %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+  </div>
+  <div class='span-6 last'>
+    <%= link_to 'Checkout', shopping_orders_path, :class => 'button spade inline-block' %>
+    <%# link_to image_tag('buttons/checkout1.gif', :alt => 'Proceed to Checkout')%>
+  </div>
+<% end %>

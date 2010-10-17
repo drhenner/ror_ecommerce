@@ -1,0 +1,3 @@
+class CreditCardCapture < Transaction
+  
+end

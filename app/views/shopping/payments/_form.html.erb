@@ -1,0 +1,17 @@
+<%= form_for(:payment, @shopping_payment) do |f| %>
+  <% if @shopping_payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shopping_payment.errors.count, "error") %> prohibited this shopping_payment from being saved:</h2>
+
+      <ul>
+      <% @shopping_payment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

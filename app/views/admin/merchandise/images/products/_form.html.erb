@@ -1,0 +1,38 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'application' %>
+<% end %>
+
+
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+
+    <ul>
+    <% @product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<fieldset id="admin-product-images" class='span-12'>
+  <legend>Images</legend>
+  
+  <div id="product_images" class='span-16'>
+    <% @product.images.each do |image| %>
+      <div  id='image_<%= image.id %>' 
+            class="variant_form left span-16 last">
+        <%= form.fields_for :images, image do |image_form|%>
+          <%= render :partial => 'image', :locals => {:image_form => image_form } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+</fieldset>
+
+<div class='span-12' style='background-color:#EEE;border: solid 1px #666;float:left;'>
+  <p><%= add_child_link "New Image", :images %> </p>
+  <%= new_child_fields_template form, :images, :form_builder_local => :image_form %>
+</div>

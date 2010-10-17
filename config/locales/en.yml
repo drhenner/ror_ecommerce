@@ -1,0 +1,21 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello:                'Hello'
+  out_of_stock_notice:  'Sorry this item is out of stock.'
+  item_saved_for_later: 'The item will be saved in the cart for later use.'
+    
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%m/%d/%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+      us_date: "%m/%d/%Y"
+  time: 
+    formats: 
+      us_date: "%m/%d/%Y"
+      us_time: "%m/%d/%Y @ %I:%M %p"

@@ -1,0 +1,7 @@
+<%%= jqgrid("Listing <%= plural %>", "<%= plural %>", "/<%= plural %>",
+	[
+    <% columns.each_with_index do |col, i| -%>
+    { :field => "<%= col %>", :label => "<%= col.camelcase %>" }<% if i < columns.size-1 -%>,<% end %>
+    <% end -%>
+	]
+) %>

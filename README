@@ -1,0 +1,64 @@
+== Project Overview
+
+This is the first Rails e-commerce starter app.  Other e-commerce projects that
+use rails, don't use rails in a standard way.  They use engines or are a separate 
+framework altogether.  
+
+Hadean is designed differently.  Hadean is simply a starter application written for 
+Rails 3.  If you understand Rails you will understand Hadean.  There is nothing 
+in this project that you wouldn't see in a normal Rails application.  If you don't like 
+what is in the project just change it like you would in any other Rails app.  
+
+Contributors are welcome.  For now email David Henner (drhenner@yahoo.com) to see how you 
+can contribute. (send your patch if you have one.)  Soon there will be a bug tracking 
+system and a formal way to submit your patch.  
+
+We will always need help with UI, Documentation and code so feel free to help.
+
+== Getting Started
+
+Configure your database.yml file (add the development and test database)
+
+1. Go into config/initializers/setting and change the encryption code
+2. rake db:migrate
+3. rake db:seed
+4. rake db:test:prepare
+
+5. git submodule init
+6. git submodule update
+7. gem install compass
+8. gem install fancy-buttons
+
+######compass install -r fancy-buttons -f fancy-buttons
+
+# Time to start solr and memcache(yep you better install them)
+rake sunspot:solr:start
+## Take a look at setting up solr
+## http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
+
+memcached --vv  ## you can config many other cache stores but 
+                ## the cookie store will not work (in the admin) and the DB session store will be a dog
+
+Open config/config.yml and change the encryption key and paypal or auth.net information
+
+
+Once everything is setup, start up the server and direct it to
+admin/overviews
+
+write down the username/password and follow the directions.
+
+
+FYI:
+
+Shipping categories are categories based off price:
+
+you might have two shipping categories (light items) & (heavy items)
+Have fun!!!
+
+I personally want to thank some people I don't even know.
+  Ryan Bates and Greg Pollack, I have learned way too much from you 2 
+  it would only be right to give some thanks
+
+I'd also like to Thank one person that I do know. 
+  Umang Chouhan I've learned a lot from you also.
+  (even if I do have to filter out some of what you say. LOL)

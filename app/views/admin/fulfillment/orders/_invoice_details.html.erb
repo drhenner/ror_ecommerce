@@ -1,0 +1,15 @@
+<div style='display:inline-block;' class='line_item_gray'>
+  <%= invoice.state %> Invoice:
+</div>
+<%=  invoice.number %> => <%= number_to_currency invoice.amount %> 
+<% if invoice.authorized? %>
+  <a id='capture-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_green'> 
+    Collect
+  </a>
+  <a id='capture-partial-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_blue'> 
+    Collect Partial
+  </a>
+  <a id='cancel-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_red'> 
+    CANCEL
+  </a>
+<% end %>

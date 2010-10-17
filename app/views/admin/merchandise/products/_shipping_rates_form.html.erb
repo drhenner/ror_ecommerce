@@ -1,0 +1,10 @@
+<% @all_shipping_rates.each do |rate| %>
+    <div  id='rate_<%= rate.id %>' class="property_form left span-9 last">
+      <% checked_rate = @product.shipping_categories.detect {|c| c.shipping_rate_id == rate.id } %>
+      <div class='span-8'> 
+
+        <%= check_box_tag "product[shipping_rate_ids][]", rate.id, checked_rate ? true : false %>
+        <%= rate.name %>
+      </div>
+    </div>
+<% end %>

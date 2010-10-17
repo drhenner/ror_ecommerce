@@ -1,0 +1,14 @@
+
+<h2>New Prototype</h2>
+
+<%= form_for @prototype, :url  => admin_merchandise_prototype_path(@prototype), 
+                        :html => {:class => 'prepend-6'}  do |form| %>
+                        
+  <%= render :partial => '/admin/merchandise/prototypes/form', :locals => {:form => form}%>
+
+  <div class="button generic_submit_button">
+    <%= submit_tag "Update", 
+                    :class  => "button", 
+                    :id     => "create_prototype_button" %>
+  </div>
+<% end %>

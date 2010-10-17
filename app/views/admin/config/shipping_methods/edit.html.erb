@@ -1,0 +1,8 @@
+<h1>Editing Shipping Method</h1>
+
+<%= semantic_form_for(:shipping_method, @shipping_method, :url => admin_config_shipping_method_path(@shipping_method)) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<%= link_to 'Show', admin_config_shipping_method_path(@shipping_method) %> |
+<%= link_to 'Back', admin_config_shipping_methods_path %>

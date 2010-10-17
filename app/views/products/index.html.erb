@@ -1,0 +1,19 @@
+
+
+<div id='featured_item' class='span-18'>
+  
+  <div id='search_items' class='span-18'>
+    <% @products.each_with_index do |product, i| %>
+      <div id='interesting_product_<%= i %>' class='left-text padding-5'>
+        <%= link_to  image_tag(product.images.first.photo.url(:small)), product_path(product) %>
+      </div>
+    <% end %>
+  </div>
+  
+</div>
+
+<div id='right_side_panel' class='span-6 last'>
+  <div id='right_side_panel_promo' class='span-6 last'>
+    Join our web site and get additional Savings....  <%= image_tag 'logos/logo2.png', :alt => 'hadean image.'%>
+  </div>
+</div>

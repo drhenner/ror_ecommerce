@@ -1,0 +1,8 @@
+<h1>New <%= file_name %></h1>
+
+<%%= form_for(@<%= file_name %>, :url => <%= singular_table_name %>_path(@<%= file_name %>)) do |f| %>
+  <%%= render 'form', :locals => {:f => f} %>
+<%% end %>
+
+<%%= link_to 'Show', <%= singular_table_name %>_path( @<%= file_name %> ) %> |
+<%%= link_to 'Back', <%= index_helper %>_path %>

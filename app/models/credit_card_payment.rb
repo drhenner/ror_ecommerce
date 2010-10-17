@@ -1,0 +1,3 @@
+class CreditCardPayment < Transaction
+  
+end

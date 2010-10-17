@@ -1,0 +1,38 @@
+<h2>Login</h2>
+<% if @user_session.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited you from logging in:</h2>
+
+    <ul>
+    <% @user_session.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class='hadean-login span-12 prepend-4'>
+  <%= form_for  :user_session, @user_session, 
+                :url => user_sessions_path(@user_session), 
+                :html => {:class => 'span-12'} do |form| %>
+    <div id='username-block' style='display:inline-block;'>
+      <div id='username-label' class='span-3 float-left clearfix'>
+        <%=form.label :email, 'Email', :class => "span-3" %>
+      </div>
+      <div id='username-input' class='float-left clearfix' style='display:inline-block;'>
+        <%=form.text_field :email, :class => 'float-left' %>
+      </div>
+    </div>
+    <div id='password-block' style='display:inline-block;'>
+      <div id='password-label' class='span-3 float-left clearfix' >
+        <%=form.label :password, 'Password', :class => "span-3 float-left" %>
+      </div>
+      <div id='password-input' class='float-left clearfix' style='display:inline-block;'>
+        <%=form.password_field :password, :class => 'float-left' %>
+      </div>
+    </div>
+    <div id='login-buttons-container'>
+        <%=form.submit 'Log In' %>
+    </div>
+  <% end %>
+</div>

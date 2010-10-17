@@ -1,0 +1,27 @@
+<h1>Listing <%= file_name.pluralize %></h1>
+
+<table>
+  <tr>
+<% for attribute in attributes -%>
+    <th><%= attribute.human_name %></th>
+<% end -%>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<%% @<%= plural_table_name %>.each do |<%= file_name %>| %>
+  <tr>
+<% for attribute in attributes -%>
+    <td><%%= <%= file_name %>.<%= attribute.name %> %></td>
+<% end -%>
+    <td><%%= link_to 'Show', <%= singular_table_name %>_path(<%= file_name %>) %></td>
+    <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= file_name %>) %></td>
+    <td><%%= link_to 'Destroy', <%= singular_table_name %>, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<%% end %>
+</table>
+
+<br />
+
+<%%= link_to 'New <%= file_name %>', new_<%= singular_table_name %>_path %>

@@ -1,0 +1,60 @@
+<h2> Product: <%= @product.name %></h2>
+<fieldset id="admin-product-names" class='span-12'>
+<div class='span-3'>
+  <%= label :product, :name %>
+</div>
+<div class='span-6 last'>
+  <%= @product.name %>
+</div>
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :product, :description %>
+</div>
+<div class='span-6 last'>
+  <%= @product.description %>
+</div>
+
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :product, :meta_keywords %>
+</div>
+<div class='span-6 last'>
+  <%= @product.meta_keywords %>
+</div>
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :product, :meta_description %>
+</div>
+<div class='span-6 last'>
+  <%= @product.meta_description %>
+</div>
+
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :product, :product_type %>
+</div>
+<div class='span-6 last'>
+  <%= @product.product_type.name %>
+</div>  
+
+<div class='clear'></div>
+<div class='span-3'>
+  <%= label :product, :shipping_category %>
+</div>
+<div class='span-6 last'>
+  <%= @product.shipping_category.name %>
+</div>
+</fieldset>
+
+<fieldset id="admin-product-properties" class='span-12'>
+  <legend>Properties</legend>
+  <% @product.product_properties.each do |product_prop|  %>
+    <%= product_prop.property.identifing_name %>: <%= product_prop.description %>
+  <% end %>
+</fieldset>
+
+<% @product.images.each do |image| %>
+  <%= image.photo_file_name %><%= image_tag image.photo.url(:small) %><br/>
+<% end %>
+<%= link_to 'Edit Images', edit_admin_merchandise_images_product_path(@product), :class => 'button spade'%>
+<%= link_to 'All Products', admin_merchandise_products_path(), :class => 'button yellow'%>

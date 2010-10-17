@@ -1,0 +1,11 @@
+*********
+  USAGE
+*********
+ 
+Example : 
+ 
+$ ./script/generate jqgrid user id pseudo email firstname
+ 
+will generate the controller and the index view with the grid.
+
+Enjoy!

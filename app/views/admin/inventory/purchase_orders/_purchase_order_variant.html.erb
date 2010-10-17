@@ -1,0 +1,25 @@
+
+<fieldset id="admin-product-names" class='span-11 <%= po_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
+
+  <div class='span-11'>
+    <div class='span-10'>
+      <%= po_form.label :variant_id %>
+      <%= po_form.select :variant_id, @select_variants, { :include_blank => true } %>
+    </div>
+    <div style='float:right;'>
+      <%= remove_child_link('remove', po_form) %>
+    </div>
+  </div>
+  <div class='span-11'>
+    <div class='span-5'>
+      <%= po_form.label :quantity %>
+      <%= po_form.text_field :quantity, :class => 'span-2'%>
+    </div>
+    
+    <div class='span-5'>
+      <%= po_form.label :cost %>
+      <%= po_form.text_field :cost, :class => 'span-2' %>
+    </div>
+  </div>
+  
+</fieldset>

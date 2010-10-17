@@ -1,0 +1,5 @@
+
+<% @prototype.properties.each_with_index do |property, i| %>
+  <%= check_box_tag 'product[property][]',property.id %><%= property.display_name %> <%= raw '<br>' if i%3 == 2 %>
+  
+<% end %>

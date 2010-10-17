@@ -1,0 +1,10 @@
+<% @all_properties.each do |property| %>
+    <div  id='property_<%= property.id %>' class="property_form left span-9 last">
+      <% checked_property = @product.name && @product.properties.select {|p| p.id == property.id } %>
+      <div class='span-4'> 
+        <%= check_box_tag "product[property_ids][]", property.id, checked_property ? 1 : 0 %>
+        <%= property.display_name %>: 
+      </div>
+      <%= text_field_tag "property[name]", checked_property.try(:description) %>
+    </div>
+<% end %>

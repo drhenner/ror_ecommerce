@@ -1,0 +1,12 @@
+<h2>New Supplier</h2>
+
+<%= form_for :supplier, @supplier, :url  => admin_inventory_suppliers_path, 
+                        :html => {:class => 'prepend-6'}  do |form| %>
+  <%= render :partial => '/admin/inventory/suppliers/form', :locals => {:form => form}%>
+
+  <div class="button generic_submit_button">
+    <%= submit_tag "Create", 
+                    :class  => "button", 
+                    :id     => "create_supplier_button" %>
+  </div>
+<% end %>

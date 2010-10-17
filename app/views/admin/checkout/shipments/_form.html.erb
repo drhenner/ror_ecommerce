@@ -1,0 +1,39 @@
+<% path_to_submit = @shipment.new_record? ? admin_config_shipments_path : admin_config_shipment_path(@shipment) %>
+<%= semantic_form_for(@shipment, :url => path_to_submit) do |f| %>
+  <% if @shipment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shipment.errors.count, "error") %> prohibited this shipment from being saved:</h2>
+
+      <ul>
+      <% @shipment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :order_id %>
+  </div>
+  <div class="field">
+    <%= f.input :shipping_method_id %>
+  </div>
+  <div class="field">
+    <%= f.input :address_id %>
+  </div>
+  <div class="field">
+    <%= f.input :tracking %>
+  </div>
+  <div class="field">
+    <%= f.input :number %>
+  </div>
+  <div class="field">
+    <%= f.input :state %>
+  </div>
+  <div class="field">
+    <%= f.input :shipped_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

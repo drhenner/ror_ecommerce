@@ -1,0 +1,12 @@
+
+<h1>User</h1>
+
+<%= semantic_form_for :user, @user, :url => admin_users_path(@user)  do |form| %>
+    <%= form.inputs do %>
+      <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
+       
+    <% end %>
+    <%= form.buttons do %>
+      <%= form.commit_button "Create" %>
+    <% end %>
+<% end %>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hadean</title>
+  <%#= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag 'buttons.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'link_icons.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'sprite.css' %>
+  <%= stylesheet_link_tag 'print.css', :media => 'print'%>
+  <%= stylesheet_link_tag 'main.css' %>
+    <!--[if lt IE 8]
+  <%#= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
+  <![endif]-->
+  <%= csrf_meta_tag %>
+  
+  <%= javascript_include_tag 'jquery-1.4.2.min', 'rails', 'jquery-ui-1.8.5.custom.min','application' %>
+  <%= yield :head %>
+</head>
+<body class="bp">
+  <div class="bp">
+    <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
+    <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
+  </div>
+  <div class="container bp">
+    <div id='header_wrapper' class="span-24 header-image">
+      <div id="header" class="span-12">
+        <h1 id="hadean-title" class="alt">Hadean</h1>
+      </div>
+
+      <div id="subheader" class="span-12 last">
+        <h3 class="alt">Your Ruby on Rails E-Commerce Solution.</h3>
+        <div class="alt">
+          <%= current_user.name %>
+          <%= link_to 'Logout', logout_path, :id => 'admin-logout-button' %>
+        </div>
+      </div>
+    </div>
+
+    <div id='header_bar' class='float-left'>
+       <%= render :partial => '/shared/admin/header_buttons'  %>
+    </div>
+    
+    <div id='header_sub_bar'>
+      <%= render :partial => '/admin/shopping/sub_header' %>
+    </div>
+    
+    <div class='span-14'>
+      <%= yield %>
+    </div>
+    <div id='cart-right-side-panel' class='span-10 last float-right'>
+      <%= render :partial => '/admin/shopping/right_panel_summary'%>
+      <%= yield :right_side_bar %>
+    </div>
+  </div>
+  
+  <%= yield :bottom %>
+  
+  <script>
+  jQuery(window).ready(
+    function() {
+      jQuery('.flash_notice').delay(6000).slideUp( 'slow');
+      jQuery('.flash_error').delay(6000).slideUp( 'slow');
+    }
+  );
+  </script>
+  
+  <%# javascript_include_tag 'jquery/jquery-1.4.2.min' %>
+  <%#= javascript_include_tag 'jquery-1.4.2.min', 'rails' %>
+  <%#= javascript_include_tag :all, :cache => true %>
+</body>

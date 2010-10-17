@@ -1,0 +1,26 @@
+
+<div id='featured_item' class='span-18'>
+  <div id='featured_item_details' class='float-left'>
+    <div id='featured_image' class='span-9 float-left'>
+      <%= link_to image_tag(@featured_product.images.first.photo.url(:product)), product_path(@featured_product)  %>
+    </div>
+    <div id='featured_description' class='left-text-4'>
+      <%= raw @featured_product.description %>
+    </div>
+  </div>
+  
+  <div id='interesting_items' class='span-18'>
+    <% interesting_products = most_likely_user ? most_likely_user.might_be_interested_in_these_products : @best_selling_products %>
+    <% interesting_products.each_with_index do |product, i| %>
+      <div id='interesting_product_<%= i %>' class='left-text padding-5'>
+        <%= link_to  image_tag(product.images.first.photo.url(:small)), product_path(product) %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id='right_side_panel' class='span-6 last'>
+  <div id='right_side_panel_promo' class='span-6 last'>
+    Join our web site and get additional Savings.... <%= image_tag 'logos/logo2.png', :alt => 'hadean image.'%>
+  </div>
+</div>

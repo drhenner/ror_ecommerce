@@ -1,0 +1,38 @@
+<% content_for :head do -%>
+  <%= formtastic_stylesheet_link_tag  %>
+  <%= stylesheet_link_tag 'flick/jquery-ui-1.8.4.custom' %>
+<% end %>
+<% content_for :bottom do -%>
+  <%= javascript_include_tag 'jquery.datePicker-2.1.2', 'datePickerInitialize' %>
+<% end %>
+
+<h1>Registration</h1>
+
+<%= semantic_form_for @user, :url => customer_registrations_path(@user)  do |form| %>
+    <%= form.inputs do %>
+    
+       <div id='registration_name_form'>
+          <%= form.inputs  do %>
+              <%= form.input :first_name, :required => true %>
+              <div class='clearfix'></div>
+              <%= form.input :last_name, :required => true %>
+              <div class='clearfix'></div>
+              <%= form.input :email, :required => true,:wrapper_html => { :class => "span-11" }%>
+              <div class='clearfix'></div>
+              <%= form.input :birth_date, 
+                              :required => false, :as => :yearpicker,
+                              :wrapper_html => { :class => "span-11" }%>
+          <% end %>
+       </div>
+       <div id='registration_form'>
+          <%= form.inputs  do %>
+              <%= form.input :password, :required => true,:wrapper_html => { :class => "span-11" } %>
+              <div class='clearfix'></div>
+              <%= form.input :password_confirmation, :required => true,:wrapper_html => { :class => "span-11" } %>
+          <% end %>
+       </div>
+    <% end %>
+    <%= form.buttons do %>
+      <%= form.commit_button "Continue" %>
+    <% end %>
+<% end %>

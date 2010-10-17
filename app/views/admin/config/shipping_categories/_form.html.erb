@@ -1,0 +1,20 @@
+
+  <% if @shipping_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shipping_category.errors.count, "error") %> prohibited this admin_merchandise_shipping_category from being saved:</h2>
+
+      <ul>
+      <% @shipping_category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>

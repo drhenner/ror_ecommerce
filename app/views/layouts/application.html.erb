@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    Hadean: <%= yield :title %>
+  </title>
+  <%#= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag 'buttons.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'link_icons.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'sprite.css' %>
+  <%= stylesheet_link_tag 'print.css', :media => 'print'%>
+  <%= stylesheet_link_tag 'main.css' %>
+    <!--[if lt IE 8]
+  <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
+  <![endif]-->
+  <!--[if lt IE 7]
+      <%= stylesheet_link_tag 'ie6.css', :media => 'screen, projection' %>
+  <![endif]-->
+  <%= csrf_meta_tag %>
+  <%#= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'jquery-1.4.2.min', 'rails', 'jquery-ui-1.8.5.custom.min','application' %>
+  <%#, :cache => 'all_1' %>
+  <%#= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ujs/src/rails', 'jquery-ui-1.8.4.custom.min','application' %>
+  <%= yield :head %>
+  
+</head>
+<body >
+  <div class="bp">
+    <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
+    <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
+  </div>
+  <div class="container bp">
+    <div id='header_wrapper' class="span-24 header-image">
+      <div id="header" class="span-12">
+        <h1 id="hadean-title" class="alt">
+          <%= image_tag 'logos/logo2.png', :alt => 'hadean image.'%>
+          <%= link_to 'Hadean', root_path %>
+        </h1>
+      </div>
+
+      <div id="subheader" class="span-12 last">
+        <h3 class="alt">Your Ruby on Rails E-Commerce Solution.</h3>
+        <div class="alt">
+          <% unless most_likely_user %>
+            <%= link_to 'Login',  login_path %> or
+            <%= link_to 'Sign up', signup_path %>
+          <% else %>
+            Hi <%= most_likely_user.first_name %>
+            (<%= link_to 'not you?', logout_path %>)
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div id='header_bar'>
+      <div id='search_bar' class='alt inline-block'>
+        <div id='layout-search' class='inline-block'>
+            <div class='inline float-left span-2'>
+              Search:
+            </div>
+            <div class='inline float-left'>
+              <%= form_for search_product, :class => 'inline-block' do %>
+                <%= text_field_tag 'q', nil , :class => 'span-11 rounded-6' %>
+                <%= submit_tag 'Go',          :class => 'button spade' %>
+              <% end %>
+            </div>
+        </div>
+        
+      </div>
+      <div id='cart_button_bar'>
+        <%= link_to "Cart", shopping_cart_items_path, 
+                            :class  => "button yellow", 
+                            :id     => "cart_items_button" %>
+      </div>
+      <div id='wish_button_bar'>
+        <%= link_to "Wish", wish_items_path, 
+                            :class  => "button heart", 
+                            :id     => "cart_items_button" %>
+      </div>
+    </div>
+    <div id='content_wrapper'>
+      <%= yield %>
+    </div>
+  </div>
+  
+  <%= yield :bottom %>
+  
+  <script>
+  jQuery(window).ready(
+    function() {
+      jQuery('.flash_notice').delay(6000).slideUp( 'slow');
+      jQuery('.flash_error').delay(6000).slideUp( 'slow');
+    }
+  );
+  </script>
+  
+  <%# javascript_include_tag :defaults %>
+  <%#= javascript_include_tag 'jquery-1.4.2.min', 'rails' %>
+  <%#= javascript_include_tag :all, :cache => true %>
+</body>
+  <%= yield :below_body %>
+</html>

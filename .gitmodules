@@ -1,0 +1,4 @@
+[submodule "public/javascripts/jquery-ujs"]
+  path = public/javascripts/jquery-ujs
+    url = git://github.com/rails/jquery-ujs.git
+

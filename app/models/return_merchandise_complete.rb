@@ -1,0 +1,3 @@
+class ReturnMerchandiseComplete < Transaction
+
+end

@@ -1,0 +1,16 @@
+
+<fieldset id="admin-product-images" 
+          style='float:left;' 
+          class='span-11 <%= image_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
+  <p class='field'>
+    <div style='float:right;'>
+      <%= remove_child_link('remove', image_form) %>
+    </div>
+    Position: <%= image_form.select       :position, [1,2,3,4,5,6] %><br/>
+    Caption:  <%= image_form.text_field   :caption %><br/>
+    Photo:    <%= image_form.file_field   :photo %>
+  </p>
+</fieldset>
+<% if !image_form.object.new_record? %>
+  <%= image_tag image_form.object.photo.url(:small) %>
+<% end %>

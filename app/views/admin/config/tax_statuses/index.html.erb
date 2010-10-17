@@ -1,0 +1,23 @@
+<%= render :partial => '/admin/config/sub_header'%>
+
+<h1>Tax Statuses</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tax_statuses.each do |tax_status| %>
+  <tr>
+    <td><%= tax_status.name %></td>
+    <td><%= link_to 'Show', admin_config_tax_status_path(tax_status) %></td>
+    <td><%= link_to 'Edit', edit_admin_config_tax_status_path(tax_status) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tax status', new_admin_config_tax_status_path %>

@@ -1,0 +1,55 @@
+ @import "compass";
+ @import "blueprint";
+
+.pretty_table table {
+  width:95%;
+  border-top:1px solid #e5eff8;
+  border-right:1px solid #e5eff8;
+  margin:1em auto;
+  border-collapse:collapse;
+}
+.pretty_table td {
+  color:#678197;
+  border-bottom:1px solid #e5eff8;
+  border-left:1px solid #e5eff8;
+  padding:.3em 1em;
+  text-align:center;
+}
+
+.pretty_table thead tr .column1_header {
+  border-left:1px solid #e5eff8;
+}
+
+.pretty_table tr.odd td,
+.pretty_table tr.odd .column1 {
+  background:#f4f9fe url(../../images/pretty_table_background.gif) no-repeat;
+}
+.pretty_table .column1 {
+  background:#f9fcfe;
+}
+
+.pretty_table thead th {
+  background:#f4f9fe;
+  text-align:center;
+  font:bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+  color:#66a3d3;
+}
+
+.pretty_table tfoot th {
+  background:#f4f9fe;
+  text-align:center;
+}
+
+.pretty_table tfoot th strong {
+  font:bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+  margin:.5em .5em .5em 0;
+  color:#66a3d3;
+}
+
+.pretty_table tfoot th em {
+  color:#f03b58;
+  font-weight: bold;
+  font-size: 1.1em;
+  font-style: normal;
+}
+

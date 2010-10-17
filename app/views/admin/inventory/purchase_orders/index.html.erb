@@ -1,0 +1,41 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag "admin/index_grid" %>
+<% end %>
+<%= render :partial => '/admin/inventory/sub_header'%>
+
+<h2> Purchase Orders </h2>
+
+<div id="admin_purchase_orders_page_wrapper">
+  <div id="admin_purchase_orders_grid_wrapper" class='column'>
+    <%= raw jqgrid("Purchase Orders", "admin_purchase_orders_grid", admin_inventory_purchase_orders_path,
+      [
+        { :field => "supplier_name",    :label => "Name",         :width => 120,  :resizable => false },
+        { :field => "invoice_number",   :label => "Invoice #",    :width => 90,   :resizable => false },
+        { :field => "tracking_number",  :label => "Tracking #",   :width => 90,   :resizable => false },
+        { :field => "display_estimated_arrival_on", :label => "Arrives",  :width => 80, :resizable => false },
+        { :field => "display_received", :label => "Received",     :width => 60,   :resizable => false }
+      ], 
+      {
+        :height             => "350",
+        :alt_rows           => true,
+        :direct_selection   => true,
+        :editable           => true,
+        :selection_handler  => "Hadean.AdminIndexForm.editSelection",
+        :rownumbers         => false,
+        :rows_per_page      => 20,
+        :row_list           => [20, 50, 100]
+      }
+    ) %>
+  </div>
+
+  <div id="admin_new_purchase_order_button" class="admin_new_button last">
+    <%= link_to "New Purchase Order", new_admin_inventory_purchase_order_path, :class => "button", :id => "new_purchase_order_button" %>
+  </div>
+</div>
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %>
+
+
+<script>
+  Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/inventory/purchase_orders'));
+</script>

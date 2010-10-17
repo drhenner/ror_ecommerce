@@ -1,0 +1,3 @@
+class CreditCardCancel < Transaction
+  
+end

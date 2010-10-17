@@ -1,0 +1,21 @@
+<h2>My Orders</h2>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Completed at</th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.number %></td>
+    <td><%= order.first_invoice_amount %></td>
+    <td><%= order.status %></td>
+    <td><%= order.completed_at %></td>
+    <td><%= link_to 'Show', myaccount_order_path(order) %></td>
+  </tr>
+<% end %>
+</table>

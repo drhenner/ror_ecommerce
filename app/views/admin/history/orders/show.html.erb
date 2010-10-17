@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<div  id='order-items' 
+      class='span-16 rounded-10 line_item_blue float-left'>
+          Order Number: <%= @order.number %><br/>
+          Customer:     <%= @order.name %><br/>
+          Email:        <%= @order.email %><br/>
+          Completed at: <%= @order.completed_at ? I18n.localize(@order.completed_at, :format => :us_time) : '' %><br/>
+          Shipped:      <%= @order.has_shipment? ? 'No' : 'Yes' %><br/>
+</div>
+
+<% if @order.order_items.size > 0 %>
+
+  <div class=' span-8 float-left'>
+  <b>Items</b>
+    <div  id='order-items' 
+          class='span-8 rounded-10 line_item_blue float-left'>
+
+            <% @order.order_items.each do |item| %>
+              <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
+            <% end %>
+    </div>        
+  </div>
+  
+<% end %>
+
+<div  id='order-address' 
+      class='span-8 rounded-10 line_item_green float-left'>
+          <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+          <br>
+          <p><%= link_to 'Change Address', admin_history_order_addresses_path(@order), :class => 'button green' %> <br>
+          (This will not change the shipments that have already been placed)</p>
+</div>
+
+<div class=' span-7 float-left'>
+  <b>Shipments:</b>
+  <% @order.shipments.each do |shipment| %>
+      <div  id='order-shipment-items' 
+            class='span-7 rounded-10 line_item_yellow'>
+          State: <%= shipment.state.humanize %> <br/>  
+          Shipping Method: <%= shipment.shipping_method.name %> <br/>
+          Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %> 
+      </div>
+  <% end %>
+</div>
+
+
+<div class=' span-7 float-left'>
+  <b>Invoices:</b>
+  <% @order.invoices.each do |invoice| %>
+      <div  id='order-invoices' 
+            class='span-7 rounded-10 line_item_gray'>
+          Number: <%= invoice.number %> <br/>  
+          State: <%= invoice.state %> at: <%= I18n.localize(invoice.updated_at, :format => :us_time)%><br/>
+          Amount: <%= number_to_currency invoice.amount %> 
+      </div>
+  <% end %>
+</div>
+
+<div class=' span-7'>
+  <b>RMA:</b>
+  <div class=' span-7 rounded-10 line_item_gray'>
+    <% if @order.return_authorizations.size > 0 %>
+       <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order), 
+                                :class => 'button heart' %>
+       <br/><br/>
+    <% else %>
+      <%= link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order),
+                                :class => 'button heart' %>
+    <% end %>
+  </div>
+</div>
+<%#= link_to 'Edit', edit_admin_history_order_path(@order) %> 

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Order:</b>
+  <%= @shipment.order_id %>
+</p>
+
+<p>
+  <b>Shipping method:</b>
+  <%= @shipment.shipping_method_id %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @shipment.address_id %>
+</p>
+
+<p>
+  <b>Tracking:</b>
+  <%= @shipment.tracking %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%= @shipment.number %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @shipment.state %>
+</p>
+
+<p>
+  <b>Shipped at:</b>
+  <%= @shipment.shipped_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_checkout_shipment_path(@shipment) %> |
+<%= link_to 'Back', admin_checkout_shipments_path %>
