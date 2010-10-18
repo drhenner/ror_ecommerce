@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.1'
 
 gem "activemerchant", '1.7.2'#, :lib => 'active_merchant'
 gem 'acts_as_tree',    :git => 'git://github.com/parasew/acts_as_tree.git'
@@ -26,9 +26,10 @@ gem 'dalli'
 
 gem 'nokogiri'
 gem 'memcache-client'
-#gem 'mysql2'
-gem 'ruby-mysql'
-#gem "nifty-generators"
+gem 'mysql2'
+#gem 'mysql', '2.8.1'
+#gem 'ruby-mysql'
+gem "nifty-generators"
 gem 'paperclip'
 gem 'prawn'
 

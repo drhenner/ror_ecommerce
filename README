@@ -17,6 +17,8 @@ We will always need help with UI, Documentation and code so feel free to help.
 
 == Getting Started
 
+install rvm with ruby 1.9.2 or if you have 1.9.2 on your system your good to go
+
 Configure your database.yml file (add the development and test database)
 
 1. Go into config/initializers/setting and change the encryption code
