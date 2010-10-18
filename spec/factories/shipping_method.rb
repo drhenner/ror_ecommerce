@@ -1,5 +1,5 @@
 
 Factory.define :shipping_method do |f|
   f.name          "34567kjhgf"
-  f.shipping_zone { |c| c.association(:shipping_zone) }
+  f.shipping_zone { ShippingZone.first }
 end
