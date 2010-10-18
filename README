@@ -1,11 +1,12 @@
 == Project Overview
+http://ror_ecommerce.lighthouseapp.com/home
 
 This is the first Rails e-commerce starter app.  Other e-commerce projects that
 use rails, don't use rails in a standard way.  They use engines or are a separate 
 framework altogether.  
 
-Hadean is designed differently.  Hadean is simply a starter application written for 
-Rails 3.  If you understand Rails you will understand Hadean.  There is nothing 
+ROR_ecommerce is designed differently.  ROR_ecommerce is simply a starter application written for 
+Rails 3.  If you understand Rails you will understand ROR_ecommerce.  There is nothing 
 in this project that you wouldn't see in a normal Rails application.  If you don't like 
 what is in the project just change it like you would in any other Rails app.  
 
