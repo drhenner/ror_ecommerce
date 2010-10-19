@@ -108,18 +108,4 @@ describe Admin::History::AddressesController do
 
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested address" do
-      Admin::History::Address.should_receive(:find).with("37") { mock_address }
-      mock_admin_history_address.should_receive(:destroy)
-      delete :destroy, :id => "37"
-    end
-
-    it "redirects to the admin_history_addresses list" do
-      Admin::History::Address.stub(:find) { mock_address }
-      delete :destroy, :id => "1"
-      response.should redirect_to(admin_history_addresses_url)
-    end
-  end
-
 end

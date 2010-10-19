@@ -111,7 +111,7 @@ describe Admin::Fulfillment::ShipmentsController do
   describe "DELETE destroy" do
     it "destroys the requested shipment" do
       Admin::Fulfillment::Shipment.should_receive(:find).with("37") { mock_shipment }
-      mock_admin_fulfillment_shipment.should_receive(:destroy)
+      mock_admin_fulfillment_shipment.should_receive(:update_attributes)
       delete :destroy, :id => "37"
     end
 

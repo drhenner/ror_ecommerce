@@ -17,4 +17,10 @@ Factory.define :address do |u|
   u.state     { State.first }
   u.zip_code  '54322'
   u.address_type { AddressType.first}
+  u.addressable  { |c| c.association(:user) }
 end
+
+
+#Factory.define :order_address, :parent => :address do |f|
+  
+#end

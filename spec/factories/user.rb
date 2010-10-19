@@ -20,3 +20,8 @@ end
 Factory.define :registered_user_with_credit, :parent => :registered_user do |s|
   s.state    'registered_with_credit'
 end
+
+
+Factory.define :admin_user, :parent => :user do |f|
+  f.roles     { [Role.find_by_name('administrator')] }
+end
