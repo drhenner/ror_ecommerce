@@ -75,6 +75,12 @@ class Shipment < ActiveRecord::Base
     set_shipment_number
     save
   end
+  def shipping_addresses
+    order.user.shipping_addresses
+  end
+  def self.find_fulfillment_shipment(id)
+    Shipment.includes([{:order => {:user => :shipping_addresses}} , :address ]).find(id)
+  end
   
   def self.id_from_number(num)
     num.to_i(CHARACTERS_SEED) - NUMBER_SEED

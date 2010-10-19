@@ -202,6 +202,9 @@ class User < ActiveRecord::Base
   end
   
   private
+  def password_required?
+    self.crypted_password.blank?
+  end
   
   def create_cim_profile
     return true if customer_cim_id
