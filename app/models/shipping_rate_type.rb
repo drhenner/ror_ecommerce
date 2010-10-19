@@ -13,9 +13,4 @@ class ShippingRateType < ActiveRecord::Base
   INDIVIDUAL_ID  = 1
   ORDER_ID       = 2
   
-  validates :shipping_method_id,    :presence => true
-  validates :shipping_rate_type_id, :presence => true
-  validates :shipping_category_id,  :presence => true
-  validates :rate,                  :presence => true
-  
 end

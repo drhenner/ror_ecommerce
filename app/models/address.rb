@@ -12,8 +12,8 @@ class Address < ActiveRecord::Base
   validates :address1,    :presence => true
   validates :city,        :presence => true,
                           :format   => { :with => CustomValidators::Names.name_validator }
-  validates :state,       :presence => true,  :if => Proc.new { |address| address.state_name.blank?  }
-  validates :state_name,  :presence => true,  :if => Proc.new { |address| address.state_id.blank?   }
+  validates :state_id,       :presence => true#,  :if => Proc.new { |address| address.state_name.blank?  }
+  #validates :state_name,  :presence => true,  :if => Proc.new { |address| address.state_id.blank?   }
   validates :zip_code,    :presence => true
   #validates :phone_id,    :presence => true
   before_validation :sanitize_data
