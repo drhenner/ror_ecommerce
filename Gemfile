@@ -54,6 +54,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'rails3-generators'
+  gem "shoulda"
   gem "rspec-rails",  ">= 2.0.0"
   gem "rspec",        ">=  2.0.0"
   
@@ -61,9 +62,6 @@ group :test do
   gem "rspec-expectations", ">=  2.0.0"
   gem "rspec-mocks",        ">=  2.0.0"
   
-  #gem "rspec-rails",      '>= 2.0.0'   #">= 2.0.0.beta"
-  #gem "machinist",      '>= 2.0.0.beta1'  #:git => "git://github.com/notahat/machinist.git"
-  #gem 'machinist', '2.0.0.head', :git => 'git://github.com/notahat/machinist.git', :branch => 'machinist2'
   gem "faker"
   #gem "ZenTest"
   gem "autotest"
@@ -71,13 +69,13 @@ group :test do
   gem "autotest-fsevent"
   gem "autotest-growl"
   #gem "redgreen"
-  #gem "test-unit", "1.2.3"# This is needed to redgreen and ruby 1.9
+  #gem "test-unit", "1.2.3"
   
   
   ###  THESE ARE ALL FOR CUCUMBER
 #  gem "webrat"  ## USE webrat or capybara NOT BOTH  
 #  gem "capybara"
-  #gem "capybara-envjs"
+#  gem "capybara-envjs"
 #  gem "database_cleaner"
 #  gem "cucumber"
 #  gem "cucumber-rails"
