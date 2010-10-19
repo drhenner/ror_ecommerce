@@ -22,6 +22,10 @@ Hadean::Application.routes.draw do # |map|
     resources :registrations
   end
   
+  namespace :myaccount do
+    resources :orders, :only => [:show, :index]
+  end
+  
   namespace :shopping do
     resources  :cart_items do
       member do 
@@ -41,7 +45,7 @@ Hadean::Application.routes.draw do # |map|
   
   namespace :admin do
     resources :users
-    resources :overviews
+    resources :overviews, :only => [:index]
     
     
     namespace :rma do
@@ -56,7 +60,7 @@ Hadean::Application.routes.draw do # |map|
     end
     
     namespace :history do
-      resources  :orders do
+      resources  :orders, :only => [:index, :show] do
         resources  :addresses
       end
     end
@@ -67,7 +71,7 @@ Hadean::Application.routes.draw do # |map|
         member do 
           put :ship
         end
-        resources  :addresses # This is for editing the shipment address
+        resources  :addresses , :only => [:edit, :update]# This is for editing the shipment address
       end
     end
     namespace :shopping do
