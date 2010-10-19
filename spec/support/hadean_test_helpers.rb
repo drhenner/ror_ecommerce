@@ -6,7 +6,7 @@ module Hadean
       user_session_for user
       
       #u ||= Factory(user)
-      #@controller.stubs(:current_user).returns(u)
+      #controller.stubs(:current_user).returns(u)
       #u
     end
     

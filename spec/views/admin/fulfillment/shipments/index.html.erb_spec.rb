@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe "admin_fulfillment_shipments/index.html.erb" do
   before(:each) do
-    assign(:admin_fulfillment_shipments, [
-      stub_model(Admin::Fulfillment::Shipment,
+    assign(:shipments, [
+      stub_model(Shipment,
         :tracking => "Tracking",
         :number => "Number",
         :state => "State"
       ),
-      stub_model(Admin::Fulfillment::Shipment,
+      stub_model(Shipment,
         :tracking => "Tracking",
         :number => "Number",
         :state => "State"

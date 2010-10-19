@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe "admin_history_orders/index.html.erb" do
   before(:each) do
-    assign(:admin_history_orders, [
-      stub_model(Admin::History::Order,
+    assign(:orders, [
+      stub_model(Order,
         :number => "Number",
         :name => "Name",
         :email => "Email",
         :shipped => false
       ),
-      stub_model(Admin::History::Order,
+      stub_model(Order,
         :number => "Number",
         :name => "Name",
         :email => "Email",

@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe Admin::History::AddressesController do
@@ -109,3 +110,4 @@ describe Admin::History::AddressesController do
   end
 
 end
+=end

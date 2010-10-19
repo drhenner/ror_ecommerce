@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe Admin::Fulfillment::AddressesController do
@@ -39,7 +40,7 @@ describe Admin::Fulfillment::AddressesController do
   ##end
 
   describe "GET edit" do
-    before do
+    before(:each) do
       @address    = Factory(:address)
       @shipment    = Factory(:shipment, :address => @address)
       
@@ -93,3 +94,4 @@ describe Admin::Fulfillment::AddressesController do
   end
 
 end
+=end

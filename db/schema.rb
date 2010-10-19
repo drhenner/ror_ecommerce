@@ -345,6 +345,7 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
   end
 
   create_table "return_items", :force => true do |t|
+    t.integer  'return_authorization_id'
     t.integer  "order_item_id"
     t.integer  "return_condition_id"
     t.integer  "return_reason_id"

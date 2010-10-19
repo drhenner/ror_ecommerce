@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe "admin_fulfillment_orders/index.html.erb" do
   before(:each) do
-    assign(:admin_fulfillment_orders, [
-      stub_model(Admin::Fulfillment::Order,
+    assign(:orders, [
+      stub_model(Order,
         :email => "Email",
         :name => "Name"
       ),
-      stub_model(Admin::Fulfillment::Order,
+      stub_model(Order,
         :email => "Email",
         :name => "Name"
       )

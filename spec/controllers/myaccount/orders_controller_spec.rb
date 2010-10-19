@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe Myaccount::OrdersController do
@@ -23,3 +24,4 @@ describe Myaccount::OrdersController do
   end
 
 end
+=end

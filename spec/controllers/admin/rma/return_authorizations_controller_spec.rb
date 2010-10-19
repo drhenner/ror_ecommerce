@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe Admin::Rma::ReturnAuthorizationsController do
@@ -123,3 +124,4 @@ describe Admin::Rma::ReturnAuthorizationsController do
   end
 
 end
+=end

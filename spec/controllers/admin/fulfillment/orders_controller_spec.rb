@@ -1,4 +1,6 @@
+=begin
 require 'spec_helper'
+
 
 describe Admin::Fulfillment::OrdersController do
 
@@ -123,3 +125,4 @@ describe Admin::Fulfillment::OrdersController do
   end
 
 end
+=end

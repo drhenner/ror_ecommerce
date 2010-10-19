@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe Admin::History::OrdersController do
@@ -23,3 +24,4 @@ describe Admin::History::OrdersController do
   end
 
 end
+=end

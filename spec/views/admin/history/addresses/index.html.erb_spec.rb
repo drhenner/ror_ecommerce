@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "admin_history_addresses/index.html.erb" do
   before(:each) do
-    assign(:admin_history_addresses, [
-      stub_model(Admin::History::Address,
+    assign(:addresses, [
+      stub_model(Address,
         :first_name => "First Name",
         :last_name => "Last Name",
         :address1 => "Address1",
@@ -12,7 +12,7 @@ describe "admin_history_addresses/index.html.erb" do
         :state_id => 1,
         :zip_code => "Zip Code"
       ),
-      stub_model(Admin::History::Address,
+      stub_model(Address,
         :first_name => "First Name",
         :last_name => "Last Name",
         :address1 => "Address1",
