@@ -24,36 +24,9 @@ class Admin::History::OrdersController < Admin::BaseController
     end
   end
 
-  # GET /admin/history/orders/new
-  # GET /admin/history/orders/new.xml
-  def new
-    @order = Order.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @order }
-    end
-  end
-
   # GET /admin/history/orders/1/edit
   def edit
     @order = Order.find_by_number(params[:id])
-  end
-
-  # POST /admin/history/orders
-  # POST /admin/history/orders.xml
-  def create
-    @order = Order.new(params[:order])
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-      end
-    end
   end
 
   # PUT /admin/history/orders/1

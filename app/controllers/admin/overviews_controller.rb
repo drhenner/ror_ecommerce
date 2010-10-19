@@ -6,8 +6,6 @@ class Admin::OverviewsController < ApplicationController
   def index
     #  The index action should 
     if u = User.first
-      debugger
-      u
       redirect_to root_url if !current_user || !current_user.admin?
       
     else

@@ -1,58 +1,21 @@
 class Admin::Fulfillment::AddressesController < Admin::Fulfillment::BaseController
   # GET /admin/fulfillment/addresses
   # GET /admin/fulfillment/addresses.xml
-  def index
-    load_info
-    @addresses  = @shipment.order.user.shipping_addresses
-    @address    = @shipment.address
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
-  end
-
-  # GET /admin/fulfillment/addresses/1
-  # GET /admin/fulfillment/addresses/1.xml
-  def show
-    load_info
-    @address = Address.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
-  end
-
-  # GET /admin/fulfillment/addresses/new
-  # GET /admin/fulfillment/addresses/new.xml
-  def new
-    load_info
-    @address = Address.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
+  #def index
+  #  load_info
+  #  @addresses  = @shipment.shipping_addresses
+  #  @address    = @shipment.address
+  #
+  #  respond_to do |format|
+  #    format.html # index.html.erb
+  #  end
+  #end
 
   # GET /admin/fulfillment/addresses/1/edit
   def edit
     load_info
-    @addresses  = @shipment.order.user.shipping_addresses
+    @addresses  = @shipment.shipping_addresses
     @address = Address.find(params[:id])
-  end
-
-  # POST /admin/fulfillment/addresses
-  # POST /admin/fulfillment/addresses.xml
-  def create
-    load_info
-    @address = Address.new(params[:address])
-
-    respond_to do |format|
-      if @address.save
-        format.html { redirect_to(admin_fulfillment_shipment_address_path(@shipment, @address), :notice => 'Address was successfully created.') }
-      else
-        format.html { render :action => "new" }
-      end
-    end
   end
 
   # PUT /admin/fulfillment/addresses/1
@@ -69,7 +32,7 @@ class Admin::Fulfillment::AddressesController < Admin::Fulfillment::BaseControll
   private
   
   def load_info
-    @shipment = Shipment.includes([{:order => {:user => :shipping_addresses}} , :address ]).find(params[:shipment_id])
+    @shipment = Shipment.find_fulfillment_shipment(params[:shipment_id])
   end
 
 end
