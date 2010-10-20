@@ -11,7 +11,7 @@ class CreateInvoices < ActiveRecord::Migration
 
       t.timestamps
     end  
-      add_index :invoices, :number
+      #add_index :invoices, :number
     add_index :invoices, :order_id
   end
 
