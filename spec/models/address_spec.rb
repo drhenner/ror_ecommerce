@@ -15,6 +15,47 @@ describe Address do
 end
 
 
+describe Address, ".name" do
+  pending "test for name"
+end
+
+describe Address, ".inactive!" do
+  pending "test for inactive!"
+end
+
+describe Address, ".address_atributes" do
+  pending "test for address_atributes"
+end
+
+describe Address, ".cc_params" do
+  pending "test for cc_params"
+end
+
+describe Address, "#update_address" do
+  pending "test for Address.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )"
+end
+
+describe Address, ".address_lines" do
+  pending "test for address_lines"
+end
+
+describe Address, ".state_abbr_name" do
+  pending "test for state_abbr_name"
+end
+
+describe Address, ".city_state_name" do
+  pending "test for city_state_name"
+end
+
+describe Address, ".city_state_zip" do
+  pending "test for city_state_zip"
+end
+
+describe Address, ".sanitize_data" do
+  pending "test for sanitize_data"
+end
+
+
 describe Address, "#save_default_address(object, params)" do
   
   before(:each) do

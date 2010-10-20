@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Image do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Image, '.find_dimensions' do
+  pending "add some find_dimensions"
 end
