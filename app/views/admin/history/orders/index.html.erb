@@ -19,11 +19,11 @@
     <td><%= order.completed_at %></td>
     <td><%= order.has_shipment?.to_s %></td>
     <td><%= link_to 'Show', admin_history_order_path(order) %></td>
-    <td><%= link_to 'Edit', edit_admin_history_order_path(order) %></td>
+    <td><%# link_to 'Edit', edit_admin_history_order_path(order) %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Order', new_admin_history_order_path %>
+<%#= link_to 'New Order', new_admin_history_order_path %>

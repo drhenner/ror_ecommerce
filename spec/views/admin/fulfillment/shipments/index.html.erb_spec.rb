@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "admin_fulfillment_shipments/index.html.erb" do
+describe "admin/fulfillment/shipments/index.html.erb" do
   before(:each) do
     assign(:shipments, [
       stub_model(Shipment,
@@ -16,10 +16,8 @@ describe "admin_fulfillment_shipments/index.html.erb" do
     ])
   end
 
-  it "renders a list of admin_fulfillment_shipments" do
+  it "renders a list of shipments" do
     render
-    rendered.should have_selector("tr>td", :content => "Tracking".to_s, :count => 2)
-    rendered.should have_selector("tr>td", :content => "Number".to_s, :count => 2)
-    rendered.should have_selector("tr>td", :content => "State".to_s, :count => 2)
+    
   end
 end

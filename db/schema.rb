@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101003223635) do
+ActiveRecord::Schema.define(:version => 20101020034656) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                                                           :null => false
@@ -131,13 +131,13 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
   add_index "images", ["imageable_type"], :name => "index_images_on_imageable_type"
 
   create_table "invoices", :force => true do |t|
-    t.integer  "order_id",                                                   :null => false
-    t.string   "number",                                                     :null => false
-    t.decimal  "amount",     :precision => 8, :scale => 2,                   :null => false
-    t.string   "state",                                                      :null => false
-    t.boolean  "active",                                   :default => true, :null => false
+    t.integer  "order_id",                                                           :null => false
+    t.decimal  "amount",       :precision => 8, :scale => 2,                         :null => false
+    t.string   "state",                                                              :null => false
+    t.boolean  "active",                                     :default => true,       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "invoice_type",                               :default => "Purchase", :null => false
   end
 
   add_index "invoices", ["order_id"], :name => "index_invoices_on_order_id"
@@ -175,12 +175,12 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
     t.integer  "bill_address_id"
     t.integer  "ship_address_id"
     t.integer  "coupon_id"
-    t.boolean  "active",          :default => true,  :null => false
+    t.boolean  "active",          :default => true, :null => false
     t.datetime "calculated_at"
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "shipped",         :default => false, :null => false
+    t.integer  "shipments_count", :default => 0,    :null => false
   end
 
   add_index "orders", ["bill_address_id"], :name => "index_orders_on_bill_address_id"
@@ -253,6 +253,7 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
   create_table "products", :force => true do |t|
     t.string   "name",                                    :null => false
     t.text     "description"
+    t.text     "product_keywords"
     t.integer  "tax_category_id"
     t.integer  "product_type_id",                         :null => false
     t.integer  "prototype_id"
@@ -321,13 +322,13 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
 
   create_table "return_authorizations", :force => true do |t|
     t.string   "number"
-    t.decimal  "amount",         :precision => 10, :scale => 0
-    t.decimal  "restocking_fee", :precision => 10, :scale => 0
-    t.integer  "order_id"
-    t.integer  "user_id"
+    t.decimal  "amount",         :precision => 8, :scale => 2,                   :null => false
+    t.decimal  "restocking_fee", :precision => 8, :scale => 2, :default => 0.0
+    t.integer  "order_id",                                                       :null => false
+    t.integer  "user_id",                                                        :null => false
     t.string   "state"
     t.integer  "created_by"
-    t.boolean  "active",                                        :default => true
+    t.boolean  "active",                                       :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -338,21 +339,19 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
   add_index "return_authorizations", ["user_id"], :name => "index_return_authorizations_on_user_id"
 
   create_table "return_conditions", :force => true do |t|
-    t.string   "label"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "label"
+    t.string "description"
   end
 
   create_table "return_items", :force => true do |t|
-    t.integer  'return_authorization_id'
-    t.integer  "order_item_id"
+    t.integer  "order_item_id",           :null => false
     t.integer  "return_condition_id"
     t.integer  "return_reason_id"
     t.boolean  "returned"
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "return_authorization_id", :null => false
   end
 
   add_index "return_items", ["order_item_id"], :name => "index_return_items_on_order_item_id"
@@ -361,10 +360,8 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
   add_index "return_items", ["updated_by"], :name => "index_return_items_on_updated_by"
 
   create_table "return_reasons", :force => true do |t|
-    t.string   "label"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "label"
+    t.string "description"
   end
 
   create_table "roles", :force => true do |t|
@@ -529,7 +526,7 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
     t.string   "access_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "comment_counter",   :default => 0
+    t.integer  "comments_count",    :default => 0
   end
 
   add_index "users", ["access_token"], :name => "index_users_on_access_token", :unique => true
@@ -540,9 +537,10 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token", :unique => true
 
   create_table "variant_properties", :force => true do |t|
-    t.integer "variant_id",  :null => false
-    t.integer "property_id", :null => false
-    t.string  "description", :null => false
+    t.integer "variant_id",                     :null => false
+    t.integer "property_id",                    :null => false
+    t.string  "description",                    :null => false
+    t.boolean "primary",     :default => false, :null => false
   end
 
   add_index "variant_properties", ["property_id"], :name => "index_variant_properties_on_property_id"
@@ -575,6 +573,7 @@ ActiveRecord::Schema.define(:version => 20101003223635) do
     t.integer  "count_pending_from_supplier",                               :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "admin/rma/return_authorizations/new.html.erb" do
   before(:each) do
+    @order = Factory(:order)
     assign(:return_authorization, stub_model(ReturnAuthorization,
       :new_record? => true,
       :number => "MyString",

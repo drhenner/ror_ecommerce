@@ -304,7 +304,7 @@ class Order < ActiveRecord::Base
   end
   
   def has_shipment?
-    shipment_counter > 0
+    shipments_count > 0
   end
   
   def self.find_finished_order_grid(params = {})

@@ -23,7 +23,7 @@ Hadean::Application.routes.draw do # |map|
   end
   
   namespace :myaccount do
-    resources :orders, :only => [:show, :index]
+    resources :orders, :only => [:index]
   end
   
   namespace :shopping do

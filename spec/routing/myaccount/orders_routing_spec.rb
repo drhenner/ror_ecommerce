@@ -7,9 +7,5 @@ describe Myaccount::OrdersController do
       { :get => "/myaccount/orders" }.should route_to(:controller => "myaccount/orders", :action => "index")
     end
 
-    it "recognizes and generates #show" do
-      { :get => "/myaccount/orders/1" }.should route_to(:controller => "myaccount/orders", :action => "show", :id => "1")
-    end
-
   end
 end

@@ -7,10 +7,6 @@ describe Admin::Fulfillment::OrdersController do
       { :get => "/admin/fulfillment/orders" }.should route_to(:controller => "admin/fulfillment/orders", :action => "index")
     end
 
-    it "recognizes and generates #new" do
-      { :get => "/admin/fulfillment/orders/new" }.should route_to(:controller => "admin/fulfillment/orders", :action => "new")
-    end
-
     it "recognizes and generates #show" do
       { :get => "/admin/fulfillment/orders/1" }.should route_to(:controller => "admin/fulfillment/orders", :action => "show", :id => "1")
     end
