@@ -1,2 +1,0 @@
-module Customer::RegistrationsHelper
-end

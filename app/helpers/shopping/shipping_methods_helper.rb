@@ -1,2 +1,0 @@
-module Shopping::ShippingMethodsHelper
-end
