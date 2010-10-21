@@ -1,3 +1,5 @@
+<%= render :partial => '/admin/config/sub_header'%>
+
 <h1>Editing (<%= @tax_rate.state.abbreviation %> <%= @tax_rate.tax_status.name %>) Tax Rate</h1>
 
 <%= form_for(@tax_rate, :as => :tax_rate, :url => admin_config_tax_rate_path(@tax_rate)) do |f| %>
