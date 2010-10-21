@@ -1,4 +1,5 @@
-== Project Overview
+h1. Project Overview
+
 http://ror_ecommerce.lighthouseapp.com/home
 
 This is the first Rails e-commerce starter app.  Other e-commerce projects that
