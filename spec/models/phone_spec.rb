@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Phone do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Phone, "#save_default_phone(object, params)" do
+  pending "test for save_default_phone(object, params)"
 end

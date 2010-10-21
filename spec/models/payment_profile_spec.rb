@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe PaymentProfile do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe PaymentProfile, ".create_payment_profile" do
+  pending "test for create_payment_profile"
 end

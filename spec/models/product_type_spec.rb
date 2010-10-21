@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ProductType do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe ProductType, '#admin_grid(params = {})' do
+  pending "add test for admin_grid(params = {})"
 end

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Supplier do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Supplier, "#admin_grid(params = {})" do
+  pending "test for admin_grid(params = {})"
 end

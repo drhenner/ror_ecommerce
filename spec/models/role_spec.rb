@@ -12,3 +12,11 @@ describe Role do
     
   end
 end
+
+describe Role, '#find_role_id(id)' do
+  pending "test for find_role_id(id)"
+end
+
+describe Role, '#find_role_name(name)' do
+  pending "test for find_role_name(name)"
+end

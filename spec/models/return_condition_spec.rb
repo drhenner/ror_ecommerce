@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ReturnCondition do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe ReturnCondition, '#select_form' do
+  pending "test for select_form"
 end
