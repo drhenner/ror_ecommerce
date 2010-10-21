@@ -69,4 +69,4 @@ I personally want to thank some people I don't even know.
 
 I'd also like to Thank one person that I do know. 
   Umang Chouhan I've learned a lot from you also.
-  %{color:#BBB}(even if I do have to filter out some of what you say. LOL)%
+  %{color:BBB}(even if I do have to filter out some of what you say. LOL)%
