@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   has_friendly_id :permalink, :use_slug => false
   
-  serialize :keywords, Array
+  serialize :product_keywords, Array
   
   attr_accessor :available_shipping_rates # these the the shipping rates per the shipping address on the order
   
@@ -67,11 +67,11 @@ class Product < ActiveRecord::Base
   end
   
   def set_keywords=(value)
-    self.keywords = value ? value.split(',').map{|w| w.strip} : []
+    self.product_keywords = value ? value.split(',').map{|w| w.strip} : []
   end
   
   def set_keywords
-    self.keywords? ? self.keywords.join(', ') : ''
+    self.product_keywords ? self.product_keywords.join(', ') : ''
   end
   
   def primary_image_url(image_size = :small)

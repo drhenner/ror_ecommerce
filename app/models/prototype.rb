@@ -14,7 +14,7 @@ class Prototype < ActiveRecord::Base
     params[:rows] ||= 25
     
     grid = Prototype
-    grid = grid.where("active == ?",true)                    unless  params[:show_all].present? && 
+    grid = grid.where("active = ?",true)                    unless  params[:show_all].present? && 
                                                               params[:show_all] == 'true'
     grid = grid.where("prototypes.display_name = ?", params[:display_name])  if params[:display_name].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page], :per_page => params[:rows])

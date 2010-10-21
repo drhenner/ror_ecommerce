@@ -2,7 +2,7 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: mysql2
-  database: newhadean
+  database: newhadean2
   pool: 5
   timeout: 5000
 
