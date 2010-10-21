@@ -37,10 +37,12 @@ Configure your database.yml file (add the development and test database)
 
 ######compass install -r fancy-buttons -f fancy-buttons
 
-# Time to start solr and memcache(yep you better install them)
+
+p. Time to start solr and memcache(yep you better install them)
 rake sunspot:solr:start
-## Take a look at setting up solr
-## http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
+
+bq. Take a look at setting up solr
+    http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
 
 bq. memcached --vv  ## you can config many other cache stores but 
                 ## the cookie store will not work (in the admin) and the DB session store will be a dog
@@ -49,7 +51,7 @@ Need to create config/config.yml and change the encryption key and paypal or aut
 
 
 Once everything is setup, start up the server and direct it to
-admin/overviews
+*localhost:3000/admin/overviews*
 
 write down the username/password and follow the directions.
 
@@ -67,4 +69,4 @@ I personally want to thank some people I don't even know.
 
 I'd also like to Thank one person that I do know. 
   Umang Chouhan I've learned a lot from you also.
-  (even if I do have to filter out some of what you say. LOL)
+  %{color:gray}(even if I do have to filter out some of what you say. LOL)%
