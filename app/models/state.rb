@@ -14,7 +14,7 @@ class State < ActiveRecord::Base
   end
 
   def abbrev_and_name
-    "#{abbreviation} - #{name}"
+    abbreviation_name
   end
 
   def self.form_selector

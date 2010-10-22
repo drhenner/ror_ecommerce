@@ -20,4 +20,4 @@ public/assets/*
 .rvmrc
 config/config.yml
 solr/data
-
+coverage/*
