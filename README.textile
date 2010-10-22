@@ -43,9 +43,7 @@ rake sunspot:solr:start
 
 If you decide not to use solr, go into product.rb and delete the following
 
-
-bc. 
-searchable do
+bc. searchable do
   text    :name, :default_boost => 2
   text      :product_keywords#, :multiple => true
   text      :description
