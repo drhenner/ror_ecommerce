@@ -41,6 +41,17 @@ Configure your database.yml file (add the development and test database)
 p. Time to start solr and memcache(yep you better install them)
 rake sunspot:solr:start
 
+If you decide not to use solr, go into product.rb and delete the following
+
+%code%
+  searchable do
+    text    :name, :default_boost => 2
+    text      :product_keywords#, :multiple => true
+    text      :description
+    time      :deleted_at
+  end
+%code%
+
 bq. Take a look at setting up solr
     http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
 
