@@ -13,7 +13,7 @@ class Admin::Shopping::BillingAddressesController < Admin::Shopping::BaseControl
   # GET /admin/order/billing_addresses/new.xml
   def new
     old_address       = Address.find_by_id(params[:old_address_id])
-    attributes        = old_address.try(:address_atributes)
+    attributes        = old_address.try(:address_attributes)
     @billing_address = session_admin_cart[:user].addresses.new(attributes)
     form_info
     respond_to do |format|

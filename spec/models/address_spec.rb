@@ -14,51 +14,86 @@ describe Address do
   
 end
 
-
-describe Address, ".name" do
+describe Address, "methods" do
+  before(:each) do
+    state = State.find_by_abbreviation('CA')
+    @address = Address.new(:first_name => 'Perez', 
+                          :last_name  => 'Hilton',
+                          :address1   => '7th street',
+                          :city       => 'Fredville',
+                          :state   => state,
+                          :zip_code   => '13156',
+                          :address_type_id  => 1,
+                          :addressable_type => 'User',
+                          :addressable_id   => 1,
+                          :active           => true
+                          )
+  end
   
-  it 'should return the correct string with no params' do
-    address = Address.new( :first_name => 'Perez', :last_name => 'Hilton')
-    address.name.should == 'Perez Hilton'
+  context ".name" do
+    it 'should return the correct string with no params' do
+      @address.name.should == 'Perez Hilton'
+    end
+  end
+
+  context ".inactive!" do
+    it 'should inactivate the address' do
+      @address.save
+      puts @address.inactive!
+      @address.active.should be_false
+    end
+  end
+
+  context ".address_attributes" do
+    #attributes.delete_if {|key, value| ["id", 'updated_at', 'created_at'].any?{|k| k == key }}
+    it 'should return all the address attributes except id, updated and created_at' do
+      @address.save
+      attributes = @address.address_attributes
+      attributes['id'].should be_nil
+      attributes['created_at'].should be_nil
+      attributes['updated_at'].should be_nil
+      attributes['first_name'].should == 'Perez'
+    end
+  end
+
+  context ".cc_params" do
+    it 'should return the params needed by the credit card vaults' do
+      cc_params = @address.cc_params
+      cc_params[:name].should    == 'Perez Hilton'
+      cc_params[:address1].should == '7th street'
+      cc_params[:city].should    == 'Fredville'
+      cc_params[:state].should   == 'CA'
+      cc_params[:zip].should     == '13156'
+      cc_params[:country].should == 'US'
+
+      
+    end
+  end
+
+  context "#update_address" do
+    pending "test for Address.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )"
+  end
+
+  context ".address_lines" do
+    pending "test for address_lines"
+  end
+
+  context ".state_abbr_name" do
+    pending "test for state_abbr_name"
+  end
+
+  describe Address, ".city_state_name" do
+    pending "test for city_state_name"
+  end
+
+  describe Address, ".city_state_zip" do
+    pending "test for city_state_zip"
+  end
+
+  describe Address, ".sanitize_data" do
+    pending "test for sanitize_data"
   end
 end
-
-describe Address, ".inactive!" do
-  pending "test for inactive!"
-end
-
-describe Address, ".address_atributes" do
-  pending "test for address_atributes"
-end
-
-describe Address, ".cc_params" do
-  pending "test for cc_params"
-end
-
-describe Address, "#update_address" do
-  pending "test for Address.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )"
-end
-
-describe Address, ".address_lines" do
-  pending "test for address_lines"
-end
-
-describe Address, ".state_abbr_name" do
-  pending "test for state_abbr_name"
-end
-
-describe Address, ".city_state_name" do
-  pending "test for city_state_name"
-end
-
-describe Address, ".city_state_zip" do
-  pending "test for city_state_zip"
-end
-
-describe Address, ".sanitize_data" do
-  pending "test for sanitize_data"
-end
-
 
 describe Address, "#save_default_address(object, params)" do
   

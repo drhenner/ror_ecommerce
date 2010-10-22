@@ -25,11 +25,11 @@ class Address < ActiveRecord::Base
   end
   
   def inactive!
-    active = false
+    self.active = false
     save!
   end
   
-  def address_atributes
+  def address_attributes
     attributes.delete_if {|key, value| ["id", 'updated_at', 'created_at'].any?{|k| k == key }}
   end
   
