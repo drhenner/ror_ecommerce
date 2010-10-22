@@ -39,7 +39,7 @@ describe Address, "methods" do
   context ".inactive!" do
     it 'should inactivate the address' do
       @address.save
-      puts @address.inactive!
+      @address.inactive!
       @address.active.should be_false
     end
   end
