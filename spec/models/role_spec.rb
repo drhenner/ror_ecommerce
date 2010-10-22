@@ -4,7 +4,7 @@ describe Role do
   ##  These roles are preloaded from the seeds... lets make sure all the seeds are valid
   describe "Valid Seed data" do
     
-    Role.all do |role|
+    Role.all.each do |role|
       it "should be valid" do 
         role.should be_valid
       end

@@ -16,7 +16,11 @@ end
 
 
 describe Address, ".name" do
-  pending "test for name"
+  
+  it 'should return the correct string with no params' do
+    address = Address.new( :first_name => 'Perez', :last_name => 'Hilton')
+    address.name.should == 'Perez Hilton'
+  end
 end
 
 describe Address, ".inactive!" do

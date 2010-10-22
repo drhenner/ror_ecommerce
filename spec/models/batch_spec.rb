@@ -1,5 +1,16 @@
 require 'spec_helper'
 
 describe Batch do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context " Batch" do
+    before(:each) do
+      @batch = Factory.build(:batch)
+    end
+    
+    it "should be valid with minimum attribues" do
+      @batch.should be_valid
+    end
+    
+  end
+  
 end
+

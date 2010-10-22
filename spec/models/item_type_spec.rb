@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ItemType do
   describe "Seed data" do
-    ItemType.all do |item_type|
+    ItemType.all.each do |item_type|
       it "should be valid" do 
         item_type.should be_valid
       end
