@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe TaxStatus do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Seed data" do
+    TaxStatus.all do |tax_status|
+      it "should be valid" do 
+        tax_status.should be_valid
+      end
+    end
+  end
 end

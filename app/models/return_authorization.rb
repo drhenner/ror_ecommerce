@@ -21,6 +21,7 @@ class ReturnAuthorization < ActiveRecord::Base
   validates :user_id,     :presence => true
   validates :order_id,    :presence => true
   validates :created_by,  :presence => true
+  validate :ensure_refund_is_larger_than_restocking
   
   after_create      :save_order_number
   
@@ -44,7 +45,7 @@ class ReturnAuthorization < ActiveRecord::Base
     end
   end
   
-  def validate
+  def ensure_refund_is_larger_than_restocking
     if restocking_fee && restocking_fee >= amount
       self.errors.add(:amount, "The amount must be larger than the restocking fee.")
     end

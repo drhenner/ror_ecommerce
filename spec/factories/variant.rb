@@ -1,8 +1,8 @@
 
 Factory.define :variant do |f|
-  f.product       { |c| c.association(:product) }
   f.sku           '345-98765-0987'
-  
+  f.product       { |c| c.association(:product) }
+
   f.cost          8.00
   f.deleted_at    nil
   f.master        nil

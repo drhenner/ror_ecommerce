@@ -74,8 +74,7 @@ describe Address, "#save_default_address(object, params)" do
     
     @address2   = Factory.create(:address)
     @params2    = Factory.create(:address).attributes
-    puts @address2.address_type_id.to_s
-    puts @address2.address_type_id.to_s
+    #puts @address2.address_type_id.to_s
     @params2[:default] = '1'
     @address2.save_default_address(@user, @params2)
     @address.save_default_address(@user, @params)

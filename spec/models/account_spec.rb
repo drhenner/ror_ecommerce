@@ -1,5 +1,21 @@
 require 'spec_helper'
 
 describe Account do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Valid Account" do
+    before(:each) do
+      @account = Factory.build(:account)
+    end
+    
+    it "should be valid with minimum attributes" do
+      @account.should be_valid
+    end
+    
+    Account.all do |acc_type|
+      it "should be valid" do 
+        acc_type.should be_valid
+      end
+    end
+
+  end
+  
 end

@@ -63,10 +63,9 @@ Shipping categories are categories based off price:
 you might have two shipping categories (light items) & (heavy items)
 Have fun!!!
 
-I personally want to thank some people I don't even know.
+* I personally want to thank some people I don't even know.
   Ryan Bates and Greg Pollack, I have learned way too much from you 2 
   it would only be right to give some thanks
-
-I'd also like to Thank one person that I do know. 
+* I'd also like to Thank one person that I do know. 
   Umang Chouhan I've learned a lot from you also.
-  %{color:lightgray}(even if I do have to filter out some of what you say. LOL)%
+  %{color:LightGray}(even if I do have to filter out some of what you say. LOL)%

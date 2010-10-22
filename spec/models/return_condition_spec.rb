@@ -1,5 +1,11 @@
 require 'spec_helper'
 
-describe ReturnCondition, '#select_form' do
-  pending "test for select_form"
+describe ReturnCondition do
+  describe "Seed data" do
+    ReturnCondition.all do |return_condition|
+      it "should be valid" do 
+        return_condition.should be_valid
+      end
+    end
+  end
 end

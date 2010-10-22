@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe ItemType do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Seed data" do
+    ItemType.all do |item_type|
+      it "should be valid" do 
+        item_type.should be_valid
+      end
+    end
+  end
 end

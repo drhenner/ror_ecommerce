@@ -1,5 +1,15 @@
 require 'spec_helper'
 
 describe VariantSupplier do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Valid VariantSupplier" do
+    before(:each) do
+      @variant_supplier = Factory.build(:variant_supplier)
+    end
+    
+    it "should be valid with minimum attributes" do
+      @variant_supplier.should be_valid
+    end
+    
+  end
+  
 end

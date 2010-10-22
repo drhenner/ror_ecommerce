@@ -1,6 +1,6 @@
 
 Factory.define :variant_supplier do |f|
-  f.variant       { |c| c.association(:variant) }
+  f.variant_id    1#       { |c| c.association(:variant) }
   f.supplier      { |c| c.association(:supplier) }
   
   f.cost          98.00

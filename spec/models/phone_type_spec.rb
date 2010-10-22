@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe PhoneType do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Seed data" do
+    
+    PhoneType.all do |phone_type|
+      it "should be valid" do 
+        phone_type.should be_valid
+      end
+    end
+    
+  end
 end
