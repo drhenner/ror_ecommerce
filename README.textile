@@ -53,7 +53,7 @@ end
 bq. Take a look at setting up solr
     http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
 
-bq. memcached --vv  ## you can config many other cache stores but 
+bq. memcached -vv  ## you can config many other cache stores but 
                 ## the cookie store will not work (in the admin) and the DB session store will be a dog
 
 Need to create config/config.yml and change the encryption key and paypal or auth.net information
