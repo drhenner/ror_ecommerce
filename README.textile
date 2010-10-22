@@ -43,14 +43,13 @@ rake sunspot:solr:start
 
 If you decide not to use solr, go into product.rb and delete the following
 
-pre code.html {
-  searchable do
-    text    :name, :default_boost => 2
-    text      :product_keywords#, :multiple => true
-    text      :description
-    time      :deleted_at
-  end
-}
+
+bc. searchable do
+      text    :name, :default_boost => 2
+      text      :product_keywords#, :multiple => true
+      text      :description
+      time      :deleted_at
+    end
 
 bq. Take a look at setting up solr
     http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
