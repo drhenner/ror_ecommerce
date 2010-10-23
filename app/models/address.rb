@@ -51,7 +51,7 @@ class Address < ActiveRecord::Base
                               :addressable_id   => old_address.addressable_id ))
     
     new_address.default = true if old_address.default
-    if new_address.valid? && new_address.save_default_address
+    if new_address.valid? && new_address.save_default_address(old_address.addressable, params)
       old_address.update_attributes(:active => false)
       new_address  ## return the new address without errors
     else

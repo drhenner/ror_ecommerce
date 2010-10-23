@@ -10,7 +10,7 @@ describe Account do
       @account.should be_valid
     end
     
-    Account.all do |acc_type|
+    Account.all.each do |acc_type|
       it "should be valid" do 
         acc_type.should be_valid
       end

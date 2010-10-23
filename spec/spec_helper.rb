@@ -37,4 +37,18 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   #config.logger = :stdout
+  #Product.configuration[:if] = false
+  config.before(:each) do
+    ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
+  end
+
+  config.after(:each) do
+    ::Sunspot.session = ::Sunspot.session.original_session
+  end
+end
+
+def with_solr
+  Product.configuration[:if] = 'true'
+  yield
+  Product.configuration[:if] = false
 end

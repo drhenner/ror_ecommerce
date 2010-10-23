@@ -17,15 +17,17 @@ end
 describe Address, "methods" do
   before(:each) do
     state = State.find_by_abbreviation('CA')
-    @address = Address.new(:first_name => 'Perez', 
+    @user = Factory(:user)
+    @address = @user.addresses.new(:first_name => 'Perez', 
                           :last_name  => 'Hilton',
                           :address1   => '7th street',
                           :city       => 'Fredville',
                           :state   => state,
+                          :state_name => 'CA',
                           :zip_code   => '13156',
                           :address_type_id  => 1,
-                          :addressable_type => 'User',
-                          :addressable_id   => 1,
+                          #:addressable_type => 'User',
+                          #:addressable_id   => 1,
                           :active           => true
                           )
   end
@@ -48,7 +50,9 @@ describe Address, "methods" do
     #attributes.delete_if {|key, value| ["id", 'updated_at', 'created_at'].any?{|k| k == key }}
     it 'should return all the address attributes except id, updated and created_at' do
       @address.save
+      puts @address.inspect
       attributes = @address.address_attributes
+      puts attributes
       attributes['id'].should be_nil
       attributes['created_at'].should be_nil
       attributes['updated_at'].should be_nil
@@ -69,29 +73,102 @@ describe Address, "methods" do
       
     end
   end
-
+=begin
+  def self.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )
+    new_address = Address.new(params.merge( :address_type_id  => address_type_id, 
+                              :addressable_type => old_address.addressable_type, 
+                              :addressable_id   => old_address.addressable_id ))
+    
+    new_address.default = true if old_address.default
+    if new_address.valid? && new_address.save_default_address
+      old_address.update_attributes(:active => false)
+      new_address  ## return the new address without errors
+    else
+      old_address.update_attributes(params) ##  This should always fail
+      old_address  ## return the old address with errors
+    end
+  end
+=end
   context "#update_address" do
-    pending "test for Address.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )"
+    
+    context 'valid new address' do
+      it 'should inactivate the old address' do
+        @address.save
+        params = @address.address_attributes
+        params['last_name'] = 'new last name'
+        new_address = Address.update_address(@address, params)
+        @address.reload
+        @address.active.should be_false
+        new_address.id.should_not == @address.id
+      end
+    end
+    
+    context 'invalid new address' do
+      it 'should not inactivate the old address when it isnt saved' do
+        @address.save
+        params = @address.address_attributes
+        params['last_name'] = 'new last name'
+        params['address1'] = nil
+        new_address = Address.update_address(@address, params)
+        @address.reload
+        @address.active.should be_true
+        new_address.id.should == @address.id
+      end
+    end
   end
 
   context ".address_lines" do
-    pending "test for address_lines"
+    # def address_lines(join_chars = ', ')
+    # [address1, address2].delete_if{|add| add.blank?}.join(join_chars)
+    it 'should display the address lines' do
+      @address.address_lines.should == '7th street'
+      @address.address2 = 'test'
+      @address.address_lines.should == '7th street, test'
+      @address.address_lines(' H ').should == '7th street H test'
+    end
   end
 
   context ".state_abbr_name" do
-    pending "test for state_abbr_name"
+    it 'should display the state_abbr_name' do
+      @address.state_abbr_name.should == @address.state.abbreviation
+    end
   end
 
   describe Address, ".city_state_name" do
-    pending "test for city_state_name"
+    #[city, state_abbr_name].join(', ')
+    it 'should display the state_abbr_name' do
+      @address.city_state_name.should == "Fredville, #{@address.state.abbreviation}"
+    end
   end
 
   describe Address, ".city_state_zip" do
-    pending "test for city_state_zip"
+    #[city_state_name, zip_code].join(' ')
+    it 'should display the city_state_zip' do
+      @address.city_state_zip.should == "Fredville, #{@address.state.abbreviation} 13156"
+    end
   end
 
   describe Address, ".sanitize_data" do
-    pending "test for sanitize_data"
+    address = Address.new(:first_name => ' Perez ', 
+                          :last_name  => ' Hilton ',
+                          :address1   => ' 1st street ',
+                          :address2   => ' 2nd street ',
+                          :city       => ' Fredville ',
+                          :state_name => 'CA',
+                          :zip_code   => ' 13156 ',
+                          :address_type_id  => 1,
+                          #:addressable_type => 'User',
+                          #:addressable_id   => 1,
+                          :active           => true
+                          )
+
+    address.sanitize_data
+    address.first_name.should ==  'Perez'
+    address.last_name.should  ==  'Hilton'
+    address.city.should       ==  'Fredville'
+      address.zip_code.should ==  '13156'
+      address.address1.should ==  '1st street'
+      address.address2.should ==  '2nd street'
   end
 end
 
