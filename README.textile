@@ -20,7 +20,7 @@ We will always need help with UI, Documentation and code so feel free to help.
 h2. Getting Started
 
 We have a google group.  Ask question and help answer questions.
-http://groups.google.com/group/ror_ecommerce
+"ror_ecommerce Google-group":http://groups.google.com/group/ror_ecommerce
 
 install rvm with ruby 1.9.2 or if you have 1.9.2 on your system your good to go
 
@@ -51,7 +51,7 @@ bc. searchable do
 end
 
 bq. Take a look at setting up solr
-    http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
+    "Solr in 5 minutes":http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
 
 bq. memcached -vv  ## you can config many other cache stores but 
                 ## the cookie store will not work (in the admin) and the DB session store will be a dog
@@ -64,6 +64,15 @@ Once everything is setup, start up the server and direct it to
 
 write down the username/password and follow the directions.
 
+h2. TODOs:
+
+* tests
+* loyalty credits
+* coupons
+* product sales (eg. 20% off)
+* have breadcrumbs headers by product type and use product_type.parent
+* move items from and to saved/wish lists
+* remove specific qty from cart.
 
 h2. FYI:
 
