@@ -2,7 +2,7 @@ Factory.sequence :name do |i|
   "Product Name #{i}"
 end
 Factory.sequence :permalink do |i|
-  "Product Name #{i}"
+  "permalink  #{i}"
 end
 
 Factory.define :product do |u|
@@ -12,7 +12,7 @@ Factory.define :product do |u|
   u.prototype         { |c| c.association(:prototype) }
   u.shipping_category { |c| c.association(:shipping_category) }
   u.tax_status        { TaxStatus.first }
-  u.permalink         { Factory.next(:name) }
+  u.permalink         { Factory.next(:permalink) }
   u.available_at      Time.now
   u.deleted_at        nil
   u.featured          true

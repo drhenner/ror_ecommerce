@@ -22,7 +22,7 @@ class Cart < ActiveRecord::Base
   validates :user_id,  :presence => true
   
   def sub_total
-    shopping_cart_items.includes(:variant).inject(0) {|sum, item| item.total + sum}
+    shopping_cart_items.inject(0) {|sum, item| item.total + sum} #.includes(:variant)
   end
   
   def add_items_to_checkout(order)

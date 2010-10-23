@@ -1,7 +1,15 @@
 require 'spec_helper'
 
 describe Cart, ".sub_total" do
-  pending "test for sub_total"
+  # shopping_cart_items.inject(0) {|sum, item| item.total + sum}
+  
+  before(:each) do
+    @cart = Factory(:cart_with_two_5_dollar_items)
+  end
+  
+  it "should calculate subtotal correctly" do
+    @cart.sub_total.should == 10.00
+  end
 end
 
 describe Cart, ".add_items_to_checkout" do

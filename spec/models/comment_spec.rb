@@ -1,5 +1,15 @@
 require 'spec_helper'
 
 describe Comment do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Comment" do
+    before(:each) do
+      @comment = Factory.build(:comment)
+    end
+    
+    it "should be valid with minimum attributes" do
+      @comment.should be_valid
+    end
+    
+  end
+  
 end

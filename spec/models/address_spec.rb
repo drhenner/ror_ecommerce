@@ -50,9 +50,7 @@ describe Address, "methods" do
     #attributes.delete_if {|key, value| ["id", 'updated_at', 'created_at'].any?{|k| k == key }}
     it 'should return all the address attributes except id, updated and created_at' do
       @address.save
-      puts @address.inspect
       attributes = @address.address_attributes
-      puts attributes
       attributes['id'].should be_nil
       attributes['created_at'].should be_nil
       attributes['updated_at'].should be_nil

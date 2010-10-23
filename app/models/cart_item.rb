@@ -6,11 +6,11 @@ class CartItem < ActiveRecord::Base
   
   
   def price
-    variant.price
+    self.variant.price
   end
   
   def total
-    price * quantity
+    self.price * self.quantity
   end
   
   def inactivate!
