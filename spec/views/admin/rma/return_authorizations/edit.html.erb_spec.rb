@@ -3,15 +3,7 @@ require 'spec_helper'
 describe "admin/rma/return_authorizations/edit.html.erb" do
   before(:each) do
     @order = Factory(:order)
-    @return_authorization = assign(:return_authorization, stub_model(ReturnAuthorization,
-      :new_record? => false,
-      :number => "MyString",
-      :amount => "9.99",
-      :restocking_fee => "9.99",
-      :order => @order,
-      :state => "MyString",
-      :created_by => 1
-    ))
+    @return_authorization =  Factory(:return_authorization)
   end
 
   it "renders the edit return_authorization form" do

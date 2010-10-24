@@ -5,10 +5,10 @@ describe "admin/history/addresses/index.html.erb" do
     
     address = Factory(:address)
     @order = Factory(:order)
-    assign(:addresses, [
+    @addresses = [
       address,
       address
-    ])
+    ]
   end
 
   it "renders a list of addresses" do

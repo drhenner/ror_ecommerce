@@ -87,6 +87,8 @@ GEM
       treetop (>= 1.4.5)
     memcache-client (1.8.5)
     mime-types (1.16)
+    mocha (0.9.9)
+      rake
     mysql2 (0.2.4)
     nifty-generators (0.4.2)
     nokogiri (1.4.3.1)
@@ -141,6 +143,9 @@ GEM
       rspec-expectations (= 2.0.0)
     rspec-rails (2.0.1)
       rspec (~> 2.0.0)
+    rspec-rails-mocha (0.2.0)
+      mocha (>= 0.9.8)
+      rspec-rails (>= 2.0.0)
     ruby-debug-base19 (0.11.24)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -190,6 +195,7 @@ DEPENDENCIES
   haml (>= 3.0.13)
   jquery-rails
   memcache-client
+  mocha
   mysql2
   nifty-generators
   nokogiri
@@ -204,6 +210,7 @@ DEPENDENCIES
   rspec-expectations (>= 2.0.0)
   rspec-mocks (>= 2.0.0)
   rspec-rails (>= 2.0.0)
+  rspec-rails-mocha
   ruby-debug19
   shoulda
   ssl_requirement

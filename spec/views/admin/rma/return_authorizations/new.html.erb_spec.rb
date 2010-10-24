@@ -3,23 +3,9 @@ require 'spec_helper'
 describe "admin/rma/return_authorizations/new.html.erb" do
   before(:each) do
     @order = Factory(:order)
-    assign(:return_authorization, stub_model(ReturnAuthorization,
-      :new_record? => true,
-      :number => "MyString",
-      :amount => "9.99",
-      :restocking_fee => "9.99",
-      :order_id => 1,
-      :state => "MyString",
-      :created_by => 1
-    ))
+    @return_authorization = Factory.build(:return_authorization)
     
-      assign(:order, stub_model(Order,
-        :number => "MyString",
-        :email => "test@test.com",
-        :user_id => "1",
-        #:invoices => 1,
-        :state => "pending"
-      ))
+    @order = Factory(:order)
   end
 
   it "renders new return_authorization form" do

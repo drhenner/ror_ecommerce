@@ -19,8 +19,8 @@ describe User, ".name" do
   it "should return the correct name" do
     user = Factory.build(:registered_user)
     #should_receive(:authenticate).with("password").and_return(true)
-    user.stub!(:first_name).and_return("Fred")
-    user.stub!(:last_name).and_return("Flint")
+    user.stubs(:first_name).returns("Fred")
+    user.stubs(:last_name).returns("Flint")
     user.name.should == "Fred Flint"
   end
 end

@@ -2,24 +2,12 @@ require 'spec_helper'
 
 describe "admin/fulfillment/addresses/edit.html.erb" do
   before(:each) do
-    @address = assign(:address, stub_model(Address,
-      :new_record?  => false,
-      :address1     => "address1",
-      :city         => "city"
-    ))
-    @addresses = assign(:addresses, [
-      stub_model(Address,
-        :address1 => "address1",
-        :city     => "city"
-      ),
-      stub_model(Address,
-        :address1 => "address1",
-        :city     => "City"
-      )
-    ])
-    @shipment = assign(:shipment, stub_model(Shipment,
-      :number   => 'BLAHnumber'
-    ))
+    @address = Factory(:address)
+    @addresses =  [
+      Factory(:address),
+      Factory(:address)
+    ]
+    @shipment = Factory(:shipment)
   end
 
   it "renders the edit address form" do

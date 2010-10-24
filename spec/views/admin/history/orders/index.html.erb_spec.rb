@@ -4,10 +4,10 @@ describe "admin/history/orders/index.html.erb" do
   before(:each) do
     
     order = Factory(:order)
-    @orders = assign(:orders, [
+    @orders = [
       order,
       order
-    ])
+    ]
   end
 
   it "renders a list of orders" do
