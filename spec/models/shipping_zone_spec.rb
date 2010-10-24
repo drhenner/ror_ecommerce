@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe ShippingZone do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Valid ShippingZone" do
+    ShippingZone.all.each do |zone|
+      it "should be valid" do 
+        zone.should be_valid
+      end
+    end
+  end
 end

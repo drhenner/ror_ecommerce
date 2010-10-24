@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe ReturnItem do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Seed data" do
+      before(:each) do
+        @return_item = Factory.build(:return_item)
+      end
+
+      it "should be valid with minimum attributes" do
+        @return_item.should be_valid
+      end
+  end
 end

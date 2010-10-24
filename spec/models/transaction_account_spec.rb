@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe TransactionAccount do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Valid TransactionAccount" do
+    TransactionAccount.all.each do |acc|
+      it "should be valid" do 
+        acc.should be_valid
+      end
+    end
+  end#end of context
 end

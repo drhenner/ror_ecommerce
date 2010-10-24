@@ -10,7 +10,7 @@ class TransactionAccount < ActiveRecord::Base
   ACCOUNTS_PAYABLE_ID     = 3
   CASH_ID                 = 4
   
-  ACCOUNT_TYPES = [REVENUE, ACCOUNTS_RECEIVABLE, ACCOUNTS_PAYABLE, CASH_ID]
+  ACCOUNT_TYPES = [REVENUE, ACCOUNTS_RECEIVABLE, ACCOUNTS_PAYABLE, CASH]
   
   validates :name,              :presence => true
   

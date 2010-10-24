@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe ShippingMethod do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Valid ShippingMethod" do
+    before(:each) do
+      @shipping_method = Factory.build(:shipping_method)
+    end
+    
+    it "should be valid with minimum attributes" do
+      @shipping_method.should be_valid
+    end
+  end
+  
 end
