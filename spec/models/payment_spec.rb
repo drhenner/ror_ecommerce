@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-describe Payment do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
-
 describe Payment, ".mark_invoice_complete" do
   pending "test for mark_invoice_complete"
 end
