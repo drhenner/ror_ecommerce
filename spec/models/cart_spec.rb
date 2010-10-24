@@ -16,6 +16,16 @@ describe Cart, " instance methods" do
   before(:each) do
     @cart = Factory(:cart_with_two_5_dollar_items)
   end
+
+  #  items_to_add_or_destroy is exersized within add_items_to_checkout
+  #describe Cart, ".items_to_add_or_destroy" do
+  #   "this method is tested within add_items_to_checkout method"
+  #end
+  #  update_shopping_cart is exersized within add_items_to_checkout
+  #describe Cart, ".update_shopping_cart(cart_item,customer)" do
+  #  pending "test for update_cart(cart_item,customer)"
+  #end
+  
   context " add_items_to_checkout" do
     
     before(:each) do
@@ -49,10 +59,16 @@ describe Cart, " instance methods" do
       @order.order_items.size.should == 2
     end
   end
-end
-
-describe Cart, ".items_to_add_or_destroy" do
-   "this method is tested within add_items_to_checkout method"
+  
+  context ".save_user(u)" do
+    #pending "test for save_user(u)"
+    it 'should assign the user to the cart' do
+      user = Factory(:user)
+      @cart.save_user(user)
+      @cart.user.should == user
+    end
+  end
+  
 end
 
 describe Cart, ".add_variant" do
@@ -85,19 +101,12 @@ describe Cart, ".add_variant" do
   it 'should add quantity of variant to saved_cart_items if out of stock' do
     Variant.any_instance.stubs(:sold_out?).returns(true)
     cart_item_size = @cart.shopping_cart_items.size
-    @cart.add_variant(@variant.id, @cart.user)
+    @cart.add_variant(@variant.id, nil)
     
     @cart.shopping_cart_items.size.should == cart_item_size
     @cart.saved_cart_items.size.should == 1
   end
 end
-
-
-#def remove_variant(variant_id)
-#  ci = cart_items.find_by_variant_id(variant_id)
-#  ci.inactivate!
-#  return ci
-#end
 
 describe Cart, ".remove_variant" do
   it 'should inactivate variant in cart' do
@@ -110,14 +119,4 @@ describe Cart, ".remove_variant" do
   end
 end
 
-describe Cart, ".save_user(u)" do
-  pending "test for save_user(u)"
-end
 
-describe Cart, ".cart_item_ids" do
-  pending "test for cart_item_ids"
-end
-
-describe Cart, ".update_cart(cart_item,customer)" do
-  pending "test for update_cart(cart_item,customer)"
-end
