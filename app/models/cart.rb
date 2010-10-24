@@ -69,6 +69,11 @@ class Cart < ActiveRecord::Base
     end
   end
   
+  def mark_items_purchased(order)
+    CartItem.update_all("item_type_id = #{ItemType::PURCHASED_ID}", 
+                        "id IN (#{(self.cart_item_ids + self.shopping_cart_item_ids).uniq.join(',')}) AND variant_id IN (#{order.variant_ids.join(',')})") if !order.variant_ids.empty?
+  end
+  
   private
   def update_shopping_cart(cart_item,customer)
     if customer
