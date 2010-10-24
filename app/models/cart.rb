@@ -28,33 +28,52 @@ class Cart < ActiveRecord::Base
   def add_items_to_checkout(order)
     if order.in_progress?
       items = shopping_cart_items.inject({}) {|h, item| h[item.variant_id] = item.quantity; h}
-      items_to_add_or_destroy(items, order.order_items)
-      
+      items_to_add_or_destroy(items, order)
     end
   end
   
-  def items_to_add_or_destroy(items_in_cart, order_items)
-    items = order_items.inject({}) {|h, item| h[item.variant_id].nil? ? h[item.variant_id] = [item.id]  : h[item.variant_id] << item.id; h}
-    items.each_pair do |variant_id, array_of_order_items|
-      if items_in_cart[variant_id].nil?
-        # these items arent in the cart...  delete them
-        OrderItem.destroy_all("id IN (?)", array_of_order_items)
-      elsif items_in_cart[variant_id] > array_of_order_items.size ## the number in the cart is larger than the amount in order_items
-        ###  add more to the cart
+  def items_to_add_or_destroy(items_in_cart, order)
+    #destroy_any_order_item_that_was_removed_from_cart
+    order.order_items.delete_if {|order_item| !items_in_cart.keys.any?{|variant_id| variant_id == order_item.variant_id } }
+   # order.order_items.delete_all #destroy(order_item.id) 
+    
+    items = order.order_items.inject({}) {|h, item| h[item.variant_id].nil? ? h[item.variant_id] = [item.id]  : h[item.variant_id] << item.id; h}
+    
+    items_in_cart.each_pair do |variant_id, qty_in_cart|
+      if items[variant_id].nil?
         variant = Variant.find(variant_id)
-        order.add_items( variant , (items_in_cart[k] - array_of_order_items.size))
-      elsif items_in_cart[variant_id] < array_of_order_items.size ## the number in the cart is smaller than the amount in order_items
-        #remove items in cart
-        qty_to_remove = array_of_order_items.size - items_in_cart[variant_id]  
-        
-        array_of_order_items.each_with_index do |item, i|
-          OrderItem.destroy(item)
-          break if i+1 == qty_to_remove
-        end
+        order.add_items( variant , qty_in_cart)
+      elsif qty_in_cart - items[variant_id].size > 0
+        order.add_items( variant , qty - items[variant_id])
+      elsif qty_in_cart - items[variant_id].size < 0
+        raise errooor
+        order.remove_items( variant , qty_in_cart - items[variant_id])
       end
     end
-    
   end
+  
+  #def items_to_add_or_destroy(items_in_cart, order)
+  #  items = order.order_items.inject({}) {|h, item| h[item.variant_id].nil? ? h[item.variant_id] = [item.id]  : h[item.variant_id] << item.id; h}
+  #  items.each_pair do |variant_id, array_of_order_items|
+  #    if items_in_cart[variant_id].nil?
+  #      # these items arent in the cart...  delete them
+  #      OrderItem.destroy_all("id IN (?)", array_of_order_items)
+  #    elsif items_in_cart[variant_id] > array_of_order_items.size ## the number in the cart is larger than the amount in order_items
+  #      ###  add more to the cart
+  #      variant = Variant.find(variant_id)
+  #      order.add_items( variant , (items_in_cart[k] - array_of_order_items.size))
+  #    elsif items_in_cart[variant_id] < array_of_order_items.size ## the number in the cart is smaller than the amount in order_items
+  #      #remove items in cart
+  #      qty_to_remove = array_of_order_items.size - items_in_cart[variant_id]  
+  #      
+  #      array_of_order_items.each_with_index do |item, i|
+  #        OrderItem.destroy(item)
+  #        break if i+1 == qty_to_remove
+  #      end
+  #    end
+  #  end
+  #  
+  #end
   
   def add_variant(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID)# customer is a user
     items = shopping_cart_items.find_all_by_variant_id(variant_id)

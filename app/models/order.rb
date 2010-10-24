@@ -257,7 +257,18 @@ class Order < ActiveRecord::Base
     self.save! if self.new_record?
     tax_rate_id = state_id ? variant.product.tax_rate(state_id) : nil
     quantity.times do
-      self.order_items.create(:variant_id => variant.id, :price => variant.price, :tax_rate_id => tax_rate_id)
+      self.order_items.push(OrderItem.create(:order => self,:variant_id => variant.id, :price => variant.price, :tax_rate_id => tax_rate_id))
+    end
+  end
+  
+  def remove_items(variant, final_quantity)
+    total_order_items = self.order_items.find(:all, :conditions => ['variant_id = ?', variant.id] )
+    if (total_order_items.size - final_quantity) > 0
+      qty_to_delete = (total_order_items.size - final_quantity)
+      total_order_items.each do |order_item|
+        order_item.destroy if qty_to_delete > 0
+        qty_to_delete = qty_to_delete - 1
+      end
     end
   end
   

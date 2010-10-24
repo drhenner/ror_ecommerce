@@ -13,3 +13,11 @@ Factory.define :order do |u|
   u.calculated_at   Time.now
   u.completed_at    Time.now
 end
+
+Factory.define :in_progress_order, :parent => :order do |u|
+  u.state           'in_progress'
+end
+
+Factory.define :complete_order, :parent => :order do |u|
+  u.state           'complete'
+end
