@@ -5,17 +5,17 @@
 <% end %>
 
 <div id='shopping_addresses_selections' class='span-24 last'>
-<% @shopping_addresses.each do |shopping_address| %>
-  <div class='span-8 last box'>
-    <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address} %>
-    <%= button_to 'Use', select_address_shopping_address_path(shopping_address), :class => 'button spade inline-block', :method => :put %>
-    <%= link_to 'Edit', edit_shopping_address_path(shopping_address) %>
-    <%= link_to 'Delete', shopping_address_path(shopping_address), :confirm => 'Are you sure?', :method => :delete %>
-  </div>
-<% end %>
-<% if session_order.ready_to_checkout? %>
-  <%= link_to 'Order Summary', shopping_orders_path, :class => 'button green' %>
-<% end %>
+  <% @shopping_addresses.each do |shopping_address| %>
+    <div class='span-8 last box'>
+      <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address} %>
+      <%= button_to 'Use', select_address_shopping_address_path(shopping_address), :class => 'button spade inline-block', :method => :put %>
+      <%= link_to 'Edit', edit_shopping_address_path(shopping_address) %>
+      <%= link_to 'Delete', shopping_address_path(shopping_address), :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+  <% end %>
+  <% if session_order.ready_to_checkout? %>
+    <%= link_to 'Order Summary', shopping_orders_path, :class => 'button green' %>
+  <% end %>
 </div>
 <br />
 <%= form_for :address, @shopping_address do |address_form| %>
