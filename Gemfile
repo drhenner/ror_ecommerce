@@ -45,7 +45,7 @@ gem 'will_paginate', '~> 3.0.pre2'
 group :development do 
   #gem 'awesome_print'
   gem "autotest-rails-pure"
-  gem "autotest-fsevent"
+  #gem "autotest-fsevent"
   gem "rails-erd"
   gem "ruby-debug19"
   #gem "ruby-debug"
@@ -69,8 +69,8 @@ group :test do
   #gem "ZenTest"
   gem "autotest"
   gem "autotest-rails-pure"
-  gem "autotest-fsevent"
-  gem "autotest-growl"
+  #gem "autotest-fsevent"
+  #gem "autotest-growl"
   #gem "redgreen"
   #gem "test-unit", "1.2.3"
   
