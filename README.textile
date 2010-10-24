@@ -27,6 +27,10 @@ install rvm with ruby 1.9.2 or if you have 1.9.2 on your system your good to go
 Configure your database.yml file (add the development and test database)
 
 *# Go into config/initializers/setting and change the encryption code
+*# gem install bundler
+*# gem install rails -v3.0.1
+*# bundle install
+*# rake db:create
 *# rake db:migrate
 *# rake db:seed
 *# rake db:test:prepare
