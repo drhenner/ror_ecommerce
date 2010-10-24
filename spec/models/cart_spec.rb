@@ -86,11 +86,62 @@ describe Cart, " instance methods" do
 end
 
 describe Cart, ".items_to_add_or_destroy" do
-  pending "test for items_to_add_or_destroy"
+   "this method is tested within add_items_to_checkout method"
 end
 
+
+=begin
+def add_variant(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID)# customer is a user
+  items = shopping_cart_items.find_all_by_variant_id(variant_id)
+  variant = Variant.find(variant_id)
+  unless variant.sold_out?
+    if items.size < 1
+      cart_item = cart_items.create(:variant_id   => variant_id,
+                                    :user         => customer,
+                                    :item_type_id => cart_item_type_id,
+                                    :quantity     => 1#,#:price      => variant.price
+                                    )
+    else
+      cart_item = items.first
+      update_cart(cart_item,customer)
+    end
+  else
+    cart_item = cart_items.create(:variant_id   => variant_id,
+                                  :user         => customer,
+                                  :item_type_id => ItemType::SAVE_FOR_LATER_ID,
+                                  :quantity     => 1#,#:price      => variant.price
+                                  ) if items.size < 1
+    
+  end
+  cart_item
+end
+=end
+
 describe Cart, ".add_variant" do
-  pending "test for add_variant"
+  # need to stub variant.sold_out? and_return(false)
+  before(:each) do
+    @cart = Factory(:cart_with_two_5_dollar_items)
+    @variant = Factory(:variant)
+    @variant.stub!(:sold_out?).and_return(false)
+  end
+  
+  it 'should add variant to cart' do
+    cart_item_size = @cart.shopping_cart_items.size
+    @cart.add_variant(@variant.id, @cart.user)
+    @cart.shopping_cart_items.size.should == cart_item_size + 1
+  end
+  
+  it 'should add quantity of variant to cart' do
+    cart_item_size = @cart.shopping_cart_items.size
+    @cart.add_variant(@variant.id, @cart.user)
+    @cart.add_variant(@variant.id, @cart.user)
+    @cart.cart_items.each do |item|
+      #puts "#{item.variant_id} : #{@variant.id}  (#{item.quantity})"
+      item.quantity.should == 2 if item.variant_id == @variant.id
+    end
+    
+    @cart.shopping_cart_items.size.should == cart_item_size + 1
+  end
 end
 
 describe Cart, ".remove_variant" do
