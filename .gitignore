@@ -19,5 +19,6 @@ public/assets/**/*
 public/assets/*
 .rvmrc
 config/config.yml
+config/database.yml
 solr/data
 coverage/*
