@@ -53,28 +53,26 @@ class Shopping::OrdersController < Shopping::BaseController
     address = @order.bill_address.cc_params
     
     if @order.complete?
-      CartItem.mark_items_purchased(session_cart, @order)
+      #CartItem.mark_items_purchased(session_cart, @order)
+      session_cart.mark_items_purchased(@order)
       flash[:error] = "The order has been purchased."
       redirect_to myaccount_order_url(@order)
     elsif @credit_card.valid?
       if response = @order.create_invoice(@credit_card, @order.find_total, {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address })
         if response.success?
           ##  MARK items as purchased          
-          CartItem.mark_items_purchased(session_cart, @order)
-          debugger
+          #CartItem.mark_items_purchased(session_cart, @order)
+          session_cart.mark_items_purchased(@order)
           render :action => "success"
         else
-          debugger
           render :action => "failure"
         end
       else
-        debugger
         ###  Take this
         flash[:error] = "Could not process the Credit Card."
         render :action => 'index'
       end
     else
-      debugger
       flash[:error] = "Credit Card is not valid."
       render :action => 'index'
     end

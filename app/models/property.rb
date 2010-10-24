@@ -11,6 +11,7 @@ class Property < ActiveRecord::Base
   
   validates :identifing_name,    :presence => true
   validates :display_name,       :presence => true
+  # active is default true at the DB level
   
   scope :visible, where("active == ?",true)
   

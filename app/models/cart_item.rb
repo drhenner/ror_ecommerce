@@ -18,10 +18,10 @@ class CartItem < ActiveRecord::Base
   end
   
   def shopping_cart_item?
-    item_type_id == ItemType::SHOPPING_CART_ID
+    item_type_id == ItemType::SHOPPING_CART_ID && active?
   end
   
-  def self.mark_items_purchased(cart, order)
-    CartItem.update_all("item_type_id = #{ItemType::PURCHASED_ID}", "id IN (#{cart.shopping_cart_item_ids.join(',')}) AND variant_id IN (#{order.variant_ids.join(',')})")
-  end
+  #def self.mark_items_purchased(cart, order)
+  #  CartItem.update_all("item_type_id = #{ItemType::PURCHASED_ID}", "id IN (#{cart.shopping_cart_item_ids.join(',')}) AND variant_id IN (#{order.variant_ids.join(',')})")
+  #end
 end

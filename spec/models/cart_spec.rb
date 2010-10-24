@@ -71,6 +71,35 @@ describe Cart, " instance methods" do
   
 end
 
+describe Cart, '' do
+  
+  before(:each) do
+    @cart = Factory(:cart_with_two_items)
+  end
+  
+  context 'mark_items_purchased(order)' do
+    it 'should mark cart items as purchased' do
+      
+      order = Factory(:order)
+      order.stubs(:variant_ids).returns(@cart.cart_items.collect{|ci| ci.variant_id})
+      @cart.mark_items_purchased(order)
+      @cart.cart_items.each do |ci|
+        ci.reload.item_type_id.should == ItemType::PURCHASED_ID
+      end
+    end
+    
+    it 'should not mark cart items as purchased if it isnt in the order' do
+      
+      order = Factory(:order)
+      order.stubs(:variant_ids).returns([])
+      @cart.mark_items_purchased(order)
+      @cart.cart_items.each do |ci|
+        ci.reload.item_type_id.should_not == ItemType::PURCHASED_ID
+      end
+    end
+  end
+end
+
 describe Cart, ".add_variant" do
   # need to stub variant.sold_out? and_return(false)
   before(:each) do

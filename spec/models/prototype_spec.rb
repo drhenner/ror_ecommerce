@@ -10,9 +10,18 @@ describe Prototype do
   end
 end
 
-
 describe Prototype, ".display_active" do
-  pending "test for display_active"
+  before(:each) do
+    @prototype = Factory.build(:prototype)
+  end
+  
+  it 'should display True if true' do
+    @prototype.active = true
+    @prototype.display_active.should == 'True'
+    
+    @prototype.active = false
+    @prototype.display_active.should == 'False'
+  end
 end
 
 describe Prototype, "#admin_grid(params = {})" do

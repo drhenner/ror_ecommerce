@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe ShippingRateType do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Valid ShippingRateType" do
+    ShippingRateType.all.each do |rate|
+      it "should be valid" do 
+        rate.should be_valid
+      end
+    end
+  end#end of context
 end

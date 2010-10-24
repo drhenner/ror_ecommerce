@@ -1,5 +1,15 @@
 require 'spec_helper'
 
 describe TransactionLedger do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context " TransactionLedger" do
+    before(:each) do
+      @transaction_ledger = Factory.build(:transaction_ledger)
+    end
+    
+    it "should be valid with minimum attribues" do
+      @transaction_ledger.should be_valid
+    end
+    
+  end
+  
 end

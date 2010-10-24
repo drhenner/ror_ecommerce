@@ -1,5 +1,15 @@
 require 'spec_helper'
 
 describe Transaction do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context " Transaction" do
+    before(:each) do
+      @transaction = Factory.build(:transaction)
+    end
+    
+    it "should be valid with minimum attribues" do
+      @transaction.should be_valid
+    end
+    
+  end
+  
 end
