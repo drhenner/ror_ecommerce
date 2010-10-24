@@ -7,7 +7,7 @@
   <h2><%= @product.name %> </h2>
   <div class='span-16 float-left last'>
     <div class='span-9 float-left'>
-      <%= image_tag(@product.images.first.photo.url(:product)) %><br/>
+      <%= image_tag(@product.featured_image(:product)) %><br/>
     </div>
     <% @product.variants.each_with_index do |variant, i| %>
       <div  id='variant_border_<%= i %>' 

@@ -62,6 +62,10 @@ class Product < ActiveRecord::Base
                                         true]).order('start_date DESC').first
   end
 
+  def featured_image(image_size = :small)
+    images.first ? images.first.photo.url(image_size) : 'no_image.jpg'
+  end
+  
   def price
     master_variant ? master_variant.price : last_master_variant.price
   end

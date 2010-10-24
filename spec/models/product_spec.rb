@@ -4,6 +4,10 @@ describe Product do
   pending "add some examples to (or delete) #{__FILE__}"
 end
 
+describe Product, ".featured_image" do
+  pending "test for featured_image"
+end
+
 describe Product, ".price" do
   pending "test for price"
 end

@@ -4,7 +4,7 @@
   <h1>Pick an Address</h1>
 <% end %>
 
-<div class='span-24 last'>
+<div id='shopping_addresses_selections' class='span-24 last'>
 <% @shopping_addresses.each do |shopping_address| %>
   <div class='span-8 last box'>
     <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address} %>
