@@ -63,7 +63,7 @@ bq. memcached -vv  ## you can config many other cache stores but
 Need to create config/config.yml and change the encryption key and paypal or auth.net information
 
 
-Once everything is setup, start up the server and direct it to
+Once everything is setup, start up the server with 'rails server' and direct it to
 *localhost:3000/admin/overviews*
 
 write down the username/password and follow the directions.
