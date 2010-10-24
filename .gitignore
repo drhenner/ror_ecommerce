@@ -3,7 +3,7 @@ nbproject/*
 .vimrc
 .rvmrc
 .vim
-
+Gemfile.lock
 log
 log/*.log
 tmp
