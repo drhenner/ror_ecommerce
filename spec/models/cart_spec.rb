@@ -12,40 +12,6 @@ describe Cart, ".sub_total" do
   end
 end
 
-
-#def add_items_to_checkout(order)
-#  if order.in_progress?
-#    items = shopping_cart_items.inject({}) {|h, item| h[item.variant_id] = item.quantity; h}
-#    items_to_add_or_destroy(items, order.order_items)
-#    
-#  end
-#end
-#
-#def items_to_add_or_destroy(items_in_cart, order_items)
-#  items = order_items.inject({}) {|h, item| h[item.variant_id].nil? ? h[item.variant_id] = [item.id]  : h[item.variant_id] << item.id; h}
-#  items.each_pair do |variant_id, array_of_order_items|
-#    if items_in_cart[variant_id].nil?
-#      # these items arent in the cart...  delete them
-#      OrderItem.destroy_all("id IN (?)", array_of_order_items)
-#    elsif items_in_cart[variant_id] > array_of_order_items.size ## the number in the cart is larger than the amount in order_items
-#      ###  add more to the cart
-#      variant = Variant.find(variant_id)
-#      order.add_items( variant , (items_in_cart[k] - array_of_order_items.size))
-#    elsif items_in_cart[variant_id] < array_of_order_items.size ## the number in the cart is smaller than the amount in order_items
-#      #remove items in cart
-#      qty_to_remove = array_of_order_items.size - items_in_cart[variant_id]  
-#      
-#      array_of_order_items.each_with_index do |item, i|
-#        OrderItem.destroy(item)
-#        break if i+1 == qty_to_remove
-#      end
-#    end
-#  end
-#  
-#end
-
-
-
 describe Cart, " instance methods" do
   before(:each) do
     @cart = Factory(:cart_with_two_5_dollar_items)
@@ -126,8 +92,22 @@ describe Cart, ".add_variant" do
   end
 end
 
+
+#def remove_variant(variant_id)
+#  ci = cart_items.find_by_variant_id(variant_id)
+#  ci.inactivate!
+#  return ci
+#end
+
 describe Cart, ".remove_variant" do
-  pending "test for remove_variant"
+  it 'should inactivate variant in cart' do
+    @cart = Factory(:cart_with_two_items)
+    variant_ids =  @cart.cart_items.collect {|ci| ci.variant.id }
+    @cart.remove_variant(variant_ids.first)
+    @cart.cart_items.each do |ci|
+      ci.active.should be_false if ci.variant.id == variant_ids.first
+    end
+  end
 end
 
 describe Cart, ".save_user(u)" do

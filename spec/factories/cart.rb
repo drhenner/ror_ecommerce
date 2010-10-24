@@ -15,3 +15,9 @@ Factory.define :cart_with_two_5_dollar_items, :parent => :cart do |c|
                             items.association(:five_dollar_cart_item)
                         ]}
 end
+
+Factory.define :cart_with_two_items, :parent => :cart do |c|
+  c.cart_items  { |items| [ items.association(:five_dollar_cart_item), 
+                            items.association(:five_dollar_cart_item)
+                        ]}
+end

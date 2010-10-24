@@ -58,9 +58,8 @@ class Cart < ActiveRecord::Base
   end
   
   def remove_variant(variant_id)
-    ci = cart_items.find_by_variant_id(variant_id)
-    ci.inactivate!
-    return ci
+    citems = self.cart_items.each {|ci| ci.inactivate! if variant_id == ci.variant_id }
+    return citems
   end
   
   def save_user(u)  # u is user object or nil
