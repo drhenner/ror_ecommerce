@@ -1,15 +1,7 @@
 require 'spec_helper'
 
-describe Invoice do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
-
-describe Invoice, ".name" do
-  pending "test for name"
-end
-
-describe Invoice, ".name" do
-  pending "test for name"
+describe Invoice, ".number" do
+  pending "test for number"
 end
 
 describe Invoice, ".capture_complete_order" do
