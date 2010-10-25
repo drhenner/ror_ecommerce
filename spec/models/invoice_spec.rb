@@ -19,14 +19,25 @@ describe Invoice, "instance methods" do
       @invoice.number.length.should > 3
     end
   end
-end
-
-describe Invoice, ".capture_complete_order" do
-  pending "test for capture_complete_order"
-end
-
-describe Invoice, ".authorize_complete_order" do
-  pending "test for authorize_complete_order"
+  
+  context ".capture_complete_order" do
+    it 'should create a CreditCardCapture transaction' do
+      @invoice.stubs(:amount).returns(20.50)
+      #@invoice.stubs(:batches).returns([])
+      @invoice.capture_complete_order.should be_true
+      @invoice.order.user.transaction_ledgers.size.should == 2
+    end
+    
+    context ".authorize_complete_order" do
+      it 'should create a CreditCardReceivePayment transaction' do
+        @invoice.stubs(:amount).returns(20.50)      
+        @invoice.authorize_complete_order.should be_true
+        @invoice.order.user.transaction_ledgers.size.should == 2
+        @invoice.capture_complete_order.should be_true
+        @invoice.order.user.transaction_ledgers.size.should == 4
+      end
+    end
+  end
 end
 
 describe Invoice, ".cancel_authorized_payment" do

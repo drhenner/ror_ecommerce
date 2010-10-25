@@ -73,8 +73,7 @@ class Invoice < ActiveRecord::Base
     now = Time.zone.now
     if batches.empty?
       # this means we never authorized just captured payment
-      
-        batch = self.batches.new()
+        batch = self.batches.create()
         transaction = CreditCardCapture.new()##  This is a type of transaction
         credit = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::REVENUE_ID, :debit => 0,     :credit => amount, :period => "#{now.month}-#{now.year}")
         debit   = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,   :debit => amount, :credit => 0,      :period => "#{now.month}-#{now.year}")
@@ -101,7 +100,7 @@ class Invoice < ActiveRecord::Base
     x = order.complete!
     now = Time.zone.now
     if batches.empty?
-      batch = self.batches.new()
+      batch = self.batches.create()
       transaction = CreditCardPayment.new()##  This is a type of transaction
       credit = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::REVENUE_ID, :debit => 0, :credit => amount, :period => "#{now.month}-#{now.year}")
       debit  = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_RECEIVABLE_ID, :debit => amount, :credit => 0, :period => "#{now.month}-#{now.year}")
@@ -109,6 +108,7 @@ class Invoice < ActiveRecord::Base
       transaction.transaction_ledgers.push(debit)
       batch.transactions.push(transaction)
       batch.save
+      #puts batch.errors
     else
       raise error ###  something messed up I think
     end

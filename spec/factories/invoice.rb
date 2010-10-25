@@ -6,3 +6,7 @@ Factory.define :invoice do |u|
   u.active          true
   u.invoice_type    'Purchase'
 end
+
+Factory.define :invoice_with_batch, :parent => :invoice do |i|
+  i.batches  { [ Factory(:batch) ]}
+end
