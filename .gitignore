@@ -21,3 +21,5 @@ public/assets/*
 config/config.yml
 solr/data
 coverage/*
+Gemfile.lock
+config/database.yml

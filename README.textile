@@ -39,6 +39,10 @@ install rvm with ruby 1.9.2 or if you have 1.9.2 on your system your good to go
 Configure your database.yml file (add the development and test database)
 
 *# Go into config/initializers/setting and change the encryption code
+*# gem install bundler
+*# gem install rails -v3.0.1
+*# bundle install
+*# rake db:create
 *# rake db:migrate
 *# rake db:seed
 *# rake db:test:prepare
@@ -71,7 +75,7 @@ bq. memcached -vv  ## you can config many other cache stores but
 Need to create config/config.yml and change the encryption key and paypal or auth.net information
 
 
-Once everything is setup, start up the server and direct it to
+Once everything is setup, start up the server with 'rails server' and direct it to
 *localhost:3000/admin/overviews*
 
 write down the username/password and follow the directions.
@@ -86,12 +90,19 @@ h2. TODOs:
 * move items from and to saved/wish lists
 * remove specific qty from cart.
 
+h2. Author
+
+RoR Ecommerce was written by David Henner with contributions from:
+
+* Oren Golan
+
 h2. FYI:
 
 Shipping categories are categories based off price:
 
 you might have two shipping categories (light items) & (heavy items)
 Have fun!!!
+
 
 * I personally want to thank some people I don't even know.
   Ryan Bates and Greg Pollack, I have learned way too much from you 2 
