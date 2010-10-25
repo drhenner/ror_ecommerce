@@ -11,13 +11,19 @@ Rails 3.  If you understand Rails you will understand ROR_ecommerce.  There is n
 in this project that you wouldn't see in a normal Rails application.  If you don't like 
 what is in the project just change it like you would in any other Rails app.  
 
-ROR ecommerce is a *Rails 3 startup application* with the intent to allow developers to create an ecommerce solution easily.  This solution includes, an Admin for  *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.  There is a minimal customer facing shopping cart understanding that this will be customized.  The cart allows you to track your customers *cart history* and includes a *double entry accounting system*.  
+ROR ecommerce is a *Rails 3 startup application* with the intent to allow developers to create 
+an ecommerce solution easily.  This solution includes, an Admin for  *Purchase Orders*, 
+*Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.  There is a minimal 
+customer facing shopping cart understanding that this will be customized.  The cart allows 
+you to track your customers *cart history* and includes a *double entry accounting system*.  
 
-The project has *solr searching*, *compass* and *blueprint for CSS* and uses *jQuery*.  The gem list is quite large and the project still has a large wish list but it is the most complete solution for Rails today and it will only get better.  
+The project has *solr searching*, *compass* and *blueprint for CSS* and uses *jQuery*.  
+The gem list is quite large and the project still has a large wish list but it is the most 
+complete solution for Rails today and it will only get better.  
 
-Please use *Ruby 1.9.2* and enjoy *Rails 3.0*.  (I wonder if this can be submitted for rails rumble) =)
+Please use *Ruby 1.9.2* and enjoy *Rails 3.0*.  
 
-Contributors are welcome.  For now email David Henner (drhenner@yahoo.com) to see how you 
+Contributors are welcome.  For now email David Henner (*drhenner@yahoo.com*) to see how you 
 can contribute. (send your patch if you have one.)  Soon there will be a bug tracking 
 system and a formal way to submit your patch.  
 
