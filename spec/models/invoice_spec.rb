@@ -1,15 +1,24 @@
 require 'spec_helper'
 
-describe Invoice do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+describe Invoice, "requirements" do
+  it 'should have constants' do
+    Invoice::NUMBER_SEED.should > 10000 # this keeps the invoice # not so obvious
+    Invoice::CHARACTERS_SEED.should > 9
+  end
 end
 
-describe Invoice, ".name" do
-  pending "test for name"
-end
-
-describe Invoice, ".name" do
-  pending "test for name"
+describe Invoice, "instance methods" do
+  before(:each) do 
+    @invoice = Factory(:invoice)
+  end
+  
+  context '.number' do
+    it 'should exist and not = id' do
+      @invoice.number.should_not == @invoice.id
+      @invoice.number.length.should > 3
+    end
+  end
 end
 
 describe Invoice, ".capture_complete_order" do
