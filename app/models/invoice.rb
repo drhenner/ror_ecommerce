@@ -134,11 +134,12 @@ class Invoice < ActiveRecord::Base
       this_invoice.save
       this_invoice.complete_rma_return
       this_invoice.payment_rma!
+      this_invoice
     end
   end
   
   def complete_rma_return
-    batch       = batches.first || self.batches.new()
+    batch       = batches.first || self.batches.create()
     now = Time.zone.now
     transaction = ReturnMerchandiseComplete.new()##  This is a type of transaction
     debit   = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::REVENUE_ID, :debit => amount, :credit => 0, :period => "#{now.month}-#{now.year}")
@@ -149,9 +150,6 @@ class Invoice < ActiveRecord::Base
     batch.save
   end
   
-  def unique_order_number
-    "#{Time.now.to_i}-#{rand(1000000)}"
-  end
   
   def authorization_reference
     if authorization = payments.find_by_action_and_success('authorization', true, :order => 'id ASC')
@@ -209,4 +207,9 @@ class Invoice < ActiveRecord::Base
     # order.completed_at calendar_quarter
   end
   
+  private
+  
+  def unique_order_number
+    "#{Time.now.to_i}-#{rand(1000000)}"
+  end
 end
