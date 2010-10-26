@@ -53,9 +53,7 @@ end
 group :development do 
   #gem 'awesome_print'
   gem "autotest-rails-pure"
-  if RUBY_PLATFORM =~ /darwin/
-    gem "autotest-fsevent"
-  end
+
   gem "rails-erd"
   gem "ruby-debug19"
   #gem "ruby-debug"
@@ -79,7 +77,10 @@ group :test do
   #gem "ZenTest"
   gem "autotest"
   gem "autotest-rails-pure"
-  gem "autotest-fsevent"
+  
+  if RUBY_PLATFORM =~ /darwin/
+    gem "autotest-fsevent"
+  end
   gem "autotest-growl"
   #gem "redgreen"
   #gem "test-unit", "1.2.3"
