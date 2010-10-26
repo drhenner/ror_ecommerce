@@ -192,7 +192,3 @@ describe Invoice, ".user" do
     invoice.user.id.should == invoice.order.user.id
   end
 end
-
-describe Invoice, ".period" do
-  pending "test for period"
-end

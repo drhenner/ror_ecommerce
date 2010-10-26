@@ -202,11 +202,7 @@ class Invoice < ActiveRecord::Base
   def user
     order.user
   end
-  
-  def period
-    # order.completed_at calendar_quarter
-  end
-  
+
   private
   
   def unique_order_number
