@@ -20,6 +20,15 @@ describe Variant, ".shipping_category_id" do
   pending "test for shipping_category_id"
 end
 
+#
+#def total_price(tax_rate)
+#  ((1 + tax_percentage(tax_rate)) * self.price)
+#end
+#
+#def tax_percentage(tax_rate)
+#  tax_rate ? tax_rate.percentage : 0
+#end
+
 describe Variant, ".display_property_details(separator = '<br/>')" do
   pending "test for display_property_details"
 end

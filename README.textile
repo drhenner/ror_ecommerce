@@ -82,7 +82,7 @@ write down the username/password and follow the directions.
 
 h2. TODOs:
 
-* tests (I'm about 50% done)
+* more tests 
 * loyalty credits
 * coupons
 * product sales (eg. 20% off)

@@ -118,8 +118,7 @@ class Order < ActiveRecord::Base
                                 #:coupon           => admin_cart[:coupon],
                                 :email            => admin_cart[:user].email,
                                 :user             => admin_cart[:user],
-                                :ip_address       => args[:ip_address],
-                                :email            => admin_cart[:user].email
+                                :ip_address       => args[:ip_address]
                             )
       admin_order.save
       admin_cart[:order_items].each_pair do |variant_id, hash|
@@ -163,9 +162,10 @@ class Order < ActiveRecord::Base
     if invoice_statement.succeeded?
       self.order_complete! #complete!
     else
-      debugger
-      role_back
-      false
+      #role_back
+      invoice_statement.errors.add_to_base('Payment denied!!!')
+      invoice_statement.save
+      
     end
     invoice_statement
   end
