@@ -163,7 +163,7 @@ class Order < ActiveRecord::Base
       self.order_complete! #complete!
     else
       #role_back
-      invoice_statement.errors.add_to_base('Payment denied!!!')
+      invoice_statement.errors.add(:base, 'Payment denied!!!')
       invoice_statement.save
       
     end
