@@ -57,7 +57,7 @@ class Order < ActiveRecord::Base
   #  }
   
   def name
-    user.name
+    self.user.name
   end
   
   def display_completed_at(format = :us_date)

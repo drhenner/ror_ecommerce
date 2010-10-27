@@ -1,24 +1,75 @@
 require 'spec_helper'
 
-describe Order, ".name" do
-  pending "test for name"
+describe Order, "instance methods" do
+  before(:each) do 
+    @user = Factory(:user)
+    @user.stubs(:name).returns('Freddy Boy')
+    @order = Factory(:order, :user => @user)
+  end
+  
+  context ".name" do
+    it 'should return the users name' do
+      @order.name.should == 'Freddy Boy'
+    end
+  end
+
+  context ".display_completed_at(format = :us_date)" do
+    it 'should return the completed date in us format' do
+      @order.stubs(:completed_at).returns(Time.zone.parse('2010-03-20 14:00:00'))
+      @order.display_completed_at.should == '03/20/2010'
+    end
+    
+    it 'should return "Not Finished."' do
+      @order.stubs(:completed_at).returns(nil)
+      @order.display_completed_at.should == "Not Finished."
+    end
+  end
+
+  context ".first_invoice_amount" do
+    it 'should return ""' do
+      @order.stubs(:completed_invoices).returns([])
+      @order.first_invoice_amount.should == ""
+    end
+    it 'should return "Not Finished."' do
+      @invoice = Factory(:invoice, :amount => 13.49)
+      @order.stubs(:completed_invoices).returns([@invoice])
+      @order.first_invoice_amount.should == 13.49
+    end
+  end
+
+
+  #def cancel_unshipped_order(invoice)
+  #  transaction do
+  #    self.update_attributes(:active => false)
+  #    invoice.cancel_authorized_payment
+  #  end
+  #end
+
+  context ".cancel_unshipped_order(invoice)" do
+    it 'should return ""' do
+      @invoice = Factory(:invoice, :amount => 13.49)
+      @order = Factory(:order)
+      @invoice.stubs(:cancel_authorized_payment).returns(true)
+      @order.cancel_unshipped_order(@invoice).should == true
+      @order.active.should be_false
+    end
+  end
+
+  context ".status" do
+    it 'should return "payment_declined"' do
+      @invoice = Factory(:invoice, :state => 'payment_declined')
+      @order.stubs(:invoices).returns([@invoice])
+      @order.status.should == 'payment_declined'
+    end
+    it 'should return "not processed"' do
+      @order.stubs(:invoices).returns([])
+      @order.status.should == 'not processed'
+    end
+  end
+
 end
 
-describe Order, ".display_completed_at(format = :us_date)" do
-  pending "test for display_completed_at(format = :us_date)"
-end
 
-describe Order, ".first_invoice_amount" do
-  pending "test for first_invoice_amount"
-end
-
-describe Order, ".cancel_unshipped_order(invoice)" do
-  pending "test for cancel_unshipped_order(invoice)"
-end
-
-describe Order, ".status" do
-  pending "test for status"
-end
 
 describe Order, "#find_myaccount_details" do
   pending "test for find_myaccount_details"
