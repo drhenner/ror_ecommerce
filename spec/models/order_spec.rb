@@ -237,16 +237,6 @@ describe Order, "instance methods" do
     end
   end
 
-  
-  #def set_number
-  #  return set_order_number if self.id
-  #  self.number = (Time.now.to_i).to_s(CHARACTERS_SEED)## fake number for friendly_id validator
-  #end
-  #
-  #def set_order_number
-  #  self.number = (NUMBER_SEED + id).to_s(CHARACTERS_SEED)
-  #end
-
   context ".set_number" do
     it 'should not set the email address if there is a user_id' do
       @order.set_number
