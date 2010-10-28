@@ -21,7 +21,6 @@ describe Invoice, "instance methods" do
   end
   
   context ".capture_complete_order" do
-    pending "these tests all can be more thorough... LIKE ensuring credit and debit add to 0"
     it 'should create a CreditCardCapture transaction' do
       @invoice.stubs(:amount).returns(20.50)
       #@invoice.stubs(:batches).returns([])
