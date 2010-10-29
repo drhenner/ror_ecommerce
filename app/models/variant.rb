@@ -99,7 +99,7 @@ class Variant < ActiveRecord::Base
     add_count_on_hand((num * -1))
   end
   
-  def add_pending_to_customer(num)
+  def add_pending_to_customer(num = 1)
       sql = "UPDATE variants SET count_pending_to_customer = (#{num} + count_pending_to_customer) WHERE id = #{self.id}"
       ActiveRecord::Base.connection.execute(sql)
   end

@@ -238,12 +238,12 @@ describe Order, "instance methods" do
   end
 
   context ".set_number" do
-    it 'should not set the email address if there is a user_id' do
+    it 'should set number' do
       @order.set_number
       @order.number.should == (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
     end
     
-    it 'should not set the email address if there is a user_id' do
+    it 'should set number not to be nil' do
       order = Factory.build(:order)
       order.set_number
       order.number.should_not be_nil
@@ -251,23 +251,55 @@ describe Order, "instance methods" do
   end
 
   context ".set_order_number" do
-    pending "test for set_order_number"
+    it 'should set number ' do
+      order = Factory(:order)
+      order.number = nil
+      order.set_order_number
+      order.number.should_not be_nil
+    end
   end
 
-  context ".save_order_number" do
-    pending "test for save_order_number"
+  context ".save_order_number" do    
+    it 'should set number and save' do
+      order = Factory(:order)
+      order.number = nil
+      order.save_order_number.should be_true
+      order.number.should_not == (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
+    end
   end
 
   context ".update_inventory" do
-    pending "test for update_inventory"
+    #self.order_items.each {|item| item.variant.add_pending_to_customer(1) }
+    it 'should call add_pending_to_customer for each variant' do
+      variant     = mock()#Factory(:variant )
+      order_item  = Factory(:order_item)
+      order_item.stubs(:variant).returns(variant)
+      @order.order_items.push([order_item])
+      variant.expects(:add_pending_to_customer).once
+      @order.update_inventory
+    end
   end
 
   context ".variant_ids" do
-    pending "test for variant_ids"
+    #order_items.collect{|oi| oi.variant_id }
+    it 'should return each  variant_id' do
+      variant     = Factory(:variant )
+      order_item  = Factory(:order_item)
+      order_item.stubs(:variant_id).returns(variant.id)
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.variant_ids.should == [variant.id, variant.id]
+    end
   end
 
   context ".has_shipment?" do
-    pending "test for has_shipment?"
+    #shipments_count > 0
+    it 'should return false' do
+      @order.has_shipment?.should be_false
+    end
+    it 'should return true' do
+      Factory(:shipment, :order => @order)
+      Order.find(@order.id).has_shipment?.should be_true
+    end
   end
 
 end
@@ -315,15 +347,22 @@ describe Order, "#new_admin_cart(admin_cart, args = {})" do
   end
 end
 
-
-
 describe Order, "#id_from_number(num)" do
-  pending "test for id_from_number(num)"
+  it 'should return the order id' do
+    order     = Factory(:order)
+    order_id  = Order.id_from_number(order.number)
+    order_id.should == order.id
+  end
 end
 
 describe Order, "#find_by_number(num)" do
-  pending "test for find_by_number(num)"
+  it 'should find the order by number' do
+    order = Factory(:order)
+    find_order = Order.find_by_number(order.number)
+    find_order.id.should == order.id
+  end
 end
+
 
 describe Order, "#find_finished_order_grid(params = {})" do
   pending "test for find_finished_order_grid(params = {})"

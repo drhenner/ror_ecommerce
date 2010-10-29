@@ -78,7 +78,7 @@ describe Invoice, "#process_rma(return_amount, order)" do
 end
 
 describe Invoice, "#id_from_number(num)" do
-  it 'should find the invoice by number' do
+  it 'should return invoice id' do
     invoice     = Factory(:invoice)
     invoice_id  = Invoice.id_from_number(invoice.number)
     invoice_id.should == invoice.id

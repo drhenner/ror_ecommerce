@@ -280,7 +280,7 @@ class Order < ActiveRecord::Base
   
   ## This method is called when the order transitions to paid
   def update_inventory
-    self.order_items.each {|item| item.variant.add_pending_to_customer(1) }
+    self.order_items.each { |item| item.variant.add_pending_to_customer }
   end
   
   def variant_ids
