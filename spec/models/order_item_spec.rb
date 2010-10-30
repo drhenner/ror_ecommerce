@@ -55,11 +55,37 @@ describe OrderItem, "instance methods" do
   end
 
   context ".ready_to_calculate?" do
-    pending "test for ready_to_calculate?"
+    it 'should be ready to calculate if we know the shipping rate and tax rate' do
+      @order_item.shipping_rate_id = 1
+      @order_item.tax_rate_id = 1
+      @order_item.ready_to_calculate?.should be_true
+    end
+    
+    it 'should not be ready to calculate if we dont know the shipping rate ' do
+      @order_item.shipping_rate_id = nil
+      @order_item.tax_rate_id = 1
+      @order_item.ready_to_calculate?.should be_false
+    end
+    
+    it 'should not be ready to calculate if we know the tax rate' do
+      @order_item.shipping_rate_id = 1
+      @order_item.tax_rate_id = nil
+      @order_item.ready_to_calculate?.should be_false
+    end
   end
 
   context ".calculate_total(coupon = nil)" do
     pending "test for calculate_total(coupon = nil)"
+    
+    it 'should not be ready to calculate if we know the tax rate' do
+      #@order_item.shipping_rate_id = 1
+      #@order_item.tax_rate_id = nil
+      #@order_item.calculate_total.should be_false
+    end
+    #def calculate_total(coupon = nil)
+    #  tax_percentage = tax_rate.try(:percentage) ? tax_rate.try(:percentage) : 0.0
+    #  self.total = ((adjusted_price) * (tax_percentage + 100.0) / 100.0).round_at(2)
+    #end
   end
 end
 
