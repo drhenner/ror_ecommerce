@@ -71,7 +71,7 @@ class Admin::Shopping::ProductsController < Admin::Shopping::BaseController
                                                         :quantity => qty.to_i,
                                                         :tax_rate => tax_rate,
                                                         :price    => variant.price,
-                                                        :total    => ((1 + tax_percentage(tax_rate)) * variant.price),
+                                                        :total    => variant.total_price(tax_rate) ,
                                                         :shipping_rate => nil } 
           # order_items => {variant_id, price, total, tax_rate, shipping_rate}
         end
@@ -83,7 +83,7 @@ class Admin::Shopping::ProductsController < Admin::Shopping::BaseController
 
   private
   
-  def tax_percentage(tax_rate)
-    tax_rate ? tax_rate.rate : 0
-  end
+ # def tax_percentage(tax_rate)
+ #   tax_rate ? tax_rate.rate : 0
+ # end
 end

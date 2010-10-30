@@ -19,72 +19,175 @@ describe Invoice, "instance methods" do
       @invoice.number.length.should > 3
     end
   end
-end
-
-describe Invoice, ".capture_complete_order" do
-  pending "test for capture_complete_order"
-end
-
-describe Invoice, ".authorize_complete_order" do
-  pending "test for authorize_complete_order"
-end
-
-describe Invoice, ".cancel_authorized_payment" do
-  pending "test for cancel_authorized_payment"
+  
+  context ".capture_complete_order" do
+    it 'should create a CreditCardCapture transaction' do
+      @invoice.stubs(:amount).returns(20.50)
+      #@invoice.stubs(:batches).returns([])
+      @invoice.capture_complete_order.should be_true
+      @invoice.order.user.transaction_ledgers.size.should == 2
+    end
+    
+    context ".authorize_complete_order" do
+      it 'should create a CreditCardReceivePayment transaction' do
+        @invoice.stubs(:amount).returns(20.50)      
+        @invoice.authorize_complete_order.should be_true
+        @invoice.order.user.transaction_ledgers.size.should == 2
+        @invoice.capture_complete_order.should be_true
+        @invoice.order.user.transaction_ledgers.size.should == 4
+      end
+      
+      context 'cancel_authorized_payment' do
+        it 'should create a CreditCardReceivePayment transaction then cancel' do
+          @invoice.stubs(:amount).returns(20.50)      
+          @invoice.authorize_complete_order
+        
+          @invoice.cancel_authorized_payment.should be_true
+          @invoice.order.user.transaction_ledgers.size.should == 4
+          revenue_credits = ar_credits = revenue_debits = ar_debits = []
+          @invoice.order.user.transaction_ledgers.each do |ledger|
+            if ledger.transaction_account_id == TransactionAccount::REVENUE_ID
+              revenue_credits << ledger.credit
+              revenue_debits  << ledger.debit
+            end
+            if ledger.transaction_account_id == TransactionAccount::ACCOUNTS_RECEIVABLE_ID
+              ar_credits << ledger.credit
+              ar_debits  << ledger.debit
+            end
+          end
+          ## credits and debits should cancel themselves out
+          revenue_credits.sum.should_not == 0
+          ar_credits.sum.should_not == 0
+          revenue_credits.sum.should  == revenue_debits.sum
+          ar_credits.sum.should       == ar_debits.sum
+        end
+      end
+    end
+  end
 end
 
 describe Invoice, "#process_rma(return_amount, order)" do
-  pending "test for self.process_rma(return_amount, order)"
+  it 'should create a invoice for an RMA' do
+    order = Factory(:order)
+    invoice = Invoice.process_rma(20.55, order)
+    #@invoice.stubs(:batches).returns([])
+    #invoice.capture_complete_order.should be_true
+    invoice.order.user.transaction_ledgers.size.should == 2
+    invoice.state.should == 'refunded'
+  end
 end
 
 describe Invoice, "#id_from_number(num)" do
-  pending "test for self.id_from_number(num)"
+  it 'should return invoice id' do
+    invoice     = Factory(:invoice)
+    invoice_id  = Invoice.id_from_number(invoice.number)
+    invoice_id.should == invoice.id
+  end
 end
 
 describe Invoice, "#find_by_number(num)" do
-  pending "test for self.find_by_number(num)"
+  it 'should find the invoice by number' do
+    invoice = Factory(:invoice)
+    find_invoice = Invoice.find_by_number(invoice.number)
+    find_invoice.id.should == invoice.id
+  end
 end
 
+#def Invoice.generate(order_id, charge_amount)
+#  Invoice.new(:order_id => order_id, :amount => charge_amount, :invoice_type => PURCHASE)
+#end
+
 describe Invoice, "#generate(order_id, charge_amount)" do
-  pending "test for Invoice.generate(order_id, charge_amount)"
+  it 'should find the invoice by number' do
+    #invoice = Factory(:invoice)
+    charge_amount = 20.15
+    invoice = Invoice.generate(1, charge_amount)
+    invoice.id.should == nil
+    invoice.invoice_type.should == Invoice::PURCHASE
+    invoice.valid?.should be_true
+  end
 end
 
 describe Invoice, ".unique_order_number" do
-  pending "test for unique_order_number"
+  it 'should return a unique_order_number' do
+    invoice = Factory(:invoice)
+    invoice.send(:unique_order_number).length.should > 8
+  end
 end
 
 describe Invoice, ".authorization_reference" do
-  pending "test for authorization_reference"
+  it 'will return a confirmation id if there is a successful payment' do
+    invoice = Factory(:invoice)
+    payment = Factory(:payment, :invoice => invoice, :action => 'authorization', :success => true, :confirmation_id => 'good')
+    invoice.authorization_reference.should == payment.confirmation_id
+  end 
 end
 
 describe Invoice, ".succeeded?" do
-  pending "test for succeeded?"
+  it 'will return a true if authorized or paid' do
+    invoice = Factory(:invoice, :state => 'authorized')
+    invoice.succeeded?.should be_true
+    
+    invoice = Factory(:invoice, :state => 'paid')
+    invoice.succeeded?.should be_true
+  end
 end
 
 describe Invoice, ".integer_amount" do
-  pending "test for integer_amount"
+  it 'should reprent the dollar amount in integer form' do
+    invoice = Factory(:invoice, :amount => 13.56)
+    invoice.integer_amount.should == 1356
+  end
 end
 
-describe Invoice, ".succeeded?" do
-  pending "test for succeeded?"
-end
+
+#def authorize_payment(credit_card, options = {})
+#  options[:number] ||= unique_order_number
+#  transaction do
+#    authorization = Payment.authorize(integer_amount, credit_card, options)
+#    payments.push(authorization)
+#    if authorization.success?
+#      payment_authorized!
+#      authorize_complete_order
+#    else
+#      transaction_declined!
+#    end
+#    authorization
+#  end
+#end
 
 describe Invoice, ".authorize_payment(credit_card, options = {})" do
   pending "test for authorize_payment(credit_card, options = {})"
 end
 
+#def capture_payment(options = {})
+#  transaction do
+#    capture = Payment.capture(integer_amount, authorization_reference, options)
+#    payments.push(capture)
+#    if capture.success?
+#      payment_captured!
+#      capture_complete_order
+#    else
+#      transaction_declined!
+#    end
+#    capture
+#  end
+#end
+
 describe Invoice, ".capture_payment(options = {})" do
   pending "test for capture_payment(options = {})"
 end
 
-describe Invoice, ".user_id" do
-  pending "test for user_id"
+describe Invoice, ".user_id" do 
+  it 'should give the orders user_id' do
+    invoice = Factory(:invoice)
+    invoice.user_id.should == invoice.order.user_id
+  end
 end
 
 describe Invoice, ".user" do
-  pending "test for user"
-end
-
-describe Invoice, ".period" do
-  pending "test for period"
+  it 'should give the orders user_id' do
+    invoice = Factory(:invoice)
+    invoice.user.id.should == invoice.order.user.id
+  end
 end

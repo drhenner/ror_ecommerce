@@ -42,10 +42,18 @@ gem 'state_machine'
 gem 'will_paginate', '~> 3.0.pre2'
 #gem 'validation_reflection',      :branch => "rails-3"
 
+## ADD stuff here if you need them
+platforms :ruby_19 do
+  gem "ruby-debug19", :group => [:test]
+end
+platforms :ruby_18 do
+  gem "ruby-debug", :group => [:test]
+end
+
 group :development do 
   #gem 'awesome_print'
   gem "autotest-rails-pure"
-  #gem "autotest-fsevent"
+
   gem "rails-erd"
   gem "ruby-debug19"
   #gem "ruby-debug"
@@ -69,8 +77,11 @@ group :test do
   #gem "ZenTest"
   gem "autotest"
   gem "autotest-rails-pure"
-  #gem "autotest-fsevent"
-  #gem "autotest-growl"
+  
+  if RUBY_PLATFORM =~ /darwin/
+    gem "autotest-fsevent"
+  end
+  gem "autotest-growl"
   #gem "redgreen"
   #gem "test-unit", "1.2.3"
   
@@ -84,7 +95,5 @@ group :test do
 #  gem "cucumber-rails"
 #  gem 'spork'
 #  gem "launchy"
-  
-  gem "ruby-debug19"
-  #gem "ruby-debug"
+
 end

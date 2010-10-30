@@ -1,0 +1,213 @@
+GIT
+  remote: git://github.com/parasew/acts_as_tree.git
+  revision: ed52495d1671c99e1add582628403bf8104e9077
+  specs:
+    acts_as_tree (1.2.3)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    abstract (1.0.0)
+    actionmailer (3.0.1)
+      actionpack (= 3.0.1)
+      mail (~> 2.2.5)
+    actionpack (3.0.1)
+      activemodel (= 3.0.1)
+      activesupport (= 3.0.1)
+      builder (~> 2.1.2)
+      erubis (~> 2.6.6)
+      i18n (~> 0.4.1)
+      rack (~> 1.2.1)
+      rack-mount (~> 0.6.12)
+      rack-test (~> 0.5.4)
+      tzinfo (~> 0.3.23)
+    activemerchant (1.7.2)
+      activesupport (>= 2.3.2)
+      braintree (>= 2.0.0)
+      builder (>= 2.0.0)
+    activemodel (3.0.1)
+      activesupport (= 3.0.1)
+      builder (~> 2.1.2)
+      i18n (~> 0.4.1)
+    activerecord (3.0.1)
+      activemodel (= 3.0.1)
+      activesupport (= 3.0.1)
+      arel (~> 1.0.0)
+      tzinfo (~> 0.3.23)
+    activeresource (3.0.1)
+      activemodel (= 3.0.1)
+      activesupport (= 3.0.1)
+    activesupport (3.0.1)
+    archive-tar-minitar (0.5.2)
+    arel (1.0.1)
+      activesupport (~> 3.0.0)
+    authlogic (2.1.5)
+      activesupport
+    autotest (4.4.1)
+    autotest-rails-pure (4.1.0)
+    babosa (0.2.0)
+    braintree (2.6.1)
+      builder
+    builder (2.1.2)
+    cancan (1.4.0)
+    columnize (0.3.1)
+    compass (0.10.5)
+      haml (>= 3.0.4)
+    dalli (0.10.1)
+    diff-lcs (1.1.2)
+    erubis (2.6.6)
+      abstract (>= 1.0.0)
+    escape (0.0.4)
+    factory_girl (1.3.2)
+    factory_girl_rails (1.0)
+      factory_girl (~> 1.3)
+      rails (>= 3.0.0.beta4)
+    faker (0.3.1)
+    fancy-buttons (0.5.5)
+      compass (>= 0.10.0)
+      haml (>= 3.0.2)
+    formtastic (1.1.0)
+      actionpack (>= 2.3.0)
+      activesupport (>= 2.3.0)
+      i18n (>= 0.4.0)
+    friendly_id (3.1.7)
+      babosa (~> 0.2.0)
+    haml (3.0.22)
+    i18n (0.4.1)
+    jquery-rails (0.2.4)
+      rails (~> 3.0)
+    linecache19 (0.5.11)
+      ruby_core_source (>= 0.1.4)
+    mail (2.2.7)
+      activesupport (>= 2.3.6)
+      mime-types
+      treetop (>= 1.4.5)
+    memcache-client (1.8.5)
+    mime-types (1.16)
+    mocha (0.9.9)
+      rake
+    mysql2 (0.2.6)
+    nifty-generators (0.4.2)
+    nokogiri (1.4.3.1)
+    paperclip (2.3.4)
+      activerecord
+      activesupport
+    polyglot (0.3.1)
+    pr_geohash (1.0.0)
+    prawn (0.8.4)
+      prawn-core (>= 0.8.4, < 0.9)
+      prawn-layout (>= 0.8.4, < 0.9)
+      prawn-security (>= 0.8.4, < 0.9)
+    prawn-core (0.8.4)
+    prawn-layout (0.8.4)
+    prawn-security (0.8.4)
+    rack (1.2.1)
+    rack-mount (0.6.13)
+      rack (>= 1.0.0)
+    rack-test (0.5.6)
+      rack (>= 1.0)
+    rails (3.0.1)
+      actionmailer (= 3.0.1)
+      actionpack (= 3.0.1)
+      activerecord (= 3.0.1)
+      activeresource (= 3.0.1)
+      activesupport (= 3.0.1)
+      bundler (~> 1.0.0)
+      railties (= 3.0.1)
+    rails-erd (0.4.1)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      ruby-graphviz (~> 0.9.18)
+    rails3-generators (0.14.0)
+    railties (3.0.1)
+      actionpack (= 3.0.1)
+      activesupport (= 3.0.1)
+      rake (>= 0.8.4)
+      thor (~> 0.14.0)
+    rake (0.8.7)
+    rmagick (2.13.1)
+    rsolr (0.12.1)
+      builder (>= 2.1.2)
+    rspec (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+      rspec-mocks (~> 2.0.1)
+    rspec-core (2.0.1)
+    rspec-expectations (2.0.1)
+      diff-lcs (>= 1.1.2)
+    rspec-mocks (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+    rspec-rails (2.0.1)
+      rspec (~> 2.0.0)
+    rspec-rails-mocha (0.2.0)
+      mocha (>= 0.9.8)
+      rspec-rails (>= 2.0.0)
+    ruby-debug-base19 (0.11.24)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby-graphviz (0.9.18)
+    ruby_core_source (0.1.4)
+      archive-tar-minitar (>= 0.5.2)
+    shoulda (2.11.3)
+    ssl_requirement (0.1.0)
+    state_machine (0.9.4)
+    sunspot (1.2.rc4)
+      escape (= 0.0.4)
+      pr_geohash (~> 1.0)
+      rsolr (= 0.12.1)
+    sunspot_rails (1.2.rc4)
+      sunspot (= 1.2.rc4)
+    thor (0.14.3)
+    treetop (1.4.8)
+      polyglot (>= 0.3.1)
+    tzinfo (0.3.23)
+    will_paginate (3.0.pre2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activemerchant (= 1.7.2)
+  acts_as_tree!
+  authlogic (= 2.1.5)
+  autotest
+  autotest-rails-pure
+  cancan
+  compass (>= 0.10.5)
+  dalli
+  factory_girl_rails
+  faker
+  fancy-buttons
+  formtastic (~> 1.1.0)
+  friendly_id (~> 3.0)
+  haml (>= 3.0.13)
+  jquery-rails
+  memcache-client
+  mocha
+  mysql2
+  nifty-generators
+  nokogiri
+  paperclip
+  prawn
+  rails (= 3.0.1)
+  rails-erd
+  rails3-generators
+  rmagick
+  rspec (>= 2.0.0)
+  rspec-core (>= 2.0.0)
+  rspec-expectations (>= 2.0.0)
+  rspec-mocks (>= 2.0.0)
+  rspec-rails (>= 2.0.0)
+  rspec-rails-mocha
+  ruby-debug19
+  shoulda
+  ssl_requirement
+  state_machine
+  sunspot_rails (= 1.2.rc4)
+  will_paginate (~> 3.0.pre2)

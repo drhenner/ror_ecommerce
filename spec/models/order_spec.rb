@@ -1,128 +1,368 @@
 require 'spec_helper'
 
-describe Order do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Order, "instance methods" do
+  before(:each) do 
+    @user = Factory(:user)
+    @user.stubs(:name).returns('Freddy Boy')
+    @order = Factory(:order, :user => @user)
+  end
+  
+  context ".name" do
+    it 'should return the users name' do
+      @order.name.should == 'Freddy Boy'
+    end
+  end
+
+  context ".display_completed_at(format = :us_date)" do
+    it 'should return the completed date in us format' do
+      @order.stubs(:completed_at).returns(Time.zone.parse('2010-03-20 14:00:00'))
+      @order.display_completed_at.should == '03/20/2010'
+    end
+    
+    it 'should return "Not Finished."' do
+      @order.stubs(:completed_at).returns(nil)
+      @order.display_completed_at.should == "Not Finished."
+    end
+  end
+
+  context ".first_invoice_amount" do
+    it 'should return ""' do
+      @order.stubs(:completed_invoices).returns([])
+      @order.first_invoice_amount.should == ""
+    end
+    it 'should return "Not Finished."' do
+      @invoice = Factory(:invoice, :amount => 13.49)
+      @order.stubs(:completed_invoices).returns([@invoice])
+      @order.first_invoice_amount.should == 13.49
+    end
+  end
+
+  context ".cancel_unshipped_order(invoice)" do
+    it 'should return ""' do
+      @invoice = Factory(:invoice, :amount => 13.49)
+      @order = Factory(:order)
+      @invoice.stubs(:cancel_authorized_payment).returns(true)
+      @order.cancel_unshipped_order(@invoice).should == true
+      @order.active.should be_false
+    end
+  end
+
+  context ".status" do
+    it 'should return "payment_declined"' do
+      @invoice = Factory(:invoice, :state => 'payment_declined')
+      @order.stubs(:invoices).returns([@invoice])
+      @order.status.should == 'payment_declined'
+    end
+    it 'should return "not processed"' do
+      @order.stubs(:invoices).returns([])
+      @order.status.should == 'not processed'
+    end
+  end
+
+  context ".capture_invoice(invoice)" do
+    it 'should return an payment object' do
+      ##  Create fake admin_cart object in memcached
+      @invoice  = Factory(:invoice)
+      payment   = @order.capture_invoice(@invoice)
+      payment.class.to_s.should == 'Payment'
+      @invoice.state.should == 'paid'
+    end
+  end
+  
+  
+  
+  #def create_invoice(credit_card, charge_amount, args)
+  #  transaction do 
+  #    create_invoice_transaction(credit_card, charge_amount, args)
+  #  end
+  #end
+  context ".create_invoice(credit_card, charge_amount, args)" do
+    it 'should return an create_invoice on success' do
+      cc_params = {
+        :type               => 'visa',
+        :number             => '1',
+        :verification_value => '322',
+        :month              => '4',
+        :year               => '2010',
+        :first_name         => 'Umang',
+        :last_name          => 'Chouhan'
+      }
+      
+      ##  Create fake admin_cart object in memcached
+      # create_invoice(credit_card, charge_amount, args)
+      credit_card               = ActiveMerchant::Billing::CreditCard.new(cc_params)
+      invoice                   = @order.create_invoice(credit_card, 12.45, {})
+      invoice.class.to_s.should == 'Invoice'
+      invoice.state.should      == 'authorized'
+    end
+    it 'should return an create_invoice on failure' do
+      cc_params = {
+        :type               => 'visa',
+        :number             => '2',
+        :verification_value => '322',
+        :month              => '4',
+        :year               => '2010',
+        :first_name         => 'Umang',
+        :last_name          => 'Chouhan'
+      }
+      
+      ##  Create fake admin_cart object in memcached
+      # create_invoice(credit_card, charge_amount, args)
+      credit_card               = ActiveMerchant::Billing::CreditCard.new(cc_params)
+      invoice                   = @order.create_invoice(credit_card, 12.45, {})
+      invoice.class.to_s.should == 'Invoice'
+      invoice.state.should      == 'payment_declined'
+    end
+  end
+
+  ##  this method is exersized by create_invoice method  TESTED
+  context ".create_invoice_transaction(credit_card, charge_amount, args)" 
+
+  context ".order_complete!" do
+    it  "should set completed_at and update the state" do
+      @order.stubs(:update_inventory).returns(true)
+      @order.completed_at = nil
+      @order.order_complete!
+      @order.state.should == 'complete'
+      @order.completed_at.should_not == nil
+    end
+  end
+
+  context ".set_beginning_values" do
+    it 'should set the beginning address id after find' do
+      order = Order.find(@order.id)
+      order.get_beginning_address_id.should == order.ship_address_id
+    end
+  end
+
+  context ".update_tax_rates" do
+    it 'should set the beginning address id after find' do
+      order_item = Factory(:order_item)
+      tax_rate   = Factory(:tax_rate, :percentage => 5.5 )
+      @order.ship_address_id = Factory(:address).id
+      Product.any_instance.stubs(:tax_rate).returns(tax_rate)
+      @order.stubs(:order_items).returns([order_item])
+      @order.update_tax_rates
+      @order.order_items.first.tax_rate.should == tax_rate
+    end
+  end
+
+  context ".calculate_totals(force = false)" do
+    it 'should set the beginning address id after find' do
+      #@order.stubs(:calculated_at).returns(nil)
+      order_item = Factory(:order_item)
+      @order.stubs(:order_items).returns([order_item])
+      @order.calculated_at = nil
+      @order.total = nil
+      @order.calculate_totals
+      @order.total.should_not be_nil
+    end
+  end
+#
+#shipping_charges
+
+  context ".order_total(force = false)" do
+    it 'should calculate the order totals with shipping charges' do
+      @order.stubs(:calculate_totals).returns( true )
+      @order.stubs(:calculated_at).returns(nil)
+      order_item = Factory(:order_item, :total => 5.52 )
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.stubs(:shipping_charges).returns(100.00)
+      @order.order_total.should == 111.04
+    end
+  end
+
+  context ".ready_to_checkout?" do
+    it 'should be ready to checkout' do
+      order_item = Factory(:order_item )
+      order_item.stubs(:ready_to_calculate?).returns(true)
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.ready_to_checkout?.should == true
+    end
+    
+    it 'should not be ready to checkout' do
+      order_item = Factory(:order_item )
+      order_item.stubs(:ready_to_calculate?).returns(false)
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.ready_to_checkout?.should == false
+    end
+  end
+
+  context ".find_total(force = false)" # exersized calling order_total
+
+  context ".shipping_charges" do    
+    it 'should return one shippoing rate that all items fall under' do
+        order_item = Factory(:order_item )
+        ShippingRate.any_instance.stubs(:individual?).returns(false)
+        ShippingRate.any_instance.stubs(:rate).returns(1.01)
+        
+        OrderItem.stubs(:order_items_in_cart).returns( [order_item, order_item] )
+        
+        @order.shipping_charges.should == 1.01
+    end
+    
+    it 'should return one shipping rate that all items fall under' do
+        order_item = Factory(:order_item )
+        ShippingRate.any_instance.stubs(:individual?).returns(true)
+        ShippingRate.any_instance.stubs(:rate).returns(1.01)
+        
+        OrderItem.stubs(:order_items_in_cart).returns( [order_item, order_item] )
+        
+        @order.shipping_charges.should == 2.02
+    end
+  end
+
+  context ".add_items(variant, quantity, state_id = nil)" do
+    it 'should add a new variant to order items ' do
+      variant = Factory(:variant)
+      order_items_size = @order.order_items.size
+      @order.add_items(variant, 2)
+      @order.order_items.size.should == order_items_size + 2
+    end
+  end
+
+  context ".set_email" do
+    #self.email = user.email if user_id
+    it 'should set the email address if there is a user_id' do
+      @order.email = nil
+      @order.set_email
+      @order.email.should_not be_nil
+      @order.email.should == @order.user.email
+    end
+    it 'should not set the email address if there is a user_id' do
+      @order.email = nil
+      @order.user_id = nil
+      @order.set_email
+      @order.email.should be_nil
+    end
+  end
+
+  context ".set_number" do
+    it 'should set number' do
+      @order.set_number
+      @order.number.should == (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
+    end
+    
+    it 'should set number not to be nil' do
+      order = Factory.build(:order)
+      order.set_number
+      order.number.should_not be_nil
+    end
+  end
+
+  context ".set_order_number" do
+    it 'should set number ' do
+      order = Factory(:order)
+      order.number = nil
+      order.set_order_number
+      order.number.should_not be_nil
+    end
+  end
+
+  context ".save_order_number" do    
+    it 'should set number and save' do
+      order = Factory(:order)
+      order.number = nil
+      order.save_order_number.should be_true
+      order.number.should_not == (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
+    end
+  end
+
+  context ".update_inventory" do
+    #self.order_items.each {|item| item.variant.add_pending_to_customer(1) }
+    it 'should call add_pending_to_customer for each variant' do
+      variant     = mock()#Factory(:variant )
+      order_item  = Factory(:order_item)
+      order_item.stubs(:variant).returns(variant)
+      @order.order_items.push([order_item])
+      variant.expects(:add_pending_to_customer).once
+      @order.update_inventory
+    end
+  end
+
+  context ".variant_ids" do
+    #order_items.collect{|oi| oi.variant_id }
+    it 'should return each  variant_id' do
+      variant     = Factory(:variant )
+      order_item  = Factory(:order_item)
+      order_item.stubs(:variant_id).returns(variant.id)
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.variant_ids.should == [variant.id, variant.id]
+    end
+  end
+
+  context ".has_shipment?" do
+    #shipments_count > 0
+    it 'should return false' do
+      @order.has_shipment?.should be_false
+    end
+    it 'should return true' do
+      Factory(:shipment, :order => @order)
+      Order.find(@order.id).has_shipment?.should be_true
+    end
+  end
+
 end
 
-describe Order, ".name" do
-  pending "test for name"
-end
 
-describe Order, ".display_completed_at(format = :us_date)" do
-  pending "test for display_completed_at(format = :us_date)"
-end
-
-describe Order, ".first_invoice_amount" do
-  pending "test for first_invoice_amount"
-end
-
-describe Order, ".cancel_unshipped_order(invoice)" do
-  pending "test for cancel_unshipped_order(invoice)"
-end
-
-describe Order, ".status" do
-  pending "test for status"
-end
 
 describe Order, "#find_myaccount_details" do
-  pending "test for find_myaccount_details"
+  it 'should return have invoices and completed_invoices associations' do
+    @order = Factory(:order)
+    @order.completed_invoices.should == []
+    @order.invoices.should == []
+  end
 end
 
 describe Order, "#new_admin_cart(admin_cart, args = {})" do
-  pending "test for new_admin_cart(admin_cart, args = {})"
-end
-
-describe Order, ".capture_invoice(invoice)" do
-  pending "test for capture_invoice(invoice)"
-end
-
-describe Order, ".create_invoice(credit_card, charge_amount, args)" do
-  pending "test for create_invoice(credit_card, charge_amount, args)"
-end
-
-describe Order, ".create_invoice_transaction(credit_card, charge_amount, args)" do
-  pending "test for create_invoice_transaction(credit_card, charge_amount, args)"
-end
-
-describe Order, ".order_complete!" do
-  pending "test for order_complete!"
-end
-
-describe Order, ".set_beginning_values" do
-  pending "test for set_beginning_values"
-end
-
-describe Order, ".update_tax_rates" do
-  pending "test for update_tax_rates"
-end
-
-describe Order, ".calculate_totals(force = false)" do
-  pending "test for calculate_totals(force = false)"
-end
-
-describe Order, ".order_total(force = false)" do
-  pending "test for order_total(force = false)"
-end
-
-describe Order, ".ready_to_checkout?" do
-  pending "test for ready_to_checkout?"
-end
-
-describe Order, ".find_total(force = false)" do
-  pending "test for find_total(force = false)"
-end
-
-describe Order, ".shipping_charges" do
-  pending "test for shipping_charges"
-end
-
-describe Order, ".update_address(address_type_id , address_id)" do
-  pending "test for update_address(address_type_id , address_id)"
-end
-
-describe Order, ".add_items(variant, quantity, state_id = nil)" do
-  pending "test for add_items(variant, quantity, state_id = nil)"
-end
-
-describe Order, ".new_items(variant, quantity, state_id = nil)" do
-  pending "test for new_items(variant, quantity, state_id = nil)"
-end
-
-describe Order, ".set_email" do
-  pending "test for set_email"
-end
-
-describe Order, ".set_number" do
-  pending "test for set_number"
-end
-
-describe Order, ".set_order_number" do
-  pending "test for set_order_number"
-end
-
-describe Order, ".save_order_number" do
-  pending "test for save_order_number"
+  before(:each) do
+    @variant = Factory(:variant)
+    @shipping_rate = Factory(:shipping_rate)
+    @tax_rate = Factory(:tax_rate)
+    
+    
+    @admin_cart = {}
+    @admin_cart[:shipping_address] = Factory(:address)
+    @admin_cart[:billing_address]  = Factory(:address)
+    @admin_cart[:user]             = Factory(:user)
+    @admin_cart[:order_items]      = {
+      @variant.id => {
+        :quantity => 2,
+        :variant  => @variant,
+        :tax_rate       => @tax_rate,
+        :price          => @variant.price,
+        :total          => @variant.total_price(@tax_rate),
+        :shipping_rate  => @shipping_rate
+      }
+    }
+  end
+  
+  it 'should return an order object' do
+    ##  Create fake admin_cart object in memcached
+    args = {}
+    args[:ip_address] = '123.09.09.133'
+    order = Order.new_admin_cart(@admin_cart, args)
+    order.class.to_s.should == 'Order'
+    order.order_items.size.should == 2#quantity == 2 thus 2 order_items
+  end
 end
 
 describe Order, "#id_from_number(num)" do
-  pending "test for id_from_number(num)"
+  it 'should return the order id' do
+    order     = Factory(:order)
+    order_id  = Order.id_from_number(order.number)
+    order_id.should == order.id
+  end
 end
 
 describe Order, "#find_by_number(num)" do
-  pending "test for find_by_number(num)"
+  it 'should find the order by number' do
+    order = Factory(:order)
+    find_order = Order.find_by_number(order.number)
+    find_order.id.should == order.id
+  end
 end
 
-describe Order, ".update_inventory" do
-  pending "test for update_inventory"
-end
-
-describe Order, ".variant_ids" do
-  pending "test for variant_ids"
-end
-
-describe Order, ".has_shipment?" do
-  pending "test for has_shipment?"
-end
 
 describe Order, "#find_finished_order_grid(params = {})" do
   pending "test for find_finished_order_grid(params = {})"

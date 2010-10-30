@@ -57,7 +57,7 @@ class Order < ActiveRecord::Base
   #  }
   
   def name
-    user.name
+    self.user.name
   end
   
   def display_completed_at(format = :us_date)
@@ -118,8 +118,7 @@ class Order < ActiveRecord::Base
                                 #:coupon           => admin_cart[:coupon],
                                 :email            => admin_cart[:user].email,
                                 :user             => admin_cart[:user],
-                                :ip_address       => args[:ip_address],
-                                :email            => admin_cart[:user].email
+                                :ip_address       => args[:ip_address]
                             )
       admin_order.save
       admin_cart[:order_items].each_pair do |variant_id, hash|
@@ -155,20 +154,6 @@ class Order < ActiveRecord::Base
     end
   end
   
-  def create_invoice_transaction(credit_card, charge_amount, args)
-    invoice_statement = Invoice.generate(self.id, charge_amount)
-    invoice_statement.save
-    invoice_statement.authorize_payment(credit_card, args)#, options = {})
-    invoices.push(invoice_statement)
-    if invoice_statement.succeeded?
-      self.order_complete! #complete!
-    else
-      debugger
-      role_back
-      false
-    end
-    invoice_statement
-  end
   
   
   def order_complete!
@@ -181,8 +166,13 @@ class Order < ActiveRecord::Base
     @beginning_address_id      = ship_address_id # this stores the initial value of the tax_rate
   end
   
+  def get_beginning_address_id
+    @beginning_address_id
+  end
+  
   def update_tax_rates
     if @beginning_address_id != ship_address_id
+      set_beginning_values
       tax_time = completed_at? ? completed_at : Time.zone.now
       order_items.each do |item|
         rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
@@ -208,7 +198,7 @@ class Order < ActiveRecord::Base
           total = total + item.total
         end
         sub_total = total
-        total = total + shipping_charges
+        self.total = total + shipping_charges
         self.calculated_at = Time.now
         save
       end
@@ -230,27 +220,17 @@ class Order < ActiveRecord::Base
       self.total = self.total + item.total
     end
     self.sub_total = self.total
-    self.total = self.total + shipping_charges
+    self.total = (self.total + shipping_charges).round_at( 2 )
   end
   
   def shipping_charges
     return @order_shipping_charges if defined?(@order_shipping_charges)
     items = OrderItem.order_items_in_cart(self.id)
     shipping_rates = items.inject([]) do |shipping_rates, item| 
-      debugger
       shipping_rates << item.shipping_rate if item.shipping_rate.individual? || !shipping_rates.include?(item.shipping_rate)
       shipping_rates
     end
     @order_shipping_charges = shipping_rates.inject(0.0) {|sum, shipping_rate|  sum + shipping_rate.rate  }
-  end
-  
-  def update_address(address_type_id , address_id)
-    if address_type_id == AddressType::SHIPPING_ID
-      self.update_attributes(:ship_address_id => address_id)
-    elsif address_type_id == AddressType::BILLING_ID
-      self.update_attributes(:bill_address_id => address_id)
-    end
-    self
   end
   
   def add_items(variant, quantity, state_id = nil)
@@ -269,13 +249,6 @@ class Order < ActiveRecord::Base
         order_item.destroy if qty_to_delete > 0
         qty_to_delete = qty_to_delete - 1
       end
-    end
-  end
-  
-  def new_items(variant, quantity, state_id = nil)
-    tax_rate_id = state_id ? variant.product.tax_rate(state_id) : nil
-    quantity.times do
-      self.order_items.new(:variant_id => variant.id, :price => variant.price, :tax_rate_id => tax_rate_id)
     end
   end
   
@@ -307,7 +280,7 @@ class Order < ActiveRecord::Base
   
   ## This method is called when the order transitions to paid
   def update_inventory
-    self.order_items.each {|item| item.variant.add_pending_to_customer(1) }
+    self.order_items.each { |item| item.variant.add_pending_to_customer }
   end
   
   def variant_ids
@@ -352,5 +325,23 @@ class Order < ActiveRecord::Base
     grid = grid.where("orders.email LIKE ?", params[:email])    if params[:email].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page], :per_page => params[:rows])
 
+  end
+  
+  private
+  
+  def create_invoice_transaction(credit_card, charge_amount, args)
+    invoice_statement = Invoice.generate(self.id, charge_amount)
+    invoice_statement.save
+    invoice_statement.authorize_payment(credit_card, args)#, options = {})
+    invoices.push(invoice_statement)
+    if invoice_statement.succeeded?
+      self.order_complete! #complete!
+    else
+      #role_back
+      invoice_statement.errors.add(:base, 'Payment denied!!!')
+      invoice_statement.save
+      
+    end
+    invoice_statement
   end
 end
