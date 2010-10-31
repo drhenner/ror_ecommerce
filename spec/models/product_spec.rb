@@ -33,6 +33,20 @@ describe Product, ".instance methods" do
 
   end
 
+  #def tax_rate(state_id, time = Time.zone.now)
+  #  self.tax_status.tax_rates.where(["state_id = ? AND 
+  #                         start_date <= ? AND
+  #                         (end_date > ? OR end_date IS NULL) AND
+  #                         active = ?", state_id, 
+  #                                      time.to_date.to_s(:db), 
+  #                                      time.to_date.to_s(:db), 
+  #                                      true]).order('start_date DESC').first
+  #end
+  
+  context ".tax_rate" do
+    it 'should return the tax rate' 
+  end
+  
   context ".price" do
     it 'should return the master price' do
       @product.price.should == 15.01

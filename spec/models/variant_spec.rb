@@ -11,7 +11,6 @@ describe Variant, " instance methods" do
       @variant.count_on_hand             = 100
       @variant.count_pending_to_customer = 100 - Variant::OUT_OF_STOCK_QTY
       @variant.sold_out?.should be_true
-      
     end
   
     it 'should not be sold out' do
@@ -23,19 +22,52 @@ describe Variant, " instance methods" do
   end
 
   context ".low_stock?" do
-    pending "test for low_stock?"
+      it 'should be low stock' do
+        @variant.count_on_hand             = 100
+        @variant.count_pending_to_customer = 101 - Variant::OUT_OF_STOCK_QTY
+        @variant.low_stock?.should be_true
+      end
+
+      it 'should be low stock' do
+        @variant.count_on_hand             = 100
+        @variant.count_pending_to_customer = 100 - Variant::LOW_STOCK_QTY
+        @variant.low_stock?.should be_true
+      end
+      
+      it 'should not be low stock' do
+        @variant.count_on_hand             = 100
+        @variant.count_pending_to_customer = 99 - Variant::LOW_STOCK_QTY
+        @variant.low_stock?.should be_false
+      end
   end
 
   context ".display_stock_status(start = '(', finish = ')')" do
-    pending "test for display_stock_status"
+    it 'should be low stock' do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 100 - Variant::LOW_STOCK_QTY
+      @variant.display_stock_status.should == '(Low Stock)'
+    end
+    
+    it 'should be sold out' do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 100 - Variant::OUT_OF_STOCK_QTY
+      @variant.display_stock_status.should == '(Sold Out)'
+    end
   end
 
   context ".product_tax_rate(state_id, tax_time = Time.now)" do
-    pending "test for product_tax_rate"
+    it 'should return the products tax rate for the given state' do
+      tax_rate = Factory(:tax_rate)
+      @variant.product.stubs(:tax_rate).returns(tax_rate)
+      @variant.product_tax_rate(1).should == tax_rate
+    end
   end
 
   context ".shipping_category_id" do
-    pending "test for shipping_category_id"
+    it 'should return the products shipping_category' do
+      @variant.product.stubs(:shipping_category_id).returns(32)
+      @variant.shipping_category_id.should == 32
+    end
   end
 
   #
