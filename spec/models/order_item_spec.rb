@@ -75,12 +75,11 @@ describe OrderItem, "instance methods" do
   end
 
   context ".calculate_total(coupon = nil)" do
-    pending "test for calculate_total(coupon = nil)"
-    
-    it 'should not be ready to calculate if we know the tax rate' do
-      #@order_item.shipping_rate_id = 1
-      #@order_item.tax_rate_id = nil
-      #@order_item.calculate_total.should be_false
+    it 'should calculate_total' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item.calculate_total
+      order_item.total.should == 22.00
     end
     #def calculate_total(coupon = nil)
     #  tax_percentage = tax_rate.try(:percentage) ? tax_rate.try(:percentage) : 0.0

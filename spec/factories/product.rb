@@ -19,3 +19,12 @@ Factory.define :product do |u|
   u.meta_keywords     ''
   u.meta_description  ''
 end
+
+Factory.define :product_with_image, :parent => :product do |u|
+  valid_file = File.new(File.join(Rails.root, 'spec', 'support', 'rails.png'))
+  u.images { 
+     [
+       ActionController::TestUploadedFile.new(valid_file, Mime::Type.new('application/png'))
+     ] 
+  }
+end

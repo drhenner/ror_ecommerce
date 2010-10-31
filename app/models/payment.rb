@@ -4,16 +4,9 @@ class Payment < ActiveRecord::Base
   serialize :params
   # this is initialized to an instance of ActiveMerchant::Billing::Base.gateway
   #cattr_accessor :gateway
-  # after_save :mark_invoice_complete
   
   validates :amount,      :presence => true
   validates :invoice_id,  :presence => true
-  
-  def mark_invoice_complete
-    if self.confirmation_id && self.action == 'capture' && !invoice.settled?
-      invoice.settled!
-    end
-  end
   
   class << self
     
@@ -61,11 +54,6 @@ class Payment < ActiveRecord::Base
           end
         end
       end
-    private
-    
-      def unique_order_number
-        "#{Time.now.to_i}-#{rand(1_000_000)}"
-      end
       
       # validate card via transaction
       def validate_card( credit_card, options ={})
@@ -82,6 +70,12 @@ class Payment < ActiveRecord::Base
           end
         end
         result
+      end
+      
+    private
+    
+      def unique_order_number
+        "#{Time.now.to_i}-#{rand(1_000_000)}"
       end
       
       def process(action, amount = nil)

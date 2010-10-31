@@ -38,10 +38,13 @@ class Product < ActiveRecord::Base
     :class_name => 'Variant',
     :conditions => ["variants.master = ? AND variants.deleted_at IS NULL", true]
     
+  has_many :active_variants,
+    :class_name => 'Variant',
+    :conditions => ["variants.deleted_at IS NULL", true]
+    
   has_many :inactive_master_variants,
     :class_name => 'Variant',
     :conditions => ["variants.deleted_at IS NOT NULL AND variants.master = ? ", true]
-    
   accepts_nested_attributes_for :variants
   accepts_nested_attributes_for :product_properties, :reject_if => proc { |attributes| attributes['description'].blank? }
 
@@ -77,17 +80,13 @@ class Product < ActiveRecord::Base
   def set_keywords
     self.product_keywords ? self.product_keywords.join(', ') : ''
   end
-  
-  def primary_image_url(image_size = :small)
-    images.first ? images.first.photo.url(image_size) : nil
-  end
 
   def display_price_range(j = ' to ')
     price_range.join(j)
   end
   
   def price_range
-    range = variants.inject([variants.first.price, variants.first.price]) do |a, variant|
+    range = active_variants.inject([active_variants.first.price, active_variants.first.price]) do |a, variant|
       a[0] = variant.price if variant.price < a[0]
       a[1] = variant.price if variant.price > a[1]
       a
