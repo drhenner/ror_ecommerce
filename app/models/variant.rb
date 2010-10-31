@@ -87,7 +87,7 @@ class Variant < ActiveRecord::Base
   
   def count_available(reload_variant = true)
     self.reload if reload_variant
-    count_on_hand - pending_to_customer
+    count_on_hand - count_pending_to_customer
   end
   
   def add_count_on_hand(num)

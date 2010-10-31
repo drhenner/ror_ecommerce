@@ -80,59 +80,191 @@ describe Variant, " instance methods" do
   #end
 
   context ".display_property_details(separator = '<br/>')" do
-    pending "test for display_property_details"
+    # variant_properties.collect {|vp| [vp.property.display_name ,vp.description].join(separator) }
+    it 'should show all property details' do
+      property      = Factory(:property)
+      property.stubs(:display_name).returns('Color')
+      variant_prop1 = Factory(:variant_property, :property => property, :description => 'red')
+      variant_prop2 = Factory(:variant_property, :property => property, :description => 'blue')
+      @variant.variant_properties.push(variant_prop1)
+      @variant.variant_properties.push(variant_prop2)
+      @variant.display_property_details.should == 'Color: red<br/>Color: blue'
+    end
   end
 
   context ".property_details(separator = ': ')" do
-    pending "test for property_details"
+    it 'should show the property details' do
+      property      = Factory(:property)
+      property.stubs(:display_name).returns('Color')
+      variant_prop1 = Factory(:variant_property, :property => property, :description => 'red')
+      variant_prop2 = Factory(:variant_property, :property => property, :description => 'blue')
+      @variant.variant_properties.push(variant_prop1)
+      @variant.variant_properties.push(variant_prop2)
+      @variant.property_details.should == ['Color: red', 'Color: blue']
+    end
+    it 'should show the property details without properties' do
+      @variant.property_details.should == []
+    end
   end
 
+  #def product_name 
+  #  name? ? name : product.name + sub_name
+  #end
+  #
+  #def sub_name
+  #  primary_property ? "(#{primary_property.description})" : ''
+  #end
+
   context ".product_name" do
-    pending "test for product_name"
+    it 'should return the variant name' do
+      @variant.name = 'helloo'
+      @variant.product.name = 'product says hello'
+      @variant.product_name.should == 'helloo'
+    end
+    
+    it 'should return the products name' do
+        @variant.name = nil
+        @variant.product.name = 'product says hello'
+        @variant.product_name.should == 'product says hello'
+    end
+    
+    it 'should return the products name and subname' do
+        @variant.name = nil
+        @variant.product.name = 'product says hello'
+        @variant.stubs(:primary_property).returns  Factory(:variant_property, :description => 'pp_name')
+        @variant.product_name.should == 'product says hello(pp_name)'
+    end
   end
 
   context ".sub_name" do
-    pending "test for sub_name"
+    it 'should return the variants subname' do
+        @variant.name = nil
+        @variant.product.name = 'product says hello'
+        @variant.stubs(:primary_property).returns  Factory(:variant_property, :description => 'pp_name')
+        @variant.sub_name.should == '(pp_name)'
+    end
+  end
+
+  
+  def primary_property
+    pp = self.variant_properties.where(["variant_properties.primary = ?", true]).find(:first)
+    pp ? pp : self.variant_properties.find(:first)
   end
 
   context ".primary_property" do
-    pending "test for primary_property"
+    it 'should return the primary property' do
+      property      = Factory(:property)
+      property2      = Factory(:property)
+      property.stubs(:display_name).returns('Color')
+      variant_prop1 = Factory(:variant_property, :variant => @variant, :property => property, :primary => true)
+      variant_prop2 = Factory(:variant_property, :variant => @variant, :property => property2, :primary => false)
+      @variant.variant_properties.push(variant_prop2)
+      @variant.variant_properties.push(variant_prop1)
+      @variant.primary_property.should == variant_prop1
+    end
+    
+    it 'should return the primary property' do
+      property      = Factory(:property)
+      property2      = Factory(:property)
+      property.stubs(:display_name).returns('Color')
+      variant_prop1 = Factory(:variant_property, :variant => @variant, :property => property, :primary => true)
+      variant_prop2 = Factory(:variant_property, :variant => @variant, :property => property2, :primary => false)
+      @variant.variant_properties.push(variant_prop1)
+      @variant.variant_properties.push(variant_prop2)
+      @variant.save
+      @variant.primary_property.should == variant_prop1
+    end
   end
 
   context ".name_with_sku" do
-    pending "test for name_with_sku"
+    it "should show name_with_sku" do
+      @variant.name = 'helloo'
+      @variant.sku = '54321'
+      @variant.name_with_sku.should == 'helloo: 54321'
+    end
   end
 
   context ".qty_to_add" do
-    pending "test for qty_to_add"
+    it "should return 0 for qty_to_add" do
+      @variant.qty_to_add.should == 0
+    end
   end
-
+  
   context ".is_available?" do
-    pending "test for is_available?"
+    it "should be available" do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 99
+      @variant.save
+      @variant.is_available?.should be_true
+    end
+    
+    it "should not be available" do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 100
+      @variant.save
+      @variant.is_available?.should be_false
+    end
   end
 
   context ".count_available(reload_variant = true)" do
-    pending "test for count_available"
+    it "should return count_available" do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 99
+      @variant.save
+      @variant.is_available?.should be_true
+    end
   end
 
   context ".add_count_on_hand(num)" do
-    pending "test for add_count_on_hand"
+    it "should update count_on_hand" do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 99
+      @variant.save
+      @variant.add_count_on_hand(1)
+      @variant.reload
+      @variant.count_on_hand.should == 101
+    end
   end
 
   context ".subtract_count_on_hand(num)" do
-    pending "test for subtract_count_on_hand(num)"
+    it "should update count_on_hand" do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 99
+      @variant.save
+      @variant.subtract_count_on_hand(1)
+      @variant.reload
+      @variant.count_on_hand.should == 99
+    end
   end
 
   context ".add_pending_to_customer(num)" do
-    pending "test for add_pending_to_customer(num)"
+    it "should update count_on_hand" do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 99
+      @variant.save
+      @variant.add_pending_to_customer(1)
+      @variant.reload
+      @variant.count_pending_to_customer.should == 100
+    end
   end
 
   context ".subtract_pending_to_customer(num)" do
-    pending "test for subtract_pending_to_customer(num)"
+    it "should update subtract_pending_to_customer" do
+      @variant.count_on_hand             = 100
+      @variant.count_pending_to_customer = 99
+      @variant.save
+      @variant.subtract_pending_to_customer(1)
+      @variant.reload
+      @variant.count_pending_to_customer.should == 98
+    end
   end
 
   context ".qty_to_add=(num)" do
-    pending "test for qty_to_add=(num)"
+    it "should update count_on_hand with qty_to_add" do
+      @variant.count_on_hand             = 100
+      @variant.qty_to_add = 12
+      @variant.count_on_hand.should == 112
+    end
   end
 end
 
