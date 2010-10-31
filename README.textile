@@ -75,6 +75,12 @@ bq. memcached -vv  ## you can config many other cache stores but
 Need to create config/config.yml and change the encryption key and paypal or auth.net information.
 You can also use config/config.yml.example until you get your real info.
 
+Paperclip will throw errors if not configured correctly.
+if you are on a Ubuntu machine, change this line in environment.rb:
+Paperclip.options[:command_path] = "/usr/local/bin"
+into:
+Paperclip.options[:command_path] = "/usr/bin"
+
 Once everything is setup, start up the server with 'rails server' and direct it to
 *localhost:3000/admin/overviews*
 
