@@ -32,7 +32,7 @@ describe Payment, " class methods" do
     it 'should not unstore the payment profile' do
       #GATEWAY.expects(:ssl_post).returns(successful_unstore_response)
       charge = Payment.unstore(  '3')
-        puts charge.inspect
+      #  puts charge.inspect
       charge.success.should_not     be_true
       charge.action.should      == 'unstore'
     end
@@ -47,7 +47,7 @@ describe Payment, " class methods" do
       auth.success.should     be_true
       auth.action.should      == 'authorization'
       auth.message.should     == BogusGateway::SUCCESS_MESSAGE
-      puts auth.params#[:reference]
+      #puts auth.params#[:reference]
       auth[:confirmation_id].should == BogusGateway::AUTHORIZATION
     end
     

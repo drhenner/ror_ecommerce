@@ -72,6 +72,7 @@ group :test do
   gem "rspec-core",         ">=  2.0.0"
   gem "rspec-expectations", ">=  2.0.0"
   gem "rspec-mocks",        ">=  2.0.0"
+  gem 'email_spec'
   
   gem "faker"
   #gem "ZenTest"

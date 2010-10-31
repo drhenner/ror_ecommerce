@@ -102,27 +102,119 @@ describe User, "instance methods" do
   end
 
   context ".current_cart" do
-    pending "test for current_cart"
+    it 'should use the last cart' do
+      cart1 = @user.carts.new
+      cart1.save
+      cart2 = @user.carts.new
+      cart2.save
+      @user.current_cart.should == cart2
+    end
   end
 
   context ".might_be_interested_in_these_products" do
-    pending "test for might_be_interested_in_these_products"
+    it 'should find products' do
+      product = Factory(:product)
+      @user.might_be_interested_in_these_products.include?(product).should be_true
+    end
+    
+    #pending "add your specific find products method here"
   end
 
   context ".billing_address" do
-    pending "test for billing_address"
+    # default_billing_address ? default_billing_address : default_shipping_address
+    it 'should return nil if you dont have an address' do
+      #add = Factory(:address, :addressable => @user, :default => true)
+      @user.billing_address.should be_nil
+    end
+    
+    it 'should use your shipping address if you dont have a default billing address' do
+      add = Factory(:address, :addressable => @user, :default => true)
+      @user.billing_address.should == add
+    end
+    
+    it 'should use your default billing address if you have one available' do
+      add = Factory(:address, :addressable => @user, :default => true)
+      bill_add = Factory(:address, :addressable => @user, :billing_default => true)
+      @user.billing_address.should == bill_add
+    end
+    
+    it 'should return the first address if not defaults are set' do
+      #add = Factory(:address, :addressable => @user, :default => true)
+      add = Factory(:address, :addressable => @user)
+      @user.billing_address.should == add
+    end
   end
 
+  context ".shipping_address" do
+    # default_billing_address ? default_billing_address : default_shipping_address
+    it 'should return nil if you dont have an address' do
+      #add = Factory(:address, :addressable => @user, :default => true)
+      @user.shipping_address.should be_nil
+    end
+    
+    it 'should use your default shipping address if you have one available' do
+      add = Factory(:address, :addressable => @user, :default => true)
+      bill_add = Factory(:address, :addressable => @user, :billing_default => true)
+      @user.shipping_address.should == add
+    end
+    
+    it 'should return the first address if not defaults are set' do
+      #add = Factory(:address, :addressable => @user, :default => true)
+      add = Factory(:address, :addressable => @user)
+      @user.shipping_address.should == add
+    end
+  end
+  
   context ".registered_user?" do
-    pending "test for registered_user?"
+    # registered? || registered_with_credit?
+    it 'should be true for a registered user' do
+      @user.register!
+      @user.registered_user?.should be_true
+    end
+    it 'should be true for a registered_with_credit user' do
+      @user.state = 'registered_with_credit'
+      @user.registered_user?.should be_true
+    end
+
+    it 'should not be a registered user' do
+      @user.state = 'active'
+      @user.registered_user?.should be_false
+    end
+
+    it 'should not be a registered user' do
+      @user.state = 'canceled'
+      @user.registered_user?.should be_false
+    end
   end
 
   context ".sanitize_data" do
-    pending "test for sanitize_data"
+    it "should  sanitize data" do
+      @user.email           = ' bad@email.com '
+      @user.first_name      = ' bAd NamE '
+      @user.last_name       = ' lastnamE '
+      @user.account         = nil
+      
+      @user.sanitize_data
+      
+      @user.email.should        == 'bad@email.com'
+      @user.first_name.should   == 'Bad name'
+      @user.last_name.should    == 'Lastname'
+      @user.account.should_not  be_nil
+    end
   end
 
   context ".deliver_activation_instructions!" do
-    pending "test for deliver_activation_instructions!"
+    #pending "test for deliver_activation_instructions!"
+    #Notifier.signup_notification(self).deliver
+    # @order_item.order.expects(:calculate_totals).once
+    it 'should call signup_notification and deliver' do
+      sign_up_mock = mock()
+      #Notifier.stubs(:signup_notification).returns(sign_up_mock)
+      Notifier.expects(:signup_notification).once.returns(sign_up_mock)
+      sign_up_mock.stubs(:deliver)
+      sign_up_mock.expects(:deliver).once
+      @user.deliver_activation_instructions!
+    end
   end
 
   context ".email_address_with_name" do

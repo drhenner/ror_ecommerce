@@ -58,6 +58,7 @@ GEM
       haml (>= 3.0.4)
     dalli (0.10.0)
     diff-lcs (1.1.2)
+    email_spec (1.0.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape (0.0.4)
@@ -193,6 +194,7 @@ DEPENDENCIES
   cancan
   compass (>= 0.10.5)
   dalli
+  email_spec
   factory_girl_rails
   faker
   fancy-buttons

@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   before_validation :sanitize_data, :before_validation_on_create
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :openid_identifier, :birth_date, :role_ids, :address_attributes, :phone_attributes
   
+  belongs_to :account
+  
   has_many    :orders
   has_many    :phones,                    :dependent => :destroy, 
                                           :as => :phoneable
@@ -105,7 +107,7 @@ class User < ActiveRecord::Base
     end
     
     event :register do 
-      transition :unregistered => :registered
+      transition any => :registered
     end
     
     event :cancel do 
@@ -144,7 +146,11 @@ class User < ActiveRecord::Base
   end
   
   def billing_address
-    default_billing_address ? default_billing_address : default_shipping_address
+    default_billing_address ? default_billing_address : shipping_address
+  end
+  
+  def shipping_address
+    default_shipping_address ? default_shipping_address : shipping_addresses.first
   end
   
   def registered_user?
@@ -162,7 +168,7 @@ class User < ActiveRecord::Base
     
     ## CHANGE THIS IF YOU HAVE DIFFERENT ACCOUNT TYPES
     unless account_id
-      account = Account.first
+      self.account = Account.first
     end
   end
   

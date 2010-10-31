@@ -9,8 +9,8 @@ class Notifier < ActionMailer::Base
 
     mail(:to => recipient.email_address_with_name,
          :subject => "New account information") do |format|
-      format.text { render :text => "Welcome!" }
-      format.html { render :text => "<h1>Welcome</h1>" }
+      format.text { render :text => "Welcome!  #{recipient.name}" }
+      format.html { render :text => "<h1>Welcome</h1> #{recipient.name}" }
     end
          
   end
