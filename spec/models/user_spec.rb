@@ -40,78 +40,120 @@ describe User, '.registered_user?' do
   end
 end
 
-describe User, ".active?" do
-  pending "test for active?"
+describe User, "instance methods" do
+  context ".admin?" do
+    it 'ahould be an admin' do
+      user = Factory(:admin_user)
+      user.admin?.should be_true
+    end
+  
+    it 'ahould be an admin' do
+      user = Factory(:super_admin_user)
+      user.admin?.should be_true
+    end
+    
+    it 'ahould not be an admin' do
+      user = Factory(:user)
+      user.admin?.should be_false
+    end
+  end
 end
 
-describe User, ".role?(role_name)" do
-  pending "test for role?(role_name)"
-end
+describe User, "instance methods" do
+  before(:each) do
+    @user = Factory(:user)
+  end
+  
+  context ".active?" do
+    it 'should not be active' do
+      @user.state = 'canceled'
+      @user.active?.should be_false
+      @user.state = 'inactive'
+      @user.active?.should be_false
+    end
+    
+    it 'should be active' do
+      @user.state = 'unregistered'
+      @user.active?.should be_true
+      @user.state = 'registered'
+      @user.active?.should be_true
+    end
+  end
 
-describe User, ".admin?" do
-  pending "test for admin?"
-end
+  context ".role?(role_name)" do
+    it 'should be active' do
+      @user.state = 'unregistered'
+      @user.active?.should be_true
+      @user.state = 'registered'
+      @user.active?.should be_true
+    end
+  end
 
-describe User, ".super_admin?" do
-  pending "test for super_admin?"
-end
+  context ".display_active" do
+    it 'should not be active' do
+      @user.state = 'canceled'
+      @user.display_active.should == 'false'
+    end
+    
+    it 'should be active' do
+      @user.state = 'unregistered'
+      @user.display_active.should == 'true'
+    end
+  end
 
-describe User, ".display_active" do
-  pending "test for display_active"
-end
+  context ".current_cart" do
+    pending "test for current_cart"
+  end
 
-describe User, ".current_cart" do
-  pending "test for current_cart"
-end
+  context ".might_be_interested_in_these_products" do
+    pending "test for might_be_interested_in_these_products"
+  end
 
-describe User, ".might_be_interested_in_these_products" do
-  pending "test for might_be_interested_in_these_products"
-end
+  context ".billing_address" do
+    pending "test for billing_address"
+  end
 
-describe User, ".billing_address" do
-  pending "test for billing_address"
-end
+  context ".registered_user?" do
+    pending "test for registered_user?"
+  end
 
-describe User, ".registered_user?" do
-  pending "test for registered_user?"
-end
+  context ".sanitize_data" do
+    pending "test for sanitize_data"
+  end
 
-describe User, ".sanitize_data" do
-  pending "test for sanitize_data"
-end
+  context ".deliver_activation_instructions!" do
+    pending "test for deliver_activation_instructions!"
+  end
 
-describe User, ".deliver_activation_instructions!" do
-  pending "test for deliver_activation_instructions!"
-end
+  context ".email_address_with_name" do
+    pending "test for email_address_with_name"
+  end
 
-describe User, ".email_address_with_name" do
-  pending "test for email_address_with_name"
-end
+  context ".get_cim_profile" do
+    pending "test for get_cim_profile"
+  end
 
-describe User, ".get_cim_profile" do
-  pending "test for get_cim_profile"
-end
+  context ".merchant_description" do
+    pending "test for merchant_description"
+  end
 
-describe User, ".merchant_description" do
-  pending "test for merchant_description"
-end
+  context "#admin_grid(params = {})" do
+    pending "test for admin_grid"
+  end
 
-describe User, "#admin_grid(params = {})" do
-  pending "test for admin_grid"
-end
+  context ".password_required?" do
+    pending "test for password_required"
+  end
 
-describe User, ".password_required?" do
-  pending "test for password_required"
-end
+  context ".create_cim_profile" do
+    pending "test for create_cim_profile"
+  end
 
-describe User, ".create_cim_profile" do
-  pending "test for create_cim_profile"
-end
+  context ".before_validation_on_create" do
+    pending "test for before_validation_on_create"
+  end
 
-describe User, ".before_validation_on_create" do
-  pending "test for before_validation_on_create"
-end
-
-describe User, ".user_profile" do
-  pending "test for user_profile"
+  context ".user_profile" do
+    pending "test for user_profile"
+  end
 end

@@ -118,6 +118,10 @@ class User < ActiveRecord::Base
     !['canceled', 'inactive'].any? {|s| self.state == s }
   end
   
+  def display_active
+    active?.to_s
+  end
+  
   def role?(role_name)
     roles.any? {|r| r.name == role_name.to_s}
   end
@@ -128,10 +132,6 @@ class User < ActiveRecord::Base
   
   def super_admin?
     role?(:super_administrator)
-  end
-  
-  def display_active
-    active?.to_s
   end
   
   def current_cart

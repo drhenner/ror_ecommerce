@@ -25,3 +25,7 @@ end
 Factory.define :admin_user, :parent => :user do |f|
   f.roles     { [Role.find_by_name('administrator')] }
 end
+
+Factory.define :super_admin_user, :parent => :user do |f|
+  f.roles     { [Role.find_by_name('super_administrator')] }
+end
