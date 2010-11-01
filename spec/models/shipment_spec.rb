@@ -63,22 +63,41 @@ describe Shipment, 'instance methods' do
     end
   end
 
-  context '.set_number' do
-    pending "test for set_number"
-  end
+end
 
-  context '.set_shipment_number' do
-    pending "test for set_shipment_number"
-  end
 
-  context '.save_shipment_number' do
-    pending "test for save_shipment_number"
+describe Shipment, 'instance method from build' do
+  before(:each) do
+    @user = Factory(:user)
+    @address1 = Factory(:address, :addressable => @user)
+    @address2 = Factory(:address, :addressable => @user)
+    @order = Factory(:order, :user => @user)
+    @shipment = Factory(:shipment, :order => @order)
   end
-
+  
   context '.shipping_addresses' do
-    pending "test for shipping_addresses"
+    # order.user.shipping_addresses
+    it 'should return all the shipping addresses for the user' do
+      shipment = Shipment.find(@shipment.id)
+      shipment.shipping_addresses.collect{|a| a.id }.should == [@address1.id, @address2.id]
+    end
   end
+end
 
+describe Shipment, 'instance method from build' do
+  before(:each) do
+    @shipment = Factory.build(:shipment)
+  end
+  
+  context '.set_number, save_shipment_number and set_shipment_number' do
+    it "should set_number after saving" do
+      @shipment.number.should be_nil
+      @shipment.save
+      @shipment.number.should_not be_nil
+      @shipment.number.should  == (Shipment::NUMBER_SEED + @shipment.id).to_s(Shipment::CHARACTERS_SEED)
+    end
+  end
+  
 end
 
 describe Shipment, '#create_shipments_with_items(order)' do

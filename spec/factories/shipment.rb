@@ -1,6 +1,6 @@
 
 Factory.define :shipment do |f|
-  f.number          "34567kjhgf"
+  #f.number          "34567kjhgf"
   f.order           { |c| c.association(:order) }
   f.address         { |c| c.association(:address) }
   #f.address_id      1 

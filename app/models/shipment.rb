@@ -62,19 +62,6 @@ class Shipment < ActiveRecord::Base
     end
   end
   
-  def set_number
-    return set_shipment_number if self.id
-    self.number = (Time.now.to_i).to_s## fake number for friendly_id validator
-  end
-  
-  def set_shipment_number
-    self.number = (NUMBER_SEED + id).to_s(CHARACTERS_SEED)
-  end
-  
-  def save_shipment_number
-    set_shipment_number
-    save
-  end
   def shipping_addresses
     order.user.shipping_addresses
   end
@@ -88,5 +75,21 @@ class Shipment < ActiveRecord::Base
   
   def self.find_by_number(num)
     find(id_from_number(num))##  now we can search by id which should be much faster
+  end
+  
+  private
+  
+  def set_number
+    return set_shipment_number if self.id
+    self.number = (Time.now.to_i).to_s## fake number for friendly_id validator
+  end
+  
+  def set_shipment_number
+    self.number = (NUMBER_SEED + id).to_s(CHARACTERS_SEED)
+  end
+  
+  def save_shipment_number
+    set_shipment_number
+    save
   end
 end
