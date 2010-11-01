@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20101020034656) do
     t.integer  "ship_address_id"
     t.integer  "coupon_id"
     t.boolean  "active",          :default => true, :null => false
+    t.boolean  "shipped",         :default => false, :null => false
     t.integer  "shipments_count", :default => 0
     t.datetime "calculated_at"
     t.datetime "completed_at"

@@ -40,11 +40,27 @@ describe Shipment, 'instance methods' do
   end
 
   context '.mark_order_as_shipped' do
-    pending "test for mark_order_as_shipped"
+    # order.update_attributes(:shipped => true)
+    it 'should mark the order shipped' do
+      @shipment.order.shipped = false
+      @shipment.mark_order_as_shipped
+      @shipment.order.shipped.should be_true
+    end
   end
 
   context '.display_shipped_at(format = :us_date)' do
-    pending "test for display_shipped_at(format = :us_date)"
+    # shipped_at ? shipped_at.strftime(format) : 'Not Shipped.'
+    it 'should display the time it was shipped' do
+      # I18n.translate('time.formats.us_date')
+      now = Time.zone.now
+      @shipment.shipped_at = now
+      @shipment.display_shipped_at.should == now.strftime('%m/%d/%Y')
+    end
+    
+    it 'should diplay "Not Shipped"' do
+      @shipment.shipped_at = nil
+      @shipment.display_shipped_at.should == "Not Shipped."
+    end
   end
 
   context '.set_number' do

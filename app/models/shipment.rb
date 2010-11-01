@@ -45,7 +45,7 @@ class Shipment < ActiveRecord::Base
     order.update_attributes(:shipped => true)
   end
   
-  def display_shipped_at(format = :us_date)
+  def display_shipped_at(format = I18n.translate('time.formats.us_date'))
     shipped_at ? shipped_at.strftime(format) : 'Not Shipped.'
   end
   
