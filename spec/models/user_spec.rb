@@ -218,7 +218,13 @@ describe User, "instance methods" do
   end
 
   context ".email_address_with_name" do
-    pending "test for email_address_with_name"
+    #"\"#{name}\" <#{email}>"
+    it 'should show the persons name and email address' do
+      @user.email       = 'myfake@email.com'
+      @user.first_name  = 'Dave'
+      @user.last_name   = 'Commerce'
+      @user.email_address_with_name.should == '"Dave Commerce" <myfake@email.com>'
+    end
   end
 
   context ".get_cim_profile" do
@@ -226,26 +232,73 @@ describe User, "instance methods" do
   end
 
   context ".merchant_description" do
-    pending "test for merchant_description"
+    # [name, default_shipping_address.try(:address_lines)].compact.join(', ')
+    it 'should show the name and address lines' do
+      address = Factory(:address, :address1 => 'Line one street', :address2 => 'Line two street')
+      @user.first_name = 'First'
+      @user.last_name  = 'Second'
+      
+      @user.stubs(:default_shipping_address).returns(address)
+      @user.merchant_description.should == 'First Second, Line one street, Line two street'
+    end
+    
+    it 'should show the name and address lines without address2' do
+      address = Factory(:address, :address1 => 'Line one street', :address2 => nil)
+      @user.first_name = 'First'
+      @user.last_name  = 'Second'
+      
+      @user.stubs(:default_shipping_address).returns(address)
+      @user.merchant_description.should == 'First Second, Line one street'
+    end
   end
 
-  context "#admin_grid(params = {})" do
-    pending "test for admin_grid"
+end
+describe User, 'private methods' do
+  
+  before(:each) do
+    @user = Factory.build(:user)
   end
-
+  
   context ".password_required?" do
-    pending "test for password_required"
+    it 'should require a password if the crypted password is blank' do
+      @user.crypted_password = nil
+      @user.send(:password_required?).should be_true
+    end
+    
+    it 'should not require a password if the crypted password is present' do
+      @user.crypted_password = 'blah'
+      @user.send(:password_required?).should be_false
+    end
   end
-
+  
   context ".create_cim_profile" do
     pending "test for create_cim_profile"
   end
 
   context ".before_validation_on_create" do
-    pending "test for before_validation_on_create"
+    #Notifier.expects(:signup_notification).once.returns(sign_up_mock)
+    it 'should assign the access_token' do
+      @user.expects(:before_validation_on_create).once
+      @user.save
+    end
+    it 'should assign the access_token' do
+      @user.save
+      @user.access_token.should_not be_nil
+    end
   end
 
   context ".user_profile" do
-    pending "test for user_profile"
+    #{:merchant_customer_id => self.id, :email => self.email, :description => self.merchant_description}
+    it 'should return a hash of user info' do
+      @user.save
+      profile = @user.send(:user_profile)
+      profile.keys.include?(:merchant_customer_id).should be_true
+      profile.keys.include?(:email).should be_true
+      profile.keys.include?(:description).should be_true
+    end
   end
+end
+
+describe User, "#admin_grid(params = {})" do
+  pending "test for admin_grid"
 end

@@ -33,8 +33,5 @@ class ShippingRate < ActiveRecord::Base
   def name_with_rate
     [shipping_method.name, number_to_currency(rate)].join(' - ')
   end
-  
-  def self.shipping_rates_with_these_shipping_methods(shipping_rate_ids , shipping_method_ids)
-    find.where(['shipping_rates.shipping_method_id IN (?)',shipping_method_ids])
-  end
+
 end

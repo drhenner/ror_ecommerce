@@ -1,21 +1,52 @@
 require 'spec_helper'
 
-describe ShippingRate, ".individual?" do
-  pending "test for individual?"
+describe ShippingRate, 'instance methods' do
+  before(:each) do
+    @shipping_rate = Factory.build(:shipping_rate, :rate => 5.50)
+  end
+  
+  context ".individual?" do
+    # shipping_rate_type_id == ShippingRateType::INDIVIDUAL_ID
+    it "should return true" do
+      ship_rate_type = ShippingRateType.find_by_name('Individual')
+      @shipping_rate.shipping_rate_type = ship_rate_type
+      @shipping_rate.individual?.should be_true
+    end
+    
+    it "should return true" do
+      ship_rate_type = ShippingRateType.find_by_name('Order')
+      @shipping_rate.shipping_rate_type = ship_rate_type
+      @shipping_rate.individual?.should be_false
+    end
+  end
+
+  context ".name" do
+    #[shipping_method.name, shipping_method.shipping_zone.name, sub_name].join(', ')
+    it "should return the name" do
+      ship_rate_type = ShippingRateType.find_by_name('Individual')
+      @shipping_rate.shipping_rate_type = ship_rate_type
+      shipping_method = Factory(:shipping_method, :name => 'shipname')
+      @shipping_rate.shipping_method = shipping_method
+      @shipping_rate.name.should == 'shipname, USA, (Individual - 5.5)'
+    end
+  end
+
+  context ".sub_name" do
+    # '(' + [shipping_rate_type.name, rate ].join(' - ') + ')'
+    it "should return the sub_name" do
+      ship_rate_type = ShippingRateType.find_by_name('Individual')
+      @shipping_rate.shipping_rate_type = ship_rate_type
+      @shipping_rate.sub_name.should == '(Individual - 5.5)'
+    end
+  end
+
+  context ".name_with_rate" do
+    # [shipping_method.name, number_to_currency(rate)].join(' - ')
+    it "should return the name_with_rate" do
+      shipping_method = Factory(:shipping_method, :name => 'shipname')
+      @shipping_rate.shipping_method = shipping_method
+      @shipping_rate.name_with_rate.should == 'shipname - $5.50'
+    end
+  end
 end
 
-describe ShippingRate, ".name" do
-  pending "test for name"
-end
-
-describe ShippingRate, ".sub_name" do
-  pending "test for sub_name"
-end
-
-describe ShippingRate, ".name_with_rate" do
-  pending "test for name_with_rate"
-end
-
-describe ShippingRate, "#shipping_rates_with_these_shipping_methods(shipping_rate_ids , shipping_method_ids)" do
-  pending "test for shipping_rates_with_these_shipping_methods(shipping_rate_ids , shipping_method_ids)"
-end
