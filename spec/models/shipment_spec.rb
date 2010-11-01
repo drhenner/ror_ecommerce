@@ -101,17 +101,62 @@ describe Shipment, 'instance method from build' do
 end
 
 describe Shipment, '#create_shipments_with_items(order)' do
-  pending "test for create_shipments_with_items(order)"
+  before(:each) do
+    @order     = Factory(:order)
+
+    #@shipment = Factory.build(:shipment, :order => order, :state => 'pending')
+  end
+
+  it 'should create shipments with the items in the order'do
+    order_item = Factory(:order_item, :order => @order)
+    order_item2 = Factory(:order_item, :order => @order)
+    @order.order_items.push(order_item)
+    @order.order_items.push(order_item2)
+    @order.save
+  
+    order    = Order.find(@order.id)
+    shipment = Shipment.create_shipments_with_items(order)
+    order.reload
+    order.shipments.size.should == 2
+    #shipment.order_item_ids.should == order.order_item_ids
+  end
+#shipping_method_id
+
+  it 'should create 1 shipment with items with the same shipping method'do
+    #shipping_method = Factory(:shipping_method)
+    shipping_rate = Factory(:shipping_rate)
+    
+    order_item  = Factory(:order_item, :order => @order, :shipping_rate => shipping_rate)
+    order_item2 = Factory(:order_item, :order => @order, :shipping_rate => shipping_rate)
+    @order.order_items.push(order_item)
+    @order.order_items.push(order_item2)
+    @order.save
+
+    order    = Order.find(@order.id)
+    shipment = Shipment.create_shipments_with_items(order)
+    order.reload
+    order.shipments.size.should == 1
+    #shipment.order_item_ids.should == order.order_item_ids
+  end
+
 end
 
 describe Shipment, '#find_fulfillment_shipment(id)' do
   pending "test for find_fulfillment_shipment(id)"
 end
 
-describe Shipment, '#id_from_number(num)' do
-  pending "test for id_from_number(num)"
+describe Shipment, "#id_from_number(num)" do
+  it 'should return shipment id' do
+    shipment     = Factory(:shipment)
+    shipment_id  = Shipment.id_from_number(shipment.number)
+    shipment_id.should == shipment.id
+  end
 end
 
-describe Shipment, '#find_by_number(num)' do
-  pending "test for find_by_number(num)"
+describe Shipment, "#find_by_number(num)" do
+  it 'should find the shipment by number' do
+    shipment = Factory(:shipment)
+    find_shipment = Shipment.find_by_number(shipment.number)
+    find_shipment.id.should == shipment.id
+  end
 end
