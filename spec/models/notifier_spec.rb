@@ -3,8 +3,9 @@
 describe Notifier, "Signup Email" do
     #include EmailSpec::Helpers
     #include EmailSpec::Matchers
-    include ActionController::UrlWriter
-
+    #include ActionController::UrlWriter
+    include Rails.application.routes.url_helpers
+    
     before(:all) do
       #"jojo@yahoo.com", "Jojo Binks"
       #[first_name.capitalize, last_name.capitalize ]

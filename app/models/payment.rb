@@ -90,7 +90,7 @@ class Payment < ActiveRecord::Base
             result.params     = response.params
             result.test       = response.test?
           rescue ActiveMerchant::ActiveMerchantError => e
-            puts e 
+            #puts e 
             result.success = false
             result.confirmation_id = nil
             result.message = e.message
