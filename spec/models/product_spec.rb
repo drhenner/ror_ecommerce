@@ -16,6 +16,79 @@ describe Product, ".instance methods with images" do
   end
 end
 
+
+
+#def tax_rate(state_id, time = Time.zone.now)
+#  self.tax_status.tax_rates.where(["state_id = ? AND 
+#                         start_date <= ? AND
+#                         (end_date > ? OR end_date IS NULL) AND
+#                         active = ?", state_id, 
+#                                      time.to_date.to_s(:db), 
+#                                      time.to_date.to_s(:db), 
+#                                      true]).order('start_date DESC').first
+#end
+
+describe Product, ".tax_rate" do
+  # use case tax rate end date is nil and the start_date < now
+  it 'should return the tax rate' do
+    tax_rate    = Factory(:tax_rate, 
+                          :state_id => 1, 
+                          :start_date => (Time.zone.now - 1.year),
+                          :end_date => nil)
+    product  = Factory(:product)
+    product.tax_rate(1, Time.zone.now).should == tax_rate
+  end
+  # use case tax rate end date is next month and the start_date < now
+  it 'should return the tax rate' do
+    tax_rate    = Factory(:tax_rate, 
+                          :state_id => 1, 
+                          :start_date => (Time.zone.now - 1.year),
+                          :end_date => (Time.zone.now + 1.month))
+    product  = Factory(:product)
+    product.tax_rate(1, Time.zone.now).should == tax_rate
+  end
+  # use case tax rate end date is one month ago and the start_date < now but the time was 2 months ago
+  it 'should return the tax rate' do
+    tax_rate    = Factory(:tax_rate, 
+                          :state_id => 1, 
+                          :start_date => (Time.zone.now - 1.year),
+                          :end_date => (Time.zone.now - 1.month))
+    product  = Factory(:product)
+    product.tax_rate(1, (Time.zone.now - 2.month)).should == tax_rate
+  end
+  # there are no tax rates
+  it 'should not return the tax rate' do
+    product  = Factory(:product)
+    product.tax_rate(1, (Time.zone.now - 2.month)).should be_nil
+  end
+  # the tax rate starts next month
+  it 'should not return any tax rates' do
+    tax_rate    = Factory(:tax_rate, 
+                          :state_id   => 1, 
+                          :start_date => (Time.zone.now - 1.month),
+                          :end_date   => nil)
+    product  = Factory(:product)
+    product.tax_rate(1, (Time.zone.now - 2.month)).should be_nil
+  end
+  # the tax rate changes next month but is 5% now and next month will be 10%
+  it 'should return any tax rates of 5%' do
+    tax_rate    = Factory(:tax_rate, 
+                          :percentage => 5.0,
+                          :state_id   => 1, 
+                          :start_date => (Time.zone.now - 1.year),
+                          :end_date   => (Time.zone.now + 1.month))
+
+    tax_rate2    = Factory(:tax_rate, 
+                          :percentage => 10.0,
+                          :state_id   => 1, 
+                          :start_date => (Time.zone.now + 1.month),
+                          :end_date   => (Time.zone.now + 1.year))
+    product  = Factory(:product)
+    product.tax_rate(1).should == tax_rate
+  end
+
+end
+
 describe Product, ".instance methods" do
   before(:each) do
     product  = Factory(:product)
@@ -31,20 +104,6 @@ describe Product, ".instance methods" do
       @product.featured_image.should == 'no_image.jpg'
     end
 
-  end
-
-  #def tax_rate(state_id, time = Time.zone.now)
-  #  self.tax_status.tax_rates.where(["state_id = ? AND 
-  #                         start_date <= ? AND
-  #                         (end_date > ? OR end_date IS NULL) AND
-  #                         active = ?", state_id, 
-  #                                      time.to_date.to_s(:db), 
-  #                                      time.to_date.to_s(:db), 
-  #                                      true]).order('start_date DESC').first
-  #end
-  
-  context ".tax_rate" do
-    it 'should return the tax rate' 
   end
   
   context ".price" do
