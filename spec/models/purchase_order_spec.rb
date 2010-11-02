@@ -49,20 +49,69 @@ describe PurchaseOrder, ".supplier_name" do
   end
 end
 
-describe PurchaseOrder, ".receive_po=(answer)" do
-  pending "test for receive_po=(answer)"
-end
+describe PurchaseOrder, 'instance methods' do
+  before(:each) do
+    @purchase_order = Factory(:purchase_order, :state => 'pending')
+    @purchase_order.purchase_order_variants.push(Factory(:purchase_order_variant, :purchase_order => @purchase_order, :is_received => false))
+  end
 
-describe PurchaseOrder, ".receive_po" do
-  pending "test for receive_po"
+  context ".receive_po=(answer)" do
+    it 'should call receive_variants' do
+      @purchase_order.expects(:receive_variants).once
+      @purchase_order.receive_po=('1')
+    end
+    
+    it 'should call receive_variants' do
+      @purchase_order.expects(:receive_variants).once
+      @purchase_order.receive_po=('true')
+    end
+    
+    it 'should not call receive_variants' do
+      @purchase_order.expects(:receive_variants).never
+      @purchase_order.receive_po=('0')
+    end
+    
+    it 'should not call receive_variants' do
+      @purchase_order.state = 'received'
+      @purchase_order.expects(:receive_variants).never
+      @purchase_order.receive_po=('1')
+    end
+  end
+
+  context ".receive_po" do
+    it 'should return true if state is received' do
+      @purchase_order.state = PurchaseOrder::RECEIVED
+      @purchase_order.receive_po.should be_true
+    end
+    
+    it 'should return false if state is not received' do
+      @purchase_order.state = PurchaseOrder::PENDING
+      @purchase_order.receive_po.should be_false
+    end
+  end
+
+  context ".display_tracking_number" do
+    it 'should display N/A if the tracking number is nil' do
+      @purchase_order.tracking_number = nil
+      @purchase_order.display_tracking_number.should == 'N/A'
+    end
+  end
 end
 
 describe PurchaseOrder, ".receive_variants" do
-  pending "test for receive_variants"
-end
-
-describe PurchaseOrder, ".display_tracking_number" do
-  pending "test for display_tracking_number"
+  it 'should receive PO_varaints ' do
+    purchase_order = Factory(:purchase_order, :state => 'pending')
+    purchase_order.purchase_order_variants.push(Factory(:purchase_order_variant, :purchase_order => purchase_order, :is_received => false))
+    PurchaseOrderVariant.any_instance.expects(:receive!).once
+    purchase_order.receive_variants
+  end
+  
+  it 'should not receive PO_varaints ' do
+    purchase_order = Factory(:purchase_order, :state => 'pending')
+    purchase_order.purchase_order_variants.push(Factory(:purchase_order_variant, :purchase_order => purchase_order, :is_received => true))
+    PurchaseOrderVariant.any_instance.expects(:receive!).never
+    purchase_order.receive_variants
+  end
 end
 
 describe PurchaseOrder, "#admin_grid(params = {})" do

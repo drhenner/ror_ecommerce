@@ -35,6 +35,7 @@ class PurchaseOrder < ActiveRecord::Base
   end
   
   def receive_po=(answer)
+    
     if (answer == 'true' || answer == '1') && (state != RECEIVED)
       complete!
     end
@@ -45,7 +46,7 @@ class PurchaseOrder < ActiveRecord::Base
   end
   
   def receive_variants
-    po_variants = PurchaseOrderVariant.where(:purchase_order_id => self.id).find(:lock => "LOCK IN SHARE MODE") 
+    po_variants = PurchaseOrderVariant.where(:purchase_order_id => self.id).find(:all, :lock => "LOCK IN SHARE MODE") 
     po_variants.each do |po_variant|
       po_variant.receive! unless po_variant.is_received?
     end
