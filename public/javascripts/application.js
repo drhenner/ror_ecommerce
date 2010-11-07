@@ -1,4 +1,10 @@
 
+// THIS CODE WILL HAVE A LINK OPEN IN A NEW POPUP
+$('a[data-popup]').live('click', function(e) {
+  window.open($(this)[0].href);
+     e.preventDefault();
+  });
+
 //THIS CODE WILL DISABLE ANY AUTOCOMPLETE for CSS class == disableAutoComplete
 if (document.getElementsByTagName) {
   var inputElements = document.getElementsByTagName("input");
