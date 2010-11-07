@@ -2,7 +2,7 @@
 
 <h2>New Product</h2>
 
-<%= form_for [:admin, :merchandise , :product, @product], :url  => admin_merchandise_products_path, 
+<%= form_for @product, :url  => admin_merchandise_products_path, 
                         :html => {:class => 'prepend-6'}  do |form| %>
   <%= render :partial => '/admin/merchandise/products/form', :locals => {:form => form}%>
 

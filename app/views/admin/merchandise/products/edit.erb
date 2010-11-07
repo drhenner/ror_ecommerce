@@ -6,7 +6,7 @@
 <%= link_to 'Variants', admin_merchandise_product_variants_path(@product), :class => 'button light' %>
 
 
-<%= form_for :product, @product, :url  => admin_merchandise_product_path(@product), 
+<%= form_for @product, :url  => admin_merchandise_product_path(@product), 
                         :html => {:class => 'prepend-6'}  do |form| %>
   <%= render :partial => '/admin/merchandise/products/form', :locals => {:form => form}%>
 
