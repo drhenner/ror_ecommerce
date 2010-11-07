@@ -4,7 +4,7 @@
 en:
   hello:                'Hello'
   out_of_stock_notice:  'Sorry this item is out of stock.'
-  item_saved_for_later: 'The item will be saved in the cart for later use.'
+  item_saved_for_later: 'The item will be saved for later.'
     
   date:
     formats:
