@@ -19,7 +19,7 @@ class Cart < ActiveRecord::Base
                                                 
   has_many    :deleted_cart_items,        :conditions => ['cart_items.active = ?', false], :class_name => 'CartItem'
   
-  validates :user_id,  :presence => true
+  #validates :user_id,  :presence => true
   
   def sub_total
     shopping_cart_items.inject(0) {|sum, item| item.total + sum} #.includes(:variant)
