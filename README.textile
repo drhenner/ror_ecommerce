@@ -38,7 +38,11 @@ install rvm with ruby 1.9.2 or if you have 1.9.2 on your system your good to go
 
 Configure your database.yml file (add the development and test database)
 
-*# Go into config/initializers/setting and change the encryption code
+*# Go into config/config.yml and change the encryption_key 
+
+bq.  aes = OpenSSL::Cipher::Cipher.new('AES-256-CBC')
+  set_encryption_key_to = aes.random_iv
+
 *# gem install bundler
 *# gem install rails -v3.0.1
 *# bundle install
