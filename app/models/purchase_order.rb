@@ -26,7 +26,7 @@ class PurchaseOrder < ActiveRecord::Base
     state :incomplete
     state :received
     
-    after_transition :on => :complete, :do => :receive_variants
+    after_transition :on => :complete, :do => [:pay_for_order, :receive_variants]
     
     event :complete do |purchase_order|
       transition all => :received
@@ -119,7 +119,7 @@ class PurchaseOrder < ActiveRecord::Base
     params[:rows] ||= SETTINGS[:admin_grid_rows]
     
     grid = PurchaseOrder.where(['purchase_orders.state != ?', PurchaseOrder::RECEIVED])#.where("suppliers.name = ?", params[:name]) 
-    grid = grid.where("suppliers.name = ?",                  params[:name])            #if params[:name].present?
+    grid = grid.where("suppliers.name = ?",                  params[:name])            if params[:name].present?
     grid = grid.where("purchase_orders.invoice_number = ?",  params[:invoice_number])  if params[:invoice_number].present?
     grid = grid.where("purchase_orders.tracking_number = ?", params[:tracking_number]) if params[:tracking_number].present?
     
