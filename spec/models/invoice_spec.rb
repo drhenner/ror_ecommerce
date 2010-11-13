@@ -44,7 +44,10 @@ describe Invoice, "instance methods" do
         
           @invoice.cancel_authorized_payment.should be_true
           @invoice.order.user.transaction_ledgers.size.should == 4
-          revenue_credits = ar_credits = revenue_debits = ar_debits = []
+          revenue_credits = []
+          ar_credits      = []
+          revenue_debits  = []
+          ar_debits       = []
           @invoice.order.user.transaction_ledgers.each do |ledger|
             if ledger.transaction_account_id == TransactionAccount::REVENUE_ID
               revenue_credits << ledger.credit

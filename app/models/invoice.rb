@@ -6,6 +6,7 @@ class Invoice < ActiveRecord::Base
   
   validates :amount,        :presence => true
   validates :invoice_type,  :presence => true
+  #validates :order_id,      :presence => true
   
   PURCHASE  = 'Purchase'
   RMA       = 'RMA'

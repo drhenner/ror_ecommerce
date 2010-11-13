@@ -96,6 +96,42 @@ describe PurchaseOrder, 'instance methods' do
       @purchase_order.display_tracking_number.should == 'N/A'
     end
   end
+  
+  #context '.total_cost' do
+  #  it 'should return the total'
+  #end
+end
+
+describe PurchaseOrder, ".pay_for_order" do
+  it 'should pay for the order ' do
+    purchase_order = Factory(:purchase_order, :state => 'pending', :total_cost => 20.32)
+    purchase_order.pay_for_order.should be_true
+    purchase_order.transaction_ledgers.size.should == 2
+    
+    #cash_debits = cash_credits = expense_debits = expense_credits = []
+    cash_debits = []
+    cash_credits = []
+    expense_debits = []
+    expense_credits = []
+    purchase_order.transaction_ledgers.each do |ledger|
+      if ledger.transaction_account_id == TransactionAccount::EXPENSE_ID
+        expense_credits << ledger.credit
+        expense_debits  << ledger.debit
+      end
+      if ledger.transaction_account_id == TransactionAccount::CASH_ID
+        cash_credits << ledger.credit
+        cash_debits  << ledger.debit
+      end  
+    end
+    ## credits and debits should cancel themselves out
+    
+    expense_credits.sum.should  == 0.0
+    expense_debits.sum.should   == 20.32
+    cash_credits.sum.should     == expense_debits.sum
+    cash_debits.sum.should      == expense_credits.sum
+    
+  end
+  
 end
 
 describe PurchaseOrder, ".receive_variants" do

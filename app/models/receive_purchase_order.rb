@@ -1,0 +1,3 @@
+class ReceivePurchaseOrder < Transaction
+  
+end

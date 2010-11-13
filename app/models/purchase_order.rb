@@ -1,12 +1,15 @@
 class PurchaseOrder < ActiveRecord::Base
   belongs_to :supplier
   
-  has_many   :purchase_order_variants
-  has_many   :variants, :through => :purchase_order_variants
+  has_many  :purchase_order_variants
+  has_many  :variants, :through => :purchase_order_variants
   
+  has_many  :batches,             :as => :batchable
+  has_many  :transaction_ledgers, :as => :accountable
   
   validates :invoice_number,  :presence => true
   validates :ordered_at,      :presence => true
+  validates :total_cost,      :presence => true
   #validates :is_received,     :presence => true
   
   accepts_nested_attributes_for :purchase_order_variants, 
@@ -66,6 +69,33 @@ class PurchaseOrder < ActiveRecord::Base
   
   def supplier_name
     supplier.name rescue 'N/A'
+  end
+  
+  def pay_for_order
+    now = Time.zone.now
+    if self.batches.empty?
+      # this means we never authorized just captured payment
+        batch = self.batches.create()
+        transaction = ReceivePurchaseOrder.new()##  This is a type of transaction
+        credit = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,     :debit => 0,      :credit => total_cost, :period => "#{now.month}-#{now.year}")
+        debit  = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::EXPENSE_ID, :debit => total_cost, :credit => 0,      :period => "#{now.month}-#{now.year}")
+        transaction.transaction_ledgers.push(credit)
+        transaction.transaction_ledgers.push(debit)
+        batch.transactions.push(transaction)
+        batch.save
+    else
+      batch       = batches.first
+      transaction = ReceivePurchaseOrder.new()
+      
+      debit   = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::EXPENSE_ID, :debit => total_cost, :credit => 0,       :period => "#{now.month}-#{now.year}")
+      credit  = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,    :debit => 0,      :credit => total_cost,  :period => "#{now.month}-#{now.year}")
+      
+      transaction.transaction_ledgers.push(credit)
+      transaction.transaction_ledgers.push(debit)
+      
+      batch.transactions.push(transaction)
+      batch.save
+    end
   end
   
   def self.admin_grid(params = {})
