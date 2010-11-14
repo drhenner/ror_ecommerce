@@ -1,3 +1,8 @@
+
+== 00.01.01 2010-11-12
+* connected Purchase Order to double entry accounting system
+* fixed bugs with editing purchase order screen was a blank screen
+
 == 0.1.0 2010-11-12
 
 * Initial version.  This public repo had not been tag with a version yet.  Required for logistics.
