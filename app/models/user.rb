@@ -195,8 +195,6 @@ class User < ActiveRecord::Base
     params[:page] ||= 1
     params[:rows] ||= SETTINGS[:admin_grid_rows]
 
-    grid = Table(:variants)
-    
     grid = User
     grid = grid.includes(:roles)
     grid = grid.where("users.first_name LIKE ?", "%#{params[:first_name]}%") if params[:first_name].present?
