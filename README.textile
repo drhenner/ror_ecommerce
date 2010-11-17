@@ -2,11 +2,11 @@ h1. Project Overview
 
 http://ror_ecommerce.lighthouseapp.com/home
 
-This is the first Rails e-commerce starter app.  Other e-commerce projects that
+This is a Rails e-commerce platform.  Other e-commerce projects that
 use rails, don't use rails in a standard way.  They use engines or are a separate 
 framework altogether.  
 
-ROR ecommerce is a *Rails 3 startup application* with the intent to allow developers to create 
+ROR ecommerce is a *Rails 3 application* with the intent to allow developers to create 
 an ecommerce solution easily.  This solution includes, an Admin for  *Purchase Orders*, 
 *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.  There is a minimal 
 customer facing shopping cart understanding that this will be customized.  The cart allows 
@@ -18,9 +18,8 @@ complete solution for Rails today and it will only get better.
 
 Please use *Ruby 1.9.2* and enjoy *Rails 3.0*.  
 
-ROR_ecommerce is designed differently.  ROR_ecommerce is a starter application written for 
-Rails 3.  If you understand Rails you will understand ROR_ecommerce.  There is nothing 
-in this project that you wouldn't see in a normal Rails application.  If you don't like 
+ROR_ecommerce is designed differently.  If you understand Rails you will understand ROR_ecommerce.  
+There is nothing in this project that you wouldn't see in a normal Rails application.  If you don't like 
 what is in the project just change it like you would in any other Rails app.
 
 Contributors are welcome.  For now email David Henner (*drhenner@yahoo.com*) to see how you 
