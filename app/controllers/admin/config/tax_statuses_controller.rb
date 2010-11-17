@@ -44,7 +44,7 @@ class Admin::Config::TaxStatusesController < Admin::Config::BaseController
 
     respond_to do |format|
       if @tax_status.save
-        format.html { redirect_to(@tax_status, :notice => 'Tax status was successfully created.') }
+        format.html { redirect_to(admin_config_tax_statuses_path, :notice => 'Tax status was successfully created.') }
         format.xml  { render :xml => @tax_status, :status => :created, :location => @tax_status }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class Admin::Config::TaxStatusesController < Admin::Config::BaseController
 
     respond_to do |format|
       if @tax_status.update_attributes(params[:tax_status])
-        format.html { redirect_to(@tax_status, :notice => 'Tax status was successfully updated.') }
+        format.html { redirect_to(admin_config_tax_statuses_path, :notice => 'Tax status was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class Admin::Config::TaxStatusesController < Admin::Config::BaseController
     @tax_status.destroy
 
     respond_to do |format|
-      format.html { redirect_to(tax_statuses_url) }
+      format.html { redirect_to(admin_config_tax_statuses_path) }
       format.xml  { head :ok }
     end
   end
