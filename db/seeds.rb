@@ -6,11 +6,14 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-usa = Country.find_by_abbreviation('USA')
-Country.create(:name => 'United States', :abbreviation => 'USA') unless usa
+file_to_load  = Rails.root + 'db/seed/countries.yml'
+countries_list   = YAML::load( File.open( file_to_load ) )
 
-canada = Country.find_by_abbreviation('CAN')
-Country.create(:name => 'Canada', :abbreviation => 'CAN') unless canada
+countries_list.each_pair do |key,country|
+  s = Country.find_by_abbreviation(country['abbreviation'])
+  Country.create(country) unless s
+end
+
 
 file_to_load  = Rails.root + 'db/seed/states.yml'
 states_list   = YAML::load( File.open( file_to_load ) )
