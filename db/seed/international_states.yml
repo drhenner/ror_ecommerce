@@ -24,21 +24,13 @@ c_0003:
 
 c_0004:
   attributes:
-    name: Alagoas
-    abbreviation: AL
-    country_id: 28
-    shipping_zone_id: 5
-    described_as: State
-
-c_0005:
-  attributes:
     name: Amazonas
     abbreviation: AM
     country_id: 28
     shipping_zone_id: 5
     described_as: State
 
-c_0006:
+c_0005:
   attributes:
     name: Bahia
     abbreviation: BA
@@ -46,7 +38,7 @@ c_0006:
     shipping_zone_id: 5
     described_as: State
 
-c_0007:
+c_0006:
   attributes:
     name: Brasília
     abbreviation: DF
@@ -54,23 +46,7 @@ c_0007:
     shipping_zone_id: 5
     described_as: State
 
-c_0008:
-  attributes:
-    name: Alagoas
-    abbreviation: AL
-    country_id: 28
-    shipping_zone_id: 5
-    described_as: State
-
-c_0009:
-  attributes:
-    name: Alagoas
-    abbreviation: AL
-    country_id: 28
-    shipping_zone_id: 5
-    described_as: State
-
-c_0010:
+c_0007:
   attributes:
     name: Ceará
     abbreviation: CE
@@ -78,15 +54,15 @@ c_0010:
     shipping_zone_id: 5
     described_as: State
 
-c_0011:
+c_0008:
   attributes:
-    name: Alagoas
-    abbreviation: AL
+    name: Distrito Federal
+    abbreviation: DF
     country_id: 28
     shipping_zone_id: 5
     described_as: State
 
-c_0012:
+c_0009:
   attributes:
     name: Espírito Santo
     abbreviation: ES
@@ -94,7 +70,7 @@ c_0012:
     shipping_zone_id: 5
     described_as: State
 
-c_0013:
+c_0010:
   attributes:
     name: Goiás
     abbreviation: GO
@@ -102,7 +78,7 @@ c_0013:
     shipping_zone_id: 5
     described_as: State
 
-c_0014:
+c_0011:
   attributes:
     name: Mato Grosso
     abbreviation: MT
@@ -110,7 +86,7 @@ c_0014:
     shipping_zone_id: 5
     described_as: State
 
-c_0015:
+c_0012:
   attributes:
     name: Mato Grosso do Sul
     abbreviation: MS
@@ -118,7 +94,7 @@ c_0015:
     shipping_zone_id: 5
     described_as: State
 
-c_0016:
+c_0013:
   attributes:
     name: Maranhão
     abbreviation: MA
@@ -126,7 +102,7 @@ c_0016:
     shipping_zone_id: 5
     described_as: State
 
-c_0017:
+c_0014:
   attributes:
     name: Minas Gerais
     abbreviation: MG
@@ -134,7 +110,7 @@ c_0017:
     shipping_zone_id: 5
     described_as: State
 
-c_0018:
+c_0015:
   attributes:
     name: Pará
     abbreviation: PA
@@ -142,7 +118,7 @@ c_0018:
     shipping_zone_id: 5
     described_as: State
 
-c_0019:
+c_0016:
   attributes:
     name: Paraná
     abbreviation: PR
@@ -150,7 +126,7 @@ c_0019:
     shipping_zone_id: 5
     described_as: State
 
-c_0020:
+c_0017:
   attributes:
     name: Paraíba
     abbreviation: PB
@@ -158,7 +134,7 @@ c_0020:
     shipping_zone_id: 5
     described_as: State
 
-c_0021:
+c_0018:
   attributes:
     name: Pernambuco
     abbreviation: PE
@@ -166,7 +142,7 @@ c_0021:
     shipping_zone_id: 5
     described_as: State
 
-c_0022:
+c_0019:
   attributes:
     name: Piauí
     abbreviation: PI
@@ -174,7 +150,7 @@ c_0022:
     shipping_zone_id: 5
     described_as: State
 
-c_0023:
+c_0020:
   attributes:
     name: Rio de Janeiro
     abbreviation: RJ
@@ -182,7 +158,7 @@ c_0023:
     shipping_zone_id: 5
     described_as: State
 
-c_0024:
+c_0021:
   attributes:
     name: Rio Grande do Norte
     abbreviation: RN
@@ -190,7 +166,7 @@ c_0024:
     shipping_zone_id: 5
     described_as: State
 
-c_0025:
+c_0022:
   attributes:
     name: Rio Grande do Sul
     abbreviation: RS
@@ -198,7 +174,7 @@ c_0025:
     shipping_zone_id: 5
     described_as: State
 
-c_0026:
+c_0023:
   attributes:
     name: Rondônia
     abbreviation: RO
@@ -206,7 +182,7 @@ c_0026:
     shipping_zone_id: 5
     described_as: State
 
-c_0027:
+c_0024:
   attributes:
     name: Roraima
     abbreviation: RR
@@ -214,7 +190,7 @@ c_0027:
     shipping_zone_id: 5
     described_as: State
 
-c_0028:
+c_0025:
   attributes:
     name: Santa Catarina
     abbreviation: SC
@@ -222,7 +198,7 @@ c_0028:
     shipping_zone_id: 5
     described_as: State
 
-c_0029:
+c_0026:
   attributes:
     name: São Paulo
     abbreviation: SP
@@ -230,7 +206,7 @@ c_0029:
     shipping_zone_id: 5
     described_as: State
 
-c_0030:
+c_0027:
   attributes:
     name: Sergipe
     abbreviation: SE
@@ -238,7 +214,7 @@ c_0030:
     shipping_zone_id: 5
     described_as: State
 
-c_0031:
+c_0028:
   attributes:
     name: Tocantins
     abbreviation: TO
