@@ -40,7 +40,7 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
   # POST /admin/config/shipping_zones
   # POST /admin/config/shipping_zones.xml
   def create
-    @shipping_zone = ShippingZone.new(params[:admin_config_shipping_zone])
+    @shipping_zone = ShippingZone.new(params[:shipping_zone])
 
     respond_to do |format|
       if @shipping_zone.save
@@ -59,7 +59,7 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
     @shipping_zone = ShippingZone.find(params[:id])
 
     respond_to do |format|
-      if @shipping_zone.update_attributes(params[:admin_config_shipping_zone])
+      if @shipping_zone.update_attributes(params[:shipping_zone])
         format.html { redirect_to(admin_config_shipping_zone_url(@shipping_zone), :notice => 'Shipping zone was successfully updated.') }
         format.xml  { head :ok }
       else
