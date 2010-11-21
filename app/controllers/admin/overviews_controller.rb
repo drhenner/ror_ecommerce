@@ -22,9 +22,7 @@ class Admin::OverviewsController < ApplicationController
       if @user.activate!
       
         @user_session = UserSession.new(:email => @user.email, :password => @password)
-        us = @user_session.save
-        debugger
-        @user_session
+        @user_session.save
       end
     end
   end
