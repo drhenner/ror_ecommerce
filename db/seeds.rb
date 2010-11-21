@@ -20,7 +20,7 @@ states_list   = YAML::load( File.open( file_to_load ) )
 
 
 states_list.each_pair do |key,state|
-  s = State.find_by_abbreviation(state['attributes']['abbreviation'])
+  s = State.find_by_abbreviation_and_country_id(state['attributes']['abbreviation'], state['attributes']['country_id'])
   State.create(state['attributes']) unless s
 end 
 
