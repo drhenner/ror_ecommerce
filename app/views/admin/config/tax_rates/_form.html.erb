@@ -19,6 +19,15 @@
     <%= f.label :tax_status_id %><br />
     <%= f.select :tax_status_id, @tax_statuses, {:include_blank => true} %>
   </div>
+
+
+  <div class="field">
+    <%= label_tag :country %><br />
+    <%= select_tag :select_country, 
+                    options_from_collection_for_select(@countries, "id", "abbrev_and_name"), 
+                    {:include_blank => true} %>
+  </div>
+
   <div class="field">
     <%= f.label :state_id %><br />
     <%= f.select :state_id, @states, {:include_blank => true} %>

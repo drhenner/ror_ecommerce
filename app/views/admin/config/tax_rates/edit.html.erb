@@ -8,3 +8,11 @@
 
 <%= link_to 'Show', admin_config_tax_rate_path(@tax_rate) %> |
 <%= link_to 'Back', admin_config_tax_rates_path %>
+
+<% content_for :bottom do -%>
+  <%= javascript_include_tag "admin/config_tax_rate" %>
+  
+  <script>
+    Hadean.Utility.registerOnLoadHandler(Hadean.TaxRateForm.initialize());
+  </script>
+<% end %>
