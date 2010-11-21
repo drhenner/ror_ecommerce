@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.3'
 
 gem "activemerchant", '1.7.2'#, :lib => 'active_merchant'
 gem 'acts_as_tree',    :git => 'git://github.com/parasew/acts_as_tree.git'
@@ -66,12 +66,12 @@ group :test do
   #gem "rr"
   gem 'rails3-generators'
   gem "shoulda"
-  gem "rspec-rails",  ">= 2.0.0"
-  gem "rspec",        ">=  2.0.0"
+  gem "rspec-rails",  "= 2.0.1"
+  gem "rspec",        "=  2.0.1"
   
-  gem "rspec-core",         ">=  2.0.0"
-  gem "rspec-expectations", ">=  2.0.0"
-  gem "rspec-mocks",        ">=  2.0.0"
+  gem "rspec-core",         "=  2.0.1"
+  gem "rspec-expectations", "=  2.0.1"
+  gem "rspec-mocks",        "=  2.0.1"
   gem 'email_spec'
   
   gem "faker"
