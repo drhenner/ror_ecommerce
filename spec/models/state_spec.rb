@@ -36,12 +36,29 @@ describe State, " methods" do
       @state.abbrev_and_name.should == 'CA - California'
     end
   end
+end
 
+describe State, "class methods" do
   context "#form_selector" do
     @states = State.form_selector
     @states.class.should              == Array
     @states.first.class.should        == Array
     @states.first.first.class.should  == String
     @states.first.last.class.should   == Fixnum
+  end
+  
+  context 'all_with_country_id(country_id)' do
+    before(:each) do
+      @country = Country.find(Country::CANADA_ID)
+      @states = State.all_with_country_id(@country.id)
+    end 
+    
+    it 'should return an array of States' do
+      @states.first.class.should        == State
+    end
+
+    it 'should states with country id == country_id' do
+      @states.first.country_id.should == @country.id
+    end
   end
 end

@@ -9,7 +9,8 @@ Hadean::Application.routes.draw do # |map|
   resources :products, :only => [:show, :create]
   resources :cart_items
   resources :wish_items
-
+  resources :states,   :only => [:index]
+  
   #devise_for :admins
   #devise_for :admins, :controllers => { :sessions => "admin/sessions" }
   #resources :admins

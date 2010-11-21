@@ -20,4 +20,8 @@ class State < ActiveRecord::Base
   def self.form_selector
     find(:all, :order => 'country_id ASC, abbreviation ASC').collect { |state| [state.abbrev_and_name, state.id] }
   end
+  
+  def self.all_with_country_id(c_id)
+    where(["country_id = ?", c_id])
+  end
 end
