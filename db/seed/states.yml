@@ -504,7 +504,7 @@ d2:
 e2:
   attributes:
     name: Ontario
-    abbreviation: ON
+    abbreviation: 'ON'
     country_id: 35
     shipping_zone_id: 3
     described_as: Province
