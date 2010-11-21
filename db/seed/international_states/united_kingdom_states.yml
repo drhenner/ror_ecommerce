@@ -1,0 +1,1601 @@
+
+c_0001:
+  attributes:
+    name: Aberdeen
+    abbreviation: AR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0002:
+  attributes:
+    name: Aberdeenshire
+    abbreviation: AS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0003:
+  attributes:
+    name: Anglesey
+    abbreviation: AY
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0004:
+  attributes:
+    name: Angus
+    abbreviation: AG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0005:
+  attributes:
+    name: Antrim
+    abbreviation: AN
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0006:
+  attributes:
+    name: Ards
+    abbreviation: AD
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0007:
+  attributes:
+    name: Argyll and Bute
+    abbreviation: AB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0008:
+  attributes:
+    name: Armagh
+    abbreviation: AM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0009:
+  attributes:
+    name: Ballymena
+    abbreviation: BL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0010:
+  attributes:
+    name: Ballymoney
+    abbreviation: BY
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0011:
+  attributes:
+    name: Banbridge
+    abbreviation: BB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0013:
+  attributes:
+    name: Barnsley
+    abbreviation: BX
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0014:
+  attributes:
+    name: Bath and North East Somerset
+    abbreviation: BN
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0015:
+  attributes:
+    name: Bedford
+    abbreviation: FO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0016:
+  attributes:
+    name: Belfast
+    abbreviation: BF
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0017:
+  attributes:
+    name: Birmingham
+    abbreviation: BI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0018:
+  attributes:
+    name: Blackburn with Darwen
+    abbreviation: BW
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0019:
+  attributes:
+    name: Blackpool
+    abbreviation: BP
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0020:
+  attributes:
+    name: Blaenau Gwent
+    abbreviation: BG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0021:
+  attributes:
+    name: Bolton
+    abbreviation: BT
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0022:
+  attributes:
+    name: Bournemouth
+    abbreviation: BM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0023:
+  attributes:
+    name: Bracknell Forest
+    abbreviation: BC
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0024:
+  attributes:
+    name: Bradford
+    abbreviation: BV
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0025:
+  attributes:
+    name: Bridgend
+    abbreviation: BJ
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0026:
+  attributes:
+    name: Brighton and Hove
+    abbreviation: BH
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0027:
+  attributes:
+    name: Bristol
+    abbreviation: BS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0028:
+  attributes:
+    name: Buckinghamshire
+    abbreviation: BU
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0029:
+  attributes:
+    name: Bury
+    abbreviation: BR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0030:
+  attributes:
+    name: Caerphilly
+    abbreviation: CP
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0031:
+  attributes:
+    name: Calderdale
+    abbreviation: CX
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0032:
+  attributes:
+    name: Cambridgeshire
+    abbreviation: CM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0033:
+  attributes:
+    name: Cardiff
+    abbreviation: CA
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0034:
+  attributes:
+    name: Carmarthenshire
+    abbreviation: CI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0035:
+  attributes:
+    name: Carrickfergus
+    abbreviation: CF
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0036:
+  attributes:
+    name: Castlereagh
+    abbreviation: CS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0037:
+  attributes:
+    name: Central Bedfordshire
+    abbreviation: CB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0038:
+  attributes:
+    name: Ceredigion
+    abbreviation: CG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0039:
+  attributes:
+    name: Cheshire East
+    abbreviation: CQ
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0040:
+  attributes:
+    name: Cheshire West and Chester
+    abbreviation: CZ
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0041:
+  attributes:
+    name: Clackmannanshire
+    abbreviation: CC
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0042:
+  attributes:
+    name: Coleraine
+    abbreviation: CL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0043:
+  attributes:
+    name: Conwy
+    abbreviation: CW
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0044:
+  attributes:
+    name: Cookstown
+    abbreviation: CK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0045:
+  attributes:
+    name: Cornwall
+    abbreviation: CO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0046:
+  attributes:
+    name: Coventry
+    abbreviation: CT
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0047:
+  attributes:
+    name: Craigavon
+    abbreviation: CR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0048:
+  attributes:
+    name: Cumbria
+    abbreviation: CU
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0049:
+  attributes:
+    name: Darlington
+    abbreviation: DA
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0050:
+  attributes:
+    name: Denbighshire
+    abbreviation: DI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0051:
+  attributes:
+    name: Derby
+    abbreviation: DE
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0052:
+  attributes:
+    name: Derbyshire
+    abbreviation: DB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0053:
+  attributes:
+    name: Derry
+    abbreviation: LD
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0054:
+  attributes:
+    name: Devon
+    abbreviation: DO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0055:
+  attributes:
+    name: Doncaster
+    abbreviation: DC
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0056:
+  attributes:
+    name: Dorset
+    abbreviation: DS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0057:
+  attributes:
+    name: Down
+    abbreviation: DW
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0058:
+  attributes:
+    name: Dudley
+    abbreviation: DY
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0059:
+  attributes:
+    name: Dumfries and Galloway
+    abbreviation: DG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0060:
+  attributes:
+    name: Dundee
+    abbreviation: DU
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0061:
+  attributes:
+    name: Dungannon
+    abbreviation: DN
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0062:
+  attributes:
+    name: Durham
+    abbreviation: DH
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0063:
+  attributes:
+    name: East Ayrshire
+    abbreviation: EA
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0064:
+  attributes:
+    name: East Dunbartonshire
+    abbreviation: ED
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0065:
+  attributes:
+    name: East Lothian
+    abbreviation: EL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0066:
+  attributes:
+    name: East Renfrewshire
+    abbreviation: ER
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0067:
+  attributes:
+    name: East Riding of Yorkshire
+    abbreviation: EY
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0068:
+  attributes:
+    name: East Sussex
+    abbreviation: ES
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0069:
+  attributes:
+    name: Edinburgh
+    abbreviation: EB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0070:
+  attributes:
+    name: Eilean Siar
+    abbreviation: WI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0071:
+  attributes:
+    name: Essex
+    abbreviation: EX
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0072:
+  attributes:
+    name: Falkirk
+    abbreviation: FK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0073:
+  attributes:
+    name: Fermanagh
+    abbreviation: FE
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0074:
+  attributes:
+    name: Fife
+    abbreviation: FI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0075:
+  attributes:
+    name: Flintshire
+    abbreviation: FL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0076:
+  attributes:
+    name: Gateshead
+    abbreviation: GH
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0077:
+  attributes:
+    name: Glasgow
+    abbreviation: GG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0078:
+  attributes:
+    name: Gloucestershire
+    abbreviation: GC
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0079:
+  attributes:
+    name: Greater London
+    abbreviation: GL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0080:
+  attributes:
+    name: Gwynedd
+    abbreviation: GD
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0081:
+  attributes:
+    name: Halton
+    abbreviation: HL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0082:
+  attributes:
+    name: Hampshire
+    abbreviation: HA
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0083:
+  attributes:
+    name: Hartlepool
+    abbreviation: HP
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0084:
+  attributes:
+    name: Herefordshire
+    abbreviation: HE
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0085:
+  attributes:
+    name: Hertfordshire
+    abbreviation: HT
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0086:
+  attributes:
+    name: Highland
+    abbreviation: HI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0087:
+  attributes:
+    name: Inverclyde
+    abbreviation: IC
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0088:
+  attributes:
+    name: Isle of Wight
+    abbreviation: IW
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0089:
+  attributes:
+    name: Isles of Scilly
+    abbreviation: IS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0090:
+  attributes:
+    name: Kent
+    abbreviation: KE
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0091:
+  attributes:
+    name: Kingston upon Hull
+    abbreviation: KH
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0092:
+  attributes:
+    name: Kirklees
+    abbreviation: KK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0093:
+  attributes:
+    name: Knowsley
+    abbreviation: KN
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0094:
+  attributes:
+    name: Lancashire
+    abbreviation: LA
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0095:
+  attributes:
+    name: Larne
+    abbreviation: LR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0096:
+  attributes:
+    name: Leeds
+    abbreviation: LS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0097:
+  attributes:
+    name: Leicester
+    abbreviation: LC
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0098:
+  attributes:
+    name: Leicestershire
+    abbreviation: LE
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0099:
+  attributes:
+    name: Limavady
+    abbreviation: LM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0100:
+  attributes:
+    name: Lincolnshire
+    abbreviation: LI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0201:
+  attributes:
+    name: Lisburn
+    abbreviation: LB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0202:
+  attributes:
+    name: Liverpool
+    abbreviation: LV
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0203:
+  attributes:
+    name: Luton
+    abbreviation: LU
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0204:
+  attributes:
+    name: Magherafelt
+    abbreviation: MF
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0205:
+  attributes:
+    name: Manchester
+    abbreviation: MN
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0207:
+  attributes:
+    name: Medway
+    abbreviation: MW
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0208:
+  attributes:
+    name: Merthyr Tydfil
+    abbreviation: MT
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0209:
+  attributes:
+    name: Middlesbrough
+    abbreviation: MB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0210:
+  attributes:
+    name: Midlothian
+    abbreviation: ML
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0211:
+  attributes:
+    name: Milton Keynes
+    abbreviation: MK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0212:
+  attributes:
+    name: Monmouthshire
+    abbreviation: MM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0213:
+  attributes:
+    name: Moray
+    abbreviation: MO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0214:
+  attributes:
+    name: Moyle
+    abbreviation: MY
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0215:
+  attributes:
+    name: Neath Port Talbot
+    abbreviation: NP
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0216:
+  attributes:
+    name: Newcastle upon Tyne
+    abbreviation: NU
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0217:
+  attributes:
+    name: Newport
+    abbreviation: NO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0218:
+  attributes:
+    name: Newry and Mourne
+    abbreviation: NM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0219:
+  attributes:
+    name: Newtownabbey
+    abbreviation: NW
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0220:
+  attributes:
+    name: Norfolk
+    abbreviation: NF
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0221:
+  attributes:
+    name: Northamptonshire
+    abbreviation: NA
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0222:
+  attributes:
+    name: North Ayrshire
+    abbreviation: NR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0223:
+  attributes:
+    name: North Down
+    abbreviation: ND
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0224:
+  attributes:
+    name: North East Lincolnshire
+    abbreviation: NE
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0225:
+  attributes:
+    name: North Lanarkshire
+    abbreviation: NN
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0226:
+  attributes:
+    name: North Lincolnshire
+    abbreviation: NL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0227:
+  attributes:
+    name: North Somerset
+    abbreviation: NS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0228:
+  attributes:
+    name: North Tyneside
+    abbreviation: NI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0229:
+  attributes:
+    name: Northumberland
+    abbreviation: NB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0230:
+  attributes:
+    name: North Yorkshire
+    abbreviation: NY
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0231:
+  attributes:
+    name: Nottingham
+    abbreviation: NG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0232:
+  attributes:
+    name: Nottinghamshire
+    abbreviation: NT
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0233:
+  attributes:
+    name: Oldham
+    abbreviation: OL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0234:
+  attributes:
+    name: Omagh
+    abbreviation: OM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0235:
+  attributes:
+    name: Orkney Islands
+    abbreviation: OR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0236:
+  attributes:
+    name: Oxfordshire
+    abbreviation: OX
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0237:
+  attributes:
+    name: Pembrokeshire
+    abbreviation: PE
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0238:
+  attributes:
+    name: Perthshire and Kinross
+    abbreviation: PK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0239:
+  attributes:
+    name: Peterborough
+    abbreviation: PB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0240:
+  attributes:
+    name: Plymouth
+    abbreviation: PM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0241:
+  attributes:
+    name: Poole
+    abbreviation: PL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0242:
+  attributes:
+    name: Portsmouth
+    abbreviation: PS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0243:
+  attributes:
+    name: Powys
+    abbreviation: PO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0244:
+  attributes:
+    name: Reading
+    abbreviation: RG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0245:
+  attributes:
+    name: Redcar and Cleveland
+    abbreviation: RC
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0246:
+  attributes:
+    name: Renfrewshire
+    abbreviation: RF
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0247:
+  attributes:
+    name: Rhondda, Cynon, Taff
+    abbreviation: RT
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0248:
+  attributes:
+    name: Rochdale
+    abbreviation: RD
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0249:
+  attributes:
+    name: Rotherham
+    abbreviation: RH
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0250:
+  attributes:
+    name: Rutland
+    abbreviation: RL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0251:
+  attributes:
+    name: Saint Helens
+    abbreviation: SZ
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0252:
+  attributes:
+    name: Salford
+    abbreviation: ZF
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0253:
+  attributes:
+    name: Sandwell
+    abbreviation: ZW
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0254:
+  attributes:
+    name: Scottish Borders
+    abbreviation: BO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0255:
+  attributes:
+    name: Sefton
+    abbreviation: SE
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0256:
+  attributes:
+    name: Sheffield
+    abbreviation: SV
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0257:
+  attributes:
+    name: Shetland Islands
+    abbreviation: SH
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0258:
+  attributes:
+    name: Shropshire
+    abbreviation: SP
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0259:
+  attributes:
+    name: Slough
+    abbreviation: ZL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0260:
+  attributes:
+    name: Solihull
+    abbreviation: SI
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0261:
+  attributes:
+    name: Somerset
+    abbreviation: SM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0262:
+  attributes:
+    name: Southampton
+    abbreviation: ZH
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0263:
+  attributes:
+    name: South Ayrshire
+    abbreviation: SA
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0264:
+  attributes:
+    name: Southend-on-Sea
+    abbreviation: SS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0265:
+  attributes:
+    name: South Gloucestershire
+    abbreviation: SJ
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0266:
+  attributes:
+    name: South Lanarkshire
+    abbreviation: SL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0267:
+  attributes:
+    name: South Tyneside
+    abbreviation: SX
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0268:
+  attributes:
+    name: Staffordshire
+    abbreviation: ST
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0269:
+  attributes:
+    name: Stirling
+    abbreviation: ZG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0270:
+  attributes:
+    name: Stockport
+    abbreviation: SK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0271:
+  attributes:
+    name: Stockton-on-Tees
+    abbreviation: ZT
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0272:
+  attributes:
+    name: Stoke-on-Trent
+    abbreviation: SO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0273:
+  attributes:
+    name: Strabane
+    abbreviation: SB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0274:
+  attributes:
+    name: Suffolk
+    abbreviation: SF
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0275:
+  attributes:
+    name: Sunderland
+    abbreviation: SD
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0276:
+  attributes:
+    name: Surrey
+    abbreviation: SR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0277:
+  attributes:
+    name: Swansea
+    abbreviation: SW
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0278:
+  attributes:
+    name: Swindon
+    abbreviation: SN
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0279:
+  attributes:
+    name: Tameside
+    abbreviation: TM
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0280:
+  attributes:
+    name: Telford and Wrekin
+    abbreviation: TK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0281:
+  attributes:
+    name: Thurrock
+    abbreviation: TR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0282:
+  attributes:
+    name: Torbay
+    abbreviation: TB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0283:
+  attributes:
+    name: Torfaen
+    abbreviation: TF
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0284:
+  attributes:
+    name: Trafford
+    abbreviation: TD
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0285:
+  attributes:
+    name: Vale of Glamorgan
+    abbreviation: VG
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0286:
+  attributes:
+    name: Wakefield
+    abbreviation: WK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0287:
+  attributes:
+    name: Walsall
+    abbreviation: WZ
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0288:
+  attributes:
+    name: Warrington
+    abbreviation: WT
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0289:
+  attributes:
+    name: Warwickshire
+    abbreviation: WR
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0290:
+  attributes:
+    name: West Berkshire
+    abbreviation: WB
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0291:
+  attributes:
+    name: West Dunbartonshire
+    abbreviation: WD
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0292:
+  attributes:
+    name: West Lothian
+    abbreviation: WH
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0293:
+  attributes:
+    name: West Sussex
+    abbreviation: WS
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0294:
+  attributes:
+    name: Wigan
+    abbreviation: WN
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0295:
+  attributes:
+    name: Wiltshire
+    abbreviation: WL
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0296:
+  attributes:
+    name: Windsor and Maidenhead
+    abbreviation: WA
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0297:
+  attributes:
+    name: Wirral
+    abbreviation: WQ
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0298:
+  attributes:
+    name: Wokingham
+    abbreviation: WO
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0299:
+  attributes:
+    name: Wolverhampton
+    abbreviation: WV
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0300:
+  attributes:
+    name: Worcestershire
+    abbreviation: WC
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0301:
+  attributes:
+    name: Wrexham
+    abbreviation: WX
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+
+c_0302:
+  attributes:
+    name: York
+    abbreviation: YK
+    country_id: 213
+    shipping_zone_id: 5
+    described_as: State
+

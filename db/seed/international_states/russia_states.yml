@@ -1,0 +1,664 @@
+
+c_0201:
+  attributes:
+    name: Adygey
+    abbreviation: AD
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0202:
+  attributes:
+    name: Altay
+    abbreviation: AL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0203:
+  attributes:
+    name: Amur
+    abbreviation: AM
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0204:
+  attributes:
+    name: Arkhangel'sk
+    abbreviation: AR
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0205:
+  attributes:
+    name: Astrakhan
+    abbreviation: AS
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0206:
+  attributes:
+    name: Bashkortostan
+    abbreviation: BK
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0207:
+  attributes:
+    name: Belgorod
+    abbreviation: BL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0208:
+  attributes:
+    name: Bryansk
+    abbreviation: BR
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0209:
+  attributes:
+    name: Buryat
+    abbreviation: BU
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0210:
+  attributes:
+    name: Chechnya
+    abbreviation: CN
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0211:
+  attributes:
+    name: Chelyabinsk
+    abbreviation: CL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0212:
+  attributes:
+    name: Chukot
+    abbreviation: CK
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0213:
+  attributes:
+    name: Chuvash
+    abbreviation: CV
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0214:
+  attributes:
+    name: Dagestan
+    abbreviation: DA
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0215:
+  attributes:
+    name: Gorno-Altay
+    abbreviation: GA
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0216:
+  attributes:
+    name: Ingush
+    abbreviation: IN
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0217:
+  attributes:
+    name: Irkutsk
+    abbreviation: IK
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0218:
+  attributes:
+    name: Ivanovo
+    abbreviation: IV
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0219:
+  attributes:
+    name: Kabardin-Balkar
+    abbreviation: KB
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0220:
+  attributes:
+    name: Kaliningrad
+    abbreviation: KN
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0221:
+  attributes:
+    name: Kalmyk
+    abbreviation: KL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0222:
+  attributes:
+    name: Kaluga
+    abbreviation: KG
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0223:
+  attributes:
+    name: Kamchatka
+    abbreviation: KQ
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0224:
+  attributes:
+    name: Karachay-Cherkess
+    abbreviation: KC
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0225:
+  attributes:
+    name: Karelia
+    abbreviation: KI
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0226:
+  attributes:
+    name: Kemerovo
+    abbreviation: KE
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0227:
+  attributes:
+    name: Khabarovsk
+    abbreviation: KH
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0228:
+  attributes:
+    name: Khakass
+    abbreviation: KK
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0229:
+  attributes:
+    name: Khanty-Mansiy
+    abbreviation: KM
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0230:
+  attributes:
+    name: Kirov
+    abbreviation: KV
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0231:
+  attributes:
+    name: Komi
+    abbreviation: KO
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0232:
+  attributes:
+    name: Kostroma
+    abbreviation: KT
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0233:
+  attributes:
+    name: Krasnodar
+    abbreviation: KD
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0234:
+  attributes:
+    name: Krasnoyarsk
+    abbreviation: KX
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0235:
+  attributes:
+    name: Kurgan
+    abbreviation: KU
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0236:
+  attributes:
+    name: Kursk
+    abbreviation: KS
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0237:
+  attributes:
+    name: Leningrad
+    abbreviation: LN
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0238:
+  attributes:
+    name: Lipetsk
+    abbreviation: LP
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0239:
+  attributes:
+    name: Magadan
+    abbreviation: MG
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0240:
+  attributes:
+    name: Mariy-El
+    abbreviation: ME
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0241:
+  attributes:
+    name: Mordovia
+    abbreviation: MR
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0242:
+  attributes:
+    name: Moscow City
+    abbreviation: MC
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0243:
+  attributes:
+    name: Moskva
+    abbreviation: MS
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0244:
+  attributes:
+    name: Murmansk
+    abbreviation: MM
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0245:
+  attributes:
+    name: Nenets
+    abbreviation: NN
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0246:
+  attributes:
+    name: Nizhegorod
+    abbreviation: NZ
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0247:
+  attributes:
+    name: North Ossetia
+    abbreviation: NO
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0248:
+  attributes:
+    name: Novgorod
+    abbreviation: NG
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0249:
+  attributes:
+    name: Novosibirsk
+    abbreviation: NS
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0250:
+  attributes:
+    name: Omsk
+    abbreviation: OM
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0251:
+  attributes:
+    name: Orel
+    abbreviation: OL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0252:
+  attributes:
+    name: Orenburg
+    abbreviation: OB
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0253:
+  attributes:
+    name: Penza
+    abbreviation: PZ
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0254:
+  attributes:
+    name: Perm
+    abbreviation: PE
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0255:
+  attributes:
+    name: Primor'ye
+    abbreviation: PR
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0256:
+  attributes:
+    name: Pskov
+    abbreviation: PS
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0257:
+  attributes:
+    name: Rostov
+    abbreviation: RO
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0258:
+  attributes:
+    name: Ryazan
+    abbreviation: RZ
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0259:
+  attributes:
+    name: Saint Petersburg City
+    abbreviation: SP
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0260:
+  attributes:
+    name: Sakha
+    abbreviation: SK
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0261:
+  attributes:
+    name: Sakhalin
+    abbreviation: SL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0262:
+  attributes:
+    name: Samara
+    abbreviation: SA
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0263:
+  attributes:
+    name: Saratov
+    abbreviation: SR
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0264:
+  attributes:
+    name: Smolensk
+    abbreviation: SM
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0265:
+  attributes:
+    name: Stavropol
+    abbreviation: ST
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0266:
+  attributes:
+    name: Sverdlovsk
+    abbreviation: SV
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0267:
+  attributes:
+    name: Tambov
+    abbreviation: TB
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0268:
+  attributes:
+    name: Tatarstan
+    abbreviation: TT
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0269:
+  attributes:
+    name: Tomsk
+    abbreviation: TO
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0270:
+  attributes:
+    name: Tula
+    abbreviation: TL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0271:
+  attributes:
+    name: Tuva
+    abbreviation: TU
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0272:
+  attributes:
+    name: Tver
+    abbreviation: TV
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0273:
+  attributes:
+    name: Tyumen
+    abbreviation: TY
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0274:
+  attributes:
+    name: Udmurt
+    abbreviation: UD
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0275:
+  attributes:
+    name: Ul'yanovsk
+    abbreviation: UL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0276:
+  attributes:
+    name: Vladimir
+    abbreviation: VL
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0277:
+  attributes:
+    name: Volgograd
+    abbreviation: VG
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0278:
+  attributes:
+    name: Vologda
+    abbreviation: VO
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0279:
+  attributes:
+    name: Voronezh
+    abbreviation: VR
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0280:
+  attributes:
+    name: Yamal-Nenets
+    abbreviation: YN
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0281:
+  attributes:
+    name: Yaroslavl
+    abbreviation: YS
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0282:
+  attributes:
+    name: Yevrey
+    abbreviation: YV
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State
+
+c_0283:
+  attributes:
+    name: Zabaykal'ye
+    abbreviation: ZB
+    country_id: 168
+    shipping_zone_id: 5
+    described_as: State

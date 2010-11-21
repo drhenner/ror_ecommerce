@@ -1,0 +1,248 @@
+
+c_0029:
+  attributes:
+    name: Anhui
+    abbreviation: AH
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0030:
+  attributes:
+    name: Beijing
+    abbreviation: BJ
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0031:
+  attributes:
+    name: Chongqing
+    abbreviation: CQ
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0032:
+  attributes:
+    name: Fujian
+    abbreviation: FJ
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0033:
+  attributes:
+    name: Gansu
+    abbreviation: GS
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0034:
+  attributes:
+    name: Guangdong
+    abbreviation: GD
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0035:
+  attributes:
+    name: Guangxi Zhuang
+    abbreviation: GX
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0036:
+  attributes:
+    name: Guizhou
+    abbreviation: GZ
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0037:
+  attributes:
+    name: Hainan
+    abbreviation: HA
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0038:
+  attributes:
+    name: Hebei
+    abbreviation: HB
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0039:
+  attributes:
+    name: Heilongjiang
+    abbreviation: HL
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0040:
+  attributes:
+    name: Henan
+    abbreviation: HE
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0041:
+  attributes:
+    name: Hubei
+    abbreviation: HU
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0042:
+  attributes:
+    name: Hunan
+    abbreviation: HN
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0043:
+  attributes:
+    name: Jiangsu
+    abbreviation: JS
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0044:
+  attributes:
+    name: Jiangxi
+    abbreviation: JX
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0045:
+  attributes:
+    name: Jilin
+    abbreviation: JL
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0046:
+  attributes:
+    name: Liaoning
+    abbreviation: LN
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0047:
+  attributes:
+    name: Nei Mongol
+    abbreviation: NM
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0048:
+  attributes:
+    name: Ningxia Hui
+    abbreviation: NX
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0049:
+  attributes:
+    name: Qinghai
+    abbreviation: QH
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0050:
+  attributes:
+    name: Shaanxi
+    abbreviation: SA
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0051:
+  attributes:
+    name: Shandong
+    abbreviation: SD
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0052:
+  attributes:
+    name: Shanghai
+    abbreviation: SH
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0053:
+  attributes:
+    name: Shanxi
+    abbreviation: SX
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0054:
+  attributes:
+    name: Sichuan
+    abbreviation: SC
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0055:
+  attributes:
+    name: Tianjin
+    abbreviation: TJ
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0056:
+  attributes:
+    name: Xinjiang Uygur
+    abbreviation: XJ
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0057:
+  attributes:
+    name: Xizang
+    abbreviation: XZ
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0058:
+  attributes:
+    name: Yunnan
+    abbreviation: YN
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province
+
+c_0059:
+  attributes:
+    name: Zhejiang
+    abbreviation: ZJ
+    country_id: 41
+    shipping_zone_id: 5
+    described_as: Province

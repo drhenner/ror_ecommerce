@@ -1,0 +1,127 @@
+c_0001:
+  attributes:
+    name: Baden-Wurttemberg
+    abbreviation: BW
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0002:
+  attributes:
+    name: Bavaria
+    abbreviation: BY
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0003:
+  attributes:
+    name: Berlin
+    abbreviation: BE
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0004:
+  attributes:
+    name: Brandenburg
+    abbreviation: BB
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0005:
+  attributes:
+    name: Bremen
+    abbreviation: HB
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0006:
+  attributes:
+    name: Hamburg
+    abbreviation: HH
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0007:
+  attributes:
+    name: Hesse
+    abbreviation: HE
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0008:
+  attributes:
+    name: Lower Saxony
+    abbreviation: NI
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0009:
+  attributes:
+    name: Mecklenburg-West Pomerania
+    abbreviation: MV
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0010:
+  attributes:
+    name: North Rhine-Westphalia
+    abbreviation: NW
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0011:
+  attributes:
+    name: Rhineland-Palatinate
+    abbreviation: RP
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0012:
+  attributes:
+    name: Saarland
+    abbreviation: SL
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0013:
+  attributes:
+    name: Saxony
+    abbreviation: SN
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0014:
+  attributes:
+    name: Saxony-Anhalt
+    abbreviation: ST
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0015:
+  attributes:
+    name: Schleswig-Holstein
+    abbreviation: SH
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State
+
+c_0016:
+  attributes:
+    name: Thuringia
+    abbreviation: TH
+    country_id: 74
+    shipping_zone_id: 5
+    described_as: State

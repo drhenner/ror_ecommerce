@@ -1,0 +1,176 @@
+
+c_0201:
+  attributes:
+    name: Alsace
+    abbreviation: AL
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0202:
+  attributes:
+    name: Aquitaine
+    abbreviation: AQ
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0203:
+  attributes:
+    name: Auvergne
+    abbreviation: AV
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0204:
+  attributes:
+    name: Bourgogne
+    abbreviation: BG
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0205:
+  attributes:
+    name: Bretagne
+    abbreviation: BR
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0206:
+  attributes:
+    name: Centre
+    abbreviation: CT
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0207:
+  attributes:
+    name: Champagne-Ardenne
+    abbreviation: CA
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0208:
+  attributes:
+    name: Franche-Comté
+    abbreviation: FC
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0209:
+  attributes:
+    name: Ile-de-France
+    abbreviation: IF
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0210:
+  attributes:
+    name: Languedoc-Roussillon
+    abbreviation: LR
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0211:
+  attributes:
+    name: Limousin
+    abbreviation: LM
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0212:
+  attributes:
+    name: Lorraine
+    abbreviation: LR
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0213:
+  attributes:
+    name: Basse-Normandie
+    abbreviation: BN
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0214:
+  attributes:
+    name: Midi-Pyrénées
+    abbreviation: MP
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0215:
+  attributes:
+    name: Nord-Pas-de-Calais
+    abbreviation: NC
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0216:
+  attributes:
+    name: Pays de la Loire
+    abbreviation: PL
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0217:
+  attributes:
+    name: Picardie
+    abbreviation: PD
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0218:
+  attributes:
+    name: Poitou-Charentes
+    abbreviation: PC
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0219:
+  attributes:
+    name: Provence-Alpes-Côte d'Azur
+    abbreviation: AC
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0220:
+  attributes:
+    name: Rhône-Alpes
+    abbreviation: RA
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0221:
+  attributes:
+    name: Haute-Normandie
+    abbreviation: HN
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State
+
+c_0222:
+  attributes:
+    name: Corse
+    abbreviation: CR
+    country_id: 68
+    shipping_zone_id: 5
+    described_as: State

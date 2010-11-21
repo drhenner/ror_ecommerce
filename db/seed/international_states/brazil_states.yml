@@ -1,0 +1,223 @@
+c_0001:
+  attributes:
+    name: Acre
+    abbreviation: AC
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0002:
+  attributes:
+    name: Alagoas
+    abbreviation: AL
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0003:
+  attributes:
+    name: Amapá
+    abbreviation: AP
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0004:
+  attributes:
+    name: Amazonas
+    abbreviation: AM
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0005:
+  attributes:
+    name: Bahia
+    abbreviation: BA
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0006:
+  attributes:
+    name: Brasília
+    abbreviation: DF
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0007:
+  attributes:
+    name: Ceará
+    abbreviation: CE
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0008:
+  attributes:
+    name: Distrito Federal
+    abbreviation: DF
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0009:
+  attributes:
+    name: Espírito Santo
+    abbreviation: ES
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0010:
+  attributes:
+    name: Goiás
+    abbreviation: GO
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0011:
+  attributes:
+    name: Mato Grosso
+    abbreviation: MT
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0012:
+  attributes:
+    name: Mato Grosso do Sul
+    abbreviation: MS
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0013:
+  attributes:
+    name: Maranhão
+    abbreviation: MA
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0014:
+  attributes:
+    name: Minas Gerais
+    abbreviation: MG
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0015:
+  attributes:
+    name: Pará
+    abbreviation: PA
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0016:
+  attributes:
+    name: Paraná
+    abbreviation: PR
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0017:
+  attributes:
+    name: Paraíba
+    abbreviation: PB
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0018:
+  attributes:
+    name: Pernambuco
+    abbreviation: PE
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0019:
+  attributes:
+    name: Piauí
+    abbreviation: PI
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0020:
+  attributes:
+    name: Rio de Janeiro
+    abbreviation: RJ
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0021:
+  attributes:
+    name: Rio Grande do Norte
+    abbreviation: RN
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0022:
+  attributes:
+    name: Rio Grande do Sul
+    abbreviation: RS
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0023:
+  attributes:
+    name: Rondônia
+    abbreviation: RO
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0024:
+  attributes:
+    name: Roraima
+    abbreviation: RR
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0025:
+  attributes:
+    name: Santa Catarina
+    abbreviation: SC
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0026:
+  attributes:
+    name: São Paulo
+    abbreviation: SP
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0027:
+  attributes:
+    name: Sergipe
+    abbreviation: SE
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
+
+c_0028:
+  attributes:
+    name: Tocantins
+    abbreviation: TO
+    country_id: 28
+    shipping_zone_id: 5
+    described_as: State
