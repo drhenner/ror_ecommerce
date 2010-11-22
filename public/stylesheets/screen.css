@@ -88,197 +88,197 @@ body.bp {
   color: #333333;
   font-size: 75%;
 }
-/* line 52, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 51, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp h1, body.bp h2, body.bp h3, body.bp h4, body.bp h5, body.bp h6 {
   font-weight: normal;
   color: #222222;
 }
-/* line 53, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 52, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp h1 img, body.bp h2 img, body.bp h3 img, body.bp h4 img, body.bp h5 img, body.bp h6 img {
   margin: 0;
 }
-/* line 54, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 53, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp h1 {
   font-size: 3em;
   line-height: 1;
   margin-bottom: 0.50em;
 }
-/* line 55, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 54, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp h2 {
   font-size: 2em;
   margin-bottom: 0.75em;
 }
-/* line 56, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 55, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp h3 {
   font-size: 1.5em;
   line-height: 1;
   margin-bottom: 1.00em;
 }
-/* line 57, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 56, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp h4 {
   font-size: 1.2em;
   line-height: 1.25;
   margin-bottom: 1.25em;
 }
-/* line 58, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 57, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp h5 {
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 1.50em;
 }
-/* line 59, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 58, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp h6 {
   font-size: 1em;
   font-weight: bold;
 }
-/* line 60, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 59, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp p {
   margin: 0 0 1.5em;
 }
-/* line 61, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 60, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp p img.left {
   display: inline;
   float: left;
   margin: 1.5em 1.5em 1.5em 0;
   padding: 0;
 }
-/* line 62, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 61, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp p img.right {
   display: inline;
   float: right;
   margin: 1.5em 0 1.5em 1.5em;
   padding: 0;
 }
-/* line 64, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 63, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp a {
   text-decoration: none;
   color: #000099;
 }
-/* line 18, ../../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.5/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+/* line 18, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 body.bp a:visited {
   color: #000066;
 }
-/* line 22, ../../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.5/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+/* line 21, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 body.bp a:focus {
   color: black;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.5/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+/* line 24, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 body.bp a:hover {
   color: black;
 }
-/* line 30, ../../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.5/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+/* line 27, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 body.bp a:active {
   color: #cc0099;
 }
-/* line 65, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 64, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp blockquote {
   margin: 1.5em;
   color: #666666;
   font-style: italic;
 }
-/* line 66, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 65, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp strong {
   font-weight: bold;
 }
-/* line 67, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 66, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp em {
   font-style: italic;
 }
-/* line 68, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 67, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp dfn {
   font-style: italic;
   font-weight: bold;
 }
-/* line 69, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 68, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp sup, body.bp sub {
   line-height: 0;
 }
-/* line 70, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 69, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp abbr, body.bp acronym {
   border-bottom: 1px dotted #666666;
 }
-/* line 71, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 70, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp address {
   margin: 0 0 1.5em;
   font-style: italic;
 }
-/* line 72, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 71, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp del {
   color: #666666;
 }
-/* line 73, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 72, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp pre {
   margin: 1.5em 0;
   white-space: pre;
 }
-/* line 74, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 73, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp pre, body.bp code, body.bp tt {
   font: 1em "andale mono", "lucida console", monospace;
   line-height: 1.5;
 }
-/* line 75, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 74, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp li ul, body.bp li ol {
   margin: 0;
 }
-/* line 76, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 75, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp ul, body.bp ol {
   margin: 0 1.5em 1.5em 0;
   padding-left: 3.333em;
 }
-/* line 77, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 76, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp ul {
   list-style-type: disc;
 }
-/* line 78, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 77, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp ol {
   list-style-type: decimal;
 }
-/* line 79, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 78, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp dl {
   margin: 0 0 1.5em 0;
 }
-/* line 80, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 79, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp dl dt {
   font-weight: bold;
 }
-/* line 81, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 80, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp dd {
   margin-left: 1.5em;
 }
-/* line 82, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 81, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp table {
   margin-bottom: 1.4em;
   width: 100%;
 }
-/* line 83, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 82, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp th {
   font-weight: bold;
 }
-/* line 84, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 83, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp thead th {
   background: #c3d9ff;
 }
-/* line 85, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 84, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp th, body.bp td, body.bp caption {
   padding: 4px 10px 4px 5px;
 }
-/* line 86, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 85, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp tr.even td {
   background: #e5ecf9;
 }
-/* line 87, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 86, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp tfoot {
   font-style: italic;
 }
-/* line 88, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 87, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp caption {
   background: #eeeeee;
 }
-/* line 89, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 88, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp .quiet {
   color: #666666;
 }
-/* line 90, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 89, ../../app/stylesheets/blueprint/_typography.scss */
 body.bp .loud {
   color: #111111;
 }
@@ -389,28 +389,28 @@ body.bp .removed {
   color: white;
 }
 
-/* line 40, ../../app/stylesheets/blueprint/_scaffolding.scss */
+/* line 39, ../../app/stylesheets/blueprint/_scaffolding.scss */
 .box {
   padding: 1.5em;
   margin-bottom: 1.5em;
   background: #e5ecf9;
 }
 
-/* line 43, ../../app/stylesheets/blueprint/_scaffolding.scss */
+/* line 42, ../../app/stylesheets/blueprint/_scaffolding.scss */
 div.border {
   padding-right: 4px;
   margin-right: 5px;
   border-right: 1px solid #eeeeee;
 }
 
-/* line 46, ../../app/stylesheets/blueprint/_scaffolding.scss */
+/* line 45, ../../app/stylesheets/blueprint/_scaffolding.scss */
 div.colborder {
   padding-right: 24px;
   margin-right: 25px;
   border-right: 1px solid #eeeeee;
 }
 
-/* line 48, ../../app/stylesheets/blueprint/_scaffolding.scss */
+/* line 47, ../../app/stylesheets/blueprint/_scaffolding.scss */
 hr {
   background: #dddddd;
   color: #dddddd;
@@ -422,7 +422,7 @@ hr {
   border: none;
 }
 
-/* line 50, ../../app/stylesheets/blueprint/_scaffolding.scss */
+/* line 49, ../../app/stylesheets/blueprint/_scaffolding.scss */
 hr.space {
   background: #dddddd;
   color: #dddddd;
@@ -437,7 +437,7 @@ hr.space {
   visibility: hidden;
 }
 
-/* line 52, ../../app/stylesheets/blueprint/_scaffolding.scss */
+/* line 51, ../../app/stylesheets/blueprint/_scaffolding.scss */
 form.inline {
   line-height: 3;
 }
@@ -522,7 +522,7 @@ body.two-col #header, body.two-col #footer {
   margin-right: 10px;
   width: 950px;
 }
-/* line 139, ../../app/stylesheets/blueprint/_grid.scss */
+/* line 138, ../../app/stylesheets/blueprint/_grid.scss */
 * html body.two-col #header, * html body.two-col #footer {
   overflow-x: hidden;
 }
@@ -533,7 +533,7 @@ body.two-col #sidebar {
   margin-right: 10px;
   width: 310px;
 }
-/* line 139, ../../app/stylesheets/blueprint/_grid.scss */
+/* line 138, ../../app/stylesheets/blueprint/_grid.scss */
 * html body.two-col #sidebar {
   overflow-x: hidden;
 }
@@ -544,7 +544,7 @@ body.two-col #content {
   margin-right: 0;
   width: 630px;
 }
-/* line 139, ../../app/stylesheets/blueprint/_grid.scss */
+/* line 138, ../../app/stylesheets/blueprint/_grid.scss */
 * html body.two-col #content {
   overflow-x: hidden;
 }
@@ -557,68 +557,68 @@ body {
   font-size: 75%;
 }
 
-/* line 52, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 51, ../../app/stylesheets/blueprint/_typography.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   color: #222222;
 }
-/* line 53, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 52, ../../app/stylesheets/blueprint/_typography.scss */
 h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
   margin: 0;
 }
 
-/* line 54, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 53, ../../app/stylesheets/blueprint/_typography.scss */
 h1 {
   font-size: 3em;
   line-height: 1;
   margin-bottom: 0.50em;
 }
 
-/* line 55, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 54, ../../app/stylesheets/blueprint/_typography.scss */
 h2 {
   font-size: 2em;
   margin-bottom: 0.75em;
 }
 
-/* line 56, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 55, ../../app/stylesheets/blueprint/_typography.scss */
 h3 {
   font-size: 1.5em;
   line-height: 1;
   margin-bottom: 1.00em;
 }
 
-/* line 57, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 56, ../../app/stylesheets/blueprint/_typography.scss */
 h4 {
   font-size: 1.2em;
   line-height: 1.25;
   margin-bottom: 1.25em;
 }
 
-/* line 58, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 57, ../../app/stylesheets/blueprint/_typography.scss */
 h5 {
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 1.50em;
 }
 
-/* line 59, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 58, ../../app/stylesheets/blueprint/_typography.scss */
 h6 {
   font-size: 1em;
   font-weight: bold;
 }
 
-/* line 60, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 59, ../../app/stylesheets/blueprint/_typography.scss */
 p {
   margin: 0 0 1.5em;
 }
-/* line 61, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 60, ../../app/stylesheets/blueprint/_typography.scss */
 p img.left {
   display: inline;
   float: left;
   margin: 1.5em 1.5em 1.5em 0;
   padding: 0;
 }
-/* line 62, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 61, ../../app/stylesheets/blueprint/_typography.scss */
 p img.right {
   display: inline;
   float: right;
@@ -626,161 +626,161 @@ p img.right {
   padding: 0;
 }
 
-/* line 64, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 63, ../../app/stylesheets/blueprint/_typography.scss */
 a {
   text-decoration: none;
   color: #000099;
 }
-/* line 18, ../../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.5/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+/* line 18, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 a:visited {
   color: #000066;
 }
-/* line 22, ../../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.5/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+/* line 21, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 a:focus {
   color: black;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.5/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+/* line 24, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 a:hover {
   color: black;
 }
-/* line 30, ../../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.5/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+/* line 27, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
 a:active {
   color: #cc0099;
 }
 
-/* line 65, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 64, ../../app/stylesheets/blueprint/_typography.scss */
 blockquote {
   margin: 1.5em;
   color: #666666;
   font-style: italic;
 }
 
-/* line 66, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 65, ../../app/stylesheets/blueprint/_typography.scss */
 strong {
   font-weight: bold;
 }
 
-/* line 67, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 66, ../../app/stylesheets/blueprint/_typography.scss */
 em {
   font-style: italic;
 }
 
-/* line 68, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 67, ../../app/stylesheets/blueprint/_typography.scss */
 dfn {
   font-style: italic;
   font-weight: bold;
 }
 
-/* line 69, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 68, ../../app/stylesheets/blueprint/_typography.scss */
 sup, sub {
   line-height: 0;
 }
 
-/* line 70, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 69, ../../app/stylesheets/blueprint/_typography.scss */
 abbr, acronym {
   border-bottom: 1px dotted #666666;
 }
 
-/* line 71, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 70, ../../app/stylesheets/blueprint/_typography.scss */
 address {
   margin: 0 0 1.5em;
   font-style: italic;
 }
 
-/* line 72, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 71, ../../app/stylesheets/blueprint/_typography.scss */
 del {
   color: #666666;
 }
 
-/* line 73, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 72, ../../app/stylesheets/blueprint/_typography.scss */
 pre {
   margin: 1.5em 0;
   white-space: pre;
 }
 
-/* line 74, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 73, ../../app/stylesheets/blueprint/_typography.scss */
 pre, code, tt {
   font: 1em "andale mono", "lucida console", monospace;
   line-height: 1.5;
 }
 
-/* line 75, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 74, ../../app/stylesheets/blueprint/_typography.scss */
 li ul, li ol {
   margin: 0;
 }
 
-/* line 76, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 75, ../../app/stylesheets/blueprint/_typography.scss */
 ul, ol {
   margin: 0 1.5em 1.5em 0;
   padding-left: 3.333em;
 }
 
-/* line 77, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 76, ../../app/stylesheets/blueprint/_typography.scss */
 ul {
   list-style-type: disc;
 }
 
-/* line 78, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 77, ../../app/stylesheets/blueprint/_typography.scss */
 ol {
   list-style-type: decimal;
 }
 
-/* line 79, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 78, ../../app/stylesheets/blueprint/_typography.scss */
 dl {
   margin: 0 0 1.5em 0;
 }
-/* line 80, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 79, ../../app/stylesheets/blueprint/_typography.scss */
 dl dt {
   font-weight: bold;
 }
 
-/* line 81, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 80, ../../app/stylesheets/blueprint/_typography.scss */
 dd {
   margin-left: 1.5em;
 }
 
-/* line 82, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 81, ../../app/stylesheets/blueprint/_typography.scss */
 table {
   margin-bottom: 1.4em;
   width: 100%;
 }
 
-/* line 83, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 82, ../../app/stylesheets/blueprint/_typography.scss */
 th {
   font-weight: bold;
 }
 
-/* line 84, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 83, ../../app/stylesheets/blueprint/_typography.scss */
 thead th {
   background: #c3d9ff;
 }
 
-/* line 85, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 84, ../../app/stylesheets/blueprint/_typography.scss */
 th, td, caption {
   padding: 4px 10px 4px 5px;
 }
 
-/* line 86, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 85, ../../app/stylesheets/blueprint/_typography.scss */
 tr.even td {
   background: #e5ecf9;
 }
 
-/* line 87, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 86, ../../app/stylesheets/blueprint/_typography.scss */
 tfoot {
   font-style: italic;
 }
 
-/* line 88, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 87, ../../app/stylesheets/blueprint/_typography.scss */
 caption {
   background: #eeeeee;
 }
 
-/* line 89, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 88, ../../app/stylesheets/blueprint/_typography.scss */
 .quiet {
   color: #666666;
 }
 
-/* line 90, ../../app/stylesheets/blueprint/_typography.scss */
+/* line 89, ../../app/stylesheets/blueprint/_typography.scss */
 .loud {
   color: #111111;
 }
@@ -853,7 +853,7 @@ caption {
   float: left;
   margin-right: 10px;
 }
-/* line 139, ../../app/stylesheets/blueprint/_grid.scss */
+/* line 138, ../../app/stylesheets/blueprint/_grid.scss */
 * html .column, * html div.span-1, * html div.span-2, * html div.span-3, * html div.span-4, * html div.span-5, * html div.span-6, * html div.span-7, * html div.span-8, * html div.span-9, * html div.span-10, * html div.span-11, * html div.span-12, * html div.span-13, * html div.span-14, * html div.span-15, * html div.span-16, * html div.span-17, * html div.span-18, * html div.span-19, * html div.span-20, * html div.span-21, * html div.span-22, * html div.span-23, * html div.span-24 {
   overflow-x: hidden;
 }

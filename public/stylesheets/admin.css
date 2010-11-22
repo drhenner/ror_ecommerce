@@ -1,0 +1,1304 @@
+/*
+   activo
+   by David Francisco (dmfrancisc[at]gmail.com)
+
+   based on "Drastic Dark" by Juan Maria Martinez Arce (juan[at]insignia4u.com)
+*/
+/*
+
+    Drastic Dark
+    by Juan Maria Martinez Arce
+       juan[at]insignia4u.com
+*/
+/*
+   activo
+   by David Francisco (dmfrancisc[at]gmail.com)
+
+   based on "Drastic Dark" by Juan Maria Martinez Arce (juan[at]insignia4u.com)
+*/
+/*
+
+    Drastic Dark
+    by Juan Maria Martinez Arce
+       juan[at]insignia4u.com
+*/
+/* line 5, ../../app/stylesheets/admin.scss */
+.admin-wrapper {
+  /* pagination */
+  /* tables */
+  /* forms */
+  /* lists */
+  /* box */
+  /*  Inspired by http://particletree.com/features/rediscovering-the-button-element */
+  /* pagination */
+  /* tables */
+  /* forms */
+  /* buttons */
+  /* flash-messages */
+  /* lists */
+  /* box */
+  /* rounded borders */
+  /* pagination */
+  /* tables */
+  /* forms */
+  /* flash-messages */
+  /* lists */
+  /* box */
+  /* rounded borders */
+}
+/* line 7, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper * {
+  margin: 0;
+  padding: 0;
+}
+/* line 8, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .clear {
+  clear: both;
+  height: 0;
+}
+/* line 10, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper h1 {
+  margin: 15px 0;
+  font-size: 22px;
+  font-weight: normal;
+}
+/* line 11, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper h2 {
+  font-size: 22px;
+  margin: 15px 0;
+  font-weight: normal;
+}
+/* line 12, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  font-weight: normal;
+}
+/* line 13, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper h4 {
+  font-size: 16px;
+  margin: 10px 0;
+  font-weight: normal;
+}
+/* line 14, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper hr {
+  height: 1px;
+  border: 0;
+}
+/* line 15, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper p {
+  margin: 15px 0;
+}
+/* line 16, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper a img {
+  border: none;
+}
+/* line 18, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper body {
+  font-size: 12px;
+  font-family: sans-serif;
+}
+/* line 23, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #container {
+  min-width: 960px;
+}
+/* line 27, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #header, .admin-wrapper #wrapper {
+  padding: 0 20px;
+}
+/* line 31, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #header {
+  position: relative;
+  padding-top: 1px;
+}
+/* line 35, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #header h1 {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 26px;
+}
+/* line 40, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #header h1 a:link, .admin-wrapper #header h1 a:active, .admin-wrapper #header h1 a:hover, .admin-wrapper #header h1 a:visited {
+  text-decoration: none;
+}
+/* line 46, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #main {
+  width: 70%;
+  float: left;
+}
+/* line 50, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #main .block {
+  margin-bottom: 20px;
+  padding-top: 1px;
+}
+/* line 55, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #main .block .content .inner {
+  padding: 0 15px 15px;
+}
+/* line 59, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #main .main p:first-child {
+  margin-top: 0;
+}
+/* line 64, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .actions-bar {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 10px 1px;
+}
+/* line 69, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .actions-bar .actions {
+  float: left;
+}
+/* line 73, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .actions-bar .pagination {
+  float: right;
+  padding: 1px 0;
+}
+/* line 80, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #sidebar {
+  width: 25%;
+  float: right;
+}
+/* line 84, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #sidebar h3 {
+  padding: 10px 15px;
+  margin: 0;
+  font-size: 13px;
+}
+/* line 90, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #sidebar .block {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+/* line 95, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #sidebar .block .content {
+  padding: 0 15px;
+}
+/* line 99, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #sidebar ul.navigation li a:link, .admin-wrapper #sidebar ul.navigation li a:visited {
+  display: block;
+  padding: 10px 15px;
+}
+/* line 104, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #sidebar .block .sidebar-block, .admin-wrapper #sidebar .notice {
+  padding: 10px;
+}
+/* line 110, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #wrapper {
+  padding-top: 20px;
+}
+/* line 114, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #user-navigation {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+}
+/* line 119, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #user-navigation ul li {
+  padding: 5px 10px;
+}
+/* line 124, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #main-navigation {
+  overflow: hidden;
+  *zoom: 1;
+  width: 100%;
+}
+/* line 129, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #main-navigation ul li {
+  margin-right: 5px;
+}
+/* line 132, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #main-navigation ul li a {
+  font-size: 14px;
+  line-height: 14px;
+  display: block;
+  padding: 8px 15px;
+}
+/* line 142, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #user-navigation ul li, .admin-wrapper #main-navigation ul li, .admin-wrapper .secondary-navigation ul li {
+  float: left;
+}
+/* line 149, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #main-navigation ul li a:link, .admin-wrapper #main-navigation ul li a:visited, .admin-wrapper #main-navigation ul li a:hover, .admin-wrapper #main-navigation ul li a:active,
+.admin-wrapper .secondary-navigation ul li a:link, .admin-wrapper .secondary-navigation ul li a:visited, .admin-wrapper .secondary-navigation ul li a:hover, .admin-wrapper .secondary-navigation ul li a:active,
+.admin-wrapper #user-navigation ul li a:link, .admin-wrapper #user-navigation ul li a:visited, .admin-wrapper #user-navigation ul li a:hover, .admin-wrapper #user-navigation ul li a:active {
+  text-decoration: none;
+}
+/* line 154, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .secondary-navigation {
+  font-size: 13px;
+  border-bottom-width: 10px;
+  border-bottom-style: solid;
+}
+/* line 159, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .secondary-navigation ul {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 162, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .secondary-navigation ul li a {
+  display: block;
+  padding: 10px 15px;
+}
+/* line 170, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #footer {
+  padding-bottom: 20px;
+}
+/* line 177, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .pagination a, .admin-wrapper .pagination span, .admin-wrapper .pagination em {
+  padding: 2px 5px;
+  margin-right: 5px;
+  display: block;
+  float: left;
+  border-style: solid;
+  border-width: 1px;
+}
+/* line 186, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .pagination em {
+  font-weight: bold;
+}
+/* line 190, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .pagination a {
+  text-decoration: none;
+}
+/* line 196, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+/* line 201, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper table th {
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+/* line 207, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper table th:first-child {
+  width: 30px;
+}
+/* line 211, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper table th:last-child {
+  width: 200px;
+}
+/* line 215, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper table .checkbox {
+  margin-left: 10px;
+}
+/* line 219, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper table td {
+  padding: 10px;
+}
+/* line 223, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper table td:last-child {
+  text-align: right;
+}
+/* line 230, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper input[type=checkbox] {
+  margin: 0;
+  padding: 0;
+}
+/* line 237, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form > div {
+  margin-bottom: 15px;
+}
+/* line 241, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form div.left {
+  width: 20%;
+  float: left;
+}
+/* line 246, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form div.right {
+  width: 75%;
+  float: right;
+}
+/* line 252, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form .columns .column {
+  width: 48%;
+}
+/* line 256, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form .columns .left {
+  float: left;
+}
+/* line 260, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form .columns .right {
+  float: right;
+}
+/* line 265, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form label, .admin-wrapper form input[type=text], .admin-wrapper form input[type=password], .admin-wrapper form input[type=number], .admin-wrapper form input[type=email], .admin-wrapper form textarea {
+  font-size: 1.2em;
+  padding: 1px 0;
+  margin: 0;
+}
+/* line 271, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form label.right {
+  text-align: right;
+}
+/* line 275, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form input[type=checkbox], .admin-wrapper form input[type=radio] {
+  margin-right: 5px;
+}
+/* line 279, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form label.checkbox, .admin-wrapper form label.radio {
+  line-height: 1.5em;
+}
+/* line 283, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form label {
+  display: block;
+  padding-bottom: 2px;
+  font-weight: bold;
+}
+/* line 289, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form div.fieldWithErrors label {
+  display: inline;
+}
+/* line 293, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form .fieldWithErrors .error {
+  color: red;
+}
+/* line 297, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper form input[type=text], .admin-wrapper form input[type=password], .admin-wrapper form input[type=number], .admin-wrapper form input[type=email], .admin-wrapper form textarea {
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+}
+/* line 306, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper ul.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+/* line 311, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper ul.list li {
+  clear: left;
+  padding-bottom: 5px;
+}
+/* line 315, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper ul.list li .left {
+  float: left;
+}
+/* line 318, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper ul.list li .left .avatar {
+  width: 50px;
+  height: 50px;
+}
+/* line 324, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper ul.list li .item {
+  margin-left: 80px;
+}
+/* line 327, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper ul.list li .item .avatar {
+  float: left;
+  margin: 0 5px 5px 0;
+  width: 30px;
+  height: 30px;
+}
+/* line 340, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #box {
+  width: 500px;
+  margin: 50px auto;
+}
+/* line 344, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #box .block {
+  margin-bottom: 20px;
+}
+/* line 347, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #box .block h2 {
+  padding: 10px 15px;
+  margin: 0;
+}
+/* line 352, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper #box .block .content {
+  padding: 10px 20px;
+}
+/* line 361, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper a.button:link, .admin-wrapper a.button:visited, .admin-wrapper a.button:hover, .admin-wrapper a.button:active, .admin-wrapper button.button {
+  color: #222;
+  display: block;
+  float: left;
+  margin: 0 7px 0 0;
+  background-color: #eee;
+  border: 1px solid #bfbfbf;
+  font-size: 1em;
+  line-height: 1.3em;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px 6px 7px;
+  text-decoration: none;
+}
+/* line 376, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper button.button {
+  width: auto;
+  overflow: visible;
+  padding: 4px 10px 3px 7px;
+  /* IE6 */
+}
+/* line 382, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper button.button[type] {
+  padding: 5px 10px 5px 7px;
+  /* Firefox */
+  line-height: 17px;
+  /* Safari */
+}
+/* line 387, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper *:first-child + html button.button[type] {
+  padding: 4px 10px 3px 7px;
+  /* IE7 */
+}
+/* line 391, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper button.button img, .admin-wrapper a.button img {
+  margin: 0 3px -3px 0 !important;
+  padding: 0;
+  border: none;
+  width: 16px;
+  height: 16px;
+}
+/* line 399, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper button.button:hover, .admin-wrapper a.button:hover {
+  background-color: #dedede;
+}
+/* line 403, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper button.button:active, .admin-wrapper a.button:active {
+  background-color: #e5e5e5;
+}
+/* line 407, ../../app/stylesheets/_web-app-theme.scss */
+.admin-wrapper .navbuttons {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 11, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .small {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.4em;
+}
+/* line 20, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .gray {
+  color: #999999;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.6em;
+}
+/* line 31, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .highlight {
+  background-color: #ffff88;
+  font-weight: bold;
+  color: #36393d;
+}
+/* line 37, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper a:link, .admin-wrapper a:visited, .admin-wrapper a:hover, .admin-wrapper a:active, .admin-wrapper h1, .admin-wrapper h2, .admin-wrapper h3 {
+  color: #111;
+}
+/* line 38, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper a {
+  -moz-outline: none;
+}
+/* line 40, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper body {
+  color: #111;
+  background: #E5E5E5;
+  font-family: helvetica, arial, sans-serif;
+}
+/* line 46, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper hr {
+  background: #e2e2e2;
+  color: #e2e2e2;
+}
+/* line 51, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #header {
+  background: #002134;
+}
+/* line 54, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #header h1 {
+  padding: 15px 0;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: none;
+  letter-spacing: -1px;
+  line-height: 1.2em;
+  color: #fff;
+  text-shadow: #000 1px 1px 2px;
+}
+/* line 65, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #header h1 a:link, .admin-wrapper #header h1 a:active, .admin-wrapper #header h1 a:hover, .admin-wrapper #header h1 a:visited {
+  color: #fff;
+}
+/* line 71, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #user-navigation {
+  top: auto;
+  bottom: 5px;
+  right: 25px;
+}
+/* line 76, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #user-navigation a.logout {
+  background: #ccc;
+  padding: 1px 4px;
+}
+/* line 82, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main {
+  width: 71%;
+}
+/* line 85, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main .block {
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  padding-top: 0px;
+  background: #fff;
+}
+/* line 91, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main .block .content {
+  padding-top: 1px;
+}
+/* line 94, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main .block .content h2 {
+  margin-left: 15px;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: none;
+  letter-spacing: -1px;
+  line-height: 1.2em;
+}
+/* line 104, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main .block .content p {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.45em;
+}
+/* line 117, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #sidebar .block h4 {
+  font-weight: bold;
+}
+/* line 121, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #sidebar .notice {
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  background: #fff;
+}
+/* line 127, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #sidebar h3 {
+  color: #111;
+  border-bottom: 1px solid #c0c0c0;
+}
+/* line 132, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #sidebar ul li {
+  background-position: 15px 11px;
+  background-repeat: no-repeat;
+  background-image: url("/images/arrow.png");
+  border-bottom: 1px solid #e2e2e2;
+}
+/* line 138, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #sidebar ul li a {
+  text-decoration: none;
+  margin-left: 20px;
+}
+/* line 143, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #sidebar ul li a:link, .admin-wrapper #sidebar ul li a:visited {
+  text-decoration: none;
+}
+/* line 149, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main-navigation {
+  background-color: #f4f4f4;
+  background-image: url("/images/menubar-background.png");
+  background-repeat: repeat-x;
+}
+/* line 154, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main-navigation ul li {
+  margin-right: 0;
+  padding-left: 15px;
+  padding-right: 5px;
+}
+/* line 159, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main-navigation ul li a {
+  padding: 8px 0;
+}
+/* line 163, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main-navigation ul li a:link, .admin-wrapper #main-navigation ul li a:visited, .admin-wrapper #main-navigation ul li a:hover, .admin-wrapper #main-navigation ul li a:active {
+  text-decoration: none;
+  color: #111;
+}
+/* line 169, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main-navigation ul li.active {
+  padding: 0;
+  background: #E5E5E5;
+  margin-left: 15px;
+}
+/* line 174, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main-navigation ul li.active a {
+  padding: 8px 15px;
+}
+/* line 181, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .secondary-navigation ul li a:link, .admin-wrapper .secondary-navigation ul li a:visited, .admin-wrapper .secondary-navigation ul li a:hover, .admin-wrapper .secondary-navigation ul li a:active,
+.admin-wrapper #user-navigation ul li a:link, .admin-wrapper #user-navigation ul li a:visited, .admin-wrapper #user-navigation ul li a:hover, .admin-wrapper #user-navigation ul li a:active {
+  text-decoration: none;
+  color: #111;
+}
+/* line 186, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .secondary-navigation {
+  background-color: #f2f1ee;
+  border-bottom: none;
+  border-bottom-width: 5px;
+  background-image: url("/images/boxbar-background.png");
+}
+/* line 192, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .secondary-navigation ul li.active, .admin-wrapper .secondary-navigation ul li.active a:hover {
+  background-color: #fff;
+}
+/* line 198, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #footer .block {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  text-align: center;
+  color: #111;
+  background: #fff;
+}
+/* line 205, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #footer .block block p {
+  margin: 0;
+  padding: 4px;
+}
+/* line 215, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .pagination a, .admin-wrapper .pagination span {
+  background-color: #f4f4f4;
+  background-image: url("/images/button-background.png");
+  color: #111;
+  text-align: center;
+  min-width: 15px;
+  margin-right: 5px;
+  padding: 6px;
+  border: 1px solid #c3c4ba;
+}
+/* line 226, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .pagination em {
+  background: #002134;
+  color: #fff;
+  border: 1px solid #002134;
+  text-align: center;
+  min-width: 15px;
+  margin-right: 5px;
+  padding: 6px;
+  border: 1px solid #c3c4ba;
+}
+/* line 237, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .pagination a {
+  color: #1a1a1a;
+}
+/* line 241, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .pagination a:hover {
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
+  border: 1px solid #818171;
+}
+/* line 247, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .pagination a:active {
+  background-image: url("/images/button-background-active.png");
+  outline: none;
+}
+/* line 255, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper table th {
+  background: #eaeaea;
+  color: #222;
+  font-weight: normal;
+}
+/* line 261, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper table td {
+  border-bottom: 1px solid #eaeaea;
+}
+/* line 265, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper tr:nth-child(odd) {
+  background: #f8f8f8;
+}
+/* line 272, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form label {
+  color: #666666;
+}
+/* line 276, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form input[type=text], .admin-wrapper form input[type=password], .admin-wrapper form input[type=number], .admin-wrapper form input[type=email], .admin-wrapper form form textarea {
+  width: 100%;
+  border: 1px solid #e2e2e2;
+}
+/* line 281, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form input:hover, .admin-wrapper form textarea:hover {
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px 0;
+  border: 1px solid #a2a294;
+}
+/* line 287, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form input:focus, .admin-wrapper form textarea:focus {
+  border: 1px solid #a2a294;
+}
+/* line 291, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form input[type=button] {
+  background: #e2e2e2;
+  border: 1px solid #c1c1c1;
+  padding: 2px 5px;
+  cursor: pointer;
+  color: #111;
+  font-weight: bold;
+  font-size: 11px;
+}
+/* line 301, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form input[type=button]:hover {
+  border: 1px solid #666;
+}
+/* line 305, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form .description {
+  font-style: italic;
+  color: #8C8C8C;
+  font-size: .9em;
+}
+/* line 311, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form .navform a {
+  color: #cc0000;
+}
+/* line 318, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper a.button, .admin-wrapper button.button {
+  background-color: #f4f4f4;
+  background-image: url("/images/button-background.png");
+  border: 1px solid #c3c4ba;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: normal;
+}
+/* line 326, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper a.button:link, .admin-wrapper a.button:visited, .admin-wrapper a.button:hover, .admin-wrapper a.button:active, .admin-wrapper button.button:link, .admin-wrapper button.button:visited, .admin-wrapper button.button:hover, .admin-wrapper button.button:active {
+  font-weight: normal;
+  background-color: #f4f4f4;
+}
+/* line 331, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper a.button:hover, .admin-wrapper button.button:hover {
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 4px 0;
+  background-color: #eee;
+  border: 1px solid #818171;
+}
+/* line 338, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper a.button:active, .admin-wrapper button.button:active {
+  outline: none;
+  background-color: #ddd;
+  background-image: url("/images/button-background-active.png");
+}
+/* line 346, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .flash .message {
+  text-align: center;
+  margin: 0 auto 15px;
+}
+/* line 350, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .flash .message p {
+  margin: 8px;
+}
+/* line 355, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .flash .error, .admin-wrapper .flash .alert {
+  border: 1px solid #ffbbbb;
+  background-color: #ffdddd;
+}
+/* line 360, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .flash .warning {
+  border: 1px solid #ffff88;
+  background-color: #ffffcc;
+}
+/* line 365, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .flash .notice {
+  border: 1px solid #1fdf00;
+  background-color: #bbffb6;
+}
+/* line 373, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper ul li {
+  border-bottom-color: #e2e2e2;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+/* line 378, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper ul li .item .avatar {
+  border-color: #e2e2e2;
+  border-width: 1px;
+  border-style: solid;
+  padding: 2px;
+}
+/* line 389, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #box .block {
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px 0;
+  background: #fff;
+}
+/* line 394, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #box .block h2 {
+  background: #002134;
+  color: #fff;
+}
+/* line 403, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main, .admin-wrapper #main-navigation, .admin-wrapper #main-navigation li, .admin-wrapper .secondary-navigation, .admin-wrapper #main .block, .admin-wrapper #sidebar .block, .admin-wrapper #sidebar h3, .admin-wrapper ul li,
+.admin-wrapper #footer .block, .admin-wrapper form input[type=button], .admin-wrapper #box .block, .admin-wrapper #box .block h2 {
+  -moz-border-radius-topleft: 9px;
+  -webkit-border-top-left-radius: 9px;
+  -o-border-top-left-radius: 9px;
+  -ms-border-top-left-radius: 9px;
+  -khtml-border-top-left-radius: 9px;
+  border-top-left-radius: 9px;
+  -moz-border-radius-topright: 9px;
+  -webkit-border-top-right-radius: 9px;
+  -o-border-top-right-radius: 9px;
+  -ms-border-top-right-radius: 9px;
+  -khtml-border-top-right-radius: 9px;
+  border-top-right-radius: 9px;
+}
+/* line 408, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .secondary-navigation li.first a, .admin-wrapper .secondary-navigation ul li.first {
+  -moz-border-radius-topleft: 9px;
+  -webkit-border-top-left-radius: 9px;
+  -o-border-top-left-radius: 9px;
+  -ms-border-top-left-radius: 9px;
+  -khtml-border-top-left-radius: 9px;
+  border-top-left-radius: 9px;
+}
+/* line 412, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .secondary-navigation ul li.first {
+  -moz-border-radius-topleft: 9px;
+  -webkit-border-top-left-radius: 9px;
+  -o-border-top-left-radius: 9px;
+  -ms-border-top-left-radius: 9px;
+  -khtml-border-top-left-radius: 9px;
+  border-top-left-radius: 9px;
+}
+/* line 416, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #sidebar, .admin-wrapper #sidebar .block, .admin-wrapper #main .block, .admin-wrapper #sidebar ul.navigation, .admin-wrapper ul li, .admin-wrapper #footer .block, .admin-wrapper form input[type=button], .admin-wrapper #box .block {
+  -moz-border-radius-bottomleft: 9px;
+  -webkit-border-bottom-left-radius: 9px;
+  -o-border-bottom-left-radius: 9px;
+  -ms-border-bottom-left-radius: 9px;
+  -khtml-border-bottom-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+  -moz-border-radius-bottomright: 9px;
+  -webkit-border-bottom-right-radius: 9px;
+  -o-border-bottom-right-radius: 9px;
+  -ms-border-bottom-right-radius: 9px;
+  -khtml-border-bottom-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
+/* line 421, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main .block {
+  -moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -o-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -khtml-border-radius: 9px;
+  border-radius: 9px;
+}
+/* line 425, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #main-navigation, .admin-wrapper .secondary-navigation {
+  -moz-border-radius-topleft: 9px;
+  -webkit-border-top-left-radius: 9px;
+  -o-border-top-left-radius: 9px;
+  -ms-border-top-left-radius: 9px;
+  -khtml-border-top-left-radius: 9px;
+  border-top-left-radius: 9px;
+  -moz-border-radius-topright: 9px;
+  -webkit-border-top-right-radius: 9px;
+  -o-border-top-right-radius: 9px;
+  -ms-border-top-right-radius: 9px;
+  -khtml-border-top-right-radius: 9px;
+  border-top-right-radius: 9px;
+}
+/* line 430, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper a.button, .admin-wrapper button.button, .admin-wrapper .pagination a, .admin-wrapper .pagination span {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 434, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper .flash .message {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+}
+/* line 438, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper form input[type=button] {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 442, ../../app/stylesheets/themes/_default.scss */
+.admin-wrapper #user-navigation a.logout {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 9, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .small {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: normal;
+  letter-spacing: normal;
+  line-height: 1.4em;
+}
+/* line 18, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .gray {
+  color: #999999;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: normal;
+  text-transform: normal;
+  letter-spacing: normal;
+  line-height: 1.6em;
+}
+/* line 29, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .highlight {
+  background-color: #ffff88;
+  font-weight: bold;
+  color: #36393d;
+}
+/* line 35, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper a:link, .admin-wrapper a:visited, .admin-wrapper a:hover, .admin-wrapper a:active, .admin-wrapper h1, .admin-wrapper h2, .admin-wrapper h3 {
+  color: #36393d;
+}
+/* line 36, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper a {
+  -moz-outline: none;
+}
+/* line 38, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper body {
+  color: #222;
+  background: #cfcfcf;
+  font-family: helvetica, arial, sans-serif;
+}
+/* line 44, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper hr {
+  background: #f0f0ee;
+  color: #f0f0ee;
+}
+/* line 49, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #header {
+  background: #36393d;
+}
+/* line 52, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #header h1 {
+  padding: 15px 0;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: normal;
+  letter-spacing: -1px;
+  line-height: 1.2em;
+}
+/* line 61, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #header h1 a:link, .admin-wrapper #header h1 a:active, .admin-wrapper #header h1 a:hover, .admin-wrapper #header h1 a:visited {
+  color: #FFF;
+}
+/* line 69, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #user-navigation {
+  top: auto;
+  bottom: 5px;
+  right: 25px;
+}
+/* line 74, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #user-navigation a.logout {
+  background: #cc0000;
+  padding: 1px 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 3px;
+}
+/* line 83, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main .block .content {
+  background: #FFF;
+  padding-top: 1px;
+}
+/* line 87, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main .block .content h2 {
+  margin-left: 15px;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: normal;
+  letter-spacing: -1px;
+  line-height: 1.2em;
+}
+/* line 97, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main .block .content p {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: normal;
+  letter-spacing: normal;
+  line-height: 1.45em;
+}
+/* line 108, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #sidebar .block {
+  background: #FFF;
+}
+/* line 111, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #sidebar .block h4 {
+  font-weight: bold;
+}
+/* line 116, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #sidebar .notice {
+  background: #E6EEFC;
+}
+/* line 119, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #sidebar .notice h4 {
+  color: #0B43A8;
+}
+/* line 124, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #sidebar h3 {
+  background: #36393d;
+  color: #FFF;
+  border-bottom: 5px solid #1a1a1a;
+}
+/* line 132, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation ul li {
+  padding-left: 15px;
+}
+/* line 135, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation ul li a {
+  padding: 8px 0;
+}
+/* line 140, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation ul li.active {
+  padding: 0;
+  margin-left: 15px;
+}
+/* line 144, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation ul li.active a {
+  padding: 8px 15px;
+}
+/* line 150, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #sidebar ul li a:link, .admin-wrapper #sidebar ul li a:visited {
+  background: #FFF;
+  border-bottom: 1px solid #F0F0EE;
+  text-decoration: none;
+}
+/* line 156, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #sidebar ul li a:hover, .admin-wrapper #sidebar ul li a:active {
+  background: #666666;
+  color: #ffffff;
+}
+/* line 161, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation {
+  background: #1a1a1a;
+}
+/* line 164, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation ul li {
+  background: #1a1a1a;
+  margin-right: 0;
+}
+/* line 169, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation ul li.active {
+  background: #f0f0ee;
+}
+/* line 172, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation ul li.active a:link, .admin-wrapper #main-navigation ul li.active a:visited, .admin-wrapper #main-navigation ul li.active a:hover, .admin-wrapper #main-navigation ul li.active a:active {
+  color: #1a1a1a;
+}
+/* line 181, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main-navigation ul li a:link, .admin-wrapper #main-navigation ul li a:visited, .admin-wrapper #main-navigation ul li a:hover, .admin-wrapper #main-navigation ul li a:active,
+.admin-wrapper .secondary-navigation ul li a:link, .admin-wrapper .secondary-navigation ul li a:visited, .admin-wrapper .secondary-navigation ul li a:hover, .admin-wrapper .secondary-navigation ul li a:active,
+.admin-wrapper #user-navigation ul li a:link, .admin-wrapper #user-navigation ul li a:visited, .admin-wrapper #user-navigation ul li a:hover, .admin-wrapper #user-navigation ul li a:active {
+  text-decoration: none;
+  color: #FFF;
+}
+/* line 186, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .secondary-navigation {
+  background: #36393d;
+  border-bottom-color: #1a1a1a;
+  border-bottom-width: 5px;
+}
+/* line 191, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .secondary-navigation li a:hover {
+  background: #666666;
+}
+/* line 195, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .secondary-navigation li.active, .admin-wrapper .secondary-navigation li.active a:hover {
+  background-color: #1a1a1a;
+}
+/* line 201, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #footer .block {
+  color: #FFF;
+  background: #1a1a1a;
+}
+/* line 205, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #footer .block p {
+  margin: 0;
+  padding: 10px;
+}
+/* line 215, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .pagination a, .admin-wrapper .pagination span {
+  background: #cfcfcf;
+  -moz-border-radius: 3px;
+  border: 1px solid #c1c1c1;
+}
+/* line 221, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .pagination em {
+  background: #36393d;
+  color: #FFF;
+  border: 1px solid #36393d;
+}
+/* line 227, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .pagination a {
+  color: #1a1a1a;
+}
+/* line 231, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .pagination a:hover {
+  border: 1px solid #666;
+}
+/* line 239, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper table th {
+  background: #36393d;
+  color: #FFF;
+}
+/* line 244, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper table td {
+  border-bottom: 1px solid #F0F0EE;
+}
+/* line 248, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper table tr:nth-child(odd) {
+  background: #ebebeb;
+}
+/* line 252, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper table th:last-child {
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+}
+/* line 261, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper form label {
+  color: #666666;
+}
+/* line 265, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper form input[type=text], .admin-wrapper form textarea {
+  width: 100%;
+  border: 1px solid #cfcfcf;
+}
+/* line 270, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper form input.button {
+  background: #cfcfcf;
+  -moz-border-radius: 5px;
+  border: 1px solid #c1c1c1;
+  padding: 2px 5px;
+  cursor: pointer;
+  color: #36393d;
+  font-weight: bold;
+  font-size: 11px;
+}
+/* line 281, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper form input.button:hover {
+  border: 1px solid #666;
+}
+/* line 285, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper form .description {
+  font-style: italic;
+  color: #8C8C8C;
+  font-size: .9em;
+}
+/* line 294, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .flash .message {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  text-align: center;
+  margin: 0 auto 15px;
+}
+/* line 300, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .flash .message p {
+  margin: 8px;
+}
+/* line 305, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .flash .error {
+  border: 1px solid #fbb;
+  background-color: #fdd;
+}
+/* line 310, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .flash .warning {
+  border: 1px solid #fffaaa;
+  background-color: #ffffcc;
+}
+/* line 315, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .flash .notice {
+  border: 1px solid #1FDF00;
+  background-color: #BBFFB6;
+}
+/* line 323, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper ul.list li {
+  border-bottom-color: #F0F0EE;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+/* line 328, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper ul.list li .item .avatar {
+  border-color: #F0F0EE;
+  border-width: 1px;
+  border-style: solid;
+  padding: 2px;
+}
+/* line 338, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #box .block {
+  background: #FFF;
+}
+/* line 341, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #box .block h2 {
+  background: #36393d;
+  color: #FFF;
+}
+/* line 347, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .navbuttons a {
+  color: #cc0000;
+}
+/* line 354, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #main, .admin-wrapper #main-navigation, .admin-wrapper #main-navigation li, .admin-wrapper .secondary-navigation, .admin-wrapper #main .block, .admin-wrapper #sidebar .block, .admin-wrapper #sidebar h3, .admin-wrapper ul.list li,
+.admin-wrapper #footer .block, .admin-wrapper .form input.button, .admin-wrapper #box .block, .admin-wrapper #box .block h2 {
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+}
+/* line 361, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .secondary-navigation li:first-child a, .admin-wrapper .secondary-navigation ul li:first-child, .admin-wrapper table th:first-child, .admin-wrapper table th:first-child {
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+}
+/* line 366, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper .secondary-navigation ul li:first-child {
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+}
+/* line 371, ../../app/stylesheets/themes/_drastic-dark.scss */
+.admin-wrapper #sidebar, .admin-wrapper #sidebar .block, .admin-wrapper #main .block, .admin-wrapper #sidebar ul.navigation, .admin-wrapper ul.list li, .admin-wrapper #footer .block, .admin-wrapper form input.button, .admin-wrapper #box .block {
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}

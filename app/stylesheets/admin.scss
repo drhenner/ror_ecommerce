@@ -1,0 +1,10 @@
+@import "web-app-theme";
+@import "themes/default";
+@import "themes/drastic-dark";
+
+.admin-wrapper {
+  @include web-app-theme;
+  @include default;
+  @include drastic-dark;
+}
+

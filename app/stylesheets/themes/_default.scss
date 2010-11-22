@@ -1,0 +1,445 @@
+/*
+   activo
+   by David Francisco (dmfrancisc[at]gmail.com)
+
+   based on "Drastic Dark" by Juan Maria Martinez Arce (juan[at]insignia4u.com)
+*/
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
+@mixin default {
+  .small {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 1.4em;
+  }
+
+  .gray {
+    color:#999999;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 1.6em;
+  }
+
+  .highlight {
+    background-color: #ffff88;
+    font-weight: bold;
+    color: #36393d;
+  }
+
+  a:link, a:visited, a:hover, a:active, h1, h2, h3 { color: #111; }
+  a { -moz-outline: none; }
+
+  body {
+    color: #111;
+    background: #E5E5E5;
+    font-family: helvetica, arial, sans-serif;
+  }
+
+  hr {
+    background: #e2e2e2;
+    color: #e2e2e2;
+  }
+
+  #header {
+    background: #002134;
+
+    h1 {
+      padding: 15px 0;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: bold;
+      text-transform: none;
+      letter-spacing: -1px;
+      line-height: 1.2em;
+      color: #fff;
+      text-shadow: #000 1px 1px 2px;
+
+      a:link, a:active, a:hover, a:visited {
+        color: #fff;
+      }
+    }
+  }
+
+  #user-navigation {
+    top: auto;
+    bottom: 5px;
+    right: 25px;
+
+    a.logout {
+      background: #ccc;
+      padding: 1px 4px;
+    }
+  }
+
+  #main {
+    width: 71%;
+
+    .block {
+      @include box-shadow(rgba(0, 0, 0, 0.4), 0, 1px, 3px);
+
+      padding-top: 0px;
+      background: #fff;
+
+      .content {
+        padding-top: 1px;
+
+        h2 {
+          margin-left: 15px;
+          font-size: 22px;
+          font-style: normal;
+          font-weight: bold;
+          text-transform: none;
+          letter-spacing: -1px;
+          line-height: 1.2em;
+        }
+
+        p {
+          font-size: 13px;
+          font-style: normal;
+          font-weight: normal;
+          text-transform: none;
+          letter-spacing: normal;
+          line-height: 1.45em;
+        }
+      }
+    }
+  }
+
+  #sidebar {
+    .block h4 {
+      font-weight: bold;
+    }
+
+    .notice {
+      @include box-shadow(rgba(0, 0, 0, 0.4), 0, 1px, 3px);
+
+      background: #fff;
+    }
+
+    h3 {
+      color: #111;
+      border-bottom: 1px solid #c0c0c0;
+    }
+
+    ul li {
+      background-position: 15px 11px;
+      background-repeat: no-repeat;
+      background-image: url("/images/arrow.png");
+      border-bottom: 1px solid #e2e2e2;
+
+      a {
+        text-decoration: none;
+        margin-left: 20px;
+      }
+
+      a:link, a:visited {
+        text-decoration: none;
+      }
+    }
+  }
+
+  #main-navigation {
+    background-color: #f4f4f4;
+    background-image: url("/images/menubar-background.png");
+    background-repeat: repeat-x;
+
+    ul li {
+      margin-right: 0;
+      padding-left: 15px;
+      padding-right: 5px;
+
+      a {
+        padding: 8px 0;
+      }
+
+      a:link, a:visited, a:hover, a:active {
+        text-decoration: none;
+        color: #111;
+      }
+    }
+
+    ul li.active {
+      padding: 0;
+      background: #E5E5E5;
+      margin-left: 15px;
+
+      a {
+        padding: 8px 15px;
+      }
+    }
+  }
+
+  .secondary-navigation ul li a:link, .secondary-navigation ul li a:visited, .secondary-navigation ul li a:hover, .secondary-navigation ul li a:active,
+  #user-navigation ul li a:link, #user-navigation ul li a:visited, #user-navigation ul li a:hover, #user-navigation ul li a:active {
+    text-decoration: none;
+    color: #111;
+  }
+
+  .secondary-navigation {
+    background-color: #f2f1ee;
+    border-bottom: none;
+    border-bottom-width: 5px;
+    background-image: url("/images/boxbar-background.png");
+
+    ul li.active, ul li.active a:hover {
+      background-color: #fff;
+    }
+  }
+
+
+  #footer .block {
+    @include box-shadow(none);
+
+    text-align: center;
+    color: #111;
+    background: #fff;
+
+    block p {
+      margin: 0;
+      padding: 4px;
+    }
+  }
+
+
+  /* pagination */
+
+  .pagination {
+    a, span {
+      background-color: #f4f4f4;
+      background-image: url("/images/button-background.png");
+      color: #111;
+      text-align: center;
+      min-width: 15px;
+      margin-right: 5px;
+      padding: 6px;
+      border: 1px solid #c3c4ba;
+    }
+
+    em {
+      background: #002134;
+      color: #fff;
+      border: 1px solid #002134;
+      text-align: center;
+      min-width: 15px;
+      margin-right: 5px;
+      padding: 6px;
+      border: 1px solid #c3c4ba;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:hover {
+      @include box-shadow(rgba(0, 0, 0, 0.3), 0, 0, 4px);
+
+      border: 1px solid #818171;
+    }
+
+    a:active {
+      background-image: url("/images/button-background-active.png");
+      outline: none;
+    }
+  }
+
+  /* tables */
+
+  table th {
+    background: #eaeaea;
+    color: #222;
+    font-weight: normal;
+  }
+
+  table td {
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  tr:nth-child(odd) {
+    background: #f8f8f8;
+  }
+
+  /* forms */
+
+  form {
+    label {
+      color: #666666;
+    }
+
+    input[type=text], input[type=password], input[type=number], input[type=email], form textarea {
+      width: 100%;
+      border: 1px solid #e2e2e2;
+    }
+
+    input:hover, textarea:hover {
+      @include box-shadow(rgba(0, 0, 0, 0.3), 0, 0, 3px);
+
+      border: 1px solid #a2a294;
+    }
+
+    input:focus, textarea:focus {
+      border: 1px solid #a2a294;
+    }
+
+    input[type=button] {
+      background: #e2e2e2;
+      border: 1px solid #c1c1c1;
+      padding: 2px 5px;
+      cursor: pointer;
+      color: #111;
+      font-weight: bold;
+      font-size: 11px;
+    }
+
+    input[type=button]:hover {
+      border: 1px solid #666;
+    }
+
+    .description {
+      font-style: italic;
+      color: #8C8C8C;
+      font-size: .9em;
+    }
+
+    .navform a {
+      color: #cc0000;
+    }
+  }
+
+  /* buttons */
+
+  a.button, button.button {
+    background-color: #f4f4f4;
+    background-image: url("/images/button-background.png");
+    border: 1px solid #c3c4ba;
+    font-family: helvetica, arial, sans-serif;
+    font-weight: normal;
+  }
+
+  a.button:link, a.button:visited, a.button:hover, a.button:active, button.button:link, button.button:visited, button.button:hover, button.button:active {
+    font-weight: normal;
+    background-color: #f4f4f4;
+  }
+
+  a.button:hover, button.button:hover {
+    @include box-shadow(rgba(0, 0, 0, 0.3), 0, 0, 4px);
+
+    background-color: #eee;
+    border: 1px solid #818171;
+  }
+
+  a.button:active, button.button:active {
+    outline: none;
+    background-color: #ddd;
+    background-image: url("/images/button-background-active.png");
+  }
+
+  /* flash-messages */
+  .flash {
+    .message {
+      text-align:center;
+      margin: 0 auto 15px;
+
+      p {
+        margin:8px;
+      }
+    }
+
+    .error, .alert {
+      border: 1px solid #ffbbbb;
+      background-color: #ffdddd;
+    }
+
+    .warning {
+      border: 1px solid #ffff88;
+      background-color: #ffffcc;
+    }
+
+    .notice {
+      border: 1px solid #1fdf00;
+      background-color: #bbffb6;
+    }
+  }
+
+  /* lists */
+
+  ul li {
+    border-bottom-color: #e2e2e2;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+
+    .item .avatar {
+      border-color: #e2e2e2;
+      border-width: 1px;
+      border-style: solid;
+      padding: 2px;
+    }
+  }
+
+
+  /* box */
+
+  #box .block {
+    @include box-shadow(rgba(0, 0, 0, 0.4), 0, 1px, 3px);
+
+    background: #fff;
+
+    h2 {
+      background: #002134;
+      color: #fff;
+    }
+  }
+
+  /* rounded borders */
+
+  #main, #main-navigation, #main-navigation li, .secondary-navigation, #main .block, #sidebar .block, #sidebar h3, ul li,
+  #footer .block, form input[type=button], #box .block, #box .block h2 {
+    @include border-top-left-radius(9px);
+    @include border-top-right-radius(9px);
+  }
+
+  .secondary-navigation li.first a, .secondary-navigation ul li.first {
+    @include border-top-left-radius(9px);
+  }
+
+  .secondary-navigation ul li.first {
+    @include border-top-left-radius(9px);
+  }
+
+  #sidebar, #sidebar .block, #main .block, #sidebar ul.navigation, ul li, #footer .block, form input[type=button], #box .block {
+    @include border-bottom-left-radius(9px);
+    @include border-bottom-right-radius(9px);
+  }
+
+  #main .block {
+    @include border-radius(9px);
+  }
+
+  #main-navigation, .secondary-navigation {
+    @include border-top-left-radius(9px);
+    @include border-top-right-radius(9px);
+  }
+
+  a.button, button.button, .pagination a, .pagination span {
+    @include border-radius(2px);
+  }
+
+  .flash .message {
+    @include border-radius(6px);
+  }
+
+  form input[type=button] {
+    @include border-radius(5px);
+  }
+
+  #user-navigation a.logout {
+    @include border-radius(4px);
+  }
+}
