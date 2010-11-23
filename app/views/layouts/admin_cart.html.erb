@@ -3,12 +3,13 @@
 <head>
   <title>RoR Ecommerce</title>
   <%#= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag 'buttons.css', :media => 'screen, projection' %>
+  <%#= stylesheet_link_tag 'buttons.css', :media => 'screen, projection' %>
   <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
   <%= stylesheet_link_tag 'link_icons.css', :media => 'screen, projection' %>
   <%= stylesheet_link_tag 'sprite.css' %>
   <%= stylesheet_link_tag 'print.css', :media => 'print'%>
-  <%= stylesheet_link_tag 'main.css' %>
+  <%= stylesheet_link_tag 'admin.css' %>
+  <%#= stylesheet_link_tag 'main.css' %>
     <!--[if lt IE 8]
   <%#= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
   <![endif]-->
@@ -17,7 +18,7 @@
   <%= javascript_include_tag 'jquery-1.4.2.min', 'rails', 'jquery-ui-1.8.5.custom.min','application' %>
   <%= yield :head %>
 </head>
-<body class="bp">
+<body class="admin-wrapper">
   <div class="bp">
     <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
     <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
