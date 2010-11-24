@@ -7,10 +7,11 @@
 // when you're using a single/combined stylesheet.
 
 body.bp {
-  @include blueprint-typography(true);
+  //@include blueprint-typography(true);
   @include blueprint-utilities;
   @include blueprint-debug;
-  @include blueprint-interaction; }
+  @include blueprint-interaction; 
+}
 
 // Remove the scaffolding when you're ready to start doing visual design.
 // Or leave it in if you're happy with how blueprint looks out-of-the-box

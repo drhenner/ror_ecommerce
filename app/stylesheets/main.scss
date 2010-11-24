@@ -1,6 +1,19 @@
 @import "compass";
 @import "blueprint";
 
+// drhenner
+// Import the non-default scaffolding module.
+@import "blueprint/scaffolding";
+
+// Generate the blueprint framework according to your configuration:
+@include blueprint;
+@import "blueprint/colors"
+//@import "blueprint/buttons"
+
+//@import 'plugins/silksprite/sprite'
+
+
+
 #header_wrapper {
   @include span(24);
   @include last;

@@ -10,6 +10,8 @@
   <%= stylesheet_link_tag 'sprite.css' %>
   <%= stylesheet_link_tag 'print.css', :media => 'print'%>
   <%= stylesheet_link_tag 'admin.css' %>
+  <%= stylesheet_link_tag 'base.css' %>
+  <%= stylesheet_link_tag 'override.css' %>
   <%#= stylesheet_link_tag 'main.css' %>
     <!--[if lt IE 8]
   <%#= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
@@ -26,12 +28,12 @@
     <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
   </div>
   <div class="container bp">
-    <div id='header_wrapper' class="span-24 header-image">
-      <div id="header" class="span-12">
+    <div id='header' class="span-24 header-image">
+      <div id="header1" class="span-11 float-left">
         <h1 id="hadean-title" class="alt">RoR Ecommerce</h1>
       </div>
 
-      <div id="subheader" class="span-12 last">
+      <div id="header2" class="float-left last">
         <h3 class="alt">Your Ruby on Rails E-Commerce Solution.</h3>
         <div class="alt">
           <%= current_user.try(:name) %>
