@@ -40,7 +40,6 @@ Hadean::Application.routes.draw do # |map|
         put :select_address
       end
     end
-    resources  :payments
     
   end
   
