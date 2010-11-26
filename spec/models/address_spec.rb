@@ -115,6 +115,12 @@ describe Address, "methods" do
     end
   end
 
+  context '.display_full_address' do
+    it 'should display the address lines and name' do
+      @address.display_full_address.should == 'Perez Hilton\n7th street\nFredville, CA 13156'
+    end
+  end
+
   context ".address_lines" do
     # def address_lines(join_chars = ', ')
     # [address1, address2].delete_if{|add| add.blank?}.join(join_chars)
