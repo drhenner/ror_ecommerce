@@ -1,13 +1,17 @@
 class Admin::Document::InvoicesController < ApplicationController
+  include InvoicePrinter
+  
   def index
     @invoices = Invoice.includes([:order]).all
   end
-  
+
   def show
     @invoice = Invoice.includes([:order]).find(params[:id])
+    
     respond_to do |format|
       format.html
-      format.pdf { render :layout => false }
+      #format.pdf { render :layout => false }
+      format.pdf { prawnto :prawn=>{:skip_page_creation=>true}}
     end
   end
   
