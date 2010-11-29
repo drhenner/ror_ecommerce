@@ -13,6 +13,9 @@ module InvoicePrinter
     pdf.bounding_box([10,730], :width => 530) do
       pdf.image png_background, :width => 519 if png_background
     end
+    pdf.bounding_box([20,720], :width => 120) do
+      pdf.image "#{Rails.root}/public/images/logos/#{Image::MAIN_LOGO}.png"
+    end
   end
   
   def print_order_invoice_form( pdf, 
