@@ -21,24 +21,17 @@ module InvoicePrinter
     pdf.font "#{Rails.root}/lib/printing/fonts/DejaVuSans.ttf"
     invoice_yml    = YAML::load( File.open( file_to_load ) )
     pdf.bounding_box([0,400], :width => 612) do
-      
       invoice_yml.each do |info|
-        
-      end
-      
-      #print_line(pdf, sent_to,    print_locations['gift_card_sent_to'])
-      #print_line(pdf, sent_from,  print_locations['gift_card_sent_from'])
-      #print_line(pdf, pairs,      print_locations['gift_card_pairs'])
-    
-      pdf.bounding_box(    [  invoice_yml['order_shipping_address']['arguements']['bounded_at'][0].to_i,
-                              invoice_yml['order_shipping_address']['arguements']['bounded_at'][1].to_i
-                            ], 
-                          
-                              :width => invoice_yml['order_shipping_address']['arguements']['bounded_by'][0].to_i, 
-                              :height => invoice_yml['order_shipping_address']['arguements']['bounded_by'][1].to_i
-                            ) do 
+        pdf.bounding_box(    [  info.last['arguements']['bounded_at'][0].to_i,
+                                info.last['arguements']['bounded_at'][1].to_i
+                              ], 
 
-        print_lines(pdf, invoice.order_ship_address_lines)
+                                :width => info.last['arguements']['bounded_by'][0].to_i, 
+                                :height => info.last['arguements']['bounded_by'][1].to_i
+                              ) do 
+
+          print_lines(pdf, invoice.send(info.last['method'].to_sym) )
+        end
       end
     end
   end

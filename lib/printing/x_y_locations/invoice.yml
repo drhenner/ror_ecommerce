@@ -4,7 +4,7 @@
 # The second layer gives you arguements for x_pos y_pos and size
 
 order_shipping_address:
-  method: order_shipping_address
+  method: order_ship_address_lines
   arguements:
     at:
       - 10
@@ -17,14 +17,14 @@ order_shipping_address:
       - 80
 
 order_billing_address:
-  method: order_billing_address
+  method: order_billing_address_lines
   arguements:
     at:
       - 10
-      - 90
+      - 10
     bounded_at:
-      - 55
-      - 150
+      - 50
+      - 195
     bounded_by:
       - 450
       - 80

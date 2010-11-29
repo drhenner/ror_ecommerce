@@ -63,6 +63,10 @@ class Invoice < ActiveRecord::Base
     order.ship_address.try(:full_address_array)
   end
   
+  def order_billing_address_lines
+    order.bill_address.try(:full_address_array)
+  end
+  
   def number
     (NUMBER_SEED + id).to_s(CHARACTERS_SEED)
   end
