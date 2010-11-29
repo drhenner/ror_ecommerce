@@ -59,8 +59,8 @@ class Invoice < ActiveRecord::Base
     end
   end
   
-  def order_ship_address
-    order.ship_address.try(:display_full_address)
+  def order_ship_address_lines
+    order.ship_address.try(:full_address_array)
   end
   
   def number
