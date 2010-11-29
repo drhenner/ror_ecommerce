@@ -6,7 +6,10 @@ class Admin::Document::InvoicesController < ApplicationController
   end
 
   def show
-    @invoice = Invoice.includes([:order]).find(params[:id])
+    @invoice = Invoice.includes([:order => [
+                                            :bill_address, 
+                                            :ship_address
+                                            ]]).find(params[:id])
     
     respond_to do |format|
       format.html
