@@ -115,9 +115,9 @@ describe Address, "methods" do
     end
   end
 
-  context '.display_full_address' do
-    it 'should display the address lines and name' do
-      @address.display_full_address.should == 'Perez Hilton\n7th street\nFredville, CA 13156'
+  context '.full_address_array' do
+    it 'should return an array of address lines and name' do
+      @address.full_address_array.should == ['Perez Hilton','7th street','Fredville, CA 13156']
     end
   end
 

@@ -84,8 +84,8 @@ class Address < ActiveRecord::Base
     end
   end
   
-  def display_full_address
-    [name, address1, address2, city_state_zip].compact.join'\n'
+  def full_address_array
+    [name, address1, address2, city_state_zip].compact
   end
   
   def address_lines(join_chars = ', ')
