@@ -67,6 +67,10 @@ class Invoice < ActiveRecord::Base
     order.bill_address.try(:full_address_array)
   end
   
+  def invoice_date(format = :us_date)
+    I18n.localize(created_at, :format => format)
+  end
+  
   def number
     (NUMBER_SEED + id).to_s(CHARACTERS_SEED)
   end
