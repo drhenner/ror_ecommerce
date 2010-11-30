@@ -5,6 +5,7 @@
 
 order_shipping_address:
   method: order_ship_address_lines
+  multiple_lines: true
   arguements:
     at:
       - 10
@@ -18,6 +19,7 @@ order_shipping_address:
 
 order_billing_address:
   method: order_billing_address_lines
+  multiple_lines: true
   arguements:
     at:
       - 10
@@ -28,3 +30,19 @@ order_billing_address:
     bounded_by:
       - 450
       - 80
+
+invoice_number:
+  method: number
+  arguements:
+    at:
+      - 390
+      - 266
+    size: 10
+
+invoice_date:
+  method: invoice_date
+  arguements:
+    at:
+      - 390
+      - 245
+    size: 10

@@ -14,6 +14,29 @@ module MainPrinter
     end if lines
   end
   
+  
+  # Converts the string to actual text
+  #
+  # @param [pdf] pdf to be printed on
+  # @param [display_string] string to be printed
+  # @param [yml_info] customization
+  def print_line(pdf, display_string, yml_info)
+    
+    arguements         = {}
+    if yml_info['arguements']['at']
+      x_loc = yml_info['arguements']['at'][0].to_f
+      y_loc = yml_info['arguements']['at'][1].to_f
+      arguements[:at]    = [x_loc, y_loc]
+    end
+    
+    if yml_info['arguements']['size']
+      arguements[:size]  = yml_info['arguements']['size']
+    else
+      arguements[:size]  = 13
+    end
+    pdf.draw_text display_string, arguements
+  end
+  
   ## method: checker_form(pdf)
   ## This is a method to see the x-y locations throughout your document
   # This is a good method for developing a new form
