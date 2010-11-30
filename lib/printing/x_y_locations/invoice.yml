@@ -46,3 +46,12 @@ invoice_date:
       - 390
       - 245
     size: 10
+    
+
+invoice_total:
+  method: amount
+  arguements:
+    at:
+      - 475
+      - -245
+    size: 10
