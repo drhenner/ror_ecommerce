@@ -39,6 +39,8 @@ module InvoicePrinter
       pdf.draw_text 'Shipping',      {:at => [130, 270 - (i * 15) ]}
       pdf.draw_text shipping_rate.rate,      {:at => [470, 270 - (i * 15) ]}
     end
+    pdf.draw_text invoice.order.total_tax_charges,      {:at => [480, 175], :size => 10 }
+    
     
   end
   
