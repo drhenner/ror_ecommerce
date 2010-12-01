@@ -225,12 +225,15 @@ class Order < ActiveRecord::Base
   
   def shipping_charges
     return @order_shipping_charges if defined?(@order_shipping_charges)
-    items = OrderItem.order_items_in_cart(self.id)
-    shipping_rates = items.inject([]) do |shipping_rates, item| 
-      shipping_rates << item.shipping_rate if item.shipping_rate.individual? || !shipping_rates.include?(item.shipping_rate)
-      shipping_rates
-    end
     @order_shipping_charges = shipping_rates.inject(0.0) {|sum, shipping_rate|  sum + shipping_rate.rate  }
+  end
+  
+  def shipping_rates
+    items = OrderItem.order_items_in_cart(self.id)
+    rates = items.inject([]) do |rates, item| 
+      rates << item.shipping_rate if item.shipping_rate.individual? || !rates.include?(item.shipping_rate)
+      rates
+    end
   end
   
   def add_items(variant, quantity, state_id = nil)

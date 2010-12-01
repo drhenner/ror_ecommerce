@@ -35,9 +35,9 @@ module InvoicePrinter
       pdf.draw_text item.variant.product_name,      {:at => [130, 420 - (i * 50) ]}
       pdf.draw_text number_to_currency(item.price), {:at => [470, 420 - (i * 50) ]}
     end
-    invoice.order.order_items.each do |item|
-      pdf.draw_text 'Shipping',      {:at => [130, 420 - (3 * 50) ]}
-      pdf.draw_text item.shipping_rate.rate,      {:at => [470, 420 - (3 * 50) ]}
+    invoice.order.shipping_rates.each_with_index do |shipping_rate, i|
+      pdf.draw_text 'Shipping',      {:at => [130, 270 - (i * 15) ]}
+      pdf.draw_text shipping_rate.rate,      {:at => [470, 270 - (i * 15) ]}
     end
     
   end
