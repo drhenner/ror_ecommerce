@@ -236,6 +236,17 @@ class Order < ActiveRecord::Base
     end
   end
   
+  def tax_charges
+    charges = order_items.inject([]) do |charges, item| 
+      charges << item.tax_charge
+      charges
+    end
+  end
+
+  def total_tax_charges
+    tax_charges.sum
+  end
+  
   def add_items(variant, quantity, state_id = nil)
     self.save! if self.new_record?
     tax_rate_id = state_id ? variant.product.tax_rate(state_id) : nil

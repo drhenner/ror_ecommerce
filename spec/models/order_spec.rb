@@ -190,7 +190,7 @@ describe Order, "instance methods" do
 
   context ".find_total(force = false)" # exersized calling order_total
 
-  context ".shipping_charges" do    
+  context ".shipping_charges" do
     it 'should return one shippoing rate that all items fall under' do
         order_item = Factory(:order_item )
         ShippingRate.any_instance.stubs(:individual?).returns(false)
@@ -209,6 +209,30 @@ describe Order, "instance methods" do
         OrderItem.stubs(:order_items_in_cart).returns( [order_item, order_item] )
         
         @order.shipping_charges.should == 2.02
+    end
+  end
+
+  context ".tax_charges" do
+    it 'should return one tax_charges for all order items' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      tax_rate5 = Factory(:tax_rate, :percentage => 5.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item5 = Factory(:order_item, :tax_rate => tax_rate5, :price => 10.00)
+
+      @order.stubs(:order_items).returns( [order_item, order_item5] )
+      @order.tax_charges.should == [2.00 , 0.50]
+    end
+  end
+
+  context ".total_tax_charges" do
+    it 'should return one tax_charges for all order items' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      tax_rate5 = Factory(:tax_rate, :percentage => 5.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item5 = Factory(:order_item, :tax_rate => tax_rate5, :price => 10.00)
+
+      @order.stubs(:order_items).returns( [order_item, order_item5] )
+      @order.total_tax_charges.should == 2.50
     end
   end
 
