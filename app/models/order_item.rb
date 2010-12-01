@@ -72,9 +72,11 @@ class OrderItem < ActiveRecord::Base
   def calculate_total(coupon = nil)
     # shipping charges are calculated in order.rb
     
-    # taxes 
-    tax_percentage = tax_rate.try(:percentage) ? tax_rate.try(:percentage) : 0.0
-    self.total = ((adjusted_price) * (tax_percentage + 100.0) / 100.0).round_at(2)
+    self.total = (adjusted_price + tax_charge).round_at(2)
   end
   
+  def tax_charge
+    tax_percentage = tax_rate.try(:percentage) ? tax_rate.try(:percentage) : 0.0
+    adjusted_price * tax_percentage / 100.0
+  end
 end

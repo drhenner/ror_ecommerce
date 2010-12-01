@@ -81,10 +81,14 @@ describe OrderItem, "instance methods" do
       order_item.calculate_total
       order_item.total.should == 22.00
     end
-    #def calculate_total(coupon = nil)
-    #  tax_percentage = tax_rate.try(:percentage) ? tax_rate.try(:percentage) : 0.0
-    #  self.total = ((adjusted_price) * (tax_percentage + 100.0) / 100.0).round_at(2)
-    #end
+  end
+  
+  context ".tax_charge" do
+    it 'should return tax_charge' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item.tax_charge.should == 2.00
+    end
   end
 end
 
