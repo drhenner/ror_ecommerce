@@ -10,7 +10,32 @@ end
 
 describe Invoice, "instance methods" do
   before(:each) do 
-    @invoice = Factory(:invoice)
+    @invoice = Factory(:invoice, :created_at => '2010-11-26 23:55:14')
+  end
+
+  context '.order_ship_address_lines' do
+    it 'should display invoice created_at date in the correct format' do
+      #@invoice.order.expects(:ship_address).returns(Factory(:address))
+      @invoice.order.ship_address.expects(:try).with(:full_address_array).once
+      @invoice.order_ship_address_lines
+    end
+  end
+  
+  context '.order_billing_address_lines' do
+    it 'should display invoice created_at date in the correct format' do
+      #@invoice.order.expects(:bill_address).returns(Factory(:address))
+      @invoice.order.bill_address.expects(:try).with(:full_address_array).once
+      @invoice.order_billing_address_lines
+    end
+  end
+  
+  
+  
+  #invoice_date(format = :us_date)
+  context '.invoice_date' do
+    it 'should display invoice created_at date in the correct format' do
+      @invoice.invoice_date.should == '11/26/2010'
+    end
   end
   
   context '.number' do

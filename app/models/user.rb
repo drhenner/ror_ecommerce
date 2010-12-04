@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
   has_many    :wish_list_items,           :conditions => ['cart_items.active = ? AND
                                                           cart_items.item_type_id = ?', true, ItemType::WISH_LIST_ID], 
                                           :class_name => 'CartItem'
+
+  has_many    :saved_cart_items,           :conditions => ['cart_items.active = ? AND
+                                                          cart_items.item_type_id = ?', true, ItemType::SAVE_FOR_LATER], 
+                                          :class_name => 'CartItem'
                                                 
   has_many    :purchased_items,           :conditions => ['cart_items.active = ? AND
                                                           cart_items.item_type_id = ?', true, ItemType::PURCHASED_ID], 

@@ -29,7 +29,7 @@ gem 'memcache-client'
 gem 'mysql2'
 #gem 'mysql', '2.8.1'
 #gem 'ruby-mysql'
-gem "nifty-generators", :git => 'git@github.com:drhenner/nifty-generators.git'
+gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'paperclip'
 gem 'prawn'
 

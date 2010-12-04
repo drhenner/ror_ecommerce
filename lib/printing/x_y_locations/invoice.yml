@@ -1,0 +1,57 @@
+## YAML Template.
+
+# The first layer is the method to be called
+# The second layer gives you arguements for x_pos y_pos and size
+
+order_shipping_address:
+  method: order_ship_address_lines
+  multiple_lines: true
+  arguements:
+    at:
+      - 10
+      - 10
+    bounded_at:
+      - 355
+      - 195
+    bounded_by:
+      - 200
+      - 80
+
+order_billing_address:
+  method: order_billing_address_lines
+  multiple_lines: true
+  arguements:
+    at:
+      - 10
+      - 10
+    bounded_at:
+      - 50
+      - 195
+    bounded_by:
+      - 450
+      - 80
+
+invoice_number:
+  method: number
+  arguements:
+    at:
+      - 390
+      - 266
+    size: 10
+
+invoice_date:
+  method: invoice_date
+  arguements:
+    at:
+      - 390
+      - 245
+    size: 10
+    
+
+invoice_total:
+  method: amount
+  arguements:
+    at:
+      - 475
+      - -245
+    size: 10

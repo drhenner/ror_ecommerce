@@ -20,6 +20,7 @@ class Image < ActiveRecord::Base
   
   # save the w,h of the original image (from which others can be calculated)
   after_post_process :find_dimensions
+  MAIN_LOGO = 'logo2'
   
   def find_dimensions
     temporary = photo.queued_for_write[:original] 

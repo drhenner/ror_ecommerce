@@ -28,7 +28,7 @@ class Invoice < ActiveRecord::Base
     state :payment_declined
     state :canceled
     
-    #after_transition :on => 'payment_authorized', :do => :authorize_complete_order
+    #after_transition :on => 'cancel', :do => :cancel_authorized_payment
     
     event :payment_rma do
       transition :from => :pending,
@@ -52,6 +52,23 @@ class Invoice < ActiveRecord::Base
       transition :from => :authorized,
                   :to   => :authorized
     end
+    
+    event :cancel do
+      transition :from => :authorized,
+                  :to  => :canceled
+    end
+  end
+  
+  def order_ship_address_lines
+    order.ship_address.try(:full_address_array)
+  end
+  
+  def order_billing_address_lines
+    order.bill_address.try(:full_address_array)
+  end
+  
+  def invoice_date(format = :us_date)
+    I18n.localize(created_at, :format => format)
   end
   
   def number
@@ -119,6 +136,7 @@ class Invoice < ActiveRecord::Base
     batch       = batches.first
     now = Time.zone.now
     if batch# if not we never authorized the payment
+      self.cancel!
       transaction = CreditCardCancel.new()##  This is a type of transaction
       debit   = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::REVENUE_ID, :debit => amount, :credit => 0, :period => "#{now.month}-#{now.year}")
       credit  = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_RECEIVABLE_ID, :debit => 0, :credit => amount, :period => "#{now.month}-#{now.year}")

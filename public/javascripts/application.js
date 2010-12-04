@@ -31,6 +31,8 @@ Hadean.App = {
   }
 }
 
+
+// This allows forms to have unobtrusive JS nested forms.
 $(function() {
   $('form a.add_child').click(function() {
     var assoc   = $(this).attr('data-association');

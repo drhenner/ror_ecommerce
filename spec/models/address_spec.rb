@@ -115,6 +115,12 @@ describe Address, "methods" do
     end
   end
 
+  context '.full_address_array' do
+    it 'should return an array of address lines and name' do
+      @address.full_address_array.should == ['Perez Hilton','7th street','Fredville, CA 13156']
+    end
+  end
+
   context ".address_lines" do
     # def address_lines(join_chars = ', ')
     # [address1, address2].delete_if{|add| add.blank?}.join(join_chars)

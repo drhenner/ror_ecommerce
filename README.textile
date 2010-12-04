@@ -1,6 +1,8 @@
 h1. Project Overview
 
-http://ror_ecommerce.lighthouseapp.com/home
+"Please create a ticket if you have issues":http://ror_ecommerce.lighthouseapp.com/home
+
+"Please look at the homepage for more details":http://www.rorecommerce.com
 
 This is a Rails e-commerce platform.  Other e-commerce projects that
 use rails, don't use rails in a standard way.  They use engines or are a separate 
@@ -43,7 +45,6 @@ bq.  aes = OpenSSL::Cipher::Cipher.new('AES-256-CBC')
   set_encryption_key_to = aes.random_iv
 
 *# gem install bundler
-*# gem install rails -v3.0.1
 *# bundle install
 *# rake db:create
 *# rake db:migrate

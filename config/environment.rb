@@ -17,8 +17,8 @@ CIM_TRANSACTION_KEY = HADEAN_CONFIG['authnet']['password']
 ## Create a client interface
 #CACHE = Riak::Client.new
 #CACHE.servers = 'localhost:9098'
+require File.expand_path('../../lib/printing/invoice_printer', __FILE__)
 
-#Paperclip.options[:command_path] = "/Users/davidhenner/ImageMagick-6.5.9/bin"
 Paperclip.options[:command_path] = "/usr/local/bin"
 
 # Initialize the rails application
