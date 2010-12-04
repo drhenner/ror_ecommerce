@@ -7,11 +7,8 @@ gem "activemerchant", '1.7.2'#, :lib => 'active_merchant'
 gem 'acts_as_tree',    :git => 'git://github.com/parasew/acts_as_tree.git'
 gem 'authlogic', "2.1.5"
 gem 'cancan'#, '1.3.2'
-gem 'compass', ">= 0.10.5" 
 
-gem 'fancy-buttons'
 gem "friendly_id", "~> 3.0"
-gem 'formtastic',  "~> 1.1.0"#  :git => 'git://github.com/justinfrench/formtastic.git', :branch => "rails3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 
@@ -29,7 +26,6 @@ gem 'memcache-client'
 gem 'mysql2'
 #gem 'mysql', '2.8.1'
 #gem 'ruby-mysql'
-gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'paperclip'
 gem 'prawn'
 
@@ -50,7 +46,7 @@ platforms :ruby_18 do
   gem "ruby-debug", :group => [:test]
 end
 
-group :development do 
+group :development do
   #gem 'awesome_print'
   gem "autotest-rails-pure"
 
@@ -68,27 +64,27 @@ group :test do
   gem "shoulda"
   gem "rspec-rails",  "= 2.0.1"
   gem "rspec",        "=  2.0.1"
-  
+
   gem "rspec-core",         "=  2.0.1"
   gem "rspec-expectations", "=  2.0.1"
   gem "rspec-mocks",        "=  2.0.1"
   gem 'email_spec'
-  
+
   gem "faker"
   #gem "ZenTest"
   gem "autotest"
   gem "autotest-rails-pure"
-  
+
   if RUBY_PLATFORM =~ /darwin/
     gem "autotest-fsevent"
   end
   gem "autotest-growl"
   #gem "redgreen"
   #gem "test-unit", "1.2.3"
-  
-  
+
+
   ###  THESE ARE ALL FOR CUCUMBER
-#  gem "webrat"  ## USE webrat or capybara NOT BOTH  
+#  gem "webrat"  ## USE webrat or capybara NOT BOTH
 #  gem "capybara"
 #  gem "capybara-envjs"
 #  gem "database_cleaner"
