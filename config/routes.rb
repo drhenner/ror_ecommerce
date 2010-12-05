@@ -44,8 +44,8 @@ Hadean::Application.routes.draw do # |map|
   end
 
   namespace :admin do
-    resources :users, :except => :show
-    resources :overviews, :only => [:index]
+    resources :users, :except => [ :show, :destroy ]
+    resources :overviews, :only => :index
 
     namespace :rma do
       resources  :orders do
