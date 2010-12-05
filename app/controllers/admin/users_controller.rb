@@ -13,7 +13,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-
     @user = User.new(params[:user])
     authorize! :create_users, current_user
     if @user.save
