@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Documentation by YARD 0.6.3</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>Project Overview</h1>
+<p><a href="http://ror_ecommerce.lighthouseapp.com/home">Please create a ticket if you have issues</a></p>
+<p><a href="http://www.rorecommerce.com">Please look at the homepage for more details</a></p>
+<p>This is a Rails e-commerce platform.  Other e-commerce projects that
+use rails, don&#8217;t use rails in a standard way.  They use engines or are a separate 
+framework altogether.</p>
+<p><span class="caps">ROR</span> ecommerce is a <strong>Rails 3 application</strong> with the intent to allow developers to create 
+an ecommerce solution easily.  This solution includes, an Admin for  <strong>Purchase Orders</strong>, 
+<strong>Product creation</strong>, <strong>Shipments</strong>, <strong>Fulfillment</strong> and <strong>creating Orders</strong>.  There is a minimal 
+customer facing shopping cart understanding that this will be customized.  The cart allows 
+you to track your customers <strong>cart history</strong> and includes a <strong>double entry accounting system</strong>.</p>
+<p>The project has <strong>solr searching</strong>, <strong>compass</strong> and <strong>blueprint for <span class="caps">CSS</span></strong> and uses <strong>jQuery</strong>.  
+The gem list is quite large and the project still has a large wish list but it is the most 
+complete solution for Rails today and it will only get better.</p>
+<p>Please use <strong>Ruby 1.9.2</strong> and enjoy <strong>Rails 3.0</strong>.</p>
+<p>ROR_ecommerce is designed differently.  If you understand Rails you will understand ROR_ecommerce.  
+There is nothing in this project that you wouldn&#8217;t see in a normal Rails application.  If you don&#8217;t like 
+what is in the project just change it like you would in any other Rails app.</p>
+<p>Contributors are welcome.  For now email David Henner (<strong>drhenner@yahoo.com</strong>) to see how you 
+can contribute. (send your patch if you have one.)  Soon there will be a bug tracking 
+system and a formal way to submit your patch.</p>
+<p>We will always need help with UI, Documentation and code so feel free to help.</p>
+<h2>Getting Started</h2>
+<p>We have a google group.  Ask question and help answer questions.
+<a href="http://groups.google.com/group/ror_ecommerce">ror_ecommerce Google-group</a></p>
+<p>install rvm with ruby 1.9.2 or if you have 1.9.2 on your system your good to go</p>
+<p>Configure your database.yml file (add the development and test database)</p>
+
+	<ol>
+		<li>Go into config/config.yml and change the encryption_key</li>
+	</ol><blockquote>
+<p>aes = OpenSSL::Cipher::Cipher.new(&#8216;<span class="caps">AES</span>-256-<span class="caps">CBC</span>&#8217;)
+  set_encryption_key_to = aes.random_iv</p>
+</blockquote>
+
+	<ol>
+		<li>gem install bundler</li>
+		<li>bundle install</li>
+		<li>rake db:create</li>
+		<li>rake db:migrate</li>
+		<li>rake db:seed</li>
+		<li>rake db:test:prepare</li>
+		<li>git submodule init</li>
+		<li>git submodule update</li>
+		<li>gem install compass</li>
+		<li>gem install fancy-buttons</li>
+	</ol><p>######compass install -r fancy-buttons -f fancy-buttons</p>
+<p>Time to start solr and memcache(yep you better install them)
+rake sunspot:solr:start</p>
+<p>If you decide not to use solr, go into product.rb and delete the following</p>
+<pre class="code"><span class='id searchable'>searchable</span> <span class='kw'>do</span>
+  <span class='id text'>text</span>    <span class='symbol'>:name</span><span class='comma'>,</span> <span class='symbol'>:default_boost</span> <span class='op'>=&gt;</span> <span class='int'>2</span>
+  <span class='id text'>text</span>      <span class='symbol'>:product_keywords</span><span class='comment'>#, :multiple =&gt; true
+</span>  <span class='id text'>text</span>      <span class='symbol'>:description</span>
+  <span class='id time'>time</span>      <span class='symbol'>:deleted_at</span>
+<span class='kw'>end</span></pre>
+<blockquote>
+<p>Take a look at setting up solr
+    <a href="http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less">Solr in 5 minutes</a></p>
+</blockquote>
+<blockquote>
+<p>memcached -vv  ## you can config many other cache stores but 
+                ## the cookie store will not work (in the admin) and the DB session store will be a dog</p>
+</blockquote>
+<p>Need to create config/config.yml and change the encryption key and paypal or auth.net information.
+You can also use config/config.yml.example until you get your real info.</p>
+<p>Paperclip will throw errors if not configured correctly.
+if you are on a Ubuntu machine, change this line in environment.rb:
+Paperclip.options[:command_path] = &#8220;/usr/local/bin&#8221;
+into:
+Paperclip.options[:command_path] = &#8220;/usr/bin&#8221;</p>
+<p>Once everything is setup, start up the server with &#8216;rails server&#8217; and direct it to
+<strong>localhost:3000/admin/overviews</strong></p>
+<p>write down the username/password and follow the directions.</p>
+<h2>TODOs:</h2>
+<ul>
+	<li>loyalty credits</li>
+	<li>coupons</li>
+	<li>product sales (eg. 20% off)</li>
+	<li>have breadcrumbs headers by product type and use product_type.parent</li>
+	<li>move items from and to saved/wish lists</li>
+	<li>remove specific qty from cart.(method has been created just not in the UI)</li>
+</ul>
+<h2>Author</h2>
+<p>RoR Ecommerce was written by David Henner with contributions from:</p>
+<ul>
+	<li>Oren Golan</li>
+</ul>
+<h2><span class="caps">FYI</span>:</h2>
+<p>Shipping categories are categories based off price:</p>
+<p>you might have two shipping categories (light items) &amp; (heavy items)
+Have fun!!!</p>
+<ul>
+	<li>I personally want to thank some people I don&#8217;t even know.
+  Ryan Bates and Greg Pollack, I have learned way too much from you 2 
+  it would only be right to give some thanks</li>
+	<li>I&#8217;d also like to Thank one person that I do know. 
+  Umang Chouhan I&#8217;ve learned a lot from you also.
+  <span style="color:LightGray;">(even if I do have to filter out some of what you say. <span class="caps">LOL</span>)</span></li>
+</ul></div></div>
+    
+    <div id="footer">
+  Generated on Sun Dec  5 02:29:11 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

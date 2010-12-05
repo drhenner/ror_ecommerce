@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Payment</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo; 
+    
+    
+    <span class="title">Payment</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Payment
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Payment</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/payment.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#authorize-class_method" title="authorize (class method)">+ (Object) <strong>authorize</strong>(amount, credit_card, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#capture-class_method" title="capture (class method)">+ (Object) <strong>capture</strong>(amount, authorization, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#charge-class_method" title="charge (class method)">+ (Object) <strong>charge</strong>(amount, profile_key, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#store-class_method" title="store (class method)">+ (Object) <strong>store</strong>(credit_card, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unstore-class_method" title="unstore (class method)">+ (Object) <strong>unstore</strong>(profile_key, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate_card-class_method" title="validate_card (class method)">+ (Object) <strong>validate_card</strong>(credit_card, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+validate card via transaction.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="authorize-class_method">
+  
+    + (<tt>Object</tt>) <strong>authorize</strong>(amount, credit_card, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id authorize'>authorize</span><span class='lparen'>(</span><span class='id amount'>amount</span><span class='comma'>,</span> <span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id process'>process</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>authorization</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id amount'>amount</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id gw'>gw</span><span class='op'>|</span>
+    <span class='id gw'>gw</span><span class='period'>.</span><span class='id authorize'>authorize</span><span class='lparen'>(</span><span class='id amount'>amount</span><span class='comma'>,</span> <span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="capture-class_method">
+  
+    + (<tt>Object</tt>) <strong>capture</strong>(amount, authorization, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id capture'>capture</span><span class='lparen'>(</span><span class='id amount'>amount</span><span class='comma'>,</span> <span class='id authorization'>authorization</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id process'>process</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>capture</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id amount'>amount</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id gw'>gw</span><span class='op'>|</span>
+    <span class='id gw'>gw</span><span class='period'>.</span><span class='id capture'>capture</span><span class='lparen'>(</span><span class='id amount'>amount</span><span class='comma'>,</span> <span class='id authorization'>authorization</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="charge-class_method">
+  
+    + (<tt>Object</tt>) <strong>charge</strong>(amount, profile_key, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id charge'>charge</span><span class='lparen'>(</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='id profile_key'>profile_key</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:order_id</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id unique_order_number'>unique_order_number</span>
+  <span class='kw'>if</span> <span class='const'>GATEWAY</span><span class='period'>.</span><span class='id respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:purchase</span><span class='rparen'>)</span>
+    <span class='id process'>process</span><span class='lparen'>(</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>charge</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id amount'>amount</span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id gw'>gw</span><span class='op'>|</span>
+      <span class='id gw'>gw</span><span class='period'>.</span><span class='id purchase'>purchase</span><span class='lparen'>(</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='id profile_key'>profile_key</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='rparen'>)</span>
+    <span class='kw'>end</span>        
+  <span class='kw'>else</span>
+    <span class='comment'># do it in 2 transactions
+</span>    <span class='id process'>process</span><span class='lparen'>(</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>charge</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id amount'>amount</span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id gw'>gw</span><span class='op'>|</span>
+      <span class='id result'>result</span> <span class='op'>=</span> <span class='id gw'>gw</span><span class='period'>.</span><span class='id authorize'>authorize</span><span class='lparen'>(</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='id profile_key'>profile_key</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id result'>result</span><span class='period'>.</span><span class='id success?'>success?</span>
+        <span class='id gw'>gw</span><span class='period'>.</span><span class='id capture'>capture</span><span class='lparen'>(</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='id result'>result</span><span class='period'>.</span><span class='id reference'>reference</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='id result'>result</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="store-class_method">
+  
+    + (<tt>Object</tt>) <strong>store</strong>(credit_card, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id store'>store</span><span class='lparen'>(</span> <span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:order_id</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id unique_order_number'>unique_order_number</span>
+  <span class='id process'>process</span><span class='lparen'>(</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>store</span><span class='tstring_end'>'</span></span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id gw'>gw</span><span class='op'>|</span>
+    <span class='id gw'>gw</span><span class='period'>.</span><span class='id store'>store</span><span class='lparen'>(</span> <span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="unstore-class_method">
+  
+    + (<tt>Object</tt>) <strong>unstore</strong>(profile_key, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id unstore'>unstore</span><span class='lparen'>(</span> <span class='id profile_key'>profile_key</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:order_id</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id unique_order_number'>unique_order_number</span>
+  <span class='id process'>process</span><span class='lparen'>(</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>unstore</span><span class='tstring_end'>'</span></span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id gw'>gw</span><span class='op'>|</span>
+    <span class='id gw'>gw</span><span class='period'>.</span><span class='id unstore'>unstore</span><span class='lparen'>(</span> <span class='id profile_key'>profile_key</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validate_card-class_method">
+  
+    + (<tt>Object</tt>) <strong>validate_card</strong>(credit_card, options = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+validate card via transaction
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id validate_card'>validate_card</span><span class='lparen'>(</span> <span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:order_id</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id unique_order_number'>unique_order_number</span>
+  <span class='comment'># authorize $1
+</span>  <span class='id amount'>amount</span> <span class='op'>=</span> <span class='int'>100</span>
+  <span class='id result'>result</span> <span class='op'>=</span> <span class='id process'>process</span><span class='lparen'>(</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>validate</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id amount'>amount</span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id gw'>gw</span><span class='op'>|</span>
+    <span class='id gw'>gw</span><span class='period'>.</span><span class='id authorize'>authorize</span><span class='lparen'>(</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id result'>result</span><span class='period'>.</span><span class='id success?'>success?</span>
+    <span class='comment'># void it
+</span>    <span class='id result'>result</span> <span class='op'>=</span> <span class='id process'>process</span><span class='lparen'>(</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>validate</span><span class='tstring_end'>'</span></span> <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id gw'>gw</span><span class='op'>|</span>
+      <span class='id gw'>gw</span><span class='period'>.</span><span class='id void'>void</span><span class='lparen'>(</span> <span class='id result'>result</span><span class='period'>.</span><span class='id reference'>reference</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Dec  5 02:29:11 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

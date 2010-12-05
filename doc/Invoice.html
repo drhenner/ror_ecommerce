@@ -1,0 +1,1313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Invoice</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (I)</a> &raquo; 
+    
+    
+    <span class="title">Invoice</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Invoice
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Invoice</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/invoice.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="PURCHASE-constant" class="">PURCHASE =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+validates :order_id,      :presence => true
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Purchase</span><span class='tstring_end'>'</span></span></pre></dd>
+      
+        <dt id="RMA-constant" class="">RMA =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>RMA</span><span class='tstring_end'>'</span></span></pre></dd>
+      
+        <dt id="INVOICE_TYPES-constant" class="">INVOICE_TYPES =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='const'>PURCHASE</span><span class='comma'>,</span> <span class='const'>RMA</span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="NUMBER_SEED-constant" class="">NUMBER_SEED =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>3002001004005</span></pre></dd>
+      
+        <dt id="CHARACTERS_SEED-constant" class="">CHARACTERS_SEED =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>20</span></pre></dd>
+      
+    </dl>
+  
+
+
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_by_number-class_method" title="find_by_number (class method)">+ (Object) <strong>find_by_number</strong>(num) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate-class_method" title="generate (class method)">+ (Object) <strong>generate</strong>(order_id, charge_amount) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#id_from_number-class_method" title="id_from_number (class method)">+ (Object) <strong>id_from_number</strong>(num) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#process_rma-class_method" title="process_rma (class method)">+ (Object) <strong>process_rma</strong>(return_amount, order) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#authorization_reference-instance_method" title="#authorization_reference (instance method)">- (Object) <strong>authorization_reference</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#authorize_complete_order-instance_method" title="#authorize_complete_order (instance method)">- (Object) <strong>authorize_complete_order</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+(amount).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#authorize_payment-instance_method" title="#authorize_payment (instance method)">- (Object) <strong>authorize_payment</strong>(credit_card, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cancel_authorized_payment-instance_method" title="#cancel_authorized_payment (instance method)">- (Object) <strong>cancel_authorized_payment</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#capture_complete_order-instance_method" title="#capture_complete_order (instance method)">- (Object) <strong>capture_complete_order</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#capture_payment-instance_method" title="#capture_payment (instance method)">- (Object) <strong>capture_payment</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#complete_rma_return-instance_method" title="#complete_rma_return (instance method)">- (Object) <strong>complete_rma_return</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#integer_amount-instance_method" title="#integer_amount (instance method)">- (Object) <strong>integer_amount</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#invoice_date-instance_method" title="#invoice_date (instance method)">- (Object) <strong>invoice_date</strong>(format = :us_date) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#number-instance_method" title="#number (instance method)">- (Object) <strong>number</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#order_billing_address_lines-instance_method" title="#order_billing_address_lines (instance method)">- (Object) <strong>order_billing_address_lines</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#order_ship_address_lines-instance_method" title="#order_ship_address_lines (instance method)">- (Object) <strong>order_ship_address_lines</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#succeeded%3F-instance_method" title="#succeeded? (instance method)">- (Boolean) <strong>succeeded?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#user-instance_method" title="#user (instance method)">- (Object) <strong>user</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#user_id-instance_method" title="#user_id (instance method)">- (Object) <strong>user_id</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="find_by_number-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_by_number</strong>(num) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_by_number'>find_by_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
+  <span class='id find'>find</span><span class='lparen'>(</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='comment'>##  now we can search by id which should be much faster
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="generate-class_method">
+  
+    + (<tt>Object</tt>) <strong>generate</strong>(order_id, charge_amount) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='const'>Invoice</span><span class='period'>.</span><span class='id generate'>generate</span><span class='lparen'>(</span><span class='id order_id'>order_id</span><span class='comma'>,</span> <span class='id charge_amount'>charge_amount</span><span class='rparen'>)</span>
+  <span class='const'>Invoice</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:order_id</span> <span class='op'>=&gt;</span> <span class='id order_id'>order_id</span><span class='comma'>,</span> <span class='symbol'>:amount</span> <span class='op'>=&gt;</span> <span class='id charge_amount'>charge_amount</span><span class='comma'>,</span> <span class='symbol'>:invoice_type</span> <span class='op'>=&gt;</span> <span class='const'>PURCHASE</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="id_from_number-class_method">
+  
+    + (<tt>Object</tt>) <strong>id_from_number</strong>(num) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
+  <span class='id num'>num</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='const'>NUMBER_SEED</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="process_rma-class_method">
+  
+    + (<tt>Object</tt>) <strong>process_rma</strong>(return_amount, order) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152
+153
+154
+155
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id process_rma'>process_rma</span><span class='lparen'>(</span><span class='id return_amount'>return_amount</span><span class='comma'>,</span> <span class='id order'>order</span><span class='rparen'>)</span>
+  <span class='id transaction'>transaction</span> <span class='kw'>do</span>
+    <span class='id this_invoice'>this_invoice</span> <span class='op'>=</span> <span class='const'>Invoice</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:order</span> <span class='op'>=&gt;</span> <span class='id order'>order</span><span class='comma'>,</span> <span class='symbol'>:amount</span> <span class='op'>=&gt;</span> <span class='id return_amount'>return_amount</span><span class='comma'>,</span> <span class='symbol'>:invoice_type</span> <span class='op'>=&gt;</span> <span class='const'>RMA</span><span class='rparen'>)</span>
+    <span class='id this_invoice'>this_invoice</span><span class='period'>.</span><span class='id save'>save</span>
+    <span class='id this_invoice'>this_invoice</span><span class='period'>.</span><span class='id complete_rma_return'>complete_rma_return</span>
+    <span class='id this_invoice'>this_invoice</span><span class='period'>.</span><span class='id payment_rma!'>payment_rma!</span>
+    <span class='id this_invoice'>this_invoice</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="authorization_reference-instance_method">
+  
+    - (<tt>Object</tt>) <strong>authorization_reference</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+173
+174
+175
+176
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 173</span>
+
+<span class='kw'>def</span> <span class='id authorization_reference'>authorization_reference</span>
+  <span class='kw'>if</span> <span class='id authorization'>authorization</span> <span class='op'>=</span> <span class='id payments'>payments</span><span class='period'>.</span><span class='id find_by_action_and_success'>find_by_action_and_success</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>authorization</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='symbol'>:order</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>id ASC</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id authorization'>authorization</span><span class='period'>.</span><span class='id confirmation_id'>confirmation_id</span> <span class='comment'>#reference
+</span>  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="authorize_complete_order-instance_method">
+  
+    - (<tt>Object</tt>) <strong>authorize_complete_order</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+(amount)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='id authorize_complete_order'>authorize_complete_order</span><span class='comment'>#(amount)
+</span>  <span class='id x'>x</span> <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id complete!'>complete!</span>
+  <span class='id now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
+  <span class='kw'>if</span> <span class='id batches'>batches</span><span class='period'>.</span><span class='id empty?'>empty?</span>
+    <span class='id batch'>batch</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id batches'>batches</span><span class='period'>.</span><span class='id create'>create</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id transaction'>transaction</span> <span class='op'>=</span> <span class='const'>CreditCardPayment</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='comment'>##  This is a type of transaction
+</span>    <span class='id credit'>credit</span> <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>REVENUE_ID</span><span class='comma'>,</span> <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id debit'>debit</span>  <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>ACCOUNTS_RECEIVABLE_ID</span><span class='comma'>,</span> <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id credit'>credit</span><span class='rparen'>)</span>
+    <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id debit'>debit</span><span class='rparen'>)</span>
+    <span class='id batch'>batch</span><span class='period'>.</span><span class='id transactions'>transactions</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id transaction'>transaction</span><span class='rparen'>)</span>
+    <span class='id batch'>batch</span><span class='period'>.</span><span class='id save'>save</span>
+    <span class='comment'>#puts batch.errors
+</span>  <span class='kw'>else</span>
+    <span class='id raise'>raise</span> <span class='id error'>error</span> <span class='comment'>###  something messed up I think
+</span>  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="authorize_payment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>authorize_payment</strong>(credit_card, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 188</span>
+
+<span class='kw'>def</span> <span class='id authorize_payment'>authorize_payment</span><span class='lparen'>(</span><span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id options'>options</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id unique_order_number'>unique_order_number</span>
+  <span class='id transaction'>transaction</span> <span class='kw'>do</span>
+    <span class='id authorization'>authorization</span> <span class='op'>=</span> <span class='const'>Payment</span><span class='period'>.</span><span class='id authorize'>authorize</span><span class='lparen'>(</span><span class='id integer_amount'>integer_amount</span><span class='comma'>,</span> <span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+    <span class='id payments'>payments</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id authorization'>authorization</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id authorization'>authorization</span><span class='period'>.</span><span class='id success?'>success?</span>
+      <span class='id payment_authorized!'>payment_authorized!</span>
+      <span class='id authorize_complete_order'>authorize_complete_order</span>
+    <span class='kw'>else</span>
+      <span class='id transaction_declined!'>transaction_declined!</span>
+    <span class='kw'>end</span>
+    <span class='id authorization'>authorization</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="cancel_authorized_payment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>cancel_authorized_payment</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id cancel_authorized_payment'>cancel_authorized_payment</span>
+  <span class='id batch'>batch</span>       <span class='op'>=</span> <span class='id batches'>batches</span><span class='period'>.</span><span class='id first'>first</span>
+  <span class='id now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
+  <span class='kw'>if</span> <span class='id batch'>batch</span><span class='comment'># if not we never authorized the payment
+</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id cancel!'>cancel!</span>
+    <span class='id transaction'>transaction</span> <span class='op'>=</span> <span class='const'>CreditCardCancel</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='comment'>##  This is a type of transaction
+</span>    <span class='id debit'>debit</span>   <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>REVENUE_ID</span><span class='comma'>,</span> <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id credit'>credit</span>  <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>ACCOUNTS_RECEIVABLE_ID</span><span class='comma'>,</span> <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id credit'>credit</span><span class='rparen'>)</span>
+    <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id debit'>debit</span><span class='rparen'>)</span>
+    <span class='id batch'>batch</span><span class='period'>.</span><span class='id transactions'>transactions</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id transaction'>transaction</span><span class='rparen'>)</span>
+    <span class='id batch'>batch</span><span class='period'>.</span><span class='id save'>save</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="capture_complete_order-instance_method">
+  
+    - (<tt>Object</tt>) <strong>capture_complete_order</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='id capture_complete_order'>capture_complete_order</span>
+  <span class='id now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
+  <span class='kw'>if</span> <span class='id batches'>batches</span><span class='period'>.</span><span class='id empty?'>empty?</span>
+    <span class='comment'># this means we never authorized just captured payment
+</span>      <span class='id batch'>batch</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id batches'>batches</span><span class='period'>.</span><span class='id create'>create</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='id transaction'>transaction</span> <span class='op'>=</span> <span class='const'>CreditCardCapture</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='comment'>##  This is a type of transaction
+</span>      <span class='id credit'>credit</span> <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>REVENUE_ID</span><span class='comma'>,</span> <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>     <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id debit'>debit</span>   <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>CASH_ID</span><span class='comma'>,</span>   <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>      <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id credit'>credit</span><span class='rparen'>)</span>
+      <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id debit'>debit</span><span class='rparen'>)</span>
+      <span class='id batch'>batch</span><span class='period'>.</span><span class='id transactions'>transactions</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id transaction'>transaction</span><span class='rparen'>)</span>
+      <span class='id batch'>batch</span><span class='period'>.</span><span class='id save'>save</span>
+  <span class='kw'>else</span>
+    <span class='id batch'>batch</span>       <span class='op'>=</span> <span class='id batches'>batches</span><span class='period'>.</span><span class='id first'>first</span>
+    <span class='id transaction'>transaction</span> <span class='op'>=</span> <span class='const'>CreditCardReceivePayment</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    
+    <span class='id debit'>debit</span>   <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>CASH_ID</span><span class='comma'>,</span>                <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>       <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id credit'>credit</span>  <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>ACCOUNTS_RECEIVABLE_ID</span><span class='comma'>,</span> <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>      <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span>  <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    
+    <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id credit'>credit</span><span class='rparen'>)</span>
+    <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id debit'>debit</span><span class='rparen'>)</span>
+    
+    <span class='id batch'>batch</span><span class='period'>.</span><span class='id transactions'>transactions</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id transaction'>transaction</span><span class='rparen'>)</span>
+    <span class='id batch'>batch</span><span class='period'>.</span><span class='id save'>save</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="capture_payment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>capture_payment</strong>(options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 203</span>
+
+<span class='kw'>def</span> <span class='id capture_payment'>capture_payment</span><span class='lparen'>(</span><span class='id options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id transaction'>transaction</span> <span class='kw'>do</span>
+    <span class='id capture'>capture</span> <span class='op'>=</span> <span class='const'>Payment</span><span class='period'>.</span><span class='id capture'>capture</span><span class='lparen'>(</span><span class='id integer_amount'>integer_amount</span><span class='comma'>,</span> <span class='id authorization_reference'>authorization_reference</span><span class='comma'>,</span> <span class='id options'>options</span><span class='rparen'>)</span>
+    <span class='id payments'>payments</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id capture'>capture</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id capture'>capture</span><span class='period'>.</span><span class='id success?'>success?</span>
+      <span class='id payment_captured!'>payment_captured!</span>
+      <span class='id capture_complete_order'>capture_complete_order</span>
+    <span class='kw'>else</span>
+      <span class='id transaction_declined!'>transaction_declined!</span>
+    <span class='kw'>end</span>
+    <span class='id capture'>capture</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="complete_rma_return-instance_method">
+  
+    - (<tt>Object</tt>) <strong>complete_rma_return</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id complete_rma_return'>complete_rma_return</span>
+  <span class='id batch'>batch</span>       <span class='op'>=</span> <span class='id batches'>batches</span><span class='period'>.</span><span class='id first'>first</span> <span class='op'>||</span> <span class='kw'>self</span><span class='period'>.</span><span class='id batches'>batches</span><span class='period'>.</span><span class='id create'>create</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
+  <span class='id transaction'>transaction</span> <span class='op'>=</span> <span class='const'>ReturnMerchandiseComplete</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='comment'>##  This is a type of transaction
+</span>  <span class='id debit'>debit</span>   <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>REVENUE_ID</span><span class='comma'>,</span> <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id credit'>credit</span>  <span class='op'>=</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:transaction_account_id</span> <span class='op'>=&gt;</span> <span class='const'>TransactionAccount</span><span class='op'>::</span><span class='const'>CASH_ID</span><span class='comma'>,</span> <span class='symbol'>:debit</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:credit</span> <span class='op'>=&gt;</span> <span class='id amount'>amount</span><span class='comma'>,</span> <span class='symbol'>:period</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id month'>month</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='id now'>now</span><span class='period'>.</span><span class='id year'>year</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id credit'>credit</span><span class='rparen'>)</span>
+  <span class='id transaction'>transaction</span><span class='period'>.</span><span class='id transaction_ledgers'>transaction_ledgers</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id debit'>debit</span><span class='rparen'>)</span>
+  <span class='id batch'>batch</span><span class='period'>.</span><span class='id transactions'>transactions</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id transaction'>transaction</span><span class='rparen'>)</span>
+  <span class='id batch'>batch</span><span class='period'>.</span><span class='id save'>save</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="integer_amount-instance_method">
+  
+    - (<tt>Object</tt>) <strong>integer_amount</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+183
+184
+185
+186</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 183</span>
+
+<span class='kw'>def</span> <span class='id integer_amount'>integer_amount</span>
+  <span class='id times_x_amount'>times_x_amount</span> <span class='op'>=</span> <span class='id amount'>amount</span><span class='period'>.</span><span class='id integer?'>integer?</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>100</span>
+  <span class='lparen'>(</span><span class='id amount'>amount</span> <span class='op'>*</span> <span class='id times_x_amount'>times_x_amount</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_i'>to_i</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="invoice_date-instance_method">
+  
+    - (<tt>Object</tt>) <strong>invoice_date</strong>(format = :us_date) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id invoice_date'>invoice_date</span><span class='lparen'>(</span><span class='id format'>format</span> <span class='op'>=</span> <span class='symbol'>:us_date</span><span class='rparen'>)</span>
+  <span class='const'>I18n</span><span class='period'>.</span><span class='id localize'>localize</span><span class='lparen'>(</span><span class='id created_at'>created_at</span><span class='comma'>,</span> <span class='symbol'>:format</span> <span class='op'>=&gt;</span> <span class='id format'>format</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="number-instance_method">
+  
+    - (<tt>Object</tt>) <strong>number</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 74</span>
+
+<span class='kw'>def</span> <span class='id number'>number</span>
+  <span class='lparen'>(</span><span class='const'>NUMBER_SEED</span> <span class='op'>+</span> <span class='id id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="order_billing_address_lines-instance_method">
+  
+    - (<tt>Object</tt>) <strong>order_billing_address_lines</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id order_billing_address_lines'>order_billing_address_lines</span>
+  <span class='id order'>order</span><span class='period'>.</span><span class='id bill_address'>bill_address</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:full_address_array</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="order_ship_address_lines-instance_method">
+  
+    - (<tt>Object</tt>) <strong>order_ship_address_lines</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id order_ship_address_lines'>order_ship_address_lines</span>
+  <span class='id order'>order</span><span class='period'>.</span><span class='id ship_address'>ship_address</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:full_address_array</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="succeeded?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>succeeded?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179
+180
+181</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 179</span>
+
+<span class='kw'>def</span> <span class='id succeeded?'>succeeded?</span>
+  <span class='id authorized?'>authorized?</span> <span class='op'>||</span> <span class='id paid?'>paid?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="user-instance_method">
+  
+    - (<tt>Object</tt>) <strong>user</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+221
+222
+223</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 221</span>
+
+<span class='kw'>def</span> <span class='id user'>user</span>
+  <span class='id order'>order</span><span class='period'>.</span><span class='id user'>user</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="user_id-instance_method">
+  
+    - (<tt>Object</tt>) <strong>user_id</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+217
+218
+219</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 217</span>
+
+<span class='kw'>def</span> <span class='id user_id'>user_id</span>
+  <span class='id order'>order</span><span class='period'>.</span><span class='id user_id'>user_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Dec  5 02:29:12 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

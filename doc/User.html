@@ -1,0 +1,1132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: User</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (U)</a> &raquo; 
+    
+    
+    <span class="title">User</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: User
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">User</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">ActiveMerchant::Utils</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/models/user.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Object) <strong>admin_grid</strong>(params = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#active%3F-instance_method" title="#active? (instance method)">- (Boolean) <strong>active?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#admin%3F-instance_method" title="#admin? (instance method)">- (Boolean) <strong>admin?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#billing_address-instance_method" title="#billing_address (instance method)">- (Object) <strong>billing_address</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#current_cart-instance_method" title="#current_cart (instance method)">- (Object) <strong>current_cart</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deliver_activation_instructions%21-instance_method" title="#deliver_activation_instructions! (instance method)">- (Object) <strong>deliver_activation_instructions!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_active-instance_method" title="#display_active (instance method)">- (Object) <strong>display_active</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#email_address_with_name-instance_method" title="#email_address_with_name (instance method)">- (Object) <strong>email_address_with_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_cim_profile-instance_method" title="#get_cim_profile (instance method)">- (Object) <strong>get_cim_profile</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#merchant_description-instance_method" title="#merchant_description (instance method)">- (Object) <strong>merchant_description</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#might_be_interested_in_these_products-instance_method" title="#might_be_interested_in_these_products (instance method)">- (Object) <strong>might_be_interested_in_these_products</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+This method will one day grow into the products a user most likely likes.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#registered_user%3F-instance_method" title="#registered_user? (instance method)">- (Boolean) <strong>registered_user?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#role%3F-instance_method" title="#role? (instance method)">- (Boolean) <strong>role?</strong>(role_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sanitize_data-instance_method" title="#sanitize_data (instance method)">- (Object) <strong>sanitize_data</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shipping_address-instance_method" title="#shipping_address (instance method)">- (Object) <strong>shipping_address</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#super_admin%3F-instance_method" title="#super_admin? (instance method)">- (Boolean) <strong>super_admin?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="admin_grid-class_method">
+  
+    + (<tt>Object</tt>) <strong>admin_grid</strong>(params = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 197</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  
+  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
+  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
+
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>User</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:roles</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>users.first_name LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:first_name</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:first_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>users.last_name LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:last_name</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:last_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>users.email LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>      <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="active?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>active?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123
+124
+125</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 123</span>
+
+<span class='kw'>def</span> <span class='id active?'>active?</span>
+  <span class='op'>!</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>canceled</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>inactive</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id s'>s</span><span class='op'>|</span> <span class='kw'>self</span><span class='period'>.</span><span class='id state'>state</span> <span class='op'>==</span> <span class='id s'>s</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="admin?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>admin?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id admin?'>admin?</span>
+  <span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:administrator</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:super_administrator</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="billing_address-instance_method">
+  
+    - (<tt>Object</tt>) <strong>billing_address</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id billing_address'>billing_address</span>
+  <span class='id default_billing_address'>default_billing_address</span> <span class='op'>?</span> <span class='id default_billing_address'>default_billing_address</span> <span class='op'>:</span> <span class='id shipping_address'>shipping_address</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="current_cart-instance_method">
+  
+    - (<tt>Object</tt>) <strong>current_cart</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+143
+144
+145</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 143</span>
+
+<span class='kw'>def</span> <span class='id current_cart'>current_cart</span>
+  <span class='id carts'>carts</span><span class='period'>.</span><span class='id last'>last</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="deliver_activation_instructions!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>deliver_activation_instructions!</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179
+180
+181</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 179</span>
+
+<span class='kw'>def</span> <span class='id deliver_activation_instructions!'>deliver_activation_instructions!</span>
+  <span class='const'>Notifier</span><span class='period'>.</span><span class='id signup_notification'>signup_notification</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id deliver'>deliver</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="display_active-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_active</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 127</span>
+
+<span class='kw'>def</span> <span class='id display_active'>display_active</span>
+  <span class='id active?'>active?</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="email_address_with_name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>email_address_with_name</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 183</span>
+
+<span class='kw'>def</span> <span class='id email_address_with_name'>email_address_with_name</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot; &lt;</span><span class='embexpr_beg'>#{</span><span class='id email'>email</span><span class='rbrace'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_cim_profile-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_cim_profile</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189
+190
+191</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 187</span>
+
+<span class='kw'>def</span> <span class='id get_cim_profile'>get_cim_profile</span>
+  <span class='kw'>return</span> <span class='id customer_cim_id'>customer_cim_id</span> <span class='kw'>if</span> <span class='id customer_cim_id'>customer_cim_id</span>
+  <span class='id create_cim_profile'>create_cim_profile</span>
+  <span class='id customer_cim_id'>customer_cim_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="merchant_description-instance_method">
+  
+    - (<tt>Object</tt>) <strong>merchant_description</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193
+194
+195</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 193</span>
+
+<span class='kw'>def</span> <span class='id merchant_description'>merchant_description</span>
+  <span class='lbracket'>[</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id default_shipping_address'>default_shipping_address</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:address_lines</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id compact'>compact</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="might_be_interested_in_these_products-instance_method">
+  
+    - (<tt>Object</tt>) <strong>might_be_interested_in_these_products</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+This method will one day grow into the products a user most likely likes.  
+</p>
+<pre class="code">
+  Storing a list of product ids vs cron each night might be the most efficent mode for this method to work.</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+148
+149
+150</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 148</span>
+
+<span class='kw'>def</span> <span class='id might_be_interested_in_these_products'>might_be_interested_in_these_products</span>
+  <span class='const'>Product</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='int'>4</span><span class='rparen'>)</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:all</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id name'>name</span> 
+  <span class='lparen'>(</span><span class='id first_name?'>first_name?</span> <span class='op'>&amp;&amp;</span> <span class='id last_name?'>last_name?</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id capitalize'>capitalize</span><span class='comma'>,</span> <span class='id last_name'>last_name</span><span class='period'>.</span><span class='id capitalize'>capitalize</span> <span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id email'>email</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="registered_user?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>registered_user?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id registered_user?'>registered_user?</span>
+  <span class='id registered?'>registered?</span> <span class='op'>||</span> <span class='id registered_with_credit?'>registered_with_credit?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="role?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>role?</strong>(role_name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+131
+132
+133</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 131</span>
+
+<span class='kw'>def</span> <span class='id role?'>role?</span><span class='lparen'>(</span><span class='id role_name'>role_name</span><span class='rparen'>)</span>
+  <span class='id roles'>roles</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id r'>r</span><span class='op'>|</span> <span class='id r'>r</span><span class='period'>.</span><span class='id name'>name</span> <span class='op'>==</span> <span class='id role_name'>role_name</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="sanitize_data-instance_method">
+  
+    - (<tt>Object</tt>) <strong>sanitize_data</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id sanitize_data'>sanitize_data</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span>      <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id downcase'>downcase</span>       <span class='kw'>unless</span> <span class='id email'>email</span><span class='period'>.</span><span class='id blank?'>blank?</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id capitalize'>capitalize</span>  <span class='kw'>unless</span> <span class='id first_name'>first_name</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id last_name'>last_name</span>  <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id last_name'>last_name</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id capitalize'>capitalize</span>   <span class='kw'>unless</span> <span class='id last_name'>last_name</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+  
+  <span class='comment'>## CHANGE THIS IF YOU HAVE DIFFERENT ACCOUNT TYPES
+</span>  <span class='kw'>unless</span> <span class='id account_id'>account_id</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id account'>account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id first'>first</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="shipping_address-instance_method">
+  
+    - (<tt>Object</tt>) <strong>shipping_address</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 156</span>
+
+<span class='kw'>def</span> <span class='id shipping_address'>shipping_address</span>
+  <span class='id default_shipping_address'>default_shipping_address</span> <span class='op'>?</span> <span class='id default_shipping_address'>default_shipping_address</span> <span class='op'>:</span> <span class='id shipping_addresses'>shipping_addresses</span><span class='period'>.</span><span class='id first'>first</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="super_admin?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>super_admin?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id super_admin?'>super_admin?</span>
+  <span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:super_administrator</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Dec  5 02:29:11 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
