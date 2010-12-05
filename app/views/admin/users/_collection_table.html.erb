@@ -15,7 +15,6 @@
       <td><%= r.email %></td>
       <td><%= r.state %></td>
       <td class="last">
-        <%= link_to t("web-app-theme.show", :default => "Show"), admin_user_path(r) %> |
         <%= link_to t("web-app-theme.edit", :default => "Edit"), edit_admin_user_path(r) %> |
         <%= link_to t("web-app-theme.delete", :default => "Delete"), admin_user_path(r), :method => :delete, :confirm => t("web-app-theme.confirm", :default => "Are you sure?") %>
       </td>
