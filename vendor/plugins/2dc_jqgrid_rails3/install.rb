@@ -1,1 +1,0 @@
-`rake jqgrid:install`
