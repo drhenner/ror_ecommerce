@@ -1,43 +1,15 @@
-<% content_for :head do -%>
-  <%= javascript_include_tag "admin/index_grid" %>
-<% end %>
+<div class="block">
+  <%= render "index_navigation" %>
 
-<% content_for :bottom do -%>
-
-<%= jqgrid_stylesheets %>
-<%= jqgrid_javascripts %>
-  <script>
-    Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/users'));
-  </script>
-
-<% end %>
-
-<h2> Users </h2>
-
-<div id="admin_users_page_wrapper">
-  <div id="admin_users_grid_wrapper" class='column'>
-    <%= raw jqgrid("Users", "admin_users_grid", admin_users_path,
-      [
-        { :field => "first_name", :label => "First name", :width => 80,  :resizable => false },
-        { :field => "last_name",  :label => "Last",       :width => 80,  :resizable => false },
-        { :field => "email",      :label => "Email",      :width => 195,  :resizable => false },
-        { :field => "state",      :label => "State",      :width => 70,   :resizable => false }
-      ], 
-      {
-        :height             => "390",
-        :alt_rows           => true,
-        :direct_selection   => true,
-        :editable           => true,
-        :selection_handler  => "Hadean.AdminIndexForm.editSelection",
-        :rownumbers         => false,
-        :rows_per_page      => 20,
-        :row_list           => [20, 50, 100]
-      }
-    ) %>
-  </div>
-
-  <div id="admin_new_user_button" class="admin_new_button last">
-    <%= link_to "New User", new_admin_user_path, :class => "button", :id => "new_user_button" %>
+  <div class="content">
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Users</h2>
+    <div class="inner">
+      <% if @users.any? %>
+        <%= render "collection_table" %>
+      <% end %>
+      <div class="actions-bar wat-cf">
+        <div class="actions"></div>
+      </div>
+    </div>
   </div>
 </div>
-

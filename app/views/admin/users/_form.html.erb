@@ -1,35 +1,61 @@
-<div id='registration_name_form'>
-   <%= form.inputs  do %>
-       <%= form.input :first_name, :required => true %>
-       <div class='clearfix'></div>
-       <%= form.input :last_name, :required => true %>
-       <div class='clearfix'></div>
-       <%= form.input :email, :required => true,:wrapper_html => { :class => "span-11 column" }%>
-       <div class='clearfix'></div>
-       <%= form.input :birth_date, 
-                       :required => false, :as => :yearpicker,
-                       :wrapper_html => { :class => "span-11 column" }%>
-   <% end %>
-</div>
-<div id='registration_form'>
-   <%= form.inputs  do %>
-       <%= form.input :password, :required => true,:wrapper_html => { :class => "span-11" } %>
-       <div class='clearfix'></div>
-       <%= form.input :password_confirmation, :required => true,:wrapper_html => { :class => "span-11" } %>
-   <% end %>
-</div>
+<%= form_for @user,
+             :url => @user.new_record? ? admin_users_path : admin_user_path(@user),
+             :html => { :class => :form } do |f| -%>
+<div class="columns wat-cf">
+  <div class="column left">
+    <div class="group">
+      <%= f.label :first_name, :class => :label %>
+      <%= f.error_message_on(:first_name) %>
+      <%= f.text_field :first_name, :class => :text_field %>
+    </div>
 
-<fieldset id="admin-product-properties" class='span-12'>
-  <legend>Roles</legend>
-  <% @all_roles.each do |role| %>
-    <%#= form.semantic_fields_for "user[role_ids][]" do |roles_form|%>
-    
-      <div class="property_form left span-9 last">
-        <% checked = @user.id && @user.roles.include?(role)%>
-        <%= check_box_tag "user[role_ids][]", role.id, checked %>
-        <%= role.name %>
+    <div class="group">
+      <%= f.label :last_name, :class => :label %>
+      <%= f.error_message_on(:last_name) %>
+      <%= f.text_field :last_name, :class => :text_field %>
+    </div>
+
+    <div class="group">
+      <%= f.label :email, :class => :label %>
+      <%= f.error_message_on(:email) %>
+      <%= f.text_field :email, :class => :text_field %>
+    </div>
+
+    <div class="group">
+      <%= f.label :birth_date, :class => :label %>
+      <%= f.error_message_on(:birth_date) %>
+      <%= f.date_select :birth_date %>
+    </div>
+  </div>
+
+  <div class="column right">
+    <div class="group">
+      <%= f.label :password, :class => :label %>
+      <%= f.error_message_on(:password) %>
+      <%= f.password_field :password, :class => :text_field %>
+    </div>
+
+    <div class="group">
+      <%= f.label :password_confirmation, :class => :label %>
+      <%= f.error_message_on(:password_confirmation) %>
+      <%= f.password_field :password_confirmation, :class => :text_field %>
+    </div>
+
+    <div class="group">
+      <%= f.label :roles, :class => :label %>
+      <%= f.error_message_on(:roles) %>
+      <% @all_roles.each do |role| %>
+      <div>
+        <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+        <%= f.label role.name, :class => :checkbox %>
       </div>
-    <%# end %>  
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 
-</fieldset>
+  <div class="group navform wat-cf">
+    <%= commit_button %>
+    <%= cancel_button(admin_users_path) %>
+  </div>
+</div>
+<% end -%>

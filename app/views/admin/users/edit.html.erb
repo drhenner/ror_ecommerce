@@ -1,10 +1,10 @@
-<h1>Edit <%= @user.name %> </h1>
+<div class="block">
+  <%= render "edit_navigation" %>
 
-<%= semantic_form_for @user, :as => :user, :url => admin_user_path(@user)  do |form| %>
-    <%= form.inputs do %>
-       <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
-    <% end %>
-    <%= form.buttons do %>
-      <%= form.commit_button "Update" %>
-    <% end %>
-<% end %>
+  <div class="content">
+    <h2 class="title"><%= t("web-app-theme.edit", :default => "Edit")%> User</h2>
+    <div class="inner">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>
