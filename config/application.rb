@@ -31,15 +31,15 @@ module Hadean
     config.time_zone = 'Eastern Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :en
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
-    
+
     # Configure generators values
     config.generators do |g|
       g.test_framework  :rspec, :fixture => true
@@ -49,11 +49,11 @@ module Hadean
     #config.session_store = ::Ripple::SessionStore
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password, 
-                                  :password_confirmation, 
-                                  :number, 
-                                  :cc_number, 
-                                  :card_number, 
+    config.filter_parameters += [:password,
+                                  :password_confirmation,
+                                  :number,
+                                  :cc_number,
+                                  :card_number,
                                   :verification_value]
   end
 end
