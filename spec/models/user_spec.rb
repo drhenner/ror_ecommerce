@@ -5,13 +5,13 @@ describe User do
     before(:each) do
       @user = Factory.build(:user)
     end
-    
+
     it "should be valid with minimum attributes" do
       @user.should be_valid
     end
-    
+
   end
-  
+
 end
 
 
@@ -46,12 +46,12 @@ describe User, "instance methods" do
       user = Factory(:admin_user)
       user.admin?.should be_true
     end
-  
+
     it 'ahould be an admin' do
       user = Factory(:super_admin_user)
       user.admin?.should be_true
     end
-    
+
     it 'ahould not be an admin' do
       user = Factory(:user)
       user.admin?.should be_false
@@ -63,7 +63,7 @@ describe User, "instance methods" do
   before(:each) do
     @user = Factory(:user)
   end
-  
+
   context ".active?" do
     it 'should not be active' do
       @user.state = 'canceled'
@@ -71,7 +71,7 @@ describe User, "instance methods" do
       @user.state = 'inactive'
       @user.active?.should be_false
     end
-    
+
     it 'should be active' do
       @user.state = 'unregistered'
       @user.active?.should be_true
@@ -94,7 +94,7 @@ describe User, "instance methods" do
       @user.state = 'canceled'
       @user.display_active.should == 'false'
     end
-    
+
     it 'should be active' do
       @user.state = 'unregistered'
       @user.display_active.should == 'true'
@@ -116,8 +116,21 @@ describe User, "instance methods" do
       product = Factory(:product)
       @user.might_be_interested_in_these_products.include?(product).should be_true
     end
-    
+
     #pending "add your specific find products method here"
+  end
+
+  context ".format_birth_date(b_date)" do
+    it 'should return a US date formatted correctly' do
+      @user.format_birth_date('12/17/1975')
+      @user.birth_date.should_not be_nil
+      @user.birth_date.strftime('%m/%d/%Y').should == '12/17/1975'
+    end
+
+    it 'should return nil if no date is given' do
+      @user.format_birth_date('')
+      @user.birth_date.should be_nil
+    end
   end
 
   context ".billing_address" do
@@ -126,18 +139,18 @@ describe User, "instance methods" do
       #add = Factory(:address, :addressable => @user, :default => true)
       @user.billing_address.should be_nil
     end
-    
+
     it 'should use your shipping address if you dont have a default billing address' do
       add = Factory(:address, :addressable => @user, :default => true)
       @user.billing_address.should == add
     end
-    
+
     it 'should use your default billing address if you have one available' do
       add = Factory(:address, :addressable => @user, :default => true)
       bill_add = Factory(:address, :addressable => @user, :billing_default => true)
       @user.billing_address.should == bill_add
     end
-    
+
     it 'should return the first address if not defaults are set' do
       #add = Factory(:address, :addressable => @user, :default => true)
       add = Factory(:address, :addressable => @user)
@@ -151,20 +164,20 @@ describe User, "instance methods" do
       #add = Factory(:address, :addressable => @user, :default => true)
       @user.shipping_address.should be_nil
     end
-    
+
     it 'should use your default shipping address if you have one available' do
       add = Factory(:address, :addressable => @user, :default => true)
       bill_add = Factory(:address, :addressable => @user, :billing_default => true)
       @user.shipping_address.should == add
     end
-    
+
     it 'should return the first address if not defaults are set' do
       #add = Factory(:address, :addressable => @user, :default => true)
       add = Factory(:address, :addressable => @user)
       @user.shipping_address.should == add
     end
   end
-  
+
   context ".registered_user?" do
     # registered? || registered_with_credit?
     it 'should be true for a registered user' do
@@ -193,9 +206,9 @@ describe User, "instance methods" do
       @user.first_name      = ' bAd NamE '
       @user.last_name       = ' lastnamE '
       @user.account         = nil
-      
+
       @user.sanitize_data
-      
+
       @user.email.should        == 'bad@email.com'
       @user.first_name.should   == 'Bad name'
       @user.last_name.should    == 'Lastname'
@@ -237,16 +250,16 @@ describe User, "instance methods" do
       address = Factory(:address, :address1 => 'Line one street', :address2 => 'Line two street')
       @user.first_name = 'First'
       @user.last_name  = 'Second'
-      
+
       @user.stubs(:default_shipping_address).returns(address)
       @user.merchant_description.should == 'First Second, Line one street, Line two street'
     end
-    
+
     it 'should show the name and address lines without address2' do
       address = Factory(:address, :address1 => 'Line one street', :address2 => nil)
       @user.first_name = 'First'
       @user.last_name  = 'Second'
-      
+
       @user.stubs(:default_shipping_address).returns(address)
       @user.merchant_description.should == 'First Second, Line one street'
     end
@@ -254,23 +267,23 @@ describe User, "instance methods" do
 
 end
 describe User, 'private methods' do
-  
+
   before(:each) do
     @user = Factory.build(:user)
   end
-  
+
   context ".password_required?" do
     it 'should require a password if the crypted password is blank' do
       @user.crypted_password = nil
       @user.send(:password_required?).should be_true
     end
-    
+
     it 'should not require a password if the crypted password is present' do
       @user.crypted_password = 'blah'
       @user.send(:password_required?).should be_false
     end
   end
-  
+
   context ".create_cim_profile" do
     pending "test for create_cim_profile"
   end

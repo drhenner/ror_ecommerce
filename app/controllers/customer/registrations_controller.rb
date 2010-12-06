@@ -5,7 +5,7 @@ class Customer::RegistrationsController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
+    @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
     # the User has not yet been activated
@@ -18,7 +18,7 @@ class Customer::RegistrationsController < ApplicationController
       render :action => :new
     end
   end
-  
+
   def edit
   end
 

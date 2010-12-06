@@ -10,7 +10,7 @@
 
 <%= semantic_form_for @user, :url => customer_registrations_path(@user)  do |form| %>
     <%= form.inputs do %>
-    
+
        <div id='registration_name_form'>
           <%= form.inputs  do %>
               <%= form.input :first_name, :required => true %>
@@ -19,7 +19,7 @@
               <div class='clearfix'></div>
               <%= form.input :email, :required => true,:wrapper_html => { :class => "span-11" }%>
               <div class='clearfix'></div>
-              <%= form.input :birth_date, 
+              <%= form.input :birth_date,
                               :required => false, :as => :yearpicker,
                               :wrapper_html => { :class => "span-11" }%>
           <% end %>
@@ -32,7 +32,7 @@
           <% end %>
        </div>
     <% end %>
-    <%= form.buttons do %>
+    <%#= form.buttons do %>
       <%= form.commit_button "Continue" %>
-    <% end %>
+    <%# end %>
 <% end %>
