@@ -5,28 +5,28 @@ h1. Project Overview
 "Please look at the homepage for more details":http://www.rorecommerce.com
 
 This is a Rails e-commerce platform.  Other e-commerce projects that
-use rails, don't use rails in a standard way.  They use engines or are a separate 
-framework altogether.  
+use rails, don't use rails in a standard way.  They use engines or are a separate
+framework altogether.
 
-ROR ecommerce is a *Rails 3 application* with the intent to allow developers to create 
-an ecommerce solution easily.  This solution includes, an Admin for  *Purchase Orders*, 
-*Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.  There is a minimal 
-customer facing shopping cart understanding that this will be customized.  The cart allows 
-you to track your customers *cart history* and includes a *double entry accounting system*.  
+ROR ecommerce is a *Rails 3 application* with the intent to allow developers to create
+an ecommerce solution easily.  This solution includes, an Admin for  *Purchase Orders*,
+*Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.  There is a minimal
+customer facing shopping cart understanding that this will be customized.  The cart allows
+you to track your customers *cart history* and includes a *double entry accounting system*.
 
-The project has *solr searching*, *compass* and *blueprint for CSS* and uses *jQuery*.  
-The gem list is quite large and the project still has a large wish list but it is the most 
-complete solution for Rails today and it will only get better.  
+The project has *solr searching*, *compass* and *blueprint for CSS* and uses *jQuery*.
+The gem list is quite large and the project still has a large wish list but it is the most
+complete solution for Rails today and it will only get better.
 
-Please use *Ruby 1.9.2* and enjoy *Rails 3.0*.  
+Please use *Ruby 1.9.2* and enjoy *Rails 3.0*.
 
-ROR_ecommerce is designed differently.  If you understand Rails you will understand ROR_ecommerce.  
-There is nothing in this project that you wouldn't see in a normal Rails application.  If you don't like 
+ROR_ecommerce is designed differently.  If you understand Rails you will understand ROR_ecommerce.
+There is nothing in this project that you wouldn't see in a normal Rails application.  If you don't like
 what is in the project just change it like you would in any other Rails app.
 
-Contributors are welcome.  For now email David Henner (*drhenner@yahoo.com*) to see how you 
-can contribute. (send your patch if you have one.)  Soon there will be a bug tracking 
-system and a formal way to submit your patch.  
+Contributors are welcome.  For now email David Henner (*drhenner@yahoo.com*) to see how you
+can contribute. (send your patch if you have one.)  Soon there will be a bug tracking
+system and a formal way to submit your patch.
 
 We will always need help with UI, Documentation and code so feel free to help.
 
@@ -39,7 +39,7 @@ install rvm with ruby 1.9.2 or if you have 1.9.2 on your system your good to go
 
 Configure your database.yml file (add the development and test database)
 
-*# Go into config/config.yml and change the encryption_key 
+*# Go into config/config.yml and change the encryption_key
 
 bq.  aes = OpenSSL::Cipher::Cipher.new('AES-256-CBC')
   set_encryption_key_to = aes.random_iv
@@ -73,7 +73,7 @@ end
 bq. Take a look at setting up solr
     "Solr in 5 minutes":http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
 
-bq. memcached -vv  ## you can config many other cache stores but 
+bq. memcached -vv  ## you can config many other cache stores but
                 ## the cookie store will not work (in the admin) and the DB session store will be a dog
 
 Need to create config/config.yml and change the encryption key and paypal or auth.net information.
@@ -104,6 +104,7 @@ h2. Author
 RoR Ecommerce was written by David Henner with contributions from:
 
 * Oren Golan
+* Yury Velikanau
 
 h2. FYI:
 
@@ -114,8 +115,8 @@ Have fun!!!
 
 
 * I personally want to thank some people I don't even know.
-  Ryan Bates and Greg Pollack, I have learned way too much from you 2 
+  Ryan Bates and Greg Pollack, I have learned way too much from you 2
   it would only be right to give some thanks
-* I'd also like to Thank one person that I do know. 
+* I'd also like to Thank one person that I do know.
   Umang Chouhan I've learned a lot from you also.
-  %{color:LightGray}(even if I do have to filter out some of what you say. LOL)%
+  (even if I do have to filter out some of what you say. LOL)
