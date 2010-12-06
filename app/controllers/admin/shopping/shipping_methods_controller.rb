@@ -2,7 +2,7 @@ class Admin::Shopping::ShippingMethodsController < Admin::Shopping::BaseControll
   # GET /admin/order/shipping_methods
   # GET /admin/order/shipping_methods.xml
   def index
-    @shipping_methods = #session_admin_cart[:user].shipping_addresses
+    #@shipping_methods = #session_admin_cart[:user].shipping_addresses
 
       unless session_admin_cart[:shipping_address]
         flash[:notice] = 'Select an address before you select a shipping method.'
@@ -11,9 +11,9 @@ class Admin::Shopping::ShippingMethodsController < Admin::Shopping::BaseControll
         ##  TODO  refactopr this method... it seems a bit lengthy
         @shipping_method_ids = session_admin_cart[:shipping_address].state.shipping_zone.shipping_method_ids
 
-        session_admin_cart[:order_items].each do |item|
-          item.second[:variant].product.available_shipping_rates = ShippingRate.with_these_shipping_methods(item.second[:variant].product.shipping_category.shipping_rate_ids, @shipping_method_ids)
-        end
+        #session_admin_cart[:order_items].each do |item|
+        #  item.second[:variant].product.available_shipping_rates = ShippingRate.with_these_shipping_methods(item.second[:variant].product.shipping_category.shipping_rate_ids, @shipping_method_ids)
+        #end
 
         respond_to do |format|
           format.html # index.html.erb
@@ -29,9 +29,9 @@ class Admin::Shopping::ShippingMethodsController < Admin::Shopping::BaseControll
       if rate_id
         session_admin_cart[:order_items].each do |item|
           if item.second[:variant].product.shipping_category_id == category_id.to_i
-            ship_rate = ShippingRate.find(rate_id) 
+            ship_rate = ShippingRate.find(rate_id)
             item.second[:shipping_rate] = ship_rate
-            
+
           end
         end
       else
