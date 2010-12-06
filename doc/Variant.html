@@ -1,0 +1,1322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Variant</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (V)</a> &raquo; 
+    
+    
+    <span class="title">Variant</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Variant
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Variant</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/variant.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="OUT_OF_STOCK_QTY-constant" class="">OUT_OF_STOCK_QTY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>2</span></pre></dd>
+      
+        <dt id="LOW_STOCK_QTY-constant" class="">LOW_STOCK_QTY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>6</span></pre></dd>
+      
+    </dl>
+  
+
+
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Object) <strong>admin_grid</strong>(product, params = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_count_on_hand-instance_method" title="#add_count_on_hand (instance method)">- (Object) <strong>add_count_on_hand</strong>(num) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_pending_to_customer-instance_method" title="#add_pending_to_customer (instance method)">- (Object) <strong>add_pending_to_customer</strong>(num = 1) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#count_available-instance_method" title="#count_available (instance method)">- (Object) <strong>count_available</strong>(reload_variant = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_property_details-instance_method" title="#display_property_details (instance method)">- (Object) <strong>display_property_details</strong>(separator = '&lt;br/&gt;') </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_stock_status-instance_method" title="#display_stock_status (instance method)">- (Object) <strong>display_stock_status</strong>(start = '(', finish = ')') </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#is_available%3F-instance_method" title="#is_available? (instance method)">- (Boolean) <strong>is_available?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#low_stock%3F-instance_method" title="#low_stock? (instance method)">- (Boolean) <strong>low_stock?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name_with_sku-instance_method" title="#name_with_sku (instance method)">- (Object) <strong>name_with_sku</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#primary_property-instance_method" title="#primary_property (instance method)">- (Object) <strong>primary_property</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#product_name-instance_method" title="#product_name (instance method)">- (Object) <strong>product_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#product_tax_rate-instance_method" title="#product_tax_rate (instance method)">- (Object) <strong>product_tax_rate</strong>(state_id, tax_time = Time.now) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#property_details-instance_method" title="#property_details (instance method)">- (Object) <strong>property_details</strong>(separator = ': ') </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#qty_to_add-instance_method" title="#qty_to_add (instance method)">- (Object) <strong>qty_to_add</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#qty_to_add%3D-instance_method" title="#qty_to_add= (instance method)">- (Object) <strong>qty_to_add=</strong>(num) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shipping_category_id-instance_method" title="#shipping_category_id (instance method)">- (Object) <strong>shipping_category_id</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sold_out%3F-instance_method" title="#sold_out? (instance method)">- (Boolean) <strong>sold_out?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sub_name-instance_method" title="#sub_name (instance method)">- (Object) <strong>sub_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#subtract_count_on_hand-instance_method" title="#subtract_count_on_hand (instance method)">- (Object) <strong>subtract_count_on_hand</strong>(num) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#subtract_pending_to_customer-instance_method" title="#subtract_pending_to_customer (instance method)">- (Object) <strong>subtract_pending_to_customer</strong>(num) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tax_percentage-instance_method" title="#tax_percentage (instance method)">- (Object) <strong>tax_percentage</strong>(tax_rate) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#total_price-instance_method" title="#total_price (instance method)">- (Object) <strong>total_price</strong>(tax_rate) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="admin_grid-class_method">
+  
+    + (<tt>Object</tt>) <strong>admin_grid</strong>(product, params = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 116</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id product'>product</span><span class='comma'>,</span> <span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+
+  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
+  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
+
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>Variant</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>variants.product_id</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id product'>product</span><span class='period'>.</span><span class='id id'>id</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:product</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>products.name = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="add_count_on_hand-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_count_on_hand</strong>(num) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 93</span>
+
+<span class='kw'>def</span> <span class='id add_count_on_hand'>add_count_on_hand</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
+    <span class='id sql'>sql</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UPDATE variants SET count_on_hand = (</span><span class='embexpr_beg'>#{</span><span class='id num'>num</span><span class='rbrace'>}</span><span class='tstring_content'> + count_on_hand) WHERE id = </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id connection'>connection</span><span class='period'>.</span><span class='id execute'>execute</span><span class='lparen'>(</span><span class='id sql'>sql</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="add_pending_to_customer-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_pending_to_customer</strong>(num = 1) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id add_pending_to_customer'>add_pending_to_customer</span><span class='lparen'>(</span><span class='id num'>num</span> <span class='op'>=</span> <span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id sql'>sql</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UPDATE variants SET count_pending_to_customer = (</span><span class='embexpr_beg'>#{</span><span class='id num'>num</span><span class='rbrace'>}</span><span class='tstring_content'> + count_pending_to_customer) WHERE id = </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id connection'>connection</span><span class='period'>.</span><span class='id execute'>execute</span><span class='lparen'>(</span><span class='id sql'>sql</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="count_available-instance_method">
+  
+    - (<tt>Object</tt>) <strong>count_available</strong>(reload_variant = true) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='id count_available'>count_available</span><span class='lparen'>(</span><span class='id reload_variant'>reload_variant</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id reload'>reload</span> <span class='kw'>if</span> <span class='id reload_variant'>reload_variant</span>
+  <span class='id count_on_hand'>count_on_hand</span> <span class='op'>-</span> <span class='id count_pending_to_customer'>count_pending_to_customer</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="display_property_details-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_property_details</strong>(separator = '&lt;br/&gt;') 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 55</span>
+
+<span class='kw'>def</span> <span class='id display_property_details'>display_property_details</span><span class='lparen'>(</span><span class='id separator'>separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&lt;br/&gt;</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id property_details'>property_details</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='id separator'>separator</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="display_stock_status-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_stock_status</strong>(start = '(', finish = ')') 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id display_stock_status'>display_stock_status</span><span class='lparen'>(</span><span class='id start'>start</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>(</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id finish'>finish</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>)</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id start'>start</span><span class='rbrace'>}</span><span class='tstring_content'>Sold Out</span><span class='embexpr_beg'>#{</span><span class='id finish'>finish</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id sold_out?'>sold_out?</span>
+  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id start'>start</span><span class='rbrace'>}</span><span class='tstring_content'>Low Stock</span><span class='embexpr_beg'>#{</span><span class='id finish'>finish</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id low_stock?'>low_stock?</span>
+  <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="is_available?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>is_available?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 84</span>
+
+<span class='kw'>def</span> <span class='id is_available?'>is_available?</span>
+  <span class='id count_available'>count_available</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="low_stock?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>low_stock?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id low_stock?'>low_stock?</span>
+  <span class='lparen'>(</span><span class='id count_on_hand'>count_on_hand</span> <span class='op'>-</span> <span class='id count_pending_to_customer'>count_pending_to_customer</span><span class='rparen'>)</span> <span class='op'>&lt;=</span> <span class='const'>LOW_STOCK_QTY</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="name_with_sku-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name_with_sku</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id name_with_sku'>name_with_sku</span>
+  <span class='lbracket'>[</span><span class='id product_name'>product_name</span><span class='comma'>,</span> <span class='id sku'>sku</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id compact'>compact</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>: </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="primary_property-instance_method">
+  
+    - (<tt>Object</tt>) <strong>primary_property</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id primary_property'>primary_property</span>
+  <span class='id pp'>pp</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id variant_properties'>variant_properties</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>variant_properties.primary = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:first</span><span class='rparen'>)</span>
+  <span class='id pp'>pp</span> <span class='op'>?</span> <span class='id pp'>pp</span> <span class='op'>:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id variant_properties'>variant_properties</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:first</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="product_name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>product_name</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id product_name'>product_name</span>
+  <span class='id name?'>name?</span> <span class='op'>?</span> <span class='id name'>name</span> <span class='op'>:</span> <span class='id product'>product</span><span class='period'>.</span><span class='id name'>name</span> <span class='op'>+</span> <span class='id sub_name'>sub_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="product_tax_rate-instance_method">
+  
+    - (<tt>Object</tt>) <strong>product_tax_rate</strong>(state_id, tax_time = Time.now) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id product_tax_rate'>product_tax_rate</span><span class='lparen'>(</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id tax_time'>tax_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='rparen'>)</span>
+  <span class='id product'>product</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span><span class='lparen'>(</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id tax_time'>tax_time</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="property_details-instance_method">
+  
+    - (<tt>Object</tt>) <strong>property_details</strong>(separator = ': ') 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id property_details'>property_details</span><span class='lparen'>(</span><span class='id separator'>separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>: </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id variant_properties'>variant_properties</span><span class='period'>.</span><span class='id collect'>collect</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id vp'>vp</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='id vp'>vp</span><span class='period'>.</span><span class='id property'>property</span><span class='period'>.</span><span class='id display_name'>display_name</span> <span class='comma'>,</span><span class='id vp'>vp</span><span class='period'>.</span><span class='id description'>description</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='id separator'>separator</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="qty_to_add-instance_method">
+  
+    - (<tt>Object</tt>) <strong>qty_to_add</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id qty_to_add'>qty_to_add</span>
+  <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="qty_to_add=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>qty_to_add=</strong>(num) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id qty_to_add='>qty_to_add=</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
+  <span class='comment'>###  TODO this method needs a history of who did what
+</span>  <span class='kw'>self</span><span class='period'>.</span><span class='id count_on_hand'>count_on_hand</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id count_on_hand'>count_on_hand</span> <span class='op'>+</span> <span class='id num'>num</span><span class='period'>.</span><span class='id to_i'>to_i</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="shipping_category_id-instance_method">
+  
+    - (<tt>Object</tt>) <strong>shipping_category_id</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id shipping_category_id'>shipping_category_id</span>
+  <span class='id product'>product</span><span class='period'>.</span><span class='id shipping_category_id'>shipping_category_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="sold_out?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>sold_out?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id sold_out?'>sold_out?</span>
+  <span class='lparen'>(</span><span class='id count_on_hand'>count_on_hand</span> <span class='op'>-</span> <span class='id count_pending_to_customer'>count_pending_to_customer</span><span class='rparen'>)</span> <span class='op'>&lt;=</span> <span class='const'>OUT_OF_STOCK_QTY</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="sub_name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>sub_name</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id sub_name'>sub_name</span>
+  <span class='id primary_property'>primary_property</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id primary_property'>primary_property</span><span class='period'>.</span><span class='id description'>description</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="subtract_count_on_hand-instance_method">
+  
+    - (<tt>Object</tt>) <strong>subtract_count_on_hand</strong>(num) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id subtract_count_on_hand'>subtract_count_on_hand</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
+  <span class='id add_count_on_hand'>add_count_on_hand</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id num'>num</span> <span class='op'>*</span> <span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="subtract_pending_to_customer-instance_method">
+  
+    - (<tt>Object</tt>) <strong>subtract_pending_to_customer</strong>(num) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='id subtract_pending_to_customer'>subtract_pending_to_customer</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
+  <span class='id add_pending_to_customer'>add_pending_to_customer</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id num'>num</span> <span class='op'>*</span> <span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="tax_percentage-instance_method">
+  
+    - (<tt>Object</tt>) <strong>tax_percentage</strong>(tax_rate) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id tax_percentage'>tax_percentage</span><span class='lparen'>(</span><span class='id tax_rate'>tax_rate</span><span class='rparen'>)</span>
+  <span class='id tax_rate'>tax_rate</span> <span class='op'>?</span> <span class='id tax_rate'>tax_rate</span><span class='period'>.</span><span class='id percentage'>percentage</span> <span class='op'>:</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="total_price-instance_method">
+  
+    - (<tt>Object</tt>) <strong>total_price</strong>(tax_rate) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id total_price'>total_price</span><span class='lparen'>(</span><span class='id tax_rate'>tax_rate</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='lparen'>(</span><span class='int'>1</span> <span class='op'>+</span> <span class='id tax_percentage'>tax_percentage</span><span class='lparen'>(</span><span class='id tax_rate'>tax_rate</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='kw'>self</span><span class='period'>.</span><span class='id price'>price</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Dec  5 02:29:12 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

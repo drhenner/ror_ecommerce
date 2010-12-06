@@ -1,0 +1,2330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Order</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (O)</a> &raquo; 
+    
+    
+    <span class="title">Order</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Order
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Order</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/order.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="NUMBER_SEED-constant" class="">NUMBER_SEED =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>1001001001000</span></pre></dd>
+      
+        <dt id="CHARACTERS_SEED-constant" class="">CHARACTERS_SEED =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>21</span></pre></dd>
+      
+    </dl>
+  
+
+
+  
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sub_total-instance_method" title="#sub_total (instance method)">- (Object) <strong>sub_total</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute sub_total.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#total-instance_method" title="#total (instance method)">- (Object) <strong>total</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute total.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_by_number-class_method" title="find_by_number (class method)">+ (Object) <strong>find_by_number</strong>(num) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_finished_order_grid-class_method" title="find_finished_order_grid (class method)">+ (Object) <strong>find_finished_order_grid</strong>(params = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_myaccount_details-class_method" title="find_myaccount_details (class method)">+ (Object) <strong>find_myaccount_details</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fulfillment_grid-class_method" title="fulfillment_grid (class method)">+ (Object) <strong>fulfillment_grid</strong>(params = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#id_from_number-class_method" title="id_from_number (class method)">+ (Object) <strong>id_from_number</strong>(num) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_admin_cart-class_method" title="new_admin_cart (class method)">+ (Object) <strong>new_admin_cart</strong>(admin_cart, args = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_items-instance_method" title="#add_items (instance method)">- (Object) <strong>add_items</strong>(variant, quantity, state_id = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#calculate_totals-instance_method" title="#calculate_totals (instance method)">- (Object) <strong>calculate_totals</strong>(force = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cancel_unshipped_order-instance_method" title="#cancel_unshipped_order (instance method)">- (Object) <strong>cancel_unshipped_order</strong>(invoice) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+def authorize_complete_order(invoice).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#capture_invoice-instance_method" title="#capture_invoice (instance method)">- (Object) <strong>capture_invoice</strong>(invoice) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+@order.capture_invoice(@invoice).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_invoice-instance_method" title="#create_invoice (instance method)">- (Object) <strong>create_invoice</strong>(credit_card, charge_amount, args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+This method creates the invoice and payment method.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_completed_at-instance_method" title="#display_completed_at (instance method)">- (Object) <strong>display_completed_at</strong>(format = :us_date) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_total-instance_method" title="#find_total (instance method)">- (Object) <strong>find_total</strong>(force = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#first_invoice_amount-instance_method" title="#first_invoice_amount (instance method)">- (Object) <strong>first_invoice_amount</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_beginning_address_id-instance_method" title="#get_beginning_address_id (instance method)">- (Object) <strong>get_beginning_address_id</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_shipment%3F-instance_method" title="#has_shipment? (instance method)">- (Boolean) <strong>has_shipment?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+#######.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#order_complete%21-instance_method" title="#order_complete! (instance method)">- (Object) <strong>order_complete!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#order_total-instance_method" title="#order_total (instance method)">- (Object) <strong>order_total</strong>(force = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ready_to_checkout%3F-instance_method" title="#ready_to_checkout? (instance method)">- (Boolean) <strong>ready_to_checkout?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_items-instance_method" title="#remove_items (instance method)">- (Object) <strong>remove_items</strong>(variant, final_quantity) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#save_order_number-instance_method" title="#save_order_number (instance method)">- (Object) <strong>save_order_number</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_beginning_values-instance_method" title="#set_beginning_values (instance method)">- (Object) <strong>set_beginning_values</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_email-instance_method" title="#set_email (instance method)">- (Object) <strong>set_email</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_number-instance_method" title="#set_number (instance method)">- (Object) <strong>set_number</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_order_number-instance_method" title="#set_order_number (instance method)">- (Object) <strong>set_order_number</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shipping_charges-instance_method" title="#shipping_charges (instance method)">- (Object) <strong>shipping_charges</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shipping_rates-instance_method" title="#shipping_rates (instance method)">- (Object) <strong>shipping_rates</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#status-instance_method" title="#status (instance method)">- (Object) <strong>status</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tax_charges-instance_method" title="#tax_charges (instance method)">- (Object) <strong>tax_charges</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#total_tax_charges-instance_method" title="#total_tax_charges (instance method)">- (Object) <strong>total_tax_charges</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_inventory-instance_method" title="#update_inventory (instance method)">- (Object) <strong>update_inventory</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+This method is called when the order transitions to paid.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_tax_rates-instance_method" title="#update_tax_rates (instance method)">- (Object) <strong>update_tax_rates</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#variant_ids-instance_method" title="#variant_ids (instance method)">- (Object) <strong>variant_ids</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="sub_total=-instance_method"></span>
+      <span id="sub_total-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="sub_total-instance_method">
+  
+    - (<tt>Object</tt>) <strong>sub_total</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute sub_total
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id sub_total'>sub_total</span>
+  <span class='ivar'>@sub_total</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="total=-instance_method"></span>
+      <span id="total-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="total-instance_method">
+  
+    - (<tt>Object</tt>) <strong>total</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute total
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id total'>total</span>
+  <span class='ivar'>@total</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="find_by_number-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_by_number</strong>(num) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+291
+292
+293</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 291</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_by_number'>find_by_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
+  <span class='id find'>find</span><span class='lparen'>(</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='comment'>##  now we can search by id which should be much faster
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_finished_order_grid-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_finished_order_grid</strong>(params = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 308</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_finished_order_grid'>find_finished_order_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  
+  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
+  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>25</span>
+  
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>Order</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:user</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>active = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>                     <span class='kw'>unless</span>  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:show_all</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span> <span class='op'>&amp;&amp;</span> 
+                                                                    <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:show_all</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>true</span><span class='tstring_end'>'</span></span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.shipment_counter = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>             <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:shipped</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span> <span class='op'>&amp;&amp;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:shipped</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>true</span><span class='tstring_end'>'</span></span>                                                                  
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.shipment_counter &gt; ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>            <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:shipped</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span> <span class='op'>&amp;&amp;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:shipped</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>false</span><span class='tstring_end'>'</span></span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.completed_at IS NOT NULL</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.number LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>                                                     
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.email LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>    <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_myaccount_details-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_myaccount_details</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 110</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_myaccount_details'>find_myaccount_details</span>
+  <span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:completed_invoices</span><span class='comma'>,</span> <span class='symbol'>:invoices</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="fulfillment_grid-class_method">
+  
+    + (<tt>Object</tt>) <strong>fulfillment_grid</strong>(params = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 326</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id fulfillment_grid'>fulfillment_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  
+  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
+  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>25</span>
+  
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>Order</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:user</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>active = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>                     <span class='kw'>unless</span>  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:show_all</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span> <span class='op'>&amp;&amp;</span> 
+                                                                    <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:show_all</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>true</span><span class='tstring_end'>'</span></span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.shipped = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>                                                                  
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.completed_at IS NOT NULL</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.number LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>                                                     
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.shipped = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>              <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:shipped</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span> <span class='op'>&amp;&amp;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:shipped</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>true</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.email LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='rparen'>)</span>    <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="id_from_number-class_method">
+  
+    + (<tt>Object</tt>) <strong>id_from_number</strong>(num) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+287
+288
+289</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 287</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
+  <span class='id num'>num</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='const'>NUMBER_SEED</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="new_admin_cart-class_method">
+  
+    + (<tt>Object</tt>) <strong>new_admin_cart</strong>(admin_cart, args = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id new_admin_cart'>new_admin_cart</span><span class='lparen'>(</span><span class='id admin_cart'>admin_cart</span><span class='comma'>,</span> <span class='id args'>args</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id transaction'>transaction</span> <span class='kw'>do</span> 
+    <span class='id admin_order'>admin_order</span> <span class='op'>=</span> <span class='const'>Order</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span>  <span class='symbol'>:ship_address</span>     <span class='op'>=&gt;</span> <span class='id admin_cart'>admin_cart</span><span class='lbracket'>[</span><span class='symbol'>:shipping_address</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                              <span class='symbol'>:bill_address</span>     <span class='op'>=&gt;</span> <span class='id admin_cart'>admin_cart</span><span class='lbracket'>[</span><span class='symbol'>:billing_address</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                              <span class='comment'>#:coupon           =&gt; admin_cart[:coupon],
+</span>                              <span class='symbol'>:email</span>            <span class='op'>=&gt;</span> <span class='id admin_cart'>admin_cart</span><span class='lbracket'>[</span><span class='symbol'>:user</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id email'>email</span><span class='comma'>,</span>
+                              <span class='symbol'>:user</span>             <span class='op'>=&gt;</span> <span class='id admin_cart'>admin_cart</span><span class='lbracket'>[</span><span class='symbol'>:user</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                              <span class='symbol'>:ip_address</span>       <span class='op'>=&gt;</span> <span class='id args'>args</span><span class='lbracket'>[</span><span class='symbol'>:ip_address</span><span class='rbracket'>]</span>
+                          <span class='rparen'>)</span>
+    <span class='id admin_order'>admin_order</span><span class='period'>.</span><span class='id save'>save</span>
+    <span class='id admin_cart'>admin_cart</span><span class='lbracket'>[</span><span class='symbol'>:order_items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id variant_id'>variant_id</span><span class='comma'>,</span> <span class='id hash'>hash</span><span class='op'>|</span>
+        <span class='id hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id times'>times</span> <span class='kw'>do</span>
+            <span class='id item'>item</span> <span class='op'>=</span> <span class='const'>OrderItem</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span> <span class='symbol'>:variant</span>        <span class='op'>=&gt;</span> <span class='id hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:variant</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                  <span class='symbol'>:tax_rate</span>       <span class='op'>=&gt;</span> <span class='id hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:tax_rate</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                  <span class='symbol'>:price</span>          <span class='op'>=&gt;</span> <span class='id hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:variant</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id price'>price</span><span class='comma'>,</span>
+                                  <span class='symbol'>:total</span>          <span class='op'>=&gt;</span> <span class='id hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:total</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                                  <span class='symbol'>:shipping_rate</span>  <span class='op'>=&gt;</span> <span class='id hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:shipping_rate</span><span class='rbracket'>]</span>
+                              <span class='rparen'>)</span>
+            <span class='id admin_order'>admin_order</span><span class='period'>.</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='id item'>item</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='id admin_order'>admin_order</span><span class='period'>.</span><span class='id save'>save</span>
+    <span class='id admin_order'>admin_order</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="add_items-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_items</strong>(variant, quantity, state_id = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+250
+251
+252
+253
+254
+255
+256</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 250</span>
+
+<span class='kw'>def</span> <span class='id add_items'>add_items</span><span class='lparen'>(</span><span class='id variant'>variant</span><span class='comma'>,</span> <span class='id quantity'>quantity</span><span class='comma'>,</span> <span class='id state_id'>state_id</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id save!'>save!</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id new_record?'>new_record?</span>
+  <span class='id tax_rate_id'>tax_rate_id</span> <span class='op'>=</span> <span class='id state_id'>state_id</span> <span class='op'>?</span> <span class='id variant'>variant</span><span class='period'>.</span><span class='id product'>product</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span><span class='lparen'>(</span><span class='id state_id'>state_id</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='kw'>nil</span>
+  <span class='id quantity'>quantity</span><span class='period'>.</span><span class='id times'>times</span> <span class='kw'>do</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id push'>push</span><span class='lparen'>(</span><span class='const'>OrderItem</span><span class='period'>.</span><span class='id create'>create</span><span class='lparen'>(</span><span class='symbol'>:order</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='comma'>,</span><span class='symbol'>:variant_id</span> <span class='op'>=&gt;</span> <span class='id variant'>variant</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span> <span class='symbol'>:price</span> <span class='op'>=&gt;</span> <span class='id variant'>variant</span><span class='period'>.</span><span class='id price'>price</span><span class='comma'>,</span> <span class='symbol'>:tax_rate_id</span> <span class='op'>=&gt;</span> <span class='id tax_rate_id'>tax_rate_id</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="calculate_totals-instance_method">
+  
+    - (<tt>Object</tt>) <strong>calculate_totals</strong>(force = false) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 187</span>
+
+<span class='kw'>def</span> <span class='id calculate_totals'>calculate_totals</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id calculated_at'>calculated_at</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id item'>item</span><span class='period'>.</span><span class='id updated_at'>updated_at</span> <span class='op'>&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='kw'>unless</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='op'>!</span><span class='id item'>item</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='rbrace'>}</span>
+      <span class='id total'>total</span> <span class='op'>=</span> <span class='float'>0.0</span>
+      <span class='id tax_time'>tax_time</span> <span class='op'>=</span> <span class='id completed_at?'>completed_at?</span> <span class='op'>?</span> <span class='id completed_at'>completed_at</span> <span class='op'>:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
+      <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='lparen'>(</span><span class='id calculated_at'>calculated_at</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='id item'>item</span><span class='period'>.</span><span class='id updated_at'>updated_at</span> <span class='op'>&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='rparen'>)</span>
+          <span class='id item'>item</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span> <span class='op'>=</span> <span class='id item'>item</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id product'>product</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id ship_address'>ship_address</span><span class='period'>.</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id tax_time'>tax_time</span><span class='rparen'>)</span><span class='comment'>## This needs to change to completed_at
+</span>          <span class='id item'>item</span><span class='period'>.</span><span class='id calculate_total'>calculate_total</span>
+          <span class='id item'>item</span><span class='period'>.</span><span class='id save'>save</span>
+        <span class='kw'>end</span>
+        <span class='id total'>total</span> <span class='op'>=</span> <span class='id total'>total</span> <span class='op'>+</span> <span class='id item'>item</span><span class='period'>.</span><span class='id total'>total</span>
+      <span class='kw'>end</span>
+      <span class='id sub_total'>sub_total</span> <span class='op'>=</span> <span class='id total'>total</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>=</span> <span class='id total'>total</span> <span class='op'>+</span> <span class='id shipping_charges'>shipping_charges</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span>
+      <span class='id save'>save</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="cancel_unshipped_order-instance_method">
+  
+    - (<tt>Object</tt>) <strong>cancel_unshipped_order</strong>(invoice) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+def authorize_complete_order(invoice)
+</p>
+<pre class="code">
+ <span class='id transaction'>transaction</span> <span class='kw'>do</span>
+   <span class='id invoice'>invoice</span><span class='period'>.</span><span class='id authorize_complete_order'>authorize_complete_order</span>
+ <span class='kw'>end</span>
+</pre>
+<p>
+end
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id cancel_unshipped_order'>cancel_unshipped_order</span><span class='lparen'>(</span><span class='id invoice'>invoice</span><span class='rparen'>)</span>
+  <span class='id transaction'>transaction</span> <span class='kw'>do</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='symbol'>:active</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id invoice'>invoice</span><span class='period'>.</span><span class='id cancel_authorized_payment'>cancel_authorized_payment</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="capture_invoice-instance_method">
+  
+    - (<tt>Object</tt>) <strong>capture_invoice</strong>(invoice) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+@order.capture_invoice(@invoice)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+141
+142
+143
+144
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 141</span>
+
+<span class='kw'>def</span> <span class='id capture_invoice'>capture_invoice</span><span class='lparen'>(</span><span class='id invoice'>invoice</span><span class='rparen'>)</span>
+  <span class='id payment'>payment</span> <span class='op'>=</span> <span class='id invoice'>invoice</span><span class='period'>.</span><span class='id capture_payment'>capture_payment</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='comment'>#if payment.paid?
+</span>  <span class='comment'>#  # 
+</span>  <span class='comment'>#end
+</span>  <span class='comment'>#payment.params['response_code']
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create_invoice-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create_invoice</strong>(credit_card, charge_amount, args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+This method creates the invoice and payment method.  If the payment is not
+authorized the whole transaction is roled back
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153
+154
+155</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 151</span>
+
+<span class='kw'>def</span> <span class='id create_invoice'>create_invoice</span><span class='lparen'>(</span><span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id charge_amount'>charge_amount</span><span class='comma'>,</span> <span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='id transaction'>transaction</span> <span class='kw'>do</span> 
+    <span class='id create_invoice_transaction'>create_invoice_transaction</span><span class='lparen'>(</span><span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id charge_amount'>charge_amount</span><span class='comma'>,</span> <span class='id args'>args</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="display_completed_at-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_completed_at</strong>(format = :us_date) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id display_completed_at'>display_completed_at</span><span class='lparen'>(</span><span class='id format'>format</span> <span class='op'>=</span> <span class='symbol'>:us_date</span><span class='rparen'>)</span>
+  <span class='id completed_at'>completed_at</span> <span class='op'>?</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id localize'>localize</span><span class='lparen'>(</span><span class='id completed_at'>completed_at</span><span class='comma'>,</span> <span class='symbol'>:format</span> <span class='op'>=&gt;</span> <span class='id format'>format</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Not Finished.</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_total-instance_method">
+  
+    - (<tt>Object</tt>) <strong>find_total</strong>(force = false) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+216
+217
+218
+219
+220
+221
+222
+223
+224</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 216</span>
+
+<span class='kw'>def</span> <span class='id find_total'>find_total</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id calculate_totals'>calculate_totals</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id item'>item</span><span class='period'>.</span><span class='id updated_at'>updated_at</span> <span class='op'>&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>=</span> <span class='float'>0.0</span>
+  <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>+</span> <span class='id item'>item</span><span class='period'>.</span><span class='id total'>total</span>
+  <span class='kw'>end</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id sub_total'>sub_total</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id total'>total</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>+</span> <span class='id shipping_charges'>shipping_charges</span><span class='rparen'>)</span><span class='period'>.</span><span class='id round_at'>round_at</span><span class='lparen'>(</span> <span class='int'>2</span> <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="first_invoice_amount-instance_method">
+  
+    - (<tt>Object</tt>) <strong>first_invoice_amount</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id first_invoice_amount'>first_invoice_amount</span>
+  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='id completed_invoices'>completed_invoices</span><span class='period'>.</span><span class='id empty?'>empty?</span>
+  <span class='id completed_invoices'>completed_invoices</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id amount'>amount</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_beginning_address_id-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_beginning_address_id</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 169</span>
+
+<span class='kw'>def</span> <span class='id get_beginning_address_id'>get_beginning_address_id</span>
+  <span class='ivar'>@beginning_address_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="has_shipment?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_shipment?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+304
+305
+306</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 304</span>
+
+<span class='kw'>def</span> <span class='id has_shipment?'>has_shipment?</span>
+  <span class='id shipments_count'>shipments_count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+#######
+</p>
+<pre class="code">
+ This method is used when the session in admin orders is ready to authorize the credit card
+  The cart has the following format
+
+ session[:admin_cart] = {
+   :user             =&gt; nil,
+   :shipping_address =&gt; nil,
+   :billing_address  =&gt; nil,
+   :coupon           =&gt; nil,
+   :shipping_method  =&gt; nil,
+   :order_items =&gt; {}# the key is variant_id , a hash of {variant, shipping_rate, quantity, tax_rate, total, shipping_category_id}
+ }</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id name'>name</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id name'>name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="order_complete!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>order_complete!</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 159</span>
+
+<span class='kw'>def</span> <span class='id order_complete!'>order_complete!</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id state'>state</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>complete</span><span class='tstring_end'>'</span></span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id completed_at'>completed_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
+  <span class='id update_inventory'>update_inventory</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="order_total-instance_method">
+  
+    - (<tt>Object</tt>) <strong>order_total</strong>(force = false) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 208</span>
+
+<span class='kw'>def</span> <span class='id order_total'>order_total</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id find_total'>find_total</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ready_to_checkout?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>ready_to_checkout?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+212
+213
+214</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 212</span>
+
+<span class='kw'>def</span> <span class='id ready_to_checkout?'>ready_to_checkout?</span>
+  <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id all?'>all?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='id item'>item</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="remove_items-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_items</strong>(variant, final_quantity) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 258</span>
+
+<span class='kw'>def</span> <span class='id remove_items'>remove_items</span><span class='lparen'>(</span><span class='id variant'>variant</span><span class='comma'>,</span> <span class='id final_quantity'>final_quantity</span><span class='rparen'>)</span>
+  <span class='id total_order_items'>total_order_items</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:all</span><span class='comma'>,</span> <span class='symbol'>:conditions</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>variant_id = ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id variant'>variant</span><span class='period'>.</span><span class='id id'>id</span><span class='rbracket'>]</span> <span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id total_order_items'>total_order_items</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>-</span> <span class='id final_quantity'>final_quantity</span><span class='rparen'>)</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='id qty_to_delete'>qty_to_delete</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id total_order_items'>total_order_items</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>-</span> <span class='id final_quantity'>final_quantity</span><span class='rparen'>)</span>
+    <span class='id total_order_items'>total_order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id order_item'>order_item</span><span class='op'>|</span>
+      <span class='id order_item'>order_item</span><span class='period'>.</span><span class='id destroy'>destroy</span> <span class='kw'>if</span> <span class='id qty_to_delete'>qty_to_delete</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+      <span class='id qty_to_delete'>qty_to_delete</span> <span class='op'>=</span> <span class='id qty_to_delete'>qty_to_delete</span> <span class='op'>-</span> <span class='int'>1</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="save_order_number-instance_method">
+  
+    - (<tt>Object</tt>) <strong>save_order_number</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+282
+283
+284
+285</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 282</span>
+
+<span class='kw'>def</span> <span class='id save_order_number'>save_order_number</span>
+  <span class='id set_order_number'>set_order_number</span>
+  <span class='id save'>save</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_beginning_values-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_beginning_values</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 165</span>
+
+<span class='kw'>def</span> <span class='id set_beginning_values'>set_beginning_values</span>
+  <span class='ivar'>@beginning_address_id</span>      <span class='op'>=</span> <span class='id ship_address_id'>ship_address_id</span> <span class='comment'># this stores the initial value of the tax_rate
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_email-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_email</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+269
+270
+271</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 269</span>
+
+<span class='kw'>def</span> <span class='id set_email'>set_email</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span> <span class='op'>=</span> <span class='id user'>user</span><span class='period'>.</span><span class='id email'>email</span> <span class='kw'>if</span> <span class='id user_id'>user_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_number-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_number</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+273
+274
+275
+276</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 273</span>
+
+<span class='kw'>def</span> <span class='id set_number'>set_number</span>
+  <span class='kw'>return</span> <span class='id set_order_number'>set_order_number</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id number'>number</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span><span class='comment'>## fake number for friendly_id validator
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_order_number-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_order_number</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+278
+279
+280</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 278</span>
+
+<span class='kw'>def</span> <span class='id set_order_number'>set_order_number</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id number'>number</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>NUMBER_SEED</span> <span class='op'>+</span> <span class='id id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="shipping_charges-instance_method">
+  
+    - (<tt>Object</tt>) <strong>shipping_charges</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+226
+227
+228
+229</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 226</span>
+
+<span class='kw'>def</span> <span class='id shipping_charges'>shipping_charges</span>
+  <span class='kw'>return</span> <span class='ivar'>@order_shipping_charges</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='ivar'>@order_shipping_charges</span><span class='rparen'>)</span>
+  <span class='ivar'>@order_shipping_charges</span> <span class='op'>=</span> <span class='id shipping_rates'>shipping_rates</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id sum'>sum</span><span class='comma'>,</span> <span class='id shipping_rate'>shipping_rate</span><span class='op'>|</span>  <span class='id sum'>sum</span> <span class='op'>+</span> <span class='id shipping_rate'>shipping_rate</span><span class='period'>.</span><span class='id rate'>rate</span>  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="shipping_rates-instance_method">
+  
+    - (<tt>Object</tt>) <strong>shipping_rates</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+231
+232
+233
+234
+235
+236
+237</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 231</span>
+
+<span class='kw'>def</span> <span class='id shipping_rates'>shipping_rates</span>
+  <span class='id items'>items</span> <span class='op'>=</span> <span class='const'>OrderItem</span><span class='period'>.</span><span class='id order_items_in_cart'>order_items_in_cart</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span><span class='rparen'>)</span>
+  <span class='id rates'>rates</span> <span class='op'>=</span> <span class='id items'>items</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id rates'>rates</span><span class='comma'>,</span> <span class='id item'>item</span><span class='op'>|</span> 
+    <span class='id rates'>rates</span> <span class='op'>&lt;&lt;</span> <span class='id item'>item</span><span class='period'>.</span><span class='id shipping_rate'>shipping_rate</span> <span class='kw'>if</span> <span class='id item'>item</span><span class='period'>.</span><span class='id shipping_rate'>shipping_rate</span><span class='period'>.</span><span class='id individual?'>individual?</span> <span class='op'>||</span> <span class='op'>!</span><span class='id rates'>rates</span><span class='period'>.</span><span class='id include?'>include?</span><span class='lparen'>(</span><span class='id item'>item</span><span class='period'>.</span><span class='id shipping_rate'>shipping_rate</span><span class='rparen'>)</span>
+    <span class='id rates'>rates</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="status-instance_method">
+  
+    - (<tt>Object</tt>) <strong>status</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+105
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 105</span>
+
+<span class='kw'>def</span> <span class='id status'>status</span>
+  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>not processed</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='id invoices'>invoices</span><span class='period'>.</span><span class='id empty?'>empty?</span>
+  <span class='id invoices'>invoices</span><span class='period'>.</span><span class='id last'>last</span><span class='period'>.</span><span class='id state'>state</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="tax_charges-instance_method">
+  
+    - (<tt>Object</tt>) <strong>tax_charges</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+239
+240
+241
+242
+243
+244</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 239</span>
+
+<span class='kw'>def</span> <span class='id tax_charges'>tax_charges</span>
+  <span class='id charges'>charges</span> <span class='op'>=</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id charges'>charges</span><span class='comma'>,</span> <span class='id item'>item</span><span class='op'>|</span> 
+    <span class='id charges'>charges</span> <span class='op'>&lt;&lt;</span> <span class='id item'>item</span><span class='period'>.</span><span class='id tax_charge'>tax_charge</span>
+    <span class='id charges'>charges</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="total_tax_charges-instance_method">
+  
+    - (<tt>Object</tt>) <strong>total_tax_charges</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+246
+247
+248</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 246</span>
+
+<span class='kw'>def</span> <span class='id total_tax_charges'>total_tax_charges</span>
+  <span class='id tax_charges'>tax_charges</span><span class='period'>.</span><span class='id sum'>sum</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_inventory-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update_inventory</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+This method is called when the order transitions to paid
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+296
+297
+298</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 296</span>
+
+<span class='kw'>def</span> <span class='id update_inventory'>update_inventory</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='id item'>item</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id add_pending_to_customer'>add_pending_to_customer</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_tax_rates-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update_tax_rates</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 173</span>
+
+<span class='kw'>def</span> <span class='id update_tax_rates'>update_tax_rates</span>
+  <span class='kw'>if</span> <span class='ivar'>@beginning_address_id</span> <span class='op'>!=</span> <span class='id ship_address_id'>ship_address_id</span>
+    <span class='id set_beginning_values'>set_beginning_values</span>
+    <span class='id tax_time'>tax_time</span> <span class='op'>=</span> <span class='id completed_at?'>completed_at?</span> <span class='op'>?</span> <span class='id completed_at'>completed_at</span> <span class='op'>:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
+    <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span>
+      <span class='id rate'>rate</span> <span class='op'>=</span> <span class='id item'>item</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id product'>product</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id ship_address'>ship_address</span><span class='period'>.</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id tax_time'>tax_time</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id rate'>rate</span> <span class='op'>&amp;&amp;</span> <span class='id item'>item</span><span class='period'>.</span><span class='id tax_rate_id'>tax_rate_id</span> <span class='op'>!=</span> <span class='id rate'>rate</span><span class='period'>.</span><span class='id id'>id</span> 
+        <span class='id item'>item</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span> <span class='op'>=</span> <span class='id rate'>rate</span>
+        <span class='id item'>item</span><span class='period'>.</span><span class='id save'>save</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="variant_ids-instance_method">
+  
+    - (<tt>Object</tt>) <strong>variant_ids</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+300
+301
+302</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 300</span>
+
+<span class='kw'>def</span> <span class='id variant_ids'>variant_ids</span>
+  <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id oi'>oi</span><span class='op'>|</span> <span class='id oi'>oi</span><span class='period'>.</span><span class='id variant_id'>variant_id</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Dec  5 02:29:11 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
