@@ -23,8 +23,8 @@
 
   <div class="field">
     <%= label_tag :country %><br />
-    <%= select_tag :select_country, 
-                    options_from_collection_for_select(@countries, "id", "abbrev_and_name"), 
+    <%= select_tag :select_country,
+                    options_from_collection_for_select(@countries, "second", "first"),
                     {:include_blank => true} %>
   </div>
 
