@@ -6,11 +6,11 @@ body.bp {
   background: none;
   font-size: 10pt;
 }
-/* line 46, ../../app/stylesheets/blueprint/_print.scss */
+/* line 45, ../../app/stylesheets/blueprint/_print.scss */
 body.bp .container {
   background: none;
 }
-/* line 48, ../../app/stylesheets/blueprint/_print.scss */
+/* line 47, ../../app/stylesheets/blueprint/_print.scss */
 body.bp hr {
   background: #cccccc;
   color: #cccccc;
@@ -20,53 +20,53 @@ body.bp hr {
   padding: 0;
   border: none;
 }
-/* line 56, ../../app/stylesheets/blueprint/_print.scss */
+/* line 55, ../../app/stylesheets/blueprint/_print.scss */
 body.bp hr.space {
   background: white;
   color: white;
 }
-/* line 59, ../../app/stylesheets/blueprint/_print.scss */
+/* line 58, ../../app/stylesheets/blueprint/_print.scss */
 body.bp h1, body.bp h2, body.bp h3, body.bp h4, body.bp h5, body.bp h6 {
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
-/* line 61, ../../app/stylesheets/blueprint/_print.scss */
+/* line 60, ../../app/stylesheets/blueprint/_print.scss */
 body.bp code {
   font-size: 0.9em;
   font-family: "andale mono", "lucida console", monospace;
 }
-/* line 66, ../../app/stylesheets/blueprint/_print.scss */
+/* line 65, ../../app/stylesheets/blueprint/_print.scss */
 body.bp a img {
   border: none;
 }
-/* line 69, ../../app/stylesheets/blueprint/_print.scss */
+/* line 68, ../../app/stylesheets/blueprint/_print.scss */
 body.bp a:link, body.bp a:visited {
   font-weight: 700;
   text-decoration: none;
 }
-/* line 73, ../../app/stylesheets/blueprint/_print.scss */
+/* line 72, ../../app/stylesheets/blueprint/_print.scss */
 body.bp p img.top {
   margin-top: 0;
 }
-/* line 75, ../../app/stylesheets/blueprint/_print.scss */
+/* line 74, ../../app/stylesheets/blueprint/_print.scss */
 body.bp blockquote {
   margin: 1.5em;
   padding: 1em;
   font-style: italic;
   font-size: 0.9em;
 }
-/* line 80, ../../app/stylesheets/blueprint/_print.scss */
+/* line 79, ../../app/stylesheets/blueprint/_print.scss */
 body.bp .small {
   font-size: 0.9em;
 }
-/* line 82, ../../app/stylesheets/blueprint/_print.scss */
+/* line 81, ../../app/stylesheets/blueprint/_print.scss */
 body.bp .large {
   font-size: 1.1em;
 }
-/* line 84, ../../app/stylesheets/blueprint/_print.scss */
+/* line 83, ../../app/stylesheets/blueprint/_print.scss */
 body.bp .quiet {
   color: #999999;
 }
-/* line 86, ../../app/stylesheets/blueprint/_print.scss */
+/* line 85, ../../app/stylesheets/blueprint/_print.scss */
 body.bp .hide {
   display: none;
 }

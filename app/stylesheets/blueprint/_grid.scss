@@ -31,7 +31,7 @@ $blueprint_grid_margin: 10px !default;
 $blueprint_grid_outer_width: $blueprint_grid_width + $blueprint_grid_margin;
 
 // The width of the container. With default settings this is `950px`.
-$blueprint_container_size: $blueprint_grid_outer_width * $blueprint_grid_columns - $blueprint_grid_margin;
+$blueprint_container_size: $blueprint_grid_outer_width * $blueprint_grid_columns;// - $blueprint_grid_margin;
 
 // Generates presentational class names that you can use
 // in your html to layout your pages.

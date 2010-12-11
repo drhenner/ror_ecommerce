@@ -1,0 +1,56 @@
+
+// HEADER DIVs includes search , cart button, wish button
+
+#header_wrapper {
+  @include span(24);
+  @include last;
+
+  //background-image: url(../../images/logos/hadean_wide.png);
+  background-color: #57B;
+  h1, h3, a {
+    color: #EEE;
+  }
+
+}
+
+#header_bar {
+  @include span(24);
+  @include inline-block;
+  background-color: #57B;
+  @include last;
+  @include bottom-rounded(9px)
+}
+
+#header_sub_bar {
+  @include span(23);
+  @include last;
+
+  margin-left:  18px;
+  // @include inline-block;
+  background-color: #8AE;
+  @include rounded(9px);
+  border:   solid 2px #68C;
+}
+
+#search_bar {
+  @include span(18);
+  @include float-left;
+  @include inline-block;
+  text-align: left;
+}
+
+#layout-search {
+  margin-left:  5px;
+  color:        #EEE;
+  font-weight:  bolder;
+  font-size:    large;
+}
+
+#cart_items_button {
+  @include float-right;
+  @include inline-block;
+}
+#wish_items_button {
+  @include float-right;
+  @include inline-block;
+}

@@ -1,172 +1,98 @@
-/* line 3, ../../app/stylesheets/_main_header.scss */
+/* line 4, ../../app/stylesheets/_admin_header.scss */
 #header_wrapper {
-  border-bottom: 1px solid #CCCCCC;
-  background: url("../../images/header/bg-header-wrap.png") repeat-x scroll center bottom white;
+  width: 950px;
+  margin-right: 0;
+  background-color: #57B;
 }
-/* line 8, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header {
-  font-family: "Helvetica Neue",Helvetica,Arial,"Liberation Sans",FreeSans,sans-serif;
-  height: 59px;
-}
-/* line 12, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header .container {
-  margin-left: auto;
-  margin-right: auto;
-}
-/* line 16, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header form.search {
-  border-right: 1px solid #EEEEEE;
-  display: inline;
-  float: left;
-  height: 29px;
-  padding: 17px 15px 13px;
-}
-/* line 22, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header form.search.input-search {
-  width: 230px;
-}
-/* line 26, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #logo {
-  display: inline;
-  float: left;
-  font-size: 24px;
-  margin-bottom: 0;
-  margin-left: 3px;
-  border-right: 1px solid #CCCCCC;
-  width: 220px;
-  height: 100%;
-}
-/* line 36, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #logo a {
-  display: block;
-  padding: 13px 15px;
-}
-/* line 40, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #logo a span {
-  -moz-box-orient: vertical;
-  display: block;
-  height: 20px;
-  text-align: left;
-  vertical-align: middle;
-  width: 160px;
-}
-/* line 51, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-main {
-  font-size: 0;
-  list-style-type: none;
-  float: left;
-  margin: 0;
-  overflow: hidden;
-}
-/* line 58, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-main li {
-  margin-left: 0;
-  display: inline;
-}
-/* line 62, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-main li a {
-  display: inline-block;
-  padding: 13px 15px;
-  border-right: 1px solid #CCCCCC;
-}
-/* line 67, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-main li a strong {
-  color: #55A4F2 !important;
-  display: block;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 15px;
-}
-/* line 74, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-main li a span {
-  color: #B2B2B2 !important;
-  font-size: 12px;
-}
-/* line 79, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-main li a #menu-main-fund {
-  margin-left: -1px;
-}
-/* line 83, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-main li.selected {
-  border-bottom: 1px solid #FFFFFF;
-  border-color: #CCCCCC #CCCCCC #FFFFFF;
-  z-index: 1;
-}
-/* line 88, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-main li.selected a {
-  background: none repeat scroll 0 0 #FFFFFF;
-}
-/* line 95, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-sub {
-  border: 0 none;
-  display: inline;
-  float: left;
-  margin: 0;
-  outline: 0 none;
-  overflow: visible;
-  padding: 0 0 0 8px;
-}
-/* line 104, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-sub li {
-  display: inline;
-  float: left;
-  list-style-image: none;
-  list-style-type: none;
-  margin-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-  white-space: nowrap;
-}
-/* line 114, ../../app/stylesheets/_main_header.scss */
-#header_wrapper #header #menu-sub li:first-child, #header_wrapper #header #menu-sub li.first {
-  padding-left: 0;
+/* line 10, ../../app/stylesheets/_admin_header.scss */
+#header_wrapper h1, #header_wrapper h3, #header_wrapper a {
+  color: #EEE;
 }
 
-/* line 121, ../../app/stylesheets/_main_header.scss */
-.field.search {
-  position: relative;
-}
-/* line 123, ../../app/stylesheets/_main_header.scss */
-.field.search .icon-search {
-  left: 8px;
-  position: absolute;
-  top: 5px;
-}
-/* line 128, ../../app/stylesheets/_main_header.scss */
-.field.search input.text {
-  -moz-border-radius: 11px;
-  -webkit-border-radius: 11px;
+/* line 16, ../../app/stylesheets/_admin_header.scss */
+#header_bar {
+  width: 950px;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  background-color: #57B;
+  margin-right: 0;
+  -moz-border-radius: 0px 0px 9px 9px;
+  -webkit-border-radius: 0px 0px 9px 9px;
   behavior: url(border-radius.htc);
-  background: -moz-linear-gradient(center top, #e6e6e6 0%, white 100%) repeat-x scroll center top white;
-  border: 1px solid #CCCCCC;
-  font-size: 12px;
-  height: 14px !important;
-  margin: 0;
-  outline: medium none;
-  padding: 4px 28px;
-  vertical-align: top;
-  width: 225px;
+}
+/* line 7, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#header_bar {
+  *display: inline;
 }
 
-/* line 142, ../../app/stylesheets/_main_header.scss */
-.icon-search {
+/* line 24, ../../app/stylesheets/_admin_header.scss */
+#header_sub_bar {
+  width: 910px;
+  margin-right: 0;
+  margin-left: 18px;
+  background-color: #8AE;
+  -moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  behavior: url(border-radius.htc);
+  border: solid 2px #68C;
+}
+
+/* line 35, ../../app/stylesheets/_admin_header.scss */
+#search_bar {
+  width: 710px;
+  display: inline;
+  float: left;
+  display: -moz-inline-box;
   -moz-box-orient: vertical;
   display: inline-block;
-  height: 14px;
-  overflow: hidden;
   vertical-align: middle;
-  width: 14px;
+  *vertical-align: auto;
+  text-align: left;
+}
+/* line 7, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#search_bar {
+  *display: inline;
 }
 
-/* line 153, ../../app/stylesheets/_main_header.scss */
-a {
-  color: #55A4F2;
-  text-decoration: none;
+/* line 42, ../../app/stylesheets/_admin_header.scss */
+#layout-search {
+  margin-left: 5px;
+  color: #EEE;
+  font-weight: bolder;
+  font-size: large;
 }
 
-/* line 157, ../../app/stylesheets/_main_header.scss */
-a:visited {
-  color: #4484D2;
+/* line 49, ../../app/stylesheets/_admin_header.scss */
+#cart_items_button {
+  display: inline;
+  float: right;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+/* line 7, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#cart_items_button {
+  *display: inline;
+}
+
+/* line 53, ../../app/stylesheets/_admin_header.scss */
+#wish_items_button {
+  display: inline;
+  float: right;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+/* line 7, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#wish_items_button {
+  *display: inline;
 }
 
 /* line 2, ../../app/stylesheets/_app.scss */

@@ -1,0 +1,57 @@
+
+@mixin left-text($buffer: 4px) {
+  text-align: left;
+  padding-left: $buffer;
+}
+
+@mixin padding($pad: 5px) {
+  padding: $pad;
+}
+
+@mixin margin($pad: 4px) {
+  margin: $pad;
+}
+
+@mixin left-right-margin($pad: 4px) {
+  margin-left: $pad;
+  margin-right: $pad;
+}
+@mixin top-rounded($radius: 4px) {
+  -moz-border-radius:$radius $radius 0px 0px;
+  -webkit-border-radius:$radius $radius 0px 0px;
+  behavior:url(border-radius.htc);
+}
+
+
+@mixin bottom-rounded($radius: 4px) {
+  -moz-border-radius:0px 0px $radius $radius;
+  -webkit-border-radius:0px 0px $radius $radius;
+  behavior:url(border-radius.htc);
+}
+
+@mixin rounded($radius: 4px) {
+  -moz-border-radius:$radius;
+  -webkit-border-radius:$radius;
+  behavior:url(border-radius.htc);
+}
+
+@mixin admin-page-wrapper($width: 24) {
+  @include span($width);
+  @include last;
+}
+
+@mixin admin-grid-wrapper($width: 18) {
+  @include span($width);
+}
+
+@mixin admin-new-button($width: 6) {
+  @include column($width);
+  @include last;
+}
+
+@mixin admin-form-wrapper($width: 10) {
+  @include span($width);
+  p {
+    @include span(10);
+    }
+}
