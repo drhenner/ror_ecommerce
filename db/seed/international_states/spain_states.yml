@@ -1,0 +1,154 @@
+
+
+c_0001:
+  attributes:
+    name: Andalusia
+    abbreviation: AN
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0002:
+  attributes:
+    name: Aragon
+    abbreviation: AR
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0003:
+  attributes:
+    name: Asturias
+    abbreviation: AS
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0004:
+  attributes:
+    name: Balearic Islands
+    abbreviation: IB
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0005:
+  attributes:
+    name: Basque Country
+    abbreviation: PV
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0006:
+  attributes:
+    name: Canary Islands
+    abbreviation: CN
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0007:
+  attributes:
+    name: Cantabria
+    abbreviation: CB
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0008:
+  attributes:
+    name: Castile and Leon
+    abbreviation: CL
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0009:
+  attributes:
+    name: Castile-La Mancha
+    abbreviation: CM
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0010:
+  attributes:
+    name: Catalonia
+    abbreviation: CT
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0011:
+  attributes:
+    name: Ceuta
+    abbreviation: CE
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Municipality
+
+c_0012:
+  attributes:
+    name: Extremadura
+    abbreviation: EX
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0013:
+  attributes:
+    name: Galicia
+    abbreviation: GA
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0014:
+  attributes:
+    name: La Rioja
+    abbreviation: RI
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0015:
+  attributes:
+    name: Madrid
+    abbreviation: MD
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0016:
+  attributes:
+    name: Melilla
+    abbreviation: ML
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Municipality
+
+c_0017:
+  attributes:
+    name: Murcia
+    abbreviation: MC
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0018:
+  attributes:
+    name: Navarra
+    abbreviation: NA
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
+c_0019:
+  attributes:
+    name: Valencia
+    abbreviation: VC
+    country_id: 188
+    shipping_zone_id: 5
+    described_as: Community
+
