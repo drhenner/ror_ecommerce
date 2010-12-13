@@ -56,6 +56,19 @@
                     <strong> Wish List </strong> <span>what you want.</span>
                 <% end %>
             </li>
+
+            <li class="" id="menu-main-user">
+              <div>
+                <% unless most_likely_user %>
+                  <strong><%= link_to 'Login',  login_path %></strong> or
+                  <span><%= link_to 'Sign up', signup_path %></span>
+                <% else %>
+                  <strong>Hi <%= most_likely_user.first_name %></strong>
+                  <span>(<%= link_to 'not you?', logout_path %>)</span>
+                <% end %>
+              </div>
+            </li>
+
           </ul>
           <%= form_for search_product, :html => {:class => 'search'} do %>
             <div class="field search">

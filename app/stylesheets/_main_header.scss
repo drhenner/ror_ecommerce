@@ -30,7 +30,7 @@
       margin-bottom: 0;
       margin-left: 3px;
       border-right: 1px solid #CCCCCC;
-      width: 220px;
+      width: 210px;
       height: 100%;
 
       a {
@@ -55,13 +55,37 @@
       margin: 0;
       overflow: hidden;
 
+      li#menu-main-user {
+        display:inline-block;
+        div {
+          display: inline-block;
+          padding: 13px 9px;
+          border-right: 1px solid #CCCCCC;
+          strong {
+            color: #55A4F2 !important;
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 15px;
+          }
+          span {
+            color: #B2B2B2 !important;
+            font-size: 12px;
+          }
+          a {
+            padding: 0px 0px;
+            border-right: none;
+          }
+        }
+      }
+
       li {
         margin-left: 0;
-        display:inline;
+        display:inline-block;
 
         a {
           display: inline-block;
-          padding: 13px 15px;
+          padding: 13px 7px;
           border-right: 1px solid #CCCCCC;
 
           strong {
