@@ -69,7 +69,7 @@ class Variant < ActiveRecord::Base
   end
 
   def primary_property
-    pp = self.variant_properties.where(["variant_properties.primary = ?", true]).find(:first)
+    pp = self.variant_properties.where({:primary => true}).find(:first)
     pp ? pp : self.variant_properties.find(:first)
   end
 
