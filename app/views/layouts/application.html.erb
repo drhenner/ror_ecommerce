@@ -47,12 +47,12 @@
             </li>
 
             <li class="" id="menu-main-cart">
-                <% link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
+                <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
                     <strong> Cart </strong> <span>view your stuff.</span>
                 <% end %>
             </li>
             <li class="" id="menu-main-wish">
-                <% link_to(wish_items_path, :id => 'wish_items_button') do %>
+                <%= link_to(wish_items_path, :id => 'wish_items_button') do %>
                     <strong> Wish List </strong> <span>what you want.</span>
                 <% end %>
             </li>

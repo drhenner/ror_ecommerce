@@ -1,6 +1,6 @@
 class AddTotalCostToPurchaseOrders < ActiveRecord::Migration
   def self.up
-    add_column :purchase_orders, :total_cost, :decimal, :null => false, :precision => 8, :scale => 2
+    add_column :purchase_orders, :total_cost, :decimal, :null => false, :default => 0.0, :precision => 8, :scale => 2
   end
 
   def self.down

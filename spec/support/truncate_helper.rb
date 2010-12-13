@@ -1,11 +1,11 @@
 module Hadean
   module TruncateHelper
-    
-    UNSEEDED_TABLES = [ "addresses", 
-                        'batches', 
-                        'brands', 
-                        'carts', 
-                        'comments', 
+
+    UNSEEDED_TABLES = [ "addresses",
+                        'batches',
+                        'brands',
+                        'carts',
+                        'comments',
                         'images',
                         'invoices',
                         'orders',
@@ -30,25 +30,31 @@ module Hadean
                         'tax_rates',
                         'transactions',
                         'transaction_ledgers',
-                        "users", 
+                        "users",
                         "user_roles",
                         'variants',
                         'variant_properties',
                         'variant_suppliers'
                       ]
-    
+
     def truncate_all
       tables = ActiveRecord::Base.connection.tables
       tables.each { |table| truncate table }
     end
 
-    
-    def trunctate_unseeded 
+
+    def trunctate_unseeded
       UNSEEDED_TABLES.each { |table| truncate table }
     end
-    
+
     def truncate table
-      ActiveRecord::Base.connection.execute "TRUNCATE TABLE #{table}"
+      config = ActiveRecord::Base.configurations[Rails.env]
+
+      if config['adapter'] == 'sqlite3'
+        ActiveRecord::Base.connection.execute "DELETE FROM #{table}"
+      else
+        ActiveRecord::Base.connection.execute "TRUNCATE TABLE #{table}"
+      end
     end
   end
 end

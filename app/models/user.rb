@@ -32,26 +32,26 @@ class User < ActiveRecord::Base
   has_many    :phones,                    :dependent => :destroy,
                                           :as => :phoneable
 
-  has_one     :primary_phone,             :conditions => ['phones.primary = ?', true],
+  has_one     :primary_phone,             :conditions => {:phones => { :primary => true}},
                                           :as => :phoneable,
                                           :class_name => 'Phone'
 
   has_many    :addresses,                 :dependent => :destroy,
                                           :as => :addressable
 
-  has_one     :default_billing_address,   :conditions => ['addresses.billing_default = ? AND active = ?', true, true],
+  has_one     :default_billing_address,   :conditions => {:addresses => { :billing_default => true, :active => true}},
                                           :as => :addressable,
                                           :class_name => 'Address'
 
-  has_many    :billing_addresses,         :conditions => ['addresses.active = ?', true],
+  has_many    :billing_addresses,         :conditions => {:addresses => { :active => true}},
                                           :as => :addressable,
                                           :class_name => 'Address'
 
-  has_one     :default_shipping_address,  :conditions => ['addresses.default = ? AND active = ?', true, true],
+  has_one     :default_shipping_address,  :conditions => {:addresses => { :default => true, :active => true}},
                                           :as => :addressable,
                                           :class_name => 'Address'
 
-  has_many     :shipping_addresses,       :conditions => ['addresses.active = ?', true],
+  has_many     :shipping_addresses,       :conditions => {:addresses => { :active => true}},
                                           :as => :addressable,
                                           :class_name => 'Address'
 
@@ -61,23 +61,23 @@ class User < ActiveRecord::Base
   has_many    :carts,                     :dependent => :destroy
 
   has_many    :cart_items
-  has_many    :shopping_cart_items,       :conditions => ['cart_items.active = ? AND
-                                                          cart_items.item_type_id = ?', true, ItemType::SHOPPING_CART_ID],
+  has_many    :shopping_cart_items,       :conditions => {:cart_items => { :active        => true,
+                                                                           :item_type_id  => ItemType::SHOPPING_CART_ID}},
                                           :class_name => 'CartItem'
 
-  has_many    :wish_list_items,           :conditions => ['cart_items.active = ? AND
-                                                          cart_items.item_type_id = ?', true, ItemType::WISH_LIST_ID],
+  has_many    :wish_list_items,           :conditions => {:cart_items => { :active        => true,
+                                                                           :item_type_id  => ItemType::WISH_LIST_ID}},
                                           :class_name => 'CartItem'
 
-  has_many    :saved_cart_items,           :conditions => ['cart_items.active = ? AND
-                                                          cart_items.item_type_id = ?', true, ItemType::SAVE_FOR_LATER],
+  has_many    :saved_cart_items,           :conditions => {:cart_items => { :active        => true,
+                                                                            :item_type_id  => ItemType::SAVE_FOR_LATER}},
                                           :class_name => 'CartItem'
 
-  has_many    :purchased_items,           :conditions => ['cart_items.active = ? AND
-                                                          cart_items.item_type_id = ?', true, ItemType::PURCHASED_ID],
+  has_many    :purchased_items,           :conditions => {:cart_items => { :active        => true,
+                                                                           :item_type_id  => ItemType::PURCHASED_ID}},
                                           :class_name => 'CartItem'
 
-  has_many    :deleted_cart_items,        :conditions => ['cart_items.active = ?', false], :class_name => 'CartItem'
+  has_many    :deleted_cart_items,        :conditions => {:cart_items => { :active => false}}, :class_name => 'CartItem'
   has_many    :payment_profiles
   has_many    :transaction_ledgers, :as => :accountable
 

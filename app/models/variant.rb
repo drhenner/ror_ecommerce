@@ -69,7 +69,7 @@ class Variant < ActiveRecord::Base
   end
 
   def primary_property
-    pp = self.variant_properties.where({:primary => true}).find(:first)
+    pp = self.variant_properties.where({ :variant_properties => {:primary => true}}).find(:first)
     pp ? pp : self.variant_properties.find(:first)
   end
 
@@ -118,9 +118,9 @@ class Variant < ActiveRecord::Base
     params[:page] ||= 1
     params[:rows] ||= SETTINGS[:admin_grid_rows]
 
-    grid = Variant.where("variants.product_id", product.id)
+    grid = Variant.where({:variants => { :product_id => product.id} })
     grid = grid.includes(:product)
-    grid = grid.where("products.name = ?", params[:name])  if params[:name].present?
+    grid = grid.where({:products => {:name => params[:name]}})  if params[:name].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")
     grid = grid.limit(params[:rows])
     grid.paginate({:page => params[:page]})
