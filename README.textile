@@ -2,7 +2,7 @@ h1. Project Overview
 
 "Please create a ticket if you have issues":http://ror_ecommerce.lighthouseapp.com/home
 
-"Please look at the homepage for more details":http://www.rorecommerce.com
+"Please look at the homepage for more details":http://www.ror-e.com
 
 This is a Rails e-commerce platform.  Other e-commerce projects that
 use rails, don't use rails in a standard way.  They use engines or are a separate
