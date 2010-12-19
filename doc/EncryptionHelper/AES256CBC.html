@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: EncryptionHelper::AES256CBC</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (A)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../EncryptionHelper.html" title="EncryptionHelper (module)">EncryptionHelper</a></span></span>
+     &raquo; 
+    <span class="title">AES256CBC</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: EncryptionHelper::AES256CBC
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/encryption_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+## NOTE #### APP_CONFIG[:encryption_key] from config/config.yml 
+</p>
+<pre class="code">
+  should be stored on the server and not in your applications code base</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#decrypt-instance_method" title="#decrypt (instance method)">- (Object) <strong>decrypt</strong>(iv, ciphertext) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#encrypt-instance_method" title="#encrypt (instance method)">- (Object) <strong>encrypt</strong>(plaintext) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="decrypt-instance_method">
+  
+    - (<tt>Object</tt>) <strong>decrypt</strong>(iv, ciphertext) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20
+21
+22
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/encryption_helper.rb', line 18</span>
+
+<span class='kw'>def</span> <span class='id decrypt'>decrypt</span><span class='lparen'>(</span><span class='id iv'>iv</span><span class='comma'>,</span> <span class='id ciphertext'>ciphertext</span><span class='rparen'>)</span>
+  <span class='id aes'>aes</span> <span class='op'>=</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>Cipher</span><span class='op'>::</span><span class='const'>Cipher</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>AES-256-CBC</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id aes'>aes</span><span class='period'>.</span><span class='id decrypt'>decrypt</span> <span class='comment'># must be called before aes.key aes.iv
+</span>  <span class='id aes'>aes</span><span class='period'>.</span><span class='id key'>key</span> <span class='op'>=</span> <span class='const'>APP_CONFIG</span><span class='lbracket'>[</span><span class='symbol'>:encryption_key</span><span class='rbracket'>]</span>
+  <span class='id aes'>aes</span><span class='period'>.</span><span class='id iv'>iv</span> <span class='op'>=</span> <span class='id iv'>iv</span>
+  <span class='id plaintext'>plaintext</span> <span class='op'>=</span> <span class='id aes'>aes</span><span class='period'>.</span><span class='id update'>update</span><span class='lparen'>(</span><span class='id ciphertext'>ciphertext</span><span class='rparen'>)</span>
+  <span class='id plaintext'>plaintext</span> <span class='op'>&lt;&lt;</span> <span class='id aes'>aes</span><span class='period'>.</span><span class='id final'>final</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="encrypt-instance_method">
+  
+    - (<tt>Object</tt>) <strong>encrypt</strong>(plaintext) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/encryption_helper.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id encrypt'>encrypt</span><span class='lparen'>(</span><span class='id plaintext'>plaintext</span><span class='rparen'>)</span>
+  <span class='id aes'>aes</span> <span class='op'>=</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>Cipher</span><span class='op'>::</span><span class='const'>Cipher</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>AES-256-CBC</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id aes'>aes</span><span class='period'>.</span><span class='id encrypt'>encrypt</span> <span class='comment'># must be call before #key and #iv
+</span>  <span class='id aes'>aes</span><span class='period'>.</span><span class='id key'>key</span> <span class='op'>=</span> <span class='const'>APP_CONFIG</span><span class='lbracket'>[</span><span class='symbol'>:encryption_key</span><span class='rbracket'>]</span>
+  <span class='id aes'>aes</span><span class='period'>.</span><span class='id iv'>iv</span> <span class='op'>=</span> <span class='id iv'>iv</span> <span class='op'>=</span> <span class='id aes'>aes</span><span class='period'>.</span><span class='id random_iv'>random_iv</span>
+  <span class='id ciphertext'>ciphertext</span> <span class='op'>=</span> <span class='id aes'>aes</span><span class='period'>.</span><span class='id update'>update</span><span class='lparen'>(</span><span class='id plaintext'>plaintext</span><span class='rparen'>)</span>
+  <span class='id ciphertext'>ciphertext</span> <span class='op'>&lt;&lt;</span>  <span class='id aes'>aes</span><span class='period'>.</span><span class='id final'>final</span>
+  <span class='kw'>return</span> <span class='id iv'>iv</span><span class='comma'>,</span> <span class='id ciphertext'>ciphertext</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Dec 19 08:34:06 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
