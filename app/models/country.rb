@@ -10,10 +10,22 @@ class Country < ActiveRecord::Base
 
   ACTIVE_COUNTRY_IDS = [CANADA_ID, USA_ID]
 
+  # Call this method to display the country_abbreviation - country with and appending name
+  # @example abbreviation == USA, country == 'United States'
+  #   country.abbreviation_name(': capitalist') => 'USA - United States : capitalist'
+  #
+  # @param [append name, optional]
+  # @return [String] country abbreviation - country name
   def abbreviation_name(append_name = "")
     ([abbreviation, name].join(" - ") + " #{append_name}").strip
   end
 
+  # Call this method to display the country_abbreviation - country
+  # @example abbreviation == USA, country == 'United States'
+  #   country.abbrev_and_name => 'USA - United States'
+  #
+  # @param none
+  # @return [String] country abbreviation - country name
   def abbrev_and_name
     abbreviation_name
   end
