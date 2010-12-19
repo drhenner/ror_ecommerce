@@ -207,12 +207,14 @@ This method will need a rescue method i assume.
 18
 19
 20
-21</pre>
+21
+22
+23</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 7</span>
 
-<span class='kw'>def</span> <span class='id receive!'>receive!</span> 
+<span class='kw'>def</span> <span class='id receive!'>receive!</span>
   <span class='const'>PurchaseOrderVariant</span><span class='period'>.</span><span class='id transaction'>transaction</span> <span class='kw'>do</span>
     <span class='comment'>###  Add to variant stock level
 </span>    <span class='kw'>self</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id count_on_hand'>count_on_hand</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id count_on_hand'>count_on_hand</span> <span class='op'>+</span> <span class='kw'>self</span><span class='period'>.</span><span class='id quantity'>quantity</span>
@@ -221,8 +223,10 @@ This method will need a rescue method i assume.
 </span>      <span class='kw'>self</span><span class='period'>.</span><span class='id is_received'>is_received</span> <span class='op'>=</span> <span class='kw'>true</span>
       <span class='kw'>self</span><span class='period'>.</span><span class='id save!'>save!</span>
     <span class='kw'>end</span>
-    <span class='kw'>if</span> <span class='int'>0</span> <span class='op'>==</span> <span class='const'>PurchaseOrderVariant</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>purchase_order_variants.purchase_order_id = ? &amp;&amp; 
-</span><span class='tstring_content'>                                         purchase_order_variants.is_received = ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id purchase_order_id'>purchase_order_id</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id count'>count</span>
+    <span class='kw'>if</span> <span class='int'>0</span> <span class='op'>==</span> <span class='const'>PurchaseOrderVariant</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:purchase_order_variants</span> <span class='op'>=&gt;</span>
+                                              <span class='lbrace'>{</span> <span class='symbol'>:purchase_order_id</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id purchase_order_id'>purchase_order_id</span><span class='comma'>,</span>
+                                                <span class='symbol'>:is_received</span>       <span class='op'>=&gt;</span> <span class='kw'>false</span>
+                                              <span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id count'>count</span>
       <span class='kw'>self</span><span class='period'>.</span><span class='id purchase_order'>purchase_order</span><span class='period'>.</span><span class='id mark_as_complete'>mark_as_complete</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -245,12 +249,12 @@ This method will need a rescue method i assume.
       <pre class="lines">
 
 
-29
-30
-31</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id receive_po'>receive_po</span>
   <span class='id is_received?'>is_received?</span>
@@ -273,14 +277,14 @@ This method will need a rescue method i assume.
       <pre class="lines">
 
 
-23
-24
 25
 26
-27</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id receive_po='>receive_po=</span><span class='lparen'>(</span><span class='id answer'>answer</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id answer'>answer</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>true</span><span class='tstring_end'>'</span></span> <span class='op'>||</span> <span class='id answer'>answer</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id is_received?'>is_received?</span>
@@ -297,7 +301,7 @@ This method will need a rescue method i assume.
 </div>
     
     <div id="footer">
-  Generated on Sun Dec  5 02:29:12 2010 by 
+  Generated on Sun Dec 19 09:17:02 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

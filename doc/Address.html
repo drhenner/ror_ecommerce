@@ -287,7 +287,7 @@
 
   
     <span class="summary_desc"><div class='inline'><p>
-accepts_nested_attributes_for :phones.
+First and last name of the person on the address.
 </p>
 </div></span>
   
@@ -380,12 +380,6 @@ accepts_nested_attributes_for :phones.
       <pre class="lines">
 
 
-48
-49
-50
-51
-52
-53
 54
 55
 56
@@ -393,16 +387,22 @@ accepts_nested_attributes_for :phones.
 58
 59
 60
-61</pre>
+61
+62
+63
+64
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id update_address'>update_address</span><span class='lparen'>(</span><span class='id old_address'>old_address</span><span class='comma'>,</span> <span class='id params'>params</span><span class='comma'>,</span> <span class='id address_type_id'>address_type_id</span> <span class='op'>=</span> <span class='const'>AddressType</span><span class='op'>::</span><span class='const'>SHIPPING_ID</span> <span class='rparen'>)</span>
-  <span class='id new_address'>new_address</span> <span class='op'>=</span> <span class='const'>Address</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id params'>params</span><span class='period'>.</span><span class='id merge'>merge</span><span class='lparen'>(</span> <span class='symbol'>:address_type_id</span>  <span class='op'>=&gt;</span> <span class='id address_type_id'>address_type_id</span><span class='comma'>,</span> 
-                            <span class='symbol'>:addressable_type</span> <span class='op'>=&gt;</span> <span class='id old_address'>old_address</span><span class='period'>.</span><span class='id addressable_type'>addressable_type</span><span class='comma'>,</span> 
+  <span class='id new_address'>new_address</span> <span class='op'>=</span> <span class='const'>Address</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id params'>params</span><span class='period'>.</span><span class='id merge'>merge</span><span class='lparen'>(</span> <span class='symbol'>:address_type_id</span>  <span class='op'>=&gt;</span> <span class='id address_type_id'>address_type_id</span><span class='comma'>,</span>
+                            <span class='symbol'>:addressable_type</span> <span class='op'>=&gt;</span> <span class='id old_address'>old_address</span><span class='period'>.</span><span class='id addressable_type'>addressable_type</span><span class='comma'>,</span>
                             <span class='symbol'>:addressable_id</span>   <span class='op'>=&gt;</span> <span class='id old_address'>old_address</span><span class='period'>.</span><span class='id addressable_id'>addressable_id</span> <span class='rparen'>)</span><span class='rparen'>)</span>
-  
+
   <span class='id new_address'>new_address</span><span class='period'>.</span><span class='id default'>default</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id old_address'>old_address</span><span class='period'>.</span><span class='id default'>default</span>
   <span class='kw'>if</span> <span class='id new_address'>new_address</span><span class='period'>.</span><span class='id valid?'>valid?</span> <span class='op'>&amp;&amp;</span> <span class='id new_address'>new_address</span><span class='period'>.</span><span class='id save_default_address'>save_default_address</span><span class='lparen'>(</span><span class='id old_address'>old_address</span><span class='period'>.</span><span class='id addressable'>addressable</span><span class='comma'>,</span> <span class='id params'>params</span><span class='rparen'>)</span>
     <span class='id old_address'>old_address</span><span class='period'>.</span><span class='id update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='symbol'>:active</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -436,12 +436,12 @@ accepts_nested_attributes_for :phones.
       <pre class="lines">
 
 
-32
-33
-34</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id address_attributes'>address_attributes</span>
   <span class='id attributes'>attributes</span><span class='period'>.</span><span class='id delete_if'>delete_if</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id key'>key</span><span class='comma'>,</span> <span class='id value'>value</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>updated_at</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>created_at</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id any?'>any?</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id k'>k</span><span class='op'>|</span> <span class='id k'>k</span> <span class='op'>==</span> <span class='id key'>key</span> <span class='rbrace'>}</span><span class='rbrace'>}</span>
@@ -464,12 +464,12 @@ accepts_nested_attributes_for :phones.
       <pre class="lines">
 
 
-91
-92
-93</pre>
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id address_lines'>address_lines</span><span class='lparen'>(</span><span class='id join_chars'>join_chars</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='lbracket'>[</span><span class='id address1'>address1</span><span class='comma'>,</span> <span class='id address2'>address2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id delete_if'>delete_if</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id add'>add</span><span class='op'>|</span> <span class='id add'>add</span><span class='period'>.</span><span class='id blank?'>blank?</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='id join_chars'>join_chars</span><span class='rparen'>)</span>
@@ -492,20 +492,20 @@ accepts_nested_attributes_for :phones.
       <pre class="lines">
 
 
-36
-37
-38
-39
-40
-41
 42
 43
 44
 45
-46</pre>
+46
+47
+48
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id cc_params'>cc_params</span>
   <span class='lbrace'>{</span> <span class='symbol'>:name</span>     <span class='op'>=&gt;</span> <span class='id name'>name</span><span class='comma'>,</span>
@@ -536,12 +536,12 @@ accepts_nested_attributes_for :phones.
       <pre class="lines">
 
 
-99
-100
-101</pre>
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id city_state_name'>city_state_name</span>
   <span class='lbracket'>[</span><span class='id city'>city</span><span class='comma'>,</span> <span class='id state_abbr_name'>state_abbr_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -564,12 +564,12 @@ accepts_nested_attributes_for :phones.
       <pre class="lines">
 
 
-103
-104
-105</pre>
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id city_state_zip'>city_state_zip</span>
   <span class='lbracket'>[</span><span class='id city_state_name'>city_state_name</span><span class='comma'>,</span> <span class='id zip_code'>zip_code</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -592,12 +592,12 @@ accepts_nested_attributes_for :phones.
       <pre class="lines">
 
 
-87
-88
-89</pre>
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id full_address_array'>full_address_array</span>
   <span class='lbracket'>[</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id address1'>address1</span><span class='comma'>,</span> <span class='id address2'>address2</span><span class='comma'>,</span> <span class='id city_state_zip'>city_state_zip</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id compact'>compact</span>
@@ -620,13 +620,13 @@ accepts_nested_attributes_for :phones.
       <pre class="lines">
 
 
-27
-28
-29
-30</pre>
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id inactive!'>inactive!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id active'>active</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -647,7 +647,10 @@ accepts_nested_attributes_for :phones.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-accepts_nested_attributes_for :phones
+First and last name of the person on the address
+</p>
+<p>
+@ return [String] first and last name on the address with a space between
 </p>
 
 
@@ -655,18 +658,44 @@ accepts_nested_attributes_for :phones
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'><p>
+first_name == &#8216;John&#8217;, last_name == &#8216;Doe&#8217;
+</p>
+</div></h4>
+      <pre class="example code">address.name  =&gt; 'John Doe'</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>none</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-23
-24
-25</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id name'>name</span>
   <span class='lbracket'>[</span><span class='id first_name'>first_name</span><span class='comma'>,</span> <span class='id last_name'>last_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id compact'>compact</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -689,18 +718,18 @@ accepts_nested_attributes_for :phones
       <pre class="lines">
 
 
-107
-108
-109
-110
-111
-112
-113
-114
-115</pre>
+117
+118
+119
+120
+121
+122
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id sanitize_data'>sanitize_data</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span>  <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id strip'>strip</span>  <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id blank?'>blank?</span>
@@ -729,12 +758,6 @@ accepts_nested_attributes_for :phones
       <pre class="lines">
 
 
-67
-68
-69
-70
-71
-72
 73
 74
 75
@@ -747,28 +770,42 @@ accepts_nested_attributes_for :phones
 82
 83
 84
-85</pre>
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id save_default_address'>save_default_address</span><span class='lparen'>(</span><span class='id object'>object</span><span class='comma'>,</span> <span class='id params'>params</span><span class='rparen'>)</span>
   <span class='const'>Address</span><span class='period'>.</span><span class='id transaction'>transaction</span> <span class='kw'>do</span>
     <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:default</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:default</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>0</span><span class='tstring_end'>'</span></span>
-      <span class='const'>Address</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>addresses.default = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rbracket'>]</span><span class='comma'>,</span> 
-                          <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>addresses.addressable_id = ? AND
-</span><span class='tstring_content'>                            addresses.addressable_type = ? </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id object'>object</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span> <span class='id object'>object</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id object'>object</span>
+      <span class='const'>Address</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span> <span class='lbrace'>{</span> <span class='symbol'>:default</span>  <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='comma'>,</span>
+                          <span class='lbrace'>{</span> <span class='symbol'>:addresses</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
+                                <span class='symbol'>:addressable_id</span> <span class='op'>=&gt;</span> <span class='id object'>object</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span>
+                                <span class='symbol'>:addressable_type</span> <span class='op'>=&gt;</span> <span class='id object'>object</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+                                          <span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id object'>object</span>
       <span class='kw'>self</span><span class='period'>.</span><span class='id default'>default</span> <span class='op'>=</span> <span class='kw'>true</span>
     <span class='kw'>end</span>
     <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:billing_default</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:billing_default</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>0</span><span class='tstring_end'>'</span></span>
-      <span class='const'>Address</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>addresses.billing_default = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rbracket'>]</span><span class='comma'>,</span> 
-                          <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>addresses.addressable_id = ? AND
-</span><span class='tstring_content'>                            addresses.addressable_type = ? </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id object'>object</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span> <span class='id object'>object</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id object'>object</span>
+      <span class='const'>Address</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span> <span class='lbrace'>{</span> <span class='symbol'>:billing_default</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='comma'>,</span>
+                          <span class='lbrace'>{</span> <span class='symbol'>:addresses</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
+                                <span class='symbol'>:addressable_id</span> <span class='op'>=&gt;</span> <span class='id object'>object</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span>
+                                <span class='symbol'>:addressable_type</span> <span class='op'>=&gt;</span> <span class='id object'>object</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+                                          <span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id object'>object</span>
       <span class='kw'>self</span><span class='period'>.</span><span class='id billing_default'>billing_default</span> <span class='op'>=</span> <span class='kw'>true</span>
     <span class='kw'>end</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id addressable'>addressable</span> <span class='op'>=</span> <span class='id object'>object</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id save'>save</span>
-    
+
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -789,12 +826,12 @@ accepts_nested_attributes_for :phones
       <pre class="lines">
 
 
-95
-96
-97</pre>
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id state_abbr_name'>state_abbr_name</span>
   <span class='id state'>state</span> <span class='op'>?</span> <span class='id state'>state</span><span class='period'>.</span><span class='id abbreviation'>abbreviation</span> <span class='op'>:</span> <span class='id state_name'>state_name</span>
@@ -809,7 +846,7 @@ accepts_nested_attributes_for :phones
 </div>
     
     <div id="footer">
-  Generated on Sun Dec  5 02:29:12 2010 by 
+  Generated on Sun Dec 19 09:17:01 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

@@ -20,6 +20,7 @@ class Cart < ActiveRecord::Base
   has_many    :deleted_cart_items,        :conditions => ['cart_items.active = ?', false], :class_name => 'CartItem'
 
   # Adds all the item prices (not including taxes) that are currently in the shopping cart
+  #
   # @return [Float] This is a float in decimal form and represents the price of all the items in the cart
   def sub_total
     shopping_cart_items.inject(0) {|sum, item| item.total + sum} #.includes(:variant)
@@ -33,11 +34,12 @@ class Cart < ActiveRecord::Base
   end
 
   # Call this method when you want to add an item to the shopping cart
+  #
   # @params [Integer, #read] variant id to add to the cart
   # @params [User, #read] user that is adding something to the cart
   # @params [Integer, #optional] ItemType id that is being added to the cart
   # @return [CartItem] return the cart item that is added to the cart
-  def add_variant(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID)# customer is a user
+  def add_variant(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID)
     items = shopping_cart_items.find_all_by_variant_id(variant_id)
     variant = Variant.find(variant_id)
     unless variant.sold_out?
@@ -64,6 +66,7 @@ class Cart < ActiveRecord::Base
 
   # Call this method when you want to remove an item from the shopping cart
   #   The CartItem will not delete.  Instead it is just inactivated
+  #
   # @params [Integer, #read] variant id to add to the cart
   # @return [CartItem] return the cart item that is added to the cart
   def remove_variant(variant_id)
@@ -72,6 +75,7 @@ class Cart < ActiveRecord::Base
   end
 
   # Call this method when you want to associate the cart with a user
+  #
   # @param [User]
   def save_user(u)  # u is user object or nil
     if u && self.user_id != u.id
@@ -81,7 +85,8 @@ class Cart < ActiveRecord::Base
   end
 
   # Call this method when you want to mark the items in the order as purchased
-  #   The CartItem will not delete.  Instead the item_type changes to prurchased
+  #   The CartItem will not delete.  Instead the item_type changes to purchased
+  #
   # @param [Order]
   def mark_items_purchased(order)
     CartItem.update_all("item_type_id = #{ItemType::PURCHASED_ID}",

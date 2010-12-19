@@ -375,8 +375,8 @@ tax.
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id order_items_in_cart'>order_items_in_cart</span><span class='lparen'>(</span><span class='id order_id'>order_id</span><span class='rparen'>)</span>
   <span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:all</span><span class='comma'>,</span> <span class='symbol'>:joins</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:variant</span> <span class='op'>=&gt;</span> <span class='symbol'>:product</span> <span class='rbrace'>}</span><span class='comma'>,</span>
-             <span class='symbol'>:conditions</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>order_items.order_id = ? </span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id order_id'>order_id</span> <span class='rbracket'>]</span><span class='comma'>,</span>
-             <span class='symbol'>:select</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>order_items.*, count(*) as quantity, 
+             <span class='symbol'>:conditions</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:order_items</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:order_id</span> <span class='op'>=&gt;</span> <span class='id order_id'>order_id</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='comma'>,</span>
+             <span class='symbol'>:select</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>order_items.*, count(*) as quantity,
                                         products.shipping_category_id as shipping_category_id,
                                         SUM(order_items.price) as sum_price,
 </span><span class='tstring_content'>                                        SUM(order_items.total) as sum_total</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -433,7 +433,7 @@ tax
   <span class='comment'>## coupon credit is calculated at the order level but because taxes we need to apply it now
 </span>  <span class='comment'># =&gt; this calculation will be complete in the version of Hadean
 </span>  <span class='id coupon_credit'>coupon_credit</span> <span class='op'>=</span> <span class='float'>0.0</span>
-  
+
   <span class='kw'>self</span><span class='period'>.</span><span class='id price'>price</span> <span class='op'>-</span> <span class='id coupon_credit'>coupon_credit</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -466,7 +466,7 @@ tax
       <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id calculate_order'>calculate_order</span>
-  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='op'>&amp;&amp;</span> 
+  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='op'>&amp;&amp;</span>
       <span class='lparen'>(</span><span class='id shipping_rate_id'>shipping_rate_id</span> <span class='op'>!=</span> <span class='ivar'>@beginning_shipping_rate_id</span> <span class='op'>||</span> <span class='id tax_rate_id'>tax_rate_id</span> <span class='op'>!=</span> <span class='ivar'>@beginning_tax_rate_id</span><span class='rparen'>)</span>
     <span class='id set_beginning_values'>set_beginning_values</span>
     <span class='id order'>order</span><span class='period'>.</span><span class='id calculate_totals'>calculate_totals</span>
@@ -501,7 +501,7 @@ tax
 
 <span class='kw'>def</span> <span class='id calculate_total'>calculate_total</span><span class='lparen'>(</span><span class='id coupon'>coupon</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># shipping charges are calculated in order.rb
-</span>  
+</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id adjusted_price'>adjusted_price</span> <span class='op'>+</span> <span class='id tax_charge'>tax_charge</span><span class='rparen'>)</span><span class='period'>.</span><span class='id round_at'>round_at</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -758,7 +758,7 @@ tax
 </div>
     
     <div id="footer">
-  Generated on Sun Dec  5 02:29:12 2010 by 
+  Generated on Sun Dec 19 09:17:01 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

@@ -117,7 +117,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#add_variant-instance_method" title="#add_variant (instance method)">- (Object) <strong>add_variant</strong>(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID) </a>
+      <a href="#add_variant-instance_method" title="#add_variant (instance method)">- (CartItem) <strong>add_variant</strong>(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID) </a>
     
 
     
@@ -131,7 +131,7 @@
 
   
     <span class="summary_desc"><div class='inline'><p>
-customer is a user.
+Call this method when you want to add an item to the shopping cart.
 </p>
 </div></span>
   
@@ -154,7 +154,10 @@ customer is a user.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Call this method when you want to mark the items in the order as purchased.
+</p>
+</div></span>
   
 </li>
 
@@ -162,7 +165,7 @@ customer is a user.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#remove_variant-instance_method" title="#remove_variant (instance method)">- (Object) <strong>remove_variant</strong>(variant_id) </a>
+      <a href="#remove_variant-instance_method" title="#remove_variant (instance method)">- (CartItem) <strong>remove_variant</strong>(variant_id) </a>
     
 
     
@@ -175,7 +178,10 @@ customer is a user.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Call this method when you want to remove an item from the shopping cart.
+</p>
+</div></span>
   
 </li>
 
@@ -197,7 +203,7 @@ customer is a user.
 
   
     <span class="summary_desc"><div class='inline'><p>
-u is user object or nil.
+Call this method when you want to associate the cart with a user.
 </p>
 </div></span>
   
@@ -207,7 +213,7 @@ u is user object or nil.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sub_total-instance_method" title="#sub_total (instance method)">- (Object) <strong>sub_total</strong> </a>
+      <a href="#sub_total-instance_method" title="#sub_total (instance method)">- (Float) <strong>sub_total</strong> </a>
     
 
     
@@ -221,7 +227,8 @@ u is user object or nil.
 
   
     <span class="summary_desc"><div class='inline'><p>
-validates :user_id,  :presence => true.
+Adds all the item prices (not including taxes) that are currently in the
+shopping cart.
 </p>
 </div></span>
   
@@ -251,15 +258,15 @@ validates :user_id,  :presence => true.
       <pre class="lines">
 
 
-28
 29
 30
 31
 32
-33</pre>
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id add_items_to_checkout'>add_items_to_checkout</span><span class='lparen'>(</span><span class='id order'>order</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id order'>order</span><span class='period'>.</span><span class='id in_progress?'>in_progress?</span>
@@ -275,34 +282,46 @@ validates :user_id,  :presence => true.
       <div class="method_details ">
   <p class="signature " id="add_variant-instance_method">
   
-    - (<tt>Object</tt>) <strong>add_variant</strong>(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID) 
+    - (<tt><span class='object_link'><a href="CartItem.html" title="CartItem (class)">CartItem</a></span></tt>) <strong>add_variant</strong>(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-customer is a user
+Call this method when you want to add an item to the shopping cart
 </p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="CartItem.html" title="CartItem (class)">CartItem</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+return the cart item that is added to the cart
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-35
-36
-37
-38
-39
-40
-41
 42
 43
 44
@@ -319,13 +338,20 @@ customer is a user
 55
 56
 57
-58</pre>
+58
+59
+60
+61
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 42</span>
 
-<span class='kw'>def</span> <span class='id add_variant'>add_variant</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='comma'>,</span> <span class='id customer'>customer</span><span class='comma'>,</span> <span class='id cart_item_type_id'>cart_item_type_id</span> <span class='op'>=</span> <span class='const'>ItemType</span><span class='op'>::</span><span class='const'>SHOPPING_CART_ID</span><span class='rparen'>)</span><span class='comment'># customer is a user
-</span>  <span class='id items'>items</span> <span class='op'>=</span> <span class='id shopping_cart_items'>shopping_cart_items</span><span class='period'>.</span><span class='id find_all_by_variant_id'>find_all_by_variant_id</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id add_variant'>add_variant</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='comma'>,</span> <span class='id customer'>customer</span><span class='comma'>,</span> <span class='id cart_item_type_id'>cart_item_type_id</span> <span class='op'>=</span> <span class='const'>ItemType</span><span class='op'>::</span><span class='const'>SHOPPING_CART_ID</span><span class='rparen'>)</span>
+  <span class='id items'>items</span> <span class='op'>=</span> <span class='id shopping_cart_items'>shopping_cart_items</span><span class='period'>.</span><span class='id find_all_by_variant_id'>find_all_by_variant_id</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='rparen'>)</span>
   <span class='id variant'>variant</span> <span class='op'>=</span> <span class='const'>Variant</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id variant'>variant</span><span class='period'>.</span><span class='id sold_out?'>sold_out?</span>
     <span class='kw'>if</span> <span class='id items'>items</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>&lt;</span> <span class='int'>1</span>
@@ -344,7 +370,7 @@ customer is a user
                                   <span class='symbol'>:item_type_id</span> <span class='op'>=&gt;</span> <span class='const'>ItemType</span><span class='op'>::</span><span class='const'>SAVE_FOR_LATER_ID</span><span class='comma'>,</span>
                                   <span class='symbol'>:quantity</span>     <span class='op'>=&gt;</span> <span class='int'>1</span><span class='comment'>#,#:price      =&gt; variant.price
 </span>                                  <span class='rparen'>)</span> <span class='kw'>if</span> <span class='id items'>items</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>&lt;</span> <span class='int'>1</span>
-    
+
   <span class='kw'>end</span>
   <span class='id cart_item'>cart_item</span>
 <span class='kw'>end</span></pre>
@@ -360,7 +386,97 @@ customer is a user
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Call this method when you want to mark the items in the order as purchased
+</p>
+<pre class="code">
+  The CartItem will not delete.  Instead the item_type changes to purchased</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Order.html" title="Order (class)">Order</a></span></tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+91
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 91</span>
+
+<span class='kw'>def</span> <span class='id mark_items_purchased'>mark_items_purchased</span><span class='lparen'>(</span><span class='id order'>order</span><span class='rparen'>)</span>
+  <span class='const'>CartItem</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>item_type_id = </span><span class='embexpr_beg'>#{</span><span class='const'>ItemType</span><span class='op'>::</span><span class='const'>PURCHASED_ID</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id IN (</span><span class='embexpr_beg'>#{</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id cart_item_ids'>cart_item_ids</span> <span class='op'>+</span> <span class='kw'>self</span><span class='period'>.</span><span class='id shopping_cart_item_ids'>shopping_cart_item_ids</span><span class='rparen'>)</span><span class='period'>.</span><span class='id uniq'>uniq</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>) AND variant_id IN (</span><span class='embexpr_beg'>#{</span><span class='id order'>order</span><span class='period'>.</span><span class='id variant_ids'>variant_ids</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id order'>order</span><span class='period'>.</span><span class='id variant_ids'>variant_ids</span><span class='period'>.</span><span class='id empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="remove_variant-instance_method">
+  
+    - (<tt><span class='object_link'><a href="CartItem.html" title="CartItem (class)">CartItem</a></span></tt>) <strong>remove_variant</strong>(variant_id) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Call this method when you want to remove an item from the shopping cart
+</p>
+<pre class="code">
+  The CartItem will not delete.  Instead it is just inactivated</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="CartItem.html" title="CartItem (class)">CartItem</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+return the cart item that is added to the cart
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -373,36 +489,6 @@ customer is a user
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 72</span>
-
-<span class='kw'>def</span> <span class='id mark_items_purchased'>mark_items_purchased</span><span class='lparen'>(</span><span class='id order'>order</span><span class='rparen'>)</span>
-  <span class='const'>CartItem</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>item_type_id = </span><span class='embexpr_beg'>#{</span><span class='const'>ItemType</span><span class='op'>::</span><span class='const'>PURCHASED_ID</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
-                      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id IN (</span><span class='embexpr_beg'>#{</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id cart_item_ids'>cart_item_ids</span> <span class='op'>+</span> <span class='kw'>self</span><span class='period'>.</span><span class='id shopping_cart_item_ids'>shopping_cart_item_ids</span><span class='rparen'>)</span><span class='period'>.</span><span class='id uniq'>uniq</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>) AND variant_id IN (</span><span class='embexpr_beg'>#{</span><span class='id order'>order</span><span class='period'>.</span><span class='id variant_ids'>variant_ids</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id order'>order</span><span class='period'>.</span><span class='id variant_ids'>variant_ids</span><span class='period'>.</span><span class='id empty?'>empty?</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="remove_variant-instance_method">
-  
-    - (<tt>Object</tt>) <strong>remove_variant</strong>(variant_id) 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-60
-61
-62
-63</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id remove_variant'>remove_variant</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='rparen'>)</span>
   <span class='id citems'>citems</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id cart_items'>cart_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id ci'>ci</span><span class='op'>|</span> <span class='id ci'>ci</span><span class='period'>.</span><span class='id inactivate!'>inactivate!</span> <span class='kw'>if</span> <span class='id variant_id'>variant_id</span> <span class='op'>==</span> <span class='id ci'>ci</span><span class='period'>.</span><span class='id variant_id'>variant_id</span> <span class='rbrace'>}</span>
@@ -423,29 +509,44 @@ customer is a user
 </p><div class="docstring">
   <div class="discussion">
     <p>
-u is user object or nil
+Call this method when you want to associate the cart with a user
 </p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-65
-66
-67
-68
-69
-70</pre>
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id save_user'>save_user</span><span class='lparen'>(</span><span class='id u'>u</span><span class='rparen'>)</span>  <span class='comment'># u is user object or nil
 </span>  <span class='kw'>if</span> <span class='id u'>u</span> <span class='op'>&amp;&amp;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id user_id'>user_id</span> <span class='op'>!=</span> <span class='id u'>u</span><span class='period'>.</span><span class='id id'>id</span>
@@ -461,33 +562,54 @@ u is user object or nil
       <div class="method_details ">
   <p class="signature " id="sub_total-instance_method">
   
-    - (<tt>Object</tt>) <strong>sub_total</strong> 
+    - (<tt>Float</tt>) <strong>sub_total</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-validates :user_id,  :presence => true
+Adds all the item prices (not including taxes) that are currently in the
+shopping cart
 </p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+This is a float in decimal form and represents the price of all the items
+in the cart
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-24
 25
-26</pre>
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id sub_total'>sub_total</span>
   <span class='id shopping_cart_items'>shopping_cart_items</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id sum'>sum</span><span class='comma'>,</span> <span class='id item'>item</span><span class='op'>|</span> <span class='id item'>item</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>+</span> <span class='id sum'>sum</span><span class='rbrace'>}</span> <span class='comment'>#.includes(:variant)
@@ -502,7 +624,7 @@ validates :user_id,  :presence => true
 </div>
     
     <div id="footer">
-  Generated on Sun Dec  5 02:29:11 2010 by 
+  Generated on Sun Dec 19 09:17:00 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

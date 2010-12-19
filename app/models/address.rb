@@ -21,6 +21,7 @@ class Address < ActiveRecord::Base
   #accepts_nested_attributes_for :phones
 
   # First and last name of the person on the address
+  #
   # @example first_name == 'John', last_name == 'Doe'
   #    address.name  => 'John Doe'
   # @param none

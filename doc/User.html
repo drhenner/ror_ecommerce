@@ -278,6 +278,27 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#format_birth_date-instance_method" title="#format_birth_date (instance method)">- (Object) <strong>format_birth_date</strong>(b_date) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#get_cim_profile-instance_method" title="#get_cim_profile (instance method)">- (Object) <strong>get_cim_profile</strong> </a>
     
 
@@ -491,11 +512,6 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-197
-198
-199
-200
-201
 202
 203
 204
@@ -504,13 +520,18 @@ This method will one day grow into the products a user most likely likes.
 207
 208
 209
-210</pre>
+210
+211
+212
+213
+214
+215</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 197</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 202</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  
+
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
 
@@ -519,7 +540,7 @@ This method will one day grow into the products a user most likely likes.
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>users.first_name LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:first_name</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:first_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>users.last_name LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:last_name</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:last_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>users.email LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>      <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id grid'>grid</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -645,12 +666,12 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-152
-153
-154</pre>
+157
+158
+159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id billing_address'>billing_address</span>
   <span class='id default_billing_address'>default_billing_address</span> <span class='op'>?</span> <span class='id default_billing_address'>default_billing_address</span> <span class='op'>:</span> <span class='id shipping_address'>shipping_address</span>
@@ -701,12 +722,12 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-179
-180
-181</pre>
+184
+185
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 184</span>
 
 <span class='kw'>def</span> <span class='id deliver_activation_instructions!'>deliver_activation_instructions!</span>
   <span class='const'>Notifier</span><span class='period'>.</span><span class='id signup_notification'>signup_notification</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id deliver'>deliver</span>
@@ -757,15 +778,43 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-183
-184
-185</pre>
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 188</span>
 
 <span class='kw'>def</span> <span class='id email_address_with_name'>email_address_with_name</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot; &lt;</span><span class='embexpr_beg'>#{</span><span class='id email'>email</span><span class='rbrace'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="format_birth_date-instance_method">
+  
+    - (<tt>Object</tt>) <strong>format_birth_date</strong>(b_date) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='id format_birth_date'>format_birth_date</span><span class='lparen'>(</span><span class='id b_date'>b_date</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id birth_date'>birth_date</span> <span class='op'>=</span> <span class='const'>Date</span><span class='period'>.</span><span class='id strptime'>strptime</span><span class='lparen'>(</span><span class='id b_date'>b_date</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%m/%d/%Y</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id b_date'>b_date</span><span class='period'>.</span><span class='id present?'>present?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -785,14 +834,14 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-187
-188
-189
-190
-191</pre>
+192
+193
+194
+195
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id get_cim_profile'>get_cim_profile</span>
   <span class='kw'>return</span> <span class='id customer_cim_id'>customer_cim_id</span> <span class='kw'>if</span> <span class='id customer_cim_id'>customer_cim_id</span>
@@ -817,12 +866,12 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-193
-194
-195</pre>
+198
+199
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id merchant_description'>merchant_description</span>
   <span class='lbracket'>[</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id default_shipping_address'>default_shipping_address</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:address_lines</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id compact'>compact</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -842,7 +891,7 @@ This method will one day grow into the products a user most likely likes.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-This method will one day grow into the products a user most likely likes.  
+This method will one day grow into the products a user most likely likes.
 </p>
 <pre class="code">
   Storing a list of product ids vs cron each night might be the most efficent mode for this method to work.</pre>
@@ -858,12 +907,12 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-148
-149
-150</pre>
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id might_be_interested_in_these_products'>might_be_interested_in_these_products</span>
   <span class='const'>Product</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='int'>4</span><span class='rparen'>)</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:all</span><span class='rparen'>)</span>
@@ -886,14 +935,14 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-164
-165
-166</pre>
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 169</span>
 
-<span class='kw'>def</span> <span class='id name'>name</span> 
+<span class='kw'>def</span> <span class='id name'>name</span>
   <span class='lparen'>(</span><span class='id first_name?'>first_name?</span> <span class='op'>&amp;&amp;</span> <span class='id last_name?'>last_name?</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id capitalize'>capitalize</span><span class='comma'>,</span> <span class='id last_name'>last_name</span><span class='period'>.</span><span class='id capitalize'>capitalize</span> <span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id email'>email</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -935,12 +984,12 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-160
-161
-162</pre>
+165
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 165</span>
 
 <span class='kw'>def</span> <span class='id registered_user?'>registered_user?</span>
   <span class='id registered?'>registered?</span> <span class='op'>||</span> <span class='id registered_with_credit?'>registered_with_credit?</span>
@@ -1012,25 +1061,25 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-168
-169
-170
-171
-172
 173
 174
 175
 176
-177</pre>
+177
+178
+179
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 173</span>
 
 <span class='kw'>def</span> <span class='id sanitize_data'>sanitize_data</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span>      <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id downcase'>downcase</span>       <span class='kw'>unless</span> <span class='id email'>email</span><span class='period'>.</span><span class='id blank?'>blank?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id capitalize'>capitalize</span>  <span class='kw'>unless</span> <span class='id first_name'>first_name</span><span class='period'>.</span><span class='id nil?'>nil?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id last_name'>last_name</span>  <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id last_name'>last_name</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id capitalize'>capitalize</span>   <span class='kw'>unless</span> <span class='id last_name'>last_name</span><span class='period'>.</span><span class='id nil?'>nil?</span>
-  
+
   <span class='comment'>## CHANGE THIS IF YOU HAVE DIFFERENT ACCOUNT TYPES
 </span>  <span class='kw'>unless</span> <span class='id account_id'>account_id</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id account'>account</span> <span class='op'>=</span> <span class='const'>Account</span><span class='period'>.</span><span class='id first'>first</span>
@@ -1054,12 +1103,12 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-156
-157
-158</pre>
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id shipping_address'>shipping_address</span>
   <span class='id default_shipping_address'>default_shipping_address</span> <span class='op'>?</span> <span class='id default_shipping_address'>default_shipping_address</span> <span class='op'>:</span> <span class='id shipping_addresses'>shipping_addresses</span><span class='period'>.</span><span class='id first'>first</span>
@@ -1123,7 +1172,7 @@ This method will one day grow into the products a user most likely likes.
 </div>
     
     <div id="footer">
-  Generated on Sun Dec  5 02:29:11 2010 by 
+  Generated on Sun Dec 19 09:17:00 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

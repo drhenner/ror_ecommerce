@@ -89,7 +89,7 @@
         <dt id="MAIN_LOGO-constant" class="">MAIN_LOGO =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>logo2</span><span class='tstring_end'>'</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>logo</span><span class='tstring_end'>'</span></span></pre></dd>
       
     </dl>
   
@@ -186,7 +186,7 @@ if there are errors from the plugin, then add a more meaningful message.
       <pre class="code"><span class="info file"># File 'app/models/image.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id find_dimensions'>find_dimensions</span>
-  <span class='id temporary'>temporary</span> <span class='op'>=</span> <span class='id photo'>photo</span><span class='period'>.</span><span class='id queued_for_write'>queued_for_write</span><span class='lbracket'>[</span><span class='symbol'>:original</span><span class='rbracket'>]</span> 
+  <span class='id temporary'>temporary</span> <span class='op'>=</span> <span class='id photo'>photo</span><span class='period'>.</span><span class='id queued_for_write'>queued_for_write</span><span class='lbracket'>[</span><span class='symbol'>:original</span><span class='rbracket'>]</span>
   <span class='id filename'>filename</span> <span class='op'>=</span> <span class='id temporary'>temporary</span><span class='period'>.</span><span class='id path'>path</span> <span class='kw'>unless</span> <span class='id temporary'>temporary</span><span class='period'>.</span><span class='id nil?'>nil?</span>
   <span class='id filename'>filename</span> <span class='op'>=</span> <span class='id photo'>photo</span><span class='period'>.</span><span class='id path'>path</span> <span class='kw'>if</span> <span class='id filename'>filename</span><span class='period'>.</span><span class='id blank?'>blank?</span>
   <span class='id geometry'>geometry</span> <span class='op'>=</span> <span class='const'>Paperclip</span><span class='op'>::</span><span class='const'>Geometry</span><span class='period'>.</span><span class='id from_file'>from_file</span><span class='lparen'>(</span><span class='id filename'>filename</span><span class='rparen'>)</span>
@@ -237,7 +237,7 @@ if there are errors from the plugin, then add a more meaningful message
 <span class='kw'>def</span> <span class='id validate'>validate</span>
   <span class='kw'>unless</span> <span class='id photo'>photo</span><span class='period'>.</span><span class='id errors'>errors</span><span class='period'>.</span><span class='id empty?'>empty?</span>
     <span class='comment'># uncomment this to get rid of the less-than-useful interrim messages
-</span>    <span class='comment'># errors.clear 
+</span>    <span class='comment'># errors.clear
 </span>    <span class='id errors'>errors</span><span class='period'>.</span><span class='id add'>add</span> <span class='symbol'>:attachment</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Paperclip returned errors for file '</span><span class='embexpr_beg'>#{</span><span class='id photo_file_name'>photo_file_name</span><span class='rbrace'>}</span><span class='tstring_content'>' - check ImageMagick installation or image source file.</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
@@ -252,7 +252,7 @@ if there are errors from the plugin, then add a more meaningful message
 </div>
     
     <div id="footer">
-  Generated on Sun Dec  5 02:29:11 2010 by 
+  Generated on Sun Dec 19 09:17:00 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

@@ -11,6 +11,7 @@ class Country < ActiveRecord::Base
   ACTIVE_COUNTRY_IDS = [CANADA_ID, USA_ID]
 
   # Call this method to display the country_abbreviation - country with and appending name
+  #
   # @example abbreviation == USA, country == 'United States'
   #   country.abbreviation_name(': capitalist') => 'USA - United States : capitalist'
   #
@@ -21,6 +22,7 @@ class Country < ActiveRecord::Base
   end
 
   # Call this method to display the country_abbreviation - country
+  #
   # @example abbreviation == USA, country == 'United States'
   #   country.abbrev_and_name => 'USA - United States'
   #
