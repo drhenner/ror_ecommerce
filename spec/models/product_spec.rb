@@ -4,7 +4,7 @@ describe Product, ".instance methods with images" do
   before(:each) do
     @product = Factory(:product_with_image)
   end
-  
+
   context "featured_image" do
     pending "test for featured_image"
     #it 'should return an image url' do
@@ -19,20 +19,20 @@ end
 
 
 #def tax_rate(state_id, time = Time.zone.now)
-#  self.tax_status.tax_rates.where(["state_id = ? AND 
+#  self.tax_status.tax_rates.where(["state_id = ? AND
 #                         start_date <= ? AND
 #                         (end_date > ? OR end_date IS NULL) AND
-#                         active = ?", state_id, 
-#                                      time.to_date.to_s(:db), 
-#                                      time.to_date.to_s(:db), 
+#                         active = ?", state_id,
+#                                      time.to_date.to_s(:db),
+#                                      time.to_date.to_s(:db),
 #                                      true]).order('start_date DESC').first
 #end
 
 describe Product, ".tax_rate" do
   # use case tax rate end date is nil and the start_date < now
   it 'should return the tax rate' do
-    tax_rate    = Factory(:tax_rate, 
-                          :state_id => 1, 
+    tax_rate    = Factory(:tax_rate,
+                          :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => nil)
     product  = Factory(:product)
@@ -40,8 +40,8 @@ describe Product, ".tax_rate" do
   end
   # use case tax rate end date is next month and the start_date < now
   it 'should return the tax rate' do
-    tax_rate    = Factory(:tax_rate, 
-                          :state_id => 1, 
+    tax_rate    = Factory(:tax_rate,
+                          :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => (Time.zone.now + 1.month))
     product  = Factory(:product)
@@ -49,8 +49,8 @@ describe Product, ".tax_rate" do
   end
   # use case tax rate end date is one month ago and the start_date < now but the time was 2 months ago
   it 'should return the tax rate' do
-    tax_rate    = Factory(:tax_rate, 
-                          :state_id => 1, 
+    tax_rate    = Factory(:tax_rate,
+                          :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => (Time.zone.now - 1.month))
     product  = Factory(:product)
@@ -63,8 +63,8 @@ describe Product, ".tax_rate" do
   end
   # the tax rate starts next month
   it 'should not return any tax rates' do
-    tax_rate    = Factory(:tax_rate, 
-                          :state_id   => 1, 
+    tax_rate    = Factory(:tax_rate,
+                          :state_id   => 1,
                           :start_date => (Time.zone.now - 1.month),
                           :end_date   => nil)
     product  = Factory(:product)
@@ -72,15 +72,15 @@ describe Product, ".tax_rate" do
   end
   # the tax rate changes next month but is 5% now and next month will be 10%
   it 'should return any tax rates of 5%' do
-    tax_rate    = Factory(:tax_rate, 
+    tax_rate    = Factory(:tax_rate,
                           :percentage => 5.0,
-                          :state_id   => 1, 
+                          :state_id   => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date   => (Time.zone.now + 1.month))
 
-    tax_rate2    = Factory(:tax_rate, 
+    tax_rate2    = Factory(:tax_rate,
                           :percentage => 10.0,
-                          :state_id   => 1, 
+                          :state_id   => 1,
                           :start_date => (Time.zone.now + 1.month),
                           :end_date   => (Time.zone.now + 1.year))
     product  = Factory(:product)
@@ -97,15 +97,16 @@ describe Product, ".instance methods" do
     Factory(:variant, :product => product, :master => false, :price => 10.00)
     @product  = Product.find(product.id)
   end
-  
+
   context "featured_image" do
 
     it 'should return no_image url' do
-      @product.featured_image.should == 'no_image.jpg'
+      @product.featured_image.should        == 'no_image_small.jpg'
+      @product.featured_image(:mini).should == 'no_image_mini.jpg'
     end
 
   end
-  
+
   context ".price" do
     it 'should return the master price' do
       @product.price.should == 15.01
@@ -129,6 +130,12 @@ describe Product, ".instance methods" do
   context ".price_range" do
     it 'should return the price range' do
       @product.price_range.should == [10.0, 15.01]
+    end
+  end
+
+  context ".price_range?" do
+    it 'should return the price range' do
+      @product.price_range?.should be_true
     end
   end
 
