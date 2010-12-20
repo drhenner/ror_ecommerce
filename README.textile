@@ -1,3 +1,5 @@
+!/images/logos/logo-e.png(RoR-e.com)!
+
 h1. Project Overview
 
 "Please create a ticket if you have issues":http://ror_ecommerce.lighthouseapp.com/home
