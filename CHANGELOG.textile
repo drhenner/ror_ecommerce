@@ -1,18 +1,32 @@
 
-== 00.01.03 2010-12-01
+h3. 00.01.04 2010-12-19
+
+* added YARD docs
+* bug fixed for selecting countries that are available
+* Add spain as a country
+* Add contributors page
+* birthdate needs to parse US-date
+* use only taxrates for available countries
+* better look an feel on the header
+
+h3. 00.01.03 2010-12-01
+
 * able to print a basic invoice for an order
 * installed prawnto
-== 00.01.02 2010-11-21
+
+h3. 00.01.02 2010-11-21
+
 * able to add countries specific states
 * tax rates can be configured per the country of choice
 * custom version of nifty generators
 * bug fixes for bad pages to add admin forms
 * bug fix - welcome page blows up if there aren't any products
 
-== 00.01.01 2010-11-12
+h3. 00.01.01 2010-11-12
+
 * connected Purchase Order to double entry accounting system
 * fixed bugs with editing purchase order screen was a blank screen
 
-== 0.1.0 2010-11-12
+h3. 0.1.0 2010-11-12
 
 * Initial version.  This public repo had not been tag with a version yet.  Required for logistics.
