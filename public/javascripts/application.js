@@ -14,23 +14,6 @@ if (document.getElementsByTagName) {
     }//if current input element has the disableAutoComplete class set.
   }//loop thru input elements
 }//basic DOM-happiness-check
-  
-var Hadean = window.Hadean || {};
-
-Hadean.App = {
-  registerOnLoadHandler : function(callback) {
-    jQuery(window).ready(callback);
-  },
-  oneClickHandler : function(callback, IdOrClass) {
-    jQuery(IdOrClass).click(function(e) { 
-      //e.preventDefault();
-      jQuery(IdOrClass).unbind('click');
-      //jQuery(IdOrClass).attr('disabled', 'disabled');
-      callback();
-    })
-  }
-}
-
 
 // This allows forms to have unobtrusive JS nested forms.
 $(function() {
