@@ -1,41 +1,58 @@
 
 <% content_for :head do -%>
+  <%= stylesheet_link_tag 'product_page.css' %>
+<% end %>
+<% content_for :bottom do -%>
   <%= javascript_include_tag "shopping/cart" %>
 <% end %>
 
 <div id='product'>
   <h2><%= @product.name %> </h2>
-  <div class='span-16 float-left last'>
+  <div class='span-1<%=@product.variants.empty? ? '8' : '6' %> float-left last'>
     <div class='span-9 float-left'>
       <%= image_tag(@product.featured_image(:product)) %><br/>
+
+      <div class='product-details'><%= @product.name %>
+      ( <%= number_to_currency @product.price_range.first %>
+        <% if @product.price_range? %>
+            to <%= number_to_currency @product.price_range.last %>
+        <% end %>)
+      </div>
     </div>
+    <% if @product.variants.empty? %>
+      <div id='no-variant-available' class=' span-8  last'>
+        Sorry this product is not currently available.
+      </div>
+    <% end %>
     <% @product.variants.each_with_index do |variant, i| %>
-      <div  id='variant_border_<%= i %>' 
-            class='variant_border span-6 float-left last' 
+      <div  id='variant_border_<%= i %>'
+            class='variant_border span-6 float-left last'
             data-variant='<%= variant.id %>' >
         <% variant.variant_properties.each do |variant_property| %>
-          <div  id='variant_<%= i %>' 
+          <div  id='variant_<%= i %>'
                 class='variant_select' >
-            <%= raw variant_property.property.display_name  %>: <%= raw variant_property.description %> 
+            <%= raw variant_property.property.display_name  %>: <%= raw variant_property.description %>
           </div>
         <% end %>
         <%= number_to_currency variant.price %>
         <%= variant.display_stock_status %>
       </div>
-      
+
     <% end %>
   </div>
   <div class='span-8 float-left last'>
-    <%= form_for  :cart_item, @cart_item, 
-                  :url  => shopping_cart_items_path(@cart_item), 
+    <%= form_for  :cart_item, @cart_item,
+                  :url  => shopping_cart_items_path(@cart_item),
                   :html => { :id => 'new_cart_item' } do |f| %>
       <% if @product.variants.size == 1 %>
         <%= f.hidden_field :variant_id, :value => @product.variants.first.id %>
       <% else %>
         <%= f.hidden_field :variant_id %>
       <% end %>
-      <%= image_tag('icons/add_to_shopping_cart_sm.png',  :id => 'submit_add_to_cart', 
-                                                          :class => 'add-to-cart') %>
+      <% unless @product.variants.empty? %>
+        <%= image_tag('icons/add_to_shopping_cart_sm.png',  :id => 'submit_add_to_cart',
+                                                            :class => 'add-to-cart') %>
+      <% end %>
     <% end %>
   </div>
 </div>

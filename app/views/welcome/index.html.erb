@@ -1,21 +1,42 @@
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'home_page.css' %>
+<% end %>
 
 <div id='featured_item' class='span-18'>
   <div id='featured_item_details' class='float-left'>
     <div id='featured_image' class='span-9 float-left'>
       <%= link_to image_tag(@featured_product.featured_image(:product)), product_path(@featured_product)  %>
+
+      <div class='interesting_items-details'><%= @featured_product.name %>
+      ( <%= number_to_currency @featured_product.price_range.first %>
+        <% if @featured_product.price_range? %>
+            to <%= number_to_currency @featured_product.price_range.last %>
+        <% end %>)
+      </div>
     </div>
     <div id='featured_description' class='left-text-4'>
       <%= raw @featured_product.description %>
     </div>
   </div>
-  
+  <hr/>
   <div id='interesting_items' class='span-18'>
     <% interesting_products = most_likely_user ? most_likely_user.might_be_interested_in_these_products : @best_selling_products %>
-    <% interesting_products.each_with_index do |product, i| %>
-      <div id='interesting_product_<%= i %>' class='left-text padding-5'>
-        <%= link_to  image_tag(product.featured_image(:small)), product_path(product) %>
-      </div>
-    <% end %>
+    <ol id='interesting_items-list'>
+      <% interesting_products.each_with_index do |product, i| %>
+        <li id='interesting_product_<%= i %>' class='left-text padding-5'>
+          <div class='interesting_items-image'>
+            <%= link_to  image_tag(product.featured_image(:small)), product_path(product) %>
+          </div>
+
+          <div class='interesting_items-details'><%= product.name %><br/>
+          ( <%= number_to_currency product.price_range.first %>
+            <% if product.price_range? %>
+                to <%= number_to_currency product.price_range.last %>
+            <% end %>)
+          </div>
+        </li>
+      <% end %>
+    </ol>
   </div>
 </div>
 
