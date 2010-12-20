@@ -1,4 +1,4 @@
-!/images/logos/logo-e.png(RoR-e.com)!
+!/public/images/logos/logo-e.png(RoR-e.com)!
 
 h1. Project Overview
 
