@@ -30,3 +30,8 @@ div #featured_description {
   font-size: 22px;
   color: #5F5D62;
 }
+
+/* line 29, ../../app/stylesheets/home_page.scss */
+#featured_image {
+  padding-bottom: 7px;
+}
