@@ -16,7 +16,7 @@ class Shopping::OrdersController < Shopping::BaseController
       redirect_to f
     else
       @credit_card ||= ActiveMerchant::Billing::CreditCard.new()
-      @order.order_total
+      @order.find_total
       respond_to do |format|
         format.html # index.html.erb
         format.xml  { render :xml => @orders }
