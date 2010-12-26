@@ -1,4 +1,11 @@
 
+h3. 0.2.0 2010-12-26
+
+* more YARD docs
+* completed admin_grid tests
+* better looking home page
+* no_image has many sizes now
+
 h3. 00.01.04 2010-12-19
 
 * added YARD docs
