@@ -4,7 +4,7 @@ describe Shipment, 'instance methods' do
   before(:each) do
     @shipment = Factory(:shipment)
   end
-  
+
   context '.set_to_shipped' do
     #self.shipped_at = Time.zone.now
     it "should mark the shipment as shipped" do
@@ -56,7 +56,7 @@ describe Shipment, 'instance methods' do
       @shipment.shipped_at = now
       @shipment.display_shipped_at.should == now.strftime('%m/%d/%Y')
     end
-    
+
     it 'should diplay "Not Shipped"' do
       @shipment.shipped_at = nil
       @shipment.display_shipped_at.should == "Not Shipped."
@@ -74,7 +74,7 @@ describe Shipment, 'instance method from build' do
     @order = Factory(:order, :user => @user)
     @shipment = Factory(:shipment, :order => @order)
   end
-  
+
   context '.shipping_addresses' do
     # order.user.shipping_addresses
     it 'should return all the shipping addresses for the user' do
@@ -88,7 +88,7 @@ describe Shipment, 'instance method from build' do
   before(:each) do
     @shipment = Factory.build(:shipment)
   end
-  
+
   context '.set_number, save_shipment_number and set_shipment_number' do
     it "should set_number after saving" do
       @shipment.number.should be_nil
@@ -97,7 +97,7 @@ describe Shipment, 'instance method from build' do
       @shipment.number.should  == (Shipment::NUMBER_SEED + @shipment.id).to_s(Shipment::CHARACTERS_SEED)
     end
   end
-  
+
 end
 
 describe Shipment, '#create_shipments_with_items(order)' do
@@ -113,7 +113,7 @@ describe Shipment, '#create_shipments_with_items(order)' do
     @order.order_items.push(order_item)
     @order.order_items.push(order_item2)
     @order.save
-  
+
     order    = Order.find(@order.id)
     shipment = Shipment.create_shipments_with_items(order)
     order.reload
@@ -125,7 +125,7 @@ describe Shipment, '#create_shipments_with_items(order)' do
   it 'should create 1 shipment with items with the same shipping method'do
     #shipping_method = Factory(:shipping_method)
     shipping_rate = Factory(:shipping_rate)
-    
+
     order_item  = Factory(:order_item, :order => @order, :shipping_rate => shipping_rate)
     order_item2 = Factory(:order_item, :order => @order, :shipping_rate => shipping_rate)
     @order.order_items.push(order_item)
@@ -142,7 +142,11 @@ describe Shipment, '#create_shipments_with_items(order)' do
 end
 
 describe Shipment, '#find_fulfillment_shipment(id)' do
-  pending "test for find_fulfillment_shipment(id)"
+  it 'should return the shipment' do
+    shipment = Factory(:shipment)
+    s = Shipment.find_fulfillment_shipment(shipment.id)
+    s.id.should == shipment.id
+  end
 end
 
 describe Shipment, "#id_from_number(num)" do
