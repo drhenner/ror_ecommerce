@@ -5,8 +5,8 @@ describe Notifier, "Signup Email" do
     #include EmailSpec::Matchers
     #include ActionController::UrlWriter
     include Rails.application.routes.url_helpers
-    
-    before(:all) do
+
+    before(:each) do
       #"jojo@yahoo.com", "Jojo Binks"
       #[first_name.capitalize, last_name.capitalize ]
       @user  = Factory(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
