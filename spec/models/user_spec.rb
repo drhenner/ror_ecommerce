@@ -313,5 +313,11 @@ describe User, 'private methods' do
 end
 
 describe User, "#admin_grid(params = {})" do
-  pending "test for admin_grid"
+  it "should return users " do
+    user1 = Factory(:user)
+    user2 = Factory(:user)
+    admin_grid = User.admin_grid
+    admin_grid.size.should == 2
+    admin_grid.should == [user1, user2]
+  end
 end
