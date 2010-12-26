@@ -189,8 +189,20 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def calculate_totals(force = false)
+  # This method will go to every order_item and calculate the total for that item.
+  #
+  # if calculated at is set this order does not need to be calculated unless
+  # any single item in the order has been updated since the order was calculated
+  #
+  # Also if any item is not ready to calculate then dont calculate
+  #
+  # @param [none] the param is not used right now
+  # @return [none]
+  def calculate_totals
+    # if calculated at is nil then this order hasn't been calculated yet
+    # also if any single item in the order has been updated, the order needs to be re-calculated
     if calculated_at.nil? || (order_items.any? {|item| (item.updated_at > self.calculated_at) })
+      # if any item is not ready to calculate then dont calculate
       unless order_items.any? {|item| !item.ready_to_calculate? }
         total = 0.0
         tax_time = completed_at? ? completed_at : Time.zone.now
@@ -210,14 +222,15 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def order_total(force = false)
-    find_total
-  end
-
   def ready_to_checkout?
     order_items.all? {|item| item.ready_to_calculate? }
   end
 
+  # calculates the total price of the order
+  # this method will set sub_total and total for the order even if the order is not ready for final checkout
+  #
+  # @param [none] the param is not used right now
+  # @return [none]  Sets sub_total and total for the object
   def find_total(force = false)
     calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
     self.total = 0.0
