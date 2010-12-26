@@ -162,7 +162,7 @@ describe PurchaseOrder, "#admin_grid(params = {})" do
 end
 
 describe PurchaseOrder, "#receiving_admin_grid(params = {})" do
-  it "should return users " do
+  it "should return PurchaseOrders " do
     purchase_order1 = Factory(:purchase_order, :state => PurchaseOrder::RECEIVED)
     purchase_order2 = Factory(:purchase_order)
     admin_grid = PurchaseOrder.receiving_admin_grid
