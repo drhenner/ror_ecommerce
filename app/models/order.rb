@@ -39,12 +39,9 @@ class Order < ActiveRecord::Base
     event :pay do
       transition :to => 'paid', :from => ['in_progress', 'complete']
     end
-    #before_transition :to => 'complete', :do => [:set_completed]
-    #after_transition  :to => 'complete', :do => [:update_inventory]
   end
 
-  #########
-  ##  This method is used when the session in admin orders is ready to authorize the credit card
+  #  This method is used when the session in admin orders is ready to authorize the credit card
   #   The cart has the following format
   #
   #  session[:admin_cart] = {
@@ -56,10 +53,19 @@ class Order < ActiveRecord::Base
   #    :order_items => {}# the key is variant_id , a hash of {variant, shipping_rate, quantity, tax_rate, total, shipping_category_id}
   #  }
 
+
+  # user name on the order
+  #
+  # @param [none]
+  # @return [String] user name on the order
   def name
     self.user.name
   end
 
+  # formated date of the complete_at datetime on the order
+  #
+  # @param [none]
+  # @return [String] formated date or 'Not Finished.' if the order is not completed
   def display_completed_at(format = :us_date)
     completed_at ? I18n.localize(completed_at, :format => format) : 'Not Finished.'
   end
@@ -68,32 +74,6 @@ class Order < ActiveRecord::Base
     return '' if completed_invoices.empty?
     completed_invoices.first.amount
   end
-
-      #def self.decoded_id(id)
-      #  Base64.decode64(id).to_i
-      #end
-      #
-      #def self.find_by_encoded_id(id)
-      #  find(decoded_id(id))
-      #end
-      #
-      #def random_encoded_id
-      #  Base64.encode64('0000000' + '0'*rand(9) + id.to_s)###  this returns the id encoded with a semi random encoding
-      #end
-      #
-      #def encoded_id
-      #  Base64.encode64('000000' + id.to_s)###  this returns the id encoded
-      #end
-
-      #def number
-      #  encoded_id
-      #end
-
-  #def authorize_complete_order(invoice)
-  #  transaction do
-  #    invoice.authorize_complete_order
-  #  end
-  #end
 
   def cancel_unshipped_order(invoice)
     transaction do
@@ -137,13 +117,12 @@ class Order < ActiveRecord::Base
     end
   end
 
-  # @order.capture_invoice(@invoice)
+  # captures the payment of the invoice by the payment processor
+  #
+  # @param [Invoice]
+  # @return [Payment] payment object
   def capture_invoice(invoice)
     payment = invoice.capture_payment({})
-    #if payment.paid?
-    #  #
-    #end
-    #payment.params['response_code']
   end
 
 
