@@ -21,11 +21,18 @@ class Cart < ActiveRecord::Base
 
   # Adds all the item prices (not including taxes) that are currently in the shopping cart
   #
+  # @param [none]
   # @return [Float] This is a float in decimal form and represents the price of all the items in the cart
   def sub_total
     shopping_cart_items.inject(0) {|sum, item| item.total + sum} #.includes(:variant)
   end
 
+  # Call this method when you are checking out with the current cart items
+  # => these will now be order.order_items
+  # => the order can only add items if it is 'in_progress'
+  #
+  # @params [Order] order to insert the shopping cart variants into
+  # @return [none]
   def add_items_to_checkout(order)
     if order.in_progress?
       items = shopping_cart_items.inject({}) {|h, item| h[item.variant_id] = item.quantity; h}
@@ -116,7 +123,6 @@ class Cart < ActiveRecord::Base
       elsif qty_in_cart - items[variant_id].size > 0
         order.add_items( variant , qty - items[variant_id])
       elsif qty_in_cart - items[variant_id].size < 0
-        raise errooor
         order.remove_items( variant , qty_in_cart - items[variant_id])
       end
     end

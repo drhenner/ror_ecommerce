@@ -22,6 +22,12 @@ class Image < ActiveRecord::Base
   after_post_process :find_dimensions
   MAIN_LOGO = 'logo'
 
+  # this will be called after an image is uploaded.
+  # => it will set the width and height of the image.
+  # => It will not save the object
+  #
+  # @param [none]
+  # @return [none] but does set the height and width
   def find_dimensions
     temporary = photo.queued_for_write[:original]
     filename = temporary.path unless temporary.nil?

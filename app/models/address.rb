@@ -30,15 +30,27 @@ class Address < ActiveRecord::Base
     [first_name, last_name].compact.join(' ')
   end
 
+  # Will inactivate and save the address
+  #
+  # @param none
+  # @ return [Boolean] true or error(error will only happen if there is a bad record in the db)
   def inactive!
     self.active = false
     save!
   end
 
+  # hash of all the address db attributes except created_at, updated_at, id
+  #
+  # @param none
+  # @ return [Hash] address db attributes except created_at, updated_at, id
   def address_attributes
     attributes.delete_if {|key, value| ["id", 'updated_at', 'created_at'].any?{|k| k == key }}
   end
 
+  # hash of all the address attributes to be passed to a creditcard processor
+  #
+  # @param none
+  # @ return [Hash] address attributes for a creditcard processor
   def cc_params
     { :name     => name,
       :address1 => address1,
@@ -51,6 +63,13 @@ class Address < ActiveRecord::Base
     }
   end
 
+  # Use this method to update an address
+  # => This method will create a new address object and make the address you are updating inactive
+  # => If you always use this method for updating addresses you don't need to worry about old order
+  # => referencing the wrong address
+  #
+  # @param none
+  # @ return [Address] address of new address or of the old address with errors
   def self.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )
     new_address = Address.new(params.merge( :address_type_id  => address_type_id,
                               :addressable_type => old_address.addressable_type,
@@ -68,8 +87,13 @@ class Address < ActiveRecord::Base
 
 
 
-
-
+  # Use this method to create an address
+  # => This method will create a new address object and if the address is a default address it
+  # => will make all other addresses that belong to the user non-default
+  #
+  # @param [object] object associated to the address (user or possibly a company in the future)
+  # @param [Hash] hash of attributes for the new address
+  # @ return [Boolean] true or nil
   def save_default_address(object, params)
     Address.transaction do
       if params[:default] && params[:default] != '0'
@@ -94,33 +118,57 @@ class Address < ActiveRecord::Base
     end
   end
 
+  # Use this method to represent the full address as an array compacted
+  #
+  # @param [none]
+  # @return [Array] Array has ("name", "address1", "address2"(unless nil), "city state zip")
   def full_address_array
     [name, address1, address2, city_state_zip].compact
   end
 
+  # Use this method to represent the full address as an array compacted
+  #
+  # @param [Optional String] default is ', '
+  # @return [String] address1 and address2 joined together with the string you pass in
   def address_lines(join_chars = ', ')
     [address1, address2].delete_if{|add| add.blank?}.join(join_chars)
   end
 
+  # Use this method to represent the state abbreviation
+  # => it is possible the state is nil. in that case the abbreviation will be stored in
+  # => the state_name column in the DB
+  #
+  # @param [none]
+  # @return [String] state abbreviation
   def state_abbr_name
     state ? state.abbreviation : state_name
   end
 
+  # Use this method to represent the "city, state.abbreviation"
+  #
+  # @param [none]
+  # @return [String] "city, state.abbreviation"
   def city_state_name
     [city, state_abbr_name].join(', ')
   end
 
+  # Use this method to represent the "city, state.abbreviation zip_code"
+  #
+  # @param [none]
+  # @return [String] "city, state.abbreviation zip_code"
   def city_state_zip
     [city_state_name, zip_code].join(' ')
   end
 
-  def sanitize_data
-    self.first_name  = self.first_name.strip  unless self.first_name.blank?
-    self.last_name   = self.last_name.strip   unless self.last_name.blank?
-    self.city       = self.city.strip       unless self.city.blank?
-    self.zip_code    = self.zip_code.strip    unless self.zip_code.blank?
-    #self.phone      = self.phone.strip      unless self.phone.blank?
-    self.address1   = self.address1.strip   unless self.address1.blank?
-    self.address2   = self.address2.strip   unless self.address2.blank?
-  end
+  private
+    # This method is called to ensure data is formated without extra white space before_validation
+    def sanitize_data
+      self.first_name  = self.first_name.strip  unless self.first_name.blank?
+      self.last_name   = self.last_name.strip   unless self.last_name.blank?
+      self.city       = self.city.strip       unless self.city.blank?
+      self.zip_code    = self.zip_code.strip    unless self.zip_code.blank?
+      #self.phone      = self.phone.strip      unless self.phone.blank?
+      self.address1   = self.address1.strip   unless self.address1.blank?
+      self.address2   = self.address2.strip   unless self.address2.blank?
+    end
 end
