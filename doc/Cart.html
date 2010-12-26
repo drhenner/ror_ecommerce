@@ -96,7 +96,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#add_items_to_checkout-instance_method" title="#add_items_to_checkout (instance method)">- (Object) <strong>add_items_to_checkout</strong>(order) </a>
+      <a href="#add_items_to_checkout-instance_method" title="#add_items_to_checkout (instance method)">- (none) <strong>add_items_to_checkout</strong>(order) </a>
     
 
     
@@ -109,7 +109,12 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Call this method when you are checking out with the current cart items
+</p>
+<h1>> these will now be order.order_items</h1>
+<h1>> the order can only add items if it is &#8216;in_progress&#8217;.</h1>
+</div></span>
   
 </li>
 
@@ -248,25 +253,72 @@ shopping cart.
       <div class="method_details first">
   <p class="signature first" id="add_items_to_checkout-instance_method">
   
-    - (<tt>Object</tt>) <strong>add_items_to_checkout</strong>(order) 
+    - (<tt>none</tt>) <strong>add_items_to_checkout</strong>(order) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Call this method when you are checking out with the current cart items
+</p>
+<h1>> these will now be order.order_items</h1>
+<h1>> the order can only add items if it is &#8216;in_progress&#8217;</h1>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Order.html" title="Order (class)">Order</a></span></tt>)</span>
+      
+      
+        <span class='name'>order</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+to insert the shopping cart variants into
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-29
-30
-31
-32
-33
-34</pre>
+36
+37
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id add_items_to_checkout'>add_items_to_checkout</span><span class='lparen'>(</span><span class='id order'>order</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id order'>order</span><span class='period'>.</span><span class='id in_progress?'>in_progress?</span>
@@ -296,7 +348,62 @@ Call this method when you want to add an item to the shopping cart
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>#read</tt>)</span>
+      
+      
+        <span class='name'>variant</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+id to add to the cart
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>, <tt>#read</tt>)</span>
+      
+      
+        <span class='name'>user</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+that is adding something to the cart
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>#optional</tt>)</span>
+      
+      
+        <span class='name'>ItemType</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+id that is being added to the cart
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -322,13 +429,6 @@ return the cart item that is added to the cart
       <pre class="lines">
 
 
-42
-43
-44
-45
-46
-47
-48
 49
 50
 51
@@ -345,10 +445,17 @@ return the cart item that is added to the cart
 62
 63
 64
-65</pre>
+65
+66
+67
+68
+69
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id add_variant'>add_variant</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='comma'>,</span> <span class='id customer'>customer</span><span class='comma'>,</span> <span class='id cart_item_type_id'>cart_item_type_id</span> <span class='op'>=</span> <span class='const'>ItemType</span><span class='op'>::</span><span class='const'>SHOPPING_CART_ID</span><span class='rparen'>)</span>
   <span class='id items'>items</span> <span class='op'>=</span> <span class='id shopping_cart_items'>shopping_cart_items</span><span class='period'>.</span><span class='id find_all_by_variant_id'>find_all_by_variant_id</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='rparen'>)</span>
@@ -420,13 +527,13 @@ Call this method when you want to mark the items in the order as purchased
       <pre class="lines">
 
 
-91
-92
-93
-94</pre>
+98
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id mark_items_purchased'>mark_items_purchased</span><span class='lparen'>(</span><span class='id order'>order</span><span class='rparen'>)</span>
   <span class='const'>CartItem</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>item_type_id = </span><span class='embexpr_beg'>#{</span><span class='const'>ItemType</span><span class='op'>::</span><span class='const'>PURCHASED_ID</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -456,7 +563,28 @@ Call this method when you want to remove an item from the shopping cart
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>#read</tt>)</span>
+      
+      
+        <span class='name'>variant</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+id to add to the cart
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -482,13 +610,13 @@ return the cart item that is added to the cart
       <pre class="lines">
 
 
-72
-73
-74
-75</pre>
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id remove_variant'>remove_variant</span><span class='lparen'>(</span><span class='id variant_id'>variant_id</span><span class='rparen'>)</span>
   <span class='id citems'>citems</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id cart_items'>cart_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id ci'>ci</span><span class='op'>|</span> <span class='id ci'>ci</span><span class='period'>.</span><span class='id inactivate!'>inactivate!</span> <span class='kw'>if</span> <span class='id variant_id'>variant_id</span> <span class='op'>==</span> <span class='id ci'>ci</span><span class='period'>.</span><span class='id variant_id'>variant_id</span> <span class='rbrace'>}</span>
@@ -538,15 +666,15 @@ Call this method when you want to associate the cart with a user
       <pre class="lines">
 
 
-80
-81
-82
-83
-84
-85</pre>
+87
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id save_user'>save_user</span><span class='lparen'>(</span><span class='id u'>u</span><span class='rparen'>)</span>  <span class='comment'># u is user object or nil
 </span>  <span class='kw'>if</span> <span class='id u'>u</span> <span class='op'>&amp;&amp;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id user_id'>user_id</span> <span class='op'>!=</span> <span class='id u'>u</span><span class='period'>.</span><span class='id id'>id</span>
@@ -577,7 +705,22 @@ shopping cart
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -604,12 +747,12 @@ in the cart
       <pre class="lines">
 
 
-25
 26
-27</pre>
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id sub_total'>sub_total</span>
   <span class='id shopping_cart_items'>shopping_cart_items</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id sum'>sum</span><span class='comma'>,</span> <span class='id item'>item</span><span class='op'>|</span> <span class='id item'>item</span><span class='period'>.</span><span class='id total'>total</span> <span class='op'>+</span> <span class='id sum'>sum</span><span class='rbrace'>}</span> <span class='comment'>#.includes(:variant)
@@ -624,7 +767,7 @@ in the cart
 </div>
     
     <div id="footer">
-  Generated on Sun Dec 19 09:17:00 2010 by 
+  Generated on Sun Dec 26 13:09:23 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

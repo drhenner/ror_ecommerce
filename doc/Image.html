@@ -108,7 +108,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_dimensions-instance_method" title="#find_dimensions (instance method)">- (Object) <strong>find_dimensions</strong> </a>
+      <a href="#find_dimensions-instance_method" title="#find_dimensions (instance method)">- (none) <strong>find_dimensions</strong> </a>
     
 
     
@@ -121,7 +121,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+this will be called after an image is uploaded.
+</p>
+</div></span>
   
 </li>
 
@@ -163,27 +166,74 @@ if there are errors from the plugin, then add a more meaningful message.
       <div class="method_details first">
   <p class="signature first" id="find_dimensions-instance_method">
   
-    - (<tt>Object</tt>) <strong>find_dimensions</strong> 
+    - (<tt>none</tt>) <strong>find_dimensions</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+this will be called after an image is uploaded.
+</p>
+<h1>> it will set the width and height of the image.</h1>
+<h1>> It will not save the object</h1>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+but does set the height and width
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-25
-26
-27
-28
-29
-30
 31
-32</pre>
+32
+33
+34
+35
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/image.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'app/models/image.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id find_dimensions'>find_dimensions</span>
   <span class='id temporary'>temporary</span> <span class='op'>=</span> <span class='id photo'>photo</span><span class='period'>.</span><span class='id queued_for_write'>queued_for_write</span><span class='lbracket'>[</span><span class='symbol'>:original</span><span class='rbracket'>]</span>
@@ -222,17 +272,17 @@ if there are errors from the plugin, then add a more meaningful message
       <pre class="lines">
 
 
-35
-36
-37
-38
-39
-40
 41
-42</pre>
+42
+43
+44
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/image.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/models/image.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id validate'>validate</span>
   <span class='kw'>unless</span> <span class='id photo'>photo</span><span class='period'>.</span><span class='id errors'>errors</span><span class='period'>.</span><span class='id empty?'>empty?</span>
@@ -252,7 +302,7 @@ if there are errors from the plugin, then add a more meaningful message
 </div>
     
     <div id="footer">
-  Generated on Sun Dec 19 09:17:00 2010 by 
+  Generated on Sun Dec 26 13:09:24 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

@@ -109,7 +109,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to update an address
+</p>
+<h1>> This method will create a new address object and make the address you are updating inactive</h1>
+<h1>> If you always use this method for updating addresses you don&#8217;t need to worry about old order</h1>
+<h1>> referencing the wrong address.</h1>
+</div></span>
   
 </li>
 
@@ -139,7 +145,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+hash of all the address db attributes except created_at, updated_at, id.
+</p>
+</div></span>
   
 </li>
 
@@ -147,7 +156,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#address_lines-instance_method" title="#address_lines (instance method)">- (Object) <strong>address_lines</strong>(join_chars = ', ') </a>
+      <a href="#address_lines-instance_method" title="#address_lines (instance method)">- (String) <strong>address_lines</strong>(join_chars = ', ') </a>
     
 
     
@@ -160,7 +169,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to represent the full address as an array compacted.
+</p>
+</div></span>
   
 </li>
 
@@ -181,7 +193,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+hash of all the address attributes to be passed to a creditcard processor.
+</p>
+</div></span>
   
 </li>
 
@@ -189,7 +204,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#city_state_name-instance_method" title="#city_state_name (instance method)">- (Object) <strong>city_state_name</strong> </a>
+      <a href="#city_state_name-instance_method" title="#city_state_name (instance method)">- (String) <strong>city_state_name</strong> </a>
     
 
     
@@ -202,7 +217,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to represent the &#8220;city, state.abbreviation&#8221;.
+</p>
+</div></span>
   
 </li>
 
@@ -210,7 +228,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#city_state_zip-instance_method" title="#city_state_zip (instance method)">- (Object) <strong>city_state_zip</strong> </a>
+      <a href="#city_state_zip-instance_method" title="#city_state_zip (instance method)">- (String) <strong>city_state_zip</strong> </a>
     
 
     
@@ -223,7 +241,11 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to represent the &#8220;city, state.abbreviation
+zip_code&#8221;.
+</p>
+</div></span>
   
 </li>
 
@@ -231,7 +253,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#full_address_array-instance_method" title="#full_address_array (instance method)">- (Object) <strong>full_address_array</strong> </a>
+      <a href="#full_address_array-instance_method" title="#full_address_array (instance method)">- (Array) <strong>full_address_array</strong> </a>
     
 
     
@@ -244,7 +266,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to represent the full address as an array compacted.
+</p>
+</div></span>
   
 </li>
 
@@ -265,7 +290,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Will inactivate and save the address.
+</p>
+</div></span>
   
 </li>
 
@@ -297,27 +325,6 @@ First and last name of the person on the address.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sanitize_data-instance_method" title="#sanitize_data (instance method)">- (Object) <strong>sanitize_data</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#save_default_address-instance_method" title="#save_default_address (instance method)">- (Object) <strong>save_default_address</strong>(object, params) </a>
     
 
@@ -331,7 +338,12 @@ First and last name of the person on the address.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to create an address
+</p>
+<h1>> This method will create a new address object and if the address is a default address it</h1>
+<h1>> will make all other addresses that belong to the user non-default.</h1>
+</div></span>
   
 </li>
 
@@ -339,7 +351,7 @@ First and last name of the person on the address.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#state_abbr_name-instance_method" title="#state_abbr_name (instance method)">- (Object) <strong>state_abbr_name</strong> </a>
+      <a href="#state_abbr_name-instance_method" title="#state_abbr_name (instance method)">- (String) <strong>state_abbr_name</strong> </a>
     
 
     
@@ -352,7 +364,11 @@ First and last name of the person on the address.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to represent the state abbreviation
+</p>
+<h1>> it is possible the state is nil.</h1>
+</div></span>
   
 </li>
 
@@ -374,29 +390,61 @@ First and last name of the person on the address.
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to update an address
+</p>
+<h1>> This method will create a new address object and make the address you are updating inactive</h1>
+<h1>> If you always use this method for updating addresses you don&#8217;t need to worry about old order</h1>
+<h1>> referencing the wrong address</h1>
+<p>
+@ return [Address] address of new address or of the old address with errors
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>none</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67</pre>
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id update_address'>update_address</span><span class='lparen'>(</span><span class='id old_address'>old_address</span><span class='comma'>,</span> <span class='id params'>params</span><span class='comma'>,</span> <span class='id address_type_id'>address_type_id</span> <span class='op'>=</span> <span class='const'>AddressType</span><span class='op'>::</span><span class='const'>SHIPPING_ID</span> <span class='rparen'>)</span>
   <span class='id new_address'>new_address</span> <span class='op'>=</span> <span class='const'>Address</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id params'>params</span><span class='period'>.</span><span class='id merge'>merge</span><span class='lparen'>(</span> <span class='symbol'>:address_type_id</span>  <span class='op'>=&gt;</span> <span class='id address_type_id'>address_type_id</span><span class='comma'>,</span>
@@ -430,18 +478,47 @@ First and last name of the person on the address.
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+hash of all the address db attributes except created_at, updated_at, id
+</p>
+<p>
+@ return [Hash] address db attributes except created_at, updated_at, id
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>none</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-38
-39
-40</pre>
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id address_attributes'>address_attributes</span>
   <span class='id attributes'>attributes</span><span class='period'>.</span><span class='id delete_if'>delete_if</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id key'>key</span><span class='comma'>,</span> <span class='id value'>value</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>updated_at</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>created_at</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id any?'>any?</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id k'>k</span><span class='op'>|</span> <span class='id k'>k</span> <span class='op'>==</span> <span class='id key'>key</span> <span class='rbrace'>}</span><span class='rbrace'>}</span>
@@ -454,22 +531,73 @@ First and last name of the person on the address.
       <div class="method_details ">
   <p class="signature " id="address_lines-instance_method">
   
-    - (<tt>Object</tt>) <strong>address_lines</strong>(join_chars = ', ') 
+    - (<tt>String</tt>) <strong>address_lines</strong>(join_chars = ', ') 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to represent the full address as an array compacted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional String</tt>)</span>
+      
+      
+        <span class='name'>default</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+is &#8217;, &#8216;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address1 and address2 joined together with the string you pass in
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-101
-102
-103</pre>
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id address_lines'>address_lines</span><span class='lparen'>(</span><span class='id join_chars'>join_chars</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='lbracket'>[</span><span class='id address1'>address1</span><span class='comma'>,</span> <span class='id address2'>address2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id delete_if'>delete_if</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id add'>add</span><span class='op'>|</span> <span class='id add'>add</span><span class='period'>.</span><span class='id blank?'>blank?</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='id join_chars'>join_chars</span><span class='rparen'>)</span>
@@ -486,26 +614,55 @@ First and last name of the person on the address.
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+hash of all the address attributes to be passed to a creditcard processor
+</p>
+<p>
+@ return [Hash] address attributes for a creditcard processor
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>none</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52</pre>
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id cc_params'>cc_params</span>
   <span class='lbrace'>{</span> <span class='symbol'>:name</span>     <span class='op'>=&gt;</span> <span class='id name'>name</span><span class='comma'>,</span>
@@ -526,22 +683,67 @@ First and last name of the person on the address.
       <div class="method_details ">
   <p class="signature " id="city_state_name-instance_method">
   
-    - (<tt>Object</tt>) <strong>city_state_name</strong> 
+    - (<tt>String</tt>) <strong>city_state_name</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to represent the &#8220;city, state.abbreviation&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+&#8220;city, state.abbreviation&#8220;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-109
-110
-111</pre>
+151
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id city_state_name'>city_state_name</span>
   <span class='lbracket'>[</span><span class='id city'>city</span><span class='comma'>,</span> <span class='id state_abbr_name'>state_abbr_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -554,22 +756,68 @@ First and last name of the person on the address.
       <div class="method_details ">
   <p class="signature " id="city_state_zip-instance_method">
   
-    - (<tt>Object</tt>) <strong>city_state_zip</strong> 
+    - (<tt>String</tt>) <strong>city_state_zip</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to represent the &#8220;city, state.abbreviation
+zip_code&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+&#8220;city, state.abbreviation zip_code&#8220;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-113
-114
-115</pre>
+159
+160
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='id city_state_zip'>city_state_zip</span>
   <span class='lbracket'>[</span><span class='id city_state_name'>city_state_name</span><span class='comma'>,</span> <span class='id zip_code'>zip_code</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -582,22 +830,68 @@ First and last name of the person on the address.
       <div class="method_details ">
   <p class="signature " id="full_address_array-instance_method">
   
-    - (<tt>Object</tt>) <strong>full_address_array</strong> 
+    - (<tt>Array</tt>) <strong>full_address_array</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to represent the full address as an array compacted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Array has (&#8220;name&#8221;, &#8220;address1&#8221;,
+&#8220;address2&#8221;(unless nil), &#8220;city state zip&#8221;)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-97
-98
-99</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id full_address_array'>full_address_array</span>
   <span class='lbracket'>[</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id address1'>address1</span><span class='comma'>,</span> <span class='id address2'>address2</span><span class='comma'>,</span> <span class='id city_state_zip'>city_state_zip</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id compact'>compact</span>
@@ -614,19 +908,49 @@ First and last name of the person on the address.
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Will inactivate and save the address
+</p>
+<p>
+@ return [Boolean] true or error(error will only happen if there is a bad
+record in the db)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>none</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-33
-34
-35
-36</pre>
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id inactive!'>inactive!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id active'>active</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -706,84 +1030,98 @@ first_name == &#8216;John&#8217;, last_name == &#8216;Doe&#8217;
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="sanitize_data-instance_method">
-  
-    - (<tt>Object</tt>) <strong>sanitize_data</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-117
-118
-119
-120
-121
-122
-123
-124
-125</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 117</span>
-
-<span class='kw'>def</span> <span class='id sanitize_data'>sanitize_data</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span>  <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id strip'>strip</span>  <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id blank?'>blank?</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id last_name'>last_name</span>   <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id last_name'>last_name</span><span class='period'>.</span><span class='id strip'>strip</span>   <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id last_name'>last_name</span><span class='period'>.</span><span class='id blank?'>blank?</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id city'>city</span>       <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id city'>city</span><span class='period'>.</span><span class='id strip'>strip</span>       <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id city'>city</span><span class='period'>.</span><span class='id blank?'>blank?</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id zip_code'>zip_code</span>    <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id zip_code'>zip_code</span><span class='period'>.</span><span class='id strip'>strip</span>    <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id zip_code'>zip_code</span><span class='period'>.</span><span class='id blank?'>blank?</span>
-  <span class='comment'>#self.phone      = self.phone.strip      unless self.phone.blank?
-</span>  <span class='kw'>self</span><span class='period'>.</span><span class='id address1'>address1</span>   <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id address1'>address1</span><span class='period'>.</span><span class='id strip'>strip</span>   <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id address1'>address1</span><span class='period'>.</span><span class='id blank?'>blank?</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id address2'>address2</span>   <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id address2'>address2</span><span class='period'>.</span><span class='id strip'>strip</span>   <span class='kw'>unless</span> <span class='kw'>self</span><span class='period'>.</span><span class='id address2'>address2</span><span class='period'>.</span><span class='id blank?'>blank?</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <p class="signature " id="save_default_address-instance_method">
   
     - (<tt>Object</tt>) <strong>save_default_address</strong>(object, params) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to create an address
+</p>
+<h1>> This method will create a new address object and if the address is a default address it</h1>
+<h1>> will make all other addresses that belong to the user non-default</h1>
+<p>
+@ return [Boolean] true or nil
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>object</tt>)</span>
+      
+      
+        <span class='name'>object</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+associated to the address (user or possibly a company in the future)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>hash</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+of attributes for the new address
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95</pre>
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id save_default_address'>save_default_address</span><span class='lparen'>(</span><span class='id object'>object</span><span class='comma'>,</span> <span class='id params'>params</span><span class='rparen'>)</span>
   <span class='const'>Address</span><span class='period'>.</span><span class='id transaction'>transaction</span> <span class='kw'>do</span>
@@ -816,22 +1154,69 @@ first_name == &#8216;John&#8217;, last_name == &#8216;Doe&#8217;
       <div class="method_details ">
   <p class="signature " id="state_abbr_name-instance_method">
   
-    - (<tt>Object</tt>) <strong>state_abbr_name</strong> 
+    - (<tt>String</tt>) <strong>state_abbr_name</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to represent the state abbreviation
+</p>
+<h1>> it is possible the state is nil. in that case the abbreviation will be stored in</h1>
+<h1>> the state_name column in the DB</h1>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+state abbreviation
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-105
-106
-107</pre>
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'app/models/address.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id state_abbr_name'>state_abbr_name</span>
   <span class='id state'>state</span> <span class='op'>?</span> <span class='id state'>state</span><span class='period'>.</span><span class='id abbreviation'>abbreviation</span> <span class='op'>:</span> <span class='id state_name'>state_name</span>
@@ -846,7 +1231,7 @@ first_name == &#8216;John&#8217;, last_name == &#8216;Doe&#8217;
 </div>
     
     <div id="footer">
-  Generated on Sun Dec 19 09:17:01 2010 by 
+  Generated on Sun Dec 26 13:09:24 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

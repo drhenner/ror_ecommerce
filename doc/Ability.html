@@ -114,7 +114,7 @@
 
   
     <span class="summary_desc"><div class='inline'><p>
-A new instance of Ability.
+This method sets up the user&#8217;s abilities to view  pages.
 </p>
 </div></span>
   
@@ -138,8 +138,10 @@ A new instance of Ability.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of Ability
+This method sets up the user&#8217;s abilities to view  pages
 </p>
+<pre class="code">
+  look at https://github.com/ryanb/cancan for more info</pre>
 
 
   </div>
@@ -152,8 +154,6 @@ A new instance of Ability
       <pre class="lines">
 
 
-4
-5
 6
 7
 8
@@ -167,10 +167,11 @@ A new instance of Ability
 16
 17
 18
-19</pre>
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/ability.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/models/ability.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id user'>user</span><span class='rparen'>)</span>
   <span class='id user'>user</span> <span class='op'>||=</span> <span class='const'>User</span><span class='period'>.</span><span class='id new'>new</span> <span class='comment'># guest user
@@ -178,14 +179,13 @@ A new instance of Ability
   <span class='kw'>if</span> <span class='id user'>user</span><span class='period'>.</span><span class='id super_admin?'>super_admin?</span>
     <span class='id can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='symbol'>:all</span>
   <span class='kw'>elsif</span> <span class='id user'>user</span><span class='period'>.</span><span class='id admin?'>admin?</span>
-    <span class='id debugger'>debugger</span>
     <span class='id can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='symbol'>:all</span>
   <span class='kw'>else</span>
     <span class='id can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>Order</span><span class='comma'>,</span> <span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='id user'>user</span><span class='period'>.</span><span class='id id'>id</span>
     <span class='id can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>Order</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id action'>action</span><span class='comma'>,</span> <span class='id order'>order</span><span class='op'>|</span>
       <span class='id action'>action</span> <span class='op'>!=</span> <span class='symbol'>:destroy</span> <span class='op'>&amp;&amp;</span> <span class='id order'>order</span><span class='period'>.</span><span class='id state'>state</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>complete</span><span class='tstring_end'>'</span></span> <span class='op'>&amp;&amp;</span> <span class='id order'>order</span><span class='period'>.</span><span class='id user_id'>user_id</span> <span class='op'>==</span> <span class='id user'>user</span><span class='period'>.</span><span class='id id'>id</span>
     <span class='kw'>end</span>
-    
+
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -199,7 +199,7 @@ A new instance of Ability
 </div>
     
     <div id="footer">
-  Generated on Sun Dec 19 09:17:00 2010 by 
+  Generated on Sun Dec 26 13:09:24 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>
