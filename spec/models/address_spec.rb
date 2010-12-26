@@ -166,7 +166,7 @@ describe Address, "methods" do
                           :active           => true
                           )
 
-    address.sanitize_data
+    address.send(:sanitize_data)
     address.first_name.should ==  'Perez'
     address.last_name.should  ==  'Hilton'
     address.city.should       ==  'Fredville'
