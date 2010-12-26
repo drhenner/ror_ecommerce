@@ -31,7 +31,7 @@ class Cart < ActiveRecord::Base
   # => these will now be order.order_items
   # => the order can only add items if it is 'in_progress'
   #
-  # @params [Order] order to insert the shopping cart variants into
+  # @param [Order] order to insert the shopping cart variants into
   # @return [none]
   def add_items_to_checkout(order)
     if order.in_progress?
@@ -42,9 +42,9 @@ class Cart < ActiveRecord::Base
 
   # Call this method when you want to add an item to the shopping cart
   #
-  # @params [Integer, #read] variant id to add to the cart
-  # @params [User, #read] user that is adding something to the cart
-  # @params [Integer, #optional] ItemType id that is being added to the cart
+  # @param [Integer, #read] variant id to add to the cart
+  # @param [User, #read] user that is adding something to the cart
+  # @param [Integer, #optional] ItemType id that is being added to the cart
   # @return [CartItem] return the cart item that is added to the cart
   def add_variant(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID)
     items = shopping_cart_items.find_all_by_variant_id(variant_id)
@@ -74,7 +74,7 @@ class Cart < ActiveRecord::Base
   # Call this method when you want to remove an item from the shopping cart
   #   The CartItem will not delete.  Instead it is just inactivated
   #
-  # @params [Integer, #read] variant id to add to the cart
+  # @param [Integer, #read] variant id to add to the cart
   # @return [CartItem] return the cart item that is added to the cart
   def remove_variant(variant_id)
     citems = self.cart_items.each {|ci| ci.inactivate! if variant_id == ci.variant_id }
