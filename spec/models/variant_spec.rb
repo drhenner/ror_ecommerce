@@ -12,13 +12,13 @@ describe Variant, " instance methods" do
       @variant.count_pending_to_customer = 100 - Variant::OUT_OF_STOCK_QTY
       @variant.sold_out?.should be_true
     end
-  
+
     it 'should not be sold out' do
       @variant.count_on_hand             = 100
       @variant.count_pending_to_customer = 99 - Variant::OUT_OF_STOCK_QTY
       @variant.sold_out?.should be_false
     end
-  
+
   end
 
   context ".low_stock?" do
@@ -33,7 +33,7 @@ describe Variant, " instance methods" do
         @variant.count_pending_to_customer = 100 - Variant::LOW_STOCK_QTY
         @variant.low_stock?.should be_true
       end
-      
+
       it 'should not be low stock' do
         @variant.count_on_hand             = 100
         @variant.count_pending_to_customer = 99 - Variant::LOW_STOCK_QTY
@@ -47,7 +47,7 @@ describe Variant, " instance methods" do
       @variant.count_pending_to_customer = 100 - Variant::LOW_STOCK_QTY
       @variant.display_stock_status.should == '(Low Stock)'
     end
-    
+
     it 'should be sold out' do
       @variant.count_on_hand             = 100
       @variant.count_pending_to_customer = 100 - Variant::OUT_OF_STOCK_QTY
@@ -69,15 +69,6 @@ describe Variant, " instance methods" do
       @variant.shipping_category_id.should == 32
     end
   end
-
-  #
-  #def total_price(tax_rate)
-  #  ((1 + tax_percentage(tax_rate)) * self.price)
-  #end
-  #
-  #def tax_percentage(tax_rate)
-  #  tax_rate ? tax_rate.percentage : 0
-  #end
 
   context ".display_property_details(separator = '<br/>')" do
     # variant_properties.collect {|vp| [vp.property.display_name ,vp.description].join(separator) }
@@ -107,27 +98,19 @@ describe Variant, " instance methods" do
     end
   end
 
-  #def product_name 
-  #  name? ? name : product.name + sub_name
-  #end
-  #
-  #def sub_name
-  #  primary_property ? "(#{primary_property.description})" : ''
-  #end
-
   context ".product_name" do
     it 'should return the variant name' do
       @variant.name = 'helloo'
       @variant.product.name = 'product says hello'
       @variant.product_name.should == 'helloo'
     end
-    
+
     it 'should return the products name' do
         @variant.name = nil
         @variant.product.name = 'product says hello'
         @variant.product_name.should == 'product says hello'
     end
-    
+
     it 'should return the products name and subname' do
         @variant.name = nil
         @variant.product.name = 'product says hello'
@@ -145,12 +128,6 @@ describe Variant, " instance methods" do
     end
   end
 
-  
-  def primary_property
-    pp = self.variant_properties.where(["variant_properties.primary = ?", true]).find(:first)
-    pp ? pp : self.variant_properties.find(:first)
-  end
-
   context ".primary_property" do
     it 'should return the primary property' do
       property      = Factory(:property)
@@ -162,7 +139,7 @@ describe Variant, " instance methods" do
       @variant.variant_properties.push(variant_prop1)
       @variant.primary_property.should == variant_prop1
     end
-    
+
     it 'should return the primary property' do
       property      = Factory(:property)
       property2      = Factory(:property)
@@ -189,7 +166,7 @@ describe Variant, " instance methods" do
       @variant.qty_to_add.should == 0
     end
   end
-  
+
   context ".is_available?" do
     it "should be available" do
       @variant.count_on_hand             = 100
@@ -197,7 +174,7 @@ describe Variant, " instance methods" do
       @variant.save
       @variant.is_available?.should be_true
     end
-    
+
     it "should not be available" do
       @variant.count_on_hand             = 100
       @variant.count_pending_to_customer = 100
@@ -269,5 +246,12 @@ describe Variant, " instance methods" do
 end
 
 describe Variant, "#admin_grid(product, params = {})" do
-  pending "test for admin_grid"
+  it "should return variants for a specific product" do
+    product = Factory(:product)
+    variant1 = Factory(:variant, :product => product)
+    variant2 = Factory(:variant, :product => product)
+    admin_grid = Variant.admin_grid(product)
+    admin_grid.size.should == 2
+    admin_grid.should == [variant1, variant2]
+  end
 end
