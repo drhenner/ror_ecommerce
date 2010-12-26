@@ -6,7 +6,7 @@ describe ReturnAuthorization, 'instance methods' do
     @order                = Factory(:order)
     @return_authorization = Factory(:return_authorization, :order => @order, :user => @user)
   end
-  
+
   context '.process_ledger_transactions' do
     it 'should call process rma' do
       Invoice.expects(:process_rma).once
@@ -35,7 +35,7 @@ describe ReturnAuthorization, 'instance methods' do
     end
   end
 
-  context ".save_order_number" do    
+  context ".save_order_number" do
     it 'should set number and save' do
       return_authorization = Factory(:return_authorization)
       return_authorization.number = nil
@@ -76,5 +76,12 @@ describe ReturnAuthorization, "#find_by_number(num)" do
 end
 
 describe ReturnAuthorization, '#admin_grid(params)' do
-  pending "test for admin_grid(params)"
+  it "should return Return Authorizations " do
+    return_authorization1 = Factory(:return_authorization)
+    return_authorization2 = Factory(:return_authorization)
+    admin_grid = ReturnAuthorization.admin_grid
+    admin_grid.size.should == 2
+    admin_grid.include?(return_authorization1).should be_true
+    admin_grid.include?(return_authorization2).should be_true
+  end
 end

@@ -158,6 +158,14 @@ describe Product, "class methods" do
   end
 
   context "#admin_grid(params = {}, active_state = nil)" do
-    pending "test for "
+
+    it "should return Products " do
+      product1 = Factory(:product)
+      product2 = Factory(:product)
+      admin_grid = Product.admin_grid
+      admin_grid.size.should == 2
+      admin_grid.include?(product1).should be_true
+      admin_grid.include?(product2).should be_true
+    end
   end
 end
