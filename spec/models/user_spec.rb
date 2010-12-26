@@ -318,6 +318,7 @@ describe User, "#admin_grid(params = {})" do
     user2 = Factory(:user)
     admin_grid = User.admin_grid
     admin_grid.size.should == 2
-    admin_grid.should == [user1, user2]
+    admin_grid.include?(user1).should be_true
+    admin_grid.include?(user2).should be_true
   end
 end
