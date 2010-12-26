@@ -135,8 +135,8 @@ class Address < ActiveRecord::Base
   end
 
   # Use this method to represent the state abbreviation
-  # => it is possible the state is nil. in that case the abbreviation will be stored in
-  # => the state_name column in the DB
+  #  it is possible the state is nil. in that case the abbreviation will be stored in
+  #  the state_name column in the DB
   #
   # @param [none]
   # @return [String] state abbreviation
