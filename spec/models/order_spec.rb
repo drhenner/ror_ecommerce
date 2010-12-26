@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Order, "instance methods" do
-  before(:each) do 
+  before(:each) do
     @user = Factory(:user)
     @user.stubs(:name).returns('Freddy Boy')
     @order = Factory(:order, :user => @user)
   end
-  
+
   context ".name" do
     it 'should return the users name' do
       @order.name.should == 'Freddy Boy'
@@ -18,7 +18,7 @@ describe Order, "instance methods" do
       @order.stubs(:completed_at).returns(Time.zone.parse('2010-03-20 14:00:00'))
       @order.display_completed_at.should == '03/20/2010'
     end
-    
+
     it 'should return "Not Finished."' do
       @order.stubs(:completed_at).returns(nil)
       @order.display_completed_at.should == "Not Finished."
@@ -68,11 +68,11 @@ describe Order, "instance methods" do
       @invoice.state.should == 'paid'
     end
   end
-  
-  
-  
+
+
+
   #def create_invoice(credit_card, charge_amount, args)
-  #  transaction do 
+  #  transaction do
   #    create_invoice_transaction(credit_card, charge_amount, args)
   #  end
   #end
@@ -87,7 +87,7 @@ describe Order, "instance methods" do
         :first_name         => 'Umang',
         :last_name          => 'Chouhan'
       }
-      
+
       ##  Create fake admin_cart object in memcached
       # create_invoice(credit_card, charge_amount, args)
       credit_card               = ActiveMerchant::Billing::CreditCard.new(cc_params)
@@ -105,7 +105,7 @@ describe Order, "instance methods" do
         :first_name         => 'Umang',
         :last_name          => 'Chouhan'
       }
-      
+
       ##  Create fake admin_cart object in memcached
       # create_invoice(credit_card, charge_amount, args)
       credit_card               = ActiveMerchant::Billing::CreditCard.new(cc_params)
@@ -116,7 +116,7 @@ describe Order, "instance methods" do
   end
 
   ##  this method is exersized by create_invoice method  TESTED
-  context ".create_invoice_transaction(credit_card, charge_amount, args)" 
+  context ".create_invoice_transaction(credit_card, charge_amount, args)"
 
   context ".order_complete!" do
     it  "should set completed_at and update the state" do
@@ -179,7 +179,7 @@ describe Order, "instance methods" do
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.ready_to_checkout?.should == true
     end
-    
+
     it 'should not be ready to checkout' do
       order_item = Factory(:order_item )
       order_item.stubs(:ready_to_calculate?).returns(false)
@@ -193,19 +193,19 @@ describe Order, "instance methods" do
         order_item = Factory(:order_item )
         ShippingRate.any_instance.stubs(:individual?).returns(false)
         ShippingRate.any_instance.stubs(:rate).returns(1.01)
-        
+
         OrderItem.stubs(:order_items_in_cart).returns( [order_item, order_item] )
-        
+
         @order.shipping_charges.should == 1.01
     end
-    
+
     it 'should return one shipping rate that all items fall under' do
         order_item = Factory(:order_item )
         ShippingRate.any_instance.stubs(:individual?).returns(true)
         ShippingRate.any_instance.stubs(:rate).returns(1.01)
-        
+
         OrderItem.stubs(:order_items_in_cart).returns( [order_item, order_item] )
-        
+
         @order.shipping_charges.should == 2.02
     end
   end
@@ -264,7 +264,7 @@ describe Order, "instance methods" do
       @order.set_number
       @order.number.should == (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
     end
-    
+
     it 'should set number not to be nil' do
       order = Factory.build(:order)
       order.set_number
@@ -281,7 +281,7 @@ describe Order, "instance methods" do
     end
   end
 
-  context ".save_order_number" do    
+  context ".save_order_number" do
     it 'should set number and save' do
       order = Factory(:order)
       order.number = nil
@@ -341,8 +341,8 @@ describe Order, "#new_admin_cart(admin_cart, args = {})" do
     @variant = Factory(:variant)
     @shipping_rate = Factory(:shipping_rate)
     @tax_rate = Factory(:tax_rate)
-    
-    
+
+
     @admin_cart = {}
     @admin_cart[:shipping_address] = Factory(:address)
     @admin_cart[:billing_address]  = Factory(:address)
@@ -358,7 +358,7 @@ describe Order, "#new_admin_cart(admin_cart, args = {})" do
       }
     }
   end
-  
+
   it 'should return an order object' do
     ##  Create fake admin_cart object in memcached
     args = {}
@@ -387,9 +387,23 @@ end
 
 
 describe Order, "#find_finished_order_grid(params = {})" do
-  pending "test for find_finished_order_grid(params = {})"
+  it "should return finished Orders " do
+    order1 = Factory(:order, :completed_at => nil)
+    order2 = Factory(:order, :completed_at => Time.now)
+    admin_grid = Order.find_finished_order_grid
+    admin_grid.size.should == 1
+    admin_grid.include?(order1).should be_false
+    admin_grid.include?(order2).should be_true
+  end
 end
 
 describe Order, "#fulfillment_grid(params = {})" do
-  pending "test for fulfillment_grid(params = {})"
+  it "should return Orders " do
+    order1 = Factory(:order, :shipped => false)
+    order2 = Factory(:order, :shipped => true)
+    admin_grid = Order.fulfillment_grid
+    admin_grid.size.should == 1
+    admin_grid.include?(order1).should be_true
+    admin_grid.include?(order2).should be_false
+  end
 end
