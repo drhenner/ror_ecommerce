@@ -161,14 +161,14 @@ describe Order, "instance methods" do
 #
 #shipping_charges
 
-  context ".order_total(force = false)" do
+  context ".find_total(force = false)" do
     it 'should calculate the order totals with shipping charges' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
       order_item = Factory(:order_item, :total => 5.52 )
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(100.00)
-      @order.order_total.should == 111.04
+      @order.find_total.should == 111.04
     end
   end
 
@@ -187,8 +187,6 @@ describe Order, "instance methods" do
       @order.ready_to_checkout?.should == false
     end
   end
-
-  context ".find_total(force = false)" # exersized calling order_total
 
   context ".shipping_charges" do
     it 'should return one shippoing rate that all items fall under' do
