@@ -8,7 +8,6 @@ class Admin::Shopping::CartsController < Admin::Shopping::BaseController
     else
       @cart = session_admin_cart 
       @credit_card ||= ActiveMerchant::Billing::CreditCard.new()
-      #@order.order_total
       respond_to do |format|
         format.html # index.html.erb
       end
