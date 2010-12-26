@@ -349,7 +349,7 @@ Returns the value of attribute total.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#cancel_unshipped_order-instance_method" title="#cancel_unshipped_order (instance method)">- (Object) <strong>cancel_unshipped_order</strong>(invoice) </a>
+      <a href="#cancel_unshipped_order-instance_method" title="#cancel_unshipped_order (instance method)">- (none) <strong>cancel_unshipped_order</strong>(invoice) </a>
     
 
     
@@ -363,8 +363,9 @@ Returns the value of attribute total.
 
   
     <span class="summary_desc"><div class='inline'><p>
-def authorize_complete_order(invoice).
+cancel the order and payment
 </p>
+<h1>> sets the order inactive and cancels the authorized payments.</h1>
 </div></span>
   
 </li>
@@ -373,7 +374,7 @@ def authorize_complete_order(invoice).
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#capture_invoice-instance_method" title="#capture_invoice (instance method)">- (Object) <strong>capture_invoice</strong>(invoice) </a>
+      <a href="#capture_invoice-instance_method" title="#capture_invoice (instance method)">- (Payment) <strong>capture_invoice</strong>(invoice) </a>
     
 
     
@@ -387,7 +388,7 @@ def authorize_complete_order(invoice).
 
   
     <span class="summary_desc"><div class='inline'><p>
-@order.capture_invoice(@invoice).
+captures the payment of the invoice by the payment processor.
 </p>
 </div></span>
   
@@ -421,7 +422,7 @@ This method creates the invoice and payment method.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#display_completed_at-instance_method" title="#display_completed_at (instance method)">- (Object) <strong>display_completed_at</strong>(format = :us_date) </a>
+      <a href="#display_completed_at-instance_method" title="#display_completed_at (instance method)">- (String) <strong>display_completed_at</strong>(format = :us_date) </a>
     
 
     
@@ -434,7 +435,10 @@ This method creates the invoice and payment method.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+formated date of the complete_at datetime on the order.
+</p>
+</div></span>
   
 </li>
 
@@ -463,7 +467,7 @@ This method creates the invoice and payment method.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#first_invoice_amount-instance_method" title="#first_invoice_amount (instance method)">- (Object) <strong>first_invoice_amount</strong> </a>
+      <a href="#first_invoice_amount-instance_method" title="#first_invoice_amount (instance method)">- (String) <strong>first_invoice_amount</strong> </a>
     
 
     
@@ -476,7 +480,10 @@ This method creates the invoice and payment method.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+how much you initially charged the customer.
+</p>
+</div></span>
   
 </li>
 
@@ -484,7 +491,7 @@ This method creates the invoice and payment method.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_beginning_address_id-instance_method" title="#get_beginning_address_id (instance method)">- (Object) <strong>get_beginning_address_id</strong> </a>
+      <a href="#get_beginning_address_id-instance_method" title="#get_beginning_address_id (instance method)">- (Integer) <strong>get_beginning_address_id</strong> </a>
     
 
     
@@ -497,7 +504,11 @@ This method creates the invoice and payment method.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+get the ship_address_id when the object is instantiated
+</p>
+<h1>> this is used to determines if the address changes, if so the orders shipping method will need to be reset.</h1>
+</div></span>
   
 </li>
 
@@ -526,7 +537,7 @@ This method creates the invoice and payment method.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+      <a href="#name-instance_method" title="#name (instance method)">- (String) <strong>name</strong> </a>
     
 
     
@@ -540,7 +551,7 @@ This method creates the invoice and payment method.
 
   
     <span class="summary_desc"><div class='inline'><p>
-#######.
+user name on the order.
 </p>
 </div></span>
   
@@ -550,7 +561,7 @@ This method creates the invoice and payment method.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#order_complete%21-instance_method" title="#order_complete! (instance method)">- (Object) <strong>order_complete!</strong> </a>
+      <a href="#order_complete%21-instance_method" title="#order_complete! (instance method)">- (Payment) <strong>order_complete!</strong> </a>
     
 
     
@@ -563,7 +574,11 @@ This method creates the invoice and payment method.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+call after the order is completed (authorized the payment)
+</p>
+<h1>> sets the order.state to completed, sets completed_at to time.now and updates the inventory.</h1>
+</div></span>
   
 </li>
 
@@ -655,7 +670,7 @@ This method creates the invoice and payment method.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_beginning_values-instance_method" title="#set_beginning_values (instance method)">- (Object) <strong>set_beginning_values</strong> </a>
+      <a href="#set_beginning_values-instance_method" title="#set_beginning_values (instance method)">- (none) <strong>set_beginning_values</strong> </a>
     
 
     
@@ -668,7 +683,11 @@ This method creates the invoice and payment method.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+sets the ship_address_id when the object is instantiated
+</p>
+<h1>> this is used to determines if the address changes, if so the orders shipping method will need to be reset.</h1>
+</div></span>
   
 </li>
 
@@ -781,7 +800,7 @@ This method creates the invoice and payment method.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#status-instance_method" title="#status (instance method)">- (Object) <strong>status</strong> </a>
+      <a href="#status-instance_method" title="#status (instance method)">- (String) <strong>status</strong> </a>
     
 
     
@@ -794,7 +813,10 @@ This method creates the invoice and payment method.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+status of the invoice.
+</p>
+</div></span>
   
 </li>
 
@@ -1019,12 +1041,12 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-291
-292
-293</pre>
+296
+297
+298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 291</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_by_number'>find_by_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='id find'>find</span><span class='lparen'>(</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='comment'>##  now we can search by id which should be much faster
@@ -1047,11 +1069,6 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-308
-309
-310
-311
-312
 313
 314
 315
@@ -1063,10 +1080,15 @@ Returns the value of attribute total
 321
 322
 323
-324</pre>
+324
+325
+326
+327
+328
+329</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 308</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 313</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_finished_order_grid'>find_finished_order_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -1103,12 +1125,12 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-110
-111
-112</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_myaccount_details'>find_myaccount_details</span>
   <span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:completed_invoices</span><span class='comma'>,</span> <span class='symbol'>:invoices</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -1131,11 +1153,6 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-326
-327
-328
-329
-330
 331
 332
 333
@@ -1147,10 +1164,15 @@ Returns the value of attribute total
 339
 340
 341
-342</pre>
+342
+343
+344
+345
+346
+347</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 326</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 331</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id fulfillment_grid'>fulfillment_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -1187,12 +1209,12 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-287
-288
-289</pre>
+292
+293
+294</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 287</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 292</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='id num'>num</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='const'>NUMBER_SEED</span>
@@ -1215,6 +1237,13 @@ Returns the value of attribute total
       <pre class="lines">
 
 
+107
+108
+109
+110
+111
+112
+113
 114
 115
 116
@@ -1232,17 +1261,10 @@ Returns the value of attribute total
 128
 129
 130
-131
-132
-133
-134
-135
-136
-137
-138</pre>
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id new_admin_cart'>new_admin_cart</span><span class='lparen'>(</span><span class='id admin_cart'>admin_cart</span><span class='comma'>,</span> <span class='id args'>args</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id transaction'>transaction</span> <span class='kw'>do</span>
@@ -1293,16 +1315,16 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-250
-251
-252
-253
-254
 255
-256</pre>
+256
+257
+258
+259
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 250</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 255</span>
 
 <span class='kw'>def</span> <span class='id add_items'>add_items</span><span class='lparen'>(</span><span class='id variant'>variant</span><span class='comma'>,</span> <span class='id quantity'>quantity</span><span class='comma'>,</span> <span class='id state_id'>state_id</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id save!'>save!</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id new_record?'>new_record?</span>
@@ -1329,11 +1351,6 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-187
-188
-189
-190
-191
 192
 193
 194
@@ -1348,10 +1365,15 @@ Returns the value of attribute total
 203
 204
 205
-206</pre>
+206
+207
+208
+209
+210
+211</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id calculate_totals'>calculate_totals</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id calculated_at'>calculated_at</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id item'>item</span><span class='period'>.</span><span class='id updated_at'>updated_at</span> <span class='op'>&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1381,44 +1403,65 @@ Returns the value of attribute total
       <div class="method_details ">
   <p class="signature " id="cancel_unshipped_order-instance_method">
   
-    - (<tt>Object</tt>) <strong>cancel_unshipped_order</strong>(invoice) 
+    - (<tt>none</tt>) <strong>cancel_unshipped_order</strong>(invoice) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-def authorize_complete_order(invoice)
+cancel the order and payment
 </p>
-<pre class="code">
- <span class='id transaction'>transaction</span> <span class='kw'>do</span>
-   <span class='id invoice'>invoice</span><span class='period'>.</span><span class='id authorize_complete_order'>authorize_complete_order</span>
- <span class='kw'>end</span>
-</pre>
-<p>
-end
-</p>
+<h1>> sets the order inactive and cancels the authorized payments</h1>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Invoice.html" title="Invoice (class)">Invoice</a></span></tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-98
-99
-100
-101
-102
-103</pre>
+87
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id cancel_unshipped_order'>cancel_unshipped_order</span><span class='lparen'>(</span><span class='id invoice'>invoice</span><span class='rparen'>)</span>
   <span class='id transaction'>transaction</span> <span class='kw'>do</span>
@@ -1434,45 +1477,71 @@ end
       <div class="method_details ">
   <p class="signature " id="capture_invoice-instance_method">
   
-    - (<tt>Object</tt>) <strong>capture_invoice</strong>(invoice) 
+    - (<tt><span class='object_link'><a href="Payment.html" title="Payment (class)">Payment</a></span></tt>) <strong>capture_invoice</strong>(invoice) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-@order.capture_invoice(@invoice)
+captures the payment of the invoice by the payment processor
 </p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Invoice.html" title="Invoice (class)">Invoice</a></span></tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Payment.html" title="Payment (class)">Payment</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+payment object
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-141
-142
-143
-144
-145
-146
-147</pre>
+137
+138
+139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 141</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 137</span>
 
 <span class='kw'>def</span> <span class='id capture_invoice'>capture_invoice</span><span class='lparen'>(</span><span class='id invoice'>invoice</span><span class='rparen'>)</span>
   <span class='id payment'>payment</span> <span class='op'>=</span> <span class='id invoice'>invoice</span><span class='period'>.</span><span class='id capture_payment'>capture_payment</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='comment'>#if payment.paid?
-</span>  <span class='comment'>#  #
-</span>  <span class='comment'>#end
-</span>  <span class='comment'>#payment.params['response_code']
-</span><span class='kw'>end</span></pre>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1503,14 +1572,14 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-151
-152
-153
-154
-155</pre>
+143
+144
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id create_invoice'>create_invoice</span><span class='lparen'>(</span><span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id charge_amount'>charge_amount</span><span class='comma'>,</span> <span class='id args'>args</span><span class='rparen'>)</span>
   <span class='id transaction'>transaction</span> <span class='kw'>do</span>
@@ -1525,22 +1594,67 @@ authorized the whole transaction is roled back
       <div class="method_details ">
   <p class="signature " id="display_completed_at-instance_method">
   
-    - (<tt>Object</tt>) <strong>display_completed_at</strong>(format = :us_date) 
+    - (<tt>String</tt>) <strong>display_completed_at</strong>(format = :us_date) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+formated date of the complete_at datetime on the order
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+formated date or &#8216;Not Finished.&#8217; if the order is not completed
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-63
-64
-65</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id display_completed_at'>display_completed_at</span><span class='lparen'>(</span><span class='id format'>format</span> <span class='op'>=</span> <span class='symbol'>:us_date</span><span class='rparen'>)</span>
   <span class='id completed_at'>completed_at</span> <span class='op'>?</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id localize'>localize</span><span class='lparen'>(</span><span class='id completed_at'>completed_at</span><span class='comma'>,</span> <span class='symbol'>:format</span> <span class='op'>=&gt;</span> <span class='id format'>format</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Not Finished.</span><span class='tstring_end'>'</span></span>
@@ -1563,18 +1677,18 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-216
-217
-218
-219
-220
 221
 222
 223
-224</pre>
+224
+225
+226
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 216</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 221</span>
 
 <span class='kw'>def</span> <span class='id find_total'>find_total</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id calculate_totals'>calculate_totals</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id item'>item</span><span class='period'>.</span><span class='id updated_at'>updated_at</span> <span class='op'>&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1593,23 +1707,68 @@ authorized the whole transaction is roled back
       <div class="method_details ">
   <p class="signature " id="first_invoice_amount-instance_method">
   
-    - (<tt>Object</tt>) <strong>first_invoice_amount</strong> 
+    - (<tt>String</tt>) <strong>first_invoice_amount</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+how much you initially charged the customer
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+amount in dollars as decimal or a blank string
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-67
-68
-69
-70</pre>
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id first_invoice_amount'>first_invoice_amount</span>
   <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='id completed_invoices'>completed_invoices</span><span class='period'>.</span><span class='id empty?'>empty?</span>
@@ -1623,22 +1782,68 @@ authorized the whole transaction is roled back
       <div class="method_details ">
   <p class="signature " id="get_beginning_address_id-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_beginning_address_id</strong> 
+    - (<tt>Integer</tt>) <strong>get_beginning_address_id</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+get the ship_address_id when the object is instantiated
+</p>
+<h1>> this is used to determines if the address changes, if so the orders shipping method will need to be reset</h1>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+ship_address_id
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-169
-170
-171</pre>
+174
+175
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 174</span>
 
 <span class='kw'>def</span> <span class='id get_beginning_address_id'>get_beginning_address_id</span>
   <span class='ivar'>@beginning_address_id</span>
@@ -1682,12 +1887,12 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-304
-305
-306</pre>
+309
+310
+311</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 304</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 309</span>
 
 <span class='kw'>def</span> <span class='id has_shipment?'>has_shipment?</span>
   <span class='id shipments_count'>shipments_count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -1700,45 +1905,67 @@ authorized the whole transaction is roled back
       <div class="method_details ">
   <p class="signature " id="name-instance_method">
   
-    - (<tt>Object</tt>) <strong>name</strong> 
+    - (<tt>String</tt>) <strong>name</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-#######
+user name on the order
 </p>
-<pre class="code">
- This method is used when the session in admin orders is ready to authorize the credit card
-  The cart has the following format
-
- session[:admin_cart] = {
-   :user             =&gt; nil,
-   :shipping_address =&gt; nil,
-   :billing_address  =&gt; nil,
-   :coupon           =&gt; nil,
-   :shipping_method  =&gt; nil,
-   :order_items =&gt; {}# the key is variant_id , a hash of {variant, shipping_rate, quantity, tax_rate, total, shipping_category_id}
- }</pre>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+user name on the order
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-59
-60
-61</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id name'>name</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id name'>name</span>
@@ -1751,24 +1978,70 @@ authorized the whole transaction is roled back
       <div class="method_details ">
   <p class="signature " id="order_complete!-instance_method">
   
-    - (<tt>Object</tt>) <strong>order_complete!</strong> 
+    - (<tt><span class='object_link'><a href="Payment.html" title="Payment (class)">Payment</a></span></tt>) <strong>order_complete!</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+call after the order is completed (authorized the payment)
+</p>
+<h1>> sets the order.state to completed, sets completed_at to time.now and updates the inventory</h1>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Invoice.html" title="Invoice (class)">Invoice</a></span></tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Payment.html" title="Payment (class)">Payment</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+payment object
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-159
-160
-161
-162
-163</pre>
+154
+155
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id order_complete!'>order_complete!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id state'>state</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>complete</span><span class='tstring_end'>'</span></span>
@@ -1793,12 +2066,12 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-208
-209
-210</pre>
+213
+214
+215</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 208</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 213</span>
 
 <span class='kw'>def</span> <span class='id order_total'>order_total</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id find_total'>find_total</span>
@@ -1842,12 +2115,12 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-212
-213
-214</pre>
+217
+218
+219</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 212</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 217</span>
 
 <span class='kw'>def</span> <span class='id ready_to_checkout?'>ready_to_checkout?</span>
   <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id all?'>all?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='id item'>item</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='rbrace'>}</span>
@@ -1870,19 +2143,19 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-258
-259
-260
-261
-262
 263
 264
 265
 266
-267</pre>
+267
+268
+269
+270
+271
+272</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 263</span>
 
 <span class='kw'>def</span> <span class='id remove_items'>remove_items</span><span class='lparen'>(</span><span class='id variant'>variant</span><span class='comma'>,</span> <span class='id final_quantity'>final_quantity</span><span class='rparen'>)</span>
   <span class='id total_order_items'>total_order_items</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:all</span><span class='comma'>,</span> <span class='symbol'>:conditions</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>variant_id = ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id variant'>variant</span><span class='period'>.</span><span class='id id'>id</span><span class='rbracket'>]</span> <span class='rparen'>)</span>
@@ -1912,13 +2185,13 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-282
-283
-284
-285</pre>
+287
+288
+289
+290</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 282</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 287</span>
 
 <span class='kw'>def</span> <span class='id save_order_number'>save_order_number</span>
   <span class='id set_order_number'>set_order_number</span>
@@ -1932,11 +2205,51 @@ authorized the whole transaction is roled back
       <div class="method_details ">
   <p class="signature " id="set_beginning_values-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_beginning_values</strong> 
+    - (<tt>none</tt>) <strong>set_beginning_values</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+sets the ship_address_id when the object is instantiated
+</p>
+<h1>> this is used to determines if the address changes, if so the orders shipping method will need to be reset</h1>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1970,12 +2283,12 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-269
-270
-271</pre>
+274
+275
+276</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 269</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 274</span>
 
 <span class='kw'>def</span> <span class='id set_email'>set_email</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span> <span class='op'>=</span> <span class='id user'>user</span><span class='period'>.</span><span class='id email'>email</span> <span class='kw'>if</span> <span class='id user_id'>user_id</span>
@@ -1998,13 +2311,13 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-273
-274
-275
-276</pre>
+278
+279
+280
+281</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 273</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 278</span>
 
 <span class='kw'>def</span> <span class='id set_number'>set_number</span>
   <span class='kw'>return</span> <span class='id set_order_number'>set_order_number</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span>
@@ -2028,12 +2341,12 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-278
-279
-280</pre>
+283
+284
+285</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 278</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 283</span>
 
 <span class='kw'>def</span> <span class='id set_order_number'>set_order_number</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id number'>number</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>NUMBER_SEED</span> <span class='op'>+</span> <span class='id id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span>
@@ -2056,13 +2369,13 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-226
-227
-228
-229</pre>
+231
+232
+233
+234</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 226</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id shipping_charges'>shipping_charges</span>
   <span class='kw'>return</span> <span class='ivar'>@order_shipping_charges</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='ivar'>@order_shipping_charges</span><span class='rparen'>)</span>
@@ -2086,16 +2399,16 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-231
-232
-233
-234
-235
 236
-237</pre>
+237
+238
+239
+240
+241
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 236</span>
 
 <span class='kw'>def</span> <span class='id shipping_rates'>shipping_rates</span>
   <span class='id items'>items</span> <span class='op'>=</span> <span class='const'>OrderItem</span><span class='period'>.</span><span class='id order_items_in_cart'>order_items_in_cart</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span><span class='rparen'>)</span>
@@ -2112,23 +2425,69 @@ authorized the whole transaction is roled back
       <div class="method_details ">
   <p class="signature " id="status-instance_method">
   
-    - (<tt>Object</tt>) <strong>status</strong> 
+    - (<tt>String</tt>) <strong>status</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+status of the invoice
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+state of the latest invoice or &#8216;not processed&#8217; if there
+aren&#8217;t any invoices
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-105
-106
-107
-108</pre>
+98
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id status'>status</span>
   <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>not processed</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='id invoices'>invoices</span><span class='period'>.</span><span class='id empty?'>empty?</span>
@@ -2152,15 +2511,15 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-239
-240
-241
-242
-243
-244</pre>
+244
+245
+246
+247
+248
+249</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 244</span>
 
 <span class='kw'>def</span> <span class='id tax_charges'>tax_charges</span>
   <span class='id charges'>charges</span> <span class='op'>=</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id charges'>charges</span><span class='comma'>,</span> <span class='id item'>item</span><span class='op'>|</span>
@@ -2186,12 +2545,12 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-246
-247
-248</pre>
+251
+252
+253</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 251</span>
 
 <span class='kw'>def</span> <span class='id total_tax_charges'>total_tax_charges</span>
   <span class='id tax_charges'>tax_charges</span><span class='period'>.</span><span class='id sum'>sum</span>
@@ -2225,12 +2584,12 @@ This method is called when the order transitions to paid
       <pre class="lines">
 
 
-296
-297
-298</pre>
+301
+302
+303</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 296</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 301</span>
 
 <span class='kw'>def</span> <span class='id update_inventory'>update_inventory</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='id item'>item</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id add_pending_to_customer'>add_pending_to_customer</span> <span class='rbrace'>}</span>
@@ -2253,11 +2612,6 @@ This method is called when the order transitions to paid
       <pre class="lines">
 
 
-173
-174
-175
-176
-177
 178
 179
 180
@@ -2265,10 +2619,15 @@ This method is called when the order transitions to paid
 182
 183
 184
-185</pre>
+185
+186
+187
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='id update_tax_rates'>update_tax_rates</span>
   <span class='kw'>if</span> <span class='ivar'>@beginning_address_id</span> <span class='op'>!=</span> <span class='id ship_address_id'>ship_address_id</span>
@@ -2301,12 +2660,12 @@ This method is called when the order transitions to paid
       <pre class="lines">
 
 
-300
-301
-302</pre>
+305
+306
+307</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 300</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 305</span>
 
 <span class='kw'>def</span> <span class='id variant_ids'>variant_ids</span>
   <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id oi'>oi</span><span class='op'>|</span> <span class='id oi'>oi</span><span class='period'>.</span><span class='id variant_id'>variant_id</span> <span class='rbrace'>}</span>
@@ -2321,7 +2680,7 @@ This method is called when the order transitions to paid
 </div>
     
     <div id="footer">
-  Generated on Sun Dec 26 13:09:24 2010 by 
+  Generated on Sun Dec 26 13:48:11 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

@@ -1,7 +1,7 @@
 app/models/role.rb a5f0d95705071c1504edc006506ba7bb3aeb081f
 app/models/cart.rb f563abd3aaa2b1ea2d4de329cb8aebbb30041ba5
 app/models/user.rb 2f6639e5f6dc244a0e9d727e0738137e06e30c21
-app/models/order.rb 8ae95c77472f94ef689ce7ab243c997e1b57c474
+app/models/order.rb 81dc929c6cfa37fa9bbd2fa8c51e5f8cf89ab0b3
 app/models/state.rb 06700ecb0b5d1fd5701124b3f89c07d02beb71ae
 app/models/batch.rb b88af7e5a2b5481404709706f2befa211586b1ed
 app/models/brand.rb b7bd2f8b1d832c5f9c2fd20fcec96cb3c1b7f649
@@ -16,7 +16,7 @@ app/models/address.rb 3779784fcda06b96831978d892a19a9e16034ffa
 app/models/account.rb 25fb86ff5338fa3ca5d6e4e17ca8cb187fa101cc
 app/models/invoice.rb e70831b0f83430226dbc1c40ee5dae7070e29bdc
 app/models/product.rb 852ce223e056a4f8ff51db6fd449e4b6eb8a5949
-app/models/notifier.rb bc748cd4b3f4583373db2fc8a23aaadedd5fa9c1
+app/models/notifier.rb db66625b2d9fe8640cd364a4daed27e831b2adcf
 app/models/property.rb 9b070bc079cfa8ac573d95f4b7c2e5d75d96a2e9
 app/models/shipment.rb 4a4664a1b1262b3a183be4356a6f385df4fb1fc5
 app/models/tax_rate.rb b0b6940684eb435d17cb1185eadde3d53b877089
