@@ -70,11 +70,20 @@ class Order < ActiveRecord::Base
     completed_at ? I18n.localize(completed_at, :format => format) : 'Not Finished.'
   end
 
+  # how much you initially charged the customer
+  #
+  # @param [none]
+  # @return [String] amount in dollars as decimal or a blank string
   def first_invoice_amount
     return '' if completed_invoices.empty?
     completed_invoices.first.amount
   end
 
+  # cancel the order and payment
+  # => sets the order inactive and cancels the authorized payments
+  #
+  # @param [Invoice]
+  # @return [none]
   def cancel_unshipped_order(invoice)
     transaction do
       self.update_attributes(:active => false)
@@ -82,6 +91,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # status of the invoice
+  #
+  # @param [none]
+  # @return [String] state of the latest invoice or 'not processed' if there aren't any invoices
   def status
     return 'not processed' if invoices.empty?
     invoices.last.state
@@ -133,18 +146,31 @@ class Order < ActiveRecord::Base
     end
   end
 
-
-
+  # call after the order is completed (authorized the payment)
+  # => sets the order.state to completed, sets completed_at to time.now and updates the inventory
+  #
+  # @param [Invoice]
+  # @return [Payment] payment object
   def order_complete!
     self.state = 'complete'
     self.completed_at = Time.zone.now
     update_inventory
   end
 
+  # sets the ship_address_id when the object is instantiated
+  # => this is used to determines if the address changes, if so the orders shipping method will need to be reset
+  #
+  # @param [none]
+  # @return [none]
   def set_beginning_values
     @beginning_address_id      = ship_address_id # this stores the initial value of the tax_rate
   end
 
+  # get the ship_address_id when the object is instantiated
+  # => this is used to determines if the address changes, if so the orders shipping method will need to be reset
+  #
+  # @param [none]
+  # @return [Integer] ship_address_id
   def get_beginning_address_id
     @beginning_address_id
   end
