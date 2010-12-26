@@ -4,7 +4,7 @@ describe PurchaseOrder do
   before(:each) do
     @purchase_order = Factory.build(:purchase_order)
   end
-  
+
   it "should be valid with minimum attribues" do
     @purchase_order.should be_valid
   end
@@ -60,17 +60,17 @@ describe PurchaseOrder, 'instance methods' do
       @purchase_order.expects(:receive_variants).once
       @purchase_order.receive_po=('1')
     end
-    
+
     it 'should call receive_variants' do
       @purchase_order.expects(:receive_variants).once
       @purchase_order.receive_po=('true')
     end
-    
+
     it 'should not call receive_variants' do
       @purchase_order.expects(:receive_variants).never
       @purchase_order.receive_po=('0')
     end
-    
+
     it 'should not call receive_variants' do
       @purchase_order.state = 'received'
       @purchase_order.expects(:receive_variants).never
@@ -83,7 +83,7 @@ describe PurchaseOrder, 'instance methods' do
       @purchase_order.state = PurchaseOrder::RECEIVED
       @purchase_order.receive_po.should be_true
     end
-    
+
     it 'should return false if state is not received' do
       @purchase_order.state = PurchaseOrder::PENDING
       @purchase_order.receive_po.should be_false
@@ -96,7 +96,7 @@ describe PurchaseOrder, 'instance methods' do
       @purchase_order.display_tracking_number.should == 'N/A'
     end
   end
-  
+
   #context '.total_cost' do
   #  it 'should return the total'
   #end
@@ -107,7 +107,7 @@ describe PurchaseOrder, ".pay_for_order" do
     purchase_order = Factory(:purchase_order, :state => 'pending', :total_cost => 20.32)
     purchase_order.pay_for_order.should be_true
     purchase_order.transaction_ledgers.size.should == 2
-    
+
     #cash_debits = cash_credits = expense_debits = expense_credits = []
     cash_debits = []
     cash_credits = []
@@ -121,17 +121,17 @@ describe PurchaseOrder, ".pay_for_order" do
       if ledger.transaction_account_id == TransactionAccount::CASH_ID
         cash_credits << ledger.credit
         cash_debits  << ledger.debit
-      end  
+      end
     end
     ## credits and debits should cancel themselves out
-    
+
     expense_credits.sum.should  == 0.0
     expense_debits.sum.should   == 20.32
     cash_credits.sum.should     == expense_debits.sum
     cash_debits.sum.should      == expense_credits.sum
-    
+
   end
-  
+
 end
 
 describe PurchaseOrder, ".receive_variants" do
@@ -141,7 +141,7 @@ describe PurchaseOrder, ".receive_variants" do
     PurchaseOrderVariant.any_instance.expects(:receive!).once
     purchase_order.receive_variants
   end
-  
+
   it 'should not receive PO_varaints ' do
     purchase_order = Factory(:purchase_order, :state => 'pending')
     purchase_order.purchase_order_variants.push(Factory(:purchase_order_variant, :purchase_order => purchase_order, :is_received => true))
@@ -151,9 +151,23 @@ describe PurchaseOrder, ".receive_variants" do
 end
 
 describe PurchaseOrder, "#admin_grid(params = {})" do
-  pending "test for admin_grid(params = {})"
+  it "should return users " do
+    purchase_order1 = Factory(:purchase_order)
+    purchase_order2 = Factory(:purchase_order)
+    admin_grid = PurchaseOrder.admin_grid
+    admin_grid.size.should == 2
+    admin_grid.include?(purchase_order1).should be_true
+    admin_grid.include?(purchase_order2).should be_true
+  end
 end
 
 describe PurchaseOrder, "#receiving_admin_grid(params = {})" do
-  pending "test for receiving_admin_grid(params = {})"
+  it "should return users " do
+    purchase_order1 = Factory(:purchase_order, :state => PurchaseOrder::RECEIVED)
+    purchase_order2 = Factory(:purchase_order)
+    admin_grid = PurchaseOrder.receiving_admin_grid
+    admin_grid.size.should == 1
+    admin_grid.include?(purchase_order1).should be_false
+    admin_grid.include?(purchase_order2).should be_true
+  end
 end
