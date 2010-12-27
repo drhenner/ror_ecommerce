@@ -122,8 +122,7 @@ class Variant < ActiveRecord::Base
     grid = grid.includes(:product)
     grid = grid.where({:products => {:name => params[:name]}})  if params[:name].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-    grid = grid.limit(params[:rows])
-    grid.paginate({:page => params[:page]})
+    grid.paginate({:page => params[:page],:per_page => params[:rows]})
   end
 
 end

@@ -210,8 +210,7 @@ class User < ActiveRecord::Base
     grid = grid.where("users.last_name LIKE ?",  "%#{params[:last_name]}%")  if params[:last_name].present?
     grid = grid.where("users.email LIKE ?",      "%#{params[:email]}%")      if params[:email].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-    grid = grid.limit(params[:rows])
-    grid.paginate({:page => params[:page]})
+    grid.paginate({:page => params[:page],:per_page => params[:rows]})
   end
 
   private

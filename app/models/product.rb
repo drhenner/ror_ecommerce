@@ -133,7 +133,6 @@ class Product < ActiveRecord::Base
     grid = grid.where("products.shipping_category_id = ?", params[:shipping_category_id])  if params[:shipping_category_id].present?
     grid = grid.where("products.available_at > ?",         params[:available_at_gt])       if params[:available_at_gt].present?
     grid = grid.where("products.available_at < ?",         params[:available_at_lt])       if params[:available_at_lt].present?
-    grid = grid.limit(params[:rows])
     grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page], :per_page => params[:rows])
   end
 end
