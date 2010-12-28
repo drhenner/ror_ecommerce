@@ -172,7 +172,7 @@ Returns the value of attribute total.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_by_number-class_method" title="find_by_number (class method)">+ (Object) <strong>find_by_number</strong>(num) </a>
+      <a href="#find_by_number-class_method" title="find_by_number (class method)">+ (Order) <strong>find_by_number</strong>(num) </a>
     
 
     
@@ -185,7 +185,10 @@ Returns the value of attribute total.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+finds the Order from the orders number.
+</p>
+</div></span>
   
 </li>
 
@@ -256,7 +259,7 @@ Returns the value of attribute total.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#id_from_number-class_method" title="id_from_number (class method)">+ (Object) <strong>id_from_number</strong>(num) </a>
+      <a href="#id_from_number-class_method" title="id_from_number (class method)">+ (Integer) <strong>id_from_number</strong>(num) </a>
     
 
     
@@ -269,7 +272,10 @@ Returns the value of attribute total.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+determines the order id from the order.number.
+</p>
+</div></span>
   
 </li>
 
@@ -277,7 +283,7 @@ Returns the value of attribute total.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#new_admin_cart-class_method" title="new_admin_cart (class method)">+ (Object) <strong>new_admin_cart</strong>(admin_cart, args = {}) </a>
+      <a href="#new_admin_cart-class_method" title="new_admin_cart (class method)">+ (Order) <strong>new_admin_cart</strong>(admin_cart, args = {}) </a>
     
 
     
@@ -290,7 +296,10 @@ Returns the value of attribute total.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+The admin cart is stored in memcached.
+</p>
+</div></span>
   
 </li>
 
@@ -307,7 +316,7 @@ Returns the value of attribute total.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#add_items-instance_method" title="#add_items (instance method)">- (Object) <strong>add_items</strong>(variant, quantity, state_id = nil) </a>
+      <a href="#add_items-instance_method" title="#add_items (instance method)">- (none) <strong>add_items</strong>(variant, quantity, state_id = nil) </a>
     
 
     
@@ -320,7 +329,11 @@ Returns the value of attribute total.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+add the variant to the order items in the order, normally called at order
+creation.
+</p>
+</div></span>
   
 </li>
 
@@ -328,7 +341,7 @@ Returns the value of attribute total.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#calculate_totals-instance_method" title="#calculate_totals (instance method)">- (Object) <strong>calculate_totals</strong>(force = false) </a>
+      <a href="#calculate_totals-instance_method" title="#calculate_totals (instance method)">- (none) <strong>calculate_totals</strong> </a>
     
 
     
@@ -341,7 +354,11 @@ Returns the value of attribute total.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+This method will go to every order_item and calculate the total for that
+item.
+</p>
+</div></span>
   
 </li>
 
@@ -446,7 +463,7 @@ formated date of the complete_at datetime on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_total-instance_method" title="#find_total (instance method)">- (Object) <strong>find_total</strong>(force = false) </a>
+      <a href="#find_total-instance_method" title="#find_total (instance method)">- (none) <strong>find_total</strong>(force = false) </a>
     
 
     
@@ -459,7 +476,11 @@ formated date of the complete_at datetime on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+calculates the total price of the order this method will set sub_total and
+total for the order even if the order is not ready for final checkout.
+</p>
+</div></span>
   
 </li>
 
@@ -529,7 +550,10 @@ get the ship_address_id when the object is instantiated
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+if the order has a shipment this is true&#8230;
+</p>
+</div></span>
   
 </li>
 
@@ -586,27 +610,6 @@ call after the order is completed (authorized the payment)
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#order_total-instance_method" title="#order_total (instance method)">- (Object) <strong>order_total</strong>(force = false) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#ready_to_checkout%3F-instance_method" title="#ready_to_checkout? (instance method)">- (Boolean) <strong>ready_to_checkout?</strong> </a>
     
 
@@ -620,7 +623,11 @@ call after the order is completed (authorized the payment)
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+looks at all the order items and determines if the order has all the
+required elements to complete a checkout.
+</p>
+</div></span>
   
 </li>
 
@@ -628,7 +635,7 @@ call after the order is completed (authorized the payment)
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#remove_items-instance_method" title="#remove_items (instance method)">- (Object) <strong>remove_items</strong>(variant, final_quantity) </a>
+      <a href="#remove_items-instance_method" title="#remove_items (instance method)">- (none) <strong>remove_items</strong>(variant, final_quantity) </a>
     
 
     
@@ -641,28 +648,10 @@ call after the order is completed (authorized the payment)
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#save_order_number-instance_method" title="#save_order_number (instance method)">- (Object) <strong>save_order_number</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+remove the variant from the order items in the order.
+</p>
+</div></span>
   
 </li>
 
@@ -695,7 +684,7 @@ sets the ship_address_id when the object is instantiated
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_email-instance_method" title="#set_email (instance method)">- (Object) <strong>set_email</strong> </a>
+      <a href="#shipping_charges-instance_method" title="#shipping_charges (instance method)">- (Decimal) <strong>shipping_charges</strong> </a>
     
 
     
@@ -708,7 +697,10 @@ sets the ship_address_id when the object is instantiated
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+calculates the total shipping charges for all the items in the cart.
+</p>
+</div></span>
   
 </li>
 
@@ -716,7 +708,7 @@ sets the ship_address_id when the object is instantiated
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_number-instance_method" title="#set_number (instance method)">- (Object) <strong>set_number</strong> </a>
+      <a href="#shipping_rates-instance_method" title="#shipping_rates (instance method)">- (Array) <strong>shipping_rates</strong> </a>
     
 
     
@@ -729,70 +721,10 @@ sets the ship_address_id when the object is instantiated
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#set_order_number-instance_method" title="#set_order_number (instance method)">- (Object) <strong>set_order_number</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#shipping_charges-instance_method" title="#shipping_charges (instance method)">- (Object) <strong>shipping_charges</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#shipping_rates-instance_method" title="#shipping_rates (instance method)">- (Object) <strong>shipping_rates</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+all the shipping rate to apply to the order.
+</p>
+</div></span>
   
 </li>
 
@@ -824,7 +756,7 @@ status of the invoice.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#tax_charges-instance_method" title="#tax_charges (instance method)">- (Object) <strong>tax_charges</strong> </a>
+      <a href="#tax_charges-instance_method" title="#tax_charges (instance method)">- (Array) <strong>tax_charges</strong> </a>
     
 
     
@@ -837,7 +769,10 @@ status of the invoice.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+all the tax charges to apply to the order.
+</p>
+</div></span>
   
 </li>
 
@@ -845,7 +780,7 @@ status of the invoice.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#total_tax_charges-instance_method" title="#total_tax_charges (instance method)">- (Object) <strong>total_tax_charges</strong> </a>
+      <a href="#total_tax_charges-instance_method" title="#total_tax_charges (instance method)">- (Decimal) <strong>total_tax_charges</strong> </a>
     
 
     
@@ -858,7 +793,10 @@ status of the invoice.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+sum of all the tax charges to apply to the order.
+</p>
+</div></span>
   
 </li>
 
@@ -866,7 +804,7 @@ status of the invoice.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update_inventory-instance_method" title="#update_inventory (instance method)">- (Object) <strong>update_inventory</strong> </a>
+      <a href="#update_inventory-instance_method" title="#update_inventory (instance method)">- (none) <strong>update_inventory</strong> </a>
     
 
     
@@ -890,7 +828,7 @@ This method is called when the order transitions to paid.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update_tax_rates-instance_method" title="#update_tax_rates (instance method)">- (Object) <strong>update_tax_rates</strong> </a>
+      <a href="#variant_ids-instance_method" title="#variant_ids (instance method)">- (Integer) <strong>variant_ids</strong> </a>
     
 
     
@@ -903,28 +841,10 @@ This method is called when the order transitions to paid.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#variant_ids-instance_method" title="#variant_ids (instance method)">- (Object) <strong>variant_ids</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+variant ids in the order.
+</p>
+</div></span>
   
 </li>
 
@@ -1031,22 +951,70 @@ Returns the value of attribute total
       <div class="method_details first">
   <p class="signature first" id="find_by_number-class_method">
   
-    + (<tt>Object</tt>) <strong>find_by_number</strong>(num) 
+    + (<tt><span class='object_link'><a href="" title="Order (class)">Order</a></span></tt>) <strong>find_by_number</strong>(num) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+finds the Order from the orders number.  Is more optimal than the normal
+rails find by id
+</p>
+<pre class="code">
+     <span class='id because'>because</span> <span class='kw'>if</span> <span class='id calculates'>calculates</span> <span class='id the'>the</span> <span class='id order'>order</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>s id which is indexed</span></span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>represents</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the order.number
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Order (class)">Order</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-296
-297
-298</pre>
+323
+324
+325</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 296</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 323</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_by_number'>find_by_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='id find'>find</span><span class='lparen'>(</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='comment'>##  now we can search by id which should be much faster
@@ -1069,26 +1037,26 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-313
-314
-315
-316
-317
-318
-319
-320
-321
-322
-323
-324
-325
-326
-327
-328
-329</pre>
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 313</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 353</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_finished_order_grid'>find_finished_order_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -1153,26 +1121,26 @@ Returns the value of attribute total
       <pre class="lines">
 
 
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347</pre>
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 331</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 371</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id fulfillment_grid'>fulfillment_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -1199,22 +1167,73 @@ Returns the value of attribute total
       <div class="method_details ">
   <p class="signature " id="id_from_number-class_method">
   
-    + (<tt>Object</tt>) <strong>id_from_number</strong>(num) 
+    + (<tt>Integer</tt>) <strong>id_from_number</strong>(num) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+determines the order id from the order.number
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>represents</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the order.number
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+id of the order to find
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-292
-293
-294</pre>
+314
+315
+316</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 292</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 314</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='id num'>num</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='const'>NUMBER_SEED</span>
@@ -1227,21 +1246,85 @@ Returns the value of attribute total
       <div class="method_details ">
   <p class="signature " id="new_admin_cart-class_method">
   
-    + (<tt>Object</tt>) <strong>new_admin_cart</strong>(admin_cart, args = {}) 
+    + (<tt><span class='object_link'><a href="" title="Order (class)">Order</a></span></tt>) <strong>new_admin_cart</strong>(admin_cart, args = {}) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The admin cart is stored in memcached.  At checkout the order is stored in
+the DB.  This method will store the checkout.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>memcached</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+hash of the cart
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>arguments</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+with ip_address
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Order (class)">Order</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+order created
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-107
-108
-109
-110
-111
 112
 113
 114
@@ -1261,10 +1344,15 @@ Returns the value of attribute total
 128
 129
 130
-131</pre>
+131
+132
+133
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id new_admin_cart'>new_admin_cart</span><span class='lparen'>(</span><span class='id admin_cart'>admin_cart</span><span class='comma'>,</span> <span class='id args'>args</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id transaction'>transaction</span> <span class='kw'>do</span>
@@ -1305,26 +1393,108 @@ Returns the value of attribute total
       <div class="method_details first">
   <p class="signature first" id="add_items-instance_method">
   
-    - (<tt>Object</tt>) <strong>add_items</strong>(variant, quantity, state_id = nil) 
+    - (<tt>none</tt>) <strong>add_items</strong>(variant, quantity, state_id = nil) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+add the variant to the order items in the order, normally called at order
+creation
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Variant.html" title="Variant (class)">Variant</a></span></tt>)</span>
+      
+      
+        <span class='name'>variant</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+to add
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <span class='name'>quantity</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+to add to the order
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional Integer</tt>)</span>
+      
+      
+        <span class='name'>state_id</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+(for taxes) to assign to the order_item
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-255
-256
-257
-258
-259
-260
-261</pre>
+286
+287
+288
+289
+290
+291
+292</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 255</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 286</span>
 
 <span class='kw'>def</span> <span class='id add_items'>add_items</span><span class='lparen'>(</span><span class='id variant'>variant</span><span class='comma'>,</span> <span class='id quantity'>quantity</span><span class='comma'>,</span> <span class='id state_id'>state_id</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id save!'>save!</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id new_record?'>new_record?</span>
@@ -1341,11 +1511,65 @@ Returns the value of attribute total
       <div class="method_details ">
   <p class="signature " id="calculate_totals-instance_method">
   
-    - (<tt>Object</tt>) <strong>calculate_totals</strong>(force = false) 
+    - (<tt>none</tt>) <strong>calculate_totals</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+This method will go to every order_item and calculate the total for that
+item.
+</p>
+<p>
+if calculated at is set this order does not need to be calculated unless
+any single item in the order has been updated since the order was
+calculated
+</p>
+<p>
+Also if any item is not ready to calculate then dont calculate
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'>the</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+param is not used right now
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1370,14 +1594,20 @@ Returns the value of attribute total
 208
 209
 210
-211</pre>
+211
+212
+213
+214</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/order.rb', line 192</span>
 
-<span class='kw'>def</span> <span class='id calculate_totals'>calculate_totals</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id calculated_at'>calculated_at</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id item'>item</span><span class='period'>.</span><span class='id updated_at'>updated_at</span> <span class='op'>&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
-    <span class='kw'>unless</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='op'>!</span><span class='id item'>item</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id calculate_totals'>calculate_totals</span>
+  <span class='comment'># if calculated at is nil then this order hasn't been calculated yet
+</span>  <span class='comment'># also if any single item in the order has been updated, the order needs to be re-calculated
+</span>  <span class='kw'>if</span> <span class='id calculated_at'>calculated_at</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id item'>item</span><span class='period'>.</span><span class='id updated_at'>updated_at</span> <span class='op'>&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='comment'># if any item is not ready to calculate then dont calculate
+</span>    <span class='kw'>unless</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='op'>!</span><span class='id item'>item</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='rbrace'>}</span>
       <span class='id total'>total</span> <span class='op'>=</span> <span class='float'>0.0</span>
       <span class='id tax_time'>tax_time</span> <span class='op'>=</span> <span class='id completed_at?'>completed_at?</span> <span class='op'>?</span> <span class='id completed_at'>completed_at</span> <span class='op'>:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
       <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span>
@@ -1532,12 +1762,12 @@ payment object
       <pre class="lines">
 
 
-137
-138
-139</pre>
+142
+143
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id capture_invoice'>capture_invoice</span><span class='lparen'>(</span><span class='id invoice'>invoice</span><span class='rparen'>)</span>
   <span class='id payment'>payment</span> <span class='op'>=</span> <span class='id invoice'>invoice</span><span class='period'>.</span><span class='id capture_payment'>capture_payment</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -1572,14 +1802,14 @@ authorized the whole transaction is roled back
       <pre class="lines">
 
 
-143
-144
-145
-146
-147</pre>
+148
+149
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id create_invoice'>create_invoice</span><span class='lparen'>(</span><span class='id credit_card'>credit_card</span><span class='comma'>,</span> <span class='id charge_amount'>charge_amount</span><span class='comma'>,</span> <span class='id args'>args</span><span class='rparen'>)</span>
   <span class='id transaction'>transaction</span> <span class='kw'>do</span>
@@ -1667,28 +1897,80 @@ formated date or &#8216;Not Finished.&#8217; if the order is not completed
       <div class="method_details ">
   <p class="signature " id="find_total-instance_method">
   
-    - (<tt>Object</tt>) <strong>find_total</strong>(force = false) 
+    - (<tt>none</tt>) <strong>find_total</strong>(force = false) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+calculates the total price of the order this method will set sub_total and
+total for the order even if the order is not ready for final checkout
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'>the</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+param is not used right now
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Sets sub_total and total for the object
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-221
-222
-223
-224
-225
-226
-227
-228
-229</pre>
+229
+230
+231
+232
+233
+234
+235
+236
+237</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 229</span>
 
 <span class='kw'>def</span> <span class='id find_total'>find_total</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id calculate_totals'>calculate_totals</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='period'>.</span><span class='id nil?'>nil?</span> <span class='op'>||</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id item'>item</span><span class='period'>.</span><span class='id updated_at'>updated_at</span> <span class='op'>&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id calculated_at'>calculated_at</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1838,12 +2120,12 @@ ship_address_id
       <pre class="lines">
 
 
-174
-175
-176</pre>
+179
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id get_beginning_address_id'>get_beginning_address_id</span>
   <span class='ivar'>@beginning_address_id</span>
@@ -1862,12 +2144,30 @@ ship_address_id
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+if the order has a shipment this is true&#8230; else false
+</p>
+
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -1887,12 +2187,12 @@ ship_address_id
       <pre class="lines">
 
 
-309
-310
-311</pre>
+349
+350
+351</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 309</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 349</span>
 
 <span class='kw'>def</span> <span class='id has_shipment?'>has_shipment?</span>
   <span class='id shipments_count'>shipments_count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -2034,47 +2334,19 @@ payment object
       <pre class="lines">
 
 
-154
-155
-156
-157
-158</pre>
+159
+160
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='id order_complete!'>order_complete!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id state'>state</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>complete</span><span class='tstring_end'>'</span></span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id completed_at'>completed_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
   <span class='id update_inventory'>update_inventory</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="order_total-instance_method">
-  
-    - (<tt>Object</tt>) <strong>order_total</strong>(force = false) 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-213
-214
-215</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 213</span>
-
-<span class='kw'>def</span> <span class='id order_total'>order_total</span><span class='lparen'>(</span><span class='id force'>force</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='id find_total'>find_total</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2090,12 +2362,31 @@ payment object
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+looks at all the order items and determines if the order has all the
+required elements to complete a checkout
+</p>
+
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -2115,12 +2406,12 @@ payment object
       <pre class="lines">
 
 
-217
-218
-219</pre>
+220
+221
+222</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 217</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 220</span>
 
 <span class='kw'>def</span> <span class='id ready_to_checkout?'>ready_to_checkout?</span>
   <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id all?'>all?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='id item'>item</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='rbrace'>}</span>
@@ -2133,29 +2424,91 @@ payment object
       <div class="method_details ">
   <p class="signature " id="remove_items-instance_method">
   
-    - (<tt>Object</tt>) <strong>remove_items</strong>(variant, final_quantity) 
+    - (<tt>none</tt>) <strong>remove_items</strong>(variant, final_quantity) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+remove the variant from the order items in the order
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Variant.html" title="Variant (class)">Variant</a></span></tt>)</span>
+      
+      
+        <span class='name'>variant</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+to add
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <span class='name'>final</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+quantity that should be in the order
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272</pre>
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 263</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 299</span>
 
 <span class='kw'>def</span> <span class='id remove_items'>remove_items</span><span class='lparen'>(</span><span class='id variant'>variant</span><span class='comma'>,</span> <span class='id final_quantity'>final_quantity</span><span class='rparen'>)</span>
   <span class='id total_order_items'>total_order_items</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:all</span><span class='comma'>,</span> <span class='symbol'>:conditions</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>variant_id = ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id variant'>variant</span><span class='period'>.</span><span class='id id'>id</span><span class='rbracket'>]</span> <span class='rparen'>)</span>
@@ -2166,36 +2519,6 @@ payment object
       <span class='id qty_to_delete'>qty_to_delete</span> <span class='op'>=</span> <span class='id qty_to_delete'>qty_to_delete</span> <span class='op'>-</span> <span class='int'>1</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="save_order_number-instance_method">
-  
-    - (<tt>Object</tt>) <strong>save_order_number</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-287
-288
-289
-290</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 287</span>
-
-<span class='kw'>def</span> <span class='id save_order_number'>save_order_number</span>
-  <span class='id set_order_number'>set_order_number</span>
-  <span class='id save'>save</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2255,12 +2578,12 @@ sets the ship_address_id when the object is instantiated
       <pre class="lines">
 
 
-165
-166
-167</pre>
+170
+171
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 170</span>
 
 <span class='kw'>def</span> <span class='id set_beginning_values'>set_beginning_values</span>
   <span class='ivar'>@beginning_address_id</span>      <span class='op'>=</span> <span class='id ship_address_id'>ship_address_id</span> <span class='comment'># this stores the initial value of the tax_rate
@@ -2271,111 +2594,70 @@ sets the ship_address_id when the object is instantiated
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="set_email-instance_method">
-  
-    - (<tt>Object</tt>) <strong>set_email</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-274
-275
-276</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 274</span>
-
-<span class='kw'>def</span> <span class='id set_email'>set_email</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span> <span class='op'>=</span> <span class='id user'>user</span><span class='period'>.</span><span class='id email'>email</span> <span class='kw'>if</span> <span class='id user_id'>user_id</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="set_number-instance_method">
-  
-    - (<tt>Object</tt>) <strong>set_number</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-278
-279
-280
-281</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 278</span>
-
-<span class='kw'>def</span> <span class='id set_number'>set_number</span>
-  <span class='kw'>return</span> <span class='id set_order_number'>set_order_number</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id number'>number</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span><span class='comment'>## fake number for friendly_id validator
-</span><span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="set_order_number-instance_method">
-  
-    - (<tt>Object</tt>) <strong>set_order_number</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-283
-284
-285</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 283</span>
-
-<span class='kw'>def</span> <span class='id set_order_number'>set_order_number</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id number'>number</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>NUMBER_SEED</span> <span class='op'>+</span> <span class='id id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <p class="signature " id="shipping_charges-instance_method">
   
-    - (<tt>Object</tt>) <strong>shipping_charges</strong> 
+    - (<tt>Decimal</tt>) <strong>shipping_charges</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+calculates the total shipping charges for all the items in the cart
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Decimal</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+amount of the shipping charges
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-231
-232
-233
-234</pre>
+243
+244
+245
+246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 243</span>
 
 <span class='kw'>def</span> <span class='id shipping_charges'>shipping_charges</span>
   <span class='kw'>return</span> <span class='ivar'>@order_shipping_charges</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='ivar'>@order_shipping_charges</span><span class='rparen'>)</span>
@@ -2389,26 +2671,72 @@ sets the ship_address_id when the object is instantiated
       <div class="method_details ">
   <p class="signature " id="shipping_rates-instance_method">
   
-    - (<tt>Object</tt>) <strong>shipping_rates</strong> 
+    - (<tt>Array</tt>) <strong>shipping_rates</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+all the shipping rate to apply to the order
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+array of shipping rates that will be charged, it will return the same
+shipping rate more than once if it can be charged more than once
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-236
-237
-238
-239
-240
-241
-242</pre>
+253
+254
+255
+256
+257
+258
+259</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 253</span>
 
 <span class='kw'>def</span> <span class='id shipping_rates'>shipping_rates</span>
   <span class='id items'>items</span> <span class='op'>=</span> <span class='const'>OrderItem</span><span class='period'>.</span><span class='id order_items_in_cart'>order_items_in_cart</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span><span class='rparen'>)</span>
@@ -2501,25 +2829,70 @@ aren&#8217;t any invoices
       <div class="method_details ">
   <p class="signature " id="tax_charges-instance_method">
   
-    - (<tt>Object</tt>) <strong>tax_charges</strong> 
+    - (<tt>Array</tt>) <strong>tax_charges</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+all the tax charges to apply to the order
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+array of tax charges that will be charged
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-244
-245
-246
-247
-248
-249</pre>
+265
+266
+267
+268
+269
+270</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 244</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 265</span>
 
 <span class='kw'>def</span> <span class='id tax_charges'>tax_charges</span>
   <span class='id charges'>charges</span> <span class='op'>=</span> <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id charges'>charges</span><span class='comma'>,</span> <span class='id item'>item</span><span class='op'>|</span>
@@ -2535,22 +2908,61 @@ aren&#8217;t any invoices
       <div class="method_details ">
   <p class="signature " id="total_tax_charges-instance_method">
   
-    - (<tt>Object</tt>) <strong>total_tax_charges</strong> 
+    - (<tt>Decimal</tt>) <strong>total_tax_charges</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+sum of all the tax charges to apply to the order
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Decimal</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-251
-252
-253</pre>
+276
+277
+278</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 251</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 276</span>
 
 <span class='kw'>def</span> <span class='id total_tax_charges'>total_tax_charges</span>
   <span class='id tax_charges'>tax_charges</span><span class='period'>.</span><span class='id sum'>sum</span>
@@ -2563,7 +2975,7 @@ aren&#8217;t any invoices
       <div class="method_details ">
   <p class="signature " id="update_inventory-instance_method">
   
-    - (<tt>Object</tt>) <strong>update_inventory</strong> 
+    - (<tt>none</tt>) <strong>update_inventory</strong> 
   
 
   
@@ -2572,24 +2984,54 @@ aren&#8217;t any invoices
     <p>
 This method is called when the order transitions to paid
 </p>
+<pre class="code">
+  <span class='id it'>it</span> <span class='id will'>will</span> <span class='id add'>add</span> <span class='id the'>the</span> <span class='id number'>number</span> <span class='id of'>of</span> <span class='id variants'>variants</span> <span class='id pending'>pending</span> <span class='id to'>to</span> <span class='id be'>be</span> <span class='id sent'>sent</span> <span class='id to'>to</span> <span class='id the'>the</span> <span class='id customer'>customer</span></pre>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>none</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-301
-302
-303</pre>
+332
+333
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 301</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 332</span>
 
 <span class='kw'>def</span> <span class='id update_inventory'>update_inventory</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id order_items'>order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span> <span class='id item'>item</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id add_pending_to_customer'>add_pending_to_customer</span> <span class='rbrace'>}</span>
@@ -2600,72 +3042,69 @@ This method is called when the order transitions to paid
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="update_tax_rates-instance_method">
-  
-    - (<tt>Object</tt>) <strong>update_tax_rates</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 178</span>
-
-<span class='kw'>def</span> <span class='id update_tax_rates'>update_tax_rates</span>
-  <span class='kw'>if</span> <span class='ivar'>@beginning_address_id</span> <span class='op'>!=</span> <span class='id ship_address_id'>ship_address_id</span>
-    <span class='id set_beginning_values'>set_beginning_values</span>
-    <span class='id tax_time'>tax_time</span> <span class='op'>=</span> <span class='id completed_at?'>completed_at?</span> <span class='op'>?</span> <span class='id completed_at'>completed_at</span> <span class='op'>:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span>
-    <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id item'>item</span><span class='op'>|</span>
-      <span class='id rate'>rate</span> <span class='op'>=</span> <span class='id item'>item</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id product'>product</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id ship_address'>ship_address</span><span class='period'>.</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id tax_time'>tax_time</span><span class='rparen'>)</span>
-      <span class='kw'>if</span> <span class='id rate'>rate</span> <span class='op'>&amp;&amp;</span> <span class='id item'>item</span><span class='period'>.</span><span class='id tax_rate_id'>tax_rate_id</span> <span class='op'>!=</span> <span class='id rate'>rate</span><span class='period'>.</span><span class='id id'>id</span>
-        <span class='id item'>item</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span> <span class='op'>=</span> <span class='id rate'>rate</span>
-        <span class='id item'>item</span><span class='period'>.</span><span class='id save'>save</span>
-      <span class='kw'>end</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <p class="signature " id="variant_ids-instance_method">
   
-    - (<tt>Object</tt>) <strong>variant_ids</strong> 
+    - (<tt>Integer</tt>) <strong>variant_ids</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+variant ids in the order.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+all the variant_id&#8217;s in the order
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-305
-306
-307</pre>
+340
+341
+342</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 340</span>
 
 <span class='kw'>def</span> <span class='id variant_ids'>variant_ids</span>
   <span class='id order_items'>order_items</span><span class='period'>.</span><span class='id collect'>collect</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id oi'>oi</span><span class='op'>|</span> <span class='id oi'>oi</span><span class='period'>.</span><span class='id variant_id'>variant_id</span> <span class='rbrace'>}</span>
@@ -2680,7 +3119,7 @@ This method is called when the order transitions to paid
 </div>
     
     <div id="footer">
-  Generated on Sun Dec 26 13:48:11 2010 by 
+  Generated on Tue Dec 28 05:13:36 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

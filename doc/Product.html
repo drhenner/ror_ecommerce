@@ -471,8 +471,7 @@ these the the shipping rates per the shipping address on the order
 134
 135
 136
-137
-138</pre>
+137</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/product.rb', line 122</span>
@@ -491,7 +490,6 @@ these the the shipping rates per the shipping address on the order
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>products.shipping_category_id = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:shipping_category_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:shipping_category_id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>products.available_at &gt; ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>         <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:available_at_gt</span><span class='rbracket'>]</span><span class='rparen'>)</span>       <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:available_at_gt</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>products.available_at &lt; ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>         <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:available_at_lt</span><span class='rbracket'>]</span><span class='rparen'>)</span>       <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:available_at_lt</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -879,7 +877,7 @@ these the the shipping rates per the shipping address on the order
 </div>
     
     <div id="footer">
-  Generated on Sun Dec 26 13:48:11 2010 by 
+  Generated on Tue Dec 28 05:13:37 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

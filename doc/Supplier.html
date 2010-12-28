@@ -148,24 +148,22 @@
 18
 19
 20
-21
-22</pre>
+21</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/supplier.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  
+
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
-  
+
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>Supplier</span>
   <span class='comment'>#grid.includes(:product)
 </span>  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>suppliers.name = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>suppliers.email = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> 
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='id grid'>grid</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -177,7 +175,7 @@
 </div>
     
     <div id="footer">
-  Generated on Sun Dec 26 13:48:11 2010 by 
+  Generated on Tue Dec 28 05:13:37 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>
