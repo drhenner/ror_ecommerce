@@ -6,6 +6,7 @@ class CartItem < ActiveRecord::Base
 
   # Call this if you need to know the unit price of an item
   #
+  # @param [none]
   # @return [Float] price of the variant in the cart
   def price
     self.variant.price
@@ -13,6 +14,7 @@ class CartItem < ActiveRecord::Base
 
   # Call this method if you need the price of an item before taxes
   #
+  # @param [none]
   # @return [Float] price of the variant in the cart times quantity
   def total
     self.price * self.quantity
@@ -20,6 +22,7 @@ class CartItem < ActiveRecord::Base
 
   # Call this method to soft delete an item in the cart
   #
+  # @param [none]
   # @return [Boolean]
   def inactivate!
     self.update_attributes(:active => false)
@@ -27,6 +30,7 @@ class CartItem < ActiveRecord::Base
 
   # Call this method to determine if an item is in the shopping cart and active
   #
+  # @param [none]
   # @return [Boolean]
   def shopping_cart_item?
     item_type_id == ItemType::SHOPPING_CART_ID && active?
