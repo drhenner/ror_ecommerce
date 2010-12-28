@@ -109,7 +109,21 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to create a phone
+</p>
+<ul>
+<li><p>
+This method will create a new phone object and if the phone is a default
+phone it
+</p>
+</li>
+<li><p>
+will make all other phones that belong to the user non-default.
+</p>
+</li>
+</ul>
+</div></span>
   
 </li>
 
@@ -131,32 +145,95 @@
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to create a phone
+</p>
+<ul>
+<li><p>
+This method will create a new phone object and if the phone is a default
+phone it
+</p>
+</li>
+<li><p>
+will make all other phones that belong to the user non-default
+</p>
+</li>
+</ul>
+<p>
+@ return [Boolean] true or nil
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>object</tt>)</span>
+      
+      
+        <span class='name'>object</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+associated to the phone (user or possibly a company in the future)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>hash</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+of attributes for the new phone
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-11
-12
-13
-14
-15
-16
-17
 18
 19
 20
 21
-22</pre>
+22
+23
+24
+25
+26
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/phone.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/models/phone.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id save_default_phone'>save_default_phone</span><span class='lparen'>(</span><span class='id object'>object</span><span class='comma'>,</span> <span class='id params'>params</span><span class='rparen'>)</span>
   <span class='const'>Phone</span><span class='period'>.</span><span class='id transaction'>transaction</span> <span class='kw'>do</span>
     <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:default</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:default</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>0</span><span class='tstring_end'>'</span></span>
-      <span class='const'>Address</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>phones.primary = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rbracket'>]</span><span class='comma'>,</span> 
+      <span class='const'>Address</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>phones.primary = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rbracket'>]</span><span class='comma'>,</span>
                           <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>phones.phoneable_id = ? AND phones.phoneable_type = ? </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id object'>object</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span> <span class='id object'>object</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id object'>object</span>
       <span class='kw'>self</span><span class='period'>.</span><span class='id default'>default</span> <span class='op'>=</span> <span class='kw'>true</span>
     <span class='kw'>end</span>
@@ -175,7 +252,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Dec 28 05:13:37 2010 by 
+  Generated on Tue Dec 28 07:52:42 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

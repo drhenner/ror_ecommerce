@@ -6,7 +6,7 @@ app/models/state.rb 06700ecb0b5d1fd5701124b3f89c07d02beb71ae
 app/models/batch.rb b88af7e5a2b5481404709706f2befa211586b1ed
 app/models/brand.rb b7bd2f8b1d832c5f9c2fd20fcec96cb3c1b7f649
 app/models/image.rb b4a66d011ea651d7e7fda633bcea2dcd1dbc62d8
-app/models/phone.rb 8535134aefdc928de210f6b30621aef44790f23f
+app/models/phone.rb 65e4cde59987b6b5bff3948ac2b2c9fc64ca6e7b
 app/models/ability.rb 549a8e200c6f7eed59cad404b1e683ea7c8577f9
 app/models/country.rb b14c9578df11fd6cd873cf0f52433fa744823754
 app/models/comment.rb adc9c18923042889c59997513de431a310e5a9a1
@@ -23,11 +23,11 @@ app/models/tax_rate.rb b0b6940684eb435d17cb1185eadde3d53b877089
 app/models/supplier.rb c933500f45e533562cf9e6e0ff45c2c681d0108e
 app/models/user_role.rb ad9a14afd33b1ab716028ec1b4964c46289dd166
 app/models/item_type.rb 35829a5d05ce3303f2e2d3b46f31da830895df78
-app/models/cart_item.rb 21b9ee72cb5056b6333684bdaa65fdcc1a9f4203
+app/models/cart_item.rb a9f1be78e40c00f37546b2f33fb44f1fb2898a9b
 app/models/prototype.rb 308812c941af5ed827f1c78164de8573120e9397
-app/models/order_item.rb 8e85e311c4c82f0d86f3c714a863f549a8cf8705
+app/models/order_item.rb add9a507febe54269fbb3181b93ba98e0c740a82
 app/models/tax_status.rb 5b0ea1e842214f48bd3a6124d6ef6411bbdca893
-app/models/phone_type.rb b9e786249e066897229f5adfd87fda411b1bc0cf
+app/models/phone_type.rb 6b8f54710e465e546752423fbf7dfa8fa67ccb8d
 app/models/return_item.rb b6b4f0fe2a39ea0ee22f76e41158e5b6dfad84c6
 app/models/transaction.rb b4be0e16c02dc5d466b5211a85af962b4ccd902c
 app/models/product_type.rb 856fa100b73c7cf017ce4eac0e4ff2ad597014e9
@@ -39,7 +39,7 @@ app/models/admin_ability.rb cada4f08240201039765bcdfc9762def78d2cbf7
 app/models/shipping_rate.rb b5d28d2ea94f37026c3831af2b1f37d51a2f7c6a
 app/models/purchase_order.rb ab875ac567c82b7ad650a107cca7a011aa5bfa07
 app/models/shipping_method.rb 0518c842baf50d6dd6c07f22c54b4db9275e96a9
-app/models/payment_profile.rb 8cedbf38986528308f50a29b93a51f96626ae90a
+app/models/payment_profile.rb 905d47605470441cb3f4749a8298185657d26389
 app/models/return_condition.rb b3bbe4e5bef8dbcac3891d51845e60d7c258cdb4
 app/models/variant_property.rb 04435c1da12ef0ede79ff610ede926d9ec6ec1f9
 app/models/product_property.rb 7745204dcb22ce2aaafea6a42b3f1fa9571a3191

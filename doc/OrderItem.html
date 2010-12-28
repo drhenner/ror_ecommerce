@@ -96,7 +96,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#order_items_in_cart-class_method" title="order_items_in_cart (class method)">+ (Object) <strong>order_items_in_cart</strong>(order_id) </a>
+      <a href="#order_items_in_cart-class_method" title="order_items_in_cart (class method)">+ (OrderItem) <strong>order_items_in_cart</strong>(order_id) </a>
     
 
     
@@ -109,7 +109,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+called in checkout process.
+</p>
+</div></span>
   
 </li>
 
@@ -126,7 +129,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#adjusted_price-instance_method" title="#adjusted_price (instance method)">- (Object) <strong>adjusted_price</strong> </a>
+      <a href="#adjusted_price-instance_method" title="#adjusted_price (instance method)">- (Float) <strong>adjusted_price</strong> </a>
     
 
     
@@ -151,7 +154,7 @@ tax.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#calculate_order-instance_method" title="#calculate_order (instance method)">- (Object) <strong>calculate_order</strong> </a>
+      <a href="#calculate_order-instance_method" title="#calculate_order (instance method)">- (none) <strong>calculate_order</strong> </a>
     
 
     
@@ -164,7 +167,10 @@ tax.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+forces the order to be re-calculated.
+</p>
+</div></span>
   
 </li>
 
@@ -172,7 +178,7 @@ tax.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#calculate_total-instance_method" title="#calculate_total (instance method)">- (Object) <strong>calculate_total</strong>(coupon = nil) </a>
+      <a href="#calculate_total-instance_method" title="#calculate_total (instance method)">- (Float) <strong>calculate_total</strong>(coupon = nil) </a>
     
 
     
@@ -185,7 +191,10 @@ tax.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+this is the price after coupons and taxes.
+</p>
+</div></span>
   
 </li>
 
@@ -206,7 +215,11 @@ tax.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+determines if the order item has all the attributes set and thus you can
+now determine the final total.
+</p>
+</div></span>
   
 </li>
 
@@ -235,7 +248,7 @@ tax.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_order_calculated_at_to_nil-instance_method" title="#set_order_calculated_at_to_nil (instance method)">- (Object) <strong>set_order_calculated_at_to_nil</strong> </a>
+      <a href="#set_order_calculated_at_to_nil-instance_method" title="#set_order_calculated_at_to_nil (instance method)">- (none) <strong>set_order_calculated_at_to_nil</strong> </a>
     
 
     
@@ -248,7 +261,10 @@ tax.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+if something changes to the order item and you dont want to recalculate.
+</p>
+</div></span>
   
 </li>
 
@@ -269,7 +285,10 @@ tax.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+if the order item has been shipped it will return true.
+</p>
+</div></span>
   
 </li>
 
@@ -277,7 +296,7 @@ tax.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#shipping_method-instance_method" title="#shipping_method (instance method)">- (Object) <strong>shipping_method</strong> </a>
+      <a href="#shipping_method-instance_method" title="#shipping_method (instance method)">- (ShippingMethod) <strong>shipping_method</strong> </a>
     
 
     
@@ -290,7 +309,10 @@ tax.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+shipping method for the order item.
+</p>
+</div></span>
   
 </li>
 
@@ -298,7 +320,7 @@ tax.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#shipping_method_id-instance_method" title="#shipping_method_id (instance method)">- (Object) <strong>shipping_method_id</strong> </a>
+      <a href="#shipping_method_id-instance_method" title="#shipping_method_id (instance method)">- (Integer) <strong>shipping_method_id</strong> </a>
     
 
     
@@ -311,7 +333,10 @@ tax.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+shipping method id for the order item (use to reduce SQL calls).
+</p>
+</div></span>
   
 </li>
 
@@ -319,7 +344,7 @@ tax.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#tax_charge-instance_method" title="#tax_charge (instance method)">- (Object) <strong>tax_charge</strong> </a>
+      <a href="#tax_charge-instance_method" title="#tax_charge (instance method)">- (Float) <strong>tax_charge</strong> </a>
     
 
     
@@ -332,7 +357,10 @@ tax.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+the tax charge on an item.
+</p>
+</div></span>
   
 </li>
 
@@ -350,28 +378,77 @@ tax.
       <div class="method_details first">
   <p class="signature first" id="order_items_in_cart-class_method">
   
-    + (<tt>Object</tt>) <strong>order_items_in_cart</strong>(order_id) 
+    + (<tt><span class='object_link'><a href="" title="OrderItem (class)">OrderItem</a></span></tt>) <strong>order_items_in_cart</strong>(order_id) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+called in checkout process. will give you the &#8216;quantity&#8217;,
+&#8216;sum of all the prices&#8217; and &#8216;sum of all the totals&#8217;
+</p>
+<pre class="code">
+ it is better to do the math in SQL than ruby</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <span class='name'>order.id</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="OrderItem (class)">OrderItem</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Object has addional attributes of [sum_price, sum_total,
+shipping_category_id, and quantity]
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-38
-39
-40
-41
-42
-43
-44
-45
-46</pre>
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id order_items_in_cart'>order_items_in_cart</span><span class='lparen'>(</span><span class='id order_id'>order_id</span><span class='rparen'>)</span>
   <span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:all</span><span class='comma'>,</span> <span class='symbol'>:joins</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:variant</span> <span class='op'>=&gt;</span> <span class='symbol'>:product</span> <span class='rbrace'>}</span><span class='comma'>,</span>
@@ -396,7 +473,7 @@ tax.
       <div class="method_details first">
   <p class="signature first" id="adjusted_price-instance_method">
   
-    - (<tt>Object</tt>) <strong>adjusted_price</strong> 
+    - (<tt>Float</tt>) <strong>adjusted_price</strong> 
   
 
   
@@ -406,28 +483,64 @@ tax.
 this is the price after coupons and anything before calculating the price +
 tax
 </p>
+<pre class="code">
+ in the future coupons and discounts could change this value</pre>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+this is the price that the tax will be applied to.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-64
-65
-66
-67
-68
-69
-70</pre>
+102
+103
+104
+105
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id adjusted_price'>adjusted_price</span>
   <span class='comment'>## coupon credit is calculated at the order level but because taxes we need to apply it now
@@ -444,26 +557,66 @@ tax
       <div class="method_details ">
   <p class="signature " id="calculate_order-instance_method">
   
-    - (<tt>Object</tt>) <strong>calculate_order</strong> 
+    - (<tt>none</tt>) <strong>calculate_order</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+forces the order to be re-calculated.  If the order item has changed then
+the order totals need to be adjusted
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-48
-49
-50
-51
-52
-53
-54</pre>
+70
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id calculate_order'>calculate_order</span>
   <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id ready_to_calculate?'>ready_to_calculate?</span> <span class='op'>&amp;&amp;</span>
@@ -480,24 +633,72 @@ tax
       <div class="method_details ">
   <p class="signature " id="calculate_total-instance_method">
   
-    - (<tt>Object</tt>) <strong>calculate_total</strong>(coupon = nil) 
+    - (<tt>Float</tt>) <strong>calculate_total</strong>(coupon = nil) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+this is the price after coupons and taxes
+</p>
+<pre class="code">
+  * this method does not save it just sets the value of total.
+  * Thus allowing you to save the whole order with one opperation</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+this is the total of the item after taxes and coupons&#8230;
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-72
-73
-74
-75
-76</pre>
+116
+117
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 116</span>
 
 <span class='kw'>def</span> <span class='id calculate_total'>calculate_total</span><span class='lparen'>(</span><span class='id coupon'>coupon</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># shipping charges are calculated in order.rb
@@ -518,12 +719,31 @@ tax
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+determines if the order item has all the attributes set and thus you can
+now determine the final total
+</p>
+
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -543,12 +763,12 @@ tax
       <pre class="lines">
 
 
-60
-61
-62</pre>
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id ready_to_calculate?'>ready_to_calculate?</span>
   <span class='id shipping_rate_id'>shipping_rate_id</span> <span class='op'>&amp;&amp;</span> <span class='id tax_rate_id'>tax_rate_id</span>
@@ -593,22 +813,65 @@ tax
       <div class="method_details ">
   <p class="signature " id="set_order_calculated_at_to_nil-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_order_calculated_at_to_nil</strong> 
+    - (<tt>none</tt>) <strong>set_order_calculated_at_to_nil</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+if something changes to the order item and you dont want to recalculate
+</p>
+<pre class="code">
+  (maybe because you are chnging several more things) then
+   this method will mark the calculated at to be nil and thus tell the order that
+   it needs to calculate the total again</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-56
-57
-58</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id set_order_calculated_at_to_nil'>set_order_calculated_at_to_nil</span>
   <span class='id order'>order</span><span class='period'>.</span><span class='id update_attribute'>update_attribute</span><span class='lparen'>(</span><span class='symbol'>:calculated_at</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
@@ -627,12 +890,30 @@ tax
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+if the order item has been shipped it will return true
+</p>
+
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -652,12 +933,12 @@ tax
       <pre class="lines">
 
 
-26
-27
-28</pre>
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id shipped?'>shipped?</span>
   <span class='id shipment_id?'>shipment_id?</span>
@@ -670,22 +951,61 @@ tax
       <div class="method_details ">
   <p class="signature " id="shipping_method-instance_method">
   
-    - (<tt>Object</tt>) <strong>shipping_method</strong> 
+    - (<tt><span class='object_link'><a href="ShippingMethod.html" title="ShippingMethod (class)">ShippingMethod</a></span></tt>) <strong>shipping_method</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+shipping method for the order item
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ShippingMethod.html" title="ShippingMethod (class)">ShippingMethod</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-30
-31
-32</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id shipping_method'>shipping_method</span>
   <span class='id shipping_rate'>shipping_rate</span><span class='period'>.</span><span class='id shipping_method'>shipping_method</span>
@@ -698,22 +1018,69 @@ tax
       <div class="method_details ">
   <p class="signature " id="shipping_method_id-instance_method">
   
-    - (<tt>Object</tt>) <strong>shipping_method_id</strong> 
+    - (<tt>Integer</tt>) <strong>shipping_method_id</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+shipping method id for the order item (use to reduce SQL calls)
+</p>
+<pre class="code">
+  <span class='id refer'>refer</span> <span class='id to'>to</span> <span class='const'>ShippingMethod</span> <span class='const'>ID</span> <span class='id constants'>constants</span> <span class='id to'>to</span> <span class='id determine'>determine</span> <span class='id what'>what</span> <span class='id shipping'>shipping</span> <span class='id method'>method</span> <span class='id is'>is</span> <span class='id called'>called</span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+ShippingMethod id
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-34
-35
-36</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id shipping_method_id'>shipping_method_id</span>
   <span class='id shipping_rate'>shipping_rate</span><span class='period'>.</span><span class='id shipping_method_id'>shipping_method_id</span>
@@ -726,23 +1093,68 @@ tax
       <div class="method_details ">
   <p class="signature " id="tax_charge-instance_method">
   
-    - (<tt>Object</tt>) <strong>tax_charge</strong> 
+    - (<tt>Float</tt>) <strong>tax_charge</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+the tax charge on an item
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+tax charge on the item.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-78
-79
-80
-81</pre>
+126
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'app/models/order_item.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id tax_charge'>tax_charge</span>
   <span class='id tax_percentage'>tax_percentage</span> <span class='op'>=</span> <span class='id tax_rate'>tax_rate</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:percentage</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id tax_rate'>tax_rate</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:percentage</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='float'>0.0</span>
@@ -758,7 +1170,7 @@ tax
 </div>
     
     <div id="footer">
-  Generated on Tue Dec 28 05:13:37 2010 by 
+  Generated on Tue Dec 28 07:52:43 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

@@ -217,7 +217,22 @@ Call this method to soft delete an item in the cart
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -237,12 +252,12 @@ Call this method to soft delete an item in the cart
       <pre class="lines">
 
 
-24
-25
-26</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id inactivate!'>inactivate!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='symbol'>:active</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -269,7 +284,22 @@ Call this if you need to know the unit price of an item
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -295,12 +325,12 @@ price of the variant in the cart
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id price'>price</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id price'>price</span>
@@ -327,7 +357,22 @@ Call this method to determine if an item is in the shopping cart and active
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -347,12 +392,12 @@ Call this method to determine if an item is in the shopping cart and active
       <pre class="lines">
 
 
-31
-32
-33</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id shopping_cart_item?'>shopping_cart_item?</span>
   <span class='id item_type_id'>item_type_id</span> <span class='op'>==</span> <span class='const'>ItemType</span><span class='op'>::</span><span class='const'>SHOPPING_CART_ID</span> <span class='op'>&amp;&amp;</span> <span class='id active?'>active?</span>
@@ -379,7 +424,22 @@ Call this method if you need the price of an item before taxes
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -405,12 +465,12 @@ price of the variant in the cart times quantity
       <pre class="lines">
 
 
-17
-18
-19</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id total'>total</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id price'>price</span> <span class='op'>*</span> <span class='kw'>self</span><span class='period'>.</span><span class='id quantity'>quantity</span>
@@ -425,7 +485,7 @@ price of the variant in the cart times quantity
 </div>
     
     <div id="footer">
-  Generated on Tue Dec 28 05:13:37 2010 by 
+  Generated on Tue Dec 28 07:52:43 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>
