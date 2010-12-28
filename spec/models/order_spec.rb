@@ -142,7 +142,7 @@ describe Order, "instance methods" do
       @order.ship_address_id = Factory(:address).id
       Product.any_instance.stubs(:tax_rate).returns(tax_rate)
       @order.stubs(:order_items).returns([order_item])
-      @order.update_tax_rates
+      @order.send(:update_tax_rates)
       @order.order_items.first.tax_rate.should == tax_rate
     end
   end
@@ -247,27 +247,27 @@ describe Order, "instance methods" do
     #self.email = user.email if user_id
     it 'should set the email address if there is a user_id' do
       @order.email = nil
-      @order.set_email
+      @order.send(:set_email)
       @order.email.should_not be_nil
       @order.email.should == @order.user.email
     end
     it 'should not set the email address if there is a user_id' do
       @order.email = nil
       @order.user_id = nil
-      @order.set_email
+      @order.send(:set_email)
       @order.email.should be_nil
     end
   end
 
   context ".set_number" do
     it 'should set number' do
-      @order.set_number
+      @order.send(:set_number)
       @order.number.should == (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
     end
 
     it 'should set number not to be nil' do
       order = Factory.build(:order)
-      order.set_number
+      order.send(:set_number)
       order.number.should_not be_nil
     end
   end
@@ -276,7 +276,7 @@ describe Order, "instance methods" do
     it 'should set number ' do
       order = Factory(:order)
       order.number = nil
-      order.set_order_number
+      order.send(:set_order_number)
       order.number.should_not be_nil
     end
   end
@@ -285,7 +285,7 @@ describe Order, "instance methods" do
     it 'should set number and save' do
       order = Factory(:order)
       order.number = nil
-      order.save_order_number.should be_true
+      order.send(:save_order_number).should be_true
       order.number.should_not == (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
     end
   end

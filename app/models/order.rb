@@ -104,6 +104,11 @@ class Order < ActiveRecord::Base
     includes([:completed_invoices, :invoices])
   end
 
+  # The admin cart is stored in memcached.  At checkout the order is stored in the DB.  This method will store the checkout.
+  #
+  # @param [Hash] memcached hash of the cart
+  # @param [Hash] arguments with ip_address
+  # @return [Order] order created
   def self.new_admin_cart(admin_cart, args = {})
     transaction do
       admin_order = Order.new(  :ship_address     => admin_cart[:shipping_address],
@@ -175,20 +180,6 @@ class Order < ActiveRecord::Base
     @beginning_address_id
   end
 
-  def update_tax_rates
-    if @beginning_address_id != ship_address_id
-      set_beginning_values
-      tax_time = completed_at? ? completed_at : Time.zone.now
-      order_items.each do |item|
-        rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
-        if rate && item.tax_rate_id != rate.id
-          item.tax_rate = rate
-          item.save
-        end
-      end
-    end
-  end
-
   # This method will go to every order_item and calculate the total for that item.
   #
   # if calculated at is set this order does not need to be calculated unless
@@ -222,6 +213,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # looks at all the order items and determines if the order has all the required elements to complete a checkout
+  #
+  # @param [none]
+  # @return [Boolean]
   def ready_to_checkout?
     order_items.all? {|item| item.ready_to_calculate? }
   end
@@ -241,11 +236,20 @@ class Order < ActiveRecord::Base
     self.total = (self.total + shipping_charges).round_at( 2 )
   end
 
+  # calculates the total shipping charges for all the items in the cart
+  #
+  # @param [none]
+  # @return [Decimal] amount of the shipping charges
   def shipping_charges
     return @order_shipping_charges if defined?(@order_shipping_charges)
     @order_shipping_charges = shipping_rates.inject(0.0) {|sum, shipping_rate|  sum + shipping_rate.rate  }
   end
 
+  # all the shipping rate to apply to the order
+  #
+  # @param [none]
+  # @return [Array] array of shipping rates that will be charged, it will return the same
+  #                 shipping rate more than once if it can be charged more than once
   def shipping_rates
     items = OrderItem.order_items_in_cart(self.id)
     rates = items.inject([]) do |rates, item|
@@ -254,6 +258,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # all the tax charges to apply to the order
+  #
+  # @param [none]
+  # @return [Array] array of tax charges that will be charged
   def tax_charges
     charges = order_items.inject([]) do |charges, item|
       charges << item.tax_charge
@@ -261,10 +269,20 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # sum of all the tax charges to apply to the order
+  #
+  # @param [none]
+  # @return [Decimal]
   def total_tax_charges
     tax_charges.sum
   end
 
+  # add the variant to the order items in the order, normally called at order creation
+  #
+  # @param [Variant] variant to add
+  # @param [Integer] quantity to add to the order
+  # @param [Optional Integer] state_id (for taxes) to assign to the order_item
+  # @return [none]
   def add_items(variant, quantity, state_id = nil)
     self.save! if self.new_record?
     tax_rate_id = state_id ? variant.product.tax_rate(state_id) : nil
@@ -273,6 +291,11 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # remove the variant from the order items in the order
+  #
+  # @param [Variant] variant to add
+  # @param [Integer] final quantity that should be in the order
+  # @return [none]
   def remove_items(variant, final_quantity)
     total_order_items = self.order_items.find(:all, :conditions => ['variant_id = ?', variant.id] )
     if (total_order_items.size - final_quantity) > 0
@@ -284,41 +307,45 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def set_email
-    self.email = user.email if user_id
-  end
-
-  def set_number
-    return set_order_number if self.id
-    self.number = (Time.now.to_i).to_s(CHARACTERS_SEED)## fake number for friendly_id validator
-  end
-
-  def set_order_number
-    self.number = (NUMBER_SEED + id).to_s(CHARACTERS_SEED)
-  end
-
-  def save_order_number
-    set_order_number
-    save
-  end
-
+  ## determines the order id from the order.number
+  #
+  # @param [String]  represents the order.number
+  # @return [Integer] id of the order to find
   def self.id_from_number(num)
     num.to_i(CHARACTERS_SEED) - NUMBER_SEED
   end
 
+  ## finds the Order from the orders number.  Is more optimal than the normal rails find by id
+  #      because if calculates the order's id which is indexed
+  #
+  # @param [String]  represents the order.number
+  # @return [Order]
   def self.find_by_number(num)
     find(id_from_number(num))##  now we can search by id which should be much faster
   end
 
   ## This method is called when the order transitions to paid
+  #   it will add the number of variants pending to be sent to the customer
+  #
+  # @param none
+  # @return [none]
   def update_inventory
     self.order_items.each { |item| item.variant.add_pending_to_customer }
   end
 
+  # variant ids in the order.
+  #
+  # @param [none]
+  # @return [Integer] all the variant_id's in the order
   def variant_ids
     order_items.collect{|oi| oi.variant_id }
   end
 
+
+  # if the order has a shipment this is true... else false
+  #
+  # @param [none]
+  # @return [Boolean]
   def has_shipment?
     shipments_count > 0
   end
@@ -360,6 +387,59 @@ class Order < ActiveRecord::Base
   end
 
   private
+
+  # Called before validation.  sets the email address of the user to the order's email address
+  #
+  # @param none
+  # @return [none]
+  def set_email
+    self.email = user.email if user_id
+  end
+
+  # Called before validation.  sets the order number, if the id is nil the order number is bogus
+  #
+  # @param none
+  # @return [none]
+  def set_number
+    return set_order_number if self.id
+    self.number = (Time.now.to_i).to_s(CHARACTERS_SEED)## fake number for friendly_id validator
+  end
+
+  # sets the order number based off constants and the order id
+  #
+  # @param none
+  # @return [none]
+  def set_order_number
+    self.number = (NUMBER_SEED + id).to_s(CHARACTERS_SEED)
+  end
+
+
+  # Called after_create.  sets the order number
+  #
+  # @param none
+  # @return [none]
+  def save_order_number
+    set_order_number
+    save
+  end
+
+  # Called before save.  If the ship address changes the tax rate for all the order items needs to change appropriately
+  #
+  # @param none
+  # @return [none]
+  def update_tax_rates
+    if @beginning_address_id != ship_address_id
+      set_beginning_values
+      tax_time = completed_at? ? completed_at : Time.zone.now
+      order_items.each do |item|
+        rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
+        if rate && item.tax_rate_id != rate.id
+          item.tax_rate = rate
+          item.save
+        end
+      end
+    end
+  end
 
   def create_invoice_transaction(credit_card, charge_amount, args)
     invoice_statement = Invoice.generate(self.id, charge_amount)
