@@ -92,7 +92,16 @@ NOTE  Payment profile methods have been created however these methods have
 not been tested in any fashion
 </p>
 <pre class="code">
-  These method are here to give you a heads start.  Once CIM is created these methods will be ready for use.</pre>
+  These method are here to give you a heads start.  Once CIM is created these methods will be ready for use.
+</pre>
+<h1>> Please refer to the following web page about seting up CIM.  This code has not been fully tested but</h1>
+<pre class="code">
+    should serve you very well.
+</pre>
+<p>
+<a
+href="http://cookingandcoding.com/2010/01/14/using-activemerchant-with-authorize-net-and-authorize-cim">cookingandcoding.com/2010/01/14/using-activemerchant-with-authorize-net-and-authorize-cim</a>/
+</p>
 
 
   </div>
@@ -198,7 +207,7 @@ validates :address_id,      :presence => true.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#new_credit_card-instance_method" title="#new_credit_card (instance method)">- (Object) <strong>new_credit_card</strong> </a>
+      <a href="#new_credit_card-instance_method" title="#new_credit_card (instance method)">- (CreditCard) <strong>new_credit_card</strong> </a>
     
 
     
@@ -211,7 +220,10 @@ validates :address_id,      :presence => true.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+credit card object with known values.
+</p>
+</div></span>
   
 </li>
 
@@ -252,12 +264,12 @@ attr_accessor :address attr_accessor :credit_card
       <pre class="lines">
 
 
-11
-12
-13</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id credit_card'>credit_card</span>
   <span class='ivar'>@credit_card</span>
@@ -294,12 +306,12 @@ attr_accessor :address attr_accessor :credit_card
       <pre class="lines">
 
 
-11
-12
-13</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id request_ip'>request_ip</span>
   <span class='ivar'>@request_ip</span>
@@ -340,11 +352,6 @@ validates :address_id,      :presence => true
       <pre class="lines">
 
 
-22
-23
-24
-25
-26
 27
 28
 29
@@ -359,10 +366,15 @@ validates :address_id,      :presence => true
 38
 39
 40
-41</pre>
+41
+42
+43
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id create_payment_profile'>create_payment_profile</span>
   <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id payment_cim_id'>payment_cim_id</span>
@@ -392,28 +404,67 @@ validates :address_id,      :presence => true
       <div class="method_details ">
   <p class="signature " id="new_credit_card-instance_method">
   
-    - (<tt>Object</tt>) <strong>new_credit_card</strong> 
+    - (<tt>CreditCard</tt>) <strong>new_credit_card</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+credit card object with known values
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>CreditCard</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-78
-79
-80
-81
-82
-83
-84
-85
-86</pre>
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id new_credit_card'>new_credit_card</span>
   <span class='comment'># populate new card with some saved values
@@ -434,7 +485,7 @@ validates :address_id,      :presence => true
 </div>
     
     <div id="footer">
-  Generated on Tue Dec 28 07:52:43 2010 by 
+  Generated on Thu Dec 30 08:56:09 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

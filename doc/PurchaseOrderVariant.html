@@ -120,7 +120,7 @@ This method will need a rescue method i assume.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#receive_po-instance_method" title="#receive_po (instance method)">- (Object) <strong>receive_po</strong> </a>
+      <a href="#receive_po-instance_method" title="#receive_po (instance method)">- (Boolean) <strong>receive_po</strong> </a>
     
 
     
@@ -133,7 +133,10 @@ This method will need a rescue method i assume.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+method used by forms to set if the PO is received or not.
+</p>
+</div></span>
   
 </li>
 
@@ -141,7 +144,7 @@ This method will need a rescue method i assume.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#receive_po%3D-instance_method" title="#receive_po= (instance method)">- (Object) <strong>receive_po=</strong>(answer) </a>
+      <a href="#receive_po%3D-instance_method" title="#receive_po= (instance method)">- (none) <strong>receive_po=</strong>(answer) </a>
     
 
     
@@ -154,7 +157,10 @@ This method will need a rescue method i assume.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+in the admin form this is the method called when the form is submitted,.
+</p>
+</div></span>
   
 </li>
 
@@ -239,22 +245,61 @@ This method will need a rescue method i assume.
       <div class="method_details ">
   <p class="signature " id="receive_po-instance_method">
   
-    - (<tt>Object</tt>) <strong>receive_po</strong> 
+    - (<tt>Boolean</tt>) <strong>receive_po</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+method used by forms to set if the PO is received or not
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-31
-32
-33</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id receive_po'>receive_po</span>
   <span class='id is_received?'>is_received?</span>
@@ -267,24 +312,71 @@ This method will need a rescue method i assume.
       <div class="method_details ">
   <p class="signature " id="receive_po=-instance_method">
   
-    - (<tt>Object</tt>) <strong>receive_po=</strong>(answer) 
+    - (<tt>none</tt>) <strong>receive_po=</strong>(answer) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+in the admin form this is the method called when the form is submitted,
+</p>
+<pre class="code">
+  <span class='const'>The</span> <span class='id method'>method</span> <span class='id receives'>receives</span> <span class='id the'>the</span> <span class='const'>PO</span> <span class='kw'>and</span> <span class='id handles'>handles</span> <span class='id the'>the</span> <span class='id inventory'>inventory</span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>value</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+for set_keywords in a products form
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-25
-26
-27
-28
-29</pre>
+30
+31
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'app/models/purchase_order_variant.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id receive_po='>receive_po=</span><span class='lparen'>(</span><span class='id answer'>answer</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id answer'>answer</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>true</span><span class='tstring_end'>'</span></span> <span class='op'>||</span> <span class='id answer'>answer</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id is_received?'>is_received?</span>
@@ -301,7 +393,7 @@ This method will need a rescue method i assume.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec 28 07:52:44 2010 by 
+  Generated on Thu Dec 30 08:56:09 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

@@ -96,7 +96,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Object) <strong>admin_grid</strong>(params = {}) </a>
+      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Array[ProductType]) <strong>admin_grid</strong>(params = {}) </a>
     
 
     
@@ -109,7 +109,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+paginated results from the admin ProductType grid.
+</p>
+</div></span>
   
 </li>
 
@@ -127,30 +130,69 @@
       <div class="method_details first">
   <p class="signature first" id="admin_grid-class_method">
   
-    + (<tt>Object</tt>) <strong>admin_grid</strong>(params = {}) 
+    + (<tt>Array[<span class='object_link'><a href="" title="ProductType (class)">ProductType</a></span>]</tt>) <strong>admin_grid</strong>(params = {}) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+paginated results from the admin ProductType grid
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="ProductType (class)">ProductType</a></span>]</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-7
-8
-9
-10
 11
 12
 13
 14
 15
 16
-17</pre>
+17
+18
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product_type.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'app/models/product_type.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -173,7 +215,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Dec 28 07:52:43 2010 by 
+  Generated on Thu Dec 30 08:56:08 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

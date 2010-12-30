@@ -128,7 +128,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Object) <strong>admin_grid</strong>(params = {}, active_state = nil) </a>
+      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Array[Product]) <strong>admin_grid</strong>(params = {}, active_state = nil) </a>
     
 
     
@@ -141,7 +141,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+paginated results from the admin products grid.
+</p>
+</div></span>
   
 </li>
 
@@ -149,7 +152,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#featured-class_method" title="featured (class method)">+ (Object) <strong>featured</strong> </a>
+      <a href="#featured-class_method" title="featured (class method)">+ (Product) <strong>featured</strong> </a>
     
 
     
@@ -162,7 +165,11 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+This returns the first featured product in the database, if there
+isn&#8217;t a featured product the first product will be returned.
+</p>
+</div></span>
   
 </li>
 
@@ -170,7 +177,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#standard_search-class_method" title="standard_search (class method)">+ (Object) <strong>standard_search</strong>(args, params) </a>
+      <a href="#standard_search-class_method" title="standard_search (class method)">+ (Product) <strong>standard_search</strong>(args, params) </a>
     
 
     
@@ -183,7 +190,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Solr searching for products.
+</p>
+</div></span>
   
 </li>
 
@@ -200,7 +210,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#display_price_range-instance_method" title="#display_price_range (instance method)">- (Object) <strong>display_price_range</strong>(j = ' to ') </a>
+      <a href="#display_price_range-instance_method" title="#display_price_range (instance method)">- (String) <strong>display_price_range</strong>(j = ' to ') </a>
     
 
     
@@ -213,7 +223,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+range of the product prices in plain english.
+</p>
+</div></span>
   
 </li>
 
@@ -221,7 +234,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#featured_image-instance_method" title="#featured_image (instance method)">- (Object) <strong>featured_image</strong>(image_size = :small) </a>
+      <a href="#featured_image-instance_method" title="#featured_image (instance method)">- (String) <strong>featured_image</strong>(image_size = :small) </a>
     
 
     
@@ -234,7 +247,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Image that is featured for your product.
+</p>
+</div></span>
   
 </li>
 
@@ -242,7 +258,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#last_master_variant-instance_method" title="#last_master_variant (instance method)">- (Object) <strong>last_master_variant</strong> </a>
+      <a href="#last_master_variant-instance_method" title="#last_master_variant (instance method)">- (Variant or nil) <strong>last_master_variant</strong> </a>
     
 
     
@@ -255,7 +271,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+find the last master variant that was inactivated.
+</p>
+</div></span>
   
 </li>
 
@@ -263,7 +282,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#price-instance_method" title="#price (instance method)">- (Object) <strong>price</strong> </a>
+      <a href="#price-instance_method" title="#price (instance method)">- (Decimal) <strong>price</strong> </a>
     
 
     
@@ -276,7 +295,11 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Price of master variant or last_master_variant if all the variants are
+inactive.
+</p>
+</div></span>
   
 </li>
 
@@ -284,7 +307,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#price_range-instance_method" title="#price_range (instance method)">- (Object) <strong>price_range</strong> </a>
+      <a href="#price_range-instance_method" title="#price_range (instance method)">- (Array) <strong>price_range</strong> </a>
     
 
     
@@ -297,7 +320,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+range of the product prices (Just teh low and high price) as an array.
+</p>
+</div></span>
   
 </li>
 
@@ -318,7 +344,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Answers if the product has a price range or just one price.
+</p>
+</div></span>
   
 </li>
 
@@ -326,7 +355,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_keywords-instance_method" title="#set_keywords (instance method)">- (Object) <strong>set_keywords</strong> </a>
+      <a href="#set_keywords-instance_method" title="#set_keywords (instance method)">- (String) <strong>set_keywords</strong> </a>
     
 
     
@@ -339,7 +368,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+method used by forms to set the array of keywords separated by a comma.
+</p>
+</div></span>
   
 </li>
 
@@ -347,7 +379,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_keywords%3D-instance_method" title="#set_keywords= (instance method)">- (Object) <strong>set_keywords=</strong>(value) </a>
+      <a href="#set_keywords%3D-instance_method" title="#set_keywords= (instance method)">- (none) <strong>set_keywords=</strong>(value) </a>
     
 
     
@@ -360,7 +392,11 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+in the admin form this is the method called when the form is submitted, The
+method sets the product_keywords attribute to an array of these values.
+</p>
+</div></span>
   
 </li>
 
@@ -368,7 +404,7 @@ these the the shipping rates per the shipping address on the order.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#tax_rate-instance_method" title="#tax_rate (instance method)">- (Object) <strong>tax_rate</strong>(state_id, time = Time.zone.now) </a>
+      <a href="#tax_rate-instance_method" title="#tax_rate (instance method)">- (TaxRate) <strong>tax_rate</strong>(state_id, time = Time.zone.now) </a>
     
 
     
@@ -381,7 +417,10 @@ these the the shipping rates per the shipping address on the order.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+gives you the tax rate for the give state_id and the time.
+</p>
+</div></span>
   
 </li>
 
@@ -446,35 +485,91 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details first">
   <p class="signature first" id="admin_grid-class_method">
   
-    + (<tt>Object</tt>) <strong>admin_grid</strong>(params = {}, active_state = nil) 
+    + (<tt>Array[<span class='object_link'><a href="" title="Product (class)">Product</a></span>]</tt>) <strong>admin_grid</strong>(params = {}, active_state = nil) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+paginated results from the admin products grid
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional Boolean</tt>)</span>
+      
+      
+        <span class='name'>the</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+state of the product you are searching (active == true)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="Product (class)">Product</a></span>]</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137</pre>
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id active_state'>active_state</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
 
@@ -500,26 +595,66 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details ">
   <p class="signature " id="featured-class_method">
   
-    + (<tt>Object</tt>) <strong>featured</strong> 
+    + (<tt><span class='object_link'><a href="" title="Product (class)">Product</a></span></tt>) <strong>featured</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+This returns the first featured product in the database, if there
+isn&#8217;t a featured product the first product will be returned
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Product (class)">Product</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-117
-118
-119
-120</pre>
+168
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 168</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id featured'>featured</span>
-  <span class='id product'>product</span> <span class='op'>=</span> <span class='const'>Product</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>products.featured = ? </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:images</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span>
+  <span class='id product'>product</span> <span class='op'>=</span> <span class='const'>Product</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:products</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:featured</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span> <span class='rbrace'>}</span> <span class='rparen'>)</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:images</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span>
   <span class='id product'>product</span> <span class='op'>?</span> <span class='id product'>product</span> <span class='op'>:</span> <span class='const'>Product</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:images</span><span class='rparen'>)</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>products.deleted_at IS NULL</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -530,29 +665,85 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details ">
   <p class="signature " id="standard_search-class_method">
   
-    + (<tt>Object</tt>) <strong>standard_search</strong>(args, params) 
+    + (<tt><span class='object_link'><a href="" title="Product (class)">Product</a></span></tt>) <strong>standard_search</strong>(args, params) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Solr searching for products
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>args</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>params</tt>)</span>
+      
+      
+        <span class='name'>:rows,</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+:page
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Product (class)">Product</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115</pre>
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id standard_search'>standard_search</span><span class='lparen'>(</span><span class='id args'>args</span><span class='comma'>,</span> <span class='id params'>params</span><span class='rparen'>)</span>
   <span class='const'>Product</span><span class='period'>.</span><span class='id search'>search</span><span class='lparen'>(</span><span class='symbol'>:include</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:properties</span><span class='comma'>,</span> <span class='symbol'>:images</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -578,22 +769,73 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details first">
   <p class="signature first" id="display_price_range-instance_method">
   
-    - (<tt>Object</tt>) <strong>display_price_range</strong>(j = ' to ') 
+    - (<tt>String</tt>) <strong>display_price_range</strong>(j = ' to ') 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+range of the product prices in plain english
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional String</tt>)</span>
+      
+      
+        <span class='name'>separator</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+between the low and high price
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Low price + separator + High price
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-84
-85
-86</pre>
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id display_price_range'>display_price_range</span><span class='lparen'>(</span><span class='id j'>j</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> to </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='id price_range'>price_range</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='id j'>j</span><span class='rparen'>)</span>
@@ -606,22 +848,73 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details ">
   <p class="signature " id="featured_image-instance_method">
   
-    - (<tt>Object</tt>) <strong>featured_image</strong>(image_size = :small) 
+    - (<tt>String</tt>) <strong>featured_image</strong>(image_size = :small) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Image that is featured for your product
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional Symbol</tt>)</span>
+      
+      
+        <span class='name'>the</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+size of the image expected back
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the file to show from the public folder
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-68
-69
-70</pre>
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id featured_image'>featured_image</span><span class='lparen'>(</span><span class='id image_size'>image_size</span> <span class='op'>=</span> <span class='symbol'>:small</span><span class='rparen'>)</span>
   <span class='id images'>images</span><span class='period'>.</span><span class='id first'>first</span> <span class='op'>?</span> <span class='id images'>images</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id photo'>photo</span><span class='period'>.</span><span class='id url'>url</span><span class='lparen'>(</span><span class='id image_size'>image_size</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>no_image_</span><span class='embexpr_beg'>#{</span><span class='id image_size'>image_size</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rbrace'>}</span><span class='tstring_content'>.jpg</span><span class='tstring_end'>&quot;</span></span>
@@ -634,25 +927,70 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details ">
   <p class="signature " id="last_master_variant-instance_method">
   
-    - (<tt>Object</tt>) <strong>last_master_variant</strong> 
+    - (<tt><span class='object_link'><a href="Variant.html" title="Variant (class)">Variant</a></span> or nil</tt>) <strong>last_master_variant</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+find the last master variant that was inactivated
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Variant.html" title="Variant (class)">Variant</a></span> or nil</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+variant of the last master variant that was inactivated
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-102
-103
-104</pre>
+142
+143
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id last_master_variant'>last_master_variant</span>
-  <span class='id inactive_master_variants'>inactive_master_variants</span><span class='period'>.</span><span class='id last'>last</span>
+  <span class='id inactive_master_variants'>inactive_master_variants</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:last</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -662,22 +1000,74 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details ">
   <p class="signature " id="price-instance_method">
   
-    - (<tt>Object</tt>) <strong>price</strong> 
+    - (<tt>Decimal</tt>) <strong>price</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Price of master variant or last_master_variant if all the variants are
+inactive
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'>the</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+size of the image expected back
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Decimal</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+price
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-72
-73
-74</pre>
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id price'>price</span>
   <span class='id master_variant'>master_variant</span> <span class='op'>?</span> <span class='id master_variant'>master_variant</span><span class='period'>.</span><span class='id price'>price</span> <span class='op'>:</span> <span class='id last_master_variant'>last_master_variant</span><span class='period'>.</span><span class='id price'>price</span>
@@ -690,28 +1080,70 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details ">
   <p class="signature " id="price_range-instance_method">
   
-    - (<tt>Object</tt>) <strong>price_range</strong> 
+    - (<tt>Array</tt>) <strong>price_range</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+range of the product prices (Just teh low and high price) as an array
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-88
-89
-90
-91
-92
-93
-94
-95
-96</pre>
+119
+120
+121
+122
+123
+124
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id price_range'>price_range</span>
   <span class='kw'>return</span> <span class='ivar'>@price_range</span> <span class='kw'>if</span> <span class='ivar'>@price_range</span>
@@ -736,17 +1168,190 @@ these the the shipping rates per the shipping address on the order
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+Answers if the product has a price range or just one price.
+</p>
+<pre class="code">
+  if there is more than one price returns true</pre>
+
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
       
         <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+true == there is more than one price
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 134</span>
+
+<span class='kw'>def</span> <span class='id price_range?'>price_range?</span>
+  <span class='op'>!</span><span class='lparen'>(</span><span class='id price_range'>price_range</span><span class='period'>.</span><span class='id first'>first</span> <span class='op'>==</span> <span class='id price_range'>price_range</span><span class='period'>.</span><span class='id last'>last</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_keywords-instance_method">
+  
+    - (<tt>String</tt>) <strong>set_keywords</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+method used by forms to set the array of keywords separated by a comma
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+product_keywords separated by comma
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id set_keywords'>set_keywords</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id product_keywords'>product_keywords</span> <span class='op'>?</span> <span class='kw'>self</span><span class='period'>.</span><span class='id product_keywords'>product_keywords</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_keywords=-instance_method">
+  
+    - (<tt>none</tt>) <strong>set_keywords=</strong>(value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+in the admin form this is the method called when the form is submitted, The
+method sets the product_keywords attribute to an array of these values
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>value</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+for set_keywords in a products form
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -761,68 +1366,12 @@ these the the shipping rates per the shipping address on the order
       <pre class="lines">
 
 
-98
-99
-100</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 98</span>
-
-<span class='kw'>def</span> <span class='id price_range?'>price_range?</span>
-  <span class='op'>!</span><span class='lparen'>(</span><span class='id price_range'>price_range</span><span class='period'>.</span><span class='id first'>first</span> <span class='op'>==</span> <span class='id price_range'>price_range</span><span class='period'>.</span><span class='id last'>last</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="set_keywords-instance_method">
-  
-    - (<tt>Object</tt>) <strong>set_keywords</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-80
-81
-82</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 80</span>
-
-<span class='kw'>def</span> <span class='id set_keywords'>set_keywords</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id product_keywords'>product_keywords</span> <span class='op'>?</span> <span class='kw'>self</span><span class='period'>.</span><span class='id product_keywords'>product_keywords</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="set_keywords=-instance_method">
-  
-    - (<tt>Object</tt>) <strong>set_keywords=</strong>(value) 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-76
-77
-78</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id set_keywords='>set_keywords=</span><span class='lparen'>(</span><span class='id value'>value</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id product_keywords'>product_keywords</span> <span class='op'>=</span> <span class='id value'>value</span> <span class='op'>?</span> <span class='id value'>value</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id w'>w</span><span class='op'>|</span> <span class='id w'>w</span><span class='period'>.</span><span class='id strip'>strip</span><span class='rbrace'>}</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -835,28 +1384,92 @@ these the the shipping rates per the shipping address on the order
       <div class="method_details ">
   <p class="signature " id="tax_rate-instance_method">
   
-    - (<tt>Object</tt>) <strong>tax_rate</strong>(state_id, time = Time.zone.now) 
+    - (<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>) <strong>tax_rate</strong>(state_id, time = Time.zone.now) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+gives you the tax rate for the give state_id and the time.
+</p>
+<pre class="code">
+ <span class='const'>Tax</span> <span class='id rates'>rates</span> <span class='id can'>can</span> <span class='id change'>change</span> <span class='id from'>from</span> <span class='id year'>year</span> <span class='id to'>to</span> <span class='id year'>year</span> <span class='id so'>so</span> <span class='const'>Time</span> <span class='id is'>is</span> <span class='id a'>a</span> <span class='id factor'>factor</span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <span class='name'>state.id</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional Time</tt>)</span>
+      
+      
+        <span class='name'>Time</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+now if no value is passed in
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+TaxRate for the state at a given time
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-58
-59
-60
-61
-62
-63
 64
 65
-66</pre>
+66
+67
+68
+69
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id tax_rate'>tax_rate</span><span class='lparen'>(</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id time'>time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id tax_status'>tax_status</span><span class='period'>.</span><span class='id tax_rates'>tax_rates</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>state_id = ? AND
@@ -877,7 +1490,7 @@ these the the shipping rates per the shipping address on the order
 </div>
     
     <div id="footer">
-  Generated on Tue Dec 28 07:52:43 2010 by 
+  Generated on Thu Dec 30 08:56:08 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

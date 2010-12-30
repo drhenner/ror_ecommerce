@@ -123,7 +123,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Object) <strong>admin_grid</strong>(params = {}) </a>
+      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Array[PurchaseOrder]) <strong>admin_grid</strong>(params = {}) </a>
     
 
     
@@ -136,7 +136,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+paginated results from the admin PurchaseOrder grid.
+</p>
+</div></span>
   
 </li>
 
@@ -144,7 +147,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#receiving_admin_grid-class_method" title="receiving_admin_grid (class method)">+ (Object) <strong>receiving_admin_grid</strong>(params = {}) </a>
+      <a href="#receiving_admin_grid-class_method" title="receiving_admin_grid (class method)">+ (Array[PurchaseOrder]) <strong>receiving_admin_grid</strong>(params = {}) </a>
     
 
     
@@ -157,7 +160,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+paginated results from the admin PurchaseOrder grid for PO to receive.
+</p>
+</div></span>
   
 </li>
 
@@ -352,20 +358,55 @@
       <div class="method_details first">
   <p class="signature first" id="admin_grid-class_method">
   
-    + (<tt>Object</tt>) <strong>admin_grid</strong>(params = {}) 
+    + (<tt>Array[<span class='object_link'><a href="" title="PurchaseOrder (class)">PurchaseOrder</a></span>]</tt>) <strong>admin_grid</strong>(params = {}) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+paginated results from the admin PurchaseOrder grid
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="PurchaseOrder (class)">PurchaseOrder</a></span>]</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-101
-102
-103
-104
 105
 106
 107
@@ -375,10 +416,14 @@
 111
 112
 113
-114</pre>
+114
+115
+116
+117
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/purchase_order.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'app/models/purchase_order.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -402,33 +447,72 @@
       <div class="method_details ">
   <p class="signature " id="receiving_admin_grid-class_method">
   
-    + (<tt>Object</tt>) <strong>receiving_admin_grid</strong>(params = {}) 
+    + (<tt>Array[<span class='object_link'><a href="" title="PurchaseOrder (class)">PurchaseOrder</a></span>]</tt>) <strong>receiving_admin_grid</strong>(params = {}) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+paginated results from the admin PurchaseOrder grid for PO to receive
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="PurchaseOrder (class)">PurchaseOrder</a></span>]</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-116
-117
-118
-119
-120
-121
-122
-123
 124
 125
 126
 127
 128
-129</pre>
+129
+130
+131
+132
+133
+134
+135
+136
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/purchase_order.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'app/models/purchase_order.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id receiving_admin_grid'>receiving_admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -742,7 +826,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Dec 28 07:52:43 2010 by 
+  Generated on Thu Dec 30 08:56:09 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>
