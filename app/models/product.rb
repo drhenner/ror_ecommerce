@@ -55,6 +55,12 @@ class Product < ActiveRecord::Base
   validates :product_type_id,       :presence => true
   validates :prototype_id,          :presence => true
 
+  # gives you the tax rate for the give state_id and the time.
+  #  Tax rates can change from year to year so Time is a factor
+  #
+  # @param [Integer] state.id
+  # @param [Optional Time] Time now if no value is passed in
+  # @return [TaxRate] TaxRate for the state at a given time
   def tax_rate(state_id, time = Time.zone.now)
     self.tax_status.tax_rates.where(["state_id = ? AND
                            start_date <= ? AND
@@ -65,26 +71,51 @@ class Product < ActiveRecord::Base
                                         true]).order('start_date DESC').first
   end
 
+  # Image that is featured for your product
+  #
+  # @param [Optional Symbol] the size of the image expected back
+  # @return [String] name of the file to show from the public folder
   def featured_image(image_size = :small)
     images.first ? images.first.photo.url(image_size) : "no_image_#{image_size.to_s}.jpg"
   end
 
+  # Price of master variant or last_master_variant if all the variants are inactive
+  #
+  # @param [none] the size of the image expected back
+  # @return [Decimal] price
   def price
     master_variant ? master_variant.price : last_master_variant.price
   end
 
+  # in the admin form this is the method called when the form is submitted, The method sets
+  # the product_keywords attribute to an array of these values
+  #
+  # @param [String] value for set_keywords in a products form
+  # @return [none]
   def set_keywords=(value)
     self.product_keywords = value ? value.split(',').map{|w| w.strip} : []
   end
 
+  # method used by forms to set the array of keywords separated by a comma
+  #
+  # @param [none]
+  # @return [String] product_keywords separated by comma
   def set_keywords
     self.product_keywords ? self.product_keywords.join(', ') : ''
   end
 
+  # range of the product prices in plain english
+  #
+  # @param [Optional String] separator between the low and high price
+  # @return [String] Low price + separator + High price
   def display_price_range(j = ' to ')
     price_range.join(j)
   end
 
+  # range of the product prices (Just teh low and high price) as an array
+  #
+  # @param [none]
+  # @return [Array] [Low price, High price]
   def price_range
     return @price_range if @price_range
     return @price_range = ['N/A', 'N/A'] if active_variants.empty?
@@ -95,14 +126,29 @@ class Product < ActiveRecord::Base
     end
   end
 
+  # Answers if the product has a price range or just one price.
+  #   if there is more than one price returns true
+  #
+  # @param [none]
+  # @return [Boolean] true == there is more than one price
   def price_range?
     !(price_range.first == price_range.last)
   end
 
+  # find the last master variant that was inactivated
+  #
+  # @param [none]
+  # @return [Variant or nil] variant of the last master variant that was inactivated
   def last_master_variant
-    inactive_master_variants.last
+    inactive_master_variants.try(:last)
   end
 
+
+  # Solr searching for products
+  #
+  # @param [args]
+  # @param [params]  :rows, :page
+  # @return [ Product ]
   def self.standard_search(args, params)
     Product.search(:include => [:properties, :images]) do
       keywords(args)
@@ -114,11 +160,21 @@ class Product < ActiveRecord::Base
     end
   end
 
+  # This returns the first featured product in the database,
+  # if there isn't a featured product the first product will be returned
+  #
+  # @param [none]
+  # @return [ Product ]
   def self.featured
-    product = Product.where("products.featured = ? ", true).includes(:images).first
+    product = Product.where({ :products => {:featured => true} } ).includes(:images).first
     product ? product : Product.includes(:images).where(['products.deleted_at IS NULL']).first
   end
 
+  # paginated results from the admin products grid
+  #
+  # @param [Optional params]
+  # @param [Optional Boolean] the state of the product you are searching (active == true)
+  # @return [ Array[Product] ]
   def self.admin_grid(params = {}, active_state = nil)
 
     params[:page] ||= 1

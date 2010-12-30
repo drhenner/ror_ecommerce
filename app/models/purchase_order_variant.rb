@@ -22,12 +22,21 @@ class PurchaseOrderVariant < ActiveRecord::Base
     end
   end
 
+  # in the admin form this is the method called when the form is submitted,
+  #   The method receives the PO and handles the inventory
+  #
+  # @param [String] value for set_keywords in a products form
+  # @return [none]
   def receive_po=(answer)
     if (answer == 'true' || answer == '1') && !is_received?
       receive!
     end
   end
 
+  # method used by forms to set if the PO is received or not
+  #
+  # @param [none]
+  # @return [Boolean]
   def receive_po
     is_received?
   end

@@ -4,6 +4,10 @@ class ProductType < ActiveRecord::Base
 
   validates :name,    :presence => true
 
+  # paginated results from the admin ProductType grid
+  #
+  # @param [Optional params]
+  # @return [ Array[ProductType] ]
   def self.admin_grid(params = {})
 
     params[:page] ||= 1

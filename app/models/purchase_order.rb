@@ -98,6 +98,10 @@ class PurchaseOrder < ActiveRecord::Base
     end
   end
 
+  # paginated results from the admin PurchaseOrder grid
+  #
+  # @param [Optional params]
+  # @return [ Array[PurchaseOrder] ]
   def self.admin_grid(params = {})
 
     params[:page] ||= 1
@@ -113,6 +117,10 @@ class PurchaseOrder < ActiveRecord::Base
     grid.paginate({:page => params[:page]})
   end
 
+  # paginated results from the admin PurchaseOrder grid for PO to receive
+  #
+  # @param [Optional params]
+  # @return [ Array[PurchaseOrder] ]
   def self.receiving_admin_grid(params = {})
 
     params[:page] ||= 1
