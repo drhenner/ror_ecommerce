@@ -1,5 +1,10 @@
 ##  NOTE  Payment profile methods have been created however these methods have not been tested in any fashion
 #   These method are here to give you a heads start.  Once CIM is created these methods will be ready for use.
+#
+# => Please refer to the following web page about seting up CIM.  This code has not been fully tested but
+#     should serve you very well.
+# http://cookingandcoding.com/2010/01/14/using-activemerchant-with-authorize-net-and-authorize-cim/
+#
 class PaymentProfile < ActiveRecord::Base
   include ActiveMerchant::Utils
 
@@ -61,11 +66,15 @@ class PaymentProfile < ActiveRecord::Base
     end
   end
 
+  # method used by forms to credit a dummy credit card
+  #
   # ------------
   # behave like it's
   #   has_one :credit_card
   #   accepts_nested_attributes_for :credit_card
-
+  #
+  # @param [none]
+  # @return [CreditCard]
   def credit_card=( card_or_params )
     @credit_card = case card_or_params
       when ActiveMerchant::Billing::CreditCard, nil
@@ -75,6 +84,11 @@ class PaymentProfile < ActiveRecord::Base
       end
   end
 
+
+  # credit card object with known values
+  #
+  # @param [none]
+  # @return [CreditCard]
   def new_credit_card
     # populate new card with some saved values
     ActiveMerchant::Billing::CreditCard.new(
