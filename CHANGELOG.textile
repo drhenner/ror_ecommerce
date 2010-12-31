@@ -1,4 +1,9 @@
 
+h3. 0.3.0 2010-12-30
+
+* YARD docs complete
+* admin grid pagination fix
+
 h3. 0.2.0 2010-12-26
 
 * more YARD docs
