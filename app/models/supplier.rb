@@ -7,6 +7,10 @@ class Supplier < ActiveRecord::Base
   validates :name,        :presence => true
   validates :email,       :format   => { :with => CustomValidators::Emails.email_validator }
 
+  # paginated results from the admin Supplier grid
+  #
+  # @param [Optional params]
+  # @return [ Array[Variant] ]
   def self.admin_grid(params = {})
 
     params[:page] ||= 1

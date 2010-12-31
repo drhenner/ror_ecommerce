@@ -120,30 +120,59 @@ class User < ActiveRecord::Base
 
   end
 
+  # returns true or false if the user is active or not
+  #
+  # @param [none]
+  # @return [ Boolean ]
   def active?
     !['canceled', 'inactive'].any? {|s| self.state == s }
   end
 
+  # in plain english returns 'true' or 'false' if the user is active or not
+  #
+  # @param [none]
+  # @return [ String ]
   def display_active
     active?.to_s
   end
 
+  # returns true or false if the user has a role or not
+  #
+  # @param [String] role name the user should have
+  # @return [ Boolean ]
   def role?(role_name)
     roles.any? {|r| r.name == role_name.to_s}
   end
 
+  # returns true or false if the user is an admin or not
+  #
+  # @param [none]
+  # @return [ Boolean ]
   def admin?
     role?(:administrator) || role?(:super_administrator)
   end
 
+  # returns true or false if the user is a super admin or not
+  # FYI your IT staff might be an admin but your CTO and IT director is a super admin
+  #
+  # @param [none]
+  # @return [ Boolean ]
   def super_admin?
     role?(:super_administrator)
   end
 
+  # returns your last cart or nil
+  #
+  # @param [none]
+  # @return [ Cart ]
   def current_cart
     carts.last
   end
 
+  # formats the String
+  #
+  # @param [String] formatted in Euro-time
+  # @return [ none ]  sets birth_date for the user
   def format_birth_date(b_date)
     self.birth_date = Date.strptime(b_date, "%m/%d/%Y") if b_date.present?
   end
@@ -154,22 +183,42 @@ class User < ActiveRecord::Base
     Product.limit(4).find(:all)
   end
 
+  # Returns the default billing address if it exists.   otherwise returns the shipping address
+  #
+  # @param [none]
+  # @return [ Address ]
   def billing_address
     default_billing_address ? default_billing_address : shipping_address
   end
 
+  # Returns the default shipping address if it exists.   otherwise returns the first shipping address
+  #
+  # @param [none]
+  # @return [ Address ]
   def shipping_address
     default_shipping_address ? default_shipping_address : shipping_addresses.first
   end
 
+  # returns true or false if the user is a registered user or not
+  #
+  # @param [none]
+  # @return [ Boolean ]
   def registered_user?
     registered? || registered_with_credit?
   end
 
+  # gives the user's first and last name if available, otherwise returns the users email
+  #
+  # @param [none]
+  # @return [ String ]
   def name
     (first_name? && last_name?) ? [first_name.capitalize, last_name.capitalize ].join(" ") : email
   end
 
+  # sanitizes the saving of data.  removes white space and assigns a free account type if one doesn't exist
+  #
+  # @param  [ none ]
+  # @return [ none ]
   def sanitize_data
     self.email      = self.email.strip.downcase       unless email.blank?
     self.first_name = self.first_name.strip.capitalize  unless first_name.nil?
@@ -181,24 +230,45 @@ class User < ActiveRecord::Base
     end
   end
 
+  # email activation instructions after a user signs up
+  #
+  # @param  [ none ]
+  # @return [ none ]
   def deliver_activation_instructions!
     Notifier.signup_notification(self).deliver
   end
 
+  # name and email string for the user
+  # ex. '"John Wayne" "jwayne@badboy.com"'
+  #
+  # @param  [ none ]
+  # @return [ String ]
   def email_address_with_name
     "\"#{name}\" <#{email}>"
   end
 
+  # place holder method for creating cim profiles for recurring billing
+  #
+  # @param  [ none ]
+  # @return [ String ] CIM id returned from the gateway
   def get_cim_profile
     return customer_cim_id if customer_cim_id
     create_cim_profile
     customer_cim_id
   end
 
+  # name and first line of address
+  #
+  # @param  [ none ]
+  # @return [ String ] name and first line of address
   def merchant_description
     [name, default_shipping_address.try(:address_lines)].compact.join(', ')
   end
 
+  # paginated results from the admin User grid
+  #
+  # @param [Optional params]
+  # @return [ Array[User] ]
   def self.admin_grid(params = {})
 
     params[:page] ||= 1
