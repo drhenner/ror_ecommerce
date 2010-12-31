@@ -41,7 +41,7 @@
     <% end %>
   </div>
   <div class='span-8 float-left last'>
-    <%= form_for  :cart_item, @cart_item,
+    <%= form_for  @cart_item, :as => :cart_item,
                   :url  => shopping_cart_items_path(@cart_item),
                   :html => { :id => 'new_cart_item' } do |f| %>
       <% if @product.variants.size == 1 %>
