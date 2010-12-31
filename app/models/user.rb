@@ -284,6 +284,7 @@ class User < ActiveRecord::Base
   end
 
   private
+
   def password_required?
     self.crypted_password.blank?
   end

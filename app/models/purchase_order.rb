@@ -37,6 +37,11 @@ class PurchaseOrder < ActiveRecord::Base
     end
   end
 
+  # in the admin form this is the method called when the form is submitted, The method sets
+  # the PO to complete, pays for the order in the accounting peice and adds the inventory to stock
+  #
+  # @param [String] value for set_keywords in a products form
+  # @return [none]
   def receive_po=(answer)
 
     if (answer == 'true' || answer == '1') && (state != RECEIVED)
@@ -44,10 +49,18 @@ class PurchaseOrder < ActiveRecord::Base
     end
   end
 
+  # in the admin form this is the method called when the form is created, The method
+  # determines if the order has already been received
+  #
+  # @return [Boolean]
   def receive_po
     (state == RECEIVED)
   end
 
+  # called by state machine after the PO is complete.  adds the inventory to stock
+  #
+  # @param [none]
+  # @return [none]
   def receive_variants
     po_variants = PurchaseOrderVariant.where(:purchase_order_id => self.id).find(:all, :lock => "LOCK IN SHARE MODE")
     po_variants.each do |po_variant|
@@ -55,6 +68,10 @@ class PurchaseOrder < ActiveRecord::Base
     end
   end
 
+  # returns "Yes" if the PO has been received, otherwise "No"
+  #
+  # @param [none]
+  # @return [String]  "Yes" or "No"
   def display_received
     (state == RECEIVED) ? 'Yes' : 'No'
   end
@@ -63,10 +80,18 @@ class PurchaseOrder < ActiveRecord::Base
     estimated_arrival_on? ? estimated_arrival_on.to_s(:format => :us_date) : ""
   end
 
+  # returns "the tracking #" if the tracking # exists, otherwise "N/A"
+  #
+  # @param [none]
+  # @return [String]  "Yes" or "No"
   def display_tracking_number
     tracking_number? ? tracking_number : 'N/A'
   end
 
+  # returns "Suppliers name" if the supplier exists, otherwise "N/A"
+  #
+  # @param [none]
+  # @return [String]  "Yes" or "No"
   def supplier_name
     supplier.name rescue 'N/A'
   end

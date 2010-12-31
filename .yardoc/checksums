@@ -1,6 +1,6 @@
 app/models/role.rb a5f0d95705071c1504edc006506ba7bb3aeb081f
 app/models/cart.rb f563abd3aaa2b1ea2d4de329cb8aebbb30041ba5
-app/models/user.rb f8910f7b6376f6b98cd0490637bf781cbdfa6f32
+app/models/user.rb 8bf78db7dfea99f7a361279146ed40d1246807c3
 app/models/order.rb 8d7359fdcadbd72a9eb238765dad9dc3f1e739f3
 app/models/state.rb 630f4145d6230a52e6cf911c7d53c95851604e67
 app/models/batch.rb b88af7e5a2b5481404709706f2befa211586b1ed
@@ -37,10 +37,10 @@ app/models/return_reason.rb bf107735731e5ade717c0ebfaf00c6d8658e0b92
 app/models/shipping_zone.rb f786afd8b912f210f4990192fd5e8fddabbf824f
 app/models/admin_ability.rb cada4f08240201039765bcdfc9762def78d2cbf7
 app/models/shipping_rate.rb c050efe944c3806ca890e122624a691ba8efee1e
-app/models/purchase_order.rb 36a0d71f0e58287ab8f395cb372a8971f7a90a18
+app/models/purchase_order.rb 928e1eb3045525f1e1ed1ba2488a686613b68177
 app/models/shipping_method.rb 0518c842baf50d6dd6c07f22c54b4db9275e96a9
 app/models/payment_profile.rb e7c1e462808f33f6d01965199cecd24595288592
-app/models/return_condition.rb b3bbe4e5bef8dbcac3891d51845e60d7c258cdb4
+app/models/return_condition.rb f88f828cb2058c9b3bd09941f5d889c2fff260b1
 app/models/variant_property.rb 4b1a072e7d7252c417bc12f580298894d607cb39
 app/models/product_property.rb 7745204dcb22ce2aaafea6a42b3f1fa9571a3191
 app/models/variant_supplier.rb 365cdacff4357fbd24368f9e4836ecdde5f68db4
