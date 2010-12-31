@@ -350,6 +350,10 @@ class Order < ActiveRecord::Base
     shipments_count > 0
   end
 
+  # paginated results from the admin orders that are completed grid
+  #
+  # @param [Optional params]
+  # @return [ Array[Order] ]
   def self.find_finished_order_grid(params = {})
 
     params[:page] ||= 1
@@ -368,6 +372,10 @@ class Order < ActiveRecord::Base
 
   end
 
+  # paginated results from the admin order fulfillment grid
+  #
+  # @param [Optional params]
+  # @return [ Array[Order] ]
   def self.fulfillment_grid(params = {})
 
     params[:page] ||= 1

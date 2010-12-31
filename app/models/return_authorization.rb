@@ -45,48 +45,80 @@ class ReturnAuthorization < ActiveRecord::Base
     end
   end
 
-  def ensure_refund_is_larger_than_restocking
-    if restocking_fee && restocking_fee >= amount
-      self.errors.add(:amount, "The amount must be larger than the restocking fee.")
-    end
-  end
-
+  # when the RMA is returned, before the ReturnAuthorization transitions to complete
+  #    the accounting peice logs the transactions.
+  #
+  # @param [none]
+  # @return [none]
   def process_ledger_transactions
     ##  credit => cash
     ##  debit  => revenue
     Invoice.process_rma(amount - restocking_fee, order )
   end
 
+  # number of the order that is returning the item
+  #
+  # @param [none]
+  # @return [String]
   def order_number
     order.number
   end
 
+  # name of the user that is returning the item
+  #
+  # @param [none]
+  # @return [String]
   def user_name
     user.name
   end
 
+  # Called before validation.  sets the ReturnAuthorization number, if the id is nil the ReturnAuthorization number is bogus
+  #
+  # @param [none]
+  # @return [none]
   def set_number
     return set_order_number if self.id
     self.number = (Time.now.to_i).to_s(CHARACTERS_SEED)## fake number for friendly_id validator
   end
 
+  # sets the order ReturnAuthorization based off constants and the ReturnAuthorization id
+  #
+  # @param [none]
+  # @return [none]
   def set_order_number
     self.number = (NUMBER_SEED + id).to_s(CHARACTERS_SEED)
   end
 
+  # Called after_create.  sets the ReturnAuthorization number
+  #
+  # @param [none]
+  # @return [none]
   def save_order_number
     set_order_number
     save
   end
 
+  ## determines the ReturnAuthorization id from the ReturnAuthorization.number
+  #
+  # @param [String]  represents the ReturnAuthorization.number
+  # @return [Integer] id of the ReturnAuthorization to find
   def self.id_from_number(num)
     num.to_i(CHARACTERS_SEED) - NUMBER_SEED
   end
 
+  ## finds the ReturnAuthorization from the ReturnAuthorizations number.  Is more optimal than the normal rails find by id
+  #      because if calculates the ReturnAuthorization's id which is indexed
+  #
+  # @param [String]  represents the ReturnAuthorization.number
+  # @return [ReturnAuthorization]
   def self.find_by_number(num)
     find(id_from_number(num))##  now we can search by id which should be much faster
   end
 
+  # paginated results from the admin return authorization grid
+  #
+  # @param [Optional params]
+  # @return [ Array[ReturnAuthorization] ]
   def self.admin_grid(params = {})
 
     params[:page] ||= 1
@@ -98,5 +130,17 @@ class ReturnAuthorization < ActiveRecord::Base
     grid = grid.where("orders.order_number LIKE ?",           "#{params[:order_number]}%")  if params[:order_number].present?
     grid = grid.where("return_authorizations.state = ?",      params[:state])               if params[:state].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page], :per_page => params[:rows])
+  end
+
+  private
+
+  # rma validation, if the rma amount is less than the restocking fee why would anyone return an item
+  #
+  # @param [none]
+  # @return [none]
+  def ensure_refund_is_larger_than_restocking
+    if restocking_fee && restocking_fee >= amount
+      self.errors.add(:amount, "The amount must be larger than the restocking fee.")
+    end
   end
 end
