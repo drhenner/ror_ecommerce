@@ -113,7 +113,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Object) <strong>admin_grid</strong>(params = {}) </a>
+      <a href="#admin_grid-class_method" title="admin_grid (class method)">+ (Array[ReturnAuthorization]) <strong>admin_grid</strong>(params = {}) </a>
     
 
     
@@ -126,7 +126,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+paginated results from the admin return authorization grid.
+</p>
+</div></span>
   
 </li>
 
@@ -134,7 +137,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_by_number-class_method" title="find_by_number (class method)">+ (Object) <strong>find_by_number</strong>(num) </a>
+      <a href="#find_by_number-class_method" title="find_by_number (class method)">+ (ReturnAuthorization) <strong>find_by_number</strong>(num) </a>
     
 
     
@@ -147,7 +150,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+finds the ReturnAuthorization from the ReturnAuthorizations number.
+</p>
+</div></span>
   
 </li>
 
@@ -155,7 +161,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#id_from_number-class_method" title="id_from_number (class method)">+ (Object) <strong>id_from_number</strong>(num) </a>
+      <a href="#id_from_number-class_method" title="id_from_number (class method)">+ (Integer) <strong>id_from_number</strong>(num) </a>
     
 
     
@@ -168,7 +174,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+determines the ReturnAuthorization id from the ReturnAuthorization.number.
+</p>
+</div></span>
   
 </li>
 
@@ -185,7 +194,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ensure_refund_is_larger_than_restocking-instance_method" title="#ensure_refund_is_larger_than_restocking (instance method)">- (Object) <strong>ensure_refund_is_larger_than_restocking</strong> </a>
+      <a href="#order_number-instance_method" title="#order_number (instance method)">- (String) <strong>order_number</strong> </a>
     
 
     
@@ -198,7 +207,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+number of the order that is returning the item.
+</p>
+</div></span>
   
 </li>
 
@@ -206,7 +218,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#order_number-instance_method" title="#order_number (instance method)">- (Object) <strong>order_number</strong> </a>
+      <a href="#process_ledger_transactions-instance_method" title="#process_ledger_transactions (instance method)">- (none) <strong>process_ledger_transactions</strong> </a>
     
 
     
@@ -219,7 +231,11 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+when the RMA is returned, before the ReturnAuthorization transitions to
+complete.
+</p>
+</div></span>
   
 </li>
 
@@ -227,7 +243,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#process_ledger_transactions-instance_method" title="#process_ledger_transactions (instance method)">- (Object) <strong>process_ledger_transactions</strong> </a>
+      <a href="#save_order_number-instance_method" title="#save_order_number (instance method)">- (none) <strong>save_order_number</strong> </a>
     
 
     
@@ -240,7 +256,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Called after_create.
+</p>
+</div></span>
   
 </li>
 
@@ -248,7 +267,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#save_order_number-instance_method" title="#save_order_number (instance method)">- (Object) <strong>save_order_number</strong> </a>
+      <a href="#set_number-instance_method" title="#set_number (instance method)">- (none) <strong>set_number</strong> </a>
     
 
     
@@ -261,7 +280,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Called before validation.
+</p>
+</div></span>
   
 </li>
 
@@ -269,7 +291,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_number-instance_method" title="#set_number (instance method)">- (Object) <strong>set_number</strong> </a>
+      <a href="#set_order_number-instance_method" title="#set_order_number (instance method)">- (none) <strong>set_order_number</strong> </a>
     
 
     
@@ -282,7 +304,11 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+sets the order ReturnAuthorization based off constants and the
+ReturnAuthorization id.
+</p>
+</div></span>
   
 </li>
 
@@ -290,7 +316,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_order_number-instance_method" title="#set_order_number (instance method)">- (Object) <strong>set_order_number</strong> </a>
+      <a href="#user_name-instance_method" title="#user_name (instance method)">- (String) <strong>user_name</strong> </a>
     
 
     
@@ -303,28 +329,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#user_name-instance_method" title="#user_name (instance method)">- (Object) <strong>user_name</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+name of the user that is returning the item.
+</p>
+</div></span>
   
 </li>
 
@@ -342,31 +350,70 @@
       <div class="method_details first">
   <p class="signature first" id="admin_grid-class_method">
   
-    + (<tt>Object</tt>) <strong>admin_grid</strong>(params = {}) 
+    + (<tt>Array[<span class='object_link'><a href="" title="ReturnAuthorization (class)">ReturnAuthorization</a></span>]</tt>) <strong>admin_grid</strong>(params = {}) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+paginated results from the admin return authorization grid
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="ReturnAuthorization (class)">ReturnAuthorization</a></span>]</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101</pre>
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -388,22 +435,70 @@
       <div class="method_details ">
   <p class="signature " id="find_by_number-class_method">
   
-    + (<tt>Object</tt>) <strong>find_by_number</strong>(num) 
+    + (<tt><span class='object_link'><a href="" title="ReturnAuthorization (class)">ReturnAuthorization</a></span></tt>) <strong>find_by_number</strong>(num) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+finds the ReturnAuthorization from the ReturnAuthorizations number.  Is
+more optimal than the normal rails find by id
+</p>
+<pre class="code">
+     <span class='id because'>because</span> <span class='kw'>if</span> <span class='id calculates'>calculates</span> <span class='id the'>the</span> <span class='const'>ReturnAuthorization</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>s id which is indexed</span></span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>represents</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the ReturnAuthorization.number
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="ReturnAuthorization (class)">ReturnAuthorization</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-86
-87
-88</pre>
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 114</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_by_number'>find_by_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='id find'>find</span><span class='lparen'>(</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='comment'>##  now we can search by id which should be much faster
@@ -416,22 +511,73 @@
       <div class="method_details ">
   <p class="signature " id="id_from_number-class_method">
   
-    + (<tt>Object</tt>) <strong>id_from_number</strong>(num) 
+    + (<tt>Integer</tt>) <strong>id_from_number</strong>(num) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+determines the ReturnAuthorization id from the ReturnAuthorization.number
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>represents</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the ReturnAuthorization.number
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+id of the ReturnAuthorization to find
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-82
-83
-84</pre>
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id_from_number'>id_from_number</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='id num'>num</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='const'>NUMBER_SEED</span>
@@ -448,56 +594,63 @@
     
     
       <div class="method_details first">
-  <p class="signature first" id="ensure_refund_is_larger_than_restocking-instance_method">
+  <p class="signature first" id="order_number-instance_method">
   
-    - (<tt>Object</tt>) <strong>ensure_refund_is_larger_than_restocking</strong> 
+    - (<tt>String</tt>) <strong>order_number</strong> 
   
 
   
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+number of the order that is returning the item
+</p>
 
 
-48
-49
-50
-51
-52</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 48</span>
-
-<span class='kw'>def</span> <span class='id ensure_refund_is_larger_than_restocking'>ensure_refund_is_larger_than_restocking</span>
-  <span class='kw'>if</span> <span class='id restocking_fee'>restocking_fee</span> <span class='op'>&amp;&amp;</span> <span class='id restocking_fee'>restocking_fee</span> <span class='op'>&gt;=</span> <span class='id amount'>amount</span>
-    <span class='kw'>self</span><span class='period'>.</span><span class='id errors'>errors</span><span class='period'>.</span><span class='id add'>add</span><span class='lparen'>(</span><span class='symbol'>:amount</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The amount must be larger than the restocking fee.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
+  </div>
 </div>
-    
-      <div class="method_details ">
-  <p class="signature " id="order_number-instance_method">
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
-    - (<tt>Object</tt>) <strong>order_number</strong> 
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
   
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
 
-  
-</p><table class="source_code">
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-60
-61
-62</pre>
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id order_number'>order_number</span>
   <span class='id order'>order</span><span class='period'>.</span><span class='id number'>number</span>
@@ -510,24 +663,66 @@
       <div class="method_details ">
   <p class="signature " id="process_ledger_transactions-instance_method">
   
-    - (<tt>Object</tt>) <strong>process_ledger_transactions</strong> 
+    - (<tt>none</tt>) <strong>process_ledger_transactions</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+when the RMA is returned, before the ReturnAuthorization transitions to
+complete
+</p>
+<pre class="code">
+   the accounting peice logs the transactions.</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
+53
 54
 55
 56
-57
-58</pre>
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id process_ledger_transactions'>process_ledger_transactions</span>
   <span class='comment'>##  credit =&gt; cash
@@ -542,23 +737,62 @@
       <div class="method_details ">
   <p class="signature " id="save_order_number-instance_method">
   
-    - (<tt>Object</tt>) <strong>save_order_number</strong> 
+    - (<tt>none</tt>) <strong>save_order_number</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Called after_create.  sets the ReturnAuthorization number
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-77
-78
-79
-80</pre>
+96
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id save_order_number'>save_order_number</span>
   <span class='id set_order_number'>set_order_number</span>
@@ -572,23 +806,63 @@
       <div class="method_details ">
   <p class="signature " id="set_number-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_number</strong> 
+    - (<tt>none</tt>) <strong>set_number</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Called before validation.  sets the ReturnAuthorization number, if the id
+is nil the ReturnAuthorization number is bogus
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-68
-69
-70
-71</pre>
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id set_number'>set_number</span>
   <span class='kw'>return</span> <span class='id set_order_number'>set_order_number</span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span>
@@ -602,22 +876,62 @@
       <div class="method_details ">
   <p class="signature " id="set_order_number-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_order_number</strong> 
+    - (<tt>none</tt>) <strong>set_order_number</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+sets the order ReturnAuthorization based off constants and the
+ReturnAuthorization id
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-73
-74
-75</pre>
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id set_order_number'>set_order_number</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id number'>number</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>NUMBER_SEED</span> <span class='op'>+</span> <span class='id id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='const'>CHARACTERS_SEED</span><span class='rparen'>)</span>
@@ -630,22 +944,61 @@
       <div class="method_details ">
   <p class="signature " id="user_name-instance_method">
   
-    - (<tt>Object</tt>) <strong>user_name</strong> 
+    - (<tt>String</tt>) <strong>user_name</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+name of the user that is returning the item
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-64
-65
-66</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id user_name'>user_name</span>
   <span class='id user'>user</span><span class='period'>.</span><span class='id name'>name</span>
@@ -660,7 +1013,7 @@
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 00:23:45 2010 by 
+  Generated on Fri Dec 31 04:59:30 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>

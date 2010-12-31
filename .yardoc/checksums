@@ -1,7 +1,7 @@
 app/models/role.rb a5f0d95705071c1504edc006506ba7bb3aeb081f
 app/models/cart.rb f563abd3aaa2b1ea2d4de329cb8aebbb30041ba5
 app/models/user.rb f8910f7b6376f6b98cd0490637bf781cbdfa6f32
-app/models/order.rb bb9d90a457938ca5a615872e780f6819664f462a
+app/models/order.rb 8d7359fdcadbd72a9eb238765dad9dc3f1e739f3
 app/models/state.rb 630f4145d6230a52e6cf911c7d53c95851604e67
 app/models/batch.rb b88af7e5a2b5481404709706f2befa211586b1ed
 app/models/brand.rb b7bd2f8b1d832c5f9c2fd20fcec96cb3c1b7f649
@@ -18,7 +18,7 @@ app/models/invoice.rb e70831b0f83430226dbc1c40ee5dae7070e29bdc
 app/models/product.rb b6a5050c34a763863edeed5ee76e1ae006d0783e
 app/models/notifier.rb db66625b2d9fe8640cd364a4daed27e831b2adcf
 app/models/property.rb 1bd46be4c166046e4656b84eef0ab0738835e07d
-app/models/shipment.rb 4a4664a1b1262b3a183be4356a6f385df4fb1fc5
+app/models/shipment.rb 303e0507ad9c391a99da3ac6b50bf183fee8bf4d
 app/models/tax_rate.rb b0b6940684eb435d17cb1185eadde3d53b877089
 app/models/supplier.rb 470c26fa3589805b97bfd4bc0f495e3ff520f010
 app/models/user_role.rb ad9a14afd33b1ab716028ec1b4964c46289dd166
@@ -33,10 +33,10 @@ app/models/transaction.rb 3619677aac742b49ebaa261d7408921746daf134
 app/models/product_type.rb 7c4fe05dbbfd350572ba0fb497921b37e89b357c
 app/models/user_session.rb dee15c89995b9ae5e4828031405564907ba08bfc
 app/models/address_type.rb 47ed511cd2c1e241dd1ad6d0f2b512eddebc4644
-app/models/return_reason.rb 1ac6f7e39867c9651a0efb99e9bb4ec0ae844c60
+app/models/return_reason.rb bf107735731e5ade717c0ebfaf00c6d8658e0b92
 app/models/shipping_zone.rb f786afd8b912f210f4990192fd5e8fddabbf824f
 app/models/admin_ability.rb cada4f08240201039765bcdfc9762def78d2cbf7
-app/models/shipping_rate.rb b5d28d2ea94f37026c3831af2b1f37d51a2f7c6a
+app/models/shipping_rate.rb c050efe944c3806ca890e122624a691ba8efee1e
 app/models/purchase_order.rb 36a0d71f0e58287ab8f395cb372a8971f7a90a18
 app/models/shipping_method.rb 0518c842baf50d6dd6c07f22c54b4db9275e96a9
 app/models/payment_profile.rb e7c1e462808f33f6d01965199cecd24595288592
@@ -52,7 +52,7 @@ app/models/prototype_property.rb 0c5e2ba98726f070bca6d5f2cda3fcea58d1c37a
 app/models/transaction_account.rb 5fe5cb31f8160fa5822c6188041c20643b557a37
 app/models/credit_card_payment.rb 1ec3b1f87408d2a5b707f36137ec7ab689e17aa1
 app/models/credit_card_capture.rb ae365e95b638ec73a1fd98448b35f8af9199f7ec
-app/models/return_authorization.rb 5c37f1860dc166f72a7b4de8e94a9b3d5ed39f6c
+app/models/return_authorization.rb 7657cb421564c6cad5368f002f2ffcf36266fba0
 app/models/purchase_order_variant.rb b4608ceaa057128f56ae1d02d22601c6752a4172
 app/models/receive_purchase_order.rb 5b53f823d90f960cd623345be0cc22d608384314
 app/models/return_merchandise_complete.rb 2a601ad78eb104cb539a44b7906ebc190cb25c74

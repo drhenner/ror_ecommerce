@@ -196,7 +196,7 @@ finds the Order from the orders number.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_finished_order_grid-class_method" title="find_finished_order_grid (class method)">+ (Object) <strong>find_finished_order_grid</strong>(params = {}) </a>
+      <a href="#find_finished_order_grid-class_method" title="find_finished_order_grid (class method)">+ (Array[Order]) <strong>find_finished_order_grid</strong>(params = {}) </a>
     
 
     
@@ -209,7 +209,10 @@ finds the Order from the orders number.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+paginated results from the admin orders that are completed grid.
+</p>
+</div></span>
   
 </li>
 
@@ -238,7 +241,7 @@ finds the Order from the orders number.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#fulfillment_grid-class_method" title="fulfillment_grid (class method)">+ (Object) <strong>fulfillment_grid</strong>(params = {}) </a>
+      <a href="#fulfillment_grid-class_method" title="fulfillment_grid (class method)">+ (Array[Order]) <strong>fulfillment_grid</strong>(params = {}) </a>
     
 
     
@@ -251,7 +254,10 @@ finds the Order from the orders number.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+paginated results from the admin order fulfillment grid.
+</p>
+</div></span>
   
 </li>
 
@@ -1027,20 +1033,55 @@ the order.number
       <div class="method_details ">
   <p class="signature " id="find_finished_order_grid-class_method">
   
-    + (<tt>Object</tt>) <strong>find_finished_order_grid</strong>(params = {}) 
+    + (<tt>Array[<span class='object_link'><a href="" title="Order (class)">Order</a></span>]</tt>) <strong>find_finished_order_grid</strong>(params = {}) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+paginated results from the admin orders that are completed grid
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="Order (class)">Order</a></span>]</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-353
-354
-355
-356
 357
 358
 359
@@ -1053,10 +1094,14 @@ the order.number
 366
 367
 368
-369</pre>
+369
+370
+371
+372
+373</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 353</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 357</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_finished_order_grid'>find_finished_order_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -1111,24 +1156,55 @@ the order.number
       <div class="method_details ">
   <p class="signature " id="fulfillment_grid-class_method">
   
-    + (<tt>Object</tt>) <strong>fulfillment_grid</strong>(params = {}) 
+    + (<tt>Array[<span class='object_link'><a href="" title="Order (class)">Order</a></span>]</tt>) <strong>fulfillment_grid</strong>(params = {}) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+paginated results from the admin order fulfillment grid
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
+      
+      
+        <span class='name'></span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="Order (class)">Order</a></span>]</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-371
-372
-373
-374
-375
-376
-377
-378
 379
 380
 381
@@ -1137,10 +1213,18 @@ the order.number
 384
 385
 386
-387</pre>
+387
+388
+389
+390
+391
+392
+393
+394
+395</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 371</span>
+      <pre class="code"><span class="info file"># File 'app/models/order.rb', line 379</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id fulfillment_grid'>fulfillment_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -3119,7 +3203,7 @@ all the variant_id&#8217;s in the order
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 00:23:43 2010 by 
+  Generated on Fri Dec 31 04:59:27 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.9.2).
 </div>
