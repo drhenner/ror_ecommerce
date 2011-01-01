@@ -108,6 +108,17 @@ class OrderItem < ActiveRecord::Base
   end
 
   # this is the price after coupons and taxes
+  #   * this return total if has not been calculated, otherwise calculates the total.
+  #
+  # @param [none]
+  # @return [Float] this is the total of the item after taxes and coupons...
+  def item_total(coupon = nil)
+    # shipping charges are calculated in order.rb
+
+    self.total ||= calculate_total(coupon = nil)
+  end
+
+  # this is the price after coupons and taxes
   #   * this method does not save it just sets the value of total.
   #   * Thus allowing you to save the whole order with one opperation
   #

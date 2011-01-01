@@ -230,7 +230,7 @@ class Order < ActiveRecord::Base
     calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
     self.total = 0.0
     order_items.each do |item|
-      self.total = self.total + item.total
+      self.total = self.total + item.item_total
     end
     self.sub_total = self.total
     self.total = (self.total + shipping_charges).round_at( 2 )
