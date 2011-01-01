@@ -77,7 +77,7 @@ class Cart < ActiveRecord::Base
   # @param [Integer, #read] variant id to add to the cart
   # @return [CartItem] return the cart item that is added to the cart
   def remove_variant(variant_id)
-    citems = self.cart_items.each {|ci| ci.inactivate! if variant_id == ci.variant_id }
+    citems = self.cart_items.each {|ci| ci.inactivate! if variant_id.to_i == ci.variant_id }
     return citems
   end
 
