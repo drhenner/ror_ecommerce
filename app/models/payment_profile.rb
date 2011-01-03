@@ -28,7 +28,7 @@ class PaymentProfile < ActiveRecord::Base
     if self.payment_cim_id
       return false
     end
-    @gateway = get_payment_gateway
+    @gateway = GATEWAY
 
     @profile = {:customer_profile_id  => self.user.get_cim_profile,
                 :payment_profile      => {:bill_to => self.address,
