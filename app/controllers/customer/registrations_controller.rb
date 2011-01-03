@@ -1,6 +1,7 @@
 class Customer::RegistrationsController < ApplicationController
   def new
-    @user = User.new
+    @user         = User.new
+    @user_session = UserSession.new
   end
 
   def create
@@ -15,6 +16,7 @@ class Customer::RegistrationsController < ApplicationController
       flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
       redirect_to root_url
     else
+      @user_session = UserSession.new
       render :action => :new
     end
   end

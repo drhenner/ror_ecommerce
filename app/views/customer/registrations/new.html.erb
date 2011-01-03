@@ -1,38 +1,73 @@
 <% content_for :head do -%>
-  <%= formtastic_stylesheet_link_tag  %>
+  <%#= formtastic_stylesheet_link_tag  %>
+  <%= stylesheet_link_tag 'signup.css' %>
   <%= stylesheet_link_tag 'cupertino/jquery-ui-1.8.5.custom' %>
 <% end %>
 <% content_for :bottom do -%>
   <%= javascript_include_tag 'jquery.datePicker-2.1.2', 'datePickerInitialize' %>
 <% end %>
+<div id='register-wrapper'>
+  <div id='login' class='hadean-login span-8 prepend-4'>
 
-<h1>Registration</h1>
+    <%= form_for  @user_session, :as => :user_session,
+                  :url => user_sessions_path(@user_session),
+                  :html => {:class => 'span-12'} do |form| %>
+      <h3>Log in.</h3>
+      <fieldset>
+         <ol id='login_form'>
 
-<%= semantic_form_for @user, :url => customer_registrations_path(@user)  do |form| %>
-    <%= form.inputs do %>
+              <li>
+                  <%=form.label :email, 'Email' %>
+                  <%= form.text_field :email %>
+              </li>
 
-       <div id='registration_name_form'>
-          <%= form.inputs  do %>
-              <%= form.input :first_name, :required => true %>
-              <div class='clearfix'></div>
-              <%= form.input :last_name, :required => true %>
-              <div class='clearfix'></div>
-              <%= form.input :email, :required => true,:wrapper_html => { :class => "span-11" }%>
-              <div class='clearfix'></div>
-              <%= form.input :birth_date,
-                              :required => false, :as => :yearpicker,
-                              :wrapper_html => { :class => "span-11" }%>
-          <% end %>
-       </div>
-       <div id='registration_form'>
-          <%= form.inputs  do %>
-              <%= form.input :password, :required => true,:wrapper_html => { :class => "span-11" } %>
-              <div class='clearfix'></div>
-              <%= form.input :password_confirmation, :required => true,:wrapper_html => { :class => "span-11" } %>
-          <% end %>
-       </div>
+              <li>
+                  <%=form.label :password, 'Password' %>
+                  <%= form.text_field :password %>
+              </li>
+
+         </ol>
+      <%#= form.buttons do %>
+        <%= form.submit "Log In" %>
+      <%# end %>
+      </fieldset>
     <% end %>
-    <%#= form.buttons do %>
-      <%= form.commit_button "Continue" %>
-    <%# end %>
-<% end %>
+  </div>
+
+  <div id='signup'>
+    <%= form_for @user, :url => customer_registrations_path(@user)  do |form| %>
+      <h3>New to <%= site_name %>?</h3>
+      <p>A <%= site_name %> account is required to checkout. </p>
+      <fieldset>
+         <ol id='registration_form'>
+              <li>
+                  <%=form.label :first_name, 'First name*' %>
+                  <%= form.text_field :first_name %>
+              </li>
+              <li>
+                  <%=form.label :last_name %>
+                  <%= form.text_field :last_name %>
+              </li>
+              <li>
+                  <%=form.label :email, 'Email' %>
+                  <%= form.text_field :email %>
+              <li>
+                  <%=form.label :birth_date %>
+                  <%= form.text_field :birth_date, :class => :yearpicker %>
+              </li>
+              <li>
+                  <%=form.label :password, 'Password' %>
+                  <%= form.text_field :password %>
+              </li>
+              <li>
+                  <%=form.label :password_confirmation, 'Confirm' %>
+                  <%= form.text_field :password_confirmation %>
+              </li>
+         </ol>
+      <%#= form.buttons do %>
+        <%= form.submit "Register" %>
+      <%# end %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
