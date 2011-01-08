@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
   has_many   :return_authorizations
 
   belongs_to :user
+  belongs_to :coupon
   belongs_to   :ship_address, :class_name => 'Address'
   belongs_to   :bill_address, :class_name => 'Address'
 
