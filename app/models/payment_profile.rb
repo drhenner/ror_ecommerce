@@ -6,84 +6,71 @@
 # http://cookingandcoding.com/2010/01/14/using-activemerchant-with-authorize-net-and-authorize-cim/
 #
 class PaymentProfile < ActiveRecord::Base
-  include ActiveMerchant::Utils
-
+  include PaymentProfileCim
   belongs_to :user
   belongs_to :address
 
-  #attr_accessor :address
-  #attr_accessor :credit_card
   attr_accessor       :request_ip, :credit_card
-
-  before_create :create_payment_profile
 
   validates :user_id,         :presence => true
   validates :payment_cim_id,  :presence => true
+  validates :cc_type,         :presence => true, :length => { :maximum => 60 }
+  validates :last_digits,     :presence => true, :length => { :maximum => 10 }
+  validates :month,           :presence => true, :length => { :maximum => 6 }
+  validates :year,            :presence => true, :length => { :maximum => 6 }
+
+
   validate            :validate_card
-  before_save         :store_card
-  before_destroy      :unstore_card
   #validates :address_id,      :presence => true
-
-  def create_payment_profile
-    if self.payment_cim_id
-      return false
-    end
-    @gateway = GATEWAY
-
-    @profile = {:customer_profile_id  => self.user.get_cim_profile,
-                :payment_profile      => {:bill_to => self.address,
-                                          :payment => {:credit_card => CreditCard.new(self.credit_card)}
-                                         }
-                }
-    response = @gateway.create_customer_payment_profile(@profile)
-    if response.success? and response.params['customer_payment_profile_id']
-      update_attributes({:payment_cim_id => response.params['customer_payment_profile_id']})
-      self.credit_card = {} # clear the credit_card info from memory (for security)
-      return true
-    end
-    #return false
-    self.errors.add_to_base('Unable to save CreditCard try again or Please Call for help.')
-  end
-
-
-
 
   #attr_accessible # none
 
-  # ------------
-  state_machine :state, :initial => :no_info do
-    before_transition any => :no_info,   :do => :unstore_card
-
-    event :authorized do
-      transition any => :authorized
-    end
-    event :error do
-      transition any => :error
-    end
-    event :remove do
-      from = any - [:no_info]
-      transition from => :no_info
-    end
+  def name
+    [cc_type, last_digits].join(' - ')
   end
 
-  # method used by forms to credit a dummy credit card
+  def inactivate!
+    self.active = false
+    self.save!
+  end
+
+  # Use this method to create a PaymentProfile
+  # => This method will create a new PaymentProfile and if the PaymentProfile is a default PaymentProfile it
+  # => will make all other PaymentProfiles that belong to the user non-default
+  #
+  # @param [User] user associated to the payment profile
+  # @param [Hash] hash of attributes for the new address
+  # @ return [Boolean] true or nil
+  def save_default_profile(cc_user)
+    PaymentProfile.transaction do
+      if self.default == true
+        PaymentProfile.update_all( { :default  => false},
+                            { :payment_profiles => {
+                                  :user_id => cc_user.id,
+                                            } }) if cc_user
+      end
+      self.user = cc_user
+      self.save
+    end
+  end
+  # method used by forms to credit a temp credit card
   #
   # ------------
   # behave like it's
   #   has_one :credit_card
-  #   accepts_nested_attributes_for :credit_card
+  #   accepts_nested_attributes_for :credit_card_info
   #
   # @param [none]
   # @return [CreditCard]
-  def credit_card=( card_or_params )
-    @credit_card = case card_or_params
+  def credit_card_info=( card_or_params )
+    self.credit_card = case card_or_params
       when ActiveMerchant::Billing::CreditCard, nil
         card_or_params
       else
         ActiveMerchant::Billing::CreditCard.new(card_or_params)
       end
+    set_minimal_cc_data(self.credit_card)
   end
-
 
   # credit card object with known values
   #
@@ -92,105 +79,43 @@ class PaymentProfile < ActiveRecord::Base
   def new_credit_card
     # populate new card with some saved values
     ActiveMerchant::Billing::CreditCard.new(
-      :first_name  => card_first_name,
-      :last_name   => card_last_name,
+      :first_name  => user.first_name,
+      :last_name   => user.last_name,
       # :address etc too if we have it
-      :type        => card_type
+      :type        => cc_type
     )
   end
 
   # -------------
   private
 
-  # validate :validate_card
+  def set_minimal_cc_data(card)
+    self.last_digits  = card.last_digits
+    self.month        = card.month
+    self.year         = card.year
+    self.first_name   = card.first_name.strip   if card.first_name?
+    self.last_name    = card.last_name.strip    if card.last_name?
+    self.cc_type      = card.type
+  end
+
   def validate_card
-    return if credit_card.nil?
+    return true if !self.active
+    if credit_card.nil?
+      errors.add( :base, 'Credit Card is not present.')
+      return false
+    end
     # first validate via ActiveMerchant local code
     unless credit_card.valid?
       # collect credit card error messages into the profile object
       #errors.add(:credit_card, "must be valid")
       credit_card.errors.full_messages.each do |message|
-        errors.add_to_base message
+        errors.add(:base, message)
       end
       return
     end
 
-    if SubscriptionConfig.validate_via_transaction
-      transaction do # makes this atomic
-        tx = Payment.validate_card( credit_card )
-        subscription.transactions.push( tx )
-        if ! tx.success?
-          #errors.add(:credit_card, "failed to #{tx.action} card: #{tx.message}")
-          errors.add_to_base "Failed to #{tx.action} card: #{tx.message}"
-          return
-        end
-      end
-    end
     true
   end
 
-  def store_card
-    #debugger
-    return unless credit_card && credit_card.valid?
-
-    transaction do # makes this atomic
-      if profile_key
-        tx  = Payment.update( profile_key, credit_card)
-      else
-        tx  = Payment.store(credit_card)
-      end
-      subscription.transactions.push( tx )
-      if tx.success?
-        # remember the token/key/billing id (whatever)
-        self.profile_key = tx.token
-
-        # remember some non-secure params for convenience
-        self.card_first_name     = credit_card.first_name
-        self.card_last_name      = credit_card.last_name
-        self.card_type           = credit_card.type
-        self.card_display_number = credit_card.display_number
-        self.card_expires_on     = credit_card.expiry_date.expiration.to_date
-
-        # clear the card in memory
-        self.credit_card = nil
-
-        # change profile state
-        self.state = 'authorized' # can't call authorized! here, it saves
-
-      else # ! tx.success
-        #errors.add(:credit_card, "failed to #{tx.action} card: #{tx.message}")
-        errors.add_to_base "Failed to #{tx.action} card: #{tx.message}"
-      end
-
-      tx.success
-    end
-  end
-
-  def unstore_card
-    return if no_info? || profile_key.nil?
-    transaction do # atomic
-      tx  = Payment.unstore( profile_key )
-      subscription.transactions.push( tx )
-      if tx.success?
-        # clear everything in case this is ever called without destroy
-        self.profile_key         = nil
-        self.card_first_name     = nil
-        self.card_last_name      = nil
-        self.card_type           = nil
-        self.card_display_number = nil
-        self.card_expires_on     = nil
-        self.credit_card         = nil
-       # change profile state
-        self.state               = 'no_info' # can't call no_info! here, it saves
-      else
-        #errors.add(:credit_card, "failed to #{tx.action} card: #{tx.message}")
-        errors.add_to_base "Failed to #{tx.action} card: #{tx.message}"
-      end
-      tx.success
-    end
-  end
-
-
-
-
 end
+
