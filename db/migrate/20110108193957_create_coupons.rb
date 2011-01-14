@@ -13,6 +13,10 @@ class CreateCoupons < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :coupons, :code
+    add_index :coupons, :expires_at
+
   end
 
   def self.down
