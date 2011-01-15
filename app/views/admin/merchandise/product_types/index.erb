@@ -10,7 +10,17 @@
     <%= raw jqgrid("Product Types", "admin_product_types_grid", admin_merchandise_product_types_path,
       [
         { :field => "display_name",   :label => "Name",     :width => 355,  :resizable => false }
-      ]
+      ],
+      {
+        :height             => "360",
+        :alt_rows           => true,
+        :direct_selection   => true,
+        :editable           => true,
+        :selection_handler  => "Hadean.AdminIndexForm.editSelection",
+        :rownumbers         => false,
+        :rows_per_page      => 18,
+        :row_list           => [20, 50, 100]
+      }
     ) %>
   </div>
 

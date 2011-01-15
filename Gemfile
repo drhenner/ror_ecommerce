@@ -4,10 +4,12 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.3'
 
 gem "activemerchant", '1.7.2'#, :lib => 'active_merchant'
-gem 'acts_as_tree',    :git => 'git://github.com/parasew/acts_as_tree.git'
+#gem 'acts_as_tree',    :git => 'git://github.com/parasew/acts_as_tree.git'
+gem 'nested_set'
+
 gem 'authlogic', "2.1.5"
 gem 'cancan'#, '1.3.2'
-gem 'compass', ">= 0.10.5" 
+gem 'compass', ">= 0.10.5"
 
 gem 'fancy-buttons'
 gem "friendly_id", "~> 3.0"
@@ -50,7 +52,7 @@ platforms :ruby_18 do
   gem "ruby-debug", :group => [:test]
 end
 
-group :development do 
+group :development do
   #gem 'awesome_print'
   gem "autotest-rails-pure"
 
@@ -68,27 +70,27 @@ group :test do
   gem "shoulda"
   gem "rspec-rails",  "= 2.0.1"
   gem "rspec",        "=  2.0.1"
-  
+
   gem "rspec-core",         "=  2.0.1"
   gem "rspec-expectations", "=  2.0.1"
   gem "rspec-mocks",        "=  2.0.1"
   gem 'email_spec'
-  
+
   gem "faker"
   #gem "ZenTest"
   gem "autotest"
   gem "autotest-rails-pure"
-  
+
   if RUBY_PLATFORM =~ /darwin/
     gem "autotest-fsevent"
   end
   gem "autotest-growl"
   #gem "redgreen"
   #gem "test-unit", "1.2.3"
-  
-  
+
+
   ###  THESE ARE ALL FOR CUCUMBER
-#  gem "webrat"  ## USE webrat or capybara NOT BOTH  
+#  gem "webrat"  ## USE webrat or capybara NOT BOTH
 #  gem "capybara"
 #  gem "capybara-envjs"
 #  gem "database_cleaner"
