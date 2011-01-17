@@ -128,6 +128,13 @@ describe Variant, " instance methods" do
     end
   end
 
+  context ".brand_name" do
+    it 'should return the variants subname' do
+        @variant.stubs(:brand).returns  Factory(:brand, :name => 'Nike')
+        @variant.brand_name.should == 'Nike'
+    end
+  end
+
   context ".primary_property" do
     it 'should return the primary property' do
       property      = Factory(:property)

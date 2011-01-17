@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108193957) do
+ActiveRecord::Schema.define(:version => 20110117031623) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                                                           :null => false
@@ -302,6 +302,8 @@ ActiveRecord::Schema.define(:version => 20110108193957) do
     t.string  "name",                        :null => false
     t.integer "parent_id"
     t.boolean "active",    :default => true
+    t.integer "rgt"
+    t.integer "lft"
   end
 
   add_index "product_types", ["parent_id"], :name => "index_product_types_on_parent_id"
@@ -641,8 +643,10 @@ ActiveRecord::Schema.define(:version => 20110108193957) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "brand_id"
   end
 
+  add_index "variants", ["brand_id"], :name => "index_variants_on_brand_id"
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"
   add_index "variants", ["sku"], :name => "index_variants_on_sku"
 

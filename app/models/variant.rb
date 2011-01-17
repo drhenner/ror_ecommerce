@@ -120,6 +120,15 @@ class Variant < ActiveRecord::Base
     primary_property ? "(#{primary_property.description})" : ''
   end
 
+  # returns the brand's name or a blank string
+  #  ex: obj.brand_name => 'Nike'
+  #
+  # @param [none]
+  # @return [String]
+  def brand_name
+    brand_id ? brand.name : ''
+  end
+
   # The variant has many properties.  but only one is the primary property
   #  this will return the primary property.  (good for primary info)
   #
