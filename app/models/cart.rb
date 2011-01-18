@@ -19,6 +19,8 @@ class Cart < ActiveRecord::Base
 
   has_many    :deleted_cart_items,        :conditions => ['cart_items.active = ?', false], :class_name => 'CartItem'
 
+  accepts_nested_attributes_for :shopping_cart_items
+
   # Adds all the item prices (not including taxes) that are currently in the shopping cart
   #
   # @param [none]
