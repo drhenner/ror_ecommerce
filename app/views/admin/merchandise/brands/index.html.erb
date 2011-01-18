@@ -1,0 +1,16 @@
+<h1> Brands </h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for brand in @brands %>
+    <tr>
+      <td><%= brand.name %></td>
+      <td><%= link_to "Show", admin_merchandise_brand_path(brand) %></td>
+      <td><%= link_to "Edit", edit_admin_merchandise_brand_path(brand) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Brand", new_admin_merchandise_brand_path, :class => 'button' %></p>

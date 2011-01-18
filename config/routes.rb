@@ -10,65 +10,65 @@ Hadean::Application.routes.draw do # |map|
   resources :cart_items
   resources :wish_items
   resources :states,   :only => [:index]
-  
+
   #devise_for :admins
   #devise_for :admins, :controllers => { :sessions => "admin/sessions" }
   #resources :admins
   #devise_for :users
 
-  
+
   root :to => "welcome#index"
-  
+
   namespace :customer do
     resources :registrations
   end
-  
+
   namespace :myaccount do
     resources :orders, :only => [:index]
   end
-  
+
   namespace :shopping do
     resources  :cart_items do
-      member do 
+      member do
         put :move_to
       end
     end
     resources  :orders
     resources  :shipping_methods
     resources  :addresses do
-      member do 
+      member do
         put :select_address
       end
     end
-    
+
   end
-  
+
   namespace :admin do
     resources :users
     resources :overviews, :only => [:index]
-    
-    
+
+
     namespace :rma do
       resources  :orders do
         resources  :return_authorizations do
-          member do 
+          member do
             put :complete
           end
         end
       end
       #resources  :shipments
     end
-    
+
     namespace :history do
       resources  :orders, :only => [:index, :show] do
         resources  :addresses
       end
     end
-    
+
     namespace :fulfillment do
       resources  :orders
       resources  :shipments do
-        member do 
+        member do
           put :ship
         end
         resources  :addresses , :only => [:edit, :update]# This is for editing the shipment address
@@ -93,7 +93,7 @@ Hadean::Application.routes.draw do # |map|
       resources :tax_rates
       resources :tax_statuses
     end
-    
+
     namespace :generic do
     end
     namespace :inventory do
@@ -102,17 +102,18 @@ Hadean::Application.routes.draw do # |map|
       resources :purchase_orders
       resources :receivings
     end
-    
+
     namespace :merchandise do
       namespace :images do
         resources :products
       end
       resources :properties
       resources :prototypes
+      resources :brands
       resources :product_types
       resources :prototype_properties
-      resources :products do 
-        member do 
+      resources :products do
+        member do
           get :add_properties
         end
         resources :variants
@@ -122,10 +123,10 @@ Hadean::Application.routes.draw do # |map|
       resources :invoices
     end
   end
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
