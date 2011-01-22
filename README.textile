@@ -92,12 +92,8 @@ write down the username/password and follow the directions.
 
 h2. TODOs:
 
-* loyalty credits
 * coupons
 * product sales (eg. 20% off)
-* have breadcrumbs headers by product type and use product_type.parent
-* move items from and to saved/wish lists
-* remove specific qty from cart.(method has been created just not in the UI)
 
 h2. Author
 
