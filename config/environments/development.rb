@@ -22,17 +22,17 @@ Hadean::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
-  
-  
-  
-  
+
+
+
+
   #config.cache_store = :dalli_store
   #config.cache_store = :mem_cache_store, "localhost" #'localhost:11211'
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  
-  
+
+
   config.after_initialize do
     #Formtastic::SemanticFormBuilder.send(:include, Formtastic::DatePicker)
     #Formtastic::SemanticFormBuilder.send(:include, Formtastic::FuturePicker)
@@ -44,13 +44,18 @@ Hadean::Application.configure do
     #  :password   => HADEAN_CONFIG['paypal']['password'],
     #  :signature  => HADEAN_CONFIG['paypal']['signature']
     #)
-    
+
     ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
       :login    => HADEAN_CONFIG['authnet']['login'],
-      :password => HADEAN_CONFIG['authnet']['password']#,
-      #:test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
+      :password => HADEAN_CONFIG['authnet']['password'],
+      :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
     )
-    
+
+    ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
+      :login    => HADEAN_CONFIG['authnet']['login'],
+      :password => HADEAN_CONFIG['authnet']['password'],
+      :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
+    )
     #::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
     #  :login     => HADEAN_CONFIG['braintree']['login'],
     #  :password  => HADEAN_CONFIG['braintree']['password']

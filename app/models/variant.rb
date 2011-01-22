@@ -20,8 +20,9 @@ class Variant < ActiveRecord::Base
 
   accepts_nested_attributes_for :variant_properties
 
-  OUT_OF_STOCK_QTY = 2
-  LOW_STOCK_QTY    = 6
+  OUT_OF_STOCK_QTY    = 2
+  LOW_STOCK_QTY       = 6
+  MONTHLY_BILLING_ID  = 1
 
   # returns true if the stock level is above or == the out of stock level
   #

@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 #         :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  include ActiveMerchant::Utils
+  #include ActiveMerchant::Utils
+  include UserCim
 
   acts_as_authentic do |config|
     config.validate_email_field
@@ -24,10 +25,12 @@ class User < ActiveRecord::Base
   end
 
   before_validation :sanitize_data, :before_validation_on_create
+  before_create :start_store_credits
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :openid_identifier, :birth_date, :role_ids, :address_attributes, :phone_attributes
 
   belongs_to :account
 
+  has_one     :store_credit
   has_many    :orders
   has_many    :phones,                    :dependent => :destroy,
                                           :as => :phoneable
@@ -94,7 +97,7 @@ class User < ActiveRecord::Base
                           :uniqueness => true,##  This should be done at the DB this is too expensive in rails
                           :format   => { :with => CustomValidators::Emails.email_validator },
                           :length => { :maximum => 255 }
-  validates :password,    :presence => { :if => :password_required? }, :confirmation => true, :length => 6..20
+  validates :password,    :presence => { :if => :password_required? }, :confirmation => true
 
   accepts_nested_attributes_for :addresses, :phones, :user_roles
 
@@ -107,15 +110,20 @@ class User < ActiveRecord::Base
     state :canceled
 
     event :activate do
-      transition :inactive => :active
+      transition :from => :inactive,    :to => :active
     end
 
     event :register do
-      transition any => :registered
+      #transition :to => 'registered', :from => :all
+      transition :from => :active,                 :to => :registered
+      transition :from => :inactive,               :to => :registered
+      transition :from => :unregistered,           :to => :registered
+      transition :from => :registered_with_credit, :to => :registered
+      transition :from => :canceled,               :to => :registered
     end
 
     event :cancel do
-      transition :all => :canceled
+      transition :from => any, :to => :canceled
     end
 
   end
@@ -257,12 +265,28 @@ class User < ActiveRecord::Base
     customer_cim_id
   end
 
-  # name and first line of address
+  # name and first line of address (used by credit card gateway to descript the merchant)
   #
   # @param  [ none ]
   # @return [ String ] name and first line of address
   def merchant_description
     [name, default_shipping_address.try(:address_lines)].compact.join(', ')
+  end
+
+  # Find users that have signed up for the subscription
+  #
+  # @params [ none ]
+  # @return [ Arel ]
+  def self.find_subscription_users
+    where('account_id NOT IN (?)', Account::FREE_ACCOUNT_IDS )
+  end
+
+  # include addresses in Find
+  #
+  # @params [ none ]
+  # @return [ Arel ]
+  def include_default_addresses
+    includes([:default_billing_address, :default_shipping_address, :account])
   end
 
   # paginated results from the admin User grid
@@ -285,27 +309,31 @@ class User < ActiveRecord::Base
 
   private
 
+  def start_store_credits
+    self.store_credit = StoreCredit.new(:amount => 0.0, :user => self)
+  end
+
   def password_required?
     self.crypted_password.blank?
   end
 
-  def create_cim_profile
-    return true if customer_cim_id
-    #Login to the gateway using your credentials in environment.rb
-    @gateway = GATEWAY
-
-    #setup the user object to save
-    @user = {:profile => user_profile}
-
-    #send the create message to the gateway API
-    response = @gateway.create_customer_profile(@user)
-
-    if response.success? and response.authorization
-      update_attributes({:customer_cim_id => response.authorization})
-      return true
-    end
-    return false
-  end
+  #def create_cim_profile
+  #  return true if customer_cim_id
+  #  #Login to the gateway using your credentials in environment.rb
+  #  @gateway = GATEWAY
+  #
+  #  #setup the user object to save
+  #  @user = {:profile => user_profile}
+  #
+  #  #send the create message to the gateway API
+  #  response = @gateway.create_customer_profile(@user)
+  #
+  #  if response.success? and response.authorization
+  #    update_attributes({:customer_cim_id => response.authorization})
+  #    return true
+  #  end
+  #  return false
+  #end
 
   def user_profile
     return {:merchant_customer_id => self.id, :email => self.email, :description => self.merchant_description}

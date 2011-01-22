@@ -41,6 +41,11 @@ describe User, '.registered_user?' do
 end
 
 describe User, "instance methods" do
+
+  before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
+  end
+
   context ".admin?" do
     it 'ahould be an admin' do
       user = Factory(:admin_user)
@@ -61,6 +66,7 @@ end
 
 describe User, "instance methods" do
   before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     @user = Factory(:user)
   end
 
@@ -266,9 +272,21 @@ describe User, "instance methods" do
   end
 
 end
+
+describe User, 'store_credit methods' do
+  context '.start_store_credits' do
+    it 'should create store_credit object on create' do
+      user = Factory(:user)
+      user.store_credit.should_not be_nil
+      user.store_credit.id.should_not be_nil
+    end
+  end
+end
+
 describe User, 'private methods' do
 
   before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     @user = Factory.build(:user)
   end
 
@@ -314,6 +332,7 @@ end
 
 describe User, "#admin_grid(params = {})" do
   it "should return users " do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     user1 = Factory(:user)
     user2 = Factory(:user)
     admin_grid = User.admin_grid

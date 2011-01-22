@@ -45,6 +45,12 @@ RSpec.configure do |config|
   #config.logger = :stdout
   #Product.configuration[:if] = false
   config.before(:each) do
+    User.any_instance.stubs(:create_cim_profile).returns(true)
+    User.any_instance.stubs(:update_cim_profile).returns(true)
+    User.any_instance.stubs(:delete_cim_profile).returns(true)
+    PaymentProfile.any_instance.stubs(:create_payment_profile).returns(true)
+    PaymentProfile.any_instance.stubs(:update_payment_profile).returns(true)
+    PaymentProfile.any_instance.stubs(:delete_payment_profile).returns(true)
     ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
   end
 
@@ -52,6 +58,11 @@ RSpec.configure do |config|
     ::Sunspot.session = ::Sunspot.session.original_session
   end
 end
+
+#class ActionController::TestCase
+#  include Authlogic::TestCase
+#  #setup :activate_authlogic
+#end
 
 def with_solr
   Product.configuration[:if] = 'true'

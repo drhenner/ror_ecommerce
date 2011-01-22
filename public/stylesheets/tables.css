@@ -7,7 +7,7 @@
   border-collapse: collapse;
 }
 
-/* line 11, ../../app/stylesheets/tables.scss */
+/* line 12, ../../app/stylesheets/tables.scss */
 .pretty_table td {
   color: #678197;
   border-bottom: 1px solid #e5eff8;
@@ -16,23 +16,23 @@
   text-align: center;
 }
 
-/* line 19, ../../app/stylesheets/tables.scss */
+/* line 20, ../../app/stylesheets/tables.scss */
 .pretty_table thead tr .column1_header {
   border-left: 1px solid #e5eff8;
 }
 
-/* line 24, ../../app/stylesheets/tables.scss */
+/* line 25, ../../app/stylesheets/tables.scss */
 .pretty_table tr.odd td,
 .pretty_table tr.odd .column1 {
   background: #f4f9fe url(../../images/pretty_table_background.gif) no-repeat;
 }
 
-/* line 27, ../../app/stylesheets/tables.scss */
+/* line 28, ../../app/stylesheets/tables.scss */
 .pretty_table .column1 {
   background: #f9fcfe;
 }
 
-/* line 31, ../../app/stylesheets/tables.scss */
+/* line 32, ../../app/stylesheets/tables.scss */
 .pretty_table thead th {
   background: #f4f9fe;
   text-align: center;
@@ -40,20 +40,20 @@
   color: #66a3d3;
 }
 
-/* line 38, ../../app/stylesheets/tables.scss */
+/* line 39, ../../app/stylesheets/tables.scss */
 .pretty_table tfoot th {
   background: #f4f9fe;
   text-align: center;
 }
 
-/* line 43, ../../app/stylesheets/tables.scss */
+/* line 44, ../../app/stylesheets/tables.scss */
 .pretty_table tfoot th strong {
   font: bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
   margin: .5em .5em .5em 0;
   color: #66a3d3;
 }
 
-/* line 49, ../../app/stylesheets/tables.scss */
+/* line 50, ../../app/stylesheets/tables.scss */
 .pretty_table tfoot th em {
   color: #f03b58;
   font-weight: bold;

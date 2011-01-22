@@ -36,5 +36,11 @@ Hadean::Application.configure do
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
     ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+
+    ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
+      :login    => HADEAN_CONFIG['authnet']['login'],
+      :password => HADEAN_CONFIG['authnet']['password'],
+      :test     => true
+    )
   end
 end

@@ -1,0 +1,2 @@
+module Myaccount::CreditCardsHelper
+end

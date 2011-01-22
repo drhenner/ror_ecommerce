@@ -143,13 +143,18 @@ li {
   list-style: none;
 }
 input.text, input.title, input[type="text"], input[type="password"] {
-  background-color: white;
+  @include rounded(4px);
   margin: 0.15em 0;
-  padding: 5px;
+  background: -moz-linear-gradient(center top , #E6E6E6 0%, #FFFFFF 100%) repeat-x scroll center top #FFFFFF;
+  border: 1px solid #CCCCCC;
+  height: 16px;
+  font-size: 13px;
+  padding: 6px 5px;
 }
 
 #content_wrapper {
-  padding-top: 4px;
+  padding-top: 7px;
+  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
 .flash_error {
@@ -174,9 +179,9 @@ input.text, input.title, input[type="text"], input[type="password"] {
 .variant_border {
   padding: 3px;
   margin-bottom: 3px;
-  border:   solid 2px #ddc;
-  @include rounded(8px);
-  background-color: #EED;
+  border:   solid 1px #DD8888;
+  @include rounded(4px);
+  background-color: #FFF;
   cursor: pointer;
 }
 
@@ -267,6 +272,14 @@ input.text, input.title, input[type="text"], input[type="password"] {
   text-align:left;
 }
 
+.dkBlueBox {
+  @include rounded(8px);
+  border: solid #AED2EE 0.5px;
+}
+
+.innerBox {
+  padding: 8px;
+}
 .top_border td {
   border-top:   solid 2px #ddd;
 }

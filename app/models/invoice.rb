@@ -112,8 +112,8 @@ class Invoice < ActiveRecord::Base
   # @param [Integer] order id
   # @param [Decimal] amount in dollars
   # @return [Invoice] invoice object
-  def Invoice.generate(order_id, charge_amount)
-    Invoice.new(:order_id => order_id, :amount => charge_amount, :invoice_type => PURCHASE)
+  def Invoice.generate(order_id, charge_amount, credited_amount = 0.0)
+    Invoice.new(:order_id => order_id, :amount => charge_amount, :invoice_type => PURCHASE, :credited_amount => credited_amount)
   end
 
   def capture_complete_order

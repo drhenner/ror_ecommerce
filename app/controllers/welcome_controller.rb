@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
 
+  layout 'welcome'
+
   def index
     @featured_product = Product.featured
     @best_selling_products = Product.limit(5)

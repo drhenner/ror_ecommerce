@@ -10,6 +10,7 @@ end
 
 describe Invoice, "instance methods" do
   before(:each) do 
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     @invoice = Factory(:invoice, :created_at => '2010-11-26 23:55:14')
   end
 
@@ -96,6 +97,7 @@ end
 
 describe Invoice, "#process_rma(return_amount, order)" do
   it 'should create a invoice for an RMA' do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     order = Factory(:order)
     invoice = Invoice.process_rma(20.55, order)
     #@invoice.stubs(:batches).returns([])
@@ -105,22 +107,28 @@ describe Invoice, "#process_rma(return_amount, order)" do
   end
 end
 
-describe Invoice, "#id_from_number(num)" do
-  it 'should return invoice id' do
-    invoice     = Factory(:invoice)
-    invoice_id  = Invoice.id_from_number(invoice.number)
-    invoice_id.should == invoice.id
+describe Invoice, "Class methods" do
+  before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
+    @invoice = Factory(:invoice)
+  end
+
+  describe Invoice, "#id_from_number(num)" do
+    it 'should return invoice id' do
+      invoice     = Factory(:invoice)
+      invoice_id  = Invoice.id_from_number(invoice.number)
+      invoice_id.should == invoice.id
+    end
+  end
+
+  describe Invoice, "#find_by_number(num)" do
+    it 'should find the invoice by number' do
+      invoice = Factory(:invoice)
+      find_invoice = Invoice.find_by_number(invoice.number)
+      find_invoice.id.should == invoice.id
+    end
   end
 end
-
-describe Invoice, "#find_by_number(num)" do
-  it 'should find the invoice by number' do
-    invoice = Factory(:invoice)
-    find_invoice = Invoice.find_by_number(invoice.number)
-    find_invoice.id.should == invoice.id
-  end
-end
-
 #def Invoice.generate(order_id, charge_amount)
 #  Invoice.new(:order_id => order_id, :amount => charge_amount, :invoice_type => PURCHASE)
 #end
@@ -135,29 +143,33 @@ describe Invoice, "#generate(order_id, charge_amount)" do
     invoice.valid?.should be_true
   end
 end
-
-describe Invoice, ".unique_order_number" do
-  it 'should return a unique_order_number' do
-    invoice = Factory(:invoice)
-    invoice.send(:unique_order_number).length.should > 8
+describe Invoice, 'optimize' do
+  before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
   end
-end
+  describe Invoice, ".unique_order_number" do
+    it 'should return a unique_order_number' do
+      invoice = Factory(:invoice)
+      invoice.send(:unique_order_number).length.should > 8
+    end
+  end
 
-describe Invoice, ".authorization_reference" do
-  it 'will return a confirmation id if there is a successful payment' do
-    invoice = Factory(:invoice)
-    payment = Factory(:payment, :invoice => invoice, :action => 'authorization', :success => true, :confirmation_id => 'good')
-    invoice.authorization_reference.should == payment.confirmation_id
-  end 
-end
+  describe Invoice, ".authorization_reference" do
+    it 'will return a confirmation id if there is a successful payment' do
+      invoice = Factory(:invoice)
+      payment = Factory(:payment, :invoice => invoice, :action => 'authorization', :success => true, :confirmation_id => 'good')
+      invoice.authorization_reference.should == payment.confirmation_id
+    end 
+  end
 
-describe Invoice, ".succeeded?" do
-  it 'will return a true if authorized or paid' do
-    invoice = Factory(:invoice, :state => 'authorized')
-    invoice.succeeded?.should be_true
-    
-    invoice = Factory(:invoice, :state => 'paid')
-    invoice.succeeded?.should be_true
+  describe Invoice, ".succeeded?" do
+    it 'will return a true if authorized or paid' do
+      invoice = Factory(:invoice, :state => 'authorized')
+      invoice.succeeded?.should be_true
+      
+      invoice = Factory(:invoice, :state => 'paid')
+      invoice.succeeded?.should be_true
+    end
   end
 end
 

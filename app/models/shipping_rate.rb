@@ -18,6 +18,8 @@ class ShippingRate < ActiveRecord::Base
                             shipping_rates.shipping_method_id IN (?)',shipping_rate_ids, shipping_method_ids]}
         }
 
+  MONTHLY_BILLING_RATE_ID = 1
+
   # determines if the shippng rate should be calculated individually
   #
   # @param [none]

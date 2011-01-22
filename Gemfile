@@ -1,15 +1,15 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '3.0.3'
+gem 'rails', '~> 3.0.3'
 
-gem "activemerchant", '1.7.2'#, :lib => 'active_merchant'
+gem "activemerchant", '~> 1.7.2'#, :lib => 'active_merchant'
 #gem 'acts_as_tree',    :git => 'git://github.com/parasew/acts_as_tree.git'
-gem 'nested_set'
+gem 'nested_set', '~> 1.6.3'
 
 gem 'authlogic', "2.1.5"
-gem 'cancan'#, '1.3.2'
-gem 'compass', ">= 0.10.5"
+gem 'cancan', '~> 1.4.1'
+gem 'compass', "~> 0.10.6"
 
 gem 'fancy-buttons'
 gem "friendly_id", "~> 3.0"
@@ -24,18 +24,18 @@ gem "jquery-rails"
 #gem 'ripple'
 #gem 'riak-sessions'
 
-gem 'dalli'
+gem 'dalli', '~> 1.0.0'
 
-gem 'nokogiri'
-gem 'memcache-client'
-gem 'mysql2'
+gem 'nokogiri', '~> 1.4.4'
+gem 'memcache-client', '~> 1.8.5'
+gem 'mysql2', '~> 0.2.6'
 #gem 'mysql', '2.8.1'
 #gem 'ruby-mysql'
 gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
-gem 'paperclip'
-gem 'prawn'
+gem 'paperclip', '~> 2.3.8'
+gem 'prawn', '~> 0.8.4'
 
-gem 'rails3-generators'
+gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
 #gem 'sunspot'
 gem 'sunspot_rails', '1.2.rc4'
@@ -66,7 +66,6 @@ group :test do
   gem 'mocha', :require => false
   gem 'rspec-rails-mocha'
   #gem "rr"
-  gem 'rails3-generators'
   gem "shoulda"
   gem "rspec-rails",  "= 2.0.1"
   gem "rspec",        "=  2.0.1"

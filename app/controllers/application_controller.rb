@@ -2,7 +2,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
 
-  helper_method :current_user, :current_user_id, :most_likely_user, :random_user, :session_cart, :is_production_simulation, :search_product
+  helper_method :current_user,
+                :current_user_id,
+                :most_likely_user,
+                :random_user,
+                :session_cart,
+                :is_production_simulation,
+                :search_product,
+                :product_types
+
   before_filter :secure_session
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -20,7 +28,19 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_user)
   end
 
+  def product_types
+    @product_types ||= ProductType.roots
+  end
+
   private
+
+  def require_user
+    redirect_to login_url and return if logged_out?
+  end
+
+  def logged_out?
+    !current_user
+  end
 
   def search_product
     @search_product || Product.new

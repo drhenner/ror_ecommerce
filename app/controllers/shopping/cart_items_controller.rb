@@ -44,7 +44,8 @@ class Shopping::CartItemsController < Shopping::BaseController
   def create
     @cart_item = get_new_cart_item
     session_cart.save if session_cart.new_record?
-    if cart_item = session_cart.add_variant(params[:cart_item][:variant_id], most_likely_user)
+    qty = params[:cart_item][:quantity].to_i
+    if cart_item = session_cart.add_variant(params[:cart_item][:variant_id], most_likely_user, qty)
       flash[:notice] = [I18n.t('out_of_stock_notice'), I18n.t('item_saved_for_later')].compact.join(' ') unless cart_item.shopping_cart_item?
       session_cart.save_user(most_likely_user)
       redirect_to(shopping_cart_items_url)
@@ -55,18 +56,18 @@ class Shopping::CartItemsController < Shopping::BaseController
       else
         flash[:notice] = "Sorry something went wrong"
         redirect_to(root_url())
-      end 
+      end
     end
   end
 
   # PUT /carts/1
   # PUT /carts/1.xml
   def update
-    @cart_item = session_cart.shopping_cart_items.find(params[:id])
+    #@cart_item = session_cart.shopping_cart_items.find(params[:id])
 
     respond_to do |format|
-      if @cart_item.update_attributes(params[:cart_item])
-        format.html { redirect_to(@cart_item, :notice => 'Item was successfully updated.') }
+      if session_cart.update_attributes(params[:cart])
+        format.html { redirect_to(shopping_cart_items_url(), :notice => 'Item was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,11 +77,21 @@ class Shopping::CartItemsController < Shopping::BaseController
   end
 ## TODO
   ## This method moves saved_cart_items to your shopping_cart_items or saved_cart_items
-  #   this method is called using AJAX and returns json. with the object moved, 
+  #   this method is called using AJAX and returns json. with the object moved,
   #   otherwise false is returned if there is an error
   #   method => PUT
   def move_to
-    
+      @cart_item = session_cart.cart_items.find(params[:id])
+
+      respond_to do |format|
+        if @cart_item.update_attributes(:item_type_id => params[:item_type_id])
+          format.html { redirect_to(shopping_cart_items_url() ) }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @cart_item.errors, :status => :unprocessable_entity }
+        end
+      end
   end
 
   # DELETE /carts/1
@@ -89,9 +100,9 @@ class Shopping::CartItemsController < Shopping::BaseController
     session_cart.remove_variant(params[:variant_id]) if params[:variant_id]
     redirect_to(shopping_cart_items_url)
   end
-  
+
   private
-  
+
   def get_new_cart_item
     if current_user
       session_cart.cart_items.new(params[:cart_item].merge({:user_id => current_user.id}))
@@ -100,5 +111,5 @@ class Shopping::CartItemsController < Shopping::BaseController
       session_cart.cart_items.new(params[:cart_item])
     end
   end
-  
+
 end

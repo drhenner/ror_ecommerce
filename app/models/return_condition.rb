@@ -7,7 +7,7 @@ class ReturnCondition < ActiveRecord::Base
 
   CONDITIONS = [GOOD, DEFECTIVE, DAMAGED]
 
-  validates :label,      :presence => true
+  validates :label,      :presence => true, :length => { :maximum => 255 }
 
   # method to get all the return conditions for a RMA form
   # [['Good', 1], ['Defective', 2] ... ]

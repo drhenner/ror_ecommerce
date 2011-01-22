@@ -1,29 +1,90 @@
-<% if @cart_items.nil? || @cart_items.empty? %>
-  <h5> Your cart is currently empty</h5>
-  <%= render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty? %>
-<% else %>
-  <div class='span-18 last'>
-    <h5>You currently have the following in your cart: </h5>
-    <div class='span-9 rounded-10 line_item_blue'>
-      <h4> Items in your Cart:</h4>
-      <ul>
-      <% @cart_items.each_with_index do |item, i| %>
-        <li id='cart-item-<%= i %>' class='individual-cart-item'>
-        <% photo_url = item.variant.product.featured_image %>
-            <%= image_tag(photo_url) if photo_url %>
-            (<%= item.quantity %>) 
-            <%= item.variant.product_name %> 
-            <%= link_to 'remove', shopping_cart_item_path(item, :variant_id => item.variant_id), 
-                                  :method => :delete %>
-        </li>
-      <% end %>
-      </ul>
-    </div>
-    <%= render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty? %>
-    
-  </div>
-  <div class='span-6 last'>
-    <%= link_to 'Checkout', shopping_orders_path, :class => 'button spade inline-block' %>
-    <%# link_to image_tag('buttons/checkout1.gif', :alt => 'Proceed to Checkout')%>
-  </div>
+
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'shopping_cart_page.css' %>
 <% end %>
+
+<div id='cart-items-wrapper' class='items-wrapper span-18 last'>
+
+  <%= form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>
+
+    <% unless @cart_items.blank? %>
+      <div id='update-cart-wrapper' class=''>
+
+          <div id='update_all_cart' class="small-gradientbuttons small-redtheme update-all-cart">
+            <ul class=' span-7'>
+              <li>
+                <span class="tiny ">Make any changes below?</span>
+              </li>
+              <li>
+                <%= cart_form.submit 'update' %>
+              </li>
+            </ul>
+          </div>
+
+      </div>
+      <div class="clear"></div>
+    <% end %>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+        <% unless @cart_items.blank? %>
+        <tr>
+            <td>
+                      <table width="100%" cellspacing="0" cellpadding="10">
+                        <tbody>
+                          <tr valign="top" bgcolor="#ebebe7" width="100%" >
+                            <td bgcolor="#ebebe7" colspan="2"  >
+                                <b>Shopping Cart Items--To Buy Now</b>
+                            </td>
+                            <td bgcolor="#ebebe7" class="small"><b>Price:</b></td>
+
+                            <td width="8%" bgcolor="#ebebe7" align="middle" class="small "><b>Qty:</b></td>
+                          </tr>
+                          <%#= cart_form.fields_for :shopping_cart_items, @cart_items do |cart_items_form| %>
+                          <% @cart_items.each_with_index do |item, i| %>
+                            <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
+                              <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
+                            <% end %>
+                          <% end %>
+                        </tbody>
+                      </table>
+            </td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <td align="center" colspan="1">
+
+          </td>
+        </tr>
+        <% unless @saved_cart_items.empty? %>
+          <tr>
+            <td>
+              <table width="100%" cellspacing="0" cellpadding="10">
+                <tbody>
+                  <tr valign="top" bgcolor="#eeeecc">
+                      <td bgcolor="#eeeecc" colspan="2"><a name="savedforlater"><b>Saved Items--To Buy Later</b></a></td>
+                      <td bgcolor="#eeeecc" colspan="2" class="small"><b>Price:</b></td>
+                  </tr>
+
+                  <%= render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty? %>
+
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+        <% end %>
+
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
+<div class='span-6 last'>
+
+  <div id='submit_purchase_cart' class="gradientbuttons redtheme purchase-cart">
+    <ul>
+      <li><%= link_to 'Checkout', shopping_orders_path, :class => '' %></li>
+    </ul>
+  </div>
+</div>

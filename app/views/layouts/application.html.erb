@@ -70,6 +70,7 @@
             </li>
 
           </ul>
+
           <%= form_for search_product, :html => {:class => 'search'} do %>
             <div class="field search">
               <span class="icon-search"></span>
@@ -79,18 +80,12 @@
           <% end %>
         </div>
       </div>
+      <div id="sub_header_wrapper" class='bp'>
+        <div id="sub_sub_header_wrapper" class='container'>
+          <%= render 'shared/main_product_tabs' %>
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
     <div id='content_wrapper' class='container'>

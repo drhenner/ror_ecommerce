@@ -1,5 +1,10 @@
 class ProductsController < ApplicationController
 
+  def index
+    products = Product.includes(:variants)
+    @products = products.where('product_type_id = ?', params[:product_type_id] || featured_product_type)
+  end
+
   def create
 
     pagination_args = {}
@@ -24,5 +29,9 @@ class ProductsController < ApplicationController
 
   def form_info
     @cart_item = CartItem.new
+  end
+
+  def featured_product_type
+    ProductType::FEATURED_TYPE_ID
   end
 end

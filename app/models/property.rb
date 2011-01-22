@@ -9,8 +9,8 @@ class Property < ActiveRecord::Base
   has_many :variant_properties
   has_many :variants,          :through => :variant_properties
 
-  validates :identifing_name,    :presence => true
-  validates :display_name,       :presence => true
+  validates :identifing_name,    :presence => true, :length => { :maximum => 250 }
+  validates :display_name,       :presence => true, :length => { :maximum => 165 }
   # active is default true at the DB level
 
   scope :visible, where("active == ?",true)

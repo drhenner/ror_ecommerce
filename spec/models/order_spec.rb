@@ -59,6 +59,71 @@ describe Order, "instance methods" do
     end
   end
 
+  context ".@order.credited_total" do
+
+    it 'should calculate credited_total' do
+      @order.stubs(:calculate_totals).returns( true )
+      @order.stubs(:calculated_at).returns(nil)
+      order_item = Factory(:order_item, :total => 5.52 )
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.stubs(:shipping_charges).returns(100.00)
+
+
+      @order.user.store_credit.amount = 10.02
+      @order.user.store_credit.save
+
+      @order.credited_total.should == 101.02
+    end
+
+    it 'should calculate credited_total' do
+      @order.stubs(:calculate_totals).returns( true )
+      @order.stubs(:calculated_at).returns(nil)
+      order_item = Factory(:order_item, :total => 5.52 )
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.stubs(:shipping_charges).returns(10.00)
+
+
+      @order.user.store_credit.amount = 100.02
+      @order.user.store_credit.save
+
+      @order.credited_total.should == 0.0
+    end
+  end
+
+  context ".@order.remove_user_store_credits" do
+    it 'should remove store_credits.amount' do
+      @order.stubs(:calculate_totals).returns( true )
+      @order.stubs(:calculated_at).returns(nil)
+      order_item = Factory(:order_item, :total => 5.52 )
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.stubs(:shipping_charges).returns(100.00)
+      #@order.find_total.should == 111.04
+
+
+      @order.user.store_credit.amount = 15.52
+      @order.user.store_credit.save
+      @order.remove_user_store_credits
+      store_credit = StoreCredit.find(@order.user.store_credit.id)
+      store_credit.amount.should == 0.0
+    end
+
+    it 'should remove store_credits.amount' do
+      @order.stubs(:calculate_totals).returns( true )
+      @order.stubs(:calculated_at).returns(nil)
+      order_item = Factory(:order_item, :total => 5.52 )
+      @order.stubs(:order_items).returns([order_item, order_item])
+      @order.stubs(:shipping_charges).returns(5.00)
+      #@order.find_total.should == 16.04
+
+
+      @order.user.store_credit.amount = 116.05
+      @order.user.store_credit.save
+      @order.remove_user_store_credits
+      store_credit = StoreCredit.find(@order.user.store_credit.id)
+      store_credit.amount.should == 100.01
+    end
+  end
+
   context ".capture_invoice(invoice)" do
     it 'should return an payment object' do
       ##  Create fake admin_cart object in memcached

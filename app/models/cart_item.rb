@@ -4,6 +4,10 @@ class CartItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :variant
 
+  QUANTITIES = [1,2,3,4]
+
+  before_save :inactivate_zero_quantity
+
   # Call this if you need to know the unit price of an item
   #
   # @param [none]
@@ -39,4 +43,10 @@ class CartItem < ActiveRecord::Base
   #def self.mark_items_purchased(cart, order)
   #  CartItem.update_all("item_type_id = #{ItemType::PURCHASED_ID}", "id IN (#{cart.shopping_cart_item_ids.join(',')}) AND variant_id IN (#{order.variant_ids.join(',')})")
   #end
+
+  private
+
+    def inactivate_zero_quantity
+      active = false if quantity == 0
+    end
 end

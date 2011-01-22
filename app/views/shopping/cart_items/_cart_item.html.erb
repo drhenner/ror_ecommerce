@@ -1,0 +1,49 @@
+<tr>
+  <td width="18%" valign="top" align="right">
+    <div class="tiny">
+      <b name="<%= i %>">Item added on <br/><%= item.created_at.strftime(I18n.translate('time.formats.long_date')) %>  </b>
+    </div>
+
+    <div id='remove_<%= i %>_from_cart' class="small-gradientbuttons small-redtheme ready-to-add-to-cart">
+      <ul>
+        <li>
+          <%= link_to 'Save for Later',
+                        move_to_shopping_cart_item_path(item, :variant_id => item.variant_id,
+                                                        :item_type_id     => ItemType::SAVE_FOR_LATER_ID),
+                                                        :method           => 'put' %>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <%= link_to 'Delete', shopping_cart_item_path(item, :variant_id => item.variant_id),
+                              :method => :delete %>
+        </li>
+      </ul>
+    </div>
+  </td>
+  <td valign="top" style="padding-right: 20px;">
+    <div class="small">
+      <b>
+          <%= link_to item.variant.product_name, product_path(item.variant.product) %>
+      </b>
+      <%=  item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ') %><br/>
+      <%= item.variant.display_stock_status('', '') %>
+      <br/>
+    </div>
+  </td>
+  <td valign="top" class="small">
+    <b class="price"><%= number_to_currency item.price %></b><br/>
+    <br/>
+  </td>
+  <td valign="top">
+    <%= cart_items_form.text_field :quantity, :size=>"2" %>
+  </td>
+</tr>
+<tr>
+  <td colspan="5">
+    <img  width="100%"
+          height="1"
+          border="0"
+          src="http://g-ecx.images-amazon.com/images/G/01/x-locale/common/icons/green-pixel._V192241350_.gif"/>
+  </td>
+</tr>

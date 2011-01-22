@@ -1,18 +1,48 @@
-<div class='span-9 rounded-10 line_item_blue'>
-  <h4>Saved Items:</h4>
-  <ul>
-    <% @saved_cart_items.each_with_index do |item, i| %>
-      <li id='saved-cart-item-<%= i %>' class='individual-cart-item'>
-      <% photo_url = item.variant.product.featured_image %>
-          <%= image_tag(photo_url) if photo_url %>
-          <%#= link_to 'Move to Cart', move_to_shopping_cart_item_path(item, 
-                                                                      :variant_id => item.variant_id),
-                                      :method     => 'put' %>
-          (<%= item.quantity %>) 
-          <%= item.variant.product_name %> 
-          <%= link_to 'remove', shopping_cart_item_path(item, :variant_id => item.variant_id), 
+
+<% @saved_cart_items.each_with_index do |item, i| %>
+  <tr>
+    <td width="20%" valign="top" align="right">
+      <div class="tiny">
+        <b name="s<%= i %>">Item added on <br/><%= item.created_at.strftime(I18n.translate('time.formats.long_date')) %></b>
+      </div>
+
+      <div id='add_<%= i %>_to_cart' class="small-gradientbuttons small-redtheme ready-to-add-to-cart">
+        <ul>
+          <li>
+            <%= link_to 'Move to Cart',
+                          move_to_shopping_cart_item_path(item, :variant_id => item.variant_id,
+                                                          :item_type_id     => ItemType::SHOPPING_CART_ID),
+                                                          :method           => 'put' %>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <%= link_to 'Delete', shopping_cart_item_path(item, :variant_id => item.variant_id),
                                 :method => :delete %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+          </li>
+        </ul>
+      </div>
+
+    </td>
+    <td valign="top" style="padding-right: 20px;">
+      <div class="small">
+        <b>
+          <%= link_to item.variant.product_name, product_path(item.variant.product) %>
+        </b>
+        <%=  item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ') %><br/>
+        <%= item.variant.display_stock_status('', '') %>
+        <br/>
+      </div>
+    </td>
+    <td valign="top" class="small">
+      <b class="price"><%= number_to_currency item.price %></b><br/>
+    </td>
+
+  </tr>
+
+  <tr>
+    <td colspan="5">
+      <img width="100%" height="1" border="0" src="http://g-ecx.images-amazon.com/images/G/01/x-locale/common/icons/green-pixel._V192241350_.gif"/>
+    </td>
+  </tr>
+<% end %>

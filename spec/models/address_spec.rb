@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Address do
   context "Valid Address" do
     before(:each) do
+      User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
       @address = Factory.build(:address)
     end
     
@@ -16,6 +17,7 @@ end
 
 describe Address, "methods" do
   before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     state = State.find_by_abbreviation('CA')
     @user = Factory(:user)
     @address = @user.addresses.new(:first_name => 'Perez', 

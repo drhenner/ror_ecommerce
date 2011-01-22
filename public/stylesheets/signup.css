@@ -15,7 +15,7 @@ div #signup {
   border: 3px solid #E6E6E6;
 }
 
-/* line 14, ../../app/stylesheets/signup.scss */
+/* line 15, ../../app/stylesheets/signup.scss */
 div #signup, div #login {
   text-align: left;
   padding: 17px;
@@ -23,26 +23,26 @@ div #signup, div #login {
   float: left;
   width: 280px;
 }
-/* line 22, ../../app/stylesheets/signup.scss */
+/* line 23, ../../app/stylesheets/signup.scss */
 div #signup fieldset, div #login fieldset {
   border: none;
   padding: 0px;
 }
-/* line 26, ../../app/stylesheets/signup.scss */
+/* line 27, ../../app/stylesheets/signup.scss */
 div #signup ol, div #signup ul, div #login ol, div #login ul {
   padding: 0;
 }
-/* line 29, ../../app/stylesheets/signup.scss */
+/* line 30, ../../app/stylesheets/signup.scss */
 div #signup p, div #login p {
   color: #999999;
   font-size: 13px;
 }
-/* line 33, ../../app/stylesheets/signup.scss */
+/* line 34, ../../app/stylesheets/signup.scss */
 div #signup h3, div #login h3 {
   margin-bottom: 5px;
 }
 
-/* line 38, ../../app/stylesheets/signup.scss */
+/* line 39, ../../app/stylesheets/signup.scss */
 label {
   font-size: 11px;
   font-weight: normal;
@@ -50,7 +50,7 @@ label {
   display: block;
 }
 
-/* line 45, ../../app/stylesheets/signup.scss */
+/* line 46, ../../app/stylesheets/signup.scss */
 input.text, input.title, input[type="text"], input[type="password"] {
   margin-bottom: 10px;
   width: 208px;

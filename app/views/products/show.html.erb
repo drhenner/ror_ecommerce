@@ -7,8 +7,8 @@
 <% end %>
 
 <div id='product'>
-  <h2><%= @product.name %> </h2>
-  <div class='span-1<%=@product.variants.empty? ? '8' : '6' %> float-left last'>
+
+  <div class='span-1<%=@product.variants.empty? ? '9' : '8' %> float-left last'>
     <div class='span-9 float-left'>
       <%= image_tag(@product.featured_image(:product)) %><br/>
 
@@ -20,38 +20,50 @@
       </div>
     </div>
     <% if @product.variants.empty? %>
+      <h2><%= @product.name %> </h2>
       <div id='no-variant-available' class=' span-8  last'>
         Sorry this product is not currently available.
       </div>
-    <% end %>
-    <% @product.variants.each_with_index do |variant, i| %>
-      <div  id='variant_border_<%= i %>'
-            class='variant_border span-6 float-left last'
-            data-variant='<%= variant.id %>' >
-        <% variant.variant_properties.each do |variant_property| %>
-          <div  id='variant_<%= i %>'
-                class='variant_select' >
-            <%= raw variant_property.property.display_name  %>: <%= raw variant_property.description %>
-          </div>
-        <% end %>
-        <%= number_to_currency variant.price %>
-        <%= variant.display_stock_status %>
+    <% else %>
+      <h2><%= @product.name %> </h2>
+      <div id='all-variants' class='dkBlueBox span-8'>
+        <div  class='innerBox'>
+          <% @product.variants.each_with_index do |variant, i| %>
+            <ul  id='variant_border_<%= i %>'
+                  class='variant_border last <%= 'selected_variant' if i == 0 %>  '
+                  data-variant='<%= variant.id %>' >
+              <%# variant.primary_property.each do |variant_property| %>
+                <div  id='variant_<%= i %>'
+                      class='variant_select' >
+                  <%= raw variant.primary_property.property.display_name  %>: <%= raw variant.primary_property.description %>
+                </div>
+              <%# end %>
+              <%= number_to_currency variant.price %>
+              <%= variant.display_stock_status %>
+            </ul>
+          <% end %>
+        </div>
       </div>
-
+      <hr/>
+      <div id='product_description' class='left-text-4'>
+        <%= raw @product.description %>
+      </div>
     <% end %>
   </div>
-  <div class='span-8 float-left last'>
+  <div id='add-to-cart_form-wrapper' class='span-6 float-left last'>
     <%= form_for  @cart_item, :as => :cart_item,
                   :url  => shopping_cart_items_path(@cart_item),
                   :html => { :id => 'new_cart_item' } do |f| %>
-      <% if @product.variants.size == 1 %>
-        <%= f.hidden_field :variant_id, :value => @product.variants.first.id %>
-      <% else %>
-        <%= f.hidden_field :variant_id %>
-      <% end %>
+        <%= f.hidden_field :variant_id, :value => @product.variants.first.try(:id) %>
       <% unless @product.variants.empty? %>
-        <%= image_tag('icons/add_to_shopping_cart_sm.png',  :id => 'submit_add_to_cart',
-                                                            :class => 'add-to-cart') %>
+          <%= f.label :quantity, 'Quantity:' %>
+          <%= f.select :quantity, CartItem::QUANTITIES %>
+
+        <div id='submit_add_to_cart' class="gradientbuttons redtheme ready-to-add-to-cart">
+          <ul>
+            <li><a>Add to Cart</a></li>
+          </ul>
+        </div>
       <% end %>
     <% end %>
   </div>

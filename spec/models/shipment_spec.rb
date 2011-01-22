@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Shipment, 'instance methods' do
   before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     @shipment = Factory(:shipment)
   end
 
@@ -68,6 +69,7 @@ end
 
 describe Shipment, 'instance method from build' do
   before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     @user = Factory(:user)
     @address1 = Factory(:address, :addressable => @user)
     @address2 = Factory(:address, :addressable => @user)
@@ -86,6 +88,7 @@ end
 
 describe Shipment, 'instance method from build' do
   before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     @shipment = Factory.build(:shipment)
   end
 
@@ -102,6 +105,7 @@ end
 
 describe Shipment, '#create_shipments_with_items(order)' do
   before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     @order     = Factory(:order)
 
     #@shipment = Factory.build(:shipment, :order => order, :state => 'pending')
@@ -141,26 +145,32 @@ describe Shipment, '#create_shipments_with_items(order)' do
 
 end
 
-describe Shipment, '#find_fulfillment_shipment(id)' do
-  it 'should return the shipment' do
-    shipment = Factory(:shipment)
-    s = Shipment.find_fulfillment_shipment(shipment.id)
-    s.id.should == shipment.id
+describe Shipment, 'Class Methods' do
+  before(:each) do
+    User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
   end
-end
 
-describe Shipment, "#id_from_number(num)" do
-  it 'should return shipment id' do
-    shipment     = Factory(:shipment)
-    shipment_id  = Shipment.id_from_number(shipment.number)
-    shipment_id.should == shipment.id
+  describe Shipment, '#find_fulfillment_shipment(id)' do
+    it 'should return the shipment' do
+      shipment = Factory(:shipment)
+      s = Shipment.find_fulfillment_shipment(shipment.id)
+      s.id.should == shipment.id
+    end
   end
-end
 
-describe Shipment, "#find_by_number(num)" do
-  it 'should find the shipment by number' do
-    shipment = Factory(:shipment)
-    find_shipment = Shipment.find_by_number(shipment.number)
-    find_shipment.id.should == shipment.id
+  describe Shipment, "#id_from_number(num)" do
+    it 'should return shipment id' do
+      shipment     = Factory(:shipment)
+      shipment_id  = Shipment.id_from_number(shipment.number)
+      shipment_id.should == shipment.id
+    end
+  end
+
+  describe Shipment, "#find_by_number(num)" do
+    it 'should find the shipment by number' do
+      shipment = Factory(:shipment)
+      find_shipment = Shipment.find_by_number(shipment.number)
+      find_shipment.id.should == shipment.id
+    end
   end
 end

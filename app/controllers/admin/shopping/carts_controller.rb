@@ -6,7 +6,7 @@ class Admin::Shopping::CartsController < Admin::Shopping::BaseController
     if f = next_admin_cart_form
       redirect_to f
     else
-      @cart = session_admin_cart 
+      @cart = session_admin_cart
       @credit_card ||= ActiveMerchant::Billing::CreditCard.new()
       respond_to do |format|
         format.html # index.html.erb
@@ -42,21 +42,22 @@ class Admin::Shopping::CartsController < Admin::Shopping::BaseController
   def create
     @cart         =  session_admin_cart
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
-    
+
     if @credit_card.valid?
       #ActiveRecord::Base.transaction do
         @order = Order.new_admin_cart(@cart, {:ip_address => request.remote_ip})
-        debugger
-        response = @order.create_invoice( @credit_card, 
-                                          @order.find_total, 
-                                          { :email            => @order.email, 
-                                            :billing_address  => @cart[:billing_address], 
-                                            :ip               => request.remote_ip }) if @order
+        response = @order.create_invoice( @credit_card,
+                                          @order.credited_total,
+                                          { :email            => @order.email,
+                                            :billing_address  => @cart[:billing_address],
+                                            :ip               => request.remote_ip },
+                                          @order.amount_to_credit) if @order
       #end
-      
-      if response
+
+      if @order && response
         if response.success?
           #clear the items out of the session_cart
+          @order.remove_user_store_credits
           reset_admin_cart
           ## Render the summary with a success message
           flash[:error] = "Processed order successfully."
@@ -72,7 +73,7 @@ class Admin::Shopping::CartsController < Admin::Shopping::BaseController
       flash[:error] = "Credit Card is not valid."
       render :action => 'index'
     end
-    
+
   end
 
   # PUT /admin/order/carts/1
@@ -100,10 +101,10 @@ class Admin::Shopping::CartsController < Admin::Shopping::BaseController
       format.html { redirect_to(admin_shopping_carts_url) }
     end
   end
-  
-  
+
+
   private
-  
+
   def cc_params
     {
           :type               => params[:type],

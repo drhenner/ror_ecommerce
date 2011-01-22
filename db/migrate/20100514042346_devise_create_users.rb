@@ -2,8 +2,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def self.up
     create_table(:users) do |t|
       ##  THIS info goes into signup-info
-      t.string :first_name  
-      t.string :last_name
+      t.string :first_name, :length => 40
+      t.string :last_name,  :length => 40
       t.date   :birth_date
       
       t.string :email 

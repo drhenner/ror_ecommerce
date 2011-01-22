@@ -1,0 +1,17 @@
+<h1> Credit Cards </h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for credit_card in @credit_cards %>
+    <tr>
+      <td><%= credit_card.name %></td>
+      <td><%= link_to "Show", myaccount_credit_card_path(credit_card) %></td>
+      <td><%= link_to "Edit", edit_myaccount_credit_card_path(credit_card) %></td>
+      <td><%= link_to "Remove", myaccount_credit_card_path(credit_card), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Credit Card", new_myaccount_credit_card_path, :class => 'button' %></p>

@@ -16,15 +16,15 @@ Factory.define :product do |u|
   u.available_at      Time.now
   u.deleted_at        nil
   u.featured          true
-  u.meta_keywords     ''
-  u.meta_description  ''
+  u.meta_description  'Describe the variant'
+  u.meta_keywords      'Key One, Key Two'
 end
 
 Factory.define :product_with_image, :parent => :product do |u|
   valid_file = File.new(File.join(Rails.root, 'spec', 'support', 'rails.png'))
-  u.images { 
+  u.images {
      [
        ActionController::TestUploadedFile.new(valid_file, Mime::Type.new('application/png'))
-     ] 
+     ]
   }
 end

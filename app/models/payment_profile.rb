@@ -6,7 +6,7 @@
 # http://cookingandcoding.com/2010/01/14/using-activemerchant-with-authorize-net-and-authorize-cim/
 #
 class PaymentProfile < ActiveRecord::Base
-  #include PaymentProfileCim
+  include PaymentProfileCim
   belongs_to :user
   belongs_to :address
 
@@ -118,4 +118,3 @@ class PaymentProfile < ActiveRecord::Base
   end
 
 end
-

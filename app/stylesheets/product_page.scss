@@ -1,3 +1,6 @@
+@import "css3_buttons";
+@import "app_mixins";
+
 #no-variant-available {
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
   line-height: 1.3;
@@ -5,4 +8,41 @@
   color: #5F5D62;
   padding: 3px;
   margin-bottom: 3px;
+}
+div {
+  color: #3F3D42;
+  #product_description {
+    font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+    line-height: 1.3;
+    font-size: 22px;
+    color: #5F5D62;
+  }
+}
+select {
+  margin-right:5px;
+}
+
+label {
+  color:#828282;
+}
+
+.variant_border {
+  display:inline-block;
+}
+
+.selected_variant {
+  border: solid 2px #FFA500;
+  background-color: #eff;
+}
+
+#add-to-cart_form-wrapper {
+  padding:8px;
+  border:   solid 1px #DD8888;
+  @include rounded(6px);
+  background-color: #fdd;
+}
+
+#all-variants {
+  margin-bottom:9px;
+  text-align:left;
 }

@@ -11,6 +11,9 @@ class OrderItem < ActiveRecord::Base
   after_find :set_beginning_values
   after_destroy :set_order_calculated_at_to_nil
 
+  validates :variant_id,  :presence => true
+  validates :order_id,    :presence => true
+
   def set_beginning_values
     @beginning_tax_rate_id      = self.tax_rate_id      rescue @beginning_tax_rate_id = nil # this stores the initial value of the tax_rate
     @beginning_shipping_rate_id = self.shipping_rate_id rescue @beginning_shipping_rate_id = nil # this stores the initial value of the tax_rate

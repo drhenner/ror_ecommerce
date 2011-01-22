@@ -1,0 +1,12 @@
+<h1> Credit Card </h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @credit_card.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_myaccount_credit_card_path(@credit_card), :class => 'button' %> |
+  <%= link_to "Destroy", myaccount_credit_card_path(@credit_card), :confirm => 'Are you sure?', :method => :delete, :class => 'button' %> |
+  <%= link_to "View All", myaccount_credit_cards_path, :class => 'button' %>
+</p>

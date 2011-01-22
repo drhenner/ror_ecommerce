@@ -48,7 +48,7 @@ class Cart < ActiveRecord::Base
   # @param [User, #read] user that is adding something to the cart
   # @param [Integer, #optional] ItemType id that is being added to the cart
   # @return [CartItem] return the cart item that is added to the cart
-  def add_variant(variant_id, customer, cart_item_type_id = ItemType::SHOPPING_CART_ID)
+  def add_variant(variant_id, customer, qty = 1, cart_item_type_id = ItemType::SHOPPING_CART_ID)
     items = shopping_cart_items.find_all_by_variant_id(variant_id)
     variant = Variant.find(variant_id)
     unless variant.sold_out?
@@ -56,17 +56,17 @@ class Cart < ActiveRecord::Base
         cart_item = shopping_cart_items.create(:variant_id   => variant_id,
                                       :user         => customer,
                                       :item_type_id => cart_item_type_id,
-                                      :quantity     => 1#,#:price      => variant.price
+                                      :quantity     => qty#,#:price      => variant.price
                                       )
       else
         cart_item = items.first
-        update_shopping_cart(cart_item,customer)
+        update_shopping_cart(cart_item,customer, qty)
       end
     else
       cart_item = saved_cart_items.create(:variant_id   => variant_id,
                                     :user         => customer,
                                     :item_type_id => ItemType::SAVE_FOR_LATER_ID,
-                                    :quantity     => 1#,#:price      => variant.price
+                                    :quantity     => qty#,#:price      => variant.price
                                     ) if items.size < 1
 
     end
@@ -103,11 +103,11 @@ class Cart < ActiveRecord::Base
   end
 
   private
-  def update_shopping_cart(cart_item,customer)
+  def update_shopping_cart(cart_item,customer, qty = 1)
     if customer
-      self.shopping_cart_items.find(cart_item.id).update_attributes(:quantity => (cart_item.quantity + 1), :user_id => customer.id)
+      self.shopping_cart_items.find(cart_item.id).update_attributes(:quantity => (cart_item.quantity + qty), :user_id => customer.id)
     else
-      self.shopping_cart_items.find(cart_item.id).update_attributes(:quantity => (cart_item.quantity + 1))
+      self.shopping_cart_items.find(cart_item.id).update_attributes(:quantity => (cart_item.quantity + qty))
     end
   end
 
