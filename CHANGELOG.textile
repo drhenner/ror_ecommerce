@@ -1,4 +1,11 @@
 
+h3. 0.4.0 2011-01-22
+
+* Store Credits can be use to purchase items
+* UI improvements
+* Much better Cart
+* View products by product_type
+
 h3. 0.3.0 2010-12-30
 
 * YARD docs complete
