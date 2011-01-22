@@ -1,4 +1,4 @@
-class Admin::Merchandise::BrandsController < ApplicationController
+class Admin::Merchandise::BrandsController < Admin::BaseController
   def index
     @brands = Brand.all
   end

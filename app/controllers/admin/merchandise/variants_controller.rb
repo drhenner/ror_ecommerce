@@ -1,5 +1,5 @@
 class Admin::Merchandise::VariantsController < Admin::BaseController
-  
+
   respond_to :html, :json
   def index
     @product = Product.find(params[:product_id])
@@ -11,7 +11,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
         @variants.per_page, #params[:page],
         @variants.current_page, #params[:rows],
         @variants.total_entries)
-      
+
       }
     end
   end
@@ -31,7 +31,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   def create
     @product = Product.find(params[:product_id])
     @variant = @product.variants.new(params[:variant])
-  
+
     if @variant.save
       redirect_to :action => :index
     else
@@ -49,7 +49,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
 
   def update
     @variant = Variant.find(params[:id])
-  
+
     if @variant.update_attributes(params[:variant])
       redirect_to :action => :index
     else
@@ -58,18 +58,19 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
       render :action => :edit
     end
   end
-  
+
   def destroy
     @variant = Variant.find(params[:id])
     @variant.active = false
     @variant.save
-  
+
     redirect_to :action => :index
   end
 
   private
 
     def form_info
+      @brands = Brand.all.collect{|b| [b.name, b.id] }
       #@prototypes = Prototype.all.collect{|pt| [pt.name, pt.id]}
       #@all_properties = Property.all
       #@select_variant_types = VariantType.all.collect{|pt| [pt.name, pt.id]}
