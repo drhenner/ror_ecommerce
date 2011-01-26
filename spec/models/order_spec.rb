@@ -389,6 +389,35 @@ describe Order, "instance methods" do
     end
   end
 
+  context '.item_prices' do
+
+    it 'should return an Array of prices' do
+      order_item1 = Factory(:order_item, :order => @order, :price => 2.01)
+      order_item2 = Factory(:order_item, :order => @order, :price => 9.00)
+      @order.stubs(:order_items).returns([order_item1, order_item2])
+      @order.send(:item_prices).class.should == Array
+      @order.send(:item_prices).include?(2.01).should be_true
+      @order.send(:item_prices).include?(9.00).should be_true
+    end
+  end
+
+
+  context '.coupon_amount' do
+
+    it 'should return 0.0 for no coupon' do
+      @order.stubs(:coupon_id).returns(nil)
+      @order.coupon_amount.should == 0.0
+    end
+
+    it 'should return call coupon.value' do
+      coupon  = Factory(:coupon_value)
+      order   = Factory(:order, :coupon => coupon)
+      order.stubs(:coupon_id).returns(2)
+      order.coupon.expects(:value).once
+      order.coupon_amount
+    end
+  end
+
 end
 
 

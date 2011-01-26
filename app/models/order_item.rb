@@ -102,10 +102,10 @@ class OrderItem < ActiveRecord::Base
   #
   # @param [none]
   # @return [Float] this is the price that the tax will be applied to.
-  def adjusted_price
+  def adjusted_price(coupon = nil)
     ## coupon credit is calculated at the order level but because taxes we need to apply it now
     # => this calculation will be complete in the version of Hadean
-    coupon_credit = 0.0
+    coupon_credit = coupon ? coupon.value(variant) : 0.0
 
     self.price - coupon_credit
   end
@@ -130,7 +130,7 @@ class OrderItem < ActiveRecord::Base
   def calculate_total(coupon = nil)
     # shipping charges are calculated in order.rb
 
-    self.total = (adjusted_price + tax_charge).round_at(2)
+    self.total = (adjusted_price(coupon) + tax_charge).round_at(2)
   end
 
   # the tax charge on an item

@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
   has_many   :return_authorizations
 
   belongs_to :user
+  belongs_to :coupon
   belongs_to   :ship_address, :class_name => 'Address'
   belongs_to   :bill_address, :class_name => 'Address'
 
@@ -233,7 +234,15 @@ class Order < ActiveRecord::Base
       self.total = self.total + item.item_total
     end
     self.sub_total = self.total
-    self.total = (self.total + shipping_charges).round_at( 2 )
+    self.total = (self.total + shipping_charges - coupon_amount ).round_at( 2 )
+  end
+
+  # amount the coupon reduces the value of the order
+  #
+  # @param [none]
+  # @return [Float] amount the coupon reduces the value of the order
+  def coupon_amount
+    coupon_id ? coupon.value(item_prices) : 0.0
   end
 
   # called when creating the invoice.  This does not change the store_credit amount
@@ -432,6 +441,14 @@ class Order < ActiveRecord::Base
   end
 
   private
+
+  # prices to charge of all items before taxes and coupons and shipping
+  #
+  # @param none
+  # @return [Array] Array of prices to charge of all items before
+  def item_prices
+    order_items.collect{|item| item.adjusted_price }
+  end
 
   # Called before validation.  sets the email address of the user to the order's email address
   #
