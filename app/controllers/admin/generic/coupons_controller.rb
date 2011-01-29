@@ -9,7 +9,7 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
 
   def new
     form_info
-    @coupon = CouponValue.new
+    @coupon = Coupon.new
   end
 
   def create

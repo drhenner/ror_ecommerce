@@ -3,10 +3,17 @@
 <table>
   <tr>
     <th>Code</th>
+    <th>Type</th>
+    <th>Starts at</th>
+    <th>Expires at</th>
   </tr>
   <% for coupon in @coupons %>
     <tr>
       <td><%= coupon.code %></td>
+      <td><%= coupon.type %></td>
+      <td><%= coupon.display_start_time %></td>
+      <td><%= coupon.display_expires_time %></td>
+
       <td><%= link_to "Show", admin_generic_coupon_path(coupon) %></td>
       <td><%= link_to "Edit", edit_admin_generic_coupon_path(coupon) %></td>
     </tr>

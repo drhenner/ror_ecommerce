@@ -15,10 +15,12 @@
     <%= f.text_field :code %>
   </div>
 
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.select :type, @coupon_types, { :include_blank => true } %>
-  </div>
+  <% unless @coupon.id %>
+    <div class="field">
+      <%= f.label :type %><br />
+      <%= f.select :type, @coupon_types, { :include_blank => true } %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :amount %><br />
