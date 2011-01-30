@@ -38,9 +38,9 @@ gem 'prawn', '~> 0.8.4'
 gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
 #gem 'sunspot'
-gem 'sunspot_rails', '1.2.rc4'
+gem 'sunspot_rails', '~> 1.2.rc4'
 gem 'ssl_requirement'
-gem 'state_machine'
+gem 'state_machine', '~> 0.9.4'
 gem 'will_paginate', '~> 3.0.pre2'
 #gem 'validation_reflection',      :branch => "rails-3"
 
@@ -67,12 +67,12 @@ group :test do
   gem 'rspec-rails-mocha'
   #gem "rr"
   gem "shoulda"
-  gem "rspec-rails",  "= 2.0.1"
-  gem "rspec",        "=  2.0.1"
+  gem "rspec-rails",  "~> 2.4.0"
+  gem "rspec",        "~> 2.4.0"
 
-  gem "rspec-core",         "=  2.0.1"
-  gem "rspec-expectations", "=  2.0.1"
-  gem "rspec-mocks",        "=  2.0.1"
+  gem "rspec-core",         "~> 2.4.0"
+  gem "rspec-expectations", "~> 2.4.0"
+  gem "rspec-mocks",        "~> 2.4.0"
   gem 'email_spec'
 
   gem "faker"
