@@ -1,4 +1,27 @@
 /* incase an inverted custom gradient isn't specified */
+/* line 177, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
+.fancy-button-reset-base-class, a.button, button {
+  font-family: "Lucida Grande", Lucida, Arial, sans-serif;
+  background: url('/images/button_bg.png?1285886228') repeat-x bottom left;
+  margin: 0;
+  width: auto;
+  overflow: visible;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  border-style: solid;
+  font-weight: bold;
+}
+/* line 165, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
+.fancy-button-reset-base-class::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+/* line 168, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
+.fancy-button-reset-base-class:focus, a.button:focus, button:focus {
+  outline: none;
+}
+
 /* line 3, ../../app/stylesheets/buttons.scss */
 body {
   text-align: center;
@@ -29,16 +52,6 @@ div {
 
 /* line 32, ../../app/stylesheets/buttons.scss */
 a.button, button {
-  font-family: "Lucida Grande", Lucida, Arial, sans_serif;
-  background: url('/images/button_bg.png') repeat-x bottom left;
-  margin: 0;
-  width: auto;
-  overflow: visible;
-  display: inline-block;
-  cursor: pointer;
-  text-decoration: none;
-  border-style: solid;
-  font-weight: bold;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   -o-border-radius: 6px;
@@ -46,8 +59,8 @@ a.button, button {
   -khtml-border-radius: 6px;
   border-radius: 6px;
   font-size: 18px;
-  line-height: 21.6px;
-  padding: 5px 18px;
+  line-height: 1.2em;
+  padding: 0.3em 1em;
   border-width: 1px;
   background-color: #444444;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #989898), color-stop(10%, #6a6a6a), color-stop(50%, #3c3c3c), color-stop(50%, #353535), color-stop(100%, #4e4e4e));
@@ -55,56 +68,24 @@ a.button, button {
   background-image: linear-gradient(top, #989898 0%, #6a6a6a 10%, #3c3c3c 50%, #353535 50%, #4e4e4e 100%);
   border-color: #1e1e1e;
   text-shadow: #040404 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.267) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.267) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.267) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.267) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
   margin: 0 2px;
   vertical-align: middle;
 }
-/* line 172, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button::-moz-focus-inner, button::-moz-focus-inner {
-  border: none;
-  padding: 0;
-}
-/* line 175, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button:focus, button:focus {
-  outline: none;
-}
-/* line 178, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.disabled, a.button[disabled], button.disabled, button[disabled] {
-  opacity: 0.7;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-}
-/* line 183, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.disabled:hover, a.button.disabled:focus, a.button[disabled]:hover, a.button[disabled]:focus, button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus {
-  cursor: default;
-}
-/* line 152, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button:active, button:active {
-  padding: 4px 17px;
-  border-width: 2px;
-}
-/* line 156, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.disabled:active, a.button[disabled], button.disabled:active, button[disabled] {
-  padding: 5px 18px;
-  border-width: 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button, a.button:visited, button, button:visited {
   color: white;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.disabled:active, a.button.disabled:hover, a.button[disabled]:active, a.button[disabled]:hover, button.disabled:active, button.disabled:hover, button[disabled]:active, button[disabled]:hover {
-  background-color: #444444;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #989898), color-stop(10%, #6a6a6a), color-stop(50%, #3c3c3c), color-stop(50%, #353535), color-stop(100%, #4e4e4e));
-  background-image: -moz-linear-gradient(top, #989898 0%, #6a6a6a 10%, #3c3c3c 50%, #353535 50%, #4e4e4e 100%);
-  background-image: linear-gradient(top, #989898 0%, #6a6a6a 10%, #3c3c3c 50%, #353535 50%, #4e4e4e 100%);
-  border-color: #1e1e1e;
-  text-shadow: #040404 0px 1px 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.disabled:active, a.button.disabled:active:visited, a.button.disabled:hover, a.button.disabled:hover:visited, a.button[disabled]:active, a.button[disabled]:active:visited, a.button[disabled]:hover, a.button[disabled]:hover:visited, button.disabled:active, button.disabled:active:visited, button.disabled:hover, button.disabled:hover:visited, button[disabled]:active, button[disabled]:active:visited, button[disabled]:hover, button[disabled]:hover:visited {
-  color: white;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button:hover, a.button:focus, button:hover, button:focus {
   background-color: #3c3c3c;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #919191), color-stop(10%, #636363), color-stop(50%, #353535), color-stop(50%, #2d2d2d), color-stop(100%, #474747));
@@ -113,11 +94,11 @@ a.button:hover, a.button:focus, button:hover, button:focus {
   border-color: #161616;
   text-shadow: black 0px 1px 1px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button:hover, a.button:hover:visited, a.button:focus, a.button:focus:visited, button:hover, button:hover:visited, button:focus, button:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button:active, button:active {
   background-color: #353535;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #353535), color-stop(30%, #3a3a3a), color-stop(50%, #303030), color-stop(50%, #282828), color-stop(100%, #494949));
@@ -125,8 +106,12 @@ a.button:active, button:active {
   background-image: linear-gradient(top, #353535 0%, #3a3a3a 30%, #303030 50%, #282828 50%, #494949 100%);
   border-color: #0e0e0e;
   text-shadow: black 0px -1px -1px;
+  -moz-box-shadow: #1e1e1e 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #1e1e1e 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #1e1e1e 0 0.08em 0.1em 1px inset;
+  box-shadow: #1e1e1e 0 0.08em 0.1em 1px inset;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button:active, a.button:active:visited, button:active, button:active:visited {
   color: white;
 }
@@ -138,25 +123,22 @@ a.button.light, button.light {
   background-image: linear-gradient(top, #ffffff 0%, #cecece 100%);
   border-color: #b7b7b7;
   text-shadow: white 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.867) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.867) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.867) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.867) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
 }
-/* line 102, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 120, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.light, a.button.light:visited, button.light, button.light:visited {
   color: #222222;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.light.disabled:active, a.button.light.disabled:hover, a.button.light[disabled]:active, a.button.light[disabled]:hover, button.light.disabled:active, button.light.disabled:hover, button.light[disabled]:active, button.light[disabled]:hover {
-  background-color: white;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ffffff), color-stop(100%, #cecece));
-  background-image: -moz-linear-gradient(top, #ffffff 0%, #cecece 100%);
-  background-image: linear-gradient(top, #ffffff 0%, #cecece 100%);
-  border-color: #b7b7b7;
-  text-shadow: white 0px 1px 1px;
-}
-/* line 102, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.light.disabled:active, a.button.light.disabled:active:visited, a.button.light.disabled:hover, a.button.light.disabled:hover:visited, a.button.light[disabled]:active, a.button.light[disabled]:active:visited, a.button.light[disabled]:hover, a.button.light[disabled]:hover:visited, button.light.disabled:active, button.light.disabled:active:visited, button.light.disabled:hover, button.light.disabled:hover:visited, button.light[disabled]:active, button.light[disabled]:active:visited, button.light[disabled]:hover, button.light[disabled]:hover:visited {
-  color: #222222;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.light:hover, a.button.light:focus, button.light:hover, button.light:focus {
   background-color: white;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #fcfcfc), color-stop(100%, #c6c6c6));
@@ -165,11 +147,11 @@ a.button.light:hover, a.button.light:focus, button.light:hover, button.light:foc
   border-color: #afafaf;
   text-shadow: white 0px 1px 1px;
 }
-/* line 102, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 120, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.light:hover, a.button.light:hover:visited, a.button.light:focus, a.button.light:focus:visited, button.light:hover, button.light:hover:visited, button.light:focus, button.light:focus:visited {
   color: #222222;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.light:active, button.light:active {
   background-color: white;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #cbcbcb), color-stop(40%, #d3d3d3), color-stop(85%, #d3d3d3), color-stop(100%, #e5e5e5));
@@ -177,8 +159,12 @@ a.button.light:active, button.light:active {
   background-image: linear-gradient(top, #cbcbcb 0%, #d3d3d3 40%, #d3d3d3 85%, #e5e5e5 100%);
   border-color: #a7a7a7;
   text-shadow: white 0px -1px -1px;
+  -moz-box-shadow: #b7b7b7 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #b7b7b7 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #b7b7b7 0 0.08em 0.1em 1px inset;
+  box-shadow: #b7b7b7 0 0.08em 0.1em 1px inset;
 }
-/* line 102, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 120, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.light:active, a.button.light:active:visited, button.light:active, button.light:active:visited {
   color: #222222;
 }
@@ -190,25 +176,22 @@ a.button.matte-blue, button.matte-blue {
   background-image: linear-gradient(top, #367fce 0%, #1e4b7b 100%);
   border-color: #153456;
   text-shadow: #001b38 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.matte-blue, a.button.matte-blue:visited, button.matte-blue, button.matte-blue:visited {
   color: white;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.matte-blue.disabled:active, a.button.matte-blue.disabled:hover, a.button.matte-blue[disabled]:active, a.button.matte-blue[disabled]:hover, button.matte-blue.disabled:active, button.matte-blue.disabled:hover, button.matte-blue[disabled]:active, button.matte-blue[disabled]:hover {
-  background-color: #0058b7;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #367fce), color-stop(100%, #1e4b7b));
-  background-image: -moz-linear-gradient(top, #367fce 0%, #1e4b7b 100%);
-  background-image: linear-gradient(top, #367fce 0%, #1e4b7b 100%);
-  border-color: #153456;
-  text-shadow: #001b38 0px 1px 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.matte-blue.disabled:active, a.button.matte-blue.disabled:active:visited, a.button.matte-blue.disabled:hover, a.button.matte-blue.disabled:hover:visited, a.button.matte-blue[disabled]:active, a.button.matte-blue[disabled]:active:visited, a.button.matte-blue[disabled]:hover, a.button.matte-blue[disabled]:hover:visited, button.matte-blue.disabled:active, button.matte-blue.disabled:active:visited, button.matte-blue.disabled:hover, button.matte-blue.disabled:hover:visited, button.matte-blue[disabled]:active, button.matte-blue[disabled]:active:visited, button.matte-blue[disabled]:hover, button.matte-blue[disabled]:hover:visited {
-  color: white;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.matte-blue:hover, a.button.matte-blue:focus, button.matte-blue:hover, button.matte-blue:focus {
   background-color: #0051a8;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #3078c4), color-stop(100%, #1b436e));
@@ -217,11 +200,11 @@ a.button.matte-blue:hover, a.button.matte-blue:focus, button.matte-blue:hover, b
   border-color: #122d49;
   text-shadow: #001428 0px 1px 1px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.matte-blue:hover, a.button.matte-blue:hover:visited, a.button.matte-blue:focus, a.button.matte-blue:focus:visited, button.matte-blue:hover, button.matte-blue:hover:visited, button.matte-blue:focus, button.matte-blue:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.matte-blue:active, button.matte-blue:active {
   background-color: #004a99;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #1d4877), color-stop(40%, #205083), color-stop(85%, #205083), color-stop(100%, #2761a0));
@@ -229,8 +212,12 @@ a.button.matte-blue:active, button.matte-blue:active {
   background-image: linear-gradient(top, #1d4877 0%, #205083 40%, #205083 85%, #2761a0 100%);
   border-color: #0f253d;
   text-shadow: #000c19 0px -1px -1px;
+  -moz-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  box-shadow: #153456 0 0.08em 0.1em 1px inset;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.matte-blue:active, a.button.matte-blue:active:visited, button.matte-blue:active, button.matte-blue:active:visited {
   color: white;
 }
@@ -242,25 +229,22 @@ a.button.green, button.green {
   background-image: linear-gradient(top, #9ee080 0%, #66ce36 10%, #418721 50%, #3b7b1e 50%, #4fa428 100%);
   border-color: #295615;
   text-shadow: #123800 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.green, a.button.green:visited, button.green, button.green:visited {
   color: white;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.green.disabled:active, a.button.green.disabled:hover, a.button.green[disabled]:active, a.button.green[disabled]:hover, button.green.disabled:active, button.green.disabled:hover, button.green[disabled]:active, button.green[disabled]:hover {
-  background-color: #3ab700;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #9ee080), color-stop(10%, #66ce36), color-stop(50%, #418721), color-stop(50%, #3b7b1e), color-stop(100%, #4fa428));
-  background-image: -moz-linear-gradient(top, #9ee080 0%, #66ce36 10%, #418721 50%, #3b7b1e 50%, #4fa428 100%);
-  background-image: linear-gradient(top, #9ee080 0%, #66ce36 10%, #418721 50%, #3b7b1e 50%, #4fa428 100%);
-  border-color: #295615;
-  text-shadow: #123800 0px 1px 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.green.disabled:active, a.button.green.disabled:active:visited, a.button.green.disabled:hover, a.button.green.disabled:hover:visited, a.button.green[disabled]:active, a.button.green[disabled]:active:visited, a.button.green[disabled]:hover, a.button.green[disabled]:hover:visited, button.green.disabled:active, button.green.disabled:active:visited, button.green.disabled:hover, button.green.disabled:hover:visited, button.green[disabled]:active, button.green[disabled]:active:visited, button.green[disabled]:hover, button.green[disabled]:hover:visited {
-  color: white;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.green:hover, a.button.green:focus, button.green:hover, button.green:focus {
   background-color: #35a800;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #95dd73), color-stop(10%, #5fc430), color-stop(50%, #3b7b1e), color-stop(50%, #356e1b), color-stop(100%, #499725));
@@ -269,11 +253,11 @@ a.button.green:hover, a.button.green:focus, button.green:hover, button.green:foc
   border-color: #234912;
   text-shadow: #0d2800 0px 1px 1px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.green:hover, a.button.green:hover:visited, a.button.green:focus, a.button.green:focus:visited, button.green:hover, button.green:hover:visited, button.green:focus, button.green:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.green:active, button.green:active {
   background-color: #309900;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #3b7b1e), color-stop(30%, #3f8320), color-stop(50%, #37721c), color-stop(50%, #316619), color-stop(100%, #4b9b26));
@@ -281,8 +265,12 @@ a.button.green:active, button.green:active {
   background-image: linear-gradient(top, #3b7b1e 0%, #3f8320 30%, #37721c 50%, #316619 50%, #4b9b26 100%);
   border-color: #1e3d0f;
   text-shadow: #081900 0px -1px -1px;
+  -moz-box-shadow: #295615 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #295615 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #295615 0 0.08em 0.1em 1px inset;
+  box-shadow: #295615 0 0.08em 0.1em 1px inset;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.green:active, a.button.green:active:visited, button.green:active, button.green:active:visited {
   color: white;
 }
@@ -295,8 +283,8 @@ a.button.blue, button.blue {
   -khtml-border-radius: 32px;
   border-radius: 32px;
   font-size: 32px;
-  line-height: 38.4px;
-  padding: 9px 32px;
+  line-height: 1.2em;
+  padding: 0.3em 1em;
   border-width: 3px;
   background-color: #0058b7;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #80aee0), color-stop(10%, #367fce), color-stop(50%, #215287), color-stop(50%, #1e4b7b), color-stop(100%, #2864a4));
@@ -304,35 +292,22 @@ a.button.blue, button.blue {
   background-image: linear-gradient(top, #80aee0 0%, #367fce 10%, #215287 50%, #1e4b7b 50%, #2864a4 100%);
   border-color: #153456;
   text-shadow: #001b38 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
 }
-/* line 152, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.blue:active, button.blue:active {
-  padding: 8px 31px;
-  border-width: 4px;
-}
-/* line 156, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.blue.disabled:active, a.button.blue[disabled], button.blue.disabled:active, button.blue[disabled] {
-  padding: 9px 32px;
-  border-width: 3px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.blue, a.button.blue:visited, button.blue, button.blue:visited {
   color: white;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.blue.disabled:active, a.button.blue.disabled:hover, a.button.blue[disabled]:active, a.button.blue[disabled]:hover, button.blue.disabled:active, button.blue.disabled:hover, button.blue[disabled]:active, button.blue[disabled]:hover {
-  background-color: #0058b7;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #80aee0), color-stop(10%, #367fce), color-stop(50%, #215287), color-stop(50%, #1e4b7b), color-stop(100%, #2864a4));
-  background-image: -moz-linear-gradient(top, #80aee0 0%, #367fce 10%, #215287 50%, #1e4b7b 50%, #2864a4 100%);
-  background-image: linear-gradient(top, #80aee0 0%, #367fce 10%, #215287 50%, #1e4b7b 50%, #2864a4 100%);
-  border-color: #153456;
-  text-shadow: #001b38 0px 1px 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.blue.disabled:active, a.button.blue.disabled:active:visited, a.button.blue.disabled:hover, a.button.blue.disabled:hover:visited, a.button.blue[disabled]:active, a.button.blue[disabled]:active:visited, a.button.blue[disabled]:hover, a.button.blue[disabled]:hover:visited, button.blue.disabled:active, button.blue.disabled:active:visited, button.blue.disabled:hover, button.blue.disabled:hover:visited, button.blue[disabled]:active, button.blue[disabled]:active:visited, button.blue[disabled]:hover, button.blue[disabled]:hover:visited {
-  color: white;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.blue:hover, a.button.blue:focus, button.blue:hover, button.blue:focus {
   background-color: #0051a8;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #73a6dd), color-stop(10%, #3078c4), color-stop(50%, #1e4b7b), color-stop(50%, #1b436e), color-stop(100%, #255c97));
@@ -341,11 +316,11 @@ a.button.blue:hover, a.button.blue:focus, button.blue:hover, button.blue:focus {
   border-color: #122d49;
   text-shadow: #001428 0px 1px 1px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.blue:hover, a.button.blue:hover:visited, a.button.blue:focus, a.button.blue:focus:visited, button.blue:hover, button.blue:hover:visited, button.blue:focus, button.blue:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.blue:active, button.blue:active {
   background-color: #004a99;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #1e4b7b), color-stop(30%, #205083), color-stop(50%, #1c4672), color-stop(50%, #193e66), color-stop(100%, #265f9b));
@@ -353,8 +328,12 @@ a.button.blue:active, button.blue:active {
   background-image: linear-gradient(top, #1e4b7b 0%, #205083 30%, #1c4672 50%, #193e66 50%, #265f9b 100%);
   border-color: #0f253d;
   text-shadow: #000c19 0px -1px -1px;
+  -moz-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  box-shadow: #153456 0 0.08em 0.1em 1px inset;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.blue:active, a.button.blue:active:visited, button.blue:active, button.blue:active:visited {
   color: white;
 }
@@ -366,25 +345,22 @@ a.button.red, button.red {
   background-image: linear-gradient(top, #e08180 0%, #ce3836 10%, #872321 50%, #7b201e 50%, #a42a28 100%);
   border-color: #561615;
   text-shadow: #380100 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.red, a.button.red:visited, button.red, button.red:visited {
   color: white;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.red.disabled:active, a.button.red.disabled:hover, a.button.red[disabled]:active, a.button.red[disabled]:hover, button.red.disabled:active, button.red.disabled:hover, button.red[disabled]:active, button.red[disabled]:hover {
-  background-color: #b70300;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #e08180), color-stop(10%, #ce3836), color-stop(50%, #872321), color-stop(50%, #7b201e), color-stop(100%, #a42a28));
-  background-image: -moz-linear-gradient(top, #e08180 0%, #ce3836 10%, #872321 50%, #7b201e 50%, #a42a28 100%);
-  background-image: linear-gradient(top, #e08180 0%, #ce3836 10%, #872321 50%, #7b201e 50%, #a42a28 100%);
-  border-color: #561615;
-  text-shadow: #380100 0px 1px 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.red.disabled:active, a.button.red.disabled:active:visited, a.button.red.disabled:hover, a.button.red.disabled:hover:visited, a.button.red[disabled]:active, a.button.red[disabled]:active:visited, a.button.red[disabled]:hover, a.button.red[disabled]:hover:visited, button.red.disabled:active, button.red.disabled:active:visited, button.red.disabled:hover, button.red.disabled:hover:visited, button.red[disabled]:active, button.red[disabled]:active:visited, button.red[disabled]:hover, button.red[disabled]:hover:visited {
-  color: white;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.red:hover, a.button.red:focus, button.red:hover, button.red:focus {
   background-color: #a80300;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #dd7573), color-stop(10%, #c43330), color-stop(50%, #7b201e), color-stop(50%, #6e1c1b), color-stop(100%, #972725));
@@ -393,11 +369,11 @@ a.button.red:hover, a.button.red:focus, button.red:hover, button.red:focus {
   border-color: #491312;
   text-shadow: #280100 0px 1px 1px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.red:hover, a.button.red:hover:visited, a.button.red:focus, a.button.red:focus:visited, button.red:hover, button.red:hover:visited, button.red:focus, button.red:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.red:active, button.red:active {
   background-color: #990300;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #7b201e), color-stop(30%, #832220), color-stop(50%, #721d1c), color-stop(50%, #661a19), color-stop(100%, #9b2826));
@@ -405,8 +381,12 @@ a.button.red:active, button.red:active {
   background-image: linear-gradient(top, #7b201e 0%, #832220 30%, #721d1c 50%, #661a19 50%, #9b2826 100%);
   border-color: #3d100f;
   text-shadow: #190000 0px -1px -1px;
+  -moz-box-shadow: #561615 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #561615 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #561615 0 0.08em 0.1em 1px inset;
+  box-shadow: #561615 0 0.08em 0.1em 1px inset;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.red:active, a.button.red:active:visited, button.red:active, button.red:active:visited {
   color: white;
 }
@@ -418,25 +398,22 @@ a.button.yellow, button.yellow {
   background-image: linear-gradient(top, #ebeba2 0%, #dbdb57 10%, #b1b125 50%, #a4a423 50%, #cece2c 100%);
   border-color: #7e7e1b;
   text-shadow: #666600 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.45) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.45) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.45) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.45) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.yellow, a.button.yellow:visited, button.yellow, button.yellow:visited {
   color: white;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.yellow.disabled:active, a.button.yellow.disabled:hover, a.button.yellow[disabled]:active, a.button.yellow[disabled]:hover, button.yellow.disabled:active, button.yellow.disabled:hover, button.yellow[disabled]:active, button.yellow[disabled]:hover {
-  background-color: #e5e600;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #ebeba2), color-stop(10%, #dbdb57), color-stop(50%, #b1b125), color-stop(50%, #a4a423), color-stop(100%, #cece2c));
-  background-image: -moz-linear-gradient(top, #ebeba2 0%, #dbdb57 10%, #b1b125 50%, #a4a423 50%, #cece2c 100%);
-  background-image: linear-gradient(top, #ebeba2 0%, #dbdb57 10%, #b1b125 50%, #a4a423 50%, #cece2c 100%);
-  border-color: #7e7e1b;
-  text-shadow: #666600 0px 1px 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.yellow.disabled:active, a.button.yellow.disabled:active:visited, a.button.yellow.disabled:hover, a.button.yellow.disabled:hover:visited, a.button.yellow[disabled]:active, a.button.yellow[disabled]:active:visited, a.button.yellow[disabled]:hover, a.button.yellow[disabled]:hover:visited, button.yellow.disabled:active, button.yellow.disabled:active:visited, button.yellow.disabled:hover, button.yellow.disabled:hover:visited, button.yellow[disabled]:active, button.yellow[disabled]:active:visited, button.yellow[disabled]:hover, button.yellow[disabled]:hover:visited {
-  color: white;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.yellow:hover, a.button.yellow:focus, button.yellow:hover, button.yellow:focus {
   background-color: #d6d600;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #e9e996), color-stop(10%, #d9d94a), color-stop(50%, #a4a423), color-stop(50%, #979720), color-stop(100%, #c2c229));
@@ -445,11 +422,11 @@ a.button.yellow:hover, a.button.yellow:focus, button.yellow:hover, button.yellow
   border-color: #727218;
   text-shadow: #575700 0px 1px 1px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.yellow:hover, a.button.yellow:hover:visited, a.button.yellow:focus, a.button.yellow:focus:visited, button.yellow:hover, button.yellow:hover:visited, button.yellow:focus, button.yellow:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.yellow:active, button.yellow:active {
   background-color: #c7c700;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #a4a423), color-stop(30%, #adad25), color-stop(50%, #9c9c21), color-stop(50%, #8f8f1e), color-stop(100%, #c6c62a));
@@ -457,8 +434,12 @@ a.button.yellow:active, button.yellow:active {
   background-image: linear-gradient(top, #a4a423 0%, #adad25 30%, #9c9c21 50%, #8f8f1e 50%, #c6c62a 100%);
   border-color: #656515;
   text-shadow: #474700 0px -1px -1px;
+  -moz-box-shadow: #7e7e1b 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #7e7e1b 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #7e7e1b 0 0.08em 0.1em 1px inset;
+  box-shadow: #7e7e1b 0 0.08em 0.1em 1px inset;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.yellow:active, a.button.yellow:active:visited, button.yellow:active, button.yellow:active:visited {
   color: white;
 }
@@ -471,29 +452,9 @@ a.button.custom, button.custom {
   -khtml-border-radius: 10px;
   border-radius: 10px;
   font-size: 30px;
-  line-height: 36px;
-  padding: 8px 30px;
+  line-height: 1.2em;
+  padding: 0.3em 1em;
   border-width: 1px;
-  padding: 2px 12px;
-  border-width: 2px;
-}
-/* line 152, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.custom:active, button.custom:active {
-  padding: 7px 29px;
-  border-width: 2px;
-}
-/* line 156, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.custom.disabled:active, a.button.custom[disabled], button.custom.disabled:active, button.custom[disabled] {
-  padding: 8px 30px;
-  border-width: 1px;
-}
-/* line 152, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.custom:active, button.custom:active {
-  padding: 1px 11px;
-  border-width: 3px;
-}
-/* line 156, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.custom.disabled:active, a.button.custom[disabled], button.custom.disabled:active, button.custom[disabled] {
   padding: 2px 12px;
   border-width: 2px;
 }
@@ -505,25 +466,22 @@ a.button.heart, button.heart {
   background-image: radial-gradient(50% 10%, circle, #e82926 0%, #7c0f0d 30px);
   border-color: #6a0d0b;
   text-shadow: #420100 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.379) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.379) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.379) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.379) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.heart, a.button.heart:visited, button.heart, button.heart:visited {
   color: white;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.heart.disabled:active, a.button.heart.disabled:hover, a.button.heart[disabled]:active, a.button.heart[disabled]:hover, button.heart.disabled:active, button.heart.disabled:hover, button.heart[disabled]:active, button.heart[disabled]:hover {
-  background-color: #c10300;
-  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #e82926), color-stop(100%, #7c0f0d));
-  background-image: -moz-radial-gradient(50% 10%, circle, #e82926 0%, #7c0f0d 30px);
-  background-image: radial-gradient(50% 10%, circle, #e82926 0%, #7c0f0d 30px);
-  border-color: #6a0d0b;
-  text-shadow: #420100 0px 1px 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.heart.disabled:active, a.button.heart.disabled:active:visited, a.button.heart.disabled:hover, a.button.heart.disabled:hover:visited, a.button.heart[disabled]:active, a.button.heart[disabled]:active:visited, a.button.heart[disabled]:hover, a.button.heart[disabled]:hover:visited, button.heart.disabled:active, button.heart.disabled:active:visited, button.heart.disabled:hover, button.heart.disabled:hover:visited, button.heart[disabled]:active, button.heart[disabled]:active:visited, button.heart[disabled]:hover, button.heart[disabled]:hover:visited {
-  color: white;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.heart:hover, a.button.heart:focus, button.heart:hover, button.heart:focus {
   background-color: #b20300;
   background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #e61c19), color-stop(100%, #6e0d0c));
@@ -532,20 +490,24 @@ a.button.heart:hover, a.button.heart:focus, button.heart:hover, button.heart:foc
   border-color: #5c0b0a;
   text-shadow: #330100 0px 1px 1px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.heart:hover, a.button.heart:hover:visited, a.button.heart:focus, a.button.heart:focus:visited, button.heart:hover, button.heart:hover:visited, button.heart:focus, button.heart:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.heart:active, button.heart:active {
   background-color: #a30300;
-  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #a61412), color-stop(100%, #d41a17));
-  background-image: -moz-radial-gradient(50% 10%, circle, #a61412 0%, #d41a17 30px);
-  background-image: radial-gradient(50% 10%, circle, #a61412 0%, #d41a17 30px);
+  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #d81a17), color-stop(100%, #600c0a));
+  background-image: -moz-radial-gradient(50% 10%, circle, #d81a17 0%, #600c0a 30px);
+  background-image: radial-gradient(50% 10%, circle, #d81a17 0%, #600c0a 30px);
   border-color: #4e0a08;
   text-shadow: #230100 0px -1px -1px;
+  -moz-box-shadow: #6a0d0b 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #6a0d0b 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #6a0d0b 0 0.08em 0.1em 1px inset;
+  box-shadow: #6a0d0b 0 0.08em 0.1em 1px inset;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.heart:active, a.button.heart:active:visited, button.heart:active, button.heart:active:visited {
   color: white;
 }
@@ -558,8 +520,8 @@ a.button.arrow, button.arrow {
   -khtml-border-radius: 30px;
   border-radius: 30px;
   font-size: 30px;
-  line-height: 36px;
-  padding: 8px 30px;
+  line-height: 1.2em;
+  padding: 0.3em 1em;
   border-width: 1px;
   background-color: white;
   background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #ffffff), color-stop(100%, #c1c1c1));
@@ -567,37 +529,24 @@ a.button.arrow, button.arrow {
   background-image: radial-gradient(50% 10%, circle, #ffffff 0%, #c1c1c1 30px);
   border-color: #b7b7b7;
   text-shadow: white 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.867) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.867) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.867) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.867) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
   padding: 2px 6px;
   border-width: 2px;
 }
-/* line 152, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.arrow:active, button.arrow:active {
-  padding: 7px 29px;
-  border-width: 2px;
-}
-/* line 156, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.arrow.disabled:active, a.button.arrow[disabled], button.arrow.disabled:active, button.arrow[disabled] {
-  padding: 8px 30px;
-  border-width: 1px;
-}
-/* line 102, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 120, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.arrow, a.button.arrow:visited, button.arrow, button.arrow:visited {
   color: #222222;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.arrow.disabled:active, a.button.arrow.disabled:hover, a.button.arrow[disabled]:active, a.button.arrow[disabled]:hover, button.arrow.disabled:active, button.arrow.disabled:hover, button.arrow[disabled]:active, button.arrow[disabled]:hover {
-  background-color: white;
-  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #ffffff), color-stop(100%, #c1c1c1));
-  background-image: -moz-radial-gradient(50% 10%, circle, #ffffff 0%, #c1c1c1 30px);
-  background-image: radial-gradient(50% 10%, circle, #ffffff 0%, #c1c1c1 30px);
-  border-color: #b7b7b7;
-  text-shadow: white 0px 1px 1px;
-}
-/* line 102, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.arrow.disabled:active, a.button.arrow.disabled:active:visited, a.button.arrow.disabled:hover, a.button.arrow.disabled:hover:visited, a.button.arrow[disabled]:active, a.button.arrow[disabled]:active:visited, a.button.arrow[disabled]:hover, a.button.arrow[disabled]:hover:visited, button.arrow.disabled:active, button.arrow.disabled:active:visited, button.arrow.disabled:hover, button.arrow.disabled:hover:visited, button.arrow[disabled]:active, button.arrow[disabled]:active:visited, button.arrow[disabled]:hover, button.arrow[disabled]:hover:visited {
-  color: #222222;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.arrow:hover, a.button.arrow:focus, button.arrow:hover, button.arrow:focus {
   background-color: white;
   background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #fcfcfc), color-stop(100%, #b9b9b9));
@@ -606,32 +555,26 @@ a.button.arrow:hover, a.button.arrow:focus, button.arrow:hover, button.arrow:foc
   border-color: #afafaf;
   text-shadow: white 0px 1px 1px;
 }
-/* line 102, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 120, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.arrow:hover, a.button.arrow:hover:visited, a.button.arrow:focus, a.button.arrow:focus:visited, button.arrow:hover, button.arrow:hover:visited, button.arrow:focus, button.arrow:focus:visited {
   color: #222222;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.arrow:active, button.arrow:active {
   background-color: white;
-  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #d8d8d8), color-stop(100%, #f1f1f1));
-  background-image: -moz-radial-gradient(50% 10%, circle, #d8d8d8 0%, #f1f1f1 30px);
-  background-image: radial-gradient(50% 10%, circle, #d8d8d8 0%, #f1f1f1 30px);
+  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #f4f4f4), color-stop(100%, #b2b2b2));
+  background-image: -moz-radial-gradient(50% 10%, circle, #f4f4f4 0%, #b2b2b2 30px);
+  background-image: radial-gradient(50% 10%, circle, #f4f4f4 0%, #b2b2b2 30px);
   border-color: #a7a7a7;
   text-shadow: white 0px -1px -1px;
+  -moz-box-shadow: #b7b7b7 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #b7b7b7 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #b7b7b7 0 0.08em 0.1em 1px inset;
+  box-shadow: #b7b7b7 0 0.08em 0.1em 1px inset;
 }
-/* line 102, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 120, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.arrow:active, a.button.arrow:active:visited, button.arrow:active, button.arrow:active:visited {
   color: #222222;
-}
-/* line 152, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.arrow:active, button.arrow:active {
-  padding: 1px 5px;
-  border-width: 3px;
-}
-/* line 156, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.arrow.disabled:active, a.button.arrow[disabled], button.arrow.disabled:active, button.arrow[disabled] {
-  padding: 2px 6px;
-  border-width: 2px;
 }
 /* line 59, ../../app/stylesheets/buttons.scss */
 a.button.spade, button.spade {
@@ -641,27 +584,24 @@ a.button.spade, button.spade {
   background-image: radial-gradient(50% 10%, circle, #367fce 0%, #193e66 30px);
   border-color: #153456;
   text-shadow: #001b38 0px 1px 1px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -o-box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  box-shadow: rgba(255, 255, 255, 0.359) 0 0 0.1em 1px inset;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  -khtml-background-clip: padding-box;
+  background-clip: padding-box;
   padding: 2px 8px;
   border-width: 2px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.spade, a.button.spade:visited, button.spade, button.spade:visited {
   color: white;
 }
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.spade.disabled:active, a.button.spade.disabled:hover, a.button.spade[disabled]:active, a.button.spade[disabled]:hover, button.spade.disabled:active, button.spade.disabled:hover, button.spade[disabled]:active, button.spade[disabled]:hover {
-  background-color: #0058b7;
-  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #367fce), color-stop(100%, #193e66));
-  background-image: -moz-radial-gradient(50% 10%, circle, #367fce 0%, #193e66 30px);
-  background-image: radial-gradient(50% 10%, circle, #367fce 0%, #193e66 30px);
-  border-color: #153456;
-  text-shadow: #001b38 0px 1px 1px;
-}
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.spade.disabled:active, a.button.spade.disabled:active:visited, a.button.spade.disabled:hover, a.button.spade.disabled:hover:visited, a.button.spade[disabled]:active, a.button.spade[disabled]:active:visited, a.button.spade[disabled]:hover, a.button.spade[disabled]:hover:visited, button.spade.disabled:active, button.spade.disabled:active:visited, button.spade.disabled:hover, button.spade.disabled:hover:visited, button.spade[disabled]:active, button.spade[disabled]:active:visited, button.spade[disabled]:hover, button.spade[disabled]:hover:visited {
-  color: white;
-}
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.spade:hover, a.button.spade:focus, button.spade:hover, button.spade:focus {
   background-color: #0051a8;
   background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #3078c4), color-stop(100%, #16375a));
@@ -670,30 +610,24 @@ a.button.spade:hover, a.button.spade:focus, button.spade:hover, button.spade:foc
   border-color: #122d49;
   text-shadow: #001428 0px 1px 1px;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.spade:hover, a.button.spade:hover:visited, a.button.spade:focus, a.button.spade:focus:visited, button.spade:hover, button.spade:hover:visited, button.spade:focus, button.spade:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 36, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.spade:active, button.spade:active {
   background-color: #004a99;
-  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #22558b), color-stop(100%, #2c6eb4));
-  background-image: -moz-radial-gradient(50% 10%, circle, #22558b 0%, #2c6eb4 30px);
-  background-image: radial-gradient(50% 10%, circle, #22558b 0%, #2c6eb4 30px);
+  background-image: -webkit-gradient(radial, 50% 10%, 0, 50% 10%, 30, color-stop(0%, #2d70b8), color-stop(100%, #132f4e));
+  background-image: -moz-radial-gradient(50% 10%, circle, #2d70b8 0%, #132f4e 30px);
+  background-image: radial-gradient(50% 10%, circle, #2d70b8 0%, #132f4e 30px);
   border-color: #0f253d;
   text-shadow: #000c19 0px -1px -1px;
+  -moz-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  -webkit-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  -o-box-shadow: #153456 0 0.08em 0.1em 1px inset;
+  box-shadow: #153456 0 0.08em 0.1em 1px inset;
 }
-/* line 98, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.2-p0@my_app/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
 a.button.spade:active, a.button.spade:active:visited, button.spade:active, button.spade:active:visited {
   color: white;
-}
-/* line 152, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.spade:active, button.spade:active {
-  padding: 1px 7px;
-  border-width: 3px;
-}
-/* line 156, ../../../../../.rvm/gems/ruby-1.9.2-p0/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-a.button.spade.disabled:active, a.button.spade[disabled], button.spade.disabled:active, button.spade[disabled] {
-  padding: 2px 8px;
-  border-width: 2px;
 }
