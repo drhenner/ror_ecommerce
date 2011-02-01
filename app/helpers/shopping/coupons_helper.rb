@@ -1,0 +1,2 @@
+module Shopping::CouponsHelper
+end

@@ -47,11 +47,33 @@ describe Coupon do
       end
     end
 
-    context "qualified?(item_prices)" do
+    context "eligible?(at)" do
+
+      it "should return true" do
+        @coupon_value.stubs(:starts_at).returns(Time.now - 1.days)
+        @coupon_value.stubs(:expires_at).returns(Time.now + 1.days)
+        @coupon_value.eligible?.should be_true
+      end
+
+      it "should return false" do
+        @coupon_value.stubs(:starts_at).returns(Time.now - 3.days)
+        @coupon_value.stubs(:expires_at).returns(Time.now - 1.days)
+        @coupon_value.eligible?.should be_false
+      end
+
+      it "should return false" do
+        @coupon_value.stubs(:starts_at).returns(Time.now + 1.days)
+        @coupon_value.stubs(:expires_at).returns(Time.now + 18.days)
+        @coupon_value.eligible?.should be_false
+      end
+    end
+
+    context "qualified?(item_prices, at)" do
       # item_prices.sum > minimum_value
 
       it "should return true" do
         @coupon_value.stubs(:minimum_value).returns(10.00)
+        @coupon_value.stubs(:eligible?).returns(true)
         @coupon_value.qualified?([2.01, 9.00]).should be_true
       end
 

@@ -1,0 +1,8 @@
+<h1> Coupon </h1>
+
+<%= form_for(@coupon, :url => shopping_coupon_path(@coupon)) do |f| %>
+  <div class="field">
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+  </div>
+<% end %>

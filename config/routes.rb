@@ -37,6 +37,7 @@ Hadean::Application.routes.draw do # |map|
         put :move_to
       end
     end
+    resource  :coupon, :only => [:show, :create]
     resources  :orders
     resources  :shipping_methods
     resources  :addresses do

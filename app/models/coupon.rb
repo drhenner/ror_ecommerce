@@ -16,8 +16,12 @@ class Coupon < ActiveRecord::Base
   end
 
   # Does the coupon meet the criteria to apply it.  (is the order price total over the coupon's minimum value)
-  def qualified?(item_prices)
-    item_prices.sum > minimum_value
+  def qualified?(item_prices, at = Time.zone.now)
+    item_prices.sum > minimum_value && eligible?(at)
+  end
+
+  def eligible?(at = Time.zone.now)
+    starts_at <= at && expires_at >= at
   end
 
   def display_start_time(format = :us_date)
