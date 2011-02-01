@@ -69,7 +69,8 @@ class Shopping::OrdersController < Shopping::BaseController
           session_cart.mark_items_purchased(@order)
           render :action => "success"
         else
-          render :action => "failure"
+          flash[:error] = "Could not process the Order."
+          render :action => "index"
         end
       else
         ###  Take this
