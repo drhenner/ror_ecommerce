@@ -92,7 +92,6 @@ write down the username/password and follow the directions.
 
 h2. TODOs:
 
-* coupons
 * product sales (eg. 20% off)
 
 h2. Author

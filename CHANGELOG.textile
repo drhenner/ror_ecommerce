@@ -1,3 +1,6 @@
+* Coupons have an admin UI and a front end option to connect to the checkout.
+* Date parsing works like ruby 1.8.7
+* code clean up
 
 h3. 0.4.0 2011-01-22
 
