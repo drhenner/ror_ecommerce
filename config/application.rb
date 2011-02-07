@@ -39,7 +39,7 @@ module Hadean
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
-    
+
     # Configure generators values
     config.generators do |g|
       g.test_framework  :rspec, :fixture => true
@@ -49,11 +49,11 @@ module Hadean
     #config.session_store = ::Ripple::SessionStore
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password, 
-                                  :password_confirmation, 
-                                  :number, 
-                                  :cc_number, 
-                                  :card_number, 
+    config.filter_parameters += [:password,
+                                  :password_confirmation,
+                                  :number,
+                                  :cc_number,
+                                  :card_number,
                                   :verification_value]
   end
 end
