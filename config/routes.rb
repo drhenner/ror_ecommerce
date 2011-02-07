@@ -99,6 +99,7 @@ Hadean::Application.routes.draw do # |map|
     end
 
     namespace :generic do
+      resources :coupons
     end
     namespace :inventory do
       resources :suppliers
