@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
                           :uniqueness => true,##  This should be done at the DB this is too expensive in rails
                           :format   => { :with => CustomValidators::Emails.email_validator },
                           :length => { :maximum => 255 }
-  validates :password,    :presence => { :if => :password_required? }, :confirmation => true
+  #validates :password,    :presence => { :if => :password_required? }, :confirmation => true
 
   accepts_nested_attributes_for :addresses, :phones, :user_roles
 
