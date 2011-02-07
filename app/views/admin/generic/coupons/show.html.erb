@@ -1,0 +1,12 @@
+<h1> Coupon </h1>
+
+<p>
+  <strong>Code:</strong>
+  <%= @coupon.code %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_generic_coupon_path(@coupon), :class => 'button' %> |
+  <%= link_to "Destroy", admin_generic_coupon_path(@coupon), :confirm => 'Are you sure?', :method => :delete, :class => 'button' %> |
+  <%= link_to "View All", admin_generic_coupons_path, :class => 'button' %>
+</p>

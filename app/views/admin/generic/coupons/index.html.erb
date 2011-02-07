@@ -1,0 +1,17 @@
+<h1> Coupons </h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+  </tr>
+  <% for coupon in @coupons %>
+    <tr>
+      <td><%= coupon.code %></td>
+      <td><%= link_to "Show", admin_generic_coupon_path(coupon) %></td>
+      <td><%= link_to "Edit", edit_admin_generic_coupon_path(coupon) %></td>
+      <td><%= link_to "Destroy", admin_generic_coupon_path(coupon), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Coupon", new_admin_generic_coupon_path, :class => 'button' %></p>
