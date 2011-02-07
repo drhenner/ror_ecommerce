@@ -60,6 +60,30 @@ describe Coupon do
         @coupon_value.qualified?([2.01, 9.00]).should be_false
       end
     end
+
+    context ".display_start_time" do
+      it "should return the start time formated" do
+        @coupon_value.starts_at = Time.zone.parse('1/13/2011')
+        @coupon_value.display_start_time.should == '01/13/2011'
+      end
+
+      it "should return N/A" do
+        @coupon_value.starts_at = nil
+        @coupon_value.display_start_time.should == 'N/A'
+      end
+    end
+
+    context ".display_expires_time" do
+      it "should return the expired time formated" do
+        @coupon_value.expires_at = Time.zone.parse('1/13/2011')
+        @coupon_value.display_expires_time.should == '01/13/2011'
+      end
+
+      it "should return N/A" do
+        @coupon_value.expires_at = nil
+        @coupon_value.display_expires_time.should == 'N/A'
+      end
+    end
   end
 
   context "coupon instance methods" do

@@ -14,6 +14,47 @@
     <%= f.label :code %><br />
     <%= f.text_field :code %>
   </div>
+
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.select :type, @coupon_types, { :include_blank => true } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= f.label :minimum_value %><br />
+    <%= f.text_field :minimum_value %>
+  </div>
+
+  <div class="field">
+    <%= f.label :percent %><br />
+    <%= f.text_field :percent %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :combine %><br />
+    <%= f.check_box :combine %>
+  </div>
+
+  <div class="field">
+    <%= f.label :starts_at %><br />
+    <%= f.date_select :starts_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expires_at %><br />
+    <%= f.date_select :expires_at %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,3 +1,10 @@
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'cupertino/jquery-ui-1.8.5.custom' %>
+<% end %>
+<% content_for :bottom do -%>
+  <%= javascript_include_tag 'jquery.datePicker-2.1.2', 'datePickerInitialize' %>
+<% end %>
+
 <h1>Edit <%= @user.name %> </h1>
 
 <%= semantic_form_for @user, :as => :user, :url => admin_user_path(@user)  do |form| %>

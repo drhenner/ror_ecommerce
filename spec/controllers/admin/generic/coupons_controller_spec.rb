@@ -28,14 +28,14 @@ describe Admin::Generic::CouponsController do
   it "create action should render new template when model is invalid" do
     @coupon = Factory(:coupon)
     CouponValue.any_instance.stubs(:valid?).returns(false)
-    post :create, :coupon => @coupon.attributes
+    post :create, :coupon => @coupon.attributes.merge(:type => 'coupon_value')
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    @coupon = Factory(:coupon)
+    @coupon = Factory(:coupon_value)
     CouponValue.any_instance.stubs(:valid?).returns(true)
-    post :create, :coupon => @coupon.attributes
+    post :create, :coupon => @coupon.attributes.merge(:type => 'coupon_value')
     response.should redirect_to(admin_generic_coupon_url(assigns[:coupon]))
   end
 

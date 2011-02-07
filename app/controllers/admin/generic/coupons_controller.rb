@@ -1,10 +1,10 @@
 class Admin::Generic::CouponsController < Admin::Generic::BaseController
   def index
-    @coupons = CouponValue.all
+    @coupons = Coupon.all
   end
 
   def show
-    @coupon = CouponValue.find(params[:id])
+    @coupon = Coupon.find(params[:id])
   end
 
   def new
@@ -13,8 +13,15 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
   end
 
   def create
-    @coupon = CouponValue.new(params[:coupon])
-    if @coupon.save
+      if params[:coupon][:type] == 'coupon_value'
+        @coupon = CouponValue.new(params[:coupon])
+      elsif params[:coupon][:type] == 'coupon_percent'
+        @coupon = CouponPercent.new(params[:coupon])
+      else
+        @coupon = Coupon.new(params[:coupon])
+        @coupon.errors.add(:base, 'please select coupon type')
+      end
+    if @coupon.errors.size == 0 && @coupon.save
       flash[:notice] = "Successfully created coupon."
       redirect_to admin_generic_coupon_url(@coupon)
     else
@@ -25,11 +32,11 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
 
   def edit
     form_info
-    @coupon = CouponValue.find(params[:id])
+    @coupon = Coupon.find(params[:id])
   end
 
   def update
-    @coupon = CouponValue.find(params[:id])
+      @coupon = Coupon.find(params[:id])
     if @coupon.update_attributes(params[:coupon])
       flash[:notice] = "Successfully updated coupon."
       redirect_to admin_generic_coupon_url(@coupon)
@@ -40,7 +47,7 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
   end
 
   def destroy
-    @coupon = CouponValue.find(params[:id])
+    @coupon = Coupon.find(params[:id])
     @coupon.destroy
     flash[:notice] = "Successfully destroyed coupon."
     redirect_to admin_generic_coupons_url
@@ -49,6 +56,6 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
   private
 
   def form_info
-
+    @coupon_types = Coupon::COUPON_TYPES
   end
 end

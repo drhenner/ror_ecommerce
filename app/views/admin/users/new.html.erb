@@ -1,10 +1,16 @@
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'cupertino/jquery-ui-1.8.5.custom' %>
+<% end %>
+<% content_for :bottom do -%>
+  <%= javascript_include_tag 'jquery.datePicker-2.1.2', 'datePickerInitialize' %>
+<% end %>
 
 <h1>User</h1>
 
 <%= semantic_form_for :user, @user, :url => admin_users_path(@user)  do |form| %>
     <%= form.inputs do %>
       <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
-       
+
     <% end %>
     <%= form.buttons do %>
       <%= form.commit_button "Create" %>
