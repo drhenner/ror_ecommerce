@@ -31,8 +31,8 @@ RSpec.configure do |config|
   # config.mock_with :rspec
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
-  
-  
+
+
   config.before(:suite) { trunctate_unseeded }
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -84,45 +84,45 @@ end
   def credit_card(options = {})
     ActiveMerchant::Billing::CreditCard.new( credit_card_hash(options) )
   end
-  
+
   # -------------Payment profile and payment could use this
   def example_credit_card_params( params = {})
-    default = { 
-      :first_name         => 'First Name', 
-      :last_name          => 'Last Name', 
+    default = {
+      :first_name         => 'First Name',
+      :last_name          => 'Last Name',
       :type               => 'visa',
-      :number             => '4111111111111111', 
-      :month              => '10', 
-      :year               => '2012', 
-      :verification_value => '999' 
+      :number             => '4111111111111111',
+      :month              => '10',
+      :year               => '2012',
+      :verification_value => '999'
     }.merge( params )
-    
+
     specific = case gateway_name #SubscriptionConfig.gateway_name
       when 'authorize_net_cim'
-        { 
+        {
           :type               => 'visa',
-          :number             => '4007000000027', 
+          :number             => '4007000000027',
         }
         # 370000000000002 American Express Test Card
         # 6011000000000012 Discover Test Card
         # 4007000000027 Visa Test Card
         # 4012888818888 second Visa Test Card
-        # 3088000000000017 JCB 
+        # 3088000000000017 JCB
         # 38000000000006 Diners Club/ Carte Blanche
-        
+
       when 'bogus'
-        { 
+        {
           :type               => 'bogus',
-          :number             => '1', 
-        }   
-        
+          :number             => '1',
+        }
+
       else
-        {}     
+        {}
       end
-      
+
     default.merge(specific).merge(params)
   end
-  
+
   def successful_unstore_response
-    'transaction_id=d79410c91b4b31ba99f5a90558565df9&error_code=000&auth_response_text=Stored Card Data Deleted'                                                          
+    'transaction_id=d79410c91b4b31ba99f5a90558565df9&error_code=000&auth_response_text=Stored Card Data Deleted'
   end
