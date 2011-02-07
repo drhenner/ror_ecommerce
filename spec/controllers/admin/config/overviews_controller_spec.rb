@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe Admin::Config::OverviewsController do
 
+  before(:each) do
+    activate_authlogic
+
+    @user = Factory(:admin_user)
+    login_as(@user)
+  end
+
   def mock_overview(stubs={})
     #@mock_overview ||= mock_model(Admin::Config::Overview, stubs).as_null_object
   end
