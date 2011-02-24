@@ -1,7 +1,7 @@
 <%= render :partial => '/admin/config/sub_header'%>
 <h1>Editing Shipping Method</h1>
 
-<%= semantic_form_for(:shipping_method, @shipping_method, :url => admin_config_shipping_method_path(@shipping_method)) do |f| %>
+<%= form_for(@shipping_method, :url => admin_config_shipping_method_path(@shipping_method)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 

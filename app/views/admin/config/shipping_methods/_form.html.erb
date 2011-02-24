@@ -10,17 +10,18 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="field">
-    <%= f.input :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.input :shipping_zone_id, :as => :select, 
-                                   :collection => @shipping_zones %>
+    <%= f.label :shipping_zone_id %>
+    <%= f.select :shipping_zone_id, :collection => @shipping_zones.collect{|sz| [sz.name, sz.id] } %>
   </div>
-  
-  
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
