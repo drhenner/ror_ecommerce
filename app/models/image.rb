@@ -15,6 +15,7 @@ class Image < ActiveRecord::Base
 
   validates :imageable_type,  :presence => true
   validates :imageable_id,    :presence => true
+  validate :validate_photo
 
   default_scope :order => 'position'
 
@@ -38,7 +39,7 @@ class Image < ActiveRecord::Base
   end
 
   # if there are errors from the plugin, then add a more meaningful message
-  def validate
+  def validate_photo
     unless photo.errors.empty?
       # uncomment this to get rid of the less-than-useful interrim messages
       # errors.clear
