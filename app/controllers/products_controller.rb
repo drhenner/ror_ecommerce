@@ -2,7 +2,9 @@ class ProductsController < ApplicationController
 
   def index
     products = Product.includes(:variants)
-    @products = products.where('product_type_id = ?', params[:product_type_id] || featured_product_type)
+    product_type = ProductType.find_by_id(params[:product_type_id])
+    product_types = product_type ? product_type.self_and_descendants.collect{|p| p.id} : nil
+    @products = products.where('product_type_id IN (?)', product_types || featured_product_types)
   end
 
   def create
@@ -31,7 +33,7 @@ class ProductsController < ApplicationController
     @cart_item = CartItem.new
   end
 
-  def featured_product_type
-    ProductType::FEATURED_TYPE_ID
+  def featured_product_types
+    [ProductType::FEATURED_TYPE_ID]
   end
 end
