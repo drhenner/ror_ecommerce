@@ -1,3 +1,36 @@
+
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'products_page.css' %>
+<% end %>
+
 <h2> Order (<%= @order.number %>) Details </h2>
 
-Add your order details.
+<table>
+  <tr>
+    <td> Number: </td><td> <%= @order.number %> </td>
+  </tr>
+  <tr>
+    <td> Completed at: </td><td> <%= @order.display_completed_at %> </td>
+  </tr>
+  <tr>
+    <td> Shipping Address: </td>
+    <td>
+      <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} if @order.bill_address_id%>
+    </td>
+  </tr>
+  <tr>
+    <td> Billing Address: </td>
+    <td>
+      <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} if @order.bill_address_id %>
+    </td>
+  </tr>
+
+  <tr>
+    <td> Items </td><td> </td>
+  </tr>
+  <% @order.order_items.each do |item| %>
+    <tr>
+      <td COLSPAN=2> <%= item.variant.product_name %> </td>
+    </tr>
+  <% end %>
+</table>
