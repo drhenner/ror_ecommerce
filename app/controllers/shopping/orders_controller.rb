@@ -67,7 +67,7 @@ class Shopping::OrdersController < Shopping::BaseController
           #CartItem.mark_items_purchased(session_cart, @order)
           @order.remove_user_store_credits
           session_cart.mark_items_purchased(@order)
-          redirect_to myaccount_order(@order)
+          redirect_to myaccount_order_path(@order)
         else
           flash[:error] = "Could not process the Order."
           render :action => "index"
