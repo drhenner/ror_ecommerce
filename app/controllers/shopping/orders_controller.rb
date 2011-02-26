@@ -62,12 +62,12 @@ class Shopping::OrdersController < Shopping::BaseController
                                           @order.credited_total,
                                           {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
                                           @order.amount_to_credit)
-        if response.success?
+        if response.succeeded?
           ##  MARK items as purchased
           #CartItem.mark_items_purchased(session_cart, @order)
           @order.remove_user_store_credits
           session_cart.mark_items_purchased(@order)
-          render :action => "success"
+          redirect_to myaccount_order(@order)
         else
           flash[:error] = "Could not process the Order."
           render :action => "index"
