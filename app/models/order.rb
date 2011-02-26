@@ -510,6 +510,7 @@ class Order < ActiveRecord::Base
     invoices.push(invoice_statement)
     if invoice_statement.succeeded?
       self.order_complete! #complete!
+      self.save
     else
       #role_back
       invoice_statement.errors.add(:base, 'Payment denied!!!')
