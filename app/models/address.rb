@@ -6,15 +6,15 @@ class Address < ActiveRecord::Base
   has_many     :shipments
 
   validates :first_name,  :presence => true,
-                          :format   => { :with => CustomValidators::Names.name_validator }
+                          :format   => { :with => CustomValidators::Names.name_validator },       :length => { :maximum => 25 }
   validates :last_name,   :presence => true,
-                          :format   => { :with => CustomValidators::Names.name_validator }
-  validates :address1,    :presence => true
+                          :format   => { :with => CustomValidators::Names.name_validator },       :length => { :maximum => 25 }
+  validates :address1,    :presence => true,       :length => { :maximum => 255 }
   validates :city,        :presence => true,
-                          :format   => { :with => CustomValidators::Names.name_validator }
+                          :format   => { :with => CustomValidators::Names.name_validator },       :length => { :maximum => 75 }
   validates :state_id,       :presence => true#,  :if => Proc.new { |address| address.state_name.blank?  }
   #validates :state_name,  :presence => true,  :if => Proc.new { |address| address.state_id.blank?   }
-  validates :zip_code,    :presence => true
+  validates :zip_code,    :presence => true,       :length => { :maximum => 12 }
   #validates :phone_id,    :presence => true
   before_validation :sanitize_data
 

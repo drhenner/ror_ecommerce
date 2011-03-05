@@ -5,7 +5,8 @@ class Phone < ActiveRecord::Base
   belongs_to :phoneable, :polymorphic => true
 
   validates :number,  :presence => true,
-                      :format   => { :with => CustomValidators::Numbers.phone_number_validator }
+                      :format   => { :with => CustomValidators::Numbers.phone_number_validator },
+                      :length   => { :maximum => 255 }
 
 
   # Use this method to create a phone

@@ -4,8 +4,8 @@ class Supplier < ActiveRecord::Base
   has_many :variants,         :through => :variant_suppliers
   has_many :phones
 
-  validates :name,        :presence => true
-  validates :email,       :format   => { :with => CustomValidators::Emails.email_validator }
+  validates :name,        :presence => true,       :length => { :maximum => 255 }
+  validates :email,       :format   => { :with => CustomValidators::Emails.email_validator },       :length => { :maximum => 255 }
 
   # paginated results from the admin Supplier grid
   #
