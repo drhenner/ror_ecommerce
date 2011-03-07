@@ -5,7 +5,9 @@ en:
   hello:                'Hello'
   out_of_stock_notice:  'Sorry this item is out of stock.'
   item_saved_for_later: 'The item will be saved for later.'
-    
+  reset_password_title: 'Reset Password'
+  reset_password_text:  'Enter your new password.'
+
   date:
     formats:
       # Use the strftime parameters for formats.
@@ -15,8 +17,8 @@ en:
       short: "%b %d"
       long: "%B %d, %Y"
       us_date: "%m/%d/%Y"
-  time: 
-    formats: 
+  time:
+    formats:
       us_date: "%m/%d/%Y"
       us_time: "%m/%d/%Y @ %I:%M %p"
       long_date: "%B %d, %Y"

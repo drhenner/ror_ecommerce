@@ -19,4 +19,11 @@ class Notifier < ActionMailer::Base
     end
 
   end
+
+  def password_reset_instructions(user)
+    @user = user
+    @url  = edit_customer_password_reset_url(:id => user.perishable_token)
+    mail(:to => user.email,
+         :subject => "Reset Password Instructions")
+  end
 end

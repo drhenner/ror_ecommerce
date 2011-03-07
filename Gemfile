@@ -4,7 +4,6 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.0.3'
 
 gem "activemerchant", '~> 1.7.2'#, :lib => 'active_merchant'
-#gem 'acts_as_tree',    :git => 'git://github.com/parasew/acts_as_tree.git'
 gem 'nested_set', '~> 1.6.3'
 
 gem 'authlogic', "2.1.5"
@@ -29,8 +28,7 @@ gem 'dalli', '~> 1.0.0'
 gem 'nokogiri', '~> 1.4.4'
 gem 'memcache-client', '~> 1.8.5'
 gem 'mysql2', '~> 0.2.6'
-#gem 'mysql', '2.8.1'
-#gem 'ruby-mysql'
+
 gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'paperclip', '~> 2.3.8'
 gem 'prawn', '~> 0.8.4'

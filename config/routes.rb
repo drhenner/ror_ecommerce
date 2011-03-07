@@ -24,6 +24,7 @@ Hadean::Application.routes.draw do # |map|
 
   namespace :customer do
     resources :registrations
+    resource  :password_reset
   end
 
   namespace :myaccount do
