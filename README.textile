@@ -93,6 +93,7 @@ write down the username/password and follow the directions.
 h2. TODOs:
 
 * product sales (eg. 20% off)
+* Refactor admin cart to use redis, riak or some other noSQL store
 
 h2. Author
 
