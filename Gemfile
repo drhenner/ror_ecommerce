@@ -7,6 +7,7 @@ gem "activemerchant", '~> 1.7.2'#, :lib => 'active_merchant'
 gem 'authlogic', "2.1.5"
 gem 'cancan', '~> 1.4.1'
 gem 'compass', "~> 0.10.6"
+gem 'dalli', '~> 1.0.2'
 
 gem 'fancy-buttons'
 gem 'formtastic',  "~> 1.1.0"
@@ -14,7 +15,7 @@ gem "friendly_id", "~> 3.0"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 
-gem 'memcache-client', '~> 1.8.5'
+#gem 'memcache-client', '~> 1.8.5'
 gem 'mysql2', '~> 0.2.6'
 
 gem 'nested_set', '~> 1.6.3'
