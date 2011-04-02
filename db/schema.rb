@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.datetime "updated_at"
   end
 
+  add_index "addresses", ["addressable_id"], :name => "index_addresses_on_addressable_id"
+  add_index "addresses", ["addressable_type"], :name => "index_addresses_on_addressable_type"
   add_index "addresses", ["state_id"], :name => "index_addresses_on_state_id"
 
   create_table "batches", :force => true do |t|
@@ -90,26 +92,6 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
 
   add_index "carts", ["user_id"], :name => "index_carts_on_user_id"
 
-  create_table "categories", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "causes", :force => true do |t|
-    t.string   "title",                           :null => false
-    t.text     "description",                     :null => false
-    t.text     "information"
-    t.integer  "category_id",                     :null => false
-    t.integer  "user_id",                         :null => false
-    t.string   "amount_needed",                   :null => false
-    t.boolean  "active",        :default => true, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "causes", ["amount_needed"], :name => "index_causes_on_amount_needed"
-  add_index "causes", ["category_id"], :name => "index_causes_on_category_id"
-  add_index "causes", ["user_id"], :name => "index_causes_on_user_id"
-
   create_table "comments", :force => true do |t|
     t.text     "note"
     t.string   "commentable_type"
@@ -146,6 +128,9 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.datetime "updated_at"
   end
 
+  add_index "coupons", ["code"], :name => "index_coupons_on_code"
+  add_index "coupons", ["expires_at"], :name => "index_coupons_on_expires_at"
+
   create_table "images", :force => true do |t|
     t.integer  "imageable_id"
     t.string   "imageable_type"
@@ -163,24 +148,23 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
 
   add_index "images", ["imageable_id"], :name => "index_images_on_imageable_id"
   add_index "images", ["imageable_type"], :name => "index_images_on_imageable_type"
+  add_index "images", ["position"], :name => "index_images_on_position"
 
   create_table "invoices", :force => true do |t|
     t.integer  "order_id",                                                              :null => false
     t.decimal  "amount",          :precision => 8, :scale => 2,                         :null => false
+    t.string   "invoice_type",                                  :default => "Purchase", :null => false
     t.string   "state",                                                                 :null => false
     t.boolean  "active",                                        :default => true,       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "invoice_type",                                  :default => "Purchase", :null => false
     t.decimal  "credited_amount", :precision => 8, :scale => 2, :default => 0.0
   end
 
   add_index "invoices", ["order_id"], :name => "index_invoices_on_order_id"
 
   create_table "item_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
   end
 
   create_table "order_items", :force => true do |t|
@@ -191,12 +175,13 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.string   "state",                                          :null => false
     t.integer  "tax_rate_id"
     t.integer  "shipping_rate_id"
+    t.integer  "shipment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "shipment_id"
   end
 
   add_index "order_items", ["order_id"], :name => "index_order_items_on_order_id"
+  add_index "order_items", ["shipment_id"], :name => "index_order_items_on_shipment_id"
   add_index "order_items", ["shipping_rate_id"], :name => "index_order_items_on_shipping_rate_id"
   add_index "order_items", ["tax_rate_id"], :name => "index_order_items_on_tax_rate_id"
   add_index "order_items", ["variant_id"], :name => "index_order_items_on_variant_id"
@@ -211,16 +196,19 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.integer  "ship_address_id"
     t.integer  "coupon_id"
     t.boolean  "active",                                        :default => true,  :null => false
+    t.boolean  "shipped",                                       :default => false, :null => false
+    t.integer  "shipments_count",                               :default => 0
     t.datetime "calculated_at"
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "shipments_count",                               :default => 0,     :null => false
-    t.boolean  "shipped",                                       :default => false, :null => false
     t.decimal  "credited_amount", :precision => 8, :scale => 2, :default => 0.0
   end
 
   add_index "orders", ["bill_address_id"], :name => "index_orders_on_bill_address_id"
+  add_index "orders", ["coupon_id"], :name => "index_orders_on_coupon_id"
+  add_index "orders", ["email"], :name => "index_orders_on_email"
+  add_index "orders", ["number"], :name => "index_orders_on_number"
   add_index "orders", ["ship_address_id"], :name => "index_orders_on_ship_address_id"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
@@ -241,6 +229,7 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.string   "card_name"
   end
 
+  add_index "payment_profiles", ["address_id"], :name => "index_payment_profiles_on_address_id"
   add_index "payment_profiles", ["user_id"], :name => "index_payment_profiles_on_user_id"
 
   create_table "payments", :force => true do |t|
@@ -275,18 +264,8 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
   end
 
   add_index "phones", ["phone_type_id"], :name => "index_phones_on_phone_type_id"
-
-  create_table "pledges", :force => true do |t|
-    t.string   "number"
-    t.integer  "int_amount"
-    t.string   "ip_address"
-    t.integer  "user_id"
-    t.integer  "cause_id"
-    t.integer  "address_id"
-    t.datetime "completed_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "phones", ["phoneable_id"], :name => "index_phones_on_phoneable_id"
+  add_index "phones", ["phoneable_type"], :name => "index_phones_on_phoneable_type"
 
   create_table "product_properties", :force => true do |t|
     t.integer "product_id",  :null => false
@@ -306,7 +285,9 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.integer "lft"
   end
 
+  add_index "product_types", ["lft"], :name => "index_product_types_on_lft"
   add_index "product_types", ["parent_id"], :name => "index_product_types_on_parent_id"
+  add_index "product_types", ["rgt"], :name => "index_product_types_on_rgt"
 
   create_table "products", :force => true do |t|
     t.string   "name",                                    :null => false
@@ -345,6 +326,9 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.integer "property_id",  :null => false
   end
 
+  add_index "prototype_properties", ["property_id"], :name => "index_prototype_properties_on_property_id"
+  add_index "prototype_properties", ["prototype_id"], :name => "index_prototype_properties_on_prototype_id"
+
   create_table "prototypes", :force => true do |t|
     t.string  "name",                     :null => false
     t.boolean "active", :default => true, :null => false
@@ -364,16 +348,16 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
   add_index "purchase_order_variants", ["variant_id"], :name => "index_purchase_order_variants_on_variant_id"
 
   create_table "purchase_orders", :force => true do |t|
-    t.integer  "supplier_id",                                        :null => false
+    t.integer  "supplier_id",                                                         :null => false
     t.string   "invoice_number"
     t.string   "tracking_number"
     t.string   "notes"
     t.string   "state"
-    t.datetime "ordered_at",                                         :null => false
+    t.datetime "ordered_at",                                                          :null => false
     t.date     "estimated_arrival_on"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "total_cost",           :precision => 8, :scale => 2, :null => false
+    t.decimal  "total_cost",           :precision => 8, :scale => 2, :default => 0.0, :null => false
   end
 
   add_index "purchase_orders", ["supplier_id"], :name => "index_purchase_orders_on_supplier_id"
@@ -385,7 +369,7 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.decimal  "restocking_fee", :precision => 8, :scale => 2, :default => 0.0
     t.integer  "order_id",                                                       :null => false
     t.integer  "user_id",                                                        :null => false
-    t.string   "state"
+    t.string   "state",                                                          :null => false
     t.integer  "created_by"
     t.boolean  "active",                                       :default => true
     t.datetime "created_at"
@@ -403,17 +387,18 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
   end
 
   create_table "return_items", :force => true do |t|
-    t.integer  "order_item_id",           :null => false
+    t.integer  "return_authorization_id",                    :null => false
+    t.integer  "order_item_id",                              :null => false
     t.integer  "return_condition_id"
     t.integer  "return_reason_id"
-    t.boolean  "returned"
+    t.boolean  "returned",                :default => false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "return_authorization_id", :null => false
   end
 
   add_index "return_items", ["order_item_id"], :name => "index_return_items_on_order_item_id"
+  add_index "return_items", ["return_authorization_id"], :name => "index_return_items_on_return_authorization_id"
   add_index "return_items", ["return_condition_id"], :name => "index_return_items_on_return_condition_id"
   add_index "return_items", ["return_reason_id"], :name => "index_return_items_on_return_reason_id"
   add_index "return_items", ["updated_by"], :name => "index_return_items_on_updated_by"
@@ -443,6 +428,7 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
   end
 
   add_index "shipments", ["address_id"], :name => "index_shipments_on_address_id"
+  add_index "shipments", ["number"], :name => "index_shipments_on_number"
   add_index "shipments", ["order_id"], :name => "index_shipments_on_order_id"
   add_index "shipments", ["shipping_method_id"], :name => "index_shipments_on_shipping_method_id"
 
@@ -592,10 +578,9 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.string   "perishable_token"
     t.string   "persistence_token"
     t.string   "access_token"
+    t.integer  "comments_count",    :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "comments_count",     :default => 0
-    t.datetime "agreed_to_terms_at"
   end
 
   add_index "users", ["access_token"], :name => "index_users_on_access_token", :unique => true
@@ -609,7 +594,7 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.integer "variant_id",                     :null => false
     t.integer "property_id",                    :null => false
     t.string  "description",                    :null => false
-    t.boolean "primary",     :default => false, :null => false
+    t.boolean "primary",     :default => false
   end
 
   add_index "variant_properties", ["property_id"], :name => "index_variant_properties_on_property_id"
@@ -633,6 +618,7 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
   create_table "variants", :force => true do |t|
     t.integer  "product_id",                                                                   :null => false
     t.string   "sku",                                                                          :null => false
+    t.string   "name"
     t.decimal  "price",                       :precision => 8, :scale => 2, :default => 0.0,   :null => false
     t.decimal  "cost",                        :precision => 8, :scale => 2, :default => 0.0,   :null => false
     t.datetime "deleted_at"
@@ -642,7 +628,6 @@ ActiveRecord::Schema.define(:version => 20110117031623) do
     t.integer  "count_pending_from_supplier",                               :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
     t.integer  "brand_id"
   end
 
