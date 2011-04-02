@@ -16,10 +16,6 @@
   text-align: center;
 }
 
-.pretty_table td.left-align {
-  text-align: left;
-}
-
 /* line 20, ../../app/stylesheets/tables.scss */
 .pretty_table thead tr .column1_header {
   border-left: 1px solid #e5eff8;
