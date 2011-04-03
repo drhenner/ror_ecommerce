@@ -57,6 +57,11 @@ bq.  aes = OpenSSL::Cipher::Cipher.new('AES-256-CBC')
 
 ######compass install -r fancy-buttons -f fancy-buttons
 
+Install memcached, this is easiest to do with "homebrew":http://mxcl.github.com/homebrew/ and :
+
+bc. brew install memcached
+
+bc. brew install solr
 
 p. Time to start solr and memcache(yep you better install them)
 rake sunspot:solr:start
