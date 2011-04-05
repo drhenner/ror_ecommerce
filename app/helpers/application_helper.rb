@@ -12,7 +12,7 @@ EXAMPLE USAGE!!
   <%= new_child_fields_template(form, :properties, :partial => '/admin/merchandise/add_property')%>
 =end
   def site_name
-    "RoR-e.com"
+    I18n.t(:company)
   end
 
   def remove_child_link(name, f)
