@@ -110,7 +110,8 @@ class User < ActiveRecord::Base
     state :canceled
 
     event :activate do
-      transition :from => :inactive,    :to => :active
+      transition all => :active, :unless => :active?
+      #transition :from => :inactive,    :to => :active
     end
 
     event :register do
