@@ -45,6 +45,7 @@ bq.  aes = OpenSSL::Cipher::Cipher.new('AES-256-CBC')
   set_encryption_key_to = aes.random_iv
 
 *# gem install bundler
+*# gem install ruby-debug19
 *# bundle install
 *# rake db:create
 *# rake db:migrate
