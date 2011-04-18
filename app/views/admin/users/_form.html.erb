@@ -6,9 +6,12 @@
        <div class='clearfix'></div>
        <%= form.input :email, :required => true,:wrapper_html => { :class => "span-11 column" }%>
        <div class='clearfix'></div>
-       <%= form.input :birth_date, 
+       <%= form.input :birth_date,
                        :required => false, :as => :yearpicker,
                        :wrapper_html => { :class => "span-11 column" }%>
+         <%= form.input :state,
+                          :required => true, :as => :select,      :collection => @states,
+                          :wrapper_html => { :class => "span-11 column" }%>
    <% end %>
 </div>
 <div id='registration_form'>
@@ -23,13 +26,13 @@
   <legend>Roles</legend>
   <% @all_roles.each do |role| %>
     <%#= form.semantic_fields_for "user[role_ids][]" do |roles_form|%>
-    
+
       <div class="property_form left span-9 last">
         <% checked = @user.id && @user.roles.include?(role)%>
         <%= check_box_tag "user[role_ids][]", role.id, checked %>
         <%= role.name %>
       </div>
-    <%# end %>  
+    <%# end %>
   <% end %>
 
 </fieldset>

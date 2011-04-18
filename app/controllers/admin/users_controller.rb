@@ -50,6 +50,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.includes(:roles).find(params[:id])
     authorize! :create_users, current_user
     @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
+    @user.state = params[:user][:state]                 if params[:user][:state].present? && !@user.admin?
     params[:user].delete_if {|key, value| key.to_s == "birth_date" }
     if @user.update_attributes(params[:user])
       flash[:notice] = "#{@user.name} has been updated."
@@ -64,5 +65,6 @@ class Admin::UsersController < Admin::BaseController
 
   def form_info
     @all_roles = Role.all
+    @states    = ['inactive', 'active', 'canceled']
   end
 end
