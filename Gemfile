@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '~> 3.0.3'
+gem 'rails', '~> 3.0.7'
 
 gem "activemerchant", '~> 1.7.2'#, :lib => 'active_merchant'
 gem 'authlogic', "2.1.5"
@@ -16,7 +16,7 @@ gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 
 #gem 'memcache-client', '~> 1.8.5'
-gem 'mysql2', '~> 0.2.6'
+gem 'mysql2', '~> 0.2.7'
 
 gem 'nested_set', '~> 1.6.3'
 gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
