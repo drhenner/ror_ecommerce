@@ -7,7 +7,7 @@ module Jqgrid
 
     def jqgrid_javascripts
       locale = I18n.locale rescue :en
-      js = javascript_include_tag('jquery-ui-1.8.5.custom.min.js') + "\n"
+      js = javascript_include_tag('jquery-ui-1.8.12.custom.min.js') + "\n"
       js << javascript_include_tag("jqgrid/i18n/grid.locale-#{locale}.js") + "\n"
       js << javascript_include_tag('jqgrid/jquery.jqGrid.min.js') + "\n"
       # Don't know if we need it, if smth not working, just uncomment it
@@ -17,10 +17,10 @@ module Jqgrid
     end
 
     def jqgrid(title, id, action, columns = [], options = {})
-      
+
       # Default options
-      options = 
-        { 
+      options =
+        {
           :rows_per_page       => '10',
           :sort_column         => '',
           :sort_order          => '',
@@ -31,18 +31,18 @@ module Jqgrid
           :add                 => 'false',
           :delete              => 'false',
           :search              => 'true',
-          :edit                => 'false',          
+          :edit                => 'false',
           :inline_edit         => 'false',
           :autowidth           => 'false',
-          :rownumbers          => 'false'                    
+          :rownumbers          => 'false'
         }.merge(options)
-      
+
       # Stringify options values
       options.inject({}) do |options, (key, value)|
         options[key] = (key != :subgrid) ? value.to_s : value
         options
       end
-      
+
       options[:error_handler_return_value] = (options[:error_handler] == 'null') ? 'true;' : options[:error_handler]
       edit_button = (options[:edit] == 'true' && options[:inline_edit] == 'false').to_s
 
@@ -63,9 +63,9 @@ module Jqgrid
       if options[:multi_selection]
         multiselect = "multiselect: true,"
         multihandler = %Q/
-          jQuery("##{id}_select_button").click( function() { 
-            var s; s = jQuery("##{id}").getGridParam('selarrrow'); 
-            #{options[:selection_handler]}(s); 
+          jQuery("##{id}_select_button").click( function() {
+            var s; s = jQuery("##{id}").getGridParam('selarrrow');
+            #{options[:selection_handler]}(s);
             return false;
           });/
       end
@@ -74,22 +74,22 @@ module Jqgrid
       masterdetails = ""
       if options[:master_details]
         masterdetails = %Q/
-          onSelectRow: function(ids) { 
-            if(ids == null) { 
-              ids=0; 
-              if(jQuery("##{id}_details").getGridParam('records') >0 ) 
-              { 
+          onSelectRow: function(ids) {
+            if(ids == null) {
+              ids=0;
+              if(jQuery("##{id}_details").getGridParam('records') >0 )
+              {
                 jQuery("##{id}_details").setGridParam({url:"#{options[:details_url]}?q=1&id="+ids,page:1})
                 .setCaption("#{options[:details_caption]}: "+ids)
-                .trigger('reloadGrid'); 
-              } 
-            } 
-            else 
-            { 
+                .trigger('reloadGrid');
+              }
+            }
+            else
+            {
               jQuery("##{id}_details").setGridParam({url:"#{options[:details_url]}?q=1&id="+ids,page:1})
               .setCaption("#{options[:details_caption]} : "+ids)
-              .trigger('reloadGrid'); 
-            } 
+              .trigger('reloadGrid');
+            }
           },/
       end
 
@@ -98,14 +98,14 @@ module Jqgrid
       selection_link = ""
       if options[:direct_selection].blank? && options[:selection_handler].present? && options[:multi_selection].blank?
         selection_link = %Q/
-        jQuery("##{id}_select_button").click( function(){ 
-          var id = jQuery("##{id}").getGridParam('selrow'); 
-          if (id) { 
-            #{options[:selection_handler]}(id); 
-          } else { 
+        jQuery("##{id}_select_button").click( function(){
+          var id = jQuery("##{id}").getGridParam('selrow');
+          if (id) {
+            #{options[:selection_handler]}(id);
+          } else {
             alert("Please select a row");
           }
-          return false; 
+          return false;
         });/
       end
 
@@ -114,10 +114,10 @@ module Jqgrid
       direct_link = ""
       if options[:direct_selection] && options[:selection_handler].present? && options[:multi_selection].blank?
         direct_link = %Q/
-        onSelectRow: function(id){ 
-          if(id){ 
-            #{options[:selection_handler]}(id); 
-          } 
+        onSelectRow: function(id){
+          if(id){
+            #{options[:selection_handler]}(id);
+          }
         },/
       end
 
@@ -126,7 +126,7 @@ module Jqgrid
       grid_loaded = ""
       if options[:grid_loaded].present?
         grid_loaded = %Q/
-        loadComplete: function(){ 
+        loadComplete: function(){
           #{options[:grid_loaded]}();
         },
         /
@@ -137,24 +137,24 @@ module Jqgrid
       editable = ""
       if options[:edit] && options[:inline_edit] == 'true'
         editable = %Q/
-        onSelectRow: function(id){ 
-          if(id && id!==lastsel){ 
+        onSelectRow: function(id){
+          if(id && id!==lastsel){
             jQuery('##{id}').restoreRow(lastsel);
             jQuery('##{id}').editRow(id, true, #{options[:inline_edit_handler]}, #{options[:error_handler]});
-            lastsel=id; 
-          } 
+            lastsel=id;
+          }
         },/
       end
-      
+
       # Enable subgrids
       subgrid = ""
       subgrid_enabled = "subGrid:false,"
 
       if options[:subgrid].present?
-        
+
         subgrid_enabled = "subGrid:true,"
-        
-        options[:subgrid] = 
+
+        options[:subgrid] =
           {
             :rows_per_page => '10',
             :sort_column   => 'id',
@@ -170,33 +170,33 @@ module Jqgrid
           suboptions[key] = value.to_s
           suboptions
         end
-        
+
         subgrid_inline_edit = ""
         if options[:subgrid][:inline_edit] == true
           options[:subgrid][:edit] = 'false'
           subgrid_inline_edit = %Q/
-          onSelectRow: function(id){ 
-            if(id && id!==lastsel){ 
+          onSelectRow: function(id){
+            if(id && id!==lastsel){
               jQuery('#'+subgrid_table_id).restoreRow(lastsel);
-              jQuery('#'+subgrid_table_id).editRow(id,true); 
-              lastsel=id; 
-            } 
+              jQuery('#'+subgrid_table_id).editRow(id,true);
+              lastsel=id;
+            }
           },
           /
         end
-          
+
         if options[:subgrid][:direct_selection] && options[:subgrid][:selection_handler].present?
           subgrid_direct_link = %Q/
-          onSelectRow: function(id){ 
-            if(id){ 
-              #{options[:subgrid][:selection_handler]}(id); 
-            } 
+          onSelectRow: function(id){
+            if(id){
+              #{options[:subgrid][:selection_handler]}(id);
+            }
           },
           /
-        end     
-        
+        end
+
         sub_col_names, sub_col_model = gen_columns(options[:subgrid][:columns])
-        
+
         subgrid = %Q(
         subGridRowExpanded: function(subgrid_id, row_id) {
         		var subgrid_table_id, pager_id;
@@ -205,7 +205,7 @@ module Jqgrid
         		$("#"+subgrid_id).html("<table id='"+subgrid_table_id+"' class='scroll'></table><div id='"+pager_id+"' class='scroll'></div>");
         		jQuery("#"+subgrid_table_id).jqGrid({
         			url:"#{options[:subgrid][:url]}?q=2&id="+row_id,
-              editurl:'#{options[:subgrid][:edit_url]}?parent_id='+row_id,                            
+              editurl:'#{options[:subgrid][:edit_url]}?parent_id='+row_id,
         			datatype: "json",
         			colNames: #{sub_col_names},
         			colModel: #{sub_col_model},
@@ -215,20 +215,20 @@ module Jqgrid
         		   	sortname: '#{options[:subgrid][:sort_column]}',
         		    sortorder: '#{options[:subgrid][:sort_order]}',
                 viewrecords: true,
-                toolbar : [true,"top"], 
+                toolbar : [true,"top"],
         		    #{subgrid_inline_edit}
         		    #{subgrid_direct_link}
         		    height: '100%'
         		})
         		.navGrid("#"+pager_id,{edit:#{options[:subgrid][:edit]},add:#{options[:subgrid][:add]},del:#{options[:subgrid][:delete]},search:false})
         		.navButtonAdd("#"+pager_id,{caption:"Search",title:"Toggle Search",buttonimg:'/images/jqgrid/search.png',
-            	onClickButton:function(){ 
+            	onClickButton:function(){
             		if(jQuery("#t_"+subgrid_table_id).css("display")=="none") {
             			jQuery("#t_"+subgrid_table_id).css("display","");
             		} else {
             			jQuery("#t_"+subgrid_table_id).css("display","none");
             		}
-            	} 
+            	}
             });
             jQuery("#t_"+subgrid_table_id).height(25).hide().filterGrid(""+subgrid_table_id,{gridModel:true,gridToolbar:true});
         	},
@@ -287,7 +287,7 @@ module Jqgrid
     end
 
     private
-    
+
     def gen_columns(columns)
       # Generate columns data
       col_names = "[" # Labels
@@ -344,12 +344,12 @@ module Jqgrid
           if couple[1].instance_of?(Fixnum) || couple[1] == 'true' || couple[1] == 'false' || couple[1] == true || couple[1] == false
             options << %Q/#{couple[0]}:#{couple[1]},/
           else
-            options << %Q/#{couple[0]}:"#{couple[1]}",/            
+            options << %Q/#{couple[0]}:"#{couple[1]}",/
           end
         end
       end
       options.chop! << "}"
-    end 
+    end
 end
 
 
@@ -376,19 +376,19 @@ module JqgridJson
       json << "}"
     end
   end
-  
+
   private
-  
+
   def get_atr_value(elem, atr, couples)
     if atr.to_s.include?('.')
-      value = get_nested_atr_value(elem, atr.to_s.split('.').reverse) 
+      value = get_nested_atr_value(elem, atr.to_s.split('.').reverse)
     else
       value = couples[atr]
       value = elem.send(atr.to_sym) if value.blank? && elem.respond_to?(atr) # Required for virtual attributes
     end
     value
   end
-  
+
   def get_nested_atr_value(elem, hierarchy)
     return nil if hierarchy.size == 0
     atr = hierarchy.pop

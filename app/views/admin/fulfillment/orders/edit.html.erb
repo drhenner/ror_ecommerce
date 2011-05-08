@@ -8,9 +8,9 @@
 <div id='order-shipment-items' class='span-8 last float-left'>
 <h4>Order Items</h4>
   <% @order.order_items.each_with_index do |item,i| %>
-    <div  id='order-shipment-item<%= i %>' 
+    <div  id='order-shipment-item<%= i %>'
           class='span-7 rounded-4 line_item_yellow'>
-          
+
         <%= item.variant.product_name %> <%= item.variant.sku %> <%= number_to_currency item.variant.price %> <br/>
         <% if item.shipped? %>
           Shipped: <%= item.shipment.display_shipped_at %> => Shipping #: <%= item.shipment.number %>
@@ -18,7 +18,7 @@
           Not Shipped Yet.
           <%= item.shipping_rate.shipping_method.name %>
         <% end %>
-      
+
     </div>
   <% end %>
 </div>
@@ -37,9 +37,9 @@
         No Shipments have been made on this order.
       </div>
   <% else %>
-  
+
     <% @order.shipments.each do |shipment| %>
-        <div  id='order-shipment-items' 
+        <div  id='order-shipment-items'
               class='span-7 rounded-10 <%= cycle("line_item_yellow", "line_item_gray") %>'>
             Shipping Method: <%= shipment.shipping_method.name %> <br/>
             Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %> State:<%= shipment.state %>
@@ -48,7 +48,7 @@
     <div class='span-7 rounded-10 line_item_blue'>
       <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(:number => @order.number) %>
     </div>
-    
+
   <% end %>
 </div>
 <div class='clear'></div>
@@ -71,7 +71,7 @@ Ask if you want to authorize full amount of partial with reason<br/>
 </div>
 
 <% content_for :head do -%>
-  <%= stylesheet_link_tag "cupertino/jquery-ui-1.8.5.custom" %>
+  <%= stylesheet_link_tag "cupertino/jquery-ui-1.8.12.custom" %>
 <% end %>
 
 <% content_for :bottom do -%>
