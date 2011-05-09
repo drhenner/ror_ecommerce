@@ -45,6 +45,9 @@ class Product < ActiveRecord::Base
   has_many :inactive_master_variants,
     :class_name => 'Variant',
     :conditions => ["variants.deleted_at IS NOT NULL AND variants.master = ? ", true]
+
+  before_save :create_content
+
   accepts_nested_attributes_for :variants
   accepts_nested_attributes_for :product_properties, :reject_if => proc { |attributes| attributes['description'].blank? }
 
@@ -55,7 +58,7 @@ class Product < ActiveRecord::Base
   validates :product_type_id,       :presence => true
   validates :prototype_id,          :presence => true
   validates :name,                  :presence => true, :length => { :maximum => 165 }
-  validates :description,           :presence => true, :length => { :maximum => 2255 }
+  validates :description_markup,    :presence => true, :length => { :maximum => 2255 }
   validates :meta_keywords,         :presence => true,       :length => { :maximum => 255 }
   validates :meta_description,      :presence => true,       :length => { :maximum => 255 }
 
@@ -195,4 +198,9 @@ class Product < ActiveRecord::Base
     grid = grid.where("products.available_at < ?",         params[:available_at_lt])       if params[:available_at_lt].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page], :per_page => params[:rows])
   end
+
+  private
+    def create_content
+      self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
+    end
 end

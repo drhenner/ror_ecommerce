@@ -1,0 +1,12 @@
+
+<div id="title-container">
+  <%= form.text_field :name %>
+  <p>/1234-name</p>
+</div>
+
+<div id="wmd-container">
+  <div id="wmd-button-bar"></div>
+  <%= form.text_area :description_markup, :id => "wmd-input", :cols => "92", :rows => "15" %>
+</div><!--wmd-container-->
+
+<%= render :partial => 'form', :locals => {:form => form} %>
