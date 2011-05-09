@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :shipping_zone_id %>
-    <%= f.select :shipping_zone_id, :collection => @shipping_zones.collect{|sz| [sz.name, sz.id] } %>
+    <%= f.select :shipping_zone_id, @shipping_zones.collect{|sz| [sz.name, sz.id] } %>
   </div>
 
 
