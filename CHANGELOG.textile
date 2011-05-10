@@ -1,5 +1,8 @@
+h3. 0.6.1 2011-05-10
 
-h3. 0.5.0 2011-05-09
+* description_markup is required for tests to pass (validates presence)
+
+h3. 0.6.0 2011-05-09
 
 * Description of products use bluecloth so you can easily create HTML.
 * bug fix in shipping zones
