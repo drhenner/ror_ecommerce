@@ -7,7 +7,7 @@ gem "activemerchant", '~> 1.7.2'#, :lib => 'active_merchant'
 gem 'authlogic', "2.1.5"
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.4.1'
-gem 'compass', "~> 0.10.6"
+gem 'compass', "~> 0.11.0"
 gem 'dalli', '~> 1.0.2'
 
 gem 'fancy-buttons'
