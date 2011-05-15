@@ -12,7 +12,7 @@ loop_footer_tabs = {
   <div class="container" id="footer">
     <ul id='main-footer-tabs'>
       <% loop_footer_tabs.each_pair do |tab_name, tab_path| %>
-        <li> <%= link_to_unless_current tab_name, tab_path %> </li> <%= '|' unless tab_name == 'Customer Service' %>
+        <li> <%= link_to_unless_current tab_name, tab_path %> </li> <%= '|' unless tab_name == 'About' %>
       <% end %>
     </ul>
   </div>

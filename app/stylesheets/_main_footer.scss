@@ -1,0 +1,31 @@
+#footer_wrapper {
+
+  font-variant: small-caps;
+  font-weight:bold;
+  font-size:106%;
+
+  border-bottom: 1px solid #ECECEC;
+  background: url("../../images/header/bg-header-wrap.png") repeat-x scroll center bottom #FFFFFF;
+  text-align: left;
+
+  /*margin-top:50px;*/
+
+  li {
+    display: inline;
+    list-style: none;
+    color: #AA5555;
+    padding: 3px;
+    a {
+      color: #828282;
+    }
+    a:hover {
+      color: #AA5555;
+    }
+    .selected {
+      color: #AA5555 !important;
+    }
+  }
+  li:hover {
+    color: #AA5555;
+  }
+}
