@@ -24,7 +24,4 @@ class Customer::RegistrationsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
 end
