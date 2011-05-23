@@ -102,7 +102,7 @@ class Shipment < ActiveRecord::Base
   # @param [Integer]  shipment.id
   # @return [Shipment]
   def self.find_fulfillment_shipment(id)
-    Shipment.includes([{:order => {:user => :shipping_addresses}} , :address ]).find(id)
+    includes([{:order => {:user => :shipping_addresses}} , :address ]).find(id)
   end
 
   ## determines the shipment id from the shipment.number

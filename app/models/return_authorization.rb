@@ -124,7 +124,7 @@ class ReturnAuthorization < ActiveRecord::Base
     params[:page] ||= 1
     params[:rows] ||= SETTINGS[:admin_grid_rows]
 
-    grid = ReturnAuthorization.includes([:return_items, :order, :user])#paginate({:page => params[:page]})
+    grid = includes([:return_items, :order, :user])#paginate({:page => params[:page]})
 
     grid = grid.where("return_authorizations.number LIKE ?",  "#{params[:number]}%")        if params[:number].present?
     grid = grid.where("orders.order_number LIKE ?",           "#{params[:order_number]}%")  if params[:order_number].present?

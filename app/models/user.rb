@@ -342,10 +342,10 @@ class User < ActiveRecord::Base
   #end
 
   def user_profile
-    return {:merchant_customer_id => self.id, :email => self.email, :description => self.merchant_description}
+    return {:merchant_customer_id => id, :email => email, :description => merchant_description}
   end
 
   def before_validation_on_create
-    self.access_token = ActiveSupport::SecureRandom::hex(9+rand(6)) if self.new_record? and self.access_token.nil?
+    self.access_token = ActiveSupport::SecureRandom::hex(9+rand(6)) if new_record? and access_token.nil?
   end
 end

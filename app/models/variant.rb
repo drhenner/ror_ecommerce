@@ -46,8 +46,8 @@ class Variant < ActiveRecord::Base
   # @param [Optional String]
   # @return [String]
   def display_stock_status(start = '(', finish = ')')
-    return "#{start}Sold Out#{finish}"  if self.sold_out?
-    return "#{start}Low Stock#{finish}" if self.low_stock?
+    return "#{start}Sold Out#{finish}"  if sold_out?
+    return "#{start}Low Stock#{finish}" if low_stock?
     ''
   end
 
@@ -56,7 +56,7 @@ class Variant < ActiveRecord::Base
   # @param [TaxRate]
   # @return [Decimal]
   def total_price(tax_rate)
-    ((1 + tax_percentage(tax_rate)) * self.price)
+    ((1 + tax_percentage(tax_rate)) * price)
   end
 
   # get the percent tax rate for the tax rate
@@ -227,7 +227,7 @@ class Variant < ActiveRecord::Base
     params[:page] ||= 1
     params[:rows] ||= SETTINGS[:admin_grid_rows]
 
-    grid = Variant.where({:variants => { :product_id => product.id} })
+    grid = where({:variants => { :product_id => product.id} })
     grid = grid.includes(:product)
     grid = grid.where({:products => {:name => params[:name]}})  if params[:name].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")

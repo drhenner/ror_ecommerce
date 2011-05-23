@@ -7,14 +7,14 @@ class PurchaseOrderVariant < ActiveRecord::Base
   def receive!
     PurchaseOrderVariant.transaction do
       ###  Add to variant stock level
-      self.variant.count_on_hand = self.variant.count_on_hand + self.quantity
+      self.variant.count_on_hand = variant.count_on_hand + quantity
       if self.variant.save!
         ### change is_received to true
         self.is_received = true
         self.save!
       end
       if 0 == PurchaseOrderVariant.where({ :purchase_order_variants =>
-                                                { :purchase_order_id => self.purchase_order_id,
+                                                { :purchase_order_id => purchase_order_id,
                                                   :is_received       => false
                                                 } }).count
         self.purchase_order.mark_as_complete

@@ -108,7 +108,7 @@ class Product < ActiveRecord::Base
   # @param [none]
   # @return [String] product_keywords separated by comma
   def set_keywords
-    self.product_keywords ? self.product_keywords.join(', ') : ''
+    product_keywords ? product_keywords.join(', ') : ''
   end
 
   # range of the product prices in plain english
@@ -173,8 +173,8 @@ class Product < ActiveRecord::Base
   # @param [none]
   # @return [ Product ]
   def self.featured
-    product = Product.where({ :products => {:featured => true} } ).includes(:images).first
-    product ? product : Product.includes(:images).where(['products.deleted_at IS NULL']).first
+    product = where({ :products => {:featured => true} } ).includes(:images).first
+    product ? product : includes(:images).where(['products.deleted_at IS NULL']).first
   end
 
   # paginated results from the admin products grid
@@ -187,7 +187,7 @@ class Product < ActiveRecord::Base
     params[:page] ||= 1
     params[:rows] ||= SETTINGS[:admin_grid_rows]
 
-    grid = Product.includes(:variants)#paginate({:page => params[:page]})
+    grid = includes(:variants)#paginate({:page => params[:page]})
     grid = grid.where(['products.deleted_at IS NOT NULL AND products.deleted_at > ?', Time.now.to_s(:db)])  if active_state == false##  note nil != false
     grid = grid.where(['products.deleted_at IS NULL     OR  products.deleted_at < ?', Time.now.to_s(:db)])  if active_state == true
     #grid.includes(:variants)
