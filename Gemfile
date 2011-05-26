@@ -28,6 +28,7 @@ gem 'prawn', '~> 0.8.4'
 gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
 
+gem 'rake', '= 0.8.7'
 gem 'ssl_requirement'
 gem 'state_machine', '~> 0.9.4'
 gem 'sunspot_rails', '~> 1.2.rc4'
