@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: ShippingRate</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: ShippingRate
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -85,6 +98,22 @@
 </dl>
 <div class="clear"></div>
 
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="MONTHLY_BILLING_RATE_ID-constant" class="">MONTHLY_BILLING_RATE_ID =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>1</span></pre></dd>
+      
+    </dl>
+  
+
+
+  
+  
 
 
   
@@ -227,10 +256,10 @@ determines if the shippng rate should be calculated individually
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -242,8 +271,8 @@ determines if the shippng rate should be calculated individually
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -257,12 +286,12 @@ determines if the shippng rate should be calculated individually
       <pre class="lines">
 
 
-25
-26
-27</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/shipping_rate.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'app/models/shipping_rate.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id individual?'>individual?</span>
   <span class='id shipping_rate_type_id'>shipping_rate_type_id</span> <span class='op'>==</span> <span class='const'>ShippingRateType</span><span class='op'>::</span><span class='const'>INDIVIDUAL_ID</span>
@@ -295,10 +324,10 @@ UPS, International, Individual - 5.50&#8217;
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -310,8 +339,8 @@ UPS, International, Individual - 5.50&#8217;
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -325,12 +354,12 @@ UPS, International, Individual - 5.50&#8217;
       <pre class="lines">
 
 
-34
-35
-36</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/shipping_rate.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'app/models/shipping_rate.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id name'>name</span>
   <span class='lbracket'>[</span><span class='id shipping_method'>shipping_method</span><span class='period'>.</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id shipping_method'>shipping_method</span><span class='period'>.</span><span class='id shipping_zone'>shipping_zone</span><span class='period'>.</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id sub_name'>sub_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -363,10 +392,10 @@ $5.50&#8217;
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -378,8 +407,8 @@ $5.50&#8217;
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -393,12 +422,12 @@ $5.50&#8217;
       <pre class="lines">
 
 
-52
-53
-54</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/shipping_rate.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'app/models/shipping_rate.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id name_with_rate'>name_with_rate</span>
   <span class='lbracket'>[</span><span class='id shipping_method'>shipping_method</span><span class='period'>.</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id number_to_currency'>number_to_currency</span><span class='lparen'>(</span><span class='id rate'>rate</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> - </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -431,10 +460,10 @@ the shipping rate type and $$$ rate  separated by &#8217; - &#8217; ex.
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -446,8 +475,8 @@ the shipping rate type and $$$ rate  separated by &#8217; - &#8217; ex.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -461,12 +490,12 @@ the shipping rate type and $$$ rate  separated by &#8217; - &#8217; ex.
       <pre class="lines">
 
 
-43
-44
-45</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/shipping_rate.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'app/models/shipping_rate.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id sub_name'>sub_name</span>
   <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>(</span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='lbracket'>[</span><span class='id shipping_rate_type'>shipping_rate_type</span><span class='period'>.</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id rate'>rate</span> <span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> - </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>)</span><span class='tstring_end'>'</span></span>
@@ -481,9 +510,9 @@ the shipping rate type and $$$ rate  separated by &#8217; - &#8217; ex.
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:15 2010 by 
+  Generated on Mon May 30 21:16:13 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

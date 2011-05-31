@@ -23,7 +23,16 @@ h2 small { font-weight: normal; font-size: 0.7em; display: block; float: right; 
 .docstring h1 { font-size: 1.2em; }
 .docstring h2 { font-size: 1.1em; }
 .docstring h3, .docstring h4 { font-size: 1em; border-bottom: 0; padding-top: 10px; }
-.docstring .object_link { font-family: monospace; }
+.summary_desc .object_link, .docstring .object_link { font-family: monospace; }
+
+/* style for <ul> */
+#filecontents li > p, .docstring li > p { margin: 0px; }
+#filecontents ul, .docstring ul { padding-left: 20px; }
+/* style for <dl> */
+#filecontents dl, .docstring dl { border: 1px solid #ccc; }
+#filecontents dt, .docstring dt { background: #ddd; font-weight: bold; padding: 3px 5px; }
+#filecontents dd, .docstring dd { padding: 5px 0px; margin-left: 18px; }
+#filecontents dd > p, .docstring dd > p { margin: 0px; }
 
 .note { 
   color: #222;
@@ -61,23 +70,25 @@ p.inherited {
   margin-left: 25px;
 }
 
-dl.box {
+#filecontents dl.box, dl.box {
+  border: 0;
   width: 520px;
   font-size: 1em;
 }
-dl.box dt {
+#filecontents dl.box dt, dl.box dt {
   float: left;
   display: block;
   width: 100px;
   margin: 0;
   text-align: right;
   font-weight: bold;
+  background: transparent;
   border: 1px solid #aaa;
   border-width: 1px 0px 0px 1px;
   padding: 6px 0;
   padding-right: 10px;
 }
-dl.box dd {
+#filecontents dl.box dd, dl.box dd {
   float: left;
   display: block;
   width: 380px;
@@ -87,10 +98,10 @@ dl.box dd {
   border: 1px solid #aaa;
   border-width: 1px 1px 0 0;
 }
-dl.box .last {
+#filecontents dl.box .last, dl.box .last {
   border-bottom: 1px solid #aaa;
 }
-dl.box .r1 { background: #eee; }
+#filecontents dl.box .r1, dl.box .r1 { background: #eee; }
 
 ul.toplevel { list-style: none; padding-left: 0; font-size: 1.1em; }
 #files { padding-left: 15px; font-size: 1.1em; }
@@ -168,7 +179,7 @@ ul.summary li { margin-bottom: 5px; }
   -moz-border-radius: 3px; -webkit-border-radius: 3px; 
 }
 .summary_signature:hover { background: #eeeeff; cursor: pointer; }
-ul.summary.compact li { display: inline; margin-right: 5px; line-height: 2.6em;}
+ul.summary.compact li { display: inline-block; margin: 0px 5px 0px 0px; line-height: 2.6em;}
 ul.summary.compact .summary_signature { padding: 5px 7px; padding-right: 4px; }
 #content .summary_signature:hover a:link, 
 #content .summary_signature:hover a:visited {
@@ -252,8 +263,8 @@ li.r2 { background: #fafafa; }
   -webkit-border-radius: 2px;
 }
 
-#content ul.summary li.deprecated a:link, 
-#content ul.summary li.deprecated a:visited { text-decoration: line-through; font-style: italic; }
+#content ul.summary li.deprecated .summary_signature a:link,
+#content ul.summary li.deprecated .summary_signature a:visited { text-decoration: line-through; font-style: italic; }
 
 #toc { 
   padding: 20px; padding-right: 30px; border: 1px solid #ddd; float: right; background: #fff; margin-left: 20px; margin-bottom: 20px;
@@ -307,4 +318,3 @@ pre.code .id.backref,
 pre.code .id.nth_ref { color: #6D79DE; }
 pre.code .regexp, .dregexp { color: #036A07; }
 pre.code a { border-bottom: 1px dotted #bbf; }
-

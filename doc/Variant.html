@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: Variant</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Variant
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -96,7 +109,15 @@
         </dt>
         <dd><pre class="code"><span class='int'>6</span></pre></dd>
       
+        <dt id="MONTHLY_BILLING_ID-constant" class="">MONTHLY_BILLING_ID =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>1</span></pre></dd>
+      
     </dl>
+  
+
+
   
 
 
@@ -185,6 +206,30 @@ with SQL math add to count_on_hand attribute.
   
     <span class="summary_desc"><div class='inline'><p>
 with SQL math add to count_pending_to_customer attribute.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#brand_name-instance_method" title="#brand_name (instance method)">- (String) <strong>brand_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+returns the brand&#8217;s name or a blank string.
 </p>
 </div></span>
   
@@ -683,10 +728,10 @@ paginated results from the admin Variant grid
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Variant (class)">Variant</a></span></tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Variant (class)">Variant</a></span></tt>)</span>
       
       
       
@@ -694,10 +739,10 @@ paginated results from the admin Variant grid
   
     <li>
       
-        <span class='type'>(<tt>Optional params</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
       
       
       
@@ -709,8 +754,8 @@ paginated results from the admin Variant grid
   
     <li>
       
-        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="Variant (class)">Variant</a></span>]</tt>)</span>
       
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="Variant (class)">Variant</a></span>]</tt>)</span>
       
       
       
@@ -724,27 +769,27 @@ paginated results from the admin Variant grid
       <pre class="lines">
 
 
-215
-216
-217
-218
-219
-220
-221
-222
-223
-224
-225</pre>
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 225</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id product'>product</span><span class='comma'>,</span> <span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
 
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>Variant</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:variants</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:product_id</span> <span class='op'>=&gt;</span> <span class='id product'>product</span><span class='period'>.</span><span class='id id'>id</span><span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:variants</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='symbol'>:product_id</span> <span class='op'>=&gt;</span> <span class='id product'>product</span><span class='period'>.</span><span class='id id'>id</span><span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:product</span><span class='rparen'>)</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:products</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -783,10 +828,10 @@ with SQL math add to count_on_hand attribute
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>number</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -804,8 +849,8 @@ of variants to add
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -819,13 +864,13 @@ of variants to add
       <pre class="lines">
 
 
-163
-164
-165
-166</pre>
+173
+174
+175
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 173</span>
 
 <span class='kw'>def</span> <span class='id add_count_on_hand'>add_count_on_hand</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
     <span class='id sql'>sql</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UPDATE variants SET count_on_hand = (</span><span class='embexpr_beg'>#{</span><span class='id num'>num</span><span class='rbrace'>}</span><span class='tstring_content'> + count_on_hand) WHERE id = </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -858,10 +903,10 @@ with SQL math add to count_pending_to_customer attribute
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>number</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -879,8 +924,8 @@ of variants to add
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -894,17 +939,86 @@ of variants to add
       <pre class="lines">
 
 
-180
-181
-182
-183</pre>
+190
+191
+192
+193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 180</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 190</span>
 
 <span class='kw'>def</span> <span class='id add_pending_to_customer'>add_pending_to_customer</span><span class='lparen'>(</span><span class='id num'>num</span> <span class='op'>=</span> <span class='int'>1</span><span class='rparen'>)</span>
     <span class='id sql'>sql</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UPDATE variants SET count_pending_to_customer = (</span><span class='embexpr_beg'>#{</span><span class='id num'>num</span><span class='rbrace'>}</span><span class='tstring_content'> + count_pending_to_customer) WHERE id = </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id id'>id</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id connection'>connection</span><span class='period'>.</span><span class='id execute'>execute</span><span class='lparen'>(</span><span class='id sql'>sql</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="brand_name-instance_method">
+  
+    - (<tt>String</tt>) <strong>brand_name</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+returns the brand&#8217;s name or a blank string
+</p>
+<pre class="code">
+ ex: obj.brand_name =&gt; 'Nike'</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id brand_name'>brand_name</span>
+  <span class='id brand_id'>brand_id</span> <span class='op'>?</span> <span class='id brand'>brand</span><span class='period'>.</span><span class='id name'>name</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -933,10 +1047,10 @@ returns number available to purchase
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
         <span class='name'>reload</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -954,8 +1068,8 @@ the object from the DB
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
       
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -975,13 +1089,13 @@ number available to purchase
       <pre class="lines">
 
 
-154
-155
-156
-157</pre>
+164
+165
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='id count_available'>count_available</span><span class='lparen'>(</span><span class='id reload_variant'>reload_variant</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id reload'>reload</span> <span class='kw'>if</span> <span class='id reload_variant'>reload_variant</span>
@@ -1017,10 +1131,10 @@ properties
   
     <li>
       
-        <span class='type'>(<tt>Optional String</tt>)</span>
-      
-      
         <span class='name'>separator</span>
+      
+      
+        <span class='type'>(<tt>Optional String</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>'&lt;br/&gt;'</tt>)</em>
@@ -1040,8 +1154,8 @@ properties
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1055,12 +1169,12 @@ properties
       <pre class="lines">
 
 
-101
 102
-103</pre>
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id display_property_details'>display_property_details</span><span class='lparen'>(</span><span class='id separator'>separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&lt;br/&gt;</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='id property_details'>property_details</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='id separator'>separator</span><span class='rparen'>)</span>
@@ -1094,10 +1208,10 @@ has enough stock.
   
     <li>
       
-        <span class='type'>(<tt>Optional String</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional String</tt>)</span>
       
       
       
@@ -1105,10 +1219,10 @@ has enough stock.
   
     <li>
       
-        <span class='type'>(<tt>Optional String</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional String</tt>)</span>
       
       
       
@@ -1120,8 +1234,8 @@ has enough stock.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1135,18 +1249,18 @@ has enough stock.
       <pre class="lines">
 
 
-47
 48
 49
 50
-51</pre>
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id display_stock_status'>display_stock_status</span><span class='lparen'>(</span><span class='id start'>start</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>(</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id finish'>finish</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>)</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id start'>start</span><span class='rbrace'>}</span><span class='tstring_content'>Sold Out</span><span class='embexpr_beg'>#{</span><span class='id finish'>finish</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id sold_out?'>sold_out?</span>
-  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id start'>start</span><span class='rbrace'>}</span><span class='tstring_content'>Low Stock</span><span class='embexpr_beg'>#{</span><span class='id finish'>finish</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id low_stock?'>low_stock?</span>
+  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id start'>start</span><span class='rbrace'>}</span><span class='tstring_content'>Sold Out</span><span class='embexpr_beg'>#{</span><span class='id finish'>finish</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>  <span class='kw'>if</span> <span class='id sold_out?'>sold_out?</span>
+  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id start'>start</span><span class='rbrace'>}</span><span class='tstring_content'>Low Stock</span><span class='embexpr_beg'>#{</span><span class='id finish'>finish</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id low_stock?'>low_stock?</span>
   <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1176,10 +1290,10 @@ returns true or false based on if the count_available is above 0
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>number</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -1197,8 +1311,8 @@ of variants to subtract
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1212,12 +1326,12 @@ of variants to subtract
       <pre class="lines">
 
 
-146
-147
-148</pre>
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 156</span>
 
 <span class='kw'>def</span> <span class='id is_available?'>is_available?</span>
   <span class='id count_available'>count_available</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -1249,10 +1363,10 @@ returns true if the stock level is above or == the low stock level
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1264,8 +1378,8 @@ returns true if the stock level is above or == the low stock level
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1279,12 +1393,12 @@ returns true if the stock level is above or == the low stock level
       <pre class="lines">
 
 
-38
 39
-40</pre>
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id low_stock?'>low_stock?</span>
   <span class='lparen'>(</span><span class='id count_on_hand'>count_on_hand</span> <span class='op'>-</span> <span class='id count_pending_to_customer'>count_pending_to_customer</span><span class='rparen'>)</span> <span class='op'>&lt;=</span> <span class='const'>LOW_STOCK_QTY</span>
@@ -1318,10 +1432,10 @@ returns the product name with sku
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1333,8 +1447,8 @@ returns the product name with sku
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1348,12 +1462,12 @@ returns the product name with sku
       <pre class="lines">
 
 
-138
-139
-140</pre>
+148
+149
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id name_with_sku'>name_with_sku</span>
   <span class='lbracket'>[</span><span class='id product_name'>product_name</span><span class='comma'>,</span> <span class='id sku'>sku</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id compact'>compact</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>: </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -1387,10 +1501,10 @@ The variant has many properties.  but only one is the primary property
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1402,8 +1516,8 @@ The variant has many properties.  but only one is the primary property
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="VariantProperty.html" title="VariantProperty (class)">VariantProperty</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="VariantProperty.html" title="VariantProperty (class)">VariantProperty</a></span></tt>)</span>
       
       
       
@@ -1417,13 +1531,13 @@ The variant has many properties.  but only one is the primary property
       <pre class="lines">
 
 
-128
-129
-130
-131</pre>
+138
+139
+140
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 128</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='id primary_property'>primary_property</span>
   <span class='id pp'>pp</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id variant_properties'>variant_properties</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:variant_properties</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:primary</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:first</span><span class='rparen'>)</span>
@@ -1458,10 +1572,10 @@ returns the product name
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1473,8 +1587,8 @@ returns the product name
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1488,12 +1602,12 @@ returns the product name
       <pre class="lines">
 
 
-110
 111
-112</pre>
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id product_name'>product_name</span>
   <span class='id name?'>name?</span> <span class='op'>?</span> <span class='id name'>name</span> <span class='op'>:</span> <span class='id product'>product</span><span class='period'>.</span><span class='id name'>name</span> <span class='op'>+</span> <span class='id sub_name'>sub_name</span>
@@ -1527,10 +1641,10 @@ gives you the tax rate for the give state_id and the time.
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>state.id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -1538,10 +1652,10 @@ gives you the tax rate for the give state_id and the time.
   
     <li>
       
-        <span class='type'>(<tt>Optional Time</tt>)</span>
-      
-      
         <span class='name'>Time</span>
+      
+      
+        <span class='type'>(<tt>Optional Time</tt>)</span>
       
       
       
@@ -1559,8 +1673,8 @@ now if no value is passed in
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
       
       
       
@@ -1580,12 +1694,12 @@ TaxRate for the state at a given time
       <pre class="lines">
 
 
-75
 76
-77</pre>
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id product_tax_rate'>product_tax_rate</span><span class='lparen'>(</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id tax_time'>tax_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='rparen'>)</span>
   <span class='id product'>product</span><span class='period'>.</span><span class='id tax_rate'>tax_rate</span><span class='lparen'>(</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id tax_time'>tax_time</span><span class='rparen'>)</span>
@@ -1620,10 +1734,10 @@ properties
   
     <li>
       
-        <span class='type'>(<tt>Optional String</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional String</tt>)</span>
       
       
       
@@ -1635,8 +1749,8 @@ properties
   
     <li>
       
-        <span class='type'>(<tt>Array</tt>)</span>
       
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -1650,12 +1764,12 @@ properties
       <pre class="lines">
 
 
-92
 93
-94</pre>
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id property_details'>property_details</span><span class='lparen'>(</span><span class='id separator'>separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>: </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='id variant_properties'>variant_properties</span><span class='period'>.</span><span class='id collect'>collect</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id vp'>vp</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='id vp'>vp</span><span class='period'>.</span><span class='id property'>property</span><span class='period'>.</span><span class='id display_name'>display_name</span> <span class='comma'>,</span><span class='id vp'>vp</span><span class='period'>.</span><span class='id description'>description</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='id separator'>separator</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1687,10 +1801,10 @@ method used by forms to set the initial qty_to_add for variants
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1702,8 +1816,8 @@ method used by forms to set the initial qty_to_add for variants
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
       
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -1723,12 +1837,12 @@ method used by forms to set the initial qty_to_add for variants
       <pre class="lines">
 
 
-206
-207
-208</pre>
+216
+217
+218</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 216</span>
 
 <span class='kw'>def</span> <span class='id qty_to_add'>qty_to_add</span>
   <span class='int'>0</span>
@@ -1760,10 +1874,10 @@ in the admin form qty_to_add to the count on hand
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>number</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -1781,8 +1895,8 @@ of variants to add or subtract (negative sign is subtract)
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1796,13 +1910,13 @@ of variants to add or subtract (negative sign is subtract)
       <pre class="lines">
 
 
-197
-198
-199
-200</pre>
+207
+208
+209
+210</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 197</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 207</span>
 
 <span class='kw'>def</span> <span class='id qty_to_add='>qty_to_add=</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='comment'>###  TODO this method needs a history of who did what
@@ -1835,10 +1949,10 @@ convienence method to get the shipping_category_id of the product
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1850,8 +1964,8 @@ convienence method to get the shipping_category_id of the product
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
       
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -1871,12 +1985,12 @@ shipping_category_id
       <pre class="lines">
 
 
-83
 84
-85</pre>
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id shipping_category_id'>shipping_category_id</span>
   <span class='id product'>product</span><span class='period'>.</span><span class='id shipping_category_id'>shipping_category_id</span>
@@ -1908,10 +2022,10 @@ returns true if the stock level is above or == the out of stock level
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1923,8 +2037,8 @@ returns true if the stock level is above or == the out of stock level
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1938,12 +2052,12 @@ returns true if the stock level is above or == the out of stock level
       <pre class="lines">
 
 
-30
 31
-32</pre>
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id sold_out?'>sold_out?</span>
   <span class='lparen'>(</span><span class='id count_on_hand'>count_on_hand</span> <span class='op'>-</span> <span class='id count_pending_to_customer'>count_pending_to_customer</span><span class='rparen'>)</span> <span class='op'>&lt;=</span> <span class='const'>OUT_OF_STOCK_QTY</span>
@@ -1977,10 +2091,10 @@ returns the primary_property&#8217;s description or a blank string
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1992,8 +2106,8 @@ returns the primary_property&#8217;s description or a blank string
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -2007,12 +2121,12 @@ returns the primary_property&#8217;s description or a blank string
       <pre class="lines">
 
 
-119
 120
-121</pre>
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id sub_name'>sub_name</span>
   <span class='id primary_property'>primary_property</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id primary_property'>primary_property</span><span class='period'>.</span><span class='id description'>description</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
@@ -2044,10 +2158,10 @@ with SQL math subtract to count_on_hand attribute
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>number</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -2065,8 +2179,8 @@ of variants to subtract
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -2080,12 +2194,12 @@ of variants to subtract
       <pre class="lines">
 
 
-172
-173
-174</pre>
+182
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='id subtract_count_on_hand'>subtract_count_on_hand</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='id add_count_on_hand'>add_count_on_hand</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id num'>num</span> <span class='op'>*</span> <span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -2117,10 +2231,10 @@ with SQL math subtract to count_pending_to_customer attribute
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>number</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -2138,8 +2252,8 @@ of variants to subtract
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -2153,12 +2267,12 @@ of variants to subtract
       <pre class="lines">
 
 
-189
-190
-191</pre>
+199
+200
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id subtract_pending_to_customer'>subtract_pending_to_customer</span><span class='lparen'>(</span><span class='id num'>num</span><span class='rparen'>)</span>
   <span class='id add_pending_to_customer'>add_pending_to_customer</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id num'>num</span> <span class='op'>*</span> <span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -2190,10 +2304,10 @@ get the percent tax rate for the tax rate
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
       
       
       
@@ -2205,8 +2319,8 @@ get the percent tax rate for the tax rate
   
     <li>
       
-        <span class='type'>(<tt>Decimal</tt>)</span>
       
+        <span class='type'>(<tt>Decimal</tt>)</span>
       
       
       
@@ -2226,12 +2340,12 @@ tax rate percentage
       <pre class="lines">
 
 
-65
 66
-67</pre>
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id tax_percentage'>tax_percentage</span><span class='lparen'>(</span><span class='id tax_rate'>tax_rate</span><span class='rparen'>)</span>
   <span class='id tax_rate'>tax_rate</span> <span class='op'>?</span> <span class='id tax_rate'>tax_rate</span><span class='period'>.</span><span class='id percentage'>percentage</span> <span class='op'>:</span> <span class='float'>0.0</span>
@@ -2263,10 +2377,10 @@ price times the tax %
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
       
       
       
@@ -2278,8 +2392,8 @@ price times the tax %
   
     <li>
       
-        <span class='type'>(<tt>Decimal</tt>)</span>
       
+        <span class='type'>(<tt>Decimal</tt>)</span>
       
       
       
@@ -2293,15 +2407,15 @@ price times the tax %
       <pre class="lines">
 
 
-57
 58
-59</pre>
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'app/models/variant.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id total_price'>total_price</span><span class='lparen'>(</span><span class='id tax_rate'>tax_rate</span><span class='rparen'>)</span>
-  <span class='lparen'>(</span><span class='lparen'>(</span><span class='int'>1</span> <span class='op'>+</span> <span class='id tax_percentage'>tax_percentage</span><span class='lparen'>(</span><span class='id tax_rate'>tax_rate</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='kw'>self</span><span class='period'>.</span><span class='id price'>price</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='lparen'>(</span><span class='int'>1</span> <span class='op'>+</span> <span class='id tax_percentage'>tax_percentage</span><span class='lparen'>(</span><span class='id tax_rate'>tax_rate</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='id price'>price</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2313,9 +2427,9 @@ price times the tax %
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:14 2010 by 
+  Generated on Mon May 30 21:16:12 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

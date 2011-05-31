@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: PaymentProfile</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: PaymentProfile
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -73,7 +86,7 @@
   
     
       <dt class="r2">Includes:</dt>
-      <dd class="r2">ActiveMerchant::Utils</dd>
+      <dd class="r2"><span class='object_link'><a href="PaymentProfileCim.html" title="PaymentProfileCim (module)">PaymentProfileCim</a></span></dd>
       
     
   
@@ -112,6 +125,10 @@ href="http://cookingandcoding.com/2010/01/14/using-activemerchant-with-authorize
 
   
   
+  
+  
+  
+  
   <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
   <ul class="summary">
     
@@ -135,7 +152,7 @@ href="http://cookingandcoding.com/2010/01/14/using-activemerchant-with-authorize
 
   
     <span class="summary_desc"><div class='inline'><p>
-attr_accessor :address attr_accessor :credit_card.
+Returns the value of attribute credit_card.
 </p>
 </div></span>
   
@@ -162,7 +179,7 @@ attr_accessor :address attr_accessor :credit_card.
 
   
     <span class="summary_desc"><div class='inline'><p>
-attr_accessor :address attr_accessor :credit_card.
+Returns the value of attribute request_ip.
 </p>
 </div></span>
   
@@ -171,6 +188,13 @@ attr_accessor :address attr_accessor :credit_card.
     
   </ul>
 
+
+
+  
+  
+  
+  
+  
 
   
     <h2>
@@ -183,7 +207,7 @@ attr_accessor :address attr_accessor :credit_card.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#create_payment_profile-instance_method" title="#create_payment_profile (instance method)">- (Object) <strong>create_payment_profile</strong> </a>
+      <a href="#credit_card_info%3D-instance_method" title="#credit_card_info= (instance method)">- (CreditCard) <strong>credit_card_info=</strong>(card_or_params) </a>
     
 
     
@@ -197,7 +221,52 @@ attr_accessor :address attr_accessor :credit_card.
 
   
     <span class="summary_desc"><div class='inline'><p>
-validates :address_id,      :presence => true.
+method used by forms to credit a temp credit card.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inactivate%21-instance_method" title="#inactivate! (instance method)">- (Object) <strong>inactivate!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+attr_accessible # none.
 </p>
 </div></span>
   
@@ -228,9 +297,45 @@ credit card object with known values.
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#save_default_profile-instance_method" title="#save_default_profile (instance method)">- (Object) <strong>save_default_profile</strong>(cc_user) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Use this method to create a PaymentProfile
+</p>
+<h1>> This method will create a new PaymentProfile and if the PaymentProfile is a default PaymentProfile it</h1>
+<h1>> will make all other PaymentProfiles that belong to the user non-default.</h1>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="PaymentProfileCim.html" title="PaymentProfileCim (module)">PaymentProfileCim</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="PaymentProfileCim.html#create-instance_method" title="PaymentProfileCim#create (method)">#create</a></span>, <span class='object_link'><a href="PaymentProfileCim.html#destroy-instance_method" title="PaymentProfileCim#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="PaymentProfileCim.html#update-instance_method" title="PaymentProfileCim#update (method)">#update</a></span></p>
 
   
   
@@ -250,7 +355,7 @@ credit card object with known values.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-attr_accessor :address attr_accessor :credit_card
+Returns the value of attribute credit_card
 </p>
 
 
@@ -264,12 +369,12 @@ attr_accessor :address attr_accessor :credit_card
       <pre class="lines">
 
 
-16
-17
-18</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id credit_card'>credit_card</span>
   <span class='ivar'>@credit_card</span>
@@ -292,7 +397,7 @@ attr_accessor :address attr_accessor :credit_card
 </p><div class="docstring">
   <div class="discussion">
     <p>
-attr_accessor :address attr_accessor :credit_card
+Returns the value of attribute request_ip
 </p>
 
 
@@ -306,12 +411,12 @@ attr_accessor :address attr_accessor :credit_card
       <pre class="lines">
 
 
-16
-17
-18</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id request_ip'>request_ip</span>
   <span class='ivar'>@request_ip</span>
@@ -329,16 +434,131 @@ attr_accessor :address attr_accessor :credit_card
     
     
       <div class="method_details first">
-  <p class="signature first" id="create_payment_profile-instance_method">
+  <p class="signature first" id="credit_card_info=-instance_method">
   
-    - (<tt>Object</tt>) <strong>create_payment_profile</strong> 
+    - (<tt>CreditCard</tt>) <strong>credit_card_info=</strong>(card_or_params) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-validates :address_id,      :presence => true
+method used by forms to credit a temp credit card
+</p>
+<hr style="height: 10px"></hr><p>
+behave like it&#8217;s
+</p>
+<pre class="code">
+  <span class='id has_one'>has_one</span> <span class='symbol'>:credit_card</span>
+  <span class='id accepts_nested_attributes_for'>accepts_nested_attributes_for</span> <span class='symbol'>:credit_card_info</span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>CreditCard</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id credit_card_info='>credit_card_info=</span><span class='lparen'>(</span> <span class='id card_or_params'>card_or_params</span> <span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id credit_card'>credit_card</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='id card_or_params'>card_or_params</span>
+    <span class='kw'>when</span> <span class='const'>ActiveMerchant</span><span class='op'>::</span><span class='const'>Billing</span><span class='op'>::</span><span class='const'>CreditCard</span><span class='comma'>,</span> <span class='kw'>nil</span>
+      <span class='id card_or_params'>card_or_params</span>
+    <span class='kw'>else</span>
+      <span class='const'>ActiveMerchant</span><span class='op'>::</span><span class='const'>Billing</span><span class='op'>::</span><span class='const'>CreditCard</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id card_or_params'>card_or_params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='id set_minimal_cc_data'>set_minimal_cc_data</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id credit_card'>credit_card</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="inactivate!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>inactivate!</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id inactivate!'>inactivate!</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id active'>active</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id save!'>save!</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+attr_accessible # none
 </p>
 
 
@@ -352,49 +572,15 @@ validates :address_id,      :presence => true
       <pre class="lines">
 
 
-27
 28
 29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46</pre>
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 28</span>
 
-<span class='kw'>def</span> <span class='id create_payment_profile'>create_payment_profile</span>
-  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id payment_cim_id'>payment_cim_id</span>
-    <span class='kw'>return</span> <span class='kw'>false</span>
-  <span class='kw'>end</span>
-  <span class='ivar'>@gateway</span> <span class='op'>=</span> <span class='id get_payment_gateway'>get_payment_gateway</span>
-
-  <span class='ivar'>@profile</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:customer_profile_id</span>  <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id user'>user</span><span class='period'>.</span><span class='id get_cim_profile'>get_cim_profile</span><span class='comma'>,</span>
-              <span class='symbol'>:payment_profile</span>      <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:bill_to</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id address'>address</span><span class='comma'>,</span>
-                                        <span class='symbol'>:payment</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:credit_card</span> <span class='op'>=&gt;</span> <span class='const'>CreditCard</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id credit_card'>credit_card</span><span class='rparen'>)</span><span class='rbrace'>}</span>
-                                       <span class='rbrace'>}</span>
-              <span class='rbrace'>}</span>
-  <span class='id response'>response</span> <span class='op'>=</span> <span class='ivar'>@gateway</span><span class='period'>.</span><span class='id create_customer_payment_profile'>create_customer_payment_profile</span><span class='lparen'>(</span><span class='ivar'>@profile</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id response'>response</span><span class='period'>.</span><span class='id success?'>success?</span> <span class='kw'>and</span> <span class='id response'>response</span><span class='period'>.</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>customer_payment_profile_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span>
-    <span class='id update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:payment_cim_id</span> <span class='op'>=&gt;</span> <span class='id response'>response</span><span class='period'>.</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>customer_payment_profile_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-    <span class='kw'>self</span><span class='period'>.</span><span class='id credit_card'>credit_card</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'># clear the credit_card info from memory (for security)
-</span>    <span class='kw'>return</span> <span class='kw'>true</span>
-  <span class='kw'>end</span>
-  <span class='comment'>#return false
-</span>  <span class='kw'>self</span><span class='period'>.</span><span class='id errors'>errors</span><span class='period'>.</span><span class='id add_to_base'>add_to_base</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Unable to save CreditCard try again or Please Call for help.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id name'>name</span>
+  <span class='lbracket'>[</span><span class='id cc_type'>cc_type</span><span class='comma'>,</span> <span class='id last_digits'>last_digits</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> - </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -423,10 +609,10 @@ credit card object with known values
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -438,8 +624,8 @@ credit card object with known values
   
     <li>
       
-        <span class='type'>(<tt>CreditCard</tt>)</span>
       
+        <span class='type'>(<tt>CreditCard</tt>)</span>
       
       
       
@@ -453,27 +639,127 @@ credit card object with known values
       <pre class="lines">
 
 
-92
-93
-94
-95
-96
-97
-98
-99
-100</pre>
+79
+80
+81
+82
+83
+84
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id new_credit_card'>new_credit_card</span>
   <span class='comment'># populate new card with some saved values
 </span>  <span class='const'>ActiveMerchant</span><span class='op'>::</span><span class='const'>Billing</span><span class='op'>::</span><span class='const'>CreditCard</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span>
-    <span class='symbol'>:first_name</span>  <span class='op'>=&gt;</span> <span class='id card_first_name'>card_first_name</span><span class='comma'>,</span>
-    <span class='symbol'>:last_name</span>   <span class='op'>=&gt;</span> <span class='id card_last_name'>card_last_name</span><span class='comma'>,</span>
+    <span class='symbol'>:first_name</span>  <span class='op'>=&gt;</span> <span class='id user'>user</span><span class='period'>.</span><span class='id first_name'>first_name</span><span class='comma'>,</span>
+    <span class='symbol'>:last_name</span>   <span class='op'>=&gt;</span> <span class='id user'>user</span><span class='period'>.</span><span class='id last_name'>last_name</span><span class='comma'>,</span>
     <span class='comment'># :address etc too if we have it
-</span>    <span class='symbol'>:type</span>        <span class='op'>=&gt;</span> <span class='id card_type'>card_type</span>
+</span>    <span class='symbol'>:type</span>        <span class='op'>=&gt;</span> <span class='id cc_type'>cc_type</span>
   <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="save_default_profile-instance_method">
+  
+    - (<tt>Object</tt>) <strong>save_default_profile</strong>(cc_user) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Use this method to create a PaymentProfile
+</p>
+<h1>> This method will create a new PaymentProfile and if the PaymentProfile is a default PaymentProfile it</h1>
+<h1>> will make all other PaymentProfiles that belong to the user non-default</h1>
+<p>
+@ return [Boolean] true or nil
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+associated to the payment profile
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hash</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+of attributes for the new address
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/payment_profile.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id save_default_profile'>save_default_profile</span><span class='lparen'>(</span><span class='id cc_user'>cc_user</span><span class='rparen'>)</span>
+  <span class='const'>PaymentProfile</span><span class='period'>.</span><span class='id transaction'>transaction</span> <span class='kw'>do</span>
+    <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id default'>default</span> <span class='op'>==</span> <span class='kw'>true</span>
+      <span class='const'>PaymentProfile</span><span class='period'>.</span><span class='id update_all'>update_all</span><span class='lparen'>(</span> <span class='lbrace'>{</span> <span class='symbol'>:default</span>  <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='comma'>,</span>
+                          <span class='lbrace'>{</span> <span class='symbol'>:payment_profiles</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
+                                <span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='id cc_user'>cc_user</span><span class='period'>.</span><span class='id id'>id</span><span class='comma'>,</span>
+                                          <span class='rbrace'>}</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id cc_user'>cc_user</span>
+    <span class='kw'>end</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id user'>user</span> <span class='op'>=</span> <span class='id cc_user'>cc_user</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id save'>save</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -485,9 +771,9 @@ credit card object with known values
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:15 2010 by 
+  Generated on Mon May 30 21:16:13 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

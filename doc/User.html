@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: User</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: User
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -73,7 +86,7 @@
   
     
       <dt class="r2">Includes:</dt>
-      <dd class="r2">ActiveMerchant::Utils</dd>
+      <dd class="r2"><span class='object_link'><a href="UserCim.html" title="UserCim (module)">UserCim</a></span></dd>
       
     
   
@@ -87,6 +100,15 @@
 
 
 
+  
+  
+  
+  
+  
+
+
+  
+  
   
   
 
@@ -116,6 +138,30 @@
   
     <span class="summary_desc"><div class='inline'><p>
 paginated results from the admin User grid.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_subscription_users-class_method" title="find_subscription_users (class method)">+ (Arel) <strong>find_subscription_users</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Find users that have signed up for the subscription.
 </p>
 </div></span>
   
@@ -254,6 +300,27 @@ email activation instructions after a user signs up.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#deliver_password_reset_instructions%21-instance_method" title="#deliver_password_reset_instructions! (instance method)">- (Object) <strong>deliver_password_reset_instructions!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#display_active-instance_method" title="#display_active (instance method)">- (String) <strong>display_active</strong> </a>
     
 
@@ -351,6 +418,30 @@ place holder method for creating cim profiles for recurring billing.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#include_default_addresses-instance_method" title="#include_default_addresses (instance method)">- (Arel) <strong>include_default_addresses</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+include addresses in Find.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#merchant_description-instance_method" title="#merchant_description (instance method)">- (String) <strong>merchant_description</strong> </a>
     
 
@@ -365,7 +456,8 @@ place holder method for creating cim profiles for recurring billing.
 
   
     <span class="summary_desc"><div class='inline'><p>
-name and first line of address.
+name and first line of address (used by credit card gateway to descript the
+merchant).
 </p>
 </div></span>
   
@@ -548,6 +640,10 @@ might be an admin but your CTO and IT director is a super admin.
 
   
   
+  
+  
+  
+  
 
   <div id="class_method_details" class="method_details_list">
     <h2>Class Method Details</h2>
@@ -575,10 +671,10 @@ paginated results from the admin User grid
   
     <li>
       
-        <span class='type'>(<tt>Optional params</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
       
       
       
@@ -590,8 +686,8 @@ paginated results from the admin User grid
   
     <li>
       
-        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="User (class)">User</a></span>]</tt>)</span>
       
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="User (class)">User</a></span>]</tt>)</span>
       
       
       
@@ -605,22 +701,22 @@ paginated results from the admin User grid
       <pre class="lines">
 
 
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284</pre>
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 272</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 297</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 
@@ -634,6 +730,58 @@ paginated results from the admin User grid
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>users.email LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>      <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sidx</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sord</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id grid'>grid</span><span class='period'>.</span><span class='id paginate'>paginate</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='symbol'>:per_page</span> <span class='op'>=&gt;</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_subscription_users-class_method">
+  
+    + (<tt>Arel</tt>) <strong>find_subscription_users</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Find users that have signed up for the subscription
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Arel</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+281
+282
+283</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 281</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_subscription_users'>find_subscription_users</span>
+  <span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>account_id NOT IN (?)</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>Account</span><span class='op'>::</span><span class='const'>FREE_ACCOUNT_IDS</span> <span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -668,10 +816,10 @@ returns true or false if the user is active or not
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -683,8 +831,8 @@ returns true or false if the user is active or not
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -698,12 +846,12 @@ returns true or false if the user is active or not
       <pre class="lines">
 
 
-127
-128
-129</pre>
+136
+137
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='id active?'>active?</span>
   <span class='op'>!</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>canceled</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>inactive</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id s'>s</span><span class='op'>|</span> <span class='kw'>self</span><span class='period'>.</span><span class='id state'>state</span> <span class='op'>==</span> <span class='id s'>s</span> <span class='rbrace'>}</span>
@@ -735,10 +883,10 @@ returns true or false if the user is an admin or not
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -750,8 +898,8 @@ returns true or false if the user is an admin or not
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -765,12 +913,12 @@ returns true or false if the user is an admin or not
       <pre class="lines">
 
 
-151
-152
-153</pre>
+160
+161
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='id admin?'>admin?</span>
   <span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:administrator</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:super_administrator</span><span class='rparen'>)</span>
@@ -803,10 +951,10 @@ shipping address
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -818,8 +966,8 @@ shipping address
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span></tt>)</span>
       
       
       
@@ -833,12 +981,12 @@ shipping address
       <pre class="lines">
 
 
-190
-191
-192</pre>
+199
+200
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 190</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id billing_address'>billing_address</span>
   <span class='id default_billing_address'>default_billing_address</span> <span class='op'>?</span> <span class='id default_billing_address'>default_billing_address</span> <span class='op'>:</span> <span class='id shipping_address'>shipping_address</span>
@@ -870,10 +1018,10 @@ returns your last cart or nil
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -885,8 +1033,8 @@ returns your last cart or nil
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Cart.html" title="Cart (class)">Cart</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="Cart.html" title="Cart (class)">Cart</a></span></tt>)</span>
       
       
       
@@ -900,12 +1048,12 @@ returns your last cart or nil
       <pre class="lines">
 
 
-168
-169
-170</pre>
+177
+178
+179</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 177</span>
 
 <span class='kw'>def</span> <span class='id current_cart'>current_cart</span>
   <span class='id carts'>carts</span><span class='period'>.</span><span class='id last'>last</span>
@@ -937,10 +1085,10 @@ email activation instructions after a user signs up
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -952,8 +1100,8 @@ email activation instructions after a user signs up
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -967,15 +1115,45 @@ email activation instructions after a user signs up
       <pre class="lines">
 
 
-237
-238
-239</pre>
+246
+247
+248</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 237</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 246</span>
 
 <span class='kw'>def</span> <span class='id deliver_activation_instructions!'>deliver_activation_instructions!</span>
   <span class='const'>Notifier</span><span class='period'>.</span><span class='id signup_notification'>signup_notification</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id deliver'>deliver</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="deliver_password_reset_instructions!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>deliver_password_reset_instructions!</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+311
+312
+313
+314</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 311</span>
+
+<span class='kw'>def</span> <span class='id deliver_password_reset_instructions!'>deliver_password_reset_instructions!</span>
+  <span class='id reset_perishable_token!'>reset_perishable_token!</span>
+  <span class='const'>Notifier</span><span class='period'>.</span><span class='id password_reset_instructions'>password_reset_instructions</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id deliver'>deliver</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1005,10 +1183,10 @@ user is active or not
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1020,8 +1198,8 @@ user is active or not
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1035,12 +1213,12 @@ user is active or not
       <pre class="lines">
 
 
-135
-136
-137</pre>
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id display_active'>display_active</span>
   <span class='id active?'>active?</span><span class='period'>.</span><span class='id to_s'>to_s</span>
@@ -1073,10 +1251,10 @@ name and email string for the user ex. &#8217;&#8220;John Wayne&#8221;
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1088,8 +1266,8 @@ name and email string for the user ex. &#8217;&#8220;John Wayne&#8221;
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1103,12 +1281,12 @@ name and email string for the user ex. &#8217;&#8220;John Wayne&#8221;
       <pre class="lines">
 
 
-246
-247
-248</pre>
+255
+256
+257</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 255</span>
 
 <span class='kw'>def</span> <span class='id email_address_with_name'>email_address_with_name</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot; &lt;</span><span class='embexpr_beg'>#{</span><span class='id email'>email</span><span class='rbrace'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -1140,10 +1318,10 @@ formats the String
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>formatted</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1161,8 +1339,8 @@ in Euro-time
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1182,12 +1360,12 @@ sets birth_date for the user
       <pre class="lines">
 
 
-176
-177
-178</pre>
+185
+186
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 185</span>
 
 <span class='kw'>def</span> <span class='id format_birth_date'>format_birth_date</span><span class='lparen'>(</span><span class='id b_date'>b_date</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id birth_date'>birth_date</span> <span class='op'>=</span> <span class='const'>Date</span><span class='period'>.</span><span class='id strptime'>strptime</span><span class='lparen'>(</span><span class='id b_date'>b_date</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%m/%d/%Y</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id b_date'>b_date</span><span class='period'>.</span><span class='id present?'>present?</span>
@@ -1219,10 +1397,10 @@ place holder method for creating cim profiles for recurring billing
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1234,8 +1412,8 @@ place holder method for creating cim profiles for recurring billing
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1255,19 +1433,71 @@ CIM id returned from the gateway
       <pre class="lines">
 
 
-254
-255
-256
-257
-258</pre>
+263
+264
+265
+266
+267</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 254</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 263</span>
 
 <span class='kw'>def</span> <span class='id get_cim_profile'>get_cim_profile</span>
   <span class='kw'>return</span> <span class='id customer_cim_id'>customer_cim_id</span> <span class='kw'>if</span> <span class='id customer_cim_id'>customer_cim_id</span>
   <span class='id create_cim_profile'>create_cim_profile</span>
   <span class='id customer_cim_id'>customer_cim_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="include_default_addresses-instance_method">
+  
+    - (<tt>Arel</tt>) <strong>include_default_addresses</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+include addresses in Find
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Arel</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+289
+290
+291</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 289</span>
+
+<span class='kw'>def</span> <span class='id include_default_addresses'>include_default_addresses</span>
+  <span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:default_billing_address</span><span class='comma'>,</span> <span class='symbol'>:default_shipping_address</span><span class='comma'>,</span> <span class='symbol'>:account</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1284,7 +1514,8 @@ CIM id returned from the gateway
 </p><div class="docstring">
   <div class="discussion">
     <p>
-name and first line of address
+name and first line of address (used by credit card gateway to descript the
+merchant)
 </p>
 
 
@@ -1296,10 +1527,10 @@ name and first line of address
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1311,8 +1542,8 @@ name and first line of address
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1332,12 +1563,12 @@ name and first line of address
       <pre class="lines">
 
 
-264
-265
-266</pre>
+273
+274
+275</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 264</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 273</span>
 
 <span class='kw'>def</span> <span class='id merchant_description'>merchant_description</span>
   <span class='lbracket'>[</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id default_shipping_address'>default_shipping_address</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:address_lines</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id compact'>compact</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -1373,12 +1604,12 @@ This method will one day grow into the products a user most likely likes.
       <pre class="lines">
 
 
-182
-183
-184</pre>
+191
+192
+193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 191</span>
 
 <span class='kw'>def</span> <span class='id might_be_interested_in_these_products'>might_be_interested_in_these_products</span>
   <span class='const'>Product</span><span class='period'>.</span><span class='id limit'>limit</span><span class='lparen'>(</span><span class='int'>4</span><span class='rparen'>)</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='symbol'>:all</span><span class='rparen'>)</span>
@@ -1411,10 +1642,10 @@ the users email
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1426,8 +1657,8 @@ the users email
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1441,12 +1672,12 @@ the users email
       <pre class="lines">
 
 
-214
-215
-216</pre>
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 214</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 223</span>
 
 <span class='kw'>def</span> <span class='id name'>name</span>
   <span class='lparen'>(</span><span class='id first_name?'>first_name?</span> <span class='op'>&amp;&amp;</span> <span class='id last_name?'>last_name?</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='id first_name'>first_name</span><span class='period'>.</span><span class='id capitalize'>capitalize</span><span class='comma'>,</span> <span class='id last_name'>last_name</span><span class='period'>.</span><span class='id capitalize'>capitalize</span> <span class='rbracket'>]</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id email'>email</span>
@@ -1478,10 +1709,10 @@ returns true or false if the user is a registered user or not
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1493,8 +1724,8 @@ returns true or false if the user is a registered user or not
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1508,12 +1739,12 @@ returns true or false if the user is a registered user or not
       <pre class="lines">
 
 
-206
-207
-208</pre>
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id registered_user?'>registered_user?</span>
   <span class='id registered?'>registered?</span> <span class='op'>||</span> <span class='id registered_with_credit?'>registered_with_credit?</span>
@@ -1545,10 +1776,10 @@ returns true or false if the user has a role or not
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>role</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1566,8 +1797,8 @@ name the user should have
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1581,12 +1812,12 @@ name the user should have
       <pre class="lines">
 
 
-143
-144
-145</pre>
+152
+153
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='id role?'>role?</span><span class='lparen'>(</span><span class='id role_name'>role_name</span><span class='rparen'>)</span>
   <span class='id roles'>roles</span><span class='period'>.</span><span class='id any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id r'>r</span><span class='op'>|</span> <span class='id r'>r</span><span class='period'>.</span><span class='id name'>name</span> <span class='op'>==</span> <span class='id role_name'>role_name</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rbrace'>}</span>
@@ -1619,10 +1850,10 @@ account type if one doesn&#8217;t exist
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1634,8 +1865,8 @@ account type if one doesn&#8217;t exist
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1649,19 +1880,19 @@ account type if one doesn&#8217;t exist
       <pre class="lines">
 
 
-222
-223
-224
-225
-226
-227
-228
-229
-230
-231</pre>
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 222</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id sanitize_data'>sanitize_data</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span>      <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id email'>email</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id downcase'>downcase</span>       <span class='kw'>unless</span> <span class='id email'>email</span><span class='period'>.</span><span class='id blank?'>blank?</span>
@@ -1701,10 +1932,10 @@ first shipping address
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1716,8 +1947,8 @@ first shipping address
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span></tt>)</span>
       
       
       
@@ -1731,12 +1962,12 @@ first shipping address
       <pre class="lines">
 
 
-198
-199
-200</pre>
+207
+208
+209</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 198</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 207</span>
 
 <span class='kw'>def</span> <span class='id shipping_address'>shipping_address</span>
   <span class='id default_shipping_address'>default_shipping_address</span> <span class='op'>?</span> <span class='id default_shipping_address'>default_shipping_address</span> <span class='op'>:</span> <span class='id shipping_addresses'>shipping_addresses</span><span class='period'>.</span><span class='id first'>first</span>
@@ -1769,10 +2000,10 @@ might be an admin but your CTO and IT director is a super admin
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1784,8 +2015,8 @@ might be an admin but your CTO and IT director is a super admin
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1799,12 +2030,12 @@ might be an admin but your CTO and IT director is a super admin
       <pre class="lines">
 
 
-160
-161
-162</pre>
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 169</span>
 
 <span class='kw'>def</span> <span class='id super_admin?'>super_admin?</span>
   <span class='id role?'>role?</span><span class='lparen'>(</span><span class='symbol'>:super_administrator</span><span class='rparen'>)</span>
@@ -1819,9 +2050,9 @@ might be an admin but your CTO and IT director is a super admin
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:13 2010 by 
+  Generated on Mon May 30 21:16:11 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: PurchaseOrder</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: PurchaseOrder
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -107,6 +120,9 @@
         <dd><pre class="code"><span class='lbracket'>[</span><span class='const'>PENDING</span><span class='comma'>,</span> <span class='const'>INCOMPLETE</span><span class='comma'>,</span> <span class='const'>RECEIVED</span><span class='rbracket'>]</span></pre></dd>
       
     </dl>
+  
+
+
   
 
 
@@ -401,10 +417,10 @@ paginated results from the admin PurchaseOrder grid
   
     <li>
       
-        <span class='type'>(<tt>Optional params</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
       
       
       
@@ -416,8 +432,8 @@ paginated results from the admin PurchaseOrder grid
   
     <li>
       
-        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="PurchaseOrder (class)">PurchaseOrder</a></span>]</tt>)</span>
       
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="PurchaseOrder (class)">PurchaseOrder</a></span>]</tt>)</span>
       
       
       
@@ -454,7 +470,7 @@ paginated results from the admin PurchaseOrder grid
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
 
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>PurchaseOrder</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:supplier</span><span class='rparen'>)</span>
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:supplier</span><span class='rparen'>)</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>suppliers.name = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rparen'>)</span>            <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>purchase_orders.invoice_number = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:invoice_number</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:invoice_number</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>purchase_orders.tracking_number = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:tracking_number</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:tracking_number</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
@@ -490,10 +506,10 @@ paginated results from the admin PurchaseOrder grid for PO to receive
   
     <li>
       
-        <span class='type'>(<tt>Optional params</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
       
       
       
@@ -505,8 +521,8 @@ paginated results from the admin PurchaseOrder grid for PO to receive
   
     <li>
       
-        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="PurchaseOrder (class)">PurchaseOrder</a></span>]</tt>)</span>
       
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="PurchaseOrder (class)">PurchaseOrder</a></span>]</tt>)</span>
       
       
       
@@ -543,7 +559,7 @@ paginated results from the admin PurchaseOrder grid for PO to receive
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
 
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>PurchaseOrder</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>purchase_orders.state != ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>PurchaseOrder</span><span class='op'>::</span><span class='const'>RECEIVED</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comment'>#.where(&quot;suppliers.name = ?&quot;, params[:name])
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>purchase_orders.state != ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>PurchaseOrder</span><span class='op'>::</span><span class='const'>RECEIVED</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comment'>#.where(&quot;suppliers.name = ?&quot;, params[:name])
 </span>  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>suppliers.name = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>                  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rparen'>)</span>            <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>purchase_orders.invoice_number = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>  <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:invoice_number</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:invoice_number</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>purchase_orders.tracking_number = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:tracking_number</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:tracking_number</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
@@ -614,10 +630,10 @@ returns &#8220;Yes&#8221; if the PO has been received, otherwise
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -629,8 +645,8 @@ returns &#8220;Yes&#8221; if the PO has been received, otherwise
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -688,10 +704,10 @@ returns &#8220;the tracking #&#8221; if the tracking # exists, otherwise
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -703,8 +719,8 @@ returns &#8220;the tracking #&#8221; if the tracking # exists, otherwise
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -836,8 +852,8 @@ method determines if the order has already been received
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -890,10 +906,10 @@ and adds the inventory to stock
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -911,8 +927,8 @@ for set_keywords in a products form
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -970,10 +986,10 @@ stock
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -985,8 +1001,8 @@ stock
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1044,10 +1060,10 @@ returns &#8220;Suppliers name&#8221; if the supplier exists, otherwise
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1059,8 +1075,8 @@ returns &#8220;Suppliers name&#8221; if the supplier exists, otherwise
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1100,9 +1116,9 @@ returns &#8220;Suppliers name&#8221; if the supplier exists, otherwise
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:15 2010 by 
+  Generated on Mon May 30 21:16:13 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

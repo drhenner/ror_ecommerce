@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: Notifier</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Notifier
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -85,6 +98,9 @@
 
   
 
+
+  
+
   
     <h2>
       Instance Method Summary
@@ -92,6 +108,27 @@
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#password_reset_instructions-instance_method" title="#password_reset_instructions (instance method)">- (Object) <strong>password_reset_instructions</strong>(user) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -129,7 +166,41 @@ Simple Welcome mailer
     
     
       <div class="method_details first">
-  <p class="signature first" id="signup_notification-instance_method">
+  <p class="signature first" id="password_reset_instructions-instance_method">
+  
+    - (<tt>Object</tt>) <strong>password_reset_instructions</strong>(user) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/notifier.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id password_reset_instructions'>password_reset_instructions</span><span class='lparen'>(</span><span class='id user'>user</span><span class='rparen'>)</span>
+  <span class='ivar'>@user</span> <span class='op'>=</span> <span class='id user'>user</span>
+  <span class='ivar'>@url</span>  <span class='op'>=</span> <span class='id edit_customer_password_reset_url'>edit_customer_password_reset_url</span><span class='lparen'>(</span><span class='symbol'>:id</span> <span class='op'>=&gt;</span> <span class='id user'>user</span><span class='period'>.</span><span class='id perishable_token'>perishable_token</span><span class='rparen'>)</span>
+  <span class='id mail'>mail</span><span class='lparen'>(</span><span class='symbol'>:to</span> <span class='op'>=&gt;</span> <span class='id user'>user</span><span class='period'>.</span><span class='id email'>email</span><span class='comma'>,</span>
+       <span class='symbol'>:subject</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Reset Password Instructions</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="signup_notification-instance_method">
   
     - (<tt>Object</tt>) <strong>signup_notification</strong>(recipient) 
   
@@ -152,10 +223,10 @@ Simple Welcome mailer
   
     <li>
       
-        <span class='type'>(<tt>user</tt>)</span>
-      
-      
         <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>user</tt>)</span>
       
       
       
@@ -200,8 +271,8 @@ that signed up
 </span>
   <span class='id mail'>mail</span><span class='lparen'>(</span><span class='symbol'>:to</span> <span class='op'>=&gt;</span> <span class='id recipient'>recipient</span><span class='period'>.</span><span class='id email_address_with_name'>email_address_with_name</span><span class='comma'>,</span>
        <span class='symbol'>:subject</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>New account information</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id format'>format</span><span class='op'>|</span>
-    <span class='id format'>format</span><span class='period'>.</span><span class='id text'>text</span> <span class='lbrace'>{</span> <span class='id render'>render</span> <span class='symbol'>:text</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Welcome!  </span><span class='embexpr_beg'>#{</span><span class='id recipient'>recipient</span><span class='period'>.</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
-    <span class='id format'>format</span><span class='period'>.</span><span class='id html'>html</span> <span class='lbrace'>{</span> <span class='id render'>render</span> <span class='symbol'>:text</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;h1&gt;Welcome&lt;/h1&gt; </span><span class='embexpr_beg'>#{</span><span class='id recipient'>recipient</span><span class='period'>.</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+    <span class='id format'>format</span><span class='period'>.</span><span class='id text'>text</span> <span class='lbrace'>{</span> <span class='id render'>render</span> <span class='symbol'>:text</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Welcome!  </span><span class='embexpr_beg'>#{</span><span class='id recipient'>recipient</span><span class='period'>.</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_content'> go to </span><span class='embexpr_beg'>#{</span><span class='id customer_activation_url'>customer_activation_url</span><span class='lparen'>(</span><span class='symbol'>:a</span> <span class='op'>=&gt;</span> <span class='id recipient'>recipient</span><span class='period'>.</span><span class='id perishable_token'>perishable_token</span> <span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+    <span class='id format'>format</span><span class='period'>.</span><span class='id html'>html</span> <span class='lbrace'>{</span> <span class='id render'>render</span> <span class='symbol'>:text</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;h1&gt;Welcome&lt;/h1&gt; </span><span class='embexpr_beg'>#{</span><span class='id recipient'>recipient</span><span class='period'>.</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_content'> &lt;a href='</span><span class='embexpr_beg'>#{</span><span class='id customer_activation_url'>customer_activation_url</span><span class='lparen'>(</span><span class='symbol'>:a</span> <span class='op'>=&gt;</span> <span class='id recipient'>recipient</span><span class='period'>.</span><span class='id perishable_token'>perishable_token</span> <span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>'&gt;Click to Activate&lt;/a&gt;</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
 <span class='kw'>end</span></pre>
@@ -215,9 +286,9 @@ that signed up
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:14 2010 by 
+  Generated on Mon May 30 21:16:12 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

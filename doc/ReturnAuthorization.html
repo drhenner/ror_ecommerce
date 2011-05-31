@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: ReturnAuthorization</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: ReturnAuthorization
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -97,6 +110,9 @@
         <dd><pre class="code"><span class='int'>21</span></pre></dd>
       
     </dl>
+  
+
+
   
 
 
@@ -190,6 +206,31 @@ determines the ReturnAuthorization id from the ReturnAuthorization.number.
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initial-instance_method" title="#initial (instance method)">- (Object) <strong>initial</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+after you process an RMA you must manually add the variant back into the
+system!!!.
+</p>
+</div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -369,10 +410,10 @@ paginated results from the admin return authorization grid
   
     <li>
       
-        <span class='type'>(<tt>Optional params</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
       
       
       
@@ -384,8 +425,8 @@ paginated results from the admin return authorization grid
   
     <li>
       
-        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="ReturnAuthorization (class)">ReturnAuthorization</a></span>]</tt>)</span>
       
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="ReturnAuthorization (class)">ReturnAuthorization</a></span>]</tt>)</span>
       
       
       
@@ -420,7 +461,7 @@ paginated results from the admin return authorization grid
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
 
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>ReturnAuthorization</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:return_items</span><span class='comma'>,</span> <span class='symbol'>:order</span><span class='comma'>,</span> <span class='symbol'>:user</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comment'>#paginate({:page =&gt; params[:page]})
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:return_items</span><span class='comma'>,</span> <span class='symbol'>:order</span><span class='comma'>,</span> <span class='symbol'>:user</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comment'>#paginate({:page =&gt; params[:page]})
 </span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>return_authorizations.number LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>        <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
   <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orders.order_number LIKE ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:order_number</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:order_number</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id present?'>present?</span>
@@ -457,10 +498,10 @@ more optimal than the normal rails find by id
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>represents</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -478,8 +519,8 @@ the ReturnAuthorization.number
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="ReturnAuthorization (class)">ReturnAuthorization</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="" title="ReturnAuthorization (class)">ReturnAuthorization</a></span></tt>)</span>
       
       
       
@@ -530,10 +571,10 @@ determines the ReturnAuthorization id from the ReturnAuthorization.number
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>represents</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -551,8 +592,8 @@ the ReturnAuthorization.number
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
       
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -594,7 +635,71 @@ id of the ReturnAuthorization to find
     
     
       <div class="method_details first">
-  <p class="signature first" id="order_number-instance_method">
+  <p class="signature first" id="initial-instance_method">
+  
+    - (<tt>Object</tt>) <strong>initial</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+after you process an RMA you must manually add the variant back into the
+system!!!
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/return_authorization.rb', line 32</span>
+
+<span class='id state_machine'>state_machine</span> <span class='symbol'>:initial</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>authorized</span><span class='tstring_end'>'</span></span> <span class='kw'>do</span>
+  <span class='comment'>#after_transition :to =&gt; 'received', :do =&gt; :process_receive
+</span>  <span class='comment'>#after_transition :to =&gt; 'cancelled', :do =&gt; :process_canceled
+</span>  <span class='id before_transition'>before_transition</span> <span class='symbol'>:to</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>complete</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:do</span> <span class='op'>=&gt;</span> <span class='symbol'>:process_ledger_transactions</span>
+
+  <span class='id event'>event</span> <span class='symbol'>:receive</span> <span class='kw'>do</span>
+    <span class='id transition'>transition</span> <span class='symbol'>:to</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>received</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:from</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>authorized</span><span class='tstring_end'>'</span></span>
+  <span class='kw'>end</span>
+  <span class='id event'>event</span> <span class='symbol'>:cancel</span> <span class='kw'>do</span>
+    <span class='id transition'>transition</span> <span class='symbol'>:to</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>cancelled</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:from</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>authorized</span><span class='tstring_end'>'</span></span>
+  <span class='kw'>end</span>
+  <span class='id event'>event</span> <span class='symbol'>:complete</span> <span class='kw'>do</span> <span class='comment'># do this after a payment was returned to the customer
+</span>    <span class='id transition'>transition</span> <span class='symbol'>:to</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>complete</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:from</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>authorized</span><span class='tstring_end'>'</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="order_number-instance_method">
   
     - (<tt>String</tt>) <strong>order_number</strong> 
   
@@ -615,10 +720,10 @@ number of the order that is returning the item
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -630,8 +735,8 @@ number of the order that is returning the item
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -685,10 +790,10 @@ complete
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -700,8 +805,8 @@ complete
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -756,10 +861,10 @@ Called after_create.  sets the ReturnAuthorization number
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -771,8 +876,8 @@ Called after_create.  sets the ReturnAuthorization number
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -826,10 +931,10 @@ is nil the ReturnAuthorization number is bogus
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -841,8 +946,8 @@ is nil the ReturnAuthorization number is bogus
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -896,10 +1001,10 @@ ReturnAuthorization id
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -911,8 +1016,8 @@ ReturnAuthorization id
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -963,10 +1068,10 @@ name of the user that is returning the item
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -978,8 +1083,8 @@ name of the user that is returning the item
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1013,9 +1118,9 @@ name of the user that is returning the item
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:15 2010 by 
+  Generated on Mon May 30 21:16:13 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

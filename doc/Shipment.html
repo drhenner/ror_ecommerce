@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: Shipment</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Shipment
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -97,6 +110,9 @@
         <dd><pre class="code"><span class='int'>2002002002000</span></pre></dd>
       
     </dl>
+  
+
+
   
 
 
@@ -419,10 +435,10 @@ transitions the shipment state to ready_to_ship
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Order.html" title="Order (class)">Order</a></span></tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Order.html" title="Order (class)">Order</a></span></tt>)</span>
       
       
       
@@ -434,8 +450,8 @@ transitions the shipment state to ready_to_ship
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -507,10 +523,10 @@ normal rails find by id
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>represents</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -528,8 +544,8 @@ the shipment.number
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Shipment (class)">Shipment</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Shipment (class)">Shipment</a></span></tt>)</span>
       
       
       
@@ -580,10 +596,10 @@ finds the Shipment in the admin area (includes to prevent N + 1 queries)
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>shipment.id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -595,8 +611,8 @@ finds the Shipment in the admin area (includes to prevent N + 1 queries)
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Shipment (class)">Shipment</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Shipment (class)">Shipment</a></span></tt>)</span>
       
       
       
@@ -618,7 +634,7 @@ finds the Shipment in the admin area (includes to prevent N + 1 queries)
       <pre class="code"><span class="info file"># File 'app/models/shipment.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id find_fulfillment_shipment'>find_fulfillment_shipment</span><span class='lparen'>(</span><span class='id id'>id</span><span class='rparen'>)</span>
-  <span class='const'>Shipment</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='lbrace'>{</span><span class='symbol'>:order</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:user</span> <span class='op'>=&gt;</span> <span class='symbol'>:shipping_addresses</span><span class='rbrace'>}</span><span class='rbrace'>}</span> <span class='comma'>,</span> <span class='symbol'>:address</span> <span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id id'>id</span><span class='rparen'>)</span>
+  <span class='id includes'>includes</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='lbrace'>{</span><span class='symbol'>:order</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:user</span> <span class='op'>=&gt;</span> <span class='symbol'>:shipping_addresses</span><span class='rbrace'>}</span><span class='rbrace'>}</span> <span class='comma'>,</span> <span class='symbol'>:address</span> <span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id find'>find</span><span class='lparen'>(</span><span class='id id'>id</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -647,10 +663,10 @@ determines the shipment id from the shipment.number
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>represents</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -668,8 +684,8 @@ the shipment.number
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
       
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -732,10 +748,10 @@ when the order has been shipped the inventory must be updated
   
     <li>
       
-        <span class='type'>(<tt>Optional String</tt>)</span>
-      
-      
         <span class='name'>format</span>
+      
+      
+        <span class='type'>(<tt>Optional String</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>I18n.translate('time.formats.us_date')</tt>)</em>
@@ -755,8 +771,8 @@ of the date string returned
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -807,10 +823,10 @@ determines if shipment has order items
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -822,8 +838,8 @@ determines if shipment has order items
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -874,10 +890,10 @@ mark the order as shipped when the item ships
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -889,8 +905,8 @@ mark the order as shipped when the item ships
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -941,10 +957,10 @@ sets the shipped at time to the current time
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -956,8 +972,8 @@ sets the shipped at time to the current time
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1008,10 +1024,10 @@ when the order has been shipped the inventory must be updated
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1023,8 +1039,8 @@ when the order has been shipped the inventory must be updated
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1077,10 +1093,10 @@ Addresses that the user has to ship to
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1092,8 +1108,8 @@ Addresses that the user has to ship to
   
     <li>
       
-        <span class='type'>(<tt>Array [<span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span>]</tt>)</span>
       
+        <span class='type'>(<tt>Array [<span class='object_link'><a href="Address.html" title="Address (class)">Address</a></span>]</tt>)</span>
       
       
       
@@ -1133,9 +1149,9 @@ all user addresses
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:15 2010 by 
+  Generated on Mon May 30 21:16:12 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: Product</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Product
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -116,6 +129,9 @@ these the the shipping rates per the shipping address on the order.
     
   </ul>
 
+
+
+  
 
   
     <h2>
@@ -504,10 +520,10 @@ paginated results from the admin products grid
   
     <li>
       
-        <span class='type'>(<tt>Optional params</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>Optional params</tt>)</span>
       
       
       
@@ -515,10 +531,10 @@ paginated results from the admin products grid
   
     <li>
       
-        <span class='type'>(<tt>Optional Boolean</tt>)</span>
-      
-      
         <span class='name'>the</span>
+      
+      
+        <span class='type'>(<tt>Optional Boolean</tt>)</span>
       
       
       
@@ -536,8 +552,8 @@ state of the product you are searching (active == true)
   
     <li>
       
-        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="Product (class)">Product</a></span>]</tt>)</span>
       
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="" title="Product (class)">Product</a></span>]</tt>)</span>
       
       
       
@@ -551,13 +567,6 @@ state of the product you are searching (active == true)
       <pre class="lines">
 
 
-178
-179
-180
-181
-182
-183
-184
 185
 186
 187
@@ -566,17 +575,24 @@ state of the product you are searching (active == true)
 190
 191
 192
-193</pre>
+193
+194
+195
+196
+197
+198
+199
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 178</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 185</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id admin_grid'>admin_grid</span><span class='lparen'>(</span><span class='id params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id active_state'>active_state</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
 
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:page</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>1</span>
   <span class='id params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rows</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SETTINGS</span><span class='lbracket'>[</span><span class='symbol'>:admin_grid_rows</span><span class='rbracket'>]</span>
 
-  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='const'>Product</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:variants</span><span class='rparen'>)</span><span class='comment'>#paginate({:page =&gt; params[:page]})
+  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:variants</span><span class='rparen'>)</span><span class='comment'>#paginate({:page =&gt; params[:page]})
 </span>  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>products.deleted_at IS NOT NULL AND products.deleted_at &gt; ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='symbol'>:db</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id active_state'>active_state</span> <span class='op'>==</span> <span class='kw'>false</span><span class='comment'>##  note nil != false
 </span>  <span class='id grid'>grid</span> <span class='op'>=</span> <span class='id grid'>grid</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>products.deleted_at IS NULL     OR  products.deleted_at &lt; ?</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='symbol'>:db</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='rparen'>)</span>  <span class='kw'>if</span> <span class='id active_state'>active_state</span> <span class='op'>==</span> <span class='kw'>true</span>
   <span class='comment'>#grid.includes(:variants)
@@ -615,10 +631,10 @@ isn&#8217;t a featured product the first product will be returned
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -630,8 +646,8 @@ isn&#8217;t a featured product the first product will be returned
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Product (class)">Product</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Product (class)">Product</a></span></tt>)</span>
       
       
       
@@ -645,17 +661,17 @@ isn&#8217;t a featured product the first product will be returned
       <pre class="lines">
 
 
-168
-169
-170
-171</pre>
+175
+176
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 175</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id featured'>featured</span>
-  <span class='id product'>product</span> <span class='op'>=</span> <span class='const'>Product</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:products</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:featured</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span> <span class='rbrace'>}</span> <span class='rparen'>)</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:images</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span>
-  <span class='id product'>product</span> <span class='op'>?</span> <span class='id product'>product</span> <span class='op'>:</span> <span class='const'>Product</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:images</span><span class='rparen'>)</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>products.deleted_at IS NULL</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span>
+  <span class='id product'>product</span> <span class='op'>=</span> <span class='id where'>where</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='symbol'>:products</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:featured</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rbrace'>}</span> <span class='rbrace'>}</span> <span class='rparen'>)</span><span class='period'>.</span><span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:images</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span>
+  <span class='id product'>product</span> <span class='op'>?</span> <span class='id product'>product</span> <span class='op'>:</span> <span class='id includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:images</span><span class='rparen'>)</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>products.deleted_at IS NULL</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id first'>first</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -684,10 +700,10 @@ Solr searching for products
   
     <li>
       
-        <span class='type'>(<tt>args</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>args</tt>)</span>
       
       
       
@@ -695,10 +711,10 @@ Solr searching for products
   
     <li>
       
-        <span class='type'>(<tt>params</tt>)</span>
-      
-      
         <span class='name'>:rows,</span>
+      
+      
+        <span class='type'>(<tt>params</tt>)</span>
       
       
       
@@ -716,8 +732,8 @@ Solr searching for products
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Product (class)">Product</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Product (class)">Product</a></span></tt>)</span>
       
       
       
@@ -731,19 +747,19 @@ Solr searching for products
       <pre class="lines">
 
 
-152
-153
-154
-155
-156
-157
-158
 159
 160
-161</pre>
+161
+162
+163
+164
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id standard_search'>standard_search</span><span class='lparen'>(</span><span class='id args'>args</span><span class='comma'>,</span> <span class='id params'>params</span><span class='rparen'>)</span>
   <span class='const'>Product</span><span class='period'>.</span><span class='id search'>search</span><span class='lparen'>(</span><span class='symbol'>:include</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:properties</span><span class='comma'>,</span> <span class='symbol'>:images</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -788,10 +804,10 @@ range of the product prices in plain english
   
     <li>
       
-        <span class='type'>(<tt>Optional String</tt>)</span>
-      
-      
         <span class='name'>separator</span>
+      
+      
+        <span class='type'>(<tt>Optional String</tt>)</span>
       
       
       
@@ -809,8 +825,8 @@ between the low and high price
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -830,12 +846,12 @@ Low price + separator + High price
       <pre class="lines">
 
 
-111
-112
-113</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id display_price_range'>display_price_range</span><span class='lparen'>(</span><span class='id j'>j</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> to </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='id price_range'>price_range</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='id j'>j</span><span class='rparen'>)</span>
@@ -867,10 +883,10 @@ Image that is featured for your product
   
     <li>
       
-        <span class='type'>(<tt>Optional Symbol</tt>)</span>
-      
-      
         <span class='name'>the</span>
+      
+      
+        <span class='type'>(<tt>Optional Symbol</tt>)</span>
       
       
       
@@ -888,8 +904,8 @@ size of the image expected back
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -909,12 +925,12 @@ name of the file to show from the public folder
       <pre class="lines">
 
 
-78
-79
-80</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id featured_image'>featured_image</span><span class='lparen'>(</span><span class='id image_size'>image_size</span> <span class='op'>=</span> <span class='symbol'>:small</span><span class='rparen'>)</span>
   <span class='id images'>images</span><span class='period'>.</span><span class='id first'>first</span> <span class='op'>?</span> <span class='id images'>images</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id photo'>photo</span><span class='period'>.</span><span class='id url'>url</span><span class='lparen'>(</span><span class='id image_size'>image_size</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>no_image_</span><span class='embexpr_beg'>#{</span><span class='id image_size'>image_size</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rbrace'>}</span><span class='tstring_content'>.jpg</span><span class='tstring_end'>&quot;</span></span>
@@ -946,10 +962,10 @@ find the last master variant that was inactivated
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -961,8 +977,8 @@ find the last master variant that was inactivated
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="Variant.html" title="Variant (class)">Variant</a></span> or nil</tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="Variant.html" title="Variant (class)">Variant</a></span> or nil</tt>)</span>
       
       
       
@@ -982,12 +998,12 @@ variant of the last master variant that was inactivated
       <pre class="lines">
 
 
-142
-143
-144</pre>
+149
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 149</span>
 
 <span class='kw'>def</span> <span class='id last_master_variant'>last_master_variant</span>
   <span class='id inactive_master_variants'>inactive_master_variants</span><span class='period'>.</span><span class='id try'>try</span><span class='lparen'>(</span><span class='symbol'>:last</span><span class='rparen'>)</span>
@@ -1020,10 +1036,10 @@ inactive
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'>the</span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1041,8 +1057,8 @@ size of the image expected back
   
     <li>
       
-        <span class='type'>(<tt>Decimal</tt>)</span>
       
+        <span class='type'>(<tt>Decimal</tt>)</span>
       
       
       
@@ -1062,12 +1078,12 @@ price
       <pre class="lines">
 
 
-86
-87
-88</pre>
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id price'>price</span>
   <span class='id master_variant'>master_variant</span> <span class='op'>?</span> <span class='id master_variant'>master_variant</span><span class='period'>.</span><span class='id price'>price</span> <span class='op'>:</span> <span class='id last_master_variant'>last_master_variant</span><span class='period'>.</span><span class='id price'>price</span>
@@ -1099,10 +1115,10 @@ range of the product prices (Just teh low and high price) as an array
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1114,8 +1130,8 @@ range of the product prices (Just teh low and high price) as an array
   
     <li>
       
-        <span class='type'>(<tt>Array</tt>)</span>
       
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -1132,18 +1148,18 @@ range of the product prices (Just teh low and high price) as an array
       <pre class="lines">
 
 
-119
-120
-121
-122
-123
-124
-125
 126
-127</pre>
+127
+128
+129
+130
+131
+132
+133
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id price_range'>price_range</span>
   <span class='kw'>return</span> <span class='ivar'>@price_range</span> <span class='kw'>if</span> <span class='ivar'>@price_range</span>
@@ -1183,10 +1199,10 @@ Answers if the product has a price range or just one price.
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1198,8 +1214,8 @@ Answers if the product has a price range or just one price.
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1219,12 +1235,12 @@ true == there is more than one price
       <pre class="lines">
 
 
-134
-135
-136</pre>
+141
+142
+143</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 141</span>
 
 <span class='kw'>def</span> <span class='id price_range?'>price_range?</span>
   <span class='op'>!</span><span class='lparen'>(</span><span class='id price_range'>price_range</span><span class='period'>.</span><span class='id first'>first</span> <span class='op'>==</span> <span class='id price_range'>price_range</span><span class='period'>.</span><span class='id last'>last</span><span class='rparen'>)</span>
@@ -1256,10 +1272,10 @@ method used by forms to set the array of keywords separated by a comma
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1271,8 +1287,8 @@ method used by forms to set the array of keywords separated by a comma
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1292,15 +1308,15 @@ product_keywords separated by comma
       <pre class="lines">
 
 
-103
-104
-105</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id set_keywords'>set_keywords</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id product_keywords'>product_keywords</span> <span class='op'>?</span> <span class='kw'>self</span><span class='period'>.</span><span class='id product_keywords'>product_keywords</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
+  <span class='id product_keywords'>product_keywords</span> <span class='op'>?</span> <span class='id product_keywords'>product_keywords</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1330,10 +1346,10 @@ method sets the product_keywords attribute to an array of these values
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1351,8 +1367,8 @@ for set_keywords in a products form
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
       
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1366,12 +1382,12 @@ for set_keywords in a products form
       <pre class="lines">
 
 
-95
-96
-97</pre>
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id set_keywords='>set_keywords=</span><span class='lparen'>(</span><span class='id value'>value</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id product_keywords'>product_keywords</span> <span class='op'>=</span> <span class='id value'>value</span> <span class='op'>?</span> <span class='id value'>value</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>,</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id w'>w</span><span class='op'>|</span> <span class='id w'>w</span><span class='period'>.</span><span class='id strip'>strip</span><span class='rbrace'>}</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1405,10 +1421,10 @@ gives you the tax rate for the give state_id and the time.
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>state.id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -1416,10 +1432,10 @@ gives you the tax rate for the give state_id and the time.
   
     <li>
       
-        <span class='type'>(<tt>Optional Time</tt>)</span>
-      
-      
         <span class='name'>Time</span>
+      
+      
+        <span class='type'>(<tt>Optional Time</tt>)</span>
       
       
       
@@ -1437,8 +1453,8 @@ now if no value is passed in
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="TaxRate.html" title="TaxRate (class)">TaxRate</a></span></tt>)</span>
       
       
       
@@ -1458,18 +1474,18 @@ TaxRate for the state at a given time
       <pre class="lines">
 
 
-64
-65
-66
-67
-68
-69
-70
 71
-72</pre>
+72
+73
+74
+75
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'app/models/product.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id tax_rate'>tax_rate</span><span class='lparen'>(</span><span class='id state_id'>state_id</span><span class='comma'>,</span> <span class='id time'>time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id tax_status'>tax_status</span><span class='period'>.</span><span class='id tax_rates'>tax_rates</span><span class='period'>.</span><span class='id where'>where</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>state_id = ? AND
@@ -1490,9 +1506,9 @@ TaxRate for the state at a given time
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:14 2010 by 
+  Generated on Mon May 30 21:16:12 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

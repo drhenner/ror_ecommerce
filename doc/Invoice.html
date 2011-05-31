@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: Invoice</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Invoice
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -128,6 +141,9 @@ validates :order_id,      :presence => true
 
   
 
+
+  
+
   
     <h2>
       Class Method Summary
@@ -163,7 +179,7 @@ find invoice based off the invoice&#8217;s number.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#generate-class_method" title="generate (class method)">+ (Invoice) <strong>generate</strong>(order_id, charge_amount) </a>
+      <a href="#generate-class_method" title="generate (class method)">+ (Invoice) <strong>generate</strong>(order_id, charge_amount, credited_amount = 0.0) </a>
     
 
     
@@ -615,10 +631,10 @@ find invoice based off the invoice&#8217;s number
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
         <span class='name'>invoice</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -636,8 +652,8 @@ Number
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Invoice (class)">Invoice</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Invoice (class)">Invoice</a></span></tt>)</span>
       
       
       
@@ -675,7 +691,7 @@ invoice
       <div class="method_details ">
   <p class="signature " id="generate-class_method">
   
-    + (<tt><span class='object_link'><a href="" title="Invoice (class)">Invoice</a></span></tt>) <strong>generate</strong>(order_id, charge_amount) 
+    + (<tt><span class='object_link'><a href="" title="Invoice (class)">Invoice</a></span></tt>) <strong>generate</strong>(order_id, charge_amount, credited_amount = 0.0) 
   
 
   
@@ -694,10 +710,10 @@ make an invoice object (not saved)
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
         <span class='name'>order</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -711,10 +727,10 @@ id
   
     <li>
       
-        <span class='type'>(<tt>Decimal</tt>)</span>
-      
-      
         <span class='name'>amount</span>
+      
+      
+        <span class='type'>(<tt>Decimal</tt>)</span>
       
       
       
@@ -732,8 +748,8 @@ in dollars
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Invoice (class)">Invoice</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Invoice (class)">Invoice</a></span></tt>)</span>
       
       
       
@@ -760,8 +776,8 @@ invoice object
     <td>
       <pre class="code"><span class="info file"># File 'app/models/invoice.rb', line 115</span>
 
-<span class='kw'>def</span> <span class='const'>Invoice</span><span class='period'>.</span><span class='id generate'>generate</span><span class='lparen'>(</span><span class='id order_id'>order_id</span><span class='comma'>,</span> <span class='id charge_amount'>charge_amount</span><span class='rparen'>)</span>
-  <span class='const'>Invoice</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:order_id</span> <span class='op'>=&gt;</span> <span class='id order_id'>order_id</span><span class='comma'>,</span> <span class='symbol'>:amount</span> <span class='op'>=&gt;</span> <span class='id charge_amount'>charge_amount</span><span class='comma'>,</span> <span class='symbol'>:invoice_type</span> <span class='op'>=&gt;</span> <span class='const'>PURCHASE</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='const'>Invoice</span><span class='period'>.</span><span class='id generate'>generate</span><span class='lparen'>(</span><span class='id order_id'>order_id</span><span class='comma'>,</span> <span class='id charge_amount'>charge_amount</span><span class='comma'>,</span> <span class='id credited_amount'>credited_amount</span> <span class='op'>=</span> <span class='float'>0.0</span><span class='rparen'>)</span>
+  <span class='const'>Invoice</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='symbol'>:order_id</span> <span class='op'>=&gt;</span> <span class='id order_id'>order_id</span><span class='comma'>,</span> <span class='symbol'>:amount</span> <span class='op'>=&gt;</span> <span class='id charge_amount'>charge_amount</span><span class='comma'>,</span> <span class='symbol'>:invoice_type</span> <span class='op'>=&gt;</span> <span class='const'>PURCHASE</span><span class='comma'>,</span> <span class='symbol'>:credited_amount</span> <span class='op'>=&gt;</span> <span class='id credited_amount'>credited_amount</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -790,10 +806,10 @@ invoice id calculated from the id of the number
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -805,8 +821,8 @@ invoice id calculated from the id of the number
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
       
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -909,10 +925,10 @@ call to find the confirmation_id sent by the payment processor.
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -924,8 +940,8 @@ call to find the confirmation_id sent by the payment processor.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1319,10 +1335,10 @@ call to find out the amount of the invoice in cents
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1334,8 +1350,8 @@ call to find out the amount of the invoice in cents
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
       
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -1394,10 +1410,10 @@ date the invoice was created (not the date it was paid)
   
     <li>
       
-        <span class='type'>(<tt>Optional Symbol</tt>)</span>
-      
-      
         <span class='name'>date</span>
+      
+      
+        <span class='type'>(<tt>Optional Symbol</tt>)</span>
       
       
       
@@ -1415,8 +1431,8 @@ format to be returned
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1473,10 +1489,10 @@ invoice number
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1488,8 +1504,8 @@ invoice number
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
       
+        <span class='type'>(<tt>String</tt>)</span>
       
       
       
@@ -1546,10 +1562,10 @@ the full order address as an array compacted.
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1561,8 +1577,8 @@ the full order address as an array compacted.
   
     <li>
       
-        <span class='type'>(<tt>Array</tt>)</span>
       
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -1620,10 +1636,10 @@ the full shipping address as an array compacted.
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1635,8 +1651,8 @@ the full shipping address as an array compacted.
   
     <li>
       
-        <span class='type'>(<tt>Array</tt>)</span>
       
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -1694,10 +1710,10 @@ call to find out if the transaction has succeeded.
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1709,8 +1725,8 @@ call to find out if the transaction has succeeded.
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -1767,10 +1783,10 @@ find the user of the order associated to the invoice.
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1782,8 +1798,8 @@ find the user of the order associated to the invoice.
   
     <li>
       
-        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
       
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
       
       
       
@@ -1834,10 +1850,10 @@ find the user id of the order associated to the invoice.
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -1849,8 +1865,8 @@ find the user id of the order associated to the invoice.
   
     <li>
       
-        <span class='type'>(<tt>Integer</tt>)</span>
       
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -1890,9 +1906,9 @@ represents the id of the user
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:14 2010 by 
+  Generated on Mon May 30 21:16:12 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

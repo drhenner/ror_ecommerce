@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Documentation by YARD 0.6.3</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -31,11 +41,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -78,6 +91,7 @@ system and a formal way to submit your patch.</p>
 
 	<ol>
 		<li>gem install bundler</li>
+		<li>gem install ruby-debug19</li>
 		<li>bundle install</li>
 		<li>rake db:create</li>
 		<li>rake db:migrate</li>
@@ -88,6 +102,9 @@ system and a formal way to submit your patch.</p>
 		<li>gem install compass</li>
 		<li>gem install fancy-buttons</li>
 	</ol><p>######compass install -r fancy-buttons -f fancy-buttons</p>
+<p>Install memcached, this is easiest to do with <a href="http://mxcl.github.com/homebrew/">homebrew</a> and :</p>
+<pre class="code"><span class='id brew'>brew</span> <span class='id install'>install</span> <span class='id memcached'>memcached</span></pre>
+<pre class="code"><span class='id brew'>brew</span> <span class='id install'>install</span> <span class='id solr'>solr</span></pre>
 <p>Time to start solr and memcache(yep you better install them)
 rake sunspot:solr:start</p>
 <p>If you decide not to use solr, go into product.rb and delete the following</p>
@@ -117,12 +134,8 @@ Paperclip.options[:command_path] = &#8220;/usr/bin&#8221;</p>
 <p>write down the username/password and follow the directions.</p>
 <h2>TODOs:</h2>
 <ul>
-	<li>loyalty credits</li>
-	<li>coupons</li>
 	<li>product sales (eg. 20% off)</li>
-	<li>have breadcrumbs headers by product type and use product_type.parent</li>
-	<li>move items from and to saved/wish lists</li>
-	<li>remove specific qty from cart.(method has been created just not in the UI)</li>
+	<li>Refactor admin cart to use redis, riak or some other noSQL store</li>
 </ul>
 <h2>Author</h2>
 <p>RoR Ecommerce was written by David Henner with contributions from:</p>
@@ -144,9 +157,9 @@ Have fun!!!</p>
 </ul></div></div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:13 2010 by 
+  Generated on Mon May 30 21:16:11 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

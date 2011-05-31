@@ -2,17 +2,27 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Class: CartItem</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: CartItem
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   relpath = '';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
 
   </head>
   <body>
@@ -33,11 +43,14 @@
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Class List</a>
-  <a id="method_list_link" href="#">Method List</a>
-  <a id ="file_list_link" href="#">File List</a>
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
 </div>
-
       <div class="clear"></div>
     </div>
     
@@ -81,6 +94,21 @@
 </dl>
 <div class="clear"></div>
 
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="QUANTITIES-constant" class="">QUANTITIES =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>3</span><span class='comma'>,</span><span class='int'>4</span><span class='rbracket'>]</span></pre></dd>
+      
+    </dl>
+  
+
+
+  
 
 
   
@@ -222,10 +250,10 @@ Call this method to soft delete an item in the cart
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -237,8 +265,8 @@ Call this method to soft delete an item in the cart
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -252,12 +280,12 @@ Call this method to soft delete an item in the cart
       <pre class="lines">
 
 
-27
-28
-29</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id inactivate!'>inactivate!</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='symbol'>:active</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -289,10 +317,10 @@ Call this if you need to know the unit price of an item
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -304,8 +332,8 @@ Call this if you need to know the unit price of an item
   
     <li>
       
-        <span class='type'>(<tt>Float</tt>)</span>
       
+        <span class='type'>(<tt>Float</tt>)</span>
       
       
       
@@ -325,12 +353,12 @@ price of the variant in the cart
       <pre class="lines">
 
 
-11
-12
-13</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id price'>price</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id variant'>variant</span><span class='period'>.</span><span class='id price'>price</span>
@@ -362,10 +390,10 @@ Call this method to determine if an item is in the shopping cart and active
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -377,8 +405,8 @@ Call this method to determine if an item is in the shopping cart and active
   
     <li>
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
       
+        <span class='type'>(<tt>Boolean</tt>)</span>
       
       
       
@@ -392,12 +420,12 @@ Call this method to determine if an item is in the shopping cart and active
       <pre class="lines">
 
 
-35
-36
-37</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id shopping_cart_item?'>shopping_cart_item?</span>
   <span class='id item_type_id'>item_type_id</span> <span class='op'>==</span> <span class='const'>ItemType</span><span class='op'>::</span><span class='const'>SHOPPING_CART_ID</span> <span class='op'>&amp;&amp;</span> <span class='id active?'>active?</span>
@@ -429,10 +457,10 @@ Call this method if you need the price of an item before taxes
   
     <li>
       
-        <span class='type'>(<tt>none</tt>)</span>
-      
-      
         <span class='name'></span>
+      
+      
+        <span class='type'>(<tt>none</tt>)</span>
       
       
       
@@ -444,8 +472,8 @@ Call this method if you need the price of an item before taxes
   
     <li>
       
-        <span class='type'>(<tt>Float</tt>)</span>
       
+        <span class='type'>(<tt>Float</tt>)</span>
       
       
       
@@ -465,12 +493,12 @@ price of the variant in the cart times quantity
       <pre class="lines">
 
 
-19
-20
-21</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'app/models/cart_item.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id total'>total</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id price'>price</span> <span class='op'>*</span> <span class='kw'>self</span><span class='period'>.</span><span class='id quantity'>quantity</span>
@@ -485,9 +513,9 @@ price of the variant in the cart times quantity
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 31 05:35:15 2010 by 
+  Generated on Mon May 30 21:16:12 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.9.2).
+  0.7.1 (ruby-1.9.2).
 </div>
 
   </body>

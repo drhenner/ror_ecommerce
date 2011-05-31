@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Coupon
+  
+    &mdash; Documentation by YARD 0.7.1
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (C)</a> &raquo; 
+    
+    
+    <span class="title">Coupon</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Coupon
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Coupon</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/coupon.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="CouponPercent.html" title="CouponPercent (class)">CouponPercent</a></span>, <span class='object_link'><a href="CouponValue.html" title="CouponValue (class)">CouponValue</a></span></p>
+</div>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="COUPON_TYPES-constant" class="">COUPON_TYPES =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>coupon_percent</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>coupon_value</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span></pre></dd>
+      
+    </dl>
+  
+
+
+  
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_expires_time-instance_method" title="#display_expires_time (instance method)">- (Object) <strong>display_expires_time</strong>(format = :us_date) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_start_time-instance_method" title="#display_start_time (instance method)">- (Object) <strong>display_start_time</strong>(format = :us_date) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eligible%3F-instance_method" title="#eligible? (instance method)">- (Boolean) <strong>eligible?</strong>(at = Time.zone.now) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#qualified%3F-instance_method" title="#qualified? (instance method)">- (Boolean) <strong>qualified?</strong>(item_prices, at = Time.zone.now) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Does the coupon meet the criteria to apply it.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value-instance_method" title="#value (instance method)">- (Object) <strong>value</strong>(item_prices) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+amount the coupon will reduce the order.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="display_expires_time-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_expires_time</strong>(format = :us_date) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/coupon.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id display_expires_time'>display_expires_time</span><span class='lparen'>(</span><span class='id format'>format</span> <span class='op'>=</span> <span class='symbol'>:us_date</span><span class='rparen'>)</span>
+  <span class='id expires_at'>expires_at</span> <span class='op'>?</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id localize'>localize</span><span class='lparen'>(</span><span class='id expires_at'>expires_at</span><span class='comma'>,</span> <span class='symbol'>:format</span> <span class='op'>=&gt;</span> <span class='id format'>format</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>N/A</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="display_start_time-instance_method">
+  
+    - (<tt>Object</tt>) <strong>display_start_time</strong>(format = :us_date) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/coupon.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id display_start_time'>display_start_time</span><span class='lparen'>(</span><span class='id format'>format</span> <span class='op'>=</span> <span class='symbol'>:us_date</span><span class='rparen'>)</span>
+  <span class='id starts_at'>starts_at</span> <span class='op'>?</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id localize'>localize</span><span class='lparen'>(</span><span class='id starts_at'>starts_at</span><span class='comma'>,</span> <span class='symbol'>:format</span> <span class='op'>=&gt;</span> <span class='id format'>format</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>N/A</span><span class='tstring_end'>'</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="eligible?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>eligible?</strong>(at = Time.zone.now) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/coupon.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id eligible?'>eligible?</span><span class='lparen'>(</span><span class='id at'>at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span><span class='rparen'>)</span>
+  <span class='id starts_at'>starts_at</span> <span class='op'>&lt;=</span> <span class='id at'>at</span> <span class='op'>&amp;&amp;</span> <span class='id expires_at'>expires_at</span> <span class='op'>&gt;=</span> <span class='id at'>at</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="qualified?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>qualified?</strong>(item_prices, at = Time.zone.now) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Does the coupon meet the criteria to apply it.  (is the order price total
+over the coupon&#8217;s minimum value)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/coupon.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id qualified?'>qualified?</span><span class='lparen'>(</span><span class='id item_prices'>item_prices</span><span class='comma'>,</span> <span class='id at'>at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id zone'>zone</span><span class='period'>.</span><span class='id now'>now</span><span class='rparen'>)</span>
+  <span class='id item_prices'>item_prices</span><span class='period'>.</span><span class='id sum'>sum</span> <span class='op'>&gt;</span> <span class='id minimum_value'>minimum_value</span> <span class='op'>&amp;&amp;</span> <span class='id eligible?'>eligible?</span><span class='lparen'>(</span><span class='id at'>at</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="value-instance_method">
+  
+    - (<tt>Object</tt>) <strong>value</strong>(item_prices) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+amount the coupon will reduce the order
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/coupon.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id value'>value</span><span class='lparen'>(</span><span class='id item_prices'>item_prices</span><span class='rparen'>)</span>
+  <span class='id qualified?'>qualified?</span><span class='lparen'>(</span><span class='id item_prices'>item_prices</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id coupon_amount'>coupon_amount</span><span class='lparen'>(</span><span class='id item_prices'>item_prices</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='float'>0.0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon May 30 21:16:12 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.1 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
