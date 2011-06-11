@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
   before_save       :update_tax_rates
 
 
-  after_find :set_beginning_values
+  # after_find :set_beginning_values
 
   attr_accessor :total, :sub_total
 
@@ -53,7 +53,6 @@ class Order < ActiveRecord::Base
   #    :shipping_method  => nil,
   #    :order_items => {}# the key is variant_id , a hash of {variant, shipping_rate, quantity, tax_rate, total, shipping_category_id}
   #  }
-
 
   # user name on the order
   #
@@ -161,24 +160,6 @@ class Order < ActiveRecord::Base
     self.state = 'complete'
     self.completed_at = Time.zone.now
     update_inventory
-  end
-
-  # sets the ship_address_id when the object is instantiated
-  # => this is used to determines if the address changes, if so the orders shipping method will need to be reset
-  #
-  # @param [none]
-  # @return [none]
-  def set_beginning_values
-    @beginning_address_id      = ship_address_id # this stores the initial value of the tax_rate
-  end
-
-  # get the ship_address_id when the object is instantiated
-  # => this is used to determines if the address changes, if so the orders shipping method will need to be reset
-  #
-  # @param [none]
-  # @return [Integer] ship_address_id
-  def get_beginning_address_id
-    @beginning_address_id
   end
 
   # This method will go to every order_item and calculate the total for that item.
@@ -487,11 +468,14 @@ class Order < ActiveRecord::Base
 
   # Called before save.  If the ship address changes the tax rate for all the order items needs to change appropriately
   #
+  # article.title  #=> "Title"
+  # article.title = "New Title"
+  # article.title_changed? #=> true
   # @param none
   # @return [none]
   def update_tax_rates
-    if @beginning_address_id != ship_address_id
-      set_beginning_values
+    if ship_address_id_changed?
+      # set_beginning_values
       tax_time = completed_at? ? completed_at : Time.zone.now
       order_items.each do |item|
         rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)

@@ -193,13 +193,6 @@ describe Order, "instance methods" do
     end
   end
 
-  context ".set_beginning_values" do
-    it 'should set the beginning address id after find' do
-      order = Order.find(@order.id)
-      order.get_beginning_address_id.should == order.ship_address_id
-    end
-  end
-
   context ".update_tax_rates" do
     it 'should set the beginning address id after find' do
       order_item = Factory(:order_item)
