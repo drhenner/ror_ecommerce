@@ -49,6 +49,7 @@ class Admin::UsersController < Admin::BaseController
     params[:user][:role_ids] ||= []
     @user = User.includes(:roles).find(params[:id])
     authorize! :create_users, current_user
+    @user.role_ids = params[:user][:role_ids]
     @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
     @user.state = params[:user][:state]                 if params[:user][:state].present? #&& !@user.admin?
     params[:user].delete_if {|key, value| key.to_s == "birth_date" }

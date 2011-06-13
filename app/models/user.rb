@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   before_validation :sanitize_data, :before_validation_on_create
   before_create :start_store_credits
-  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :openid_identifier, :birth_date, :role_ids, :address_attributes, :phone_attributes
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :openid_identifier, :birth_date, :address_attributes, :phone_attributes
 
   belongs_to :account
 
