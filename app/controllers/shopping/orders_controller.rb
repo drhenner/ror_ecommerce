@@ -10,9 +10,9 @@ class Shopping::OrdersController < Shopping::BaseController
   ##### THIS METHOD IS BASICALLY A CHECKOUT ENGINE
   def index
     #current or in-progress otherwise cart (unless cart is empty)
-    @order = find_or_create_order
+    order = find_or_create_order
+    @order = session_cart.add_items_to_checkout(order) # need here because items can also be removed
     if f = next_form(@order)
-      session_cart.add_items_to_checkout(@order)
       redirect_to f
     else
       @credit_card ||= ActiveMerchant::Billing::CreditCard.new()

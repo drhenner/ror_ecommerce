@@ -302,18 +302,24 @@ class Order < ActiveRecord::Base
   end
 
   # remove the variant from the order items in the order
+  #   THIS METHOD IS COMPLEX FOR A REASON!!!
+  #   USING slice! ALLOWS THE ORDER_ITEMS TO BE DESTROYED AND UNASSOCIATED FROM THE ORDER OBJECT
   #
   # @param [Variant] variant to add
   # @param [Integer] final quantity that should be in the order
   # @return [none]
   def remove_items(variant, final_quantity)
-    total_order_items = self.order_items.find(:all, :conditions => ['variant_id = ?', variant.id] )
-    if (total_order_items.size - final_quantity) > 0
-      qty_to_delete = (total_order_items.size - final_quantity)
-      total_order_items.each do |order_item|
-        order_item.destroy if qty_to_delete > 0
-        qty_to_delete = qty_to_delete - 1
+
+    current_qty = 0
+    items_to_remove = []
+    self.order_items.each_with_index do |order_item, i|
+      if order_item.variant_id == variant.id
+        current_qty = current_qty + 1
+        items_to_remove << i  if (current_qty - final_quantity) > 0
       end
+    end
+    items_to_remove.reverse.each do |i|
+      self.order_items.slice!(i ,1).first.destroy # remove from order.order_items object and destroy from DB
     end
   end
 
