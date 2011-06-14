@@ -8,7 +8,7 @@
   <%= form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>
 
     <% unless @cart_items.blank? %>
-      <div id='update-cart-wrapper' class=''>
+      <div id='update-cart-wrapper' class='span-15'>
 
           <div id='update_all_cart' class="small-gradientbuttons small-redtheme update-all-cart">
             <ul class=' span-7'>
@@ -19,9 +19,14 @@
                 <%= cart_form.submit 'update' %>
               </li>
             </ul>
+
           </div>
 
       </div>
+      <div class=''>
+        <%= cart_form.submit 'checkout', {:checkout => 1} %>
+      </div>
+
       <div class="clear"></div>
     <% end %>
     <table width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -84,7 +89,9 @@
 
   <div id='submit_purchase_cart' class="gradientbuttons redtheme purchase-cart">
     <ul>
-      <li><%= link_to 'Checkout', shopping_orders_path, :class => '' %></li>
+      <li><%#= link_to 'Checkout', shopping_orders_path, :class => '' %>
+
+      </li>
     </ul>
   </div>
 </div>
