@@ -7,8 +7,8 @@
           <% items.each do |item| %>
             <div class='span-12 <%= cycle("line_item_yellow", "line_item_gray") -%>'>
                 <div class='span-7 '>
-                  <%= image_tag(item.variant.product.images.first.photo.url(:mini)) %>
-                  <%= item.variant.product.name %> Quantity: <%= items.size %>
+                  <%= image_tag(item.variant.product.featured_image(:mini)) %>
+                  <%= item.variant.product.name %> Quantity: <%= item.quantity %>
                 </div>
                 <div class='span-5  last' style='text-align:left;'>
                   <%= raw item.variant.display_property_details %>
@@ -19,7 +19,7 @@
             <%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_with_rate %>
           <% end %>
       </div>
-    <% end %>    
+    <% end %>
     <div class='float-left '>
       test
     </div>
