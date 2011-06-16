@@ -18,6 +18,8 @@
   vertical-align: middle;
   *vertical-align: auto;
   background-color: #57B;
+  color: #FFFFFF;
+  font-size: large;
   margin-right: 0;
   -moz-border-radius: 0px 0px 9px 9px;
   -webkit-border-radius: 0px 0px 9px 9px;
@@ -27,20 +29,24 @@
 #header_bar {
   *display: inline;
 }
-
 /* line 24, ../../app/stylesheets/_admin_header.scss */
+#header_bar a {
+  color: #DDDDDD;
+}
+
+/* line 29, ../../app/stylesheets/_admin_header.scss */
 #header_sub_bar {
   width: 910px;
   margin-right: 0;
   margin-left: 18px;
-  background-color: #8AE;
+  background-color: #ACF;
   -moz-border-radius: 9px;
   -webkit-border-radius: 9px;
   behavior: url(border-radius.htc);
   border: solid 2px #68C;
 }
 
-/* line 35, ../../app/stylesheets/_admin_header.scss */
+/* line 40, ../../app/stylesheets/_admin_header.scss */
 #search_bar {
   width: 710px;
   display: inline;
@@ -57,7 +63,7 @@
   *display: inline;
 }
 
-/* line 42, ../../app/stylesheets/_admin_header.scss */
+/* line 47, ../../app/stylesheets/_admin_header.scss */
 #layout-search {
   margin-left: 5px;
   color: #EEE;
@@ -65,7 +71,7 @@
   font-size: large;
 }
 
-/* line 49, ../../app/stylesheets/_admin_header.scss */
+/* line 54, ../../app/stylesheets/_admin_header.scss */
 #cart_items_button {
   display: inline;
   float: right;
@@ -80,7 +86,7 @@
   *display: inline;
 }
 
-/* line 53, ../../app/stylesheets/_admin_header.scss */
+/* line 58, ../../app/stylesheets/_admin_header.scss */
 #wish_items_button {
   display: inline;
   float: right;

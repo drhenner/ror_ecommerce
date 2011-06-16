@@ -17,8 +17,13 @@
   @include span(24);
   @include inline-block;
   background-color: #57B;
+  color: #FFFFFF;
+  font-size:    large;
   @include last;
-  @include bottom-rounded(9px)
+  @include bottom-rounded(9px);
+  a {
+    color: #DDDDDD;
+  }
 }
 
 #header_sub_bar {
@@ -27,7 +32,7 @@
 
   margin-left:  18px;
   // @include inline-block;
-  background-color: #8AE;
+  background-color: #ACF;
   @include rounded(9px);
   border:   solid 2px #68C;
 }
