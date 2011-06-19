@@ -301,6 +301,16 @@ describe Order, "instance methods" do
     end
   end
 
+  context ".remove_items(variant, final_quantity)" do
+    it 'should remove variant from order items ' do
+      variant = Factory(:variant)
+      order_items_size = @order.order_items.size
+      @order.add_items(variant, 3)
+      @order.remove_items(variant, 1)
+      @order.order_items.size.should == order_items_size + 1
+    end
+  end
+
   context ".set_email" do
     #self.email = user.email if user_id
     it 'should set the email address if there is a user_id' do
