@@ -1,6 +1,6 @@
 Hadean::Application.routes.draw do # |map|
 
-  resources :user_sessions
+  resources :user_sessions, :only => [:new, :create, :destroy]
 
   match 'admin'   => 'admin/overviews#index'
   match 'login'   => 'user_sessions#new'
