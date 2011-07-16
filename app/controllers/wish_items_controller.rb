@@ -4,12 +4,6 @@ class WishItemsController < ApplicationController
     #@wish_list_items = current_user.wish_list_items
   end
 
-  def new
-  end
-
-  def edit
-  end
-
   # DELETE /wish_items/1
   # DELETE /carts/1.xml
   def destroy
