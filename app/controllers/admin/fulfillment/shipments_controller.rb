@@ -26,7 +26,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   # GET /admin/fulfillment/shipments/new.xml
   def new
     @shipment = Shipment.new
-
+    form_info
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -35,6 +35,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   # GET /admin/fulfillment/shipments/1/edit
   def edit
     @shipment = Shipment.find(params[:id])
+    form_info
   end
 
   # POST /admin/fulfillment/shipments
@@ -46,6 +47,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
       if @shipment.save
         format.html { redirect_to(admin_fulfillment_shipments_path(@shipment, :order_id => @shipment.order_id), :notice => 'Shipment was successfully created.') }
       else
+        form_info
         format.html { render :action => "new" }
       end
     end
@@ -60,6 +62,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
       if @shipment.update_attributes(params[:shipment])
         format.html { redirect_to(admin_fulfillment_shipments_path(@shipment, :order_id => @shipment.order_id), :notice => 'Shipment was successfully updated.') }
       else
+        form_info
         format.html { render :action => "edit" }
       end
     end
@@ -86,23 +89,23 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
     @shipment = Shipment.find(params[:id])
     raise error
     @shipment.update_attributes(:active => false)
-    
-    
+
+
     # We need to add capability to refund and return to stock in one large destroy form
 
     respond_to do |format|
       format.html { redirect_to(admin_fulfillment_shipments_url( :order_id => (@shipment.order_id)) ) }
     end
   end
-  
+
   private
-  
+
   def load_info
     @order = Order.includes([:shipments, {:order_items => [:shipment, {:variant => :product}]}]).find(params[:order_id])
   end
-  
+
   def form_info
-    
+
   end
-  
+
 end
