@@ -6,11 +6,11 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
 
     respond_to do |format|
       format.html # index.html.erb
-      
+
       format.json { render :json => @orders.to_jqgrid_json(
         [ :display_completed_at, :email, :number, :name ],
         @orders.per_page,
-        @orders.current_page, 
+        @orders.current_page,
         @orders.total_entries)
 
       }
@@ -38,7 +38,7 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
   def update
     @order    = Order.find(params[:id])
     @invoice  = @order.invoices.find(params[:invoice_id])
-    
+
     payment = @order.capture_invoice(@invoice)
 
 ##  several things happen on this request
@@ -59,7 +59,6 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
         format.html { render :partial => 'success_message' }
         #format.html { redirect_to(admin_fulfillment_order_path(@order), :notice => 'Shipment was successfully updated.') }
       else
-        debugger
         format.html { render :partial => 'failure_message' }
       end
     end
@@ -68,10 +67,10 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
   # DELETE /admin/fulfillment/shipments/1
   # DELETE /admin/fulfillment/shipments/1.xml
   def destroy
-    
+
     @order    = Order.find(params[:id])
     @invoice  = @order.invoices.find(params[:invoice_id])
-    
+
     @order.cancel_unshipped_order(@invoice)
     respond_to do |format|
       format.html { render :partial => 'invoice_details', :locals => {:invoice => @invoice} }
