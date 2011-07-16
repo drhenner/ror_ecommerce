@@ -8,9 +8,9 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
       format.json { render :json => @purchase_orders.to_jqgrid_json(
         [ :supplier_name, :invoice_number, :tracking_number, :display_estimated_arrival_on, :display_received ],
         @purchase_orders.per_page,
-        @purchase_orders.current_page, 
+        @purchase_orders.current_page,
         @purchase_orders.total_entries)
-      
+
       }
     end
   end
@@ -34,7 +34,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
     form_info
     if @select_suppliers.empty?
       flash[:notice] = 'You need to have a supplier before you can create a purchase order.'
-      redirect_to new_admin_inventory_supplier_url 
+      redirect_to new_admin_inventory_supplier_url
     else
       respond_to do |format|
         format.html # new.html.erb
@@ -54,7 +54,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   def create
     #args = params[:purchase_order].reject{|key,val| key == :new_purchase_order_variants}
     @purchase_order = PurchaseOrder.new(params[:purchase_order])
-#new_purchase_order_variants
+
     respond_to do |format|
       if @purchase_order.save
         format.html { redirect_to(:action => :index, :notice => 'Purchase order was successfully created.') }
@@ -96,7 +96,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
     end
   end
   private
-  
+
   def form_info
     @select_suppliers = Supplier.all.collect{|s| [s.name, s.id]}
     @select_variants  = Variant.includes(:product).all.collect {|v| [v.name_with_sku, v.id]}
