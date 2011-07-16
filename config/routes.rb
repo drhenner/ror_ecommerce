@@ -23,9 +23,9 @@ Hadean::Application.routes.draw do # |map|
   root :to => "welcome#index"
 
   namespace :customer do
-    resources :registrations
-    resource  :password_reset
-    resource  :activation, :only => [:show]
+    resources :registrations,   :only => [:new, :create]
+    resource  :password_reset,  :only => [:new, :create, :edit, :update]
+    resource  :activation,      :only => [:show]
   end
 
   namespace :myaccount do
