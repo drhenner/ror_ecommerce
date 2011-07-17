@@ -3,7 +3,6 @@ class Admin::Shopping::BillingAddressesController < Admin::Shopping::BaseControl
   # GET /admin/order/billing_addresses.xml
   def index
     @billing_addresses = session_admin_cart[:user].billing_addresses
-    #debugger
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -45,15 +44,15 @@ class Admin::Shopping::BillingAddressesController < Admin::Shopping::BaseControl
       end
     end
   end
-  
+
   def update
     @billing_address       = Address.find_by_id(params[:id])
     session_admin_cart[:billing_address] = @billing_address
     redirect_to(admin_shopping_carts_url, :notice => 'Shipping address was successfully selected.')
   end
-  
+
   private
-  
+
   def form_info
     @billing_addresses = session_admin_cart[:user].billing_addresses
     @states     = State.form_selector
