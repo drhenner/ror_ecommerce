@@ -12,33 +12,6 @@ class Shopping::CartItemsController < Shopping::BaseController
     end
   end
 
-  # GET /shopping/cart_items/1
-  # GET /shopping/cart_items/1.xml
-  def show
-    @cart_item = session_cart.shopping_cart_items.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @cart_item }
-    end
-  end
-
-  # GET /shopping/cart_items/new
-  # GET /shopping/cart_items/new.xml
-  def new
-    @cart_item = CartItem.new(:user_id => current_user.id)
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @cart_item }
-    end
-  end
-
-  # GET /carts/1/edit
-  def edit
-    @cart_item = session_cart.shopping_cart_items.find(params[:id])
-  end
-
   # POST /shopping/cart_items
   # POST /shopping/cart_items.xml
   def create
@@ -72,10 +45,8 @@ class Shopping::CartItemsController < Shopping::BaseController
         else
           format.html { redirect_to(shopping_cart_items_url(), :notice => 'Item was successfully updated.') }
         end
-        format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @cart_item.errors, :status => :unprocessable_entity }
+        format.html { redirect_to(shopping_cart_items_url(), :notice => 'Item failed to be updated.') }
       end
     end
   end
@@ -92,7 +63,7 @@ class Shopping::CartItemsController < Shopping::BaseController
           format.html { redirect_to(shopping_cart_items_url() ) }
           format.xml  { head :ok }
         else
-          format.html { render :action => "edit" }
+          format.html { redirect_to(shopping_cart_items_url(), :notice => 'Item failed to be updated.') }
           format.xml  { render :xml => @cart_item.errors, :status => :unprocessable_entity }
         end
       end
