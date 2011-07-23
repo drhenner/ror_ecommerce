@@ -11,6 +11,12 @@ en:
   something_went_wrong: 'Sorry something went wrong'
   item_failed_update:   'Item failed to be updated.'
   item_passed_update:   'Item was successfully updated.'
+  could_not_process:    "Could not process"
+  the_credit_card:      "the Credit Card."
+  credit_card:          "Credit Card"
+  the_order:            "the Order."
+  the_order_purchased:  "The order has been purchased."
+  is_not_valid:         'is not valid.'
 
   date:
     formats:

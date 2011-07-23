@@ -55,7 +55,7 @@ class Shopping::OrdersController < Shopping::BaseController
     if @order.complete?
       #CartItem.mark_items_purchased(session_cart, @order)
       session_cart.mark_items_purchased(@order)
-      flash[:error] = "The order has been purchased."
+      flash[:error] = I18n.t('the_order_purchased')
       redirect_to myaccount_order_url(@order)
     elsif @credit_card.valid?
       if response = @order.create_invoice(@credit_card,
@@ -69,16 +69,16 @@ class Shopping::OrdersController < Shopping::BaseController
           session_cart.mark_items_purchased(@order)
           redirect_to myaccount_order_path(@order)
         else
-          flash[:error] = "Could not process the Order."
+          flash[:error] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
           render :action => "index"
         end
       else
         ###  Take this
-        flash[:error] = "Could not process the Credit Card."
+        flash[:error] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
         render :action => 'index'
       end
     else
-      flash[:error] = "Credit Card is not valid."
+      flash[:error] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
       render :action => 'index'
     end
   end
