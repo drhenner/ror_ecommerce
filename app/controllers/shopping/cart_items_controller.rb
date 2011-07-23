@@ -27,7 +27,7 @@ class Shopping::CartItemsController < Shopping::BaseController
       if variant
         redirect_to(product_url(variant.product))
       else
-        flash[:notice] = "Sorry something went wrong"
+        flash[:notice] = I18n.t('something_went_wrong')
         redirect_to(root_url())
       end
     end
@@ -43,10 +43,10 @@ class Shopping::CartItemsController < Shopping::BaseController
         if params[:commit] && params[:commit] == "checkout"
           format.html { redirect_to(shopping_orders_url()) }
         else
-          format.html { redirect_to(shopping_cart_items_url(), :notice => 'Item was successfully updated.') }
+          format.html { redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_passed_update') ) }
         end
       else
-        format.html { redirect_to(shopping_cart_items_url(), :notice => 'Item failed to be updated.') }
+        format.html { redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') ) }
       end
     end
   end
@@ -63,7 +63,7 @@ class Shopping::CartItemsController < Shopping::BaseController
           format.html { redirect_to(shopping_cart_items_url() ) }
           format.xml  { head :ok }
         else
-          format.html { redirect_to(shopping_cart_items_url(), :notice => 'Item failed to be updated.') }
+          format.html { redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') ) }
           format.xml  { render :xml => @cart_item.errors, :status => :unprocessable_entity }
         end
       end

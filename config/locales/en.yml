@@ -8,6 +8,9 @@ en:
   item_saved_for_later: 'The item will be saved for later.'
   reset_password_title: 'Reset Password'
   reset_password_text:  'Enter your new password.'
+  something_went_wrong: 'Sorry something went wrong'
+  item_failed_update:   'Item failed to be updated.'
+  item_passed_update:   'Item was successfully updated.'
 
   date:
     formats:
