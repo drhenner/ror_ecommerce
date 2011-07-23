@@ -37,7 +37,10 @@ class Cart < ActiveRecord::Base
   # @return [order]  return order because teh order returned has a diffent quantity
   def add_items_to_checkout(order)
     if order.in_progress?
-      items = shopping_cart_items.inject({}) {|h, item| h[item.variant_id] = item.quantity; h}
+      items = shopping_cart_items.inject({}) do |h, item|
+        h[item.variant_id] = item.quantity
+        h
+      end
       order = items_to_add_or_destroy(items, order)
     end
     order
