@@ -3,18 +3,18 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
   # GET /shopping/shipping_methods.xml
   def index
     unless find_or_create_order.ship_address_id
-      flash[:notice] = 'Select an address before you select a shipping method.'
+      flash[:notice] = I18n.t('select_address_before_shipping_method')
       redirect_to shopping_addresses_url
     else
       ##  TODO  refactopr this method... it seems a bit lengthy
       @shipping_method_ids = session_order.ship_address.state.shipping_zone.shipping_method_ids
-      
+
       @order_items = OrderItem.includes({:variant => {:product => :shipping_category}}).order_items_in_cart(session_order.id)
       #session_order.order_
       @order_items.each do |item|
         item.variant.product.available_shipping_rates = ShippingRate.with_these_shipping_methods(item.variant.product.shipping_category.shipping_rate_ids, @shipping_method_ids)
       end
-      
+
       respond_to do |format|
         format.html # index.html.erb
       end
@@ -44,7 +44,7 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
 
     respond_to do |format|
       if @shipping_method.save
-        format.html { redirect_to(@shipping_method, :notice => 'Shipping method was successfully created.') }
+        format.html { redirect_to(@shipping_method, :notice => I18n.t('shipping_method_created')) }
         format.xml  { render :xml => @shipping_method, :status => :created, :location => @shipping_method }
       else
         format.html { render :action => "new" }
@@ -60,9 +60,9 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
     params[:shipping_category].each_pair do |category_id, rate_id|#[rate]
       if rate_id
         items = OrderItem.includes([{:variant => :product}]).
-                          where(['order_items.order_id = ? AND 
+                          where(['order_items.order_id = ? AND
                                   products.shipping_category_id = ?', session_order_id, category_id])
-      
+
         OrderItem.update_all("shipping_rate_id = #{rate_id}","id IN (#{items.map{|i| i.id}.join(',')})")
       else
         all_selected = false
@@ -70,10 +70,10 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
     end
     respond_to do |format|
       if all_selected
-        format.html { redirect_to(shopping_orders_url, :notice => 'Shipping method was successfully updated.') }
+        format.html { redirect_to(shopping_orders_url, :notice => I18n.t('shipping_method_updated')) }
         format.xml  { head :ok }
       else
-        format.html { redirect_to( shopping_shipping_methods_url, :notice => 'All the Shipping Methods must be selected') }
+        format.html { redirect_to( shopping_shipping_methods_url, :notice => I18n.t('all_shipping_methods_must_be_selected')) }
       end
     end
   end

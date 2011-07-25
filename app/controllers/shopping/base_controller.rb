@@ -14,7 +14,7 @@ class Shopping::BaseController < ApplicationController
 
        # if cart is empty
     if session_cart.cart_items.empty?
-      flash[:notice] = 'You don\'t have anything in your cart'
+      flash[:notice] = I18n.t('do_not_have_anything_in_your_cart')
       return root_url
 
        ## If we are insecure

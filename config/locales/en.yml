@@ -17,6 +17,14 @@ en:
   the_order:            "the Order."
   the_order_purchased:  "The order has been purchased."
   is_not_valid:         'is not valid.'
+  login_successful:     "Login successful!"
+  logout_successful:    "Logout successful!"
+
+  select_address_before_shipping_method:  'Select an address before you select a shipping method.'
+  shipping_method_created:                'Shipping method was successfully created.'
+  shipping_method_updated:                'Shipping method was successfully updated.'
+  all_shipping_methods_must_be_selected:  'All the Shipping Methods must be selected'
+  do_not_have_anything_in_your_cart:      "You don't have anything in your cart"
 
   date:
     formats:
