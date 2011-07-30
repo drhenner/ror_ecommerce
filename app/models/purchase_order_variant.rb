@@ -7,8 +7,8 @@ class PurchaseOrderVariant < ActiveRecord::Base
   def receive!
     PurchaseOrderVariant.transaction do
       ###  Add to variant stock level
-      self.variant.count_on_hand = variant.count_on_hand + quantity
-      if self.variant.save!
+      self.variant.inventory.count_on_hand = self.variant.inventory.count_on_hand + quantity
+      if self.variant.inventory.save!
         ### change is_received to true
         self.is_received = true
         self.save!

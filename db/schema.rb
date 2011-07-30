@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110508184912) do
+ActiveRecord::Schema.define(:version => 20110729042134) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                                                           :null => false
@@ -150,6 +150,12 @@ ActiveRecord::Schema.define(:version => 20110508184912) do
   add_index "images", ["imageable_type"], :name => "index_images_on_imageable_type"
   add_index "images", ["position"], :name => "index_images_on_position"
 
+  create_table "inventories", :force => true do |t|
+    t.integer "count_on_hand",               :default => 0
+    t.integer "count_pending_to_customer",   :default => 0
+    t.integer "count_pending_from_supplier", :default => 0
+  end
+
   create_table "invoices", :force => true do |t|
     t.integer  "order_id",                                                              :null => false
     t.decimal  "amount",          :precision => 8, :scale => 2,                         :null => false
@@ -266,6 +272,16 @@ ActiveRecord::Schema.define(:version => 20110508184912) do
   add_index "phones", ["phone_type_id"], :name => "index_phones_on_phone_type_id"
   add_index "phones", ["phoneable_id"], :name => "index_phones_on_phoneable_id"
   add_index "phones", ["phoneable_type"], :name => "index_phones_on_phoneable_type"
+
+  create_table "preferences", :force => true do |t|
+    t.string   "value"
+    t.string   "name"
+    t.string   "preference_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "preferences", ["name"], :name => "index_preferences_on_name"
 
   create_table "product_properties", :force => true do |t|
     t.integer "product_id",  :null => false
@@ -617,22 +633,21 @@ ActiveRecord::Schema.define(:version => 20110508184912) do
   add_index "variant_suppliers", ["variant_id"], :name => "index_variant_suppliers_on_variant_id"
 
   create_table "variants", :force => true do |t|
-    t.integer  "product_id",                                                                   :null => false
-    t.string   "sku",                                                                          :null => false
+    t.integer  "product_id",                                                    :null => false
+    t.string   "sku",                                                           :null => false
     t.string   "name"
-    t.decimal  "price",                       :precision => 8, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "cost",                        :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "price",        :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "cost",         :precision => 8, :scale => 2, :default => 0.0,   :null => false
     t.datetime "deleted_at"
-    t.boolean  "master",                                                    :default => false, :null => false
-    t.integer  "count_on_hand",                                             :default => 0,     :null => false
-    t.integer  "count_pending_to_customer",                                 :default => 0,     :null => false
-    t.integer  "count_pending_from_supplier",                               :default => 0,     :null => false
+    t.boolean  "master",                                     :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "brand_id"
+    t.integer  "inventory_id"
   end
 
   add_index "variants", ["brand_id"], :name => "index_variants_on_brand_id"
+  add_index "variants", ["inventory_id"], :name => "index_variants_on_inventory_id"
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"
   add_index "variants", ["sku"], :name => "index_variants_on_sku"
 

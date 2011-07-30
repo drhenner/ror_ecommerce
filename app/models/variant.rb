@@ -12,17 +12,27 @@ class Variant < ActiveRecord::Base
 
   belongs_to :product
   belongs_to :brand
+  belongs_to :inventory
+
+  before_validation_on_create :create_inventory
 
   #validates :name,        :presence => true
+
+  validates :inventory_id, :presence => true
   validates :price,       :presence => true
   validates :product_id,  :presence => true
   validates :sku,         :presence => true,       :length => { :maximum => 255 }
 
-  accepts_nested_attributes_for :variant_properties
+  accepts_nested_attributes_for :variant_properties#, :inventory
 
+  delegate  :count_on_hand,
+            :count_pending_to_customer,
+            :count_pending_from_supplier,
+            :count_on_hand=,
+            :count_pending_to_customer=,
+            :count_pending_from_supplier=, :to => :inventory, :allow_nil => false
   OUT_OF_STOCK_QTY    = 2
   LOW_STOCK_QTY       = 6
-  MONTHLY_BILLING_ID  = 1
 
   # returns true if the stock level is above or == the out of stock level
   #
@@ -171,8 +181,15 @@ class Variant < ActiveRecord::Base
   # @param [Integer] number of variants to add
   # @return [none]
   def add_count_on_hand(num)
-      sql = "UPDATE variants SET count_on_hand = (#{num} + count_on_hand) WHERE id = #{self.id}"
+    ### don't lock if we have plenty of stock.
+    if low_stock?
+      inventory.lock!
+        self.inventory.count_on_hand = inventory.count_on_hand + num.to_i
+      inventory.save!
+    else
+      sql = "UPDATE inventories SET count_on_hand = (#{num} + count_on_hand) WHERE id = #{self.inventory.id}"
       ActiveRecord::Base.connection.execute(sql)
+    end
   end
 
   # with SQL math subtract to count_on_hand attribute
@@ -180,7 +197,7 @@ class Variant < ActiveRecord::Base
   # @param [Integer] number of variants to subtract
   # @return [none]
   def subtract_count_on_hand(num)
-    add_count_on_hand((num * -1))
+    add_count_on_hand((num.to_i * -1))
   end
 
   # with SQL math add to count_pending_to_customer attribute
@@ -188,8 +205,16 @@ class Variant < ActiveRecord::Base
   # @param [Integer] number of variants to add
   # @return [none]
   def add_pending_to_customer(num = 1)
-      sql = "UPDATE variants SET count_pending_to_customer = (#{num} + count_pending_to_customer) WHERE id = #{self.id}"
+    ### don't lock if we have plenty of stock.
+    if low_stock?
+      # If the stock is low lock the inventory.  This ensures
+      inventory.lock!
+      self.inventory.count_pending_to_customer = inventory.count_pending_to_customer.to_i + num.to_i
+      inventory.save!
+    else
+      sql = "UPDATE inventories SET count_pending_to_customer = (#{num} + count_pending_to_customer) WHERE id = #{self.inventory.id}"
       ActiveRecord::Base.connection.execute(sql)
+    end
   end
 
   # with SQL math subtract to count_pending_to_customer attribute
@@ -197,7 +222,7 @@ class Variant < ActiveRecord::Base
   # @param [Integer] number of variants to subtract
   # @return [none]
   def subtract_pending_to_customer(num)
-    add_pending_to_customer((num * -1))
+    add_pending_to_customer((num.to_i * -1))
   end
 
   # in the admin form qty_to_add to the count on hand
@@ -206,7 +231,9 @@ class Variant < ActiveRecord::Base
   # @return [none]
   def qty_to_add=(num)
     ###  TODO this method needs a history of who did what
-    self.count_on_hand = self.count_on_hand + num.to_i
+    inventory.lock!
+    self.inventory.count_on_hand = inventory.count_on_hand.to_i + num.to_i
+    inventory.save!
   end
 
   # method used by forms to set the initial qty_to_add for variants
@@ -234,4 +261,9 @@ class Variant < ActiveRecord::Base
     grid.paginate({:page => params[:page],:per_page => params[:rows]})
   end
 
+  private
+
+    def create_inventory
+      self.inventory = Inventory.create({:count_on_hand => 0, :count_pending_to_customer => 0, :count_pending_from_supplier => 0}) unless inventory
+    end
 end

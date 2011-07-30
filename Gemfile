@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '~> 3.0.7'
+gem 'rails', '~> 3.0.9'
 
 gem "activemerchant", '~> 1.7.2'#, :lib => 'active_merchant'
 gem 'authlogic', "2.1.5"

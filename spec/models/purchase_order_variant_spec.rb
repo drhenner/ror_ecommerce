@@ -2,16 +2,17 @@ require 'spec_helper'
 
 describe PurchaseOrderVariant, "instance methods" do
   before(:each) do
-    @variant                = Factory(:variant, :count_on_hand => 100)
+    @inventory              = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
+    @variant                = Factory(:variant, :inventory => @inventory)
     @purchase_order_variant = Factory(:purchase_order_variant, :variant => @variant, :quantity => 10)
   end
 
   context ".receive!" do
     it 'should call receive if true' do
       @purchase_order_variant.receive!
-      @purchase_order_variant.variant.count_on_hand.should == 110
+      @purchase_order_variant.variant.inventory.count_on_hand.should == 110
     end
-    
+
     it 'should mark purchase order complete' do
       @purchase_order_variant.purchase_order.expects(:mark_as_complete).once
       @purchase_order_variant.receive!

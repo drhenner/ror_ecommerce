@@ -8,14 +8,14 @@ describe Variant, " instance methods" do
   # LOW_STOCK_QTY    = 6
   context ".sold_out?" do
     it 'should be sold out' do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 100 - Variant::OUT_OF_STOCK_QTY
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::OUT_OF_STOCK_QTY))
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.sold_out?.should be_true
     end
 
     it 'should not be sold out' do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 99 - Variant::OUT_OF_STOCK_QTY
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (99 - Variant::OUT_OF_STOCK_QTY))
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.sold_out?.should be_false
     end
 
@@ -23,34 +23,35 @@ describe Variant, " instance methods" do
 
   context ".low_stock?" do
       it 'should be low stock' do
-        @variant.count_on_hand             = 100
-        @variant.count_pending_to_customer = 101 - Variant::OUT_OF_STOCK_QTY
+        inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (101 - Variant::OUT_OF_STOCK_QTY))
+        @variant    = Factory(:variant,   :inventory => inventory)
         @variant.low_stock?.should be_true
       end
 
       it 'should be low stock' do
-        @variant.count_on_hand             = 100
-        @variant.count_pending_to_customer = 100 - Variant::LOW_STOCK_QTY
+        inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::LOW_STOCK_QTY))
+        @variant    = Factory(:variant,   :inventory => inventory)
         @variant.low_stock?.should be_true
       end
 
       it 'should not be low stock' do
-        @variant.count_on_hand             = 100
-        @variant.count_pending_to_customer = 99 - Variant::LOW_STOCK_QTY
+        inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (99 - Variant::LOW_STOCK_QTY))
+        @variant    = Factory(:variant,   :inventory => inventory)
         @variant.low_stock?.should be_false
       end
   end
 
   context ".display_stock_status(start = '(', finish = ')')" do
     it 'should be low stock' do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 100 - Variant::LOW_STOCK_QTY
+
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::LOW_STOCK_QTY))
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.display_stock_status.should == '(Low Stock)'
     end
 
     it 'should be sold out' do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 100 - Variant::OUT_OF_STOCK_QTY
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::OUT_OF_STOCK_QTY))
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.display_stock_status.should == '(Sold Out)'
     end
   end
@@ -176,15 +177,17 @@ describe Variant, " instance methods" do
 
   context ".is_available?" do
     it "should be available" do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 99
+
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.save
       @variant.is_available?.should be_true
     end
 
     it "should not be available" do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 100
+
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 100)
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.save
       @variant.is_available?.should be_false
     end
@@ -192,8 +195,9 @@ describe Variant, " instance methods" do
 
   context ".count_available(reload_variant = true)" do
     it "should return count_available" do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 99
+
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.save
       @variant.is_available?.should be_true
     end
@@ -201,53 +205,57 @@ describe Variant, " instance methods" do
 
   context ".add_count_on_hand(num)" do
     it "should update count_on_hand" do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 99
+
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.save
       @variant.add_count_on_hand(1)
       @variant.reload
-      @variant.count_on_hand.should == 101
+      @variant.inventory.count_on_hand.should == 101
     end
   end
 
   context ".subtract_count_on_hand(num)" do
     it "should update count_on_hand" do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 99
+
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.save
       @variant.subtract_count_on_hand(1)
       @variant.reload
-      @variant.count_on_hand.should == 99
+      @variant.inventory.count_on_hand.should == 99
     end
   end
 
   context ".add_pending_to_customer(num)" do
     it "should update count_on_hand" do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 99
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.save
       @variant.add_pending_to_customer(1)
       @variant.reload
-      @variant.count_pending_to_customer.should == 100
+      @variant.inventory.count_pending_to_customer.should == 100
     end
   end
 
   context ".subtract_pending_to_customer(num)" do
     it "should update subtract_pending_to_customer" do
-      @variant.count_on_hand             = 100
-      @variant.count_pending_to_customer = 99
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.save
       @variant.subtract_pending_to_customer(1)
       @variant.reload
-      @variant.count_pending_to_customer.should == 98
+      @variant.inventory.count_pending_to_customer.should == 98
     end
   end
 
   context ".qty_to_add=(num)" do
     it "should update count_on_hand with qty_to_add" do
-      @variant.count_on_hand             = 100
+
+      inventory   = Factory(:inventory, :count_on_hand => 100)
+      @variant    = Factory(:variant,   :inventory => inventory)
       @variant.qty_to_add = 12
-      @variant.count_on_hand.should == 112
+      @variant.inventory.count_on_hand.should == 112
     end
   end
 end
