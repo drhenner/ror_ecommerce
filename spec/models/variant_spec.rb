@@ -252,7 +252,7 @@ describe Variant, " instance methods" do
   context ".qty_to_add=(num)" do
     it "should update count_on_hand with qty_to_add" do
 
-      inventory   = Factory(:inventory, :count_on_hand => 100)
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
       @variant    = Factory(:variant,   :inventory => inventory)
       @variant.qty_to_add = 12
       @variant.inventory.count_on_hand.should == 112
