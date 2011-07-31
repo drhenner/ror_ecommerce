@@ -1,3 +1,7 @@
+h3. 0.7.0 2011-07-30
+
+* Inventory is now its own model...  TODO move inventory methods to the correct model(from variants)
+
 h3. 0.6.1 2011-05-10
 
 * description_markup is required for tests to pass (validates presence)
