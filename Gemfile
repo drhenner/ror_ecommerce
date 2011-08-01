@@ -74,7 +74,7 @@ group :test do
   gem "autotest-growl"
   #gem "redgreen"
   #gem "test-unit", "1.2.3"
-  #gem "ZenTest"
+  gem "ZenTest", '4.5.0'# 4.6 breaks autotest
 
   ###  THESE ARE ALL FOR CUCUMBER
 #  gem "webrat"  ## USE webrat or capybara NOT BOTH
