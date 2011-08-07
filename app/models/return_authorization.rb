@@ -129,7 +129,7 @@ class ReturnAuthorization < ActiveRecord::Base
     grid = grid.where("return_authorizations.number LIKE ?",  "#{params[:number]}%")        if params[:number].present?
     grid = grid.where("orders.order_number LIKE ?",           "#{params[:order_number]}%")  if params[:order_number].present?
     grid = grid.where("return_authorizations.state = ?",      params[:state])               if params[:state].present?
-    grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page], :per_page => params[:rows])
+    grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page].to_i, :per_page => params[:rows].to_i)
   end
 
   private

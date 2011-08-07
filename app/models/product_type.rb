@@ -19,7 +19,7 @@ class ProductType < ActiveRecord::Base
     grid = grid.where("product_types.name LIKE '?'", params[:name])              if params[:name].present?
     grid = grid.where("product_types.name LIKE '?%'", params[:name_starts_with]) if params[:name_starts_with].present?
     grid = grid.where("product_types.name LIKE '%?%'", params[:name_contains])   if params[:name_contains].present?
-    grid.paginate({:page => params[:page],:per_page => params[:rows]})
+    grid.paginate({:page => params[:page].to_i,:per_page => params[:rows].to_i})
   end
 
 end

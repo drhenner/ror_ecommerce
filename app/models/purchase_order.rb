@@ -138,8 +138,8 @@ class PurchaseOrder < ActiveRecord::Base
     grid = grid.where("purchase_orders.tracking_number = ?", params[:tracking_number]) if params[:tracking_number].present?
 
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-    grid = grid.limit(params[:rows])
-    grid.paginate({:page => params[:page]})
+    grid = grid.limit(params[:rows].to_i)
+    grid.paginate({:page => params[:page].to_i})
   end
 
   # paginated results from the admin PurchaseOrder grid for PO to receive
@@ -157,7 +157,7 @@ class PurchaseOrder < ActiveRecord::Base
     grid = grid.where("purchase_orders.tracking_number = ?", params[:tracking_number]) if params[:tracking_number].present?
 
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-    grid.includes([:supplier, :purchase_order_variants]).paginate({:page => params[:page],:per_page => params[:rows]})
+    grid.includes([:supplier, :purchase_order_variants]).paginate({:page => params[:page].to_i,:per_page => params[:rows].to_i})
 
   end
 end

@@ -21,6 +21,6 @@ class Supplier < ActiveRecord::Base
     grid = grid.where("suppliers.name = ?", params[:name])  if params[:name].present?
     grid = grid.where("suppliers.email = ?", params[:email])  if params[:email].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-    grid.paginate({:page => params[:page],:per_page => params[:rows]})
+    grid.paginate({:page => params[:page].to_i,:per_page => params[:rows].to_i})
   end
 end
