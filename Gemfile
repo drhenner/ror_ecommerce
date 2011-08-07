@@ -30,7 +30,7 @@ gem 'rmagick',    :require => 'RMagick'
 
 gem 'rake', '= 0.9.0'
 gem 'ssl_requirement'
-gem 'state_machine', '~> 0.9.4'
+gem 'state_machine', '~> 1.0.1'
 gem 'sunspot_rails', '~> 1.2.rc4'
 gem 'will_paginate', '~> 3.0.pre2'
 
