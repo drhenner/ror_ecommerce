@@ -1,8 +1,7 @@
 <h1> Address </h1>
 
 <p>
-  <strong>Name:</strong>
-  <%= @address.name %>
+  <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => @address } %>
 </p>
 
 <p>

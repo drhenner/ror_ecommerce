@@ -1,20 +1,13 @@
 <h1> Addresses </h1>
 
-<table>
-  <tr>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<ul>
   <% for address in @addresses %>
-    <tr>
-      <td><%= address.address_lines %></td>
-      <td><%= link_to "Show", myaccount_address_path(address) %></td>
-      <td><%= link_to "Edit", edit_myaccount_address_path(address) %></td>
-      <td><%= link_to "Remove", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+    <li><br/>
+      <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => address } %>
+      <%= link_to "Edit", edit_myaccount_address_path(address) %> |
+      <%= link_to "Remove", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete %>
+    </li>
   <% end %>
-</table>
+</ul>
 
-<p><%= link_to "New Address", new_myaccount_address_path, :class => 'button' %></p>
+<p><%= link_to "New Address", new_myaccount_address_path, :class => 'b-link' %></p>

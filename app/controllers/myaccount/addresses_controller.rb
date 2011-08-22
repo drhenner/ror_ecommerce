@@ -49,6 +49,6 @@ class Myaccount::AddressesController < Myaccount::BaseController
   private
 
   def form_info
-
+    @states = State.form_selector
   end
 end
