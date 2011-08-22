@@ -14,7 +14,7 @@ describe Notifier, "Signup Email" do
     end
 
     it "should be set to be delivered to the email passed in" do
-      @email.should deliver_to("myfake@email.com")
+      @email.should deliver_to("Dave Commerce <myfake@email.com>")
     end
 
     it "should contain the user's message in the mail body" do
