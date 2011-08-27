@@ -14,7 +14,7 @@ class Variant < ActiveRecord::Base
   belongs_to :brand
   belongs_to :inventory
 
-  before_validation_on_create :create_inventory
+  before_validation :create_inventory, :on => :create
 
   #validates :name,        :presence => true
 
