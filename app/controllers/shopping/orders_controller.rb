@@ -24,22 +24,6 @@ class Shopping::OrdersController < Shopping::BaseController
     end
   end
 
-  # GET /shopping/orders/1
-  # GET /shopping/orders/1.xml
-  def show
-    @order = Order.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @order }
-    end
-  end
-
-  # GET /shopping/orders/1/edit
-  def edit
-    @order = Order.find(params[:id])
-  end
-
   # POST /shopping/orders
   # POST /shopping/orders.xml
   def update

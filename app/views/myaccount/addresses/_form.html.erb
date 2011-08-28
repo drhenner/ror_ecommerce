@@ -1,6 +1,7 @@
+<%= semantic_form_for( @address, :as =>:address, :url => admin_shopping_shipping_addresses_path) do |f| %>
   <% if @address.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this shopping_address from being saved:</h2>
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
 
       <ul>
       <% @address.errors.full_messages.each do |msg| %>
@@ -9,55 +10,57 @@
       </ul>
     </div>
   <% end %>
-
+<div class='main-address'>
     <div class="inline">
       <div class="field column">
-         <%= f.text_field :first_name, :input_html => {:class => 'span-3'} %>
+         <%= f.input :first_name, :input_html => {:class => 'span-3'} %>
       </div>
 
       <div class="field column">
-        <%= f.text_field :last_name, :input_html => {:class => 'span-3'} %>
+        <%= f.input :last_name, :input_html => {:class => 'span-3'} %>
       </div>
     </div>
-<div class='clear'></div>
+    <div class='clear'></div>
+      <div class="field column">
+        <%= f.input :address1 %>
+
+        <%= f.input :address2 %>
+      </div>
+    <div class='clear'></div>
+
+      <div class="field column">
+        <%= f.input   :state_id,
+                      :collection => @states,
+                      :include_blank => true,
+                      :as => :select , :label => "State/Province" %>
+      </div>
+    <div class='clear'></div>
+      <div class="inline span-12">
+        <div class="field column">
+          <%= f.input :city, :input_html => {:class => 'span-3'} %>
+        </div>
+
+      <% if nil %>
+        <div class="field column">
+          <%= f.input :state_name, :input_html => {:class => 'span-3'} %>
+        </div>
+      <% end %>
+
+        <div class="field column">
+          <%= f.input :zip_code, :required => true, :input_html => {:class => 'span-2'} %>
+        </div>
+      </div>
+
+    <div class='clear'></div>
+      <div class="field">
+        <%#= f.input :phone %>
+      </div>
+</div>
   <div class="field column">
-    <%= f.text_field :address1 %><br/>
-
-    <%= f.text_field :address2 %>
+    <%= check_box_tag :default, 1, f.object.default? %><%= f.label :default, "Make this my default shipping method", :class => 'auto_width' %>
   </div>
-<div class='clear'></div>
-
-  <div class="field column">
-    <%= f.select   :state_id,
-                   @states,
-                  :include_blank => true %>
-  </div>
-<div class='clear'></div>
-  <div class="inline span-12">
-    <div class="field column">
-      <%= f.text_field :city, :input_html => {:class => 'span-3'} %>
-    </div>
-
-    <div class="field column">
-      <%= f.text_field :zip_code, :required => true, :input_html => {:class => 'span-2'} %>
-    </div>
-  </div>
-
-<div class='clear'></div>
-  <div class="field">
-    <%#= f.input :phone %>
-  </div>
-
-  <div class="field column">
-    <%= check_box_tag :default, 1, @address.default? %><%= f.label :default, "Make this my default shipping method", :class => 'auto_width' %>
-  </div>
-
-
-
-
-
-
 
   <div class="actions column prepend-1">
     <%= f.submit %>
   </div>
+<% end %>

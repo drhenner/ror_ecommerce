@@ -1,7 +1,7 @@
 <% if  @shopping_addresses.empty? %>
-  <h1>New Address</h1>
+  <h2>New Address</h2>
 <% else %>
-  <h1>Pick an Address</h1>
+  <h3>Pick an Address</h3>
 <% end %>
 
 <div id='shopping_addresses_selections' class='span-24 last'>
@@ -12,6 +12,7 @@
       <%= link_to 'Edit', edit_shopping_address_path(shopping_address) %>
       <%= link_to 'Delete', shopping_address_path(shopping_address), :confirm => 'Are you sure?', :method => :delete %>
     </div>
+    <hr style='color:#aac'/>
   <% end %>
   <% if session_order.ready_to_checkout? %>
     <%= link_to 'Order Summary', shopping_orders_path, :class => 'button green' %>
