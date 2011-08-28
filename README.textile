@@ -86,10 +86,17 @@ Need to create config/config.yml and change the encryption key and paypal or aut
 You can also use config/config.yml.example until you get your real info.
 
 Paperclip will throw errors if not configured correctly.
-if you are on a Ubuntu machine, change this line in environment.rb:
+you will need to find out where the Imagemagick program is installed
+type "which identify" in the terminal and set Paperclip.options[:command_path] equal
+to that path in environment.rb: Examples:
 Paperclip.options[:command_path] = "/usr/local/bin"
 into:
 Paperclip.options[:command_path] = "/usr/bin"
+
+If you get the following error:
+Errno::ECONNREFUSED (Connection refused - connect(2)):
+when you try to create a product or upload an image you have not started solr search.
+remember you need to run "rake sunspot:solr:start" or remove solr/search
 
 Once everything is setup, start up the server with 'rails server' and direct it to
 *localhost:3000/admin/overviews*
