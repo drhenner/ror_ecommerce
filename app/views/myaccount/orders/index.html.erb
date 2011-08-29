@@ -1,21 +1,16 @@
 <h2>My Orders</h2>
 
-<table>
-  <tr>
-    <th>Number</th>
-    <th>Amount</th>
-    <th>Status</th>
-    <th>Completed at</th>
-    <th></th>
-  </tr>
-<%#= order.number %>
-<% @orders.each do |order| %>
-  <tr>
-    <td><%= order.number %></td>
-    <td><%= order.first_invoice_amount %></td>
-    <td><%= order.status %></td>
-    <td><%= order.completed_at %></td>
-    <td><%# link_to 'Show', myaccount_order_path(order) %></td>
-  </tr>
+<% unless @orders.length > 0 %>
+  You currently do not have any orders.
 <% end %>
-</table>
+
+<% @orders.each do |order| %>
+  <div class='order-list-item span-16'>
+    <ul>
+      <li><label>Number:</label>        <%= link_to order.number, myaccount_order_path(order) %></li>
+      <li><label>Amount:</label>        <%= order.first_invoice_amount %></li>
+      <li><label>Status:</label>        <%= order.status %></li>
+      <li><label>Completed at:</label>  <%= order.completed_at %></li>
+    </ul>
+  </div>
+<% end %>
