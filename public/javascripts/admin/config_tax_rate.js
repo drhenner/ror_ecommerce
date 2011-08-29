@@ -14,14 +14,14 @@ Hadean.TaxRateForm = {
     var select_country  = '#select_country'
     jQuery(select_country).
             bind('change',
-              function() { 
+              function() {
                 Hadean.TaxRateForm.getState(jQuery(select_country).val());
               }
             );
   },
   getState : function(id) {
     if ( ! isNaN(id - 0) && id  != "" ) {
-      jQuery.getJSON( 
+      jQuery.getJSON(
          '/states',
          { country_id : id },
         function(json) {
@@ -36,8 +36,10 @@ Hadean.TaxRateForm = {
     var options = select.attr('options');
 
     jQuery('option', select).remove();// remove old options
+    i = 1;
     jQuery.each(newOptions, function(val, text) {
-      options[options.length] = new Option(text[0], text[1]);
+      select[0].options[i] = new Option(text[0], text[1]);
+      i = i + 1;
     });
   }
 }
