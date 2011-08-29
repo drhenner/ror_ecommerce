@@ -392,6 +392,12 @@ a:visited {
   padding-left: 0;
 }
 
+/* line 1, ../../app/stylesheets/_address_form.scss */
+.main-address label {
+  display: inline-block;
+  width: 100px;
+}
+
 /* line 1, ../../app/stylesheets/_main_product_tabs.scss */
 #main-product-type-tabs {
   font-variant: small-caps;

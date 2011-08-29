@@ -101,6 +101,12 @@
   *display: inline;
 }
 
+/* line 1, ../../app/stylesheets/_address_form.scss */
+.main-address label {
+  display: inline-block;
+  width: 100px;
+}
+
 /* line 2, ../../app/stylesheets/_app.scss */
 a {
   text-decoration: none;
