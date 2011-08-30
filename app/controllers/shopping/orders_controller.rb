@@ -1,4 +1,5 @@
 class Shopping::OrdersController < Shopping::BaseController
+  before_filter :require_login
   # GET /shopping/orders
   # GET /shopping/orders.xml
   ### The intent of this action is two fold
@@ -68,6 +69,13 @@ class Shopping::OrdersController < Shopping::BaseController
   end
 
   private
+
+  def require_login
+    if !current_user
+      session[:return_to] = shopping_orders_url
+      redirect_to( login_url() ) and return
+    end
+  end
 
   def cc_params
     {
