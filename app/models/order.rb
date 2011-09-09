@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   has_friendly_id :number, :use_slug => false
 
-  has_many   :order_items
+  has_many   :order_items, :dependent => :destroy
   has_many   :shipments
   has_many   :invoices
   has_many   :completed_invoices,  :class_name => 'Invoice', :conditions => ['state = ? OR state = ?', 'authorized', 'paid']
