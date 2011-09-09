@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
     if cookies[:cart_id]
       @session_cart = Cart.includes(:shopping_cart_items).find_by_id(cookies[:cart_id])
       unless @session_cart
-        @session_cart = Cart.create
+        @session_cart = Cart.create(:user_id => current_user_id)
         cookies[:cart_id] = @session_cart.id
       end
     elsif current_user && current_user.current_cart
