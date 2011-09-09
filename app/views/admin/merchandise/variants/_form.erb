@@ -65,6 +65,7 @@
           <div class='span-4 left'>
             <%= property.display_name %>:
           </div>
+          Primary?: <%= variant_property_form.check_box  :primary %> <br/>
           <%= variant_property_form.hidden_field  :property_id %>
           Description: <%= variant_property_form.text_field    :description %><br/>
         <% end %>
