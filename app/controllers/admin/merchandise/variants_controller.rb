@@ -33,7 +33,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
     @variant = @product.variants.new(params[:variant])
 
     if @variant.save
-      redirect_to :action => :index
+      redirect_to admin_merchandise_product_variants_url(@product)
     else
       form_info
       flash[:error] = "The variant could not be saved"
@@ -48,10 +48,10 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   end
 
   def update
-    @variant = Variant.find(params[:id])
+    @variant = Variant.includes( :product ).find(params[:id])
 
     if @variant.update_attributes(params[:variant])
-      redirect_to :action => :index
+      redirect_to admin_merchandise_product_variants_url(@variant.product)
     else
       form_info
       @product  =  @variant.product
