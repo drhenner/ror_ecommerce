@@ -7,6 +7,7 @@ begin
   require 'bundler'
   Bundler.setup
 rescue Bundler::GemNotFound => e
+  puts "#{ e } (#{ e.class })!"
   STDERR.puts e.message
   STDERR.puts "Try running `bundle install`."
   exit!
