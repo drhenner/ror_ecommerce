@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :addresses, :phones, :user_roles
 
-  state_machine :state, :initial => :inactive do
+  state_machine :state, :initial => :active do
     state :inactive
     state :active
     state :unregistered
