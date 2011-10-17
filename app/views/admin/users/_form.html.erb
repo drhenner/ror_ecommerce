@@ -6,7 +6,7 @@
        <div class='clearfix'></div>
        <%= form.input :email, :required => true,:wrapper_html => { :class => "span-11 column" }%>
        <div class='clearfix'></div>
-       <%= form.input :birth_date,
+       <%= form.input :form_birth_date, :label => "Birthday",
                        :required => false, :as => :yearpicker,
                        :wrapper_html => { :class => "span-11 column" }%>
          <%= form.input :state,

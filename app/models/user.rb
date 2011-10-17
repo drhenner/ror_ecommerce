@@ -26,7 +26,16 @@ class User < ActiveRecord::Base
 
   before_validation :sanitize_data, :before_validation_on_create
   before_create :start_store_credits
-  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :openid_identifier, :birth_date, :address_attributes, :phone_attributes
+  attr_accessible :email,
+                  :password,
+                  :password_confirmation,
+                  :first_name,
+                  :last_name,
+                  :openid_identifier,
+                  :birth_date,
+                  :form_birth_date,
+                  :address_attributes,
+                  :phone_attributes
 
   belongs_to :account
 
@@ -183,7 +192,22 @@ class User < ActiveRecord::Base
   # @param [String] formatted in Euro-time
   # @return [ none ]  sets birth_date for the user
   def format_birth_date(b_date)
-    self.birth_date = Date.strptime(b_date, "%m/%d/%Y") if b_date.present?
+    self.birth_date = Date.strptime(b_date, "%m/%d/%Y").to_s(:db) if b_date.present?
+  end
+
+  # formats the String
+  #
+  # @param [String] formatted in Euro-time
+  # @return [ none ]  sets birth_date for the user
+  def form_birth_date
+    birth_date? ? birth_date.strftime("%m/%d/%Y") : ''
+  end
+  # formats the String
+  #
+  # @param [String] formatted in Euro-time
+  # @return [ none ]  sets birth_date for the user
+  def form_birth_date=(val)
+    self.birth_date = Date.strptime(val, "%m/%d/%Y").to_s(:db)
   end
 
   ##  This method will one day grow into the products a user most likely likes.
