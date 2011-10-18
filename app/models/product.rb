@@ -57,6 +57,7 @@ class Product < ActiveRecord::Base
   validates :tax_status_id,         :presence => true
   validates :product_type_id,       :presence => true
   validates :prototype_id,          :presence => true
+  validates :permalink, :uniqueness => true
   validates :name,                  :presence => true, :length => { :maximum => 165 }
   validates :description_markup,    :presence => true, :length => { :maximum => 2255 }
   validates :meta_keywords,         :presence => true,       :length => { :maximum => 255 }
