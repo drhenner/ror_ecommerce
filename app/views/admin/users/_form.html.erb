@@ -1,25 +1,42 @@
 <div id='registration_name_form'>
-   <%= form.inputs  do %>
-       <%= form.input :first_name, :required => true %>
-       <div class='clearfix'></div>
-       <%= form.input :last_name, :required => true %>
-       <div class='clearfix'></div>
-       <%= form.input :email, :required => true,:wrapper_html => { :class => "span-11 column" }%>
-       <div class='clearfix'></div>
-       <%= form.input :form_birth_date, :label => "Birthday",
-                       :required => false, :as => :yearpicker,
-                       :wrapper_html => { :class => "span-11 column" }%>
-         <%= form.input :state,
-                          :required => true, :as => :select,      :collection => @states,
-                          :wrapper_html => { :class => "span-11 column" }%>
-   <% end %>
+  <fieldset id="admin-user_info" class='span-12'>
+     <ul>
+       <li>
+         <%= form.label :first_name %>
+         <%= form.text_field :first_name %>
+        </li>
+        <li>
+          <%= form.label :last_name %>
+          <%= form.text_field :last_name %>
+        </li>
+        <li>
+          <%= form.label :email %>
+          <%= form.text_field :email %>
+        </li>
+        <li>
+          <%= form.label :form_birth_date, "Birthday" %>
+          <%= form.text_field :form_birth_date, :class => 'ui-yearpicker' %>
+        </li>
+        <li>
+          <%= form.label :state %>
+          <%= form.select :state, @states %>
+        </li>
+     </ul>
+  </fieldset>
 </div>
 <div id='registration_form'>
-   <%= form.inputs  do %>
-       <%= form.input :password, :required => true,:wrapper_html => { :class => "span-11" } %>
-       <div class='clearfix'></div>
-       <%= form.input :password_confirmation, :required => true,:wrapper_html => { :class => "span-11" } %>
-   <% end %>
+  <fieldset id="admin-password" class='span-12'>
+    <ul>
+      <li>
+        <%= form.label :password %>
+        <%= form.password_field :password %>
+      </li>
+      <li>
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation %>
+      </li>
+    </ul>
+  </fieldset>
 </div>
 
 <fieldset id="admin-product-properties" class='span-12'>

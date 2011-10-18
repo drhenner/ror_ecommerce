@@ -7,11 +7,8 @@
 
 <h1>Edit <%= @user.name %> </h1>
 
-<%= semantic_form_for @user, :as => :user, :url => admin_user_path(@user)  do |form| %>
-    <%= form.inputs do %>
-       <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
-    <% end %>
-    <%= form.buttons do %>
-      <%= form.commit_button "Update" %>
-    <% end %>
+<%= form_for @user, :url => admin_user_path(@user)  do |form| %>
+    <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
+    <%= form.submit "Update" %>
+
 <% end %>
