@@ -106,6 +106,7 @@ class User < ActiveRecord::Base
                           :uniqueness => true,##  This should be done at the DB this is too expensive in rails
                           :format   => { :with => CustomValidators::Emails.email_validator },
                           :length => { :maximum => 255 }
+  validate :validate_age
   #validates :password,    :presence => { :if => :password_required? }, :confirmation => true
 
   accepts_nested_attributes_for :addresses, :phones, :user_roles
@@ -338,6 +339,29 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def validate_age
+    if birth_date && birth_date_changed?
+      if too_old?
+        self.errors.add(:birth_date, "This user is too old (#{age}).")
+      elsif too_young?
+        self.errors.add(:birth_date, "This user is too young (#{age}).")
+      end
+    end
+  end
+
+  def too_old?
+    age > 110
+  end
+
+  def too_young?
+    age < 2
+  end
+
+  def age
+    now = Time.now.utc.to_date
+    now.year - birth_date.year - ((now.month > birth_date.month || (now.month == birth_date.month && now.day >= birth_date.day)) ? 0 : 1)
+  end
 
   def start_store_credits
     self.store_credit = StoreCredit.new(:amount => 0.0, :user => self)

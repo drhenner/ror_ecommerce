@@ -12,6 +12,22 @@ describe User do
 
   end
 
+  context "Invalid User" do
+    before(:each) do
+      @user = Factory.build(:user, :form_birth_date => '05/05/1900')
+    end
+
+    it "should be valid with minimum attributes(Too old)" do
+      @user = Factory.build(:user, :form_birth_date => '05/05/1900')
+      @user.should_not be_valid
+    end
+
+    it "should be valid with minimum attributes(Not born yet)" do
+      now = Time.now + 10.days
+      @user = Factory.build(:user, :form_birth_date => now.strftime("%m/%d/%Y"))
+      @user.should_not be_valid
+    end
+  end
 end
 
 
