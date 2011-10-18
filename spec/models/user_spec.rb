@@ -15,6 +15,25 @@ describe User do
 end
 
 
+describe User, ".form_birth_date(val)" do
+  it "should return the correct b-day" do
+    user = Factory(:user, :form_birth_date => '05/18/1975')
+    #should_receive(:authenticate).with("password").and_return(true)
+    user.birth_date.should_not be_blank
+    user.form_birth_date.should == '05/18/1975'
+    #ActiveSupport::TimeZone.us_zones.map(&:to_s).include?(user.time_zone).should be_true
+  end
+
+  it "should return the correct b-day" do
+    user = Factory(:user, :form_birth_date => '')
+    #should_receive(:authenticate).with("password").and_return(true)
+    user.birth_date.should be_blank
+    user.form_birth_date.should == nil
+    #ActiveSupport::TimeZone.us_zones.map(&:to_s).include?(user.time_zone).should be_true
+  end
+end
+
+
 describe User, ".name" do
   it "should return the correct name" do
     user = Factory.build(:registered_user)
