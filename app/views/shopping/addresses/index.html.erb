@@ -19,6 +19,6 @@
   <% end %>
 </div>
 <br />
-<%= form_for :address, @shopping_address do |address_form| %>
+<%= form_for @shopping_address, :url => shopping_addresses_path do |address_form| %>
   <%= render 'form' %>
 <% end %>
