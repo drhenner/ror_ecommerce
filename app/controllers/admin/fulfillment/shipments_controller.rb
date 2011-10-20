@@ -15,7 +15,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   # GET /admin/fulfillment/shipments/1
   # GET /admin/fulfillment/shipments/1.xml
   def show
-    @shipment = Shipment.find(params[:id])
+    @shipment = Shipment.includes([:order, :address, {:order_items => {:variant => :product} }]).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

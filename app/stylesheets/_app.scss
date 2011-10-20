@@ -142,6 +142,19 @@ textarea.height-50 {
 li {
   list-style: none;
 }
+
+.width-list {
+  li {
+    clear:both;
+    text-align:left;
+  }
+
+.space-list-40 {
+  li {
+    padding-bottom:40px;
+  }
+}
+
 input.text, input.title, input[type="text"], input[type="password"] {
   @include rounded(4px);
   margin: 0.15em 0;
