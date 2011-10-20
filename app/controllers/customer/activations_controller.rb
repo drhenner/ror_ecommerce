@@ -5,7 +5,7 @@ class Customer::ActivationsController < ApplicationController
   # plus some people will want to copy and paste the link.
   def show
     @user = User.find_by_perishable_token(params[:a])
-    if @user && @user.activate!
+    if @user && (@user.active? || @user.activate!)
       UserSession.create(@user, true)
       flash[:notice] = "Welcome back #{@user.name}"
     else
