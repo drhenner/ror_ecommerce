@@ -1,15 +1,22 @@
+
 <div style='display:inline-block;' class='line_item_gray'>
-  <%= invoice.state %> Invoice:
+  <ul>
+    <li><div class='span-3'>State: </div>       <div class='span-2'> <%= invoice.state %> </div></li>
+    <li><div class='span-3'>Invoice #:</div>    <div class='span-2'> <%=  invoice.number %> </div></li>
+    <li><div class='span-3'>Charge Amount:</div><div class='span-2'> <%= number_to_currency invoice.amount %> </div></li>
+  </ul>
 </div>
-<%=  invoice.number %> => <%= number_to_currency invoice.amount %> 
+
 <% if invoice.authorized? %>
-  <a id='capture-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_green'> 
+  <a id='capture-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_green'>
     Collect
   </a>
-  <a id='capture-partial-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_blue'> 
+  <!--
+  <a id='capture-partial-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_blue'>
     Collect Partial
   </a>
-  <a id='cancel-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_red'> 
+  -->
+  <a id='cancel-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_red'>
     CANCEL
   </a>
 <% end %>
