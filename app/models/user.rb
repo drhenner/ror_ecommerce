@@ -41,6 +41,8 @@ class User < ActiveRecord::Base
 
   has_one     :store_credit
   has_many    :orders
+  has_many    :completed_orders,          :class_name => 'Order',
+                                          :conditions => {:orders => { :state => 'complete'}}
   has_many    :phones,                    :dependent => :destroy,
                                           :as => :phoneable
 
