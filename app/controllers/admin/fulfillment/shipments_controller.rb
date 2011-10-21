@@ -4,8 +4,8 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   def index
     @shipments = Shipment.includes([:order, {:order_items => {:variant => :product} }])
     if params[:order_id].present?
-      @shipments = @shipments.where(['shipments.order_id = ?', params[:order_id]])
-      @order = Order.find(params[:order_id])
+      @order = Order.find_by_number(params[:order_id])
+      @shipments = @shipments.where(['shipments.order_id = ?', @order.id])
     end
     respond_to do |format|
       format.html # index.html.erb
