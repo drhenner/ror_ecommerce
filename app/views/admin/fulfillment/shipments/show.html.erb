@@ -79,5 +79,5 @@
   </div>
 
   <%= link_to 'Edit', edit_admin_fulfillment_shipment_path(@shipment) %> |
-  <%= link_to 'View Shipments for this Order', admin_fulfillment_shipments_path(:order_id => @shipment.order_id) %>
+  <%= link_to 'View Shipments for this Order', admin_fulfillment_shipments_path(:order_id => @shipment.order.number) %>
 </div>
