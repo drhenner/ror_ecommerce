@@ -75,7 +75,9 @@ Hadean::Application.routes.draw do # |map|
     end
 
     namespace :fulfillment do
-      resources  :orders
+      resources  :orders do
+        resources  :comments
+      end
       resources  :shipments do
         member do
           put :ship

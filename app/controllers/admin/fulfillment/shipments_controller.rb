@@ -105,7 +105,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   end
 
   def form_info
-
+    @comment = Comment.new()
   end
 
 end

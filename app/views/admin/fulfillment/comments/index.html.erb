@@ -1,0 +1,17 @@
+<h1> Order <%= order.number %> Comments </h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for comment in order.comments %>
+    <tr>
+      <td><%= comment.name %></td>
+      <td><%= link_to "Show", admin_fulfillment_order_comment_path(order, comment) %></td>
+      <td><%= link_to "Edit", edit_admin_fulfillment_order_comment_path(order, comment) %></td>
+      <td><%= link_to "Destroy", admin_fulfillment_order_comment_path(order, comment), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Comment", new_admin_fulfillment_order_comment_path(order), :class => 'button' %></p>

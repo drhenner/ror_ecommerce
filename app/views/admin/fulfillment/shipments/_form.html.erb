@@ -1,25 +1,17 @@
 
-  <% if @shipment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shipment.errors.count, "error") %> prohibited this shipment from being saved:</h2>
+<% if @shipment.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@shipment.errors.count, "error") %> prohibited this shipment from being saved:</h2>
 
-      <ul>
-      <% @shipment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <ul>
+    <% @shipment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-TODO: Need to add a select to change address, might need to add notes for a shipment.
-
-<div  id='shipment-address'
-      class='span-6 rounded-10 line_item_yellow'>
-   <%= render :partial => '/shared/compact_address', :locals => {:address => @shipment.address} %>
-   <%= link_to 'Change Address', edit_admin_fulfillment_shipment_address_path(@shipment, @shipment.address) %>
-</div>
-
-<div id='shipment-details' class='span-10'>
+<div id='shipment-details' class='span-10 last rounded-10 line_item_yellow'>
   <ul  class='span-10 width-list space-list-40'>
     <li>
       <label class='span-3 column'>Shipped at:</label>
@@ -37,7 +29,6 @@ TODO: Need to add a select to change address, might need to add notes for a ship
       <label class='span-3 column'>Status:</label>
       <span class='span-6'><%= @shipment.state %></span>
     </li>
-    <li></li>
   </ul>
 
   <div class="actions">

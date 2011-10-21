@@ -1,0 +1,8 @@
+<h1> Edit Comment </h1>
+
+<%= form_for(@comment, :url => admin_fulfillment_order_comment_path(order, @comment)) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+  <%= link_to 'Show', admin_fulfillment_order_comment_path(order, @comment ), :class => 'button' %> |
+  <%= link_to 'View All', admin_fulfillment_order_comments_path(order), :class => 'button' %>

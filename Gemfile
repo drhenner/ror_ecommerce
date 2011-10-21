@@ -52,8 +52,8 @@ group :development do
 end
 
 group :test do
-  gem 'factory_girl_rails'
-  gem 'mocha', :require => false
+  gem 'factory_girl_rails', "~> 1.1.0"
+  gem 'mocha', '~> 0.10.0', :require => false
   gem 'rspec-rails-mocha'
   gem "shoulda"
   gem "rspec-rails",  "~> 2.4.0"
@@ -69,7 +69,7 @@ group :test do
   gem "autotest-rails-pure"
 
   if RUBY_PLATFORM =~ /darwin/
-    gem "autotest-fsevent"
+    gem "autotest-fsevent", '~> 0.2.5'
   end
   gem "autotest-growl"
   #gem "redgreen"
