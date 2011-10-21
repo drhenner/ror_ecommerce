@@ -32,9 +32,9 @@
         <td><%= link_to 'Edit', edit_admin_fulfillment_shipment_path(shipment) %></td>
         <td>
           <% unless shipment.shipped? %>
-            <%= button_to 'Mark Shipped', 
-                          ship_admin_fulfillment_shipment_path(shipment), 
-                          :confirm => "Are you sure?", 
+            <%= button_to 'Mark Shipped',
+                          ship_admin_fulfillment_shipment_path(shipment, :order_id => shipment.order.number),
+                          :confirm => "Are you sure?",
                           :method => :put %>
           <% end %>
         </td>

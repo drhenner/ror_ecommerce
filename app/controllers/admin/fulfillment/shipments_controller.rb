@@ -45,7 +45,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
 
     respond_to do |format|
       if @shipment.save
-        format.html { redirect_to(admin_fulfillment_shipments_path(@shipment, :order_id => @shipment.order_id), :notice => 'Shipment was successfully created.') }
+        format.html { redirect_to(admin_fulfillment_shipment_path(@shipment, :order_id => @shipment.order.number), :notice => 'Shipment was successfully created.') }
       else
         form_info
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
 
     respond_to do |format|
       if @shipment.update_attributes(params[:shipment])
-        format.html { redirect_to(admin_fulfillment_shipments_path(@shipment, :order_id => @shipment.order_id), :notice => 'Shipment was successfully updated.') }
+        format.html { redirect_to(admin_fulfillment_shipment_path(@shipment, :order_id => @shipment.order.number), :notice => 'Shipment was successfully updated.') }
       else
         form_info
         format.html { render :action => "edit" }
@@ -76,9 +76,9 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
 
     respond_to do |format|
       if @shipment.ship!
-        format.html { redirect_to(admin_fulfillment_shipments_path(@shipment, :order_id => @shipment.order_id), :notice => 'Shipment was successfully updated.') }
+        format.html { redirect_to(admin_fulfillment_shipment_path(@shipment, :order_id => @shipment.order.number), :notice => 'Shipment was successfully updated.') }
       else
-        format.html { redirect_to(admin_fulfillment_shipments_path(@shipment, :order_id => @shipment.order_id), :error => 'Shipment could not be shipped!!!') }
+        format.html { redirect_to(admin_fulfillment_shipment_path(@shipment, :order_id => @shipment.order.number), :error => 'Shipment could not be shipped!!!') }
       end
     end
   end
@@ -94,14 +94,14 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
     # We need to add capability to refund and return to stock in one large destroy form
 
     respond_to do |format|
-      format.html { redirect_to(admin_fulfillment_shipments_url( :order_id => (@shipment.order_id)) ) }
+      format.html { redirect_to(admin_fulfillment_shipments_url( :order_id => (@shipment.order.number)) ) }
     end
   end
 
   private
 
   def load_info
-    @order = Order.includes([:shipments, {:order_items => [:shipment, {:variant => :product}]}]).find(params[:order_id])
+    @order = Order.includes([:shipments, {:order_items => [:shipment, {:variant => :product}]}]).find_by_number(params[:order_id])
   end
 
   def form_info
