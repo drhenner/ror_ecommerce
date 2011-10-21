@@ -87,6 +87,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   # DELETE /admin/fulfillment/shipments/1.xml
   def destroy
     @shipment = Shipment.find(params[:id])
+    raise error
     @shipment.update_attributes(:active => false)
 
 

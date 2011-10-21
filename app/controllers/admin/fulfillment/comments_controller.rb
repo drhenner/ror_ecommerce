@@ -34,7 +34,6 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
           format.html { render :action => 'show' }
       end
     else
-      debugger
       form_info
       respond_to do |format|
           format.json { render :json => @comment.errors.to_json }
@@ -66,7 +65,6 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
   end
 
   def destroy
-    raise error
     @comment = order.comments.find(params[:id])
     @comment.destroy
     flash[:notice] = "Successfully destroyed comment."
