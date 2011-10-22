@@ -1,0 +1,11 @@
+<% content_for :header_sub_bar do -%>
+
+  <%= link_to "orders", admin_fulfillment_orders_path,
+                      :class  => "",
+                      :id     => "admin_fulfillment_orders_button" %> |
+
+  <%= link_to "Shipments", admin_fulfillment_shipments_path,
+                      :class  => "",
+                      :id     => "admin_fulfillment_shipments_button" %>
+
+<% end %>

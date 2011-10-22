@@ -32,7 +32,7 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
   # GET /return_authorizations/new.xml
   def new
     load_info
-    
+
     @return_authorization = ReturnAuthorization.new
     @return_authorization.comments << (Comment.new(:user_id => @order.user_id, :created_by => current_user.id))
     form_info
@@ -88,7 +88,7 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
     else
       flash[:error] = 'Something when wrong!'
     end
-    
+
     render :action => 'show'
   end
   # DELETE /return_authorizations/1
@@ -112,9 +112,9 @@ private
     @return_conditions  = ReturnCondition.select_form
     @return_reasons     = ReturnReason.select_form
   end
-  
+
   def load_info
-    @order = Order.includes([:ship_address, :invoices, 
+    @order = Order.includes([:ship_address, :invoices,
                              {:shipments => :shipping_method},
                              {:order_items => [
                                                 {:variant => [:product, :variant_properties]}]
