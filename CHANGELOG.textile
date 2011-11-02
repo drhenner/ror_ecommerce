@@ -1,3 +1,10 @@
+h3. 0.8.0 2011-11-02
+
+* Better shipments and fulfillment UI
+* remove unused code/views
+* upgrade to rails 3.1
+* upgrade most gems to the current versions
+
 h3. 0.7.0 2011-07-30
 
 * Inventory is now its own model...  TODO move inventory methods to the correct model(from variants)
