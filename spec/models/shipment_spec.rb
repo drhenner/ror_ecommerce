@@ -33,12 +33,9 @@ describe Shipment, 'instance methods' do
       @inventory  = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
       @variant    = Factory(:variant, :inventory => @inventory)
       @order_item = Factory(:order_item, :variant => @variant)
-      puts @inventory.id
-      puts @order_item.variant.inventory.id
       @shipment.order_items.push(@order_item)
       @shipment.ship_inventory
       variant_after_shipment = Variant.find(@variant.id)
-      puts variant_after_shipment.inventory.inspect
       variant_after_shipment.count_on_hand.should == 99
       variant_after_shipment.count_pending_to_customer.should == 49
     end
