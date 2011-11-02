@@ -14,7 +14,10 @@ class Admin::Document::InvoicesController < Admin::BaseController
     respond_to do |format|
       format.html
       #format.pdf { render :layout => false }
-      format.pdf { prawnto :prawn=>{:skip_page_creation=>true}}
+      format.pdf do
+        #prawnto :prawn=>{:skip_page_creation=>true}
+        send_data output, :filename => 'invoice.pdf', :type => 'application/pdf'
+      end
     end
   end
 

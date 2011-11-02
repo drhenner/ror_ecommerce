@@ -1,38 +1,38 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '~> 3.0.9'
+gem 'rails', '~> 3.1.1'
 
-gem "activemerchant", '~> 1.7.2'#, :lib => 'active_merchant'
-gem 'authlogic', "2.1.5"
+gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
+gem 'authlogic', "3.0.3"
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.4.1'
-gem 'compass', "~> 0.11.0"
+gem 'compass'#, "~> 0.11.0"
 gem 'dalli', '~> 1.0.2'
 
 gem 'fancy-buttons'
 gem 'formtastic',  "~> 1.1.0"
-gem "friendly_id", "~> 3.0"
+gem "friendly_id", "~> 3.3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 
 #gem 'memcache-client', '~> 1.8.5'
-gem 'mysql2', '~> 0.2.7'
+gem 'mysql2', '~> 0.3.7'
 
 gem 'nested_set', '~> 1.6.3'
 gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
-gem 'nokogiri', '~> 1.4.4'
-gem 'paperclip', '~> 2.3.8'
+gem 'nokogiri', '~> 1.5.0'
+gem 'paperclip', '~> 2.4.5'
 gem 'prawn', '~> 0.8.4'
 
 gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
 
-gem 'rake', '= 0.9.0'
+gem 'rake', '= 0.9.2'
 gem 'ssl_requirement'
 gem 'state_machine', '~> 1.0.1'
-gem 'sunspot_rails', '~> 1.2.rc4'
-gem 'will_paginate', '~> 3.0.pre2'
+gem 'sunspot_rails', '~> 1.2.1'
+gem 'will_paginate', '~> 3.0.0'
 
 ## ADD stuff here if you need them
 platforms :ruby_19 do
@@ -65,7 +65,7 @@ group :test do
   gem 'email_spec'
 
   gem "faker"
-  gem "autotest"
+  gem "autotest", '~> 4.4.6'
   gem "autotest-rails-pure"
 
   if RUBY_PLATFORM =~ /darwin/

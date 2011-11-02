@@ -44,4 +44,5 @@ Hadean::Application.configure do
       :test     => true
     )
   end
+  Mime::Type.register "application/pdf", :pdf
 end

@@ -396,6 +396,6 @@ class User < ActiveRecord::Base
   end
 
   def before_validation_on_create
-    self.access_token = ActiveSupport::SecureRandom::hex(9+rand(6)) if new_record? and access_token.nil?
+    self.access_token = SecureRandom::hex(9+rand(6)) if new_record? and access_token.nil?
   end
 end

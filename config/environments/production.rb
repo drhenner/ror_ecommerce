@@ -78,4 +78,5 @@ Hadean::Application.configure do
     #  :password  => HADEAN_CONFIG['braintree']['password']
     #)
   end
+  Mime::Type.register "application/pdf", :pdf
 end
