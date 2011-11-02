@@ -16,8 +16,7 @@ class Shopping::OrdersController < Shopping::BaseController
     if f = next_form(@order)
       redirect_to f
     else
-      @credit_card ||= ActiveMerchant::Billing::CreditCard.new()
-      @order.find_total
+      form_info
       respond_to do |format|
         format.html # index.html.erb
         format.xml  { render :xml => @orders }
@@ -54,15 +53,17 @@ class Shopping::OrdersController < Shopping::BaseController
           session_cart.mark_items_purchased(@order)
           redirect_to myaccount_order_path(@order)
         else
+          form_info
           flash[:error] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
           render :action => "index"
         end
       else
-        ###  Take this
+        form_info
         flash[:error] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
         render :action => 'index'
       end
     else
+      form_info
       flash[:error] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
       render :action => 'index'
     end
@@ -70,6 +71,10 @@ class Shopping::OrdersController < Shopping::BaseController
 
   private
 
+  def form_info
+    @credit_card ||= ActiveMerchant::Billing::CreditCard.new()
+    @order.credited_total
+  end
   def require_login
     if !current_user
       session[:return_to] = shopping_orders_url
