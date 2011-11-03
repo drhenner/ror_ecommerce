@@ -16,7 +16,7 @@ class Admin::Document::InvoicesController < Admin::BaseController
       #format.pdf { render :layout => false }
       format.pdf do
         #prawnto :prawn=>{:skip_page_creation=>true}
-        send_data output, :filename => 'invoice.pdf', :type => 'application/pdf'
+        send_data print_form(@invoice).render, :filename => "invoice_#{@invoice.number}.pdf", :type => 'application/pdf'
       end
     end
   end
