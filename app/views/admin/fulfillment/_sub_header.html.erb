@@ -1,5 +1,9 @@
 <% content_for :header_sub_bar do -%>
 
+  <%= link_to "Invoices", admin_document_invoices_path,
+              :class  => "",
+              :id     => "admin_document_invoices_button" %> |
+
   <%= link_to "orders", admin_fulfillment_orders_path,
                       :class  => "",
                       :id     => "admin_fulfillment_orders_button" %> |
