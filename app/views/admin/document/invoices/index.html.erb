@@ -24,4 +24,6 @@
   <% end %>
 </table>
 
-<p><%#= link_to "New Invoice", new_admin_document_invoice_path, :class => 'button' %></p>
+<p>
+<%= will_paginate @invoices %>
+<%#= link_to "New Invoice", new_admin_document_invoice_path, :class => 'button' %></p>

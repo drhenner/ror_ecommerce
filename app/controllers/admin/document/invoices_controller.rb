@@ -2,7 +2,10 @@ class Admin::Document::InvoicesController < Admin::BaseController
   include InvoicePrinter
 
   def index
-    @invoices = Invoice.includes([:order]).all
+    params[:page] ||= 1
+    params[:rows] ||= 25
+    @invoices = Invoice.includes([:order]).
+                        paginate({:page => params[:page].to_i,:per_page => params[:rows].to_i})
   end
 
   def show
