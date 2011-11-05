@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -272,16 +273,6 @@ ActiveRecord::Schema.define(:version => 20110729042134) do
   add_index "phones", ["phone_type_id"], :name => "index_phones_on_phone_type_id"
   add_index "phones", ["phoneable_id"], :name => "index_phones_on_phoneable_id"
   add_index "phones", ["phoneable_type"], :name => "index_phones_on_phoneable_type"
-
-  create_table "preferences", :force => true do |t|
-    t.string   "value"
-    t.string   "name"
-    t.string   "preference_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "preferences", ["name"], :name => "index_preferences_on_name"
 
   create_table "product_properties", :force => true do |t|
     t.integer "product_id",  :null => false

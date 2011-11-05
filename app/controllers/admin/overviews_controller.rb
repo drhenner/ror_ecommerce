@@ -20,7 +20,7 @@ class Admin::OverviewsController < ApplicationController
                        :password_confirmation => @password)
       @user.role_ids = Role.all.collect{|r| r.id }
       if @user.active? || @user.activate!
-
+        @user.save
         @user_session = UserSession.new(:email => @user.email, :password => @password)
         @user_session.save
       end
