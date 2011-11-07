@@ -7,7 +7,7 @@
       <%= form.text_field :name %>
     </div>
     <div class='span-6 last'>
-      <%= form.select :parent_id,
+      Parent: <%= form.select :parent_id,
                       nested_set_options(ProductType, @product_type) {|i, level| "#{'-' * level} #{i.name}" },
                       { :include_blank => true } %>
     </div>

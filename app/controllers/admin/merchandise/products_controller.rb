@@ -25,7 +25,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     form_info
     if @prototypes.empty?
       flash[:notice] = "You must create a prototype before you create a product."
-      redirect_to new_admin_merchandise_prototype_path
+      redirect_to new_admin_merchandise_prototype_url
     else
       @product            = Product.new
       @product.prototype  = Prototype.new
@@ -37,7 +37,8 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     @product = Product.new(params[:product])
 
     if @product.save
-      redirect_to :action => :index
+      flash[:notice] = "Success, You should create a variant for the product."
+      redirect_to new_admin_merchandise_product_variant_url(@product)
     else
       form_info
       flash[:error] = "The product could not be saved"
