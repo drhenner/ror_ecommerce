@@ -25,14 +25,14 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   def new
     form_info
     @product = Product.find(params[:product_id])
-    @variant = @product.variants.new()
+    #@variant = @product.variants.new()
   end
 
   def create
     @product = Product.find(params[:product_id])
-    @variant = @product.variants.new(params[:variant])
+    #@variant = @product.variants.new(params[:variant])
 
-    if @variant.save
+    if @product.update_attributes(params[:product])
       redirect_to admin_merchandise_product_variants_url(@product)
     else
       form_info

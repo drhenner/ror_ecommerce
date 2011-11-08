@@ -1,51 +1,51 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
 <h2> Product: <%= @product.name %></h2>
-<fieldset id="admin-product-names" class='span-12'>
-<div class='span-3'>
-  <%= label :product, :name %>
-</div>
-<div class='span-6 last'>
-  <%= @product.name %>
-</div>
-<div class='clear'></div>
-<div class='span-3'>
-  <%= label :product, :description %>
-</div>
-<div class='span-6 last'>
-  <%= @product.description %>
-</div>
+<fieldset id="admin-product-names" class='span-12' style='text-align:left;'>
+  <div class='span-3'>
+    <%= label :product, :name %>
+  </div>
+  <div class='span-6 last'>
+    <%= @product.name %>
+  </div>
+  <div class='clear'></div>
+  <div class='span-3'>
+    <%= label :product, :description %>
+  </div>
+  <div class='span-6 last'>
+    <%= @product.description %>
+  </div>
 
-<div class='clear'></div>
-<div class='span-3'>
-  <%= label :product, :meta_keywords %>
-</div>
-<div class='span-6 last'>
-  <%= @product.meta_keywords %>
-</div>
-<div class='clear'></div>
-<div class='span-3'>
-  <%= label :product, :meta_description %>
-</div>
-<div class='span-6 last'>
-  <%= @product.meta_description %>
-</div>
+  <div class='clear'></div>
+  <div class='span-3'>
+    <%= label :product, :meta_keywords %>
+  </div>
+  <div class='span-6 last'>
+    <%= @product.meta_keywords %>
+  </div>
+  <div class='clear'></div>
+  <div class='span-3'>
+    <%= label :product, :meta_description %>
+  </div>
+  <div class='span-6 last'>
+    <%= @product.meta_description %>
+  </div>
 
-<div class='clear'></div>
-<div class='span-3'>
-  <%= label :product, :product_type %>
-</div>
-<div class='span-6 last'>
-  <%= @product.product_type.name %>
-</div>  
+  <div class='clear'></div>
+  <div class='span-3'>
+    <%= label :product, :product_type %>
+  </div>
+  <div class='span-6 last'>
+    <%= @product.product_type.name %>
+  </div>
 
-<div class='clear'></div>
-<div class='span-3'>
-  <%= label :product, :shipping_category %>
-</div>
-<div class='span-6 last'>
-  <%= @product.shipping_category.name %>
-</div>
+  <div class='clear'></div>
+  <div class='span-3'>
+    <%= label :product, :shipping_category %>
+  </div>
+  <div class='span-6 last'>
+    <%= @product.shipping_category.name %>
+  </div>
 </fieldset>
 
 <fieldset id="admin-product-properties" class='span-12'>
@@ -53,6 +53,34 @@
   <% @product.product_properties.each do |product_prop|  %>
     <%= product_prop.property.identifing_name %>: <%= product_prop.description %>
   <% end %>
+</fieldset>
+
+<fieldset id="admin-product-properties" class='span-12'>
+  <legend>Variants</legend>
+  <table>
+      <tr>
+        <th>SKU   </th>
+        <th>Price </th>
+        <th>Cost  </th>
+        <th>Brand </th>
+        <% @product.properties.each do |property| %>
+          <th><%= property.display_name %>  </th>
+        <% end %>
+      </tr>
+    </thead>
+    <% @product.variants.each do |variant|  %>
+      <tr>
+        <td> <%= variant.sku %> </td>
+        <td> <%= variant.price %> </td>
+        <td> <%= variant.cost %> </td>
+        <td> <%= variant.brand.try(:name) %> </td>
+        <% @product.properties.each do |property| %>
+            <% variant_property = property.variant_properties.find(variant.id) %>
+            <td style='<%= "color:#C66;" if variant_property.primary %>'><%= variant_property.description %> </td >
+        <% end %>
+      </tr >
+    <% end %>
+  </table>
 </fieldset>
 
 <% @product.images.each do |image| %>

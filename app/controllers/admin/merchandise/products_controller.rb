@@ -38,7 +38,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
 
     if @product.save
       flash[:notice] = "Success, You should create a variant for the product."
-      redirect_to new_admin_merchandise_product_variant_url(@product)
+      redirect_to edit_variants_admin_merchandise_product_url(@product)
     else
       form_info
       flash[:error] = "The product could not be saved"
@@ -62,6 +62,24 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     else
       form_info
       render :action => :edit, :layout => 'admin_markup'
+    end
+  end
+
+  def edit_variants
+    @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
+    @brands = Brand.all.collect{|b| [b.name, b.id] }
+    render :layout => 'admin_markup'
+  end
+
+  def update_variants
+    @product = Product.find(params[:id])
+
+    if @product.update_attributes(params[:product])
+      flash[:notice] = "Successfully updated variants"
+      redirect_to :action => :show
+    else
+      @brands = Brand.all.collect{|b| [b.name, b.id] }
+      render :action => :edit_variants, :layout => 'admin_markup'
     end
   end
 

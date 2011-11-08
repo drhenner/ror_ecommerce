@@ -48,7 +48,7 @@ class Product < ActiveRecord::Base
 
   before_save :create_content
 
-  accepts_nested_attributes_for :variants
+  accepts_nested_attributes_for :variants, :reject_if => proc { |attributes| attributes['sku'].blank? }
   accepts_nested_attributes_for :product_properties, :reject_if => proc { |attributes| attributes['description'].blank? }
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |t| t['photo'].nil? }

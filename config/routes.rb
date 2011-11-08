@@ -127,6 +127,8 @@ Hadean::Application.routes.draw do # |map|
       resources :products do
         member do
           get :add_properties
+          get :edit_variants
+          put :update_variants
         end
         resources :variants
       end
