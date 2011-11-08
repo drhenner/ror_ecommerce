@@ -75,7 +75,7 @@
         <td> <%= variant.cost %> </td>
         <td> <%= variant.brand.try(:name) %> </td>
         <% @product.properties.each do |property| %>
-            <% variant_property = property.variant_properties.find(variant.id) %>
+            <% variant_property = property.variant_properties.find_by_variant_id(variant.id) %>
             <td style='<%= "color:#C66;" if variant_property.primary %>'><%= variant_property.description %> </td >
         <% end %>
       </tr >
