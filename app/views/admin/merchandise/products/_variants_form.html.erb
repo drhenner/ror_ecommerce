@@ -36,7 +36,7 @@
 
 </table>
 
-<table id='variants_fields_template' class='tetetetetetet' style='display:none;' >
+<table id='variants_fields_template' style='display:none;' >
   <%= form.fields_for :variants, Variant.new(:product_id => @product.id), :child_index => "new_variants" do |ff| %>
 
     <tr >
