@@ -41,7 +41,7 @@ class Shopping::CartItemsController < Shopping::BaseController
     respond_to do |format|
       if session_cart.update_attributes(params[:cart])
         if params[:commit] && params[:commit] == "checkout"
-          format.html { redirect_to(shopping_orders_url()) }
+          format.html { redirect_to( checkout_shopping_order_url('checkout')) }
         else
           format.html { redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_passed_update') ) }
         end
