@@ -87,12 +87,31 @@ Hadean::Application.routes.draw do # |map|
     end
     namespace :shopping do
       resources :carts
-      resources :billing_addresses
-      resources :credit_cards
+      #resources :billing_addresses
+      #resources :credit_cards
       resources :products
-      resources :shipping_addresses
-      resources :shipping_methods
+      #resources :shipping_addresses
+      #resources :shipping_methods
       resources :users
+      namespace :checkout do
+        resources :billing_addresses, :only => [:index, :update, :new, :create, :select_address] do
+          member do
+            put :select_address
+          end
+        end
+        resources :credit_cards
+        resource  :order, :only => [:show, :update, :start_checkout_process] do
+          member do
+            post :start_checkout_process
+          end
+        end
+        resources :shipping_addresses, :only => [:index, :update, :new, :create, :select_address] do
+          member do
+            put :select_address
+          end
+        end
+        resources :shipping_methods, :only => [:index, :update]
+      end
     end
     namespace :config do
       resources :accounts

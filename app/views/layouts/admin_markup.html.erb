@@ -41,7 +41,7 @@
     <div id='header_bar' class='float-left span-24'>
       <%= render :partial => '/shared/admin/header_buttons'  %>
     </div>
-    <% if  yield :header_sub_bar %>
+    <% if  content_for? :header_sub_bar %>
       <div id='header_sub_bar'>
         <%= yield :header_sub_bar %>
       </div>

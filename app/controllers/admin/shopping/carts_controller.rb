@@ -2,7 +2,7 @@ class Admin::Shopping::CartsController < Admin::Shopping::BaseController
   # GET /admin/order/carts
   # GET /admin/order/carts.xml
   def index
-    authorize! :create_orders, current_user
+    authorize! :create_orders, current_user # This is cancan code.  Authorizes if the user can create an order
     if f = next_admin_cart_form
       redirect_to f
     else

@@ -1,0 +1,25 @@
+<h2>Pick a Shipping Method</h2>
+
+
+  <%= form_tag(admin_shopping_checkout_shipping_method_path(session_admin_order.id), :method => :put) do -%>
+    <% session_admin_order.order_items.group_by(&:ship_category_id).each do |shipping_category_id, items| %>
+      <div class='column float-left span-14 line_items_blue last'>
+          <% items.each do |item| %>
+            <div class='span-14 <%= cycle("line_item_yellow", "line_item_gray") -%>'  style='width:535px;'>
+                <div class='span-8 '>
+                  <%= image_tag(item.variant.product.featured_image(:mini)) %>
+                  <%= item.variant.product.name %> Quantity: <%#= item.quantity %>
+                </div>
+                <div class='span-5  last' style='text-align:left;'>
+                  <%= raw item.variant.display_property_details %>
+                </div>
+            </div>
+          <% end %>
+          <% items.first.variant.product.shipping_category.shipping_rates.each do |rate| %>
+            <%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_with_rate %>
+          <% end %>
+      </div>
+    <% end %>
+
+    <%= submit_tag 'continue'%>
+  <% end %>

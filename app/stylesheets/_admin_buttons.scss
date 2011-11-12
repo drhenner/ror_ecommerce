@@ -1,0 +1,53 @@
+
+.button {
+    display: inline-block;
+    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+    *display: inline;
+    vertical-align: baseline;
+    margin: 0 2px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+
+.button {
+    background: #777777;
+    background: -webkit-gradient(linear, top, bottom, from(#888888), to(#555555));
+    background: -moz-linear-gradient(center top , #888888, #555555) repeat scroll 0 0 transparent;
+    border: 1px solid #444444;
+    color: #FFFFFF !important;
+    font-variant: small-caps;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0.1em 0.7em;
+
+}
+.button.selected {
+  background: #AAAAAA;
+  background: -webkit-gradient(linear, top, bottom, from(#AAAAAA), to(#888888));
+  background: -moz-linear-gradient(center top , #AAAAAA, #888888) repeat scroll 0 0 transparent;
+  border: 1px solid #777777;
+}
+.button:hover {
+    background: #555555;
+    background: -webkit-gradient(linear, top, bottom, from(#666666), to(#333333));
+    background: -moz-linear-gradient(center top , #666666, #333333) repeat scroll 0 0 transparent;
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#333333');
+    border: 1px solid #444444;
+    color: #F7F7F7 !important;
+    font-variant: small-caps;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0.1em 0.7em;
+}

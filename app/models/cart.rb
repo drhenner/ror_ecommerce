@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
   belongs_to  :user
+  belongs_to  :customer, :class_name => 'User'
   has_many    :cart_items
   has_many    :shopping_cart_items,       :conditions => ['cart_items.active = ? AND
                                                           cart_items.item_type_id = ?', true, ItemType::SHOPPING_CART_ID],
@@ -52,30 +53,25 @@ class Cart < ActiveRecord::Base
   # @param [User, #read] user that is adding something to the cart
   # @param [Integer, #optional] ItemType id that is being added to the cart
   # @return [CartItem] return the cart item that is added to the cart
-  def add_variant(variant_id, customer, qty = 1, cart_item_type_id = ItemType::SHOPPING_CART_ID)
+  def add_variant(variant_id, customer, qty = 1, cart_item_type_id = ItemType::SHOPPING_CART_ID, admin_purchase = false)
     items = shopping_cart_items.find_all_by_variant_id(variant_id)
     variant = Variant.find(variant_id)
-    unless variant.sold_out?
-      if items.size < 1
-        cart_item = shopping_cart_items.create(:variant_id   => variant_id,
-                                      :user         => customer,
-                                      :item_type_id => cart_item_type_id,
-                                      :quantity     => qty#,#:price      => variant.price
-                                      )
-      else
-        cart_item = items.first
-        update_shopping_cart(cart_item,customer, qty)
-      end
-    else
+    quantity_to_purchase = (variant.quantity_purchaseable(admin_purchase) < qty.to_i) ? variant.quantity_purchaseable(admin_purchase) : qty.to_i # if we have less than desired instock
+
+    if admin_purchase && (quantity_to_purchase > 0)
+      cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
+    elsif variant.sold_out?
       cart_item = saved_cart_items.create(:variant_id   => variant_id,
                                     :user         => customer,
                                     :item_type_id => ItemType::SAVE_FOR_LATER_ID,
                                     :quantity     => qty#,#:price      => variant.price
                                     ) if items.size < 1
-
+    else
+      cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
     end
     cart_item
   end
+
 
   # Call this method when you want to remove an item from the shopping cart
   #   The CartItem will not delete.  Instead it is just inactivated
@@ -113,6 +109,20 @@ class Cart < ActiveRecord::Base
     else
       self.shopping_cart_items.find(cart_item.id).update_attributes(:quantity => (cart_item.quantity + qty))
     end
+  end
+
+  def add_cart_items(items, qty, customer, cart_item_type_id, variant_id)
+    if items.size < 1
+      cart_item = shopping_cart_items.create(:variant_id   => variant_id,
+                                    :user         => customer,
+                                    :item_type_id => cart_item_type_id,
+                                    :quantity     => qty#,#:price      => variant.price
+                                    )
+    else
+      cart_item = items.first
+      update_shopping_cart(cart_item,customer, qty)
+    end
+    cart_item
   end
 
   def items_to_add_or_destroy(items_in_cart, order)

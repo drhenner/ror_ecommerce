@@ -1,4 +1,4 @@
-@import "fancy-buttons";
+// @import "fancy-buttons";
 
 body {
   text-align: center;
@@ -23,6 +23,7 @@ $blue: adjust_hue($green, 110);
 $red: adjust_hue($green, -100);
 $heart_button: saturate(lighten($red, 2), 20);
 
+/*
 @mixin custom-fancy-gradient($color1, $color2) {
   @include radial-gradient(color_stops($color1, darken($color2, 5) 30px), "50% 10%"); }
 
@@ -59,3 +60,4 @@ a.button, button {
   &.spade {
     @include fancy-button-colors-custom($blue);
     @include fancy-button-padding(2px, 8px, 2px); } }
+*/

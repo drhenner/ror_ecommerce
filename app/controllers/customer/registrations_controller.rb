@@ -20,7 +20,7 @@ class Customer::RegistrationsController < ApplicationController
     else
       @registration = true
       @user_session = UserSession.new
-      render :action => :new
+      render :template => 'user_sessions/new'
     end
   end
 

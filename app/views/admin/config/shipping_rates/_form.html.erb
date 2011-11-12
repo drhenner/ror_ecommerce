@@ -11,20 +11,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.input :shipping_method_id,  :as => :select, 
-                                      :collection => @shipping_methods %>
+    <%= f.label :shipping_method_id %>
+    <%= f.select :shipping_method_id, @shipping_methods %>
   </div>
   <div class="field">
-    <%= f.input :rate %>
+    <%= f.label :rate %>
+    <%= f.text_field :rate %>
   </div>
   <div class="field">
-    <%= f.input :shipping_rate_type_id, :as => :select, 
-                                        :collection => @shipping_rate_types %>
+    <%= f.label :shipping_rate_type_id %>
+    <%= f.select :shipping_rate_type_id, @shipping_rate_types %>
   </div>
 
   <div class="field">
-    <%= f.input :shipping_category_id, :as => :select, 
-                                        :collection => @shipping_categories %>
+    <%= f.label :shipping_category_id %>
+    <%= f.select :shipping_category_id, @shipping_categories %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -34,12 +34,28 @@ class Variant < ActiveRecord::Base
   OUT_OF_STOCK_QTY    = 2
   LOW_STOCK_QTY       = 6
 
+  # returns quantity available in stock
+  #
+  # @param [none]
+  # @return [Boolean]
+  def quantity_purchaseable(admin_purchase = false)
+    admin_purchase ? quantity_available : (quantity_available - OUT_OF_STOCK_QTY)
+  end
+  
+  # returns quantity available in stock
+  #
+  # @param [none]
+  # @return [Boolean]
+  def quantity_available
+    (count_on_hand - count_pending_to_customer)
+  end
+
   # returns true if the stock level is above or == the out of stock level
   #
   # @param [none]
   # @return [Boolean]
   def sold_out?
-    (count_on_hand - count_pending_to_customer) <= OUT_OF_STOCK_QTY
+    (quantity_available) <= OUT_OF_STOCK_QTY
   end
 
   # returns true if the stock level is above or == the low stock level
@@ -47,7 +63,7 @@ class Variant < ActiveRecord::Base
   # @param [none]
   # @return [Boolean]
   def low_stock?
-    (count_on_hand - count_pending_to_customer) <= LOW_STOCK_QTY
+    (quantity_available) <= LOW_STOCK_QTY
   end
 
   # returns "(Sold Out)" or "(Low Stock)" or "" depending on if the variant is out of stock / low stock or has enough stock.

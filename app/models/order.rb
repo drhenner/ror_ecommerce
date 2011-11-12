@@ -251,9 +251,15 @@ class Order < ActiveRecord::Base
   #
   # @param [none]
   # @return [Decimal] amount of the shipping charges
-  def shipping_charges
+  def shipping_charges(items = nil)
     return @order_shipping_charges if defined?(@order_shipping_charges)
-    @order_shipping_charges = shipping_rates.inject(0.0) {|sum, shipping_rate|  sum + shipping_rate.rate  }
+    @order_shipping_charges = shipping_rates(items).inject(0.0) {|sum, shipping_rate|  sum + shipping_rate.rate  }
+  end
+
+  def display_shipping_charges
+    items = OrderItem.order_items_in_cart(self.id)
+    return 'TBD' if items.any?{|i| i.shipping_rate_id.nil? }
+    shipping_charges(items)
   end
 
   # all the shipping rate to apply to the order
@@ -261,8 +267,8 @@ class Order < ActiveRecord::Base
   # @param [none]
   # @return [Array] array of shipping rates that will be charged, it will return the same
   #                 shipping rate more than once if it can be charged more than once
-  def shipping_rates
-    items = OrderItem.order_items_in_cart(self.id)
+  def shipping_rates(items = nil)
+    items ||= OrderItem.order_items_in_cart(self.id)
     rates = items.inject([]) do |rates, item|
       rates << item.shipping_rate if item.shipping_rate.individual? || !rates.include?(item.shipping_rate)
       rates

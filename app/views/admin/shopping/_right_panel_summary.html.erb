@@ -1,53 +1,43 @@
-<h3> <%= session_admin_cart[:user] ? session_admin_cart[:user].name : 'No User' %> </h3>
+<% if @session_admin_order %>
+  <%= render :partial => '/admin/shopping/checkout/right_panel_summary'%>
+<% else %>
+<h3> <%= session_admin_cart.customer_id ? session_admin_cart.customer.name : 'No Customer' %> </h3>
   <table>
     <thead>
       <tr class='odd'>
         <th class='column1_header'>
           Item <span class='ss_sprite ss_application_cascade'></span>
-        
+
         </th><th>Price:</th><th>Qty</th><th>Price + Tax</th>
       </tr>
     </thead>
-    <% session_admin_cart[:order_items].each do |item| %>
+    <% session_admin_cart.shopping_cart_items.each do |item| %>
       <tr class='<%= cycle("odd", "")%> '>
-        <td><%= item.second[:variant].product_name %></td>
-        <td><%= item.second[:price] %></td>
-        <td><%= item.second[:quantity] %></td>
-        <td><%= item.second[:quantity].to_f * item.second[:total] %></td>
+        <td><%= item.variant.product_name %></td>
+        <td><%= item.variant.price %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.quantity.to_f * item.variant.price %></td>
       </tr>
     <% end %>
     <tr class='odd top_border'>
       <td></td>
       <td>Sub-total:</td>
       <td></td>
-      <td><%= sub_total = session_admin_cart[:order_items].inject(0) {|total,i| (i.second[:quantity].to_f * i.second[:total]) + total } %></td>
+      <td><%= sub_total = session_admin_cart.shopping_cart_items.inject(0) {|total,i| (i.quantity.to_f * i.variant.price) + total } %></td>
     </tr>
     <tr>
       <td></td>
-      <% if session_admin_cart[:order_items].size > 0 %>
-          <td><%= link_to 'Shipping Charges:', admin_shopping_shipping_methods_path %></td>
-          <td></td>
-          <td>
-            <% rates = session_admin_cart[:order_items].inject([]) do |rates,i| 
-              if i.second[:shipping_rate] && (i.second[:shipping_rate].individual? || 
-                                              !rates.include?(i.second[:shipping_rate]))
-                rates << i.second[:shipping_rate] 
-              end
-              rates
-            end
-            %>
-            <%= ship_rate = rates.inject(0) {|total,rate| rate.rate + total }%>
-          </td>
-      <% else %>
-          <% ship_rate = 0 %>
-          <td>Shipping Charges:</td>
-          <td></td>
-          <td> N/A </td>
-      <% end %>
+      <td>Shipping Charges:</td>
+      <td></td>
+      <td> TBD </td>
     </tr>
     <tfoot>
       <tr class='even'>
-        <td></td><td>Total:</td><td></td><td><em><%= ship_rate + sub_total %></em></td>
+        <td></td><td>Total:</td><td></td><td><em>TBD</em></td>
       </tr>
     </tfoot>
   </table>
+  <% unless session_admin_cart.shopping_cart_items.empty? %>
+    <%= link_to 'Checkout', start_checkout_process_admin_shopping_checkout_order_path, :class => 'button', :method => 'POST' %>
+  <% end %>
+<% end %>

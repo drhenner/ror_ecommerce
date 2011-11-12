@@ -3,16 +3,17 @@
 
 <%= form_tag admin_shopping_product_path(@product), :method => 'put' do %>
   <% @product.variants.each_with_index do |variant, i| %>
-    <div  id='variant-<%= i %>' 
-          class='<%= cycle("line_item_yellow", "line_item_gray") %> '>
+    <div  id='variant-<%= i %>'
+          class='<%= cycle("line_item_yellow", "line_item_gray") %> clear clearfix'>
       <%= variant.display_property_details %>
       <%= number_to_currency( variant.price ) %>
       <div id='variant-qty-<%= i %>' class='span-3'>
         Quantity: <%= text_field_tag("variant[#{ variant.id }]", nil, :class => 'span-1') %>
       </div>
+      <%= variant.display_stock_status %>(<%= variant.quantity_available %>)
     </div>
   <% end %>
-  
+
   <%= submit_tag 'Add Items' %>
 <% end %>
 

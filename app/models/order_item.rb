@@ -51,6 +51,10 @@ class OrderItem < ActiveRecord::Base
     shipping_rate.shipping_method_id
   end
 
+  def ship_category_id
+    variant.product.shipping_category_id
+  end
+
   # called in checkout process. will give you the 'quantity', 'sum of all the prices' and 'sum of all the totals'
   #  it is better to do the math in SQL than ruby
   #

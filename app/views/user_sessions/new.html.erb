@@ -23,6 +23,16 @@
   </div>
 <% end %>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation" class='error'>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <div id='login-wrapper' class='hadean-login'>
   <div id='login' class='hadean-login span-8 '>
 

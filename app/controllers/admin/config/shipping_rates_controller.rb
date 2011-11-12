@@ -93,12 +93,12 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
       format.xml  { head :ok }
     end
   end
-  
+
   private
-  
+
   def form_info
-    @shipping_rate_types  = ShippingRateType.all
-    @shipping_methods     = ShippingMethod.all
-    @shipping_categories  = ShippingCategory.all
+    @shipping_rate_types  = ShippingRateType.all.map{|srt| [srt.name, srt.id]}
+    @shipping_methods     = ShippingMethod.all.map{|sm| [sm.name, sm.id]}
+    @shipping_categories  = ShippingCategory.all.map{|sc| [sc.name, sc.id]}
   end
 end

@@ -6,7 +6,6 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @shipping_methods }
     end
   end
 
@@ -17,14 +16,13 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @shipping_method }
     end
   end
 
   # GET /admin/config/shipping_methods/new
   # GET /admin/config/shipping_methods/new.xml
   def new
-    
+
     form_info
     if @shipping_zones.empty?
         flash[:notice] = "You must create a Shipping Zone before you create a Shipping Method."
@@ -33,7 +31,6 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
       @shipping_method = ShippingMethod.new
       respond_to do |format|
         format.html # new.html.erb
-        format.xml  { render :xml => @shipping_method }
       end
     end
   end
@@ -52,11 +49,9 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
     respond_to do |format|
       if @shipping_method.save
         format.html { redirect_to(admin_config_shipping_method_url(@shipping_method), :notice => 'Shipping method was successfully created.') }
-        format.xml  { render :xml => @shipping_method, :status => :created, :location => @shipping_method }
       else
         form_info
         format.html { render :action => "new" }
-        format.xml  { render :xml => @shipping_method.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -69,11 +64,9 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
     respond_to do |format|
       if @shipping_method.update_attributes(params[:shipping_method])
         format.html { redirect_to(admin_config_shipping_method_url(@shipping_method), :notice => 'Shipping method was successfully updated.') }
-        format.xml  { head :ok }
       else
         form_info
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @shipping_method.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -89,10 +82,10 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   #    format.xml  { head :ok }
   #  end
   #end
-  
+
   private
-  
+
   def form_info
-    @shipping_zones = ShippingZone.all
+    @shipping_zones = ShippingZone.all.map{|sz| [sz.name, sz.id]}
   end
 end
