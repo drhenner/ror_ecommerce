@@ -31,15 +31,17 @@ class Variant < ActiveRecord::Base
             :count_on_hand=,
             :count_pending_to_customer=,
             :count_pending_from_supplier=, :to => :inventory, :allow_nil => false
-  OUT_OF_STOCK_QTY    = 2
-  LOW_STOCK_QTY       = 6
+
+  ADMIN_OUT_OF_STOCK_QTY  = 0
+  OUT_OF_STOCK_QTY        = 2
+  LOW_STOCK_QTY           = 6
 
   # returns quantity available to purchase
   #
   # @param [none]
   # @return [Boolean]
   def quantity_purchaseable(admin_purchase = false)
-    admin_purchase ? quantity_available : (quantity_available - OUT_OF_STOCK_QTY)
+    admin_purchase ? (quantity_available - ADMIN_OUT_OF_STOCK_QTY) : (quantity_available - OUT_OF_STOCK_QTY)
   end
 
   # returns quantity available in stock
