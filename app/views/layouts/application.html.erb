@@ -68,13 +68,7 @@
 
           </ul>
 
-          <%= form_for search_product, :html => {:class => 'search'} do %>
-            <div class="field search">
-              <span class="icon-search"></span>
-              <%= text_field_tag 'q', nil , :class => 'input-search text', :id => 'term' %>
-              <%= submit_tag 'Go',          :class => 'button spade' %>
-            </div>
-          <% end %>
+          <%= render 'layout/product_search' %>
         </div>
       </div>
       <div id="sub_header_wrapper" class='bp'>
