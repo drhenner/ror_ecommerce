@@ -235,7 +235,6 @@ class Invoice < ActiveRecord::Base
         payment_authorized!
         authorize_complete_order
       else
-        debugger
         transaction_declined!
       end
       authorization
