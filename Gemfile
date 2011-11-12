@@ -50,13 +50,15 @@ group :development do
   gem "ruby-debug19"
   #gem "ruby-debug"
 end
+group :test, :development do
+  gem "rspec-rails", "~> 2.7.0"
+end
 
 group :test do
   gem 'factory_girl_rails', "~> 1.1.0"
   gem 'mocha', '~> 0.10.0', :require => false
   gem 'rspec-rails-mocha'
   gem "shoulda"
-  gem "rspec-rails",  "~> 2.7.0"
   gem "rspec",        "~> 2.7.0"
 
   gem "rspec-core",         "~> 2.7.1"
