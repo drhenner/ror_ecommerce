@@ -20,5 +20,5 @@
 </div>
 <br />
 <%= form_for @shopping_address, :url => shopping_addresses_path do |address_form| %>
-  <%= render 'form' %>
+  <%= render :partial =>  'form', :locals => {:f => address_form}  %>
 <% end %>
