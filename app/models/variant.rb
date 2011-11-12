@@ -34,14 +34,14 @@ class Variant < ActiveRecord::Base
   OUT_OF_STOCK_QTY    = 2
   LOW_STOCK_QTY       = 6
 
-  # returns quantity available in stock
+  # returns quantity available to purchase
   #
   # @param [none]
   # @return [Boolean]
   def quantity_purchaseable(admin_purchase = false)
     admin_purchase ? quantity_available : (quantity_available - OUT_OF_STOCK_QTY)
   end
-  
+
   # returns quantity available in stock
   #
   # @param [none]
