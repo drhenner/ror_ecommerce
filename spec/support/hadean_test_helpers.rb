@@ -6,7 +6,7 @@ module Hadean
       user_session_for user
 
       #u ||= Factory(user)
-      @controller.stubs(:current_user).returns(user)
+      controller.stubs(:current_user).returns(user)
       #u
     end
 
@@ -20,7 +20,7 @@ module Hadean
 
     def set_current_user(user = Factory(:user))
       UserSession.create(user)
-      @controller.stubs(:current_user).returns(user)
+      controller.stubs(:current_user).returns(user)
     end
 
     #def admin_role
