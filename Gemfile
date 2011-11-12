@@ -31,7 +31,7 @@ gem 'rmagick',    :require => 'RMagick'
 gem 'rake', '= 0.9.2'
 gem 'ssl_requirement'
 gem 'state_machine', '~> 1.0.1'
-gem 'sunspot_rails', '~> 1.2.1'
+gem 'sunspot_rails', '~> 1.3.0rc6'
 gem 'will_paginate', '~> 3.0.0'
 
 ## ADD stuff here if you need them
@@ -56,12 +56,12 @@ group :test do
   gem 'mocha', '~> 0.10.0', :require => false
   gem 'rspec-rails-mocha'
   gem "shoulda"
-  gem "rspec-rails",  "~> 2.4.0"
-  gem "rspec",        "~> 2.4.0"
+  gem "rspec-rails",  "~> 2.7.0"
+  gem "rspec",        "~> 2.7.0"
 
-  gem "rspec-core",         "~> 2.4.0"
-  gem "rspec-expectations", "~> 2.4.0"
-  gem "rspec-mocks",        "~> 2.4.0"
+  gem "rspec-core",         "~> 2.7.1"
+  gem "rspec-expectations", "~> 2.7.0"
+  gem "rspec-mocks",        "~> 2.7.0"
   gem 'email_spec'
 
   gem "faker"
