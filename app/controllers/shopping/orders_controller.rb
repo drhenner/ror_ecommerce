@@ -19,9 +19,17 @@ class Shopping::OrdersController < Shopping::BaseController
       form_info
       respond_to do |format|
         format.html # index.html.erb
-        format.xml  { render :xml => @orders }
       end
     end
+  end
+
+
+  #  add checkout button
+  def checkout
+    #current or in-progress otherwise cart (unless cart is empty)
+    order = find_or_create_order
+    @order = session_cart.add_items_to_checkout(order) # need here because items can also be removed
+    redirect_to shopping_orders_url
   end
 
   # POST /shopping/orders
