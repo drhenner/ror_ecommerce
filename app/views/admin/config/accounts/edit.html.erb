@@ -2,7 +2,7 @@
 <h1>Editing account</h1>
 
 
-<%= semantic_form_for( @account, :as => :account, :url => admin_config_account_path(@account)) do |f| %>
+<%= form_for( @account, :url => admin_config_account_path(@account)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 
