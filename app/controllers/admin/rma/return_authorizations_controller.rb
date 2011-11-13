@@ -22,10 +22,6 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
   def show
     load_info
     @return_authorization = ReturnAuthorization.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
   end
 
   # GET /return_authorizations/new
@@ -36,9 +32,6 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
     @return_authorization = ReturnAuthorization.new
     @return_authorization.comments << (Comment.new(:user_id => @order.user_id, :created_by => current_user.id))
     form_info
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
   # GET /return_authorizations/1/edit

@@ -19,11 +19,6 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   # GET /purchase_orders/1.xml
   def show
     @purchase_order = PurchaseOrder.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @purchase_order }
-    end
   end
 
   # GET /purchase_orders/new
@@ -38,7 +33,6 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
     else
       respond_to do |format|
         format.html # new.html.erb
-        format.xml  { render :xml => @purchase_order }
       end
     end
   end
@@ -58,11 +52,9 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
     respond_to do |format|
       if @purchase_order.save
         format.html { redirect_to(:action => :index, :notice => 'Purchase order was successfully created.') }
-        format.xml  { render :xml => @purchase_order, :status => :created, :location => @purchase_order }
       else
         form_info
         format.html { render :action => "new" }
-        format.xml  { render :xml => @purchase_order.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -75,11 +67,9 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
     respond_to do |format|
       if @purchase_order.update_attributes(params[:purchase_order])
         format.html { redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.') }
-        format.xml  { head :ok }
       else
         form_info
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @purchase_order.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -89,11 +79,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   def destroy
     @purchase_order = PurchaseOrder.find(params[:id])
     @purchase_order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(admin_inventory_purchase_orders_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(admin_inventory_purchase_orders_url)
   end
   private
 
