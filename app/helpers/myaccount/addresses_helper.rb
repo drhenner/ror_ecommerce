@@ -1,2 +1,0 @@
-module Myaccount::AddressesHelper
-end
