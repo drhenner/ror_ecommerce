@@ -43,7 +43,7 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
 
     respond_to do |format|
       if @shipping_category.save
-        format.html { redirect_to(admin_config_shipping_rates_path(), :notice => 'Shipping category was successfully created.') }
+        format.html { redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully created.') }
       else
         form_info
         format.html { render :action => "new" }
@@ -58,7 +58,7 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
 
     respond_to do |format|
       if @shipping_category.update_attributes(params[:shipping_category])
-        format.html { redirect_to(admin_config_shipping_rates_path(), :notice => 'Shipping category was successfully updated.') }
+        format.html { redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully updated.') }
       else
         form_info
         format.html { render :action => "edit" }
@@ -76,10 +76,10 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   #    format.html { redirect_to(admin_merchandise_shipping_categories_url) }
   #  end
   #end
-  
+
   private
-  
+
   def form_info
-    
+
   end
 end
