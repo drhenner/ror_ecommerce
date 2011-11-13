@@ -70,10 +70,7 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
   def destroy
     @tax_rate = TaxRate.find(params[:id])
     @tax_rate.update_attributes(:active => false)
-
-    respond_to do |format|
-      format.html { redirect_to(admin_config_tax_rates_url) }
-    end
+    redirect_to(admin_config_tax_rates_url)
   end
   private
 

@@ -55,9 +55,6 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
   def destroy
     @shipping_zone = ShippingZone.find(params[:id])
     @shipping_zone.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(admin_config_shipping_zones_url) }
-    end
+    redirect_to(admin_config_shipping_zones_url)
   end
 end
