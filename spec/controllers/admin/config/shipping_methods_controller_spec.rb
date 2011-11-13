@@ -1,6 +1,6 @@
 require  'spec_helper'
 
-describe Admin::Config::ShippingCategoriesController do
+describe Admin::Config::ShippingMethodsController do
   render_views
 
   before(:each) do
@@ -16,8 +16,8 @@ describe Admin::Config::ShippingCategoriesController do
   end
 
   it "show action should render show template" do
-    @shipping_category = Factory(:shipping_category)
-    get :show, :id => @shipping_category.id
+    @shipping_method = Factory(:shipping_method)
+    get :show, :id => @shipping_method.id
     response.should render_template(:show)
   end
 
@@ -27,34 +27,35 @@ describe Admin::Config::ShippingCategoriesController do
   end
 
   it "create action should render new template when model is invalid" do
-    ShippingCategory.any_instance.stubs(:valid?).returns(false)
+    ShippingMethod.any_instance.stubs(:valid?).returns(false)
     post :create
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    ShippingCategory.any_instance.stubs(:valid?).returns(true)
-    post :create, :shipping_category => {:name => 'clothing'}
-    response.should redirect_to(admin_config_shipping_rates_url)
+    ShippingMethod.any_instance.stubs(:valid?).returns(true)
+    post :create, :shipping_method => {:name => 'UPS 3-5 day', :shipping_zone_id => 1}
+    response.should redirect_to(admin_config_shipping_method_url(assigns[:shipping_method]))
   end
 
   it "edit action should render edit template" do
-    @shipping_category = Factory(:shipping_category)
-    get :edit, :id => @shipping_category.id
+    @shipping_method = Factory(:shipping_method)
+    get :edit, :id => @shipping_method.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_category = Factory(:shipping_category)
-    ShippingCategory.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_category.id
+    @shipping_method = Factory(:shipping_method)
+    ShippingMethod.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => @shipping_method.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_category = Factory(:shipping_category)
-    ShippingCategory.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_category.id, :shipping_category => {:name => 'clothing'}
-    response.should redirect_to(admin_config_shipping_rates_url())
+    @shipping_method = Factory(:shipping_method)
+    ShippingMethod.any_instance.stubs(:valid?).returns(true)
+    put :update, :id => @shipping_method.id
+    response.should redirect_to(admin_config_shipping_method_url(assigns[:shipping_method]))
   end
+
 end

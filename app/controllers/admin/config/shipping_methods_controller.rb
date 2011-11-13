@@ -3,20 +3,12 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   # GET /admin/config/shipping_methods.xml
   def index
     @shipping_methods = ShippingMethod.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   # GET /admin/config/shipping_methods/1
   # GET /admin/config/shipping_methods/1.xml
   def show
     @shipping_method = ShippingMethod.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
   end
 
   # GET /admin/config/shipping_methods/new
