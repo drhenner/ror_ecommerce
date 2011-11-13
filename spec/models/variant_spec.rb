@@ -21,6 +21,7 @@ describe Variant, " instance methods" do
 
   end
 
+
   context ".low_stock?" do
       it 'should be low stock' do
         inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (101 - Variant::OUT_OF_STOCK_QTY))
@@ -258,6 +259,22 @@ describe Variant, " instance methods" do
       @variant.inventory.count_on_hand.should == 112
     end
   end
+end
+describe Variant, "instance method" do
+
+  context ".quantity_purchaseable" do
+    it 'should be quantity_purchaseable' do
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (98))
+      @variant    = Factory(:variant,   :inventory => inventory)
+      @variant.quantity_purchaseable.should == 2 - Variant::OUT_OF_STOCK_QTY
+    end
+    it 'should be quantity_purchaseable by an admin' do
+      inventory   = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => (98))
+      @variant    = Factory(:variant,   :inventory => inventory)
+      @variant.quantity_purchaseable(true).should == 2 - Variant::ADMIN_OUT_OF_STOCK_QTY
+    end
+  end
+
 end
 
 describe Variant, "#admin_grid(product, params = {})" do
