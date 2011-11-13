@@ -74,7 +74,7 @@ Hadean::Application.routes.draw do # |map|
 
     namespace :history do
       resources  :orders, :only => [:index, :show] do
-        resources  :addresses
+        resources  :addresses, :only => [:index, :show, :edit, :update, :new, :create]
       end
     end
 
