@@ -5,14 +5,9 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
     form_info
     if @shipping_methods.empty?
       flash[:notice] = 'You need a Shipping Method before you create a shipping rate.'
-      redirect_to admin_config_shipping_methods_path
+      redirect_to admin_config_shipping_methods_url
     else
       @shipping_rates = ShippingRate.includes([:shipping_method, :shipping_rate_type]).all
-
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @shipping_rates }
-      end
     end
   end
 
@@ -20,9 +15,6 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
   # GET /shipping_rates/1.xml
   def show
     @shipping_rate = ShippingRate.find(params[:id])
-      respond_to do |format|
-        format.html # show.html.erb
-      end
   end
 
   # GET /shipping_rates/new
@@ -31,16 +23,12 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
     form_info
     if @shipping_categories.empty?
         flash[:notice] = "You must create a Shipping Category before you create a Shipping Rate."
-        redirect_to new_admin_config_shipping_category_path
+        redirect_to new_admin_config_shipping_category_url
     elsif @shipping_methods.empty?
         flash[:notice] = "You must create a Shipping Method before you create a Shipping Rate."
-        redirect_to new_admin_config_shipping_method_path
+        redirect_to new_admin_config_shipping_method_url
     else
       @shipping_rate = ShippingRate.new
-      respond_to do |format|
-        format.html # new.html.erb
-        format.xml  { render :xml => @shipping_rate }
-      end
     end
   end
 
@@ -73,11 +61,9 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
     respond_to do |format|
       if @shipping_rate.update_attributes(params[:shipping_rate])
         format.html { redirect_to(admin_config_shipping_rate_url(@shipping_rate), :notice => 'Shipping rate was successfully updated.') }
-        format.xml  { head :ok }
       else
         form_info
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @shipping_rate.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -87,11 +73,7 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
   def destroy
     @shipping_rate = ShippingRate.find(params[:id])
     @shipping_rate.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(shipping_rates_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(admin_config_shipping_rates_url)
   end
 
   private
