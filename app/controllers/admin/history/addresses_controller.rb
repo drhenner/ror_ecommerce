@@ -4,10 +4,6 @@ class Admin::History::AddressesController < Admin::BaseController
   def index
     @order = Order.includes({:user => :addresses}).find_by_number(params[:order_id])
     @addresses = @order.user.addresses
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   # GET /admin/history/addresses/1
@@ -15,10 +11,6 @@ class Admin::History::AddressesController < Admin::BaseController
   def show
     @order = Order.includes({:user => :addresses}).find_by_number(params[:order_id])
     @address = Address.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
   end
 
   # GET /admin/history/addresses/new
@@ -26,10 +18,6 @@ class Admin::History::AddressesController < Admin::BaseController
   def new
     @order    = Order.includes({:user => :addresses}).find_by_number(params[:order_id])
     @address  = Address.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
   # GET /admin/history/addresses/1/edit
@@ -63,8 +51,11 @@ class Admin::History::AddressesController < Admin::BaseController
 
     respond_to do |format|
       if @address && @order.ship_address = @address
-        @order.save
-        format.html { redirect_to(admin_history_order_url(@order) , :notice => 'Address was successfully selected.') }
+        if @order.save
+          format.html { redirect_to(admin_history_order_url(@order) , :notice => 'Address was successfully selected.') }
+        else
+          format.html { render :action => "edit" }
+        end
       else
         format.html { render :action => "edit" }
       end

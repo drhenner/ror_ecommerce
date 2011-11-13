@@ -26,10 +26,5 @@ describe Admin::History::AddressesController do
     it "recognizes and generates #update" do
       { :put => "/admin/history/orders/11/addresses/1" }.should route_to(:controller => "admin/history/addresses", :action => "update", :id => "1", :order_id => '11')
     end
-
-    it "recognizes and generates #destroy" do
-      { :delete => "/admin/history/orders/11/addresses/1" }.should route_to(:controller => "admin/history/addresses", :action => "destroy", :id => "1", :order_id => '11')
-    end
-
   end
 end
