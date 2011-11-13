@@ -3,33 +3,18 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   # GET /accounts.xml
   def index
     @accounts = Account.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @accounts }
-    end
   end
 
   # GET /accounts/1
   # GET /accounts/1.xml
   def show
     @account = Account.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @account }
-    end
   end
 
   # GET /accounts/new
   # GET /accounts/new.xml
   def new
     @account = Account.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @account }
-    end
   end
 
   # GET /accounts/1/edit
@@ -44,11 +29,9 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to(@account, :notice => 'Account was successfully created.') }
-        format.xml  { render :xml => @account, :status => :created, :location => @account }
+        format.html { redirect_to(admin_config_account_url(@account), :notice => 'Account was successfully created.') }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @account.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +43,9 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
 
     respond_to do |format|
       if @account.update_attributes(params[:account])
-        format.html { redirect_to(@account, :notice => 'Account was successfully updated.') }
-        format.xml  { head :ok }
+        format.html { redirect_to(admin_config_account_url(@account), :notice => 'Account was successfully updated.') }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @account.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -74,10 +55,6 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   def destroy
     @account = Account.find(params[:id])
     @account.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(accounts_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(admin_config_accounts_url)
   end
 end
