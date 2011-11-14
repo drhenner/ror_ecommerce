@@ -52,6 +52,9 @@ group :development do
 end
 group :test, :development do
   gem "rspec-rails", "~> 2.7.0"
+  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :test do
