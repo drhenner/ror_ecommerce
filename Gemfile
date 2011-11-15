@@ -22,7 +22,7 @@ gem 'nested_set', '~> 1.6.3'
 gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
 gem 'paperclip', '~> 2.4.5'
-gem 'prawn', '~> 0.8.4'
+gem 'prawn', '~> 0.12.0'
 
 gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
