@@ -1,5 +1,5 @@
 
-#=begin
+=begin
 # Set the default text field size when input is a string. Default is 50.
 Formtastic::SemanticFormBuilder.default_text_field_size = 30
 
@@ -72,7 +72,7 @@ module Formtastic
       datepicker_options = {:value => value.try(:strftime, format), :input_html => {:class => 'ui-datepicker'}}
     end
   end
-  
+
   module YearPicker
     protected
 
@@ -87,7 +87,7 @@ module Formtastic
       yearpicker_options = {:value => value.try(:strftime, format), :input_html => {:class => 'ui-yearpicker'}}
     end
   end
-  
+
   module FuturePicker
     protected
 
@@ -106,5 +106,5 @@ end
   Formtastic::SemanticFormBuilder.send(:include, Formtastic::DatePicker)
   Formtastic::SemanticFormBuilder.send(:include, Formtastic::YearPicker)
   Formtastic::SemanticFormBuilder.send(:include, Formtastic::FuturePicker)
-  
-#=end
+
+=end

@@ -10,8 +10,7 @@ gem 'cancan', '~> 1.4.1'
 gem 'compass'#, "~> 0.11.0"
 gem 'dalli', '~> 1.0.2'
 
-gem 'fancy-buttons'
-gem 'formtastic',  "~> 1.1.0"
+# gem 'fancy-buttons'
 gem "friendly_id", "~> 3.3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
