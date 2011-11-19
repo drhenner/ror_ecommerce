@@ -1,20 +1,18 @@
 class Admin::History::AddressesController < Admin::BaseController
+  helper_method :states
   # GET /admin/history/addresses
-  # GET /admin/history/addresses.xml
   def index
     @order = Order.includes({:user => :addresses}).find_by_number(params[:order_id])
     @addresses = @order.user.addresses
   end
 
   # GET /admin/history/addresses/1
-  # GET /admin/history/addresses/1.xml
   def show
     @order = Order.includes({:user => :addresses}).find_by_number(params[:order_id])
     @address = Address.find(params[:id])
   end
 
   # GET /admin/history/addresses/new
-  # GET /admin/history/addresses/new.xml
   def new
     @order    = Order.includes({:user => :addresses}).find_by_number(params[:order_id])
     @address  = Address.new
@@ -27,7 +25,6 @@ class Admin::History::AddressesController < Admin::BaseController
   end
 
   # POST /admin/history/addresses
-  # POST /admin/history/addresses.xml
   def create  ##  This create a new address, sets the orders address & redirects to order_history
     @order    = Order.includes([:ship_address, {:user => :addresses}]).find_by_number(params[:order_id])
     @address  = Address.new(params[:admin_history_address])
@@ -44,7 +41,6 @@ class Admin::History::AddressesController < Admin::BaseController
   end
 
   # PUT /admin/history/addresses/1
-  # PUT /admin/history/addresses/1.xml
   def update ##  This selects a new address, sets the orders address & redirects to order_history
     @order    = Order.includes([:ship_address, {:user => :addresses}]).find_by_number(params[:order_id])
     @address  = Address.find(params[:id])
@@ -61,5 +57,9 @@ class Admin::History::AddressesController < Admin::BaseController
       end
     end
   end
+  private
 
+  def states
+    @states     ||= State.form_selector
+  end
 end
