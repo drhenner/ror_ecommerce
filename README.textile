@@ -57,23 +57,6 @@ Install memcached, this is easiest to do with "homebrew":http://mxcl.github.com/
 
 bc. brew install memcached
 
-bc. brew install solr
-
-p. Time to start solr and memcache(yep you better install them)
-rake sunspot:solr:start
-
-If you decide not to use solr, go into product.rb and delete the following
-
-bc. searchable do
-  text    :name, :default_boost => 2
-  text      :product_keywords#, :multiple => true
-  text      :description
-  time      :deleted_at
-end
-
-bq. Take a look at setting up solr
-    "Solr in 5 minutes":http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
-
 bq. memcached -vv  ## you can config many other cache stores but
                 ## the cookie store will not work (in the admin) and the DB session store will be a dog
 
@@ -97,6 +80,35 @@ Once everything is setup, start up the server with 'rails server' and direct it 
 *localhost:3000/admin/overviews*
 
 write down the username/password and follow the directions.
+
+h2. Adding Solr Search
+
+
+bc. brew install solr
+
+p. Uncomment the following in your gemfile
+
+bc. #gem 'sunspot_solr'
+#gem 'sunspot_rails', '~> 1.3'
+
+*bundle install*
+
+p. start solr before starting you server
+rake sunspot:solr:start
+
+Go into product.rb and uncomment the following
+
+bc. searchable do
+  text    :name, :default_boost => 2
+  text      :product_keywords#, :multiple => true
+  text      :description
+  time      :deleted_at
+end
+
+
+bq. Take a look at setting up solr
+    "Solr in 5 minutes":http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
+
 
 h2. TODOs:
 

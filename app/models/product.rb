@@ -5,21 +5,15 @@ class Product < ActiveRecord::Base
 
   attr_accessor :available_shipping_rates # these the the shipping rates per the shipping address on the order
 
+=begin
+  ## UNCOMMENT TO ADD SOLR SEARCH
   searchable do
     text    :name, :default_boost => 2
     text      :product_keywords#, :multiple => true
     text      :description
     time      :deleted_at
   end
-  #Sunspot.setup(Rehab) do
-  #  text :addiction
-  #  integer :relapses
-  #  float :relapse_average
-  #  time :admitted_at
-  #  string :cure do
-  #    addiction.gsub(/(darkness|clouds|shadows)/, 'sunshine')
-  #  end
-  #end
+=end
 
   belongs_to :product_type
   belongs_to :prototype
@@ -158,13 +152,20 @@ class Product < ActiveRecord::Base
   # @param [params]  :rows, :page
   # @return [ Product ]
   def self.standard_search(args, params)
-    Product.search(:include => [:properties, :images]) do
-      keywords(args)
-      any_of do
-        with(:deleted_at).greater_than(Time.zone.now)
-        with(:deleted_at, nil)
+    if defined?(Product.solr_search)
+      Product.search(:include => [:properties, :images]) do
+        keywords(args)
+        any_of do
+          with(:deleted_at).greater_than(Time.zone.now)
+          with(:deleted_at, nil)
+        end
+        paginate :page => params[:page].to_i, :per_page => params[:rows].to_i#params[:page], :per_page => params[:rows]
       end
-      paginate :page => params[:page].to_i, :per_page => params[:rows].to_i#params[:page], :per_page => params[:rows]
+    else
+      Product.includes( [:properties, :images]).
+              where(['products.name LIKE ? OR products.meta_keywords LIKE ?', "%#{args}%", "%#{args}%"]).
+              where(['products.deleted_at IS NULL OR products.deleted_at > ?', Time.zone.now]).
+              paginate :page => params[:page].to_i, :per_page => params[:rows].to_i
     end
   end
 

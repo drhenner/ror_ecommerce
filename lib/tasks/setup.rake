@@ -1,9 +1,11 @@
 namespace :db do
   task :seed_fake => :environment do
-    begin
-      Rake::Task["sunspot:solr:start"].invoke
-    rescue Exception => e
-      puts e
+    if defined?(Product.solr_search)
+      begin
+        Rake::Task["sunspot:solr:start"].invoke
+      rescue Exception => e
+        puts e
+      end
     end
     file_to_load        = Rails.root + "db/seed/config_admin.yml"
     config_information  = YAML::load( File.open( file_to_load ) )
