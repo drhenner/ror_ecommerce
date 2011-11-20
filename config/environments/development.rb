@@ -23,11 +23,10 @@ Hadean::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.cache_store = :dalli_store
-
+  config.cache_store = :memory_store
 
   #config.cache_store = :dalli_store
-  #config.cache_store = :mem_cache_store, "localhost" #'localhost:11211'
+  #config.cache_store = :redis_store
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
@@ -61,7 +60,7 @@ Hadean::Application.configure do
     #  :password  => HADEAN_CONFIG['braintree']['password']
     #)
   end
-  
+
   PAPERCLIP_STORAGE_OPTS = {  :styles => {:mini => '48x48>',
                                           :small => '100x100>',
                                           :product => '320x320>',
