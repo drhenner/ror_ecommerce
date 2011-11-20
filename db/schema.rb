@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110022138) do
+ActiveRecord::Schema.define(:version => 20111120070110) do
+
+  create_table "accounting_adjustments", :force => true do |t|
+    t.integer  "adjustable_id",                                 :null => false
+    t.string   "adjustable_type",                               :null => false
+    t.string   "notes"
+    t.decimal  "amount",          :precision => 8, :scale => 2, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                                                           :null => false

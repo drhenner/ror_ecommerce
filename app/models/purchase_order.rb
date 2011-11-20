@@ -96,10 +96,21 @@ class PurchaseOrder < ActiveRecord::Base
     supplier.name rescue 'N/A'
   end
 
+  def receive_order_from_credit
+
+        batch = self.batches.create()
+        transaction = ReceivePurchaseOrder.new()##  This is a type of transaction
+        credit = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,     :debit => 0,      :credit => total_cost, :period => "#{now.month}-#{now.year}")
+        debit  = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_PAYABLE_ID, :debit => total_cost, :credit => 0,      :period => "#{now.month}-#{now.year}")
+        transaction.transaction_ledgers.push(credit)
+        transaction.transaction_ledgers.push(debit)
+        batch.transactions.push(transaction)
+        batch.save
+  end
+  
   def pay_for_order
     now = Time.zone.now
     if self.batches.empty?
-      # this means we never authorized just captured payment
         batch = self.batches.create()
         transaction = ReceivePurchaseOrder.new()##  This is a type of transaction
         credit = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,     :debit => 0,      :credit => total_cost, :period => "#{now.month}-#{now.year}")
@@ -108,12 +119,12 @@ class PurchaseOrder < ActiveRecord::Base
         transaction.transaction_ledgers.push(debit)
         batch.transactions.push(transaction)
         batch.save
-    else
+    else # thus we are paying after having received the item from credit
       batch       = batches.first
       transaction = ReceivePurchaseOrder.new()
 
       debit   = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::EXPENSE_ID, :debit => total_cost, :credit => 0,       :period => "#{now.month}-#{now.year}")
-      credit  = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,    :debit => 0,      :credit => total_cost,  :period => "#{now.month}-#{now.year}")
+      credit  = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_PAYABLE_ID,    :debit => 0,      :credit => total_cost,  :period => "#{now.month}-#{now.year}")
 
       transaction.transaction_ledgers.push(credit)
       transaction.transaction_ledgers.push(debit)

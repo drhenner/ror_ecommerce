@@ -1,0 +1,3 @@
+class RefundInventory < Transaction
+
+end

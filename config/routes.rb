@@ -136,6 +136,7 @@ Hadean::Application.routes.draw do # |map|
       resources :overviews
       resources :purchase_orders
       resources :receivings
+      resources :adjustments
     end
 
     namespace :merchandise do
