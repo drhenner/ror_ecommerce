@@ -102,7 +102,7 @@ shipping_rates:
       shipping_method_id: 1
       rate: 0.00
       shipping_rate_type_id: 1
-      shipping_category_id: 1
+      shipping_category_id: 2
       minimum_charge: 25.00
       position: 1
       active: true
@@ -111,7 +111,7 @@ shipping_rates:
       shipping_method_id: 1
       rate: 7.00
       shipping_rate_type_id: 1
-      shipping_category_id: 1
+      shipping_category_id: 2
       minimum_charge: 0.00
       position: 2
       active: true
@@ -120,7 +120,7 @@ shipping_rates:
       shipping_method_id: 2
       rate: 15.00
       shipping_rate_type_id: 1
-      shipping_category_id: 1
+      shipping_category_id: 2
       minimum_charge: 0.00
       position: 3
       active: true
@@ -129,7 +129,7 @@ shipping_rates:
       shipping_method_id: 3
       rate: 10.00
       shipping_rate_type_id: 1
-      shipping_category_id: 1
+      shipping_category_id: 2
       minimum_charge: 0.00
       position: 1
       active: true
@@ -138,7 +138,7 @@ shipping_rates:
       shipping_method_id: 4
       rate: 15.00
       shipping_rate_type_id: 1
-      shipping_category_id: 1
+      shipping_category_id: 2
       minimum_charge: 0.00
       position: 1
       active: true
@@ -147,7 +147,7 @@ shipping_rates:
       shipping_method_id: 5
       rate: 10.00
       shipping_rate_type_id: 1
-      shipping_category_id: 1
+      shipping_category_id: 2
       minimum_charge: 0.00
       position: 2
       active: true
@@ -156,7 +156,7 @@ shipping_rates:
       shipping_method_id: 6
       rate: 12.00
       shipping_rate_type_id: 1
-      shipping_category_id: 1
+      shipping_category_id: 2
       minimum_charge: 0.00
       position: 2
       active: true
