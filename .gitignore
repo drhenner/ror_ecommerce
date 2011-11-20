@@ -11,6 +11,10 @@ tmp/**/*
 tmp/**/**/*
 tmp/*
 log/*
+
+solr
+solr/*
+
 .project
 nbproject
 .DS_Store
