@@ -6,6 +6,7 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
       flash[:notice] = I18n.t('select_address_before_shipping_method')
       redirect_to shopping_addresses_url
     else
+      session_order.find_sub_total
       ##  TODO  refactopr this method... it seems a bit lengthy
       @shipping_method_ids = session_order.ship_address.state.shipping_zone.shipping_method_ids
 

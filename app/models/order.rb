@@ -211,12 +211,16 @@ class Order < ActiveRecord::Base
   # @return [none]  Sets sub_total and total for the object
   def find_total(force = false)
     calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
+    self.find_sub_total
+    self.total = (self.total + shipping_charges - coupon_amount ).round_at( 2 )
+  end
+
+  def find_sub_total
     self.total = 0.0
     order_items.each do |item|
       self.total = self.total + item.item_total
     end
     self.sub_total = self.total
-    self.total = (self.total + shipping_charges - coupon_amount ).round_at( 2 )
   end
 
   # amount the coupon reduces the value of the order
