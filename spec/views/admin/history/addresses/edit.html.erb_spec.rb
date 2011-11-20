@@ -4,6 +4,7 @@ describe "admin/history/addresses/edit.html.erb" do
   before(:each) do
     @order = Factory(:order)
     @address = Factory(:address)
+    view.stubs(:states).returns([])
   #  assign(:address, stub_model(Address,
   #    :new_record? => false,
   #    :first_name => "MyString",
