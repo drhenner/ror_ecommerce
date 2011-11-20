@@ -32,12 +32,10 @@
             <ul  id='variant_border_<%= i %>'
                   class='variant_border last <%= 'selected_variant' if i == 0 %>  '
                   data-variant='<%= variant.id %>' >
-              <%# variant.primary_property.each do |variant_property| %>
                 <div  id='variant_<%= i %>'
                       class='variant_select' >
-                  <%= raw variant.primary_property.property.display_name  %>: <%= raw variant.primary_property.description %>
+                  <%= raw variant.primary_property.try(:property_name)  %>: <%= raw variant.sub_name %>
                 </div>
-              <%# end %>
               <%= number_to_currency variant.price %>
               <%= variant.display_stock_status %>
             </ul>
