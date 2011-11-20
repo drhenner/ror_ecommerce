@@ -6,6 +6,7 @@ describe ProductsController do
     @product = Factory(:product)
     @variant = Factory(:variant, :product => @product)
     @variant.stubs(:primary_property).returns(nil)
+    @variant.stubs(:properties).returns(nil)
   end
 
   it "index action should render index template" do
