@@ -294,7 +294,7 @@ products:
     attributes:
       name: Cute Polo
       description: '<p>This shirt is made for developers.</p> <hr /> <p>You will love it.</p>'
-      product_keywords: ---
+      product_keywords:
         - polo
         - shirt
       tax_category_id:
@@ -314,7 +314,7 @@ products:
     attributes:
       name: Cute Pants
       description: "<p>These pants are Great.  Soft as a baby's bottom.</p> <hr /> <p>You will love them.</p>"
-      product_keywords: ---
+      product_keywords:
         - polo
         - shirt
       tax_category_id:
