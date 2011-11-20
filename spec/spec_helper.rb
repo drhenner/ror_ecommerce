@@ -53,12 +53,16 @@ RSpec.configure do |config|
     PaymentProfile.any_instance.stubs(:create_payment_profile).returns(true)
     PaymentProfile.any_instance.stubs(:update_payment_profile).returns(true)
     PaymentProfile.any_instance.stubs(:delete_payment_profile).returns(true)
-    ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
+    if defined?(Sunspot)
+      ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
+    end
     DatabaseCleaner.start
   end
 
   config.after(:each) do
-    ::Sunspot.session = ::Sunspot.session.original_session
+    if defined?(Sunspot)
+      ::Sunspot.session = ::Sunspot.session.original_session
+    end
     DatabaseCleaner.clean
   end
 
