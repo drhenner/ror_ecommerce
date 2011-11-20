@@ -51,7 +51,7 @@ label {
 }
 
 /* line 44, ../../app/stylesheets/login.scss */
-input.text, input.title, input[type="text"], input[type="password"] {
+input.text, input.title, input[type="text"], input[type="password"], input[type="email"] {
   margin-bottom: 10px;
   width: 208px;
   background: -moz-linear-gradient(center top, #e6e6e6 0%, white 100%) repeat-x scroll center top white;

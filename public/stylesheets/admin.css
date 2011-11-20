@@ -402,7 +402,7 @@ li {
 }
 
 /* line 158, ../../app/stylesheets/_app.scss */
-input.text, input.title, input[type="text"], input[type="password"] {
+input.text, input.title, input[type="text"], input[type="password"], input[type="email"] {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   behavior: url(border-radius.htc);
