@@ -5,11 +5,11 @@ describe VariantProperty do
     before(:each) do
       @variant_property = Factory.build(:variant_property)
     end
-    
+
     it "should be valid with minimum attributes" do
       @variant_property.should be_valid
     end
-    
+
     it 'should not be valid' do
       variant = Factory(:variant)
         property      = Factory(:property)
@@ -18,13 +18,13 @@ describe VariantProperty do
         variant_property.should_not be_valid
     end
   end
-  
+
   #
   context " VariantProperty instance methods" do
     it 'should return property_name' do
-      property      = Factory(:property, :identifing_name => 'id name')
+      property      = Factory(:property, :display_name => 'name')
       variant_property = Factory(:variant_property, :property => property)
-      variant_property.property_name.should == 'id name'
+      variant_property.property_name.should == 'name'
     end
   end
 end
