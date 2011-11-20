@@ -1,6 +1,6 @@
 h1. Project Overview
 
-"Please create a ticket if you have issues":http://ror_ecommerce.lighthouseapp.com/home
+Please create a ticket if on github you have issues.  They will be addressed ASAP.
 
 "Please look at the homepage for more details: www.ror-e.com":http://www.ror-e.com
 
@@ -35,7 +35,7 @@ h2. Getting Started
 We have a google group.  Ask question and help answer questions.
 "ror_ecommerce Google-group":http://groups.google.com/group/ror_ecommerce
 
-install rvm with ruby 1.9.2 or if you have 1.9.2 on your system your good to go
+install rvm with ruby 1.9.2 or if you have 1.9.2 on your system you're good to go
 
 Configure your database.yml file (add the development and test database)
 
@@ -51,12 +51,9 @@ bq.  aes = OpenSSL::Cipher::Cipher.new('AES-256-CBC')
 *# rake db:migrate
 *# rake db:seed
 *# rake db:test:prepare
-*# git submodule init
-*# git submodule update
-*# gem install compass
-*# gem install fancy-buttons
+*# bundle install
 
-######compass install -r fancy-buttons -f fancy-buttons
+######compass install
 
 Install memcached, this is easiest to do with "homebrew":http://mxcl.github.com/homebrew/ and :
 
