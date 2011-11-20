@@ -101,6 +101,11 @@ write down the username/password and follow the directions.
 h2. TODOs:
 
 * product sales (eg. 20% off)
+* make admin UI have a better flow (product creation/ images / inventory)
+* remove memcached requirement
+* move solr to an engine
+* more documentation / videos for creating products/variants
+* easy setup of fake data for getting started
 
 h2. Author
 
