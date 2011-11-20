@@ -1,26 +1,26 @@
 
 shipping_methods:
-  1: USA
+  1: #'USA'
     attributes:
       name: 'UPS 3-5 day'
       shipping_zone_id: 1
-  2: USA
+  2: #'USA'
     attributes:
       name: 'UPS next day'
       shipping_zone_id: 1
-  3: Alaska and Hawaii
+  3: #Alaska and Hawaii
     attributes:
       name: 'UPS 3-5 day'
       shipping_zone_id: 2
-  4: Canada
+  4: #Canada
     attributes:
       name: 'UPS 3-5 day'
       shipping_zone_id: 3
-  5: Canada
+  5: #Canada
     attributes:
       name: 'UPS 7-14 day'
       shipping_zone_id: 3
-  6: USA Territory
+  6: #USA Territory
     attributes:
       name: 'UPS 7-14 day'
       shipping_zone_id: 4
@@ -34,7 +34,7 @@ shipping_categories:
       name: Furnature
 
 shipping_rates:
-  1: 'FREE, shipping_rate_type => Order, shipping_category => Clothing'
+  1: #'FREE, shipping_rate_type => Order, shipping_category => Clothing'
     attributes:
       shipping_method_id: 1
       rate: 0.00
@@ -43,7 +43,7 @@ shipping_rates:
       minimum_charge: 25.00
       position: 1
       active: true
-  2: 'STANDARD, shipping_rate_type => Order, shipping_category => Clothing'
+  2: #'STANDARD, shipping_rate_type => Order, shipping_category => Clothing'
     attributes:
       shipping_method_id: 1
       rate: 7.00
@@ -52,7 +52,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 2
       active: true
-  3: 'EXPEDITE, shipping_rate_type => Order, shipping_category => Clothing'
+  3: #'EXPEDITE, shipping_rate_type => Order, shipping_category => Clothing'
     attributes:
       shipping_method_id: 2
       rate: 15.00
@@ -61,7 +61,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 3
       active: true
-  4: 'STANDARD ALASKA, shipping_rate_type => Order, shipping_category => Clothing'
+  4: #'STANDARD ALASKA, shipping_rate_type => Order, shipping_category => Clothing'
     attributes:
       shipping_method_id: 3
       rate: 10.00
@@ -70,7 +70,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 1
       active: true
-  5: 'STANDARD CANADA, shipping_rate_type => Order, shipping_category => Clothing'
+  5: #'STANDARD CANADA, shipping_rate_type => Order, shipping_category => Clothing'
     attributes:
       shipping_method_id: 4
       rate: 15.00
@@ -79,7 +79,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 1
       active: true
-  6: 'GROUND CANADA, shipping_rate_type => Order, shipping_category => Clothing'
+  6: #'GROUND CANADA, shipping_rate_type => Order, shipping_category => Clothing'
     attributes:
       shipping_method_id: 5
       rate: 10.00
@@ -88,7 +88,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 2
       active: true
-  7: 'GROUND US TERRITORY, shipping_rate_type => Order, shipping_category => Clothing'
+  7: #'GROUND US TERRITORY, shipping_rate_type => Order, shipping_category => Clothing'
     attributes:
       shipping_method_id: 6
       rate: 12.00
@@ -97,7 +97,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 2
       active: true
-  8: 'FREE, shipping_rate_type => Individual, shipping_category => Furnature'
+  8: #'FREE, shipping_rate_type => Individual, shipping_category => Furnature'
     attributes:
       shipping_method_id: 1
       rate: 0.00
@@ -106,7 +106,7 @@ shipping_rates:
       minimum_charge: 25.00
       position: 1
       active: true
-  9: 'STANDARD, shipping_rate_type => Individual, shipping_category => Furnature'
+  9: #'STANDARD, shipping_rate_type => Individual, shipping_category => Furnature'
     attributes:
       shipping_method_id: 1
       rate: 7.00
@@ -115,7 +115,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 2
       active: true
-  10: 'EXPEDITE, shipping_rate_type => Individual, shipping_category => Furnature'
+  10: #'EXPEDITE, shipping_rate_type => Individual, shipping_category => Furnature'
     attributes:
       shipping_method_id: 2
       rate: 15.00
@@ -124,7 +124,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 3
       active: true
-  11: 'STANDARD ALASKA, shipping_rate_type => Individual, shipping_category => Furnature'
+  11: #'STANDARD ALASKA, shipping_rate_type => Individual, shipping_category => Furnature'
     attributes:
       shipping_method_id: 3
       rate: 10.00
@@ -133,7 +133,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 1
       active: true
-  12: 'STANDARD CANADA, shipping_rate_type => Individual, shipping_category => Furnature'
+  12: #'STANDARD CANADA, shipping_rate_type => Individual, shipping_category => Furnature'
     attributes:
       shipping_method_id: 4
       rate: 15.00
@@ -142,7 +142,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 1
       active: true
-  13: 'GROUND CANADA, shipping_rate_type => Individual, shipping_category => Furnature'
+  13: #'GROUND CANADA, shipping_rate_type => Individual, shipping_category => Furnature'
     attributes:
       shipping_method_id: 5
       rate: 10.00
@@ -151,7 +151,7 @@ shipping_rates:
       minimum_charge: 0.00
       position: 2
       active: true
-  14: 'GROUND US TERRITORY, shipping_rate_type => Individual, shipping_category => Furnature'
+  14: #'GROUND US TERRITORY, shipping_rate_type => Individual, shipping_category => Furnature'
     attributes:
       shipping_method_id: 6
       rate: 12.00
@@ -162,82 +162,82 @@ shipping_rates:
       active: true
 
 prototypes:
-  1: Shirt
+  1: #Shirt
     attributes:
       name: Shirt
       active: true
-  2: Pants
+  2: #Pants
     attributes:
       name: Pants
       active: true
 
 properties:
-  1: shirt-color
+  1: #shirt-color
     attributes:
       identifing_name: shirt-color
       display_name: color
-  2: shirt-size
+  2: #shirt-size
     attributes:
       identifing_name: shirt-size
       display_name: size
-  3: shirt-type
+  3: #shirt-type
     attributes:
       identifing_name: shirt-type
       display_name: type
-  4: pant-inseam
+  4: #pant-inseam
     attributes:
       identifing_name: pant-inseam
       display_name: size
-  5: pant-waist
+  5: #pant-waist
     attributes:
       identifing_name: pant-waist
       display_name: waist
-  6: pant-color
+  6: #pant-color
     attributes:
       identifing_name: pant-color
       display_name: color
-  7: 'pant-fit  BAGGY, SLIM'
+  7: #'pant-fit  BAGGY, SLIM'
     attributes:
       identifing_name: pant-fit
       display_name: fit
 
 prototype_properties:
-  1: 'shirt-color'
+  1: #'shirt-color'
     attributes:
       property_id: 1
       prototype_id: 1
-  2: 'shirt-size'
+  2: #'shirt-size'
     attributes:
       property_id: 2
       prototype_id: 1
-  3: 'shirt-type'
+  3: #'shirt-type'
     attributes:
       property_id: 3
       prototype_id: 1
-  4: 'pant-inseam'
+  4: #'pant-inseam'
     attributes:
       property_id: 4
       prototype_id: 2
-  5: 'pant-waist'
+  5: #'pant-waist'
     attributes:
       property_id: 5
       prototype_id: 2
-  6: 'pant-fit'
+  6: #'pant-fit'
     attributes:
       property_id: 7
       prototype_id: 2
-  7: 'pant-color'
+  7: #'pant-color'
     attributes:
       property_id: 6
       prototype_id: 2
 
 product_types:
-  1: clothes
+  1: #clothes
     attributes:
       name: clothes
       parent_id:
       active: true
-  2: shirts
+  2: #shirts
     attributes:
       name: shirts
       parent_id: 1
@@ -274,14 +274,14 @@ tax_statuses:
       name: Luxury
 
 tax_rates:
-  1: Clothes New York
+  1: #Clothes New York
     attributes:
       percentage: 7.0
       tax_status_id: 1
       state_id: 1
       start_date: '2011-11-05 14:30:29'
       active: true
-  2: Luxury New York
+  2: #Luxury New York
     attributes:
       percentage: 8.0
       tax_status_id: 2
@@ -290,7 +290,7 @@ tax_rates:
       active: true
 
 products:
-  1: Polo Shirt
+  1: #Polo Shirt
     attributes:
       name: Cute Polo
       description: '<p>This shirt is made for developers.</p> <hr /> <p>You will love it.</p>'
@@ -303,14 +303,14 @@ products:
       shipping_category_id: 1
       tax_status_id: 1
       permalink: cute-polo-shirt
-      available_at: true
-      deleted_at: true
+      available_at: '2011-11-05 14:30:29'
+      deleted_at:
       meta_keywords: polo shirt
       meta_description: polo shirt for your wearing pleasure
       featured: false
       description_markup: "This shirt is made for developers.\n\n      ----------      \n\n You will love it."
 
-  2: Polo Pants
+  2: #Polo Pants
     attributes:
       name: Cute Pants
       description: "<p>These pants are Great.  Soft as a baby's bottom.</p> <hr /> <p>You will love them.</p>"
@@ -323,51 +323,51 @@ products:
       shipping_category_id: 1
       tax_status_id: 1
       permalink: cute-polo-shirt
-      available_at: true
-      deleted_at: true
+      available_at: '2011-11-05 14:30:29'
+      deleted_at:
       meta_keywords: polo shirt
       meta_description: polo shirt for your wearing pleasure
       featured: false
       description_markup: "These pants are Great.  Soft as a baby's bottom.\n\n      ----------      \n\n You will love them."
 
 product_properties:
-  1: 'Cute Polo, COLOR'
+  1: #'Cute Polo, COLOR'
     attributes:
       product_id: 1
       property_id: 1
       position: 1
       description: 'Red, Green, Purple'
-  2: 'Cute Polo, size'
+  2: #'Cute Polo, size'
     attributes:
       product_id: 1
       property_id: 2
       position: 2
       description: 'Small, Medium, Large'
-  3: 'Cute Polo, type'
+  3: #'Cute Polo, type'
     attributes:
       product_id: 1
       property_id: 3
       position: 3
       description: 'Golf Shirt'
-  4: 'Cute Pants, COLOR'
+  4: #'Cute Pants, COLOR'
     attributes:
       product_id: 2
       property_id: 6
       position: 1
       description: 'Blue, Black, Grey'
-  5: 'Cute Pants, inseam'
+  5: #'Cute Pants, inseam'
     attributes:
       product_id: 2
       property_id: 4
       position: 2
       description: '30in, 32in, 34in'
-  6: 'Cute Pants, waist'
+  6: #'Cute Pants, waist'
     attributes:
       product_id: 2
       property_id: 5
       position: 3
       description: '32in, 34in, 36in'
-  7: 'Cute Pants, fit'
+  7: #'Cute Pants, fit'
     attributes:
       product_id: 2
       property_id: 7
@@ -396,7 +396,7 @@ inventories:
       count_pending_to_customer: 0
       count_pending_from_supplier: 0
 variants:
-  1: 'Polo Shirt 1'
+  1: #'Polo Shirt 1'
     attributes:
       product_id: 1
       sku: 0000-0000-000001
@@ -405,7 +405,7 @@ variants:
       cost: 10.00
       brand_id: 1
       inventory_id: 1
-  2: 'Polo Shirt 2'
+  2: #'Polo Shirt 2'
     attributes:
       product_id: 1
       sku: 0000-0000-000002
@@ -414,7 +414,7 @@ variants:
       cost: 10.00
       brand_id: 1
       inventory_id: 2
-  3: 'Polo Shirt 3'
+  3: #'Polo Shirt 3'
     attributes:
       product_id: 1
       sku: 0000-0000-000003
@@ -423,7 +423,7 @@ variants:
       cost: 10.00
       brand_id: 1
       inventory_id: 2
-  4: 'Cute Pants 1'
+  4: #'Cute Pants 1'
     attributes:
       product_id: 2
       sku: 0000-0001-000001
@@ -432,7 +432,7 @@ variants:
       cost: 10.00
       brand_id: 1
       inventory_id: 3
-  5: 'Cute Pants 2'
+  5: #'Cute Pants 2'
     attributes:
       product_id: 2
       sku: 0000-0001-000002
@@ -442,85 +442,85 @@ variants:
       brand_id: 1
       inventory_id: 4
 variant_properties:
-  1: 'Polo Shirt 1'
+  1: #'Polo Shirt 1'
     attributes:
       variant_id: 1
       property_id: 1
       description: Red
       primary: 1
-  2: 'Polo Shirt 2'
+  2: #'Polo Shirt 2'
     attributes:
       variant_id: 2
       property_id: 1
       description: Green
       primary: 1
-  3: 'Polo Shirt 1'
+  3: #'Polo Shirt 1'
     attributes:
       variant_id: 1
       property_id: 2
       description: Small
       primary: 0
-  4: 'Polo Shirt 2'
+  4: #'Polo Shirt 2'
     attributes:
       variant_id: 2
       property_id: 2
       description: Medium
       primary: 0
-  5: 'Polo Shirt 3'
+  5: #'Polo Shirt 3'
     attributes:
       variant_id: 3
       property_id: 2
       description: Small
       primary: 0
-  6: 'Polo Shirt 3'
+  6: #'Polo Shirt 3'
     attributes:
       variant_id: 3
       property_id: 1
       description: Purple
       primary: 0
-  7: 'Cute Pants 1'
+  7: #'Cute Pants 1'
     attributes:
       variant_id: 4
       property_id: 6
       description: Blue
       primary: 1
-  8: 'Cute Pants 1 inseam'
+  8: #'Cute Pants 1 inseam'
     attributes:
       variant_id: 4
       property_id: 4
       description: 30in
       primary: 0
-  9: 'Cute Pants 1 waist'
+  9: #'Cute Pants 1 waist'
     attributes:
       variant_id: 4
       property_id: 5
       description: 34in
       primary: 0
-  10: 'Cute Pants 1 fit'
+  10: #'Cute Pants 1 fit'
     attributes:
       variant_id: 4
       property_id: 7
       description: Slim
       primary: 0
-  11: 'Cute Pants 1'
+  11: #'Cute Pants 1'
     attributes:
       variant_id: 5
       property_id: 6
       description: Black
       primary: 1
-  12: 'Cute Pants 1 inseam'
+  12: #'Cute Pants 1 inseam'
     attributes:
       variant_id: 5
       property_id: 4
       description: 32in
       primary: 0
-  13: 'Cute Pants 1 waist'
+  13: #'Cute Pants 1 waist'
     attributes:
       variant_id: 5
       property_id: 5
       description: 32in
       primary: 0
-  14: 'Cute Pants 1 fit'
+  14: #'Cute Pants 1 fit'
     attributes:
       variant_id: 5
       property_id: 7
