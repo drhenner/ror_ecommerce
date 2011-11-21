@@ -101,6 +101,30 @@
   *display: inline;
 }
 
+/* line 1, ../../app/stylesheets/_admin_sidebar.scss */
+.ar-sidebar {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  behavior: url(border-radius.htc);
+  border: 1px #DDD solid;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* line 8, ../../app/stylesheets/_admin_sidebar.scss */
+.ar-sidebar li {
+  color: #666;
+  font-family: HighTower,Georgia,serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: left;
+}
+/* line 15, ../../app/stylesheets/_admin_sidebar.scss */
+.ar-sidebar li a {
+  color: #666 important;
+}
+
 /* line 1, ../../app/stylesheets/_address_form.scss */
 .main-address label {
   display: inline-block;
