@@ -1,3 +1,13 @@
+h3. 0.9.0 2011-21-12
+
+* Readme improvements
+* removed Solr as a requirement
+* remove memcached as a requirement
+* ability to add memcached and Solr easily
+* UI improvements in the Admin area
+* various bugs
+* quick setup for evaluation
+
 h3. 0.9.0rc1 2011-11-12
 
 * CHANGED admin cart to look like the regular cart
