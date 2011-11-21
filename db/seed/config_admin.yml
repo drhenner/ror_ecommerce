@@ -322,11 +322,11 @@ products:
       prototype_id: 2
       shipping_category_id: 1
       tax_status_id: 1
-      permalink: cute-polo-shirt
+      permalink: cute-polo-pants
       available_at: '2011-11-05 14:30:29'
       deleted_at:
-      meta_keywords: polo shirt
-      meta_description: polo shirt for your wearing pleasure
+      meta_keywords: polo pants
+      meta_description: polo pants for your wearing pleasure
       featured: false
       description_markup: "These pants are Great.  Soft as a baby's bottom.\n\n      ----------      \n\n You will love them."
 
