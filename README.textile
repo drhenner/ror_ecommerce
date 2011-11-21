@@ -83,14 +83,18 @@ bq. memcached -vv  ## you can config many other cache stores but
 h4.      TO TURN ON THE DALLI COOKIE STORE
 
   Remove the cookie store on line one of config/initializers/session_store.rb
-  go to the Gemfile and add bc. "gem 'dalli'"
+  go to the Gemfile and add
+
+bc. gem 'dalli'
+
+then
 
 bc. bundle install
 
  Finally UNCOMMENT the next 2 lines in config/initializers/session_store.rb
 
 bc. require 'action_dispatch/middleware/session/dalli_store'
- Hadean::Application.config.session_store :dalli_store, :key => '_hadean_session_ugrdr6765745ce4vy'
+Hadean::Application.config.session_store :dalli_store, :key => '_hadean_session_ugrdr6765745ce4vy'
 
 h4. TO TURN ON THE DALLI CACHE STORE
 
