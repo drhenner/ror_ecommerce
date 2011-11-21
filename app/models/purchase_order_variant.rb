@@ -2,6 +2,11 @@ class PurchaseOrderVariant < ActiveRecord::Base
   belongs_to :purchase_order
   belongs_to :variant
 
+  validates :cost,      :presence => true
+  validates :quantity,      :presence => true
+  #validates :variant_id,      :presence => true
+  #validates :purchase_order_id,      :presence => true
+
 
   ## This method will need a rescue method i assume.
   def receive!
