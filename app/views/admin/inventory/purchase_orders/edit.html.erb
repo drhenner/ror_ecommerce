@@ -16,3 +16,12 @@
 
 <%= link_to 'Show', admin_inventory_purchase_order_path(@purchase_order) %> |
 <%= link_to 'Back', admin_inventory_purchase_orders_path %>
+
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'chosen.css' %>
+<% end %>
+
+<% content_for :below_body do -%>
+  <%= javascript_include_tag 'chosen/chosen.jquery.min.js' %>
+  <%= javascript_include_tag 'admin/purchase_orders' %>
+<% end %>

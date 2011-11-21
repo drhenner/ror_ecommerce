@@ -19,7 +19,7 @@
       <%= form.label :supplier_id %>
     </div>
     <div class='span-6 last'>
-      <%= form.select :supplier_id, @select_suppliers, { :include_blank => true } %>
+      <%= form.select :supplier_id, @select_suppliers, { :include_blank => true }, :class => 'chzn-select' %>
     </div>
   <div class='clear'></div>
 
@@ -76,7 +76,9 @@
     <%= form.fields_for :purchase_order_variants,  @purchase_order.purchase_order_variants do |po_variant_form| %>
       <%= render :partial => 'purchase_order_variant', :locals => { :po_form => po_variant_form } %>
     <% end %>
-    <p><%= add_child_link "New Variant", :purchase_order_variants %> </p>
+    <p><%#= link_to "New Variant", '#add_variant', :class => 'add_variant' :purchase_order_variants %>
+      <%= link_to "New Variant", '#add_variant', :class => 'add_variant', 'data-association' => "purchase_order_variants" %>
+    </p>
     <%= new_child_fields_template form, :purchase_order_variants, :form_builder_local => :po_form %>
   </div>
 </div>
