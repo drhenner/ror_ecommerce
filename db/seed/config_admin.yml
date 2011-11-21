@@ -377,22 +377,27 @@ product_properties:
 inventories:
   1:
     attributes:
-      count_on_hand: 10
-      count_pending_to_customer: 3
+      count_on_hand: 11
+      count_pending_to_customer: 5
       count_pending_from_supplier: 0
   2:
     attributes:
-      count_on_hand: 100
+      count_on_hand: 102
       count_pending_to_customer: 0
       count_pending_from_supplier: 0
   3:
     attributes:
-      count_on_hand: 100
+      count_on_hand: 103
       count_pending_to_customer: 0
       count_pending_from_supplier: 0
   4:
     attributes:
-      count_on_hand: 100
+      count_on_hand: 104
+      count_pending_to_customer: 0
+      count_pending_from_supplier: 0
+  5:
+    attributes:
+      count_on_hand: 105
       count_pending_to_customer: 0
       count_pending_from_supplier: 0
 variants:
@@ -422,7 +427,7 @@ variants:
       price: 30.00
       cost: 10.00
       brand_id: 1
-      inventory_id: 2
+      inventory_id: 3
   4: #'Cute Pants 1'
     attributes:
       product_id: 2
@@ -431,7 +436,7 @@ variants:
       price: 30.00
       cost: 10.00
       brand_id: 1
-      inventory_id: 3
+      inventory_id: 4
   5: #'Cute Pants 2'
     attributes:
       product_id: 2
@@ -440,7 +445,7 @@ variants:
       price: 30.00
       cost: 10.00
       brand_id: 1
-      inventory_id: 4
+      inventory_id: 5
 variant_properties:
   1: #'Polo Shirt 1'
     attributes:
