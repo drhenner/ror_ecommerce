@@ -7,7 +7,7 @@ gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
 gem 'authlogic', "3.0.3"
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.4.1'
-gem 'compass'#, "~> 0.11.0"
+gem 'compass', "~> 0.11.5"
 #  gem 'dalli', '~> 1.0.2'
 
 gem "friendly_id", "~> 3.3"
@@ -15,7 +15,7 @@ gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 
 #gem 'memcache-client', '~> 1.8.5'
-gem 'mysql2', '~> 0.3.7'
+gem 'mysql2', '~> 0.3.10'
 
 gem 'nested_set', '~> 1.6.3'
 gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
