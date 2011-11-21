@@ -4,7 +4,11 @@
   <div class='span-11'>
     <div class='span-10'>
       <%= po_form.label :variant_id %>
-      <%= po_form.select :variant_id, @select_variants, { :include_blank => true } %>
+      <% if po_form.object.id %>
+        <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => 'chzn-select' %>
+      <% else %>
+        <%= po_form.select :variant_id, @select_variants, { :include_blank => true } %>
+      <% end %>
     </div>
     <div style='float:right;'>
       <%= remove_child_link('remove', po_form) %>
