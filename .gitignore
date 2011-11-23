@@ -3,6 +3,7 @@ nbproject/*
 .vimrc
 .rvmrc
 .vim
+.sass-cache/
 
 log
 log/*.log
