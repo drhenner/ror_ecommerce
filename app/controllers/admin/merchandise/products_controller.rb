@@ -29,7 +29,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     else
       @product            = Product.new
       @product.prototype  = Prototype.new
-      render :layout => 'admin_markup'
+      #render :layout => 'admin_markup'
     end
   end
 
@@ -42,7 +42,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     else
       form_info
       flash[:error] = "The product could not be saved"
-      render :action => :new, :layout => 'admin_markup'
+      redirect_to edit_admin_merchandise_products_description_url(@product)
     end
   rescue
     render :text => "Please make sure you have solr started... Run this in the command line => bundle exec rake sunspot:solr:start"
@@ -102,12 +102,23 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     end
   end
 
+  def activate
+    @product = Product.find(params[:id])
+    @product.active = true
+    if @product.save
+      redirect_to :action => :show
+    else
+      flash[:alert] = "Please add a description before Activating."
+      redirect_to edit_admin_merchandise_products_description_url(@product)
+    end
+  end
+
   def destroy
     @product = Product.find(params[:id])
     @product.active = false
     @product.save
 
-    redirect_to :action => :index
+    redirect_to :action => :show
   end
 
   private

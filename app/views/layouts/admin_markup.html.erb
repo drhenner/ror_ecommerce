@@ -46,13 +46,21 @@
         <%= yield :header_sub_bar %>
       </div>
     <% end %>
+
   </div>
 
-  <div class="content">
-      <%= yield %>
+  <div class="container" style='width:1080px;'>
+    <div class=" content  span-24 last" style='width:1080px;'>
+      <div class=" <%= 'spa' if  content_for? :sidebar %> column" style='width:530px;'>
+        <%= yield %>
+      </div>
+      <% if  content_for? :sidebar %>
+        <%= yield :sidebar %>
+      <% end %>
+    </div>
   </div>
 
-  <%= yield :sidebar %>
+
 
 
   <%= yield :bottom %>

@@ -1,0 +1,37 @@
+<%= render :partial => '/admin/merchandise/sub_header'%>
+
+<h1> <%= link_to 'Edit Product Description', admin_merchandise_product_path(@product) %> </h1>
+
+<%= render :partial => 'preview' %>
+
+<% content_for :sidebar do %>
+  <div id="article-sidebar" class="sidebar">
+    <%= form_for @product, :url  => admin_merchandise_products_description_path(@product),
+                            :html => {:class => ''}  do |form| %>
+
+      <%= render :partial => 'sidebar', :locals => {:form => form } %>
+
+      <div class="button generic_submit_button">
+        <%= submit_tag "Update",
+                        :class  => "button",
+                        :id     => "create_product_button" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to @product.name, admin_merchandise_product_path(@product), :class => 'button' %>
+
+
+<% content_for :head do %>
+  <meta name="robots" content="noarchive"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <%= stylesheet_link_tag "modstyles" %>
+  <%= stylesheet_link_tag "markdown" %>
+  <%= javascript_include_tag "admin/editor/showdown" %>
+  <%= javascript_include_tag "admin/editor/wmd" %>
+  <%= javascript_include_tag "admin/editor/textarearesizer" %>
+  <%= javascript_include_tag "admin/editor/elastic" %>
+  <%= javascript_include_tag "admin/editor/highlight" %>
+  <%= javascript_include_tag "admin/editor" %>
+<% end %>

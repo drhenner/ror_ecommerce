@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111120070110) do
+ActiveRecord::Schema.define(:version => 20111122224420) do
 
   create_table "accounting_adjustments", :force => true do |t|
     t.integer  "adjustable_id",                                 :null => false
@@ -184,6 +184,15 @@ ActiveRecord::Schema.define(:version => 20111120070110) do
     t.string "name"
   end
 
+  create_table "mercury_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "order_items", :force => true do |t|
     t.decimal  "price",            :precision => 8, :scale => 2
     t.decimal  "total",            :precision => 8, :scale => 2
@@ -324,6 +333,7 @@ ActiveRecord::Schema.define(:version => 20111120070110) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description_markup"
+    t.boolean  "active",               :default => false
   end
 
   add_index "products", ["name"], :name => "index_products_on_name"

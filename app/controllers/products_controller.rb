@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    products = Product.includes(:variants)
+    products = Product.active.includes(:variants)
     product_type = ProductType.find_by_id(params[:product_type_id])
     product_types = product_type ? product_type.self_and_descendants.collect{|p| p.id} : nil
     @products = products.where('product_type_id IN (?)', product_types || featured_product_types)
@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.active.find(params[:id])
     form_info
   end
 

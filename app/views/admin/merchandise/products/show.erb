@@ -7,6 +7,20 @@
   </div>
   <div class='span-6 last'>
     <%= @product.name %>
+    <span style='color:<%= @product.active ? "#3A3" : "#C33" %>;'>
+        <% if @product.active %>
+          <%= link_to 'Active', admin_merchandise_product_path(@product),
+                                :method => :delete,
+                                :confirm => "This will inactivate the product,  Are you sure?",
+                                :class => 'button green-button' %>
+        <% else %>
+          <%= link_to 'Not Active', activate_admin_merchandise_product_path(@product),
+                                    :method => 'PUT',
+                                    :confirm => "This will activate the product,  Are you sure?",
+                                    :class => 'button red-button' %>
+        <% end %>
+
+    </span>
   </div>
   <div class='clear'></div>
   <div class='span-3'>
@@ -77,7 +91,7 @@
         <td> <%= variant.brand.try(:name) %> </td>
         <% @product.properties.each do |property| %>
             <% variant_property = property.variant_properties.find_by_variant_id(variant.id) %>
-            <td style='<%= "color:#C66;" if variant_property && variant_property.primary %>'><%= variant_property.description if variant_property %> </td >
+            <td style='<%= "color:#4A4;" if variant_property && variant_property.primary %>'><%= variant_property.description if variant_property %> </td >
         <% end %>
       </tr >
     <% end %>
