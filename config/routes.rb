@@ -153,8 +153,12 @@ Hadean::Application.routes.draw do # |map|
           get :add_properties
           get :edit_variants
           put :update_variants
+          put :activate
         end
         resources :variants
+      end
+      namespace :products do
+        resources :descriptions, :only => [:edit, :update]
       end
     end
     namespace :document do
