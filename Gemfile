@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '~> 3.1.1'
+gem 'rails', '~> 3.1.3'
 
 gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
 gem 'authlogic', "3.0.3"
@@ -15,6 +15,7 @@ gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 
 #gem 'memcache-client', '~> 1.8.5'
+#gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git', ref: '38df02f55e55b1656581b893b14a6e3e006f9b78'
 gem 'mysql2', '~> 0.3.10'
 
 gem 'nested_set', '~> 1.6.3'
