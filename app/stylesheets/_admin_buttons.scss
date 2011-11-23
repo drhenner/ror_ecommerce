@@ -51,3 +51,68 @@
     font-weight: bold;
     padding: 0.1em 0.7em;
 }
+
+div {
+  .red-button {
+      background: #d81b21;
+      background: -webkit-gradient(linear, top, bottom, from(#ed1c24), to(#aa1317));
+      background: -moz-linear-gradient(center top , #ed1c24, #aa1317) repeat scroll 0 0 transparent;
+      border: 1px solid #980c10;
+      color: #FFFFFF !important;
+      font-variant: small-caps;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 0.1em 0.7em;
+
+  }
+  .red-button.selected {
+    background: #de898c;
+    background: -webkit-gradient(linear, top, bottom, from(#aa1317), to(#ed1c24));
+    background: -moz-linear-gradient(center top , #aa1317, #ed1c24) repeat scroll 0 0 transparent;
+    border: 1px solid #980c10;
+  }
+  .red-button:hover {
+      background: #b61318;
+      background: -webkit-gradient(linear, top, bottom, from(#c9151b), to(#a11115));
+      background: -moz-linear-gradient(center top , #c9151b, #a11115) repeat scroll 0 0 transparent;
+      filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#333333');
+      border: 1px solid #980c10;
+      color: #eeeeee !important;
+      font-variant: small-caps;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 0.1em 0.7em;
+  }
+}
+div {
+  .green-button {
+      background: #64991e;
+      background: -webkit-gradient(linear, top, bottom, from(#7db72f), to(#4e7d0e));
+      background: -moz-linear-gradient(center top , #7db72f, #4e7d0e) repeat scroll 0 0 transparent;
+      border: 1px solid #538312;
+      color: #e8f0de !important;
+      font-variant: small-caps;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 0.1em 0.7em;
+
+  }
+  .green-button.selected {
+    background: #de898c;
+    background: -webkit-gradient(linear, top, bottom, from(#aa1317), to(#ed1c24));
+    background: -moz-linear-gradient(center top , #aa1317, #ed1c24) repeat scroll 0 0 transparent;
+    border: 1px solid #538312;
+  }
+  .green-button:hover {
+      background: #538018;
+      background: -webkit-gradient(linear, top, bottom, from(#6b9d28), to(#436b0c));
+      background: -moz-linear-gradient(center top , #6b9d28, #436b0c) repeat scroll 0 0 transparent;
+      filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#333333');
+      border: 1px solid #538312;
+      color: #eeeeee !important;
+      font-variant: small-caps;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 0.1em 0.7em;
+  }
+}
