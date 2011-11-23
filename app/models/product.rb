@@ -51,9 +51,9 @@ class Product < ActiveRecord::Base
   validates :tax_status_id,         :presence => true
   validates :product_type_id,       :presence => true
   validates :prototype_id,          :presence => true
-  validates :permalink, :uniqueness => true
+  validates :permalink, :uniqueness => true, :length => { :maximum => 150 }
   validates :name,                  :presence => true, :length => { :maximum => 165 }
-  validates :description_markup,    :presence => true, :length => { :maximum => 2255 }
+  validates :description_markup,    :presence => true, :length => { :maximum => 2255 }, :if => :active
   validates :meta_keywords,         :presence => true,       :length => { :maximum => 255 }
   validates :meta_description,      :presence => true,       :length => { :maximum => 255 }
 
@@ -177,6 +177,10 @@ class Product < ActiveRecord::Base
   def self.featured
     product = where({ :products => {:featured => true} } ).includes(:images).first
     product ? product : includes(:images).where(['products.deleted_at IS NULL']).first
+  end
+
+  def self.active
+    where({ :products => {:active => true} } )
   end
 
   # paginated results from the admin products grid
