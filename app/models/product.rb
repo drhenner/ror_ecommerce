@@ -5,16 +5,6 @@ class Product < ActiveRecord::Base
 
   attr_accessor :available_shipping_rates # these the the shipping rates per the shipping address on the order
 
-=begin
-  ## UNCOMMENT TO ADD SOLR SEARCH
-  searchable do
-    text    :name, :default_boost => 2
-    text      :product_keywords#, :multiple => true
-    text      :description
-    time      :deleted_at
-  end
-=end
-
   belongs_to :product_type
   belongs_to :prototype
   belongs_to :shipping_category
@@ -152,21 +142,10 @@ class Product < ActiveRecord::Base
   # @param [params]  :rows, :page
   # @return [ Product ]
   def self.standard_search(args, params)
-    if defined?(Product.solr_search)
-      Product.search(:include => [:properties, :images]) do
-        keywords(args)
-        any_of do
-          with(:deleted_at).greater_than(Time.zone.now)
-          with(:deleted_at, nil)
-        end
-        paginate :page => params[:page].to_i, :per_page => params[:rows].to_i#params[:page], :per_page => params[:rows]
-      end
-    else
       Product.includes( [:properties, :images]).
               where(['products.name LIKE ? OR products.meta_keywords LIKE ?', "%#{args}%", "%#{args}%"]).
               where(['products.deleted_at IS NULL OR products.deleted_at > ?', Time.zone.now]).
               paginate :page => params[:page].to_i, :per_page => params[:rows].to_i
-    end
   end
 
   # This returns the first featured product in the database,
@@ -196,7 +175,6 @@ class Product < ActiveRecord::Base
     grid = includes(:variants)#paginate({:page => params[:page]})
     grid = grid.where(['products.deleted_at IS NOT NULL AND products.deleted_at > ?', Time.now.to_s(:db)])  if active_state == false##  note nil != false
     grid = grid.where(['products.deleted_at IS NULL     OR  products.deleted_at < ?', Time.now.to_s(:db)])  if active_state == true
-    #grid.includes(:variants)
     grid = grid.where("products.name = ?",                 params[:name])                  if params[:name].present?
     grid = grid.where("products.product_type_id = ?",      params[:product_type_id])       if params[:product_type_id].present?
     grid = grid.where("products.shipping_category_id = ?", params[:shipping_category_id])  if params[:shipping_category_id].present?
@@ -210,3 +188,26 @@ class Product < ActiveRecord::Base
       self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
     end
 end
+
+## If you want to use SOLR search uncomment the following:
+=begin
+    Product.class_eval do
+      searchable do
+        text    :name, :default_boost => 2
+        text      :product_keywords#, :multiple => true
+        text      :description
+        time      :deleted_at
+      end
+
+      def self.standard_search(args, params)
+          Product.search(:include => [:properties, :images]) do
+            keywords(args)
+            any_of do
+              with(:deleted_at).greater_than(Time.zone.now)
+              with(:deleted_at, nil)
+            end
+            paginate :page => params[:page].to_i, :per_page => params[:rows].to_i#params[:page], :per_page => params[:rows]
+          end
+      end
+    end
+=end

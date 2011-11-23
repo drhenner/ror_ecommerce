@@ -119,14 +119,7 @@ bc. #gem 'sunspot_solr'
 p. start solr before starting you server
 rake sunspot:solr:start
 
-Go into product.rb and uncomment the following
-
-bc. searchable do
-  text    :name, :default_boost => 2
-  text      :product_keywords#, :multiple => true
-  text      :description
-  time      :deleted_at
-end
+Go to the *bottom of product.rb* and uncomment the section with *"Product.class_eval"*
 
 
 bq. Take a look at setting up solr
