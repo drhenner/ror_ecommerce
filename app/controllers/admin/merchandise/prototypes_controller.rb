@@ -1,5 +1,5 @@
 class Admin::Merchandise::PrototypesController < Admin::BaseController
-  
+
   respond_to :html, :json
   def index
     @prototypes = Prototype.admin_grid(params)
@@ -10,14 +10,8 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
         @prototypes.per_page, #params[:page],
         @prototypes.current_page, #params[:rows],
         @prototypes.total_entries)
-      
       }
     end
-  end
-
-  def show
-    @prototype = Prototype.find(params[:id])
-    respond_with(@prototype)
   end
 
   def new
@@ -33,7 +27,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def create
     @prototype = Prototype.new(params[:prototype])
-  
+
     if @prototype.save
       redirect_to :action => :index
     else
@@ -50,7 +44,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def update
     @prototype = Prototype.find(params[:id])
-  
+
     if @prototype.update_attributes(params[:prototype])
       redirect_to :action => :index
     else
@@ -63,7 +57,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
     @prototype = Prototype.find(params[:id])
     @prototype.active = false
     @prototype.save
-  
+
     redirect_to :action => :index
   end
 end
