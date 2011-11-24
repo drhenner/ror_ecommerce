@@ -38,11 +38,11 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
 
     if @product.save
       flash[:notice] = "Success, You should create a variant for the product."
-      redirect_to edit_variants_admin_merchandise_product_url(@product)
+      redirect_to edit_admin_merchandise_products_description_url(@product)
     else
       form_info
       flash[:error] = "The product could not be saved"
-      redirect_to edit_admin_merchandise_products_description_url(@product)
+      render :action => :new
     end
   rescue
     render :text => "Please make sure you have solr started... Run this in the command line => bundle exec rake sunspot:solr:start"
@@ -105,6 +105,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   def activate
     @product = Product.find(params[:id])
     @product.active = true
+    @product.deleted_at = nil
     if @product.save
       redirect_to :action => :show
     else
