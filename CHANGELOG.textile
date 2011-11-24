@@ -1,3 +1,7 @@
+h3. 0.9.2 2011-24-12
+
+* Add VAT support
+
 h3. 0.9.1 2011-23-12
 
 * Updated Products workflow to be multistep
