@@ -25,14 +25,14 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   def new
     form_info
     @product = Product.find(params[:product_id])
-    #@variant = @product.variants.new()
+    @variant = @product.variants.new()
   end
 
   def create
     @product = Product.find(params[:product_id])
-    #@variant = @product.variants.new(params[:variant])
+    @variant = @product.variants.new(params[:variant])
 
-    if @product.update_attributes(params[:product])
+    if @variant.save
       redirect_to admin_merchandise_product_variants_url(@product)
     else
       form_info
@@ -61,10 +61,10 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
 
   def destroy
     @variant = Variant.find(params[:id])
-    @variant.active = false
+    @variant.deleted_at = Time.zone.now
     @variant.save
 
-    redirect_to :action => :index
+    redirect_to admin_merchandise_product_variants_url(@variant.product)
   end
 
   private
