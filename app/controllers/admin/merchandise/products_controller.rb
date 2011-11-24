@@ -29,7 +29,6 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     else
       @product            = Product.new
       @product.prototype  = Prototype.new
-      #render :layout => 'admin_markup'
     end
   end
 
@@ -51,17 +50,17 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   def edit
     @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
     form_info
-    render :layout => 'admin_markup'
+    #render :layout => 'admin_markup'
   end
 
   def update
     @product = Product.find(params[:id])
 
     if @product.update_attributes(params[:product])
-      redirect_to :action => :index
+      redirect_to admin_merchandise_product_url(@product)
     else
       form_info
-      render :action => :edit, :layout => 'admin_markup'
+      render :action => :edit#, :layout => 'admin_markup'
     end
   end
 
@@ -107,7 +106,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     @product.active = true
     @product.deleted_at = nil
     if @product.save
-      redirect_to :action => :show
+      redirect_to admin_merchandise_product_url(@product)
     else
       flash[:alert] = "Please add a description before Activating."
       redirect_to edit_admin_merchandise_products_description_url(@product)
@@ -119,7 +118,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     @product.active = false
     @product.save
 
-    redirect_to :action => :show
+    redirect_to admin_merchandise_product_url(@product)
   end
 
   private
