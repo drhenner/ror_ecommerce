@@ -17,7 +17,7 @@
     <% for product in @products %>
       <tr>
         <td><%= link_to product.name, admin_merchandise_product_path(product) %></td>
-        <td><%= product.deleted_at ? 'No' : 'Yes' %></td>
+        <td><%= product.available? ? 'Yes' : 'No' %></td>
         <td><%= link_to "Edit",           edit_admin_merchandise_product_path(product) %></td>
         <td><%= link_to "Edit Variants",  edit_variants_admin_merchandise_product_path(product) %></td>
       </tr>

@@ -162,6 +162,10 @@ class Product < ActiveRecord::Base
     where({ :products => {:active => true} } )
   end
 
+  def available?
+    active && (!deleted_at || deleted_at < Time.zone.now)
+  end
+
   # paginated results from the admin products grid
   #
   # @param [Optional params]

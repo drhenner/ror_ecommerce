@@ -9,18 +9,17 @@
     <%= @product.name %>
     <% if @product.description? %>
       <span style='color:<%= @product.active ? "#3A3" : "#C33" %>;'>
-          <% if @product.active %>
-            <%= link_to 'Active', admin_merchandise_product_path(@product),
-                                  :method => :delete,
-                                  :confirm => "This will inactivate the product,  Are you sure?",
-                                  :class => 'button green-button' %>
-          <% else %>
-            <%= link_to 'Not Active', activate_admin_merchandise_product_path(@product),
-                                      :method => 'PUT',
-                                      :confirm => "This will activate the product,  Are you sure?",
-                                      :class => 'button red-button' %>
-          <% end %>
-
+        <% if @product.available? %>
+          <%= link_to 'Active', admin_merchandise_product_path(@product),
+                                :method => :delete,
+                                :confirm => "This will inactivate the product,  Are you sure?",
+                                :class => 'button green-button' %>
+        <% else %>
+          <%= link_to 'Not Active', activate_admin_merchandise_product_path(@product),
+                                    :method => 'PUT',
+                                    :confirm => "This will activate the product,  Are you sure?",
+                                    :class => 'button red-button' %>
+        <% end %>
       </span>
     <% end %>
   </div>
