@@ -135,17 +135,14 @@ h2. TODOs:
 
 * product sales (eg. 20% off)
 * make admin UI have a better flow (product creation/ images / inventory)
-* remove memcached requirement
-* move solr to an engine
 * more documentation / videos for creating products/variants
 * easy setup of fake data for getting started
 
 h2. Author
 
-RoR Ecommerce was written by David Henner with contributions from:
+RoR Ecommerce was written by David Henner:
 
-* Oren Golan
-* Yury Velikanau
+To view contributors look at Contributors.textile
 
 h2. FYI:
 
