@@ -13,6 +13,7 @@ describe Admin::Merchandise::PropertiesController do
   end
 
   it "index action should render index template" do
+    @property = Factory(:property)
     get :index
     response.should render_template(:index)
   end
