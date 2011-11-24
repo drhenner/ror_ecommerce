@@ -5,6 +5,9 @@ require File.expand_path('../application', __FILE__)
 begin
   raw_config = File.read("config/config.yml")
   HADEAN_CONFIG = YAML.load(raw_config)[Rails.env]
+  module GlobalConstants
+    VAT_TAX_SYSTEM = HADEAN_CONFIG['vat']
+  end
 rescue  Exception => e
   puts "#{ e } (#{ e.class })!"
   raise "

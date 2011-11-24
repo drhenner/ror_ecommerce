@@ -148,7 +148,25 @@ class OrderItem < ActiveRecord::Base
   # @param [none]
   # @return [Float] tax charge on the item.
   def tax_charge
-    tax_percentage = tax_rate.try(:percentage) ? tax_rate.try(:percentage) : 0.0
+    tax_percentage = tax_rate.try(:tax_percentage) ? tax_rate.tax_percentage : 0.0
     adjusted_price * tax_percentage / 100.0
+  end
+
+  # the VAT charge on an item
+  #
+  # @param [none]
+  # @return [Float] tax charge on the item.
+  def amount_of_charge_is_vat
+    vat_percentage = tax_rate.try(:vat_percentage) ? tax_rate.vat_percentage : 0.0
+    (adjusted_price * (vat_percentage / (100.0 + vat_percentage))).round_at(2)
+  end
+
+  # the amount of an item if there were zero VAT
+  #
+  # @param [none]
+  # @return [Float] tax charge on the item.
+  def amount_of_charge_without_vat
+    vat_percentage = tax_rate.try(:vat_percentage) ? tax_rate.vat_percentage : 0.0
+    (100.0 * adjusted_price / (100.0 + vat_percentage)).round_at(2)
   end
 end

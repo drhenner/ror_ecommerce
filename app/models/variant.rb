@@ -92,7 +92,7 @@ class Variant < ActiveRecord::Base
   # @param [TaxRate]
   # @return [Decimal] tax rate percentage
   def tax_percentage(tax_rate)
-    tax_rate ? tax_rate.percentage : 0.0
+    tax_rate ? tax_rate.tax_percentage : 0.0
   end
 
   # gives you the tax rate for the give state_id and the time.

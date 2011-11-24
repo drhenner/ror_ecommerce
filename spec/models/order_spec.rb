@@ -268,30 +268,6 @@ describe Order, "instance methods" do
     end
   end
 
-  context ".tax_charges" do
-    it 'should return one tax_charges for all order items' do
-      tax_rate = Factory(:tax_rate, :percentage => 10.0)
-      tax_rate5 = Factory(:tax_rate, :percentage => 5.0)
-      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
-      order_item5 = Factory(:order_item, :tax_rate => tax_rate5, :price => 10.00)
-
-      @order.stubs(:order_items).returns( [order_item, order_item5] )
-      @order.tax_charges.should == [2.00 , 0.50]
-    end
-  end
-
-  context ".total_tax_charges" do
-    it 'should return one tax_charges for all order items' do
-      tax_rate = Factory(:tax_rate, :percentage => 10.0)
-      tax_rate5 = Factory(:tax_rate, :percentage => 5.0)
-      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
-      order_item5 = Factory(:order_item, :tax_rate => tax_rate5, :price => 10.00)
-
-      @order.stubs(:order_items).returns( [order_item, order_item5] )
-      @order.total_tax_charges.should == 2.50
-    end
-  end
-
   context ".add_items(variant, quantity, state_id = nil)" do
     it 'should add a new variant to order items ' do
       variant = Factory(:variant)
@@ -423,7 +399,74 @@ describe Order, "instance methods" do
 
 end
 
+describe Order, "Without VAT" do
+  before(:each) do
+    @order = Factory(:order)
+  end
 
+  before(:all) do
+    GlobalConstants.send(:remove_const, 'VAT_TAX_SYSTEM') #if mod.const_defined?(const)
+    GlobalConstants::VAT_TAX_SYSTEM = false
+  end
+
+  context ".tax_charges" do
+    it 'should return one tax_charges for all order items' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      tax_rate5 = Factory(:tax_rate, :percentage => 5.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item5 = Factory(:order_item, :tax_rate => tax_rate5, :price => 10.00)
+
+      @order.stubs(:order_items).returns( [order_item, order_item5] )
+      @order.tax_charges.should == [2.00 , 0.50]
+    end
+  end
+
+  context ".total_tax_charges" do
+    it 'should return one tax_charges for all order items' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      tax_rate5 = Factory(:tax_rate, :percentage => 5.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item5 = Factory(:order_item, :tax_rate => tax_rate5, :price => 10.00)
+
+      @order.stubs(:order_items).returns( [order_item, order_item5] )
+      @order.total_tax_charges.should == 2.50
+    end
+  end
+end
+
+describe Order, "With VAT" do
+  before(:each) do
+    @order = Factory(:order)
+  end
+  before(:all) do
+    GlobalConstants.send(:remove_const, 'VAT_TAX_SYSTEM') #if mod.const_defined?(const)
+    GlobalConstants::VAT_TAX_SYSTEM = true
+  end
+
+  context ".tax_charges" do
+    it 'should return one tax_charges for all order items' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      tax_rate5 = Factory(:tax_rate, :percentage => 5.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item5 = Factory(:order_item, :tax_rate => tax_rate5, :price => 10.00)
+
+      @order.stubs(:order_items).returns( [order_item, order_item5] )
+      @order.tax_charges.should == [0.00 , 0.00]
+    end
+  end
+
+  context ".total_tax_charges" do
+    it 'should return one tax_charges for all order items' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      tax_rate5 = Factory(:tax_rate, :percentage => 5.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item5 = Factory(:order_item, :tax_rate => tax_rate5, :price => 10.00)
+
+      @order.stubs(:order_items).returns( [order_item, order_item5] )
+      @order.total_tax_charges.should == 0.00
+    end
+  end
+end
 
 describe Order, "#find_myaccount_details" do
   it 'should return have invoices and completed_invoices associations' do

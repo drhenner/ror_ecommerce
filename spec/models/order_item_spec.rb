@@ -2,18 +2,18 @@ require 'spec_helper'
 
 
 describe OrderItem, "instance methods" do
-  
-  before(:each) do 
+
+  before(:each) do
     #@order = Factory(:order)
     @order_item = Factory(:order_item)#, :order => @order)
   end
-  
+
   context ".shipped?" do
     it 'should return true if there is a shipment_id' do
       @order_item.shipment_id = 1
       @order_item.shipped?.should be_true
     end
-    
+
     it 'should return false if there is a shipment_id' do
       @order_item.shipment_id = nil
       @order_item.shipped?.should be_false
@@ -60,20 +60,26 @@ describe OrderItem, "instance methods" do
       @order_item.tax_rate_id = 1
       @order_item.ready_to_calculate?.should be_true
     end
-    
+
     it 'should not be ready to calculate if we dont know the shipping rate ' do
       @order_item.shipping_rate_id = nil
       @order_item.tax_rate_id = 1
       @order_item.ready_to_calculate?.should be_false
     end
-    
+
     it 'should not be ready to calculate if we know the tax rate' do
       @order_item.shipping_rate_id = 1
       @order_item.tax_rate_id = nil
       @order_item.ready_to_calculate?.should be_false
     end
   end
+end
+describe OrderItem, "Without VAT" do
 
+  before(:all) do
+    GlobalConstants.send(:remove_const, 'VAT_TAX_SYSTEM') #if mod.const_defined?(const)
+    GlobalConstants::VAT_TAX_SYSTEM = false
+  end
   context ".calculate_total(coupon = nil)" do
     it 'should calculate_total' do
       tax_rate = Factory(:tax_rate, :percentage => 10.0)
@@ -82,7 +88,7 @@ describe OrderItem, "instance methods" do
       order_item.total.should == 22.00
     end
   end
-  
+
   context ".tax_charge" do
     it 'should return tax_charge' do
       tax_rate = Factory(:tax_rate, :percentage => 10.0)
@@ -90,8 +96,61 @@ describe OrderItem, "instance methods" do
       order_item.tax_charge.should == 2.00
     end
   end
-end
 
+  context ".amount_of_charge_is_vat" do
+    it 'should return tax_charge' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item.amount_of_charge_is_vat.should == 0.00
+    end
+  end
+
+  context ".amount_of_charge_without_vat" do
+    it 'should return tax_charge' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item.amount_of_charge_without_vat.should == 20.00
+    end
+  end
+end
+describe OrderItem, "With VAT" do
+  before(:all) do
+    GlobalConstants.send(:remove_const, 'VAT_TAX_SYSTEM') #if mod.const_defined?(const)
+    GlobalConstants::VAT_TAX_SYSTEM = true
+  end
+  context ".calculate_total(coupon = nil)" do
+    it 'should calculate_total' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item.calculate_total
+      order_item.total.should == 20.00
+    end
+  end
+
+  context ".tax_charge" do
+    it 'should return tax_charge' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item.tax_charge.should == 0.00
+    end
+  end
+
+  context ".amount_of_charge_is_vat" do
+    it 'should return tax_charge' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item.amount_of_charge_is_vat.should == 1.82
+    end
+  end
+
+  context ".amount_of_charge_without_vat" do
+    it 'should return tax_charge' do
+      tax_rate = Factory(:tax_rate, :percentage => 10.0)
+      order_item = Factory(:order_item, :tax_rate => tax_rate, :price => 20.00)
+      order_item.amount_of_charge_without_vat.should == 18.18
+    end
+  end
+end
 describe OrderItem, "#order_items_in_cart(order_id)" do
   pending "test for order_items_in_cart(order_id)"
 end
