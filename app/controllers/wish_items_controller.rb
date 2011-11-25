@@ -8,9 +8,9 @@ class WishItemsController < ApplicationController
   # DELETE /carts/1.xml
   def destroy
     if params[:variant_id]
-      item = current_user.wish_list_items(params[:variant_id])
+      item = current_user.wish_list_items(params[:variant_id]).first
       item.update_attributes(:active => false)
     end
-    redirect_to(wish_items_url)
+    render :action => :index
   end
 end

@@ -9,7 +9,7 @@ Hadean::Application.routes.draw do # |map|
   match 'admin/merchandise' => 'admin/merchandise/summary#index'
   resources :products, :only => [:index, :show, :create]
   #resources :cart_items
-  resources :wish_items,  :only => [:index]
+  resources :wish_items,  :only => [:index, :destroy]
   resources :states,      :only => [:index]
   resource :about,        :only => [:show]
   resources :terms,       :only => [:index]
