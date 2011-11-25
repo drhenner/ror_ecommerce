@@ -86,7 +86,7 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
   end
   # DELETE /return_authorizations/1
   # DELETE /return_authorizations/1.xml
-  def delete
+  def destroy
     load_info
     @return_authorization = ReturnAuthorization.find(params[:id])
 
