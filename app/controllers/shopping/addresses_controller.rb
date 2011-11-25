@@ -11,6 +11,7 @@ class Shopping::AddressesController < Shopping::BaseController
 
   # GET /shopping/addresses/1/edit
   def edit
+    form_info
     @shopping_address = Address.find(params[:id])
   end
 
@@ -54,9 +55,11 @@ class Shopping::AddressesController < Shopping::BaseController
         update_order_address_id(@shopping_address.id)
         format.html { redirect_to(shopping_orders_url, :notice => 'Address was successfully updated.') }
       else
-        @shipping_address = current_user.addresses.find(params[:id])
+        @shopping_address = current_user.addresses.find(params[:id])
         @shopping_address.update_attributes(params[:address])
         @states     = State.form_selector
+
+        puts @shopping_address.inspect
         format.html { render :action => "edit" }
       end
     end
