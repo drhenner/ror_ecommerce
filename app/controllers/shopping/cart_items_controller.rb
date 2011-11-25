@@ -5,11 +5,6 @@ class Shopping::CartItemsController < Shopping::BaseController
   def index
     @cart_items       = session_cart.shopping_cart_items
     @saved_cart_items = session_cart.saved_cart_items
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @cart_items }
-    end
   end
 
   # POST /shopping/cart_items
@@ -61,10 +56,8 @@ class Shopping::CartItemsController < Shopping::BaseController
       respond_to do |format|
         if @cart_item.update_attributes(:item_type_id => params[:item_type_id])
           format.html { redirect_to(shopping_cart_items_url() ) }
-          format.xml  { head :ok }
         else
           format.html { redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') ) }
-          format.xml  { render :xml => @cart_item.errors, :status => :unprocessable_entity }
         end
       end
   end
