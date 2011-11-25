@@ -74,3 +74,18 @@ describe Myaccount::CreditCardsController do
     c.active.should be_false
   end
 end
+
+describe Myaccount::CreditCardsController do
+  render_views
+
+  it "index action should go to login page" do
+    get :index
+    response.should redirect_to(login_url)
+  end
+
+  it "show action should go to login page" do
+    @credit_card = Factory(:payment_profile)
+    get :show, :id => @credit_card.id
+    response.should redirect_to(login_url)
+  end
+end
