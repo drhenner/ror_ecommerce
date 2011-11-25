@@ -58,8 +58,6 @@ class Shopping::AddressesController < Shopping::BaseController
         @shopping_address = current_user.addresses.find(params[:id])
         @shopping_address.update_attributes(params[:address])
         @states     = State.form_selector
-
-        puts @shopping_address.inspect
         format.html { render :action => "edit" }
       end
     end
