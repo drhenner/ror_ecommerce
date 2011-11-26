@@ -4,6 +4,7 @@ nbproject/*
 .rvmrc
 .vim
 .sass-cache/
+.bundle
 
 log
 log/*.log
