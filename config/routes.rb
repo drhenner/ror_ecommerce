@@ -165,11 +165,14 @@ Hadean::Application.routes.draw do # |map|
         resources :product_types,       :only => [:index, :create, :update]
       end
 
+      namespace :multi do
+        resources :products do
+          resource :variant,      :only => [:edit, :update]
+        end
+      end
       resources :products do
         member do
           get :add_properties
-          get :edit_variants
-          put :update_variants
           put :activate
         end
         resources :variants

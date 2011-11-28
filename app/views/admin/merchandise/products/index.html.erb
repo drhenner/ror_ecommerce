@@ -19,7 +19,7 @@
         <td><%= link_to product.name, admin_merchandise_product_path(product) %></td>
         <td><%= product.available? ? 'Yes' : 'No' %></td>
         <td><%= link_to "Edit",           edit_admin_merchandise_product_path(product) %></td>
-        <td><%= link_to "Edit Variants",  edit_variants_admin_merchandise_product_path(product) %></td>
+        <td><%= link_to "Edit Variants",  edit_admin_merchandise_multi_product_variant_path(product) %></td>
       </tr>
     <% end %>
   </table>

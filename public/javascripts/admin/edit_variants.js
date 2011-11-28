@@ -15,16 +15,20 @@ if (typeof Hadean.Admin.products == "undefined") {
           jQuery('.add_variant_child').live('click', function() {
             Hadean.Admin.products.addVariant();// product_table_body
           })
+          jQuery('.remove_variant_child').live('click', function() {
+            Hadean.Admin.products.removeVariant(this);// product_table_body
+          })
         },
         addVariant : function(){
-          var content = '<tr>' + $('#variants_fields_template tr').html() + '</tr>';
+          var content =  $('#variants_fields_template').html() ;
           var regexp  = new RegExp('new_variants', 'g');
           var new_id  = new Date().getTime();
-          $('#product_table_body').append(content.replace(regexp, new_id));
+          $('#variants_container').append(content.replace(regexp, new_id));
           return false;
         },
-        removeVariant : function(){
-          //
+        removeVariant : function(obj){
+          kk = obj;
+          jQuery(obj).closest( '.new_variant_container' ).html('');
         }
     };
 

@@ -64,24 +64,6 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     end
   end
 
-  def edit_variants
-    @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
-    @brands = Brand.all.collect{|b| [b.name, b.id] }
-    render :layout => 'admin_markup'
-  end
-
-  def update_variants
-    @product = Product.find(params[:id])
-
-    if @product.update_attributes(params[:product])
-      flash[:notice] = "Successfully updated variants"
-      redirect_to :action => :show
-    else
-      @brands = Brand.all.collect{|b| [b.name, b.id] }
-      render :action => :edit_variants, :layout => 'admin_markup'
-    end
-  end
-
   def add_properties
     prototype  = Prototype.includes(:properties).find(params[:id])
     @properties = prototype.properties

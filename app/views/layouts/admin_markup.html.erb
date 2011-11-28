@@ -51,7 +51,7 @@
 
   <div class="container" style='width:1080px;'>
     <div class=" content  span-24 last" style='width:1080px;'>
-      <div class=" <%= 'spa' if  content_for? :sidebar %> column" style='width:530px;'>
+      <div class=" column" style='<%= 'width:530px;' if  content_for? :sidebar %>'>
         <%= yield %>
       </div>
       <% if  content_for? :sidebar %>

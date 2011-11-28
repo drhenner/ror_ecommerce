@@ -4,7 +4,7 @@
 
 <%= link_to 'Add Image', edit_admin_merchandise_images_product_path(@product), :class => 'button light' %>
 <%= link_to 'Variants', admin_merchandise_product_variants_path(@product), :class => 'button light' %>
-
+<%= link_to 'Back to Product',     admin_merchandise_product_path(@product), :class => 'button' %>
 <%# content_for :sidebar do %>
   <div id="article-sidebar" class="sidebar">
     <%= form_for @product, :url  => admin_merchandise_product_path(@product),
