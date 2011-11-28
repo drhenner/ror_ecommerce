@@ -19,11 +19,9 @@ solr/*
 
 .project
 nbproject
-.DS_Store
 *.swp
 public/assets/**/*
 public/assets/*
-.rvmrc
 config/config.yml
 solr/data
 coverage/*
