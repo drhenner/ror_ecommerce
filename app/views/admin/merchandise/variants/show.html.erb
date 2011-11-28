@@ -1,6 +1,9 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
 <h2> Product: <%= @product.name %> (<%= '*' if @variant.master %><%= @variant.sku %>)</h2>
+
+<%= link_to 'Edit Variant', edit_admin_merchandise_product_variant_path(@product, @variant), :class => 'button' %>
+
 <fieldset id="admin-product-names" class='span-12'>
 
 <div class='clear'></div>
@@ -54,6 +57,11 @@
 <fieldset id="admin-product-properties" class='span-12'>
   <legend>Properties</legend>
   <% @variant.variant_properties.each do |variant_prop|  %>
-    <%= variant_prop.property.identifing_name %>: <%= variant_prop.description %>
+    <%= variant_prop.property.identifing_name %>: <%= variant_prop.description %> <br/>
   <% end %>
 </fieldset>
+<% if @variant.active? %>
+  <%= link_to 'Inactivate Variant',
+              admin_merchandise_product_variant_path(@product, @variant),
+              :class => 'button red-button', :method => :delete, :confirm => "Are you sure?" %>
+<% end %>

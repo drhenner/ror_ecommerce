@@ -52,6 +52,10 @@ class Variant < ActiveRecord::Base
     (count_on_hand - count_pending_to_customer)
   end
 
+  def active?
+    deleted_at.nil? || deleted_at > Time.zone.now
+  end
+
   # returns true if the stock level is above or == the out of stock level
   #
   # @param [none]

@@ -86,10 +86,12 @@
         <% @product.properties.each do |property| %>
           <th><%= property.display_name %>  </th>
         <% end %>
+
+        <th> </th>
       </tr>
     </thead>
     <% @product.variants.each do |variant|  %>
-      <tr>
+      <tr style='<%= 'color:#FFAEB9;' unless variant.active? %>'>
         <td> <%= variant.sku %> </td>
         <td> <%= variant.price %> </td>
         <td> <%= variant.cost %> </td>
@@ -98,6 +100,7 @@
             <% variant_property = property.variant_properties.find_by_variant_id(variant.id) %>
             <td style='<%= "color:#4A4;" if variant_property && variant_property.primary %>'><%= variant_property.description if variant_property %> </td >
         <% end %>
+        <td> <%= link_to '', admin_merchandise_product_variant_path(@product, variant), :class => 'ss_sprite ss_application' %> </td>
       </tr >
     <% end %>
   </table>
