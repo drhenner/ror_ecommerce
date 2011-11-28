@@ -223,7 +223,9 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   background-color: #f0f8ff;
   margin-bottom: 3px;
 }
-
+.box.selected {
+  background-color: #f0fff8;
+}
 .line_item_green {
   padding: 3px;
   @include rounded(4px);
