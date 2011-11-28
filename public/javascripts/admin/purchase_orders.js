@@ -4,7 +4,7 @@ var Hadean = window.Hadean || {};
 if (typeof Hadean.Admin == "undefined") {
     Hadean.Admin = {};
 }
-var kk = null;
+
 // If we already have the purchaseOrder object don't override
 if (typeof Hadean.Admin.purchaseOrder == "undefined") {
 
@@ -23,6 +23,24 @@ if (typeof Hadean.Admin.purchaseOrder == "undefined") {
             jQuery(".chzn-select").chosen();
             return false;
           })
+
+          jQuery('.select_variants').live('change', function(){
+            //alert($(this).val());
+            Hadean.Admin.purchaseOrder.prefillCost(this);
+            return false;
+          })
+        },
+        prefillCost : function(obj) {
+          jQuery.ajax( {
+             type : "GET",
+             url : "/admin/merchandise/products/"+ 0 +"/variants/"+ $(obj).val(),
+             complete : function(json) {
+              variant = JSON.parse(json.responseText).variant;
+              variant.cost;
+              $('#'+ obj.id.replace("variant_id", "cost")).val(variant.cost);
+             },
+             dataType : 'json'
+          });
         }
     };
 

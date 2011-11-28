@@ -5,9 +5,9 @@
     <div class='span-10'>
       <%= po_form.label :variant_id %>
       <% if po_form.object.id %>
-        <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => 'chzn-select' %>
+        <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => 'chzn-select select_variants' %>
       <% else %>
-        <%= po_form.select :variant_id, @select_variants, { :include_blank => true } %>
+        <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => 'select_variants' %>
       <% end %>
     </div>
     <div style='float:right;'>
