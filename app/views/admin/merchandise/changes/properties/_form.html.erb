@@ -1,0 +1,34 @@
+
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+
+    <ul>
+    <% @product.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<fieldset id="admin-product-properties" class='span-14'>
+  <legend>Properties</legend>
+
+  <div id="product_properties" class='span-14'>
+    <% @product.product_properties.each do |product_property| %>
+      <div  id='product_property_<%= product_property.id %>'
+            class="variant_form left span-14 last">
+        <%= f.fields_for :product_properties, product_property do |product_property_form|%>
+          <%= render :partial => 'product_property', :locals => {:product_property_form => product_property_form } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+</fieldset>
+
+<div class='span-14' style='background-color:#EEE;border: solid 1px #666;float:left;'>
+  <p><%= add_child_link "New Property", :product_properties %> </p>
+  <%= new_child_fields_template f, :product_properties, :form_builder_local => :product_property_form %>
+</div>
