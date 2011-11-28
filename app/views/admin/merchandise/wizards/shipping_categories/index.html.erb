@@ -1,0 +1,23 @@
+<%= render :partial => '/admin/merchandise/wizards/sub_header'%>
+<% if  @shipping_categories.empty? %>
+  <h2>New Shipping Category</h2>
+<% else %>
+  <h2>Pick a Shipping Category</h2>
+<% end %>
+
+<div id='shopping_addresses_selections' class='span-18 last'>
+  <% @shipping_categories.each do |shipping_category| %>
+    <div class='span-8 box <%= cycle( '', 'last') %> <%= selected?(shipping_category.id)  %>'>
+      <label><%= shipping_category.name %></label><br/>
+      <%= button_to 'Use', admin_merchandise_wizards_shipping_category_path(shipping_category),
+                    :class => "button spade inline-block",
+                    :method => :put %>
+    </div>
+  <% end %>
+</div>
+<hr style='color:#aac'/>
+<br />
+
+<%= form_for @shipping_category, :url => admin_merchandise_wizards_shipping_categories_path do |shipping_category_form| %>
+  <%= render :partial =>  'form', :locals => {:f => shipping_category_form}  %>
+<% end %>

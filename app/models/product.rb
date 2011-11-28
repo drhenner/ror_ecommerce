@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
 
   attr_accessor :available_shipping_rates # these the the shipping rates per the shipping address on the order
 
+  belongs_to :brand
   belongs_to :product_type
   belongs_to :prototype
   belongs_to :shipping_category
@@ -40,7 +41,7 @@ class Product < ActiveRecord::Base
   validates :shipping_category_id,  :presence => true
   validates :tax_status_id,         :presence => true
   validates :product_type_id,       :presence => true
-  validates :prototype_id,          :presence => true
+  #validates :prototype_id,          :presence => true
   validates :permalink, :uniqueness => true, :length => { :maximum => 150 }
   validates :name,                  :presence => true, :length => { :maximum => 165 }
   validates :description_markup,    :presence => true, :length => { :maximum => 2255 }, :if => :active
@@ -166,6 +167,14 @@ class Product < ActiveRecord::Base
     active && (!deleted_at || deleted_at < Time.zone.now)
   end
 
+  # returns the brand's name or a blank string
+  #  ex: obj.brand_name => 'Nike'
+  #
+  # @param [none]
+  # @return [String]
+  def brand_name
+    brand_id ? brand.name : ''
+  end
   # paginated results from the admin products grid
   #
   # @param [Optional params]

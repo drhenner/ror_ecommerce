@@ -155,7 +155,7 @@ class Variant < ActiveRecord::Base
   # @param [none]
   # @return [String]
   def brand_name
-    brand_id ? brand.name : ''
+    brand_id ? brand.name : product.brand_name
   end
 
   # The variant has many properties.  but only one is the primary property

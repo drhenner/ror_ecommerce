@@ -592,7 +592,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   margin-bottom: 3px;
 }
 
-/* line 227, ../../app/stylesheets/_app.scss */
+/* line 226, ../../app/stylesheets/_app.scss */
+.box.selected {
+  background-color: #f0fff8;
+}
+
+/* line 229, ../../app/stylesheets/_app.scss */
 .line_item_green {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -603,12 +608,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   margin-bottom: 3px;
 }
 
-/* line 235, ../../app/stylesheets/_app.scss */
+/* line 237, ../../app/stylesheets/_app.scss */
 .line_item_green:hover {
   background-color: #e0ffe8;
 }
 
-/* line 239, ../../app/stylesheets/_app.scss */
+/* line 241, ../../app/stylesheets/_app.scss */
 .line_item_red {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -620,12 +625,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 248, ../../app/stylesheets/_app.scss */
+/* line 250, ../../app/stylesheets/_app.scss */
 .line_item_red:hover {
   background-color: #ffe0e8;
 }
 
-/* line 252, ../../app/stylesheets/_app.scss */
+/* line 254, ../../app/stylesheets/_app.scss */
 .line_item_blue {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -637,7 +642,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 261, ../../app/stylesheets/_app.scss */
+/* line 263, ../../app/stylesheets/_app.scss */
 .line_item_yellow {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -649,7 +654,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 270, ../../app/stylesheets/_app.scss */
+/* line 272, ../../app/stylesheets/_app.scss */
 .line_item_light_gray {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -661,7 +666,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 279, ../../app/stylesheets/_app.scss */
+/* line 281, ../../app/stylesheets/_app.scss */
 .line_item_gray {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -673,7 +678,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 288, ../../app/stylesheets/_app.scss */
+/* line 290, ../../app/stylesheets/_app.scss */
 .dkBlueBox {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -681,17 +686,17 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   border: solid #AED2EE 0.5px;
 }
 
-/* line 293, ../../app/stylesheets/_app.scss */
+/* line 295, ../../app/stylesheets/_app.scss */
 .innerBox {
   padding: 8px;
 }
 
-/* line 296, ../../app/stylesheets/_app.scss */
+/* line 298, ../../app/stylesheets/_app.scss */
 .top_border td {
   border-top: solid 2px #ddd;
 }
 
-/* line 302, ../../app/stylesheets/_app.scss */
+/* line 304, ../../app/stylesheets/_app.scss */
 button.ui-button {
   text-shadow: 0 0 0 #000;
 }

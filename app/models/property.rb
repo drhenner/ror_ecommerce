@@ -15,6 +15,10 @@ class Property < ActiveRecord::Base
 
   scope :visible, where("active == ?",true)
 
+
+  def full_name
+    "#{display_name}: (#{identifing_name})"
+  end
   # paginated results from the admin Property grid
   #
   # @param [Optional params]

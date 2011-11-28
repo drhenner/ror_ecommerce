@@ -1,0 +1,24 @@
+<%# render :partial => '/admin/merchandise/sub_header'%>
+<% if nil # content_for :header_sub_bar do %>
+  <%= link_to 'Brand', admin_merchandise_wizards_brands_path %> |
+  <%= link_to 'Product Type', admin_merchandise_wizards_product_types_path %> |
+  <%= link_to 'Properties', admin_merchandise_wizards_properties_path %> |
+  <%= link_to 'Shipping Categories', admin_merchandise_wizards_shipping_categories_path %> |
+  <%= link_to 'Tax Status', admin_merchandise_wizards_tax_statuses_path %> |
+  <%= link_to 'Product', new_admin_merchandise_wizards_product_path %>
+<% end %>
+
+<% content_for :sidemenu do -%>
+
+  <ul>
+    <!-- <li> <%#= link_to 'Brand',         edit_admin_merchandise_brand_path(@product.brand) %> </li> -->
+      <li> <%= link_to 'Brand', admin_merchandise_wizards_brands_path %> </li>
+      <li> <%= link_to 'Product Type', admin_merchandise_wizards_product_types_path %> </li>
+
+      <li> <%= link_to 'Properties', admin_merchandise_wizards_properties_path %> </li>
+      <li> <%= link_to 'Shipping Categories', admin_merchandise_wizards_shipping_categories_path %> </li>
+      <li> <%= link_to 'Tax Status', admin_merchandise_wizards_tax_statuses_path %> </li>
+      <li> <%= link_to 'Product', new_admin_merchandise_wizards_product_path unless next_wizard_form %> </li>
+  </ul>
+
+<% end %>

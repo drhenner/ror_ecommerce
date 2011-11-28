@@ -132,8 +132,18 @@ describe Variant, " instance methods" do
 
   context ".brand_name" do
     it 'should return the variants subname' do
-        @variant.stubs(:brand).returns  Factory(:brand, :name => 'Nike')
+        brand = Factory(:brand, :name => 'Nike')
+        @variant.stubs(:brand).returns  brand
+        @variant.stubs(:brand_id).returns  brand.id
         @variant.brand_name.should == 'Nike'
+    end
+    it 'should return the variants subname' do
+      @brand = Factory(:brand, :name => 'Reabok')
+      @product = Factory(:product, :brand => @brand)
+        @variant.stubs(:brand).returns  nil
+        @variant.stubs(:brand_id).returns  nil
+        @variant.stubs(:product).returns @product
+        @variant.brand_name.should == 'Reabok'
     end
   end
 

@@ -148,6 +148,17 @@ Hadean::Application.routes.draw do # |map|
       resources :brands
       resources :product_types
       resources :prototype_properties
+
+      namespace :wizards do
+        resources :brands,              :only => [:index, :create, :update]
+        resources :products,            :only => [:new, :create]
+        resources :properties,          :only => [:index, :create, :update]
+        resources :prototypes,          :only => [:update]
+        resources :tax_statuses,        :only => [:index, :create, :update]
+        resources :shipping_categories, :only => [:index, :create, :update]
+        resources :product_types,       :only => [:index, :create, :update]
+      end
+
       resources :products do
         member do
           get :add_properties
