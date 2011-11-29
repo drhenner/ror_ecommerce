@@ -31,6 +31,7 @@ class Product < ActiveRecord::Base
     :class_name => 'Variant',
     :conditions => ["variants.deleted_at IS NOT NULL AND variants.master = ? ", true]
 
+  before_validation :sanitize_data
   before_save :create_content
 
   accepts_nested_attributes_for :variants, :reject_if => proc { |attributes| attributes['sku'].blank? }
@@ -199,6 +200,12 @@ class Product < ActiveRecord::Base
   private
     def create_content
       self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
+    end
+
+    # if the permalink is not filled in set it equal to the name
+    def sanitize_data
+      self.permalink = name if permalink.blank? && name
+      self.permalink = permalink.squeeze(" ").strip.gsub(' ', '-') if permalink
     end
 end
 
