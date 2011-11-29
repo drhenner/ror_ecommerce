@@ -137,10 +137,14 @@ bq. Take a look at setting up solr
     when you try to create a product or upload an image you have not started solr search.
     remember you need to run "rake sunspot:solr:start" or remove solr/search
 
+h2. Before You deploy
+
+Many deploy processes require db/schema.rb to be checked into version control.  schema.rb was remove from git because this allowed ror_ecommerce users to rebase easily.  Add schema.rb back to version control before you deploy.
+
 h2. TODOs:
 
 * product sales (eg. 20% off)
-* make admin UI have a better flow (product creation/ images / inventory)
+* make admin UI have a better flow ( images )
 * more documentation / videos for creating products/variants
 * easy setup of fake data for getting started
 
