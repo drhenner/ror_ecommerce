@@ -6,6 +6,6 @@
     <%= image.photo_file_name %><%= image_tag image.photo.url(:small) %><br/>
   <% end %>
 
-  <%= link_to 'Edit Images', edit_admin_merchandise_images_product_path(@product)%>
-  <%= link_to 'Product Details', admin_merchandise_product_path(@product)%>
+  <%= link_to 'Edit Images', edit_admin_merchandise_images_product_path(@product), :class  => "button"%>
+  <%= link_to 'Product Details', admin_merchandise_product_path(@product), :class  => "button"%>
 </div>

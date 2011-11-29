@@ -6,13 +6,13 @@
                           :html => {:class => '', :multipart => true}  do |form| %>
     <%= render :partial => '/admin/merchandise/images/products/form', :locals => {:form => form}%>
 
-    <div class="button generic_submit_button">
+    <div class=" generic_submit_button">
       <%= submit_tag "Create",
                       :class  => "button",
                       :id     => "create_product_button" %>
     </div>
   <% end %>
 
-  <%= link_to 'View Images', admin_merchandise_images_product_path(@product)%>
-  <%= link_to 'Product Details', admin_merchandise_product_path(@product)%>
+  <%= link_to 'View Images', admin_merchandise_images_product_path(@product), :class  => "button"%>
+  <%= link_to 'Product Details', admin_merchandise_product_path(@product), :class  => "button" %>
 </div>
