@@ -1,10 +1,11 @@
 .DS_Store
 nbproject/*
+nbproject
 .vimrc
 .rvmrc
 .vim
 .sass-cache/
-.bundle
+/.bundle
 
 log
 log/*.log
@@ -18,13 +19,17 @@ solr
 solr/*
 
 .project
-nbproject
 *.swp
 public/assets/**/*
 public/assets/*
-config/config.yml
-solr/data
 coverage/*
 Gemfile.lock
+config/config.yml
 config/database.yml
 db/*.db
+/db/*.sqlite3
+
+doc/api
+doc/app
+doc/plugins
+doc/*.dot
