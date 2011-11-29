@@ -70,6 +70,12 @@ Once everything is setup, start up the server with 'rails server' and direct it 
 
 write down the username/password and follow the directions.
 
+h2. YARDOCS
+
+If you would like to see the docs you can generate them locally with the following command:
+
+bc. yardoc --no-private --protected app/models/*.rb
+
 h2. Adding Dalli for cache and the session store
 
 Install memcached, this is easiest to do with "homebrew":http://mxcl.github.com/homebrew/ and :
