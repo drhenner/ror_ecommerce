@@ -6,6 +6,7 @@ nbproject
 .vim
 .sass-cache/
 /.bundle
+.yardoc/*
 
 log
 log/*.log
