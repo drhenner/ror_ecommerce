@@ -8,7 +8,7 @@
       <h2>Pick a Property</h2>
     <% end %>
 
-    <%= form_for @property, :url => admin_merchandise_wizards_properties_path, :method => 'PUT' do |product_form| %>
+    <%= form_for @property, :url => admin_merchandise_wizards_property_path(:id => 0), :method => 'PUT' do |product_form| %>
       <div id='properties_selections' class='span-9 last'>
         <% if nil # @properties.each do |property| %>
           <div class='span-8 box <%= cycle( '', 'last') %>'>
@@ -26,8 +26,6 @@
                         :multiple => 'true',
                         :style    => 'overflow:scroll;',
                         'data-placeholder' => 'Choose Properties' %>
-                        <%#= select_tag "country",
-                        options_from_collection_for_select(@properties,"id","full_name",@selected),:multiple => 'true' %>
       </div>
       <%= product_form.submit 'Use Properties', :class => 'button' %>
     <% end %>
