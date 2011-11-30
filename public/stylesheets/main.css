@@ -203,6 +203,7 @@ a:visited {
   font-variant: small-caps;
   font-weight: bold;
   font-size: 106%;
+  height: 3em;
   border-bottom: 1px solid #ECECEC;
   background: url("../../images/header/bg-header-wrap.png") repeat-x scroll center bottom white;
   text-align: left;
@@ -230,6 +231,11 @@ a:visited {
 /* line 28, ../../app/stylesheets/_main_footer.scss */
 #footer_wrapper li:hover {
   color: #AA5555;
+}
+
+/* line 32, ../../app/stylesheets/_main_footer.scss */
+#footer_buffer {
+  height: 0.8em;
 }
 
 /* line 3, ../../app/stylesheets/_sub_header.scss */
@@ -428,72 +434,85 @@ a:visited {
   color: #AA5555;
 }
 
-/* line 2, ../../app/stylesheets/_app.scss */
+/* line 1, ../../app/stylesheets/_app.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 3, ../../app/stylesheets/_app.scss */
+body #body_wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -4em;
+}
+
+/* line 10, ../../app/stylesheets/_app.scss */
 a {
   text-decoration: none;
 }
 
-/* line 6, ../../app/stylesheets/_app.scss */
+/* line 14, ../../app/stylesheets/_app.scss */
 a:hover {
   background-color: transparent;
 }
 
-/* line 10, ../../app/stylesheets/_app.scss */
+/* line 18, ../../app/stylesheets/_app.scss */
 .left-text {
   text-align: left;
 }
 
-/* line 14, ../../app/stylesheets/_app.scss */
+/* line 22, ../../app/stylesheets/_app.scss */
 .left-text-4 {
   text-align: left;
   padding-left: 4px;
 }
 
-/* line 18, ../../app/stylesheets/_app.scss */
+/* line 26, ../../app/stylesheets/_app.scss */
 .left-text-8 {
   text-align: left;
   padding-left: 8px;
 }
 
-/* line 22, ../../app/stylesheets/_app.scss */
+/* line 30, ../../app/stylesheets/_app.scss */
 .rounded-2 {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   behavior: url(border-radius.htc);
 }
 
-/* line 26, ../../app/stylesheets/_app.scss */
+/* line 34, ../../app/stylesheets/_app.scss */
 .rounded-4 {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   behavior: url(border-radius.htc);
 }
 
-/* line 29, ../../app/stylesheets/_app.scss */
+/* line 37, ../../app/stylesheets/_app.scss */
 .rounded-6 {
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   behavior: url(border-radius.htc);
 }
 
-/* line 33, ../../app/stylesheets/_app.scss */
+/* line 41, ../../app/stylesheets/_app.scss */
 .rounded-8 {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   behavior: url(border-radius.htc);
 }
 
-/* line 37, ../../app/stylesheets/_app.scss */
+/* line 45, ../../app/stylesheets/_app.scss */
 .padding-5 {
   padding: 5px;
 }
 
-/* line 41, ../../app/stylesheets/_app.scss */
+/* line 49, ../../app/stylesheets/_app.scss */
 .padding-10 {
   padding: 10px;
 }
 
-/* line 45, ../../app/stylesheets/_app.scss */
+/* line 53, ../../app/stylesheets/_app.scss */
 #admin-property-names {
   width: 390px;
 }
@@ -502,18 +521,18 @@ a:hover {
   width: 390px;
 }
 
-/* line 51, ../../app/stylesheets/_app.scss */
+/* line 59, ../../app/stylesheets/_app.scss */
 #admin_properties_page_wrapper {
   width: 950px;
   margin-right: 0;
 }
 
-/* line 54, ../../app/stylesheets/_app.scss */
+/* line 62, ../../app/stylesheets/_app.scss */
 #admin_properties_grid_wrapper {
   width: 710px;
 }
 
-/* line 58, ../../app/stylesheets/_app.scss */
+/* line 66, ../../app/stylesheets/_app.scss */
 #admin_new_property_button {
   display: inline;
   float: left;
@@ -526,18 +545,18 @@ a:hover {
   overflow-x: hidden;
 }
 
-/* line 63, ../../app/stylesheets/_app.scss */
+/* line 71, ../../app/stylesheets/_app.scss */
 #admin_product_types_page_wrapper {
   width: 950px;
   margin-right: 0;
 }
 
-/* line 66, ../../app/stylesheets/_app.scss */
+/* line 74, ../../app/stylesheets/_app.scss */
 #admin_product_types_grid_wrapper {
   width: 710px;
 }
 
-/* line 70, ../../app/stylesheets/_app.scss */
+/* line 78, ../../app/stylesheets/_app.scss */
 #admin_new_product_type_button {
   display: inline;
   float: left;
@@ -550,7 +569,7 @@ a:hover {
   overflow-x: hidden;
 }
 
-/* line 75, ../../app/stylesheets/_app.scss */
+/* line 83, ../../app/stylesheets/_app.scss */
 #admin-product_type-names {
   width: 390px;
 }
@@ -559,18 +578,18 @@ a:hover {
   width: 390px;
 }
 
-/* line 81, ../../app/stylesheets/_app.scss */
+/* line 89, ../../app/stylesheets/_app.scss */
 #admin_prototypes_page_wrapper {
   width: 950px;
   margin-right: 0;
 }
 
-/* line 84, ../../app/stylesheets/_app.scss */
+/* line 92, ../../app/stylesheets/_app.scss */
 #admin_prototypes_grid_wrapper {
   width: 710px;
 }
 
-/* line 87, ../../app/stylesheets/_app.scss */
+/* line 95, ../../app/stylesheets/_app.scss */
 #admin_new_prototype_type_button {
   display: inline;
   float: left;
@@ -583,7 +602,7 @@ a:hover {
   overflow-x: hidden;
 }
 
-/* line 90, ../../app/stylesheets/_app.scss */
+/* line 98, ../../app/stylesheets/_app.scss */
 #admin-prototype-names {
   width: 390px;
 }
@@ -592,45 +611,45 @@ a:hover {
   width: 390px;
 }
 
-/* line 94, ../../app/stylesheets/_app.scss */
+/* line 102, ../../app/stylesheets/_app.scss */
 .property_form {
   display: inline;
   text-align: left;
 }
 
-/* line 98, ../../app/stylesheets/_app.scss */
+/* line 106, ../../app/stylesheets/_app.scss */
 .roman-list li {
   list-style: upper-roman;
 }
 
-/* line 102, ../../app/stylesheets/_app.scss */
+/* line 110, ../../app/stylesheets/_app.scss */
 textarea.height-20 {
   height: 2em;
 }
 
-/* line 106, ../../app/stylesheets/_app.scss */
+/* line 114, ../../app/stylesheets/_app.scss */
 textarea.height-30 {
   height: 3em;
 }
 
-/* line 109, ../../app/stylesheets/_app.scss */
+/* line 117, ../../app/stylesheets/_app.scss */
 textarea.height-40 {
   height: 4em;
 }
 
-/* line 113, ../../app/stylesheets/_app.scss */
+/* line 121, ../../app/stylesheets/_app.scss */
 textarea.height-50 {
   height: 5em;
 }
 
-/* line 117, ../../app/stylesheets/_app.scss */
+/* line 125, ../../app/stylesheets/_app.scss */
 .selectlist-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 123, ../../app/stylesheets/_app.scss */
+/* line 131, ../../app/stylesheets/_app.scss */
 .selectlist-item {
   background: white url(../images/cross-circle.png) no-repeat right center;
   border-left: solid 1px #eee;
@@ -642,29 +661,29 @@ textarea.height-50 {
   margin: 1px 0;
 }
 
-/* line 135, ../../app/stylesheets/_app.scss */
+/* line 143, ../../app/stylesheets/_app.scss */
 #admin-product-names {
   margin: 0  0  0.5em;
   padding: 0.3em;
 }
 
-/* line 142, ../../app/stylesheets/_app.scss */
+/* line 150, ../../app/stylesheets/_app.scss */
 li {
   list-style: none;
 }
 
-/* line 147, ../../app/stylesheets/_app.scss */
+/* line 155, ../../app/stylesheets/_app.scss */
 .width-list li {
   clear: both;
   text-align: left;
 }
 
-/* line 153, ../../app/stylesheets/_app.scss */
+/* line 161, ../../app/stylesheets/_app.scss */
 .space-list-40 li {
   padding-bottom: 40px;
 }
 
-/* line 158, ../../app/stylesheets/_app.scss */
+/* line 166, ../../app/stylesheets/_app.scss */
 input.text, input.title, input[type="text"], input[type="password"], input[type="email"] {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -677,13 +696,13 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   padding: 6px 5px;
 }
 
-/* line 168, ../../app/stylesheets/_app.scss */
+/* line 176, ../../app/stylesheets/_app.scss */
 #content_wrapper {
   padding-top: 7px;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
-/* line 173, ../../app/stylesheets/_app.scss */
+/* line 181, ../../app/stylesheets/_app.scss */
 .flash_error {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -697,7 +716,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   color: #8a1f11;
 }
 
-/* line 177, ../../app/stylesheets/_app.scss */
+/* line 185, ../../app/stylesheets/_app.scss */
 .flash_notice {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -711,17 +730,17 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   color: #514721;
 }
 
-/* line 182, ../../app/stylesheets/_app.scss */
+/* line 190, ../../app/stylesheets/_app.scss */
 #right_side_panel {
   text-align: left;
 }
 
-/* line 188, ../../app/stylesheets/_app.scss */
+/* line 196, ../../app/stylesheets/_app.scss */
 #submit_add_to_cart {
   cursor: pointer;
 }
 
-/* line 192, ../../app/stylesheets/_app.scss */
+/* line 200, ../../app/stylesheets/_app.scss */
 .variant_border {
   padding: 3px;
   margin-bottom: 3px;
@@ -733,28 +752,28 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   cursor: pointer;
 }
 
-/* line 201, ../../app/stylesheets/_app.scss */
+/* line 209, ../../app/stylesheets/_app.scss */
 .variant_select {
   text-align: left;
 }
 
-/* line 205, ../../app/stylesheets/_app.scss */
+/* line 213, ../../app/stylesheets/_app.scss */
 .ui-datepicker-calendar table {
   margin: 0;
 }
 
-/* line 208, ../../app/stylesheets/_app.scss */
+/* line 216, ../../app/stylesheets/_app.scss */
 .ui-datepicker-calendar table th, .ui-datepicker-calendar table td {
   padding: 0;
   text-align: center;
 }
 
-/* line 213, ../../app/stylesheets/_app.scss */
+/* line 221, ../../app/stylesheets/_app.scss */
 .individual-cart-item {
   border-bottom: solid 1px #dcd;
 }
 
-/* line 219, ../../app/stylesheets/_app.scss */
+/* line 227, ../../app/stylesheets/_app.scss */
 .line_items_blue {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -765,12 +784,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   margin-bottom: 3px;
 }
 
-/* line 226, ../../app/stylesheets/_app.scss */
+/* line 234, ../../app/stylesheets/_app.scss */
 .box.selected {
   background-color: #f0fff8;
 }
 
-/* line 229, ../../app/stylesheets/_app.scss */
+/* line 237, ../../app/stylesheets/_app.scss */
 .line_item_green {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -781,12 +800,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   margin-bottom: 3px;
 }
 
-/* line 237, ../../app/stylesheets/_app.scss */
+/* line 245, ../../app/stylesheets/_app.scss */
 .line_item_green:hover {
   background-color: #e0ffe8;
 }
 
-/* line 241, ../../app/stylesheets/_app.scss */
+/* line 249, ../../app/stylesheets/_app.scss */
 .line_item_red {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -798,12 +817,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 250, ../../app/stylesheets/_app.scss */
+/* line 258, ../../app/stylesheets/_app.scss */
 .line_item_red:hover {
   background-color: #ffe0e8;
 }
 
-/* line 254, ../../app/stylesheets/_app.scss */
+/* line 262, ../../app/stylesheets/_app.scss */
 .line_item_blue {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -815,7 +834,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 263, ../../app/stylesheets/_app.scss */
+/* line 271, ../../app/stylesheets/_app.scss */
 .line_item_yellow {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -827,7 +846,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 272, ../../app/stylesheets/_app.scss */
+/* line 280, ../../app/stylesheets/_app.scss */
 .line_item_light_gray {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -839,7 +858,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 281, ../../app/stylesheets/_app.scss */
+/* line 289, ../../app/stylesheets/_app.scss */
 .line_item_gray {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -851,7 +870,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 290, ../../app/stylesheets/_app.scss */
+/* line 298, ../../app/stylesheets/_app.scss */
 .dkBlueBox {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -859,17 +878,17 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   border: solid #AED2EE 0.5px;
 }
 
-/* line 295, ../../app/stylesheets/_app.scss */
+/* line 303, ../../app/stylesheets/_app.scss */
 .innerBox {
   padding: 8px;
 }
 
-/* line 298, ../../app/stylesheets/_app.scss */
+/* line 306, ../../app/stylesheets/_app.scss */
 .top_border td {
   border-top: solid 2px #ddd;
 }
 
-/* line 304, ../../app/stylesheets/_app.scss */
+/* line 312, ../../app/stylesheets/_app.scss */
 button.ui-button {
   text-shadow: 0 0 0 #000;
 }
