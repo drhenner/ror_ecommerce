@@ -69,9 +69,11 @@
 
 <fieldset id="admin-product-properties" class='span-12'>
   <legend>Properties</legend>
+  <ul style='text-align:left;'>
   <% @product.product_properties.each do |product_prop|  %>
-    <%= product_prop.property.identifing_name %>: <%= product_prop.description %>
+    <li><label><%= product_prop.property.identifing_name %>:</label> <%= product_prop.description %></li>
   <% end %>
+  </ul>
 </fieldset>
 
 <fieldset id="admin-product-properties" class='span-12'>

@@ -4,5 +4,5 @@
   <%= render :partial => '/admin/rma/return_authorizations/form', :locals => {:f => f} %>
 <% end %>
 
-<%= link_to 'Show', admin_rma_order_return_authorization_path(@order, @return_authorization) %> |
-<%= link_to 'Back', admin_rma_order_return_authorizations_path(@order) %>
+<%= link_to 'Show', admin_rma_order_return_authorization_path(@order, @return_authorization), :class => 'button' %> |
+<%= link_to 'Back', admin_rma_order_return_authorizations_path(@order), :class => 'button' %>

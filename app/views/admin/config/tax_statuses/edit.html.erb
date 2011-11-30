@@ -6,5 +6,5 @@
   <%= render :partial =>  'form', :locals => {:f => f} %>
 <% end %>
 
-<%= link_to 'Show', admin_config_tax_status_path(@tax_status) %> |
-<%= link_to 'Back', admin_config_tax_statuses_path %>
+<%= link_to 'Show', admin_config_tax_status_path(@tax_status), :class => 'button' %>
+<%= link_to 'Back', admin_config_tax_statuses_path, :class => 'button' %>

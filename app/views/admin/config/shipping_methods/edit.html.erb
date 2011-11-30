@@ -5,5 +5,5 @@
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 
-<%= link_to 'Show', admin_config_shipping_method_path(@shipping_method) %> |
-<%= link_to 'Back', admin_config_shipping_methods_path %>
+<%= link_to 'Show', admin_config_shipping_method_path(@shipping_method), :class => 'button' %>
+<%= link_to 'Back', admin_config_shipping_methods_path, :class => 'button' %>

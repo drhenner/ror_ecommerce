@@ -5,7 +5,7 @@
 <%= form_for @property, :url  => admin_merchandise_properties_path,
                         :html => {:class => 'prepend-6'}  do |form| %>
   <%= render :partial => '/admin/merchandise/properties/form', :locals => {:form => form } %>
-  <div class="button generic_submit_button">
+  <div class=" generic_submit_button">
     <%= submit_tag "Create", :class => "button", :id => "create_property_button" %>
   </div>
 <% end %>

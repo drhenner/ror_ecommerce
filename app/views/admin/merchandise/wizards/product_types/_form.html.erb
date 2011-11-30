@@ -22,7 +22,7 @@
     </div>
     <div class='span-6 last'>
       Parent: <%= form.select :parent_id,
-                      nested_set_options(ProductType, @product_type) {|i, level| "#{'-' * level} #{i.name}" },
+                      nested_set_options(ProductType, ProductType.new) {|i, level| "#{'-' * level} #{i.name}" },
                       { :include_blank => true } %>
     </div>
   </div>
