@@ -5,7 +5,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
     respond_to do |format|
       format.html
       format.json { render :json => @properties.to_jqgrid_json(
-        [ :display_name, :display_active ],
+        [ :identifing_name, :display_name, :display_active ],
         @properties.per_page, #params[:page],
         @properties.current_page, #params[:rows],
         @properties.total_entries)

@@ -10,9 +10,10 @@
   <div id="admin_properties_grid_wrapper" class='column'>
     <%= raw jqgrid("Properties", "admin_properties_grid", admin_merchandise_properties_path,
       [
-        { :field => "display_name",   :label => "Name",     :width => 355,  :resizable => false },
+        { :field => "identifing_name",   :label => "Name ID",     :width => 255,  :resizable => false },
+        { :field => "display_name",   :label => "Name",     :width => 200,  :resizable => false },
         { :field => "display_active", :label => "Active?",  :width => 70,   :resizable => false }
-      ], 
+      ],
       {
         :height             => "360",
         :alt_rows           => true,
