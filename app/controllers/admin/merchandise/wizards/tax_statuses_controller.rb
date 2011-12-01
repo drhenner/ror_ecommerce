@@ -7,6 +7,7 @@ class Admin::Merchandise::Wizards::TaxStatusesController < Admin::Merchandise::W
   def create
     @tax_status = TaxStatus.new(params[:tax_status])
     if @tax_status.save
+      session[:product_wizard] ||= {}
       session[:product_wizard][:tax_status_id] = @tax_status.id
       flash[:notice] = "Successfully created tax status."
       redirect_to next_form
@@ -19,6 +20,7 @@ class Admin::Merchandise::Wizards::TaxStatusesController < Admin::Merchandise::W
   def update
     @tax_status = TaxStatus.find_by_id(params[:id])
     if @tax_status
+      session[:product_wizard] ||= {}
       session[:product_wizard][:tax_status_id] = @tax_status.id
       flash[:notice] = "Successfully updated tax status."
       redirect_to next_form

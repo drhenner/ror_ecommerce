@@ -15,6 +15,7 @@ class Admin::Merchandise::Wizards::ProductTypesController < Admin::Merchandise::
   def update
     @product_type = ProductType.find_by_id(params[:id])
     if @product_type
+      session[:product_wizard] ||= {}
       session[:product_wizard][:product_type_id] = @product_type.id
       flash[:notice] = "Successfully added product type."
       redirect_to next_form

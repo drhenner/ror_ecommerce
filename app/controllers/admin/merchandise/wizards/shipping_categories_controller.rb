@@ -7,6 +7,7 @@ class Admin::Merchandise::Wizards::ShippingCategoriesController < Admin::Merchan
   def create
     @shipping_category = ShippingCategory.new(params[:shipping_category])
     if @shipping_category.save
+      session[:product_wizard] ||= {}
       session[:product_wizard][:shipping_category_id] = @shipping_category.id
       flash[:notice] = "Successfully created shipping category."
       redirect_to next_form
@@ -19,6 +20,7 @@ class Admin::Merchandise::Wizards::ShippingCategoriesController < Admin::Merchan
   def update
     @shipping_category = ShippingCategory.find_by_id(params[:id])
     if @shipping_category
+      session[:product_wizard] ||= {}
       session[:product_wizard][:shipping_category_id] = @shipping_category.id
       flash[:notice] = "Successfully updated shipping category."
       redirect_to next_form

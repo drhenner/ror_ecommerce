@@ -12,6 +12,7 @@ class Admin::Merchandise::Wizards::PropertiesController < Admin::Merchandise::Wi
 
   def update
     if params[:property] &&  valid_property_ids
+      session[:product_wizard] ||= {}
       session[:product_wizard][:property_ids] = params[:property][:ids].map(&:to_i)
       flash[:notice] = "Successfully added properties."
       redirect_to next_form
