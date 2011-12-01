@@ -405,33 +405,70 @@ a:visited {
 }
 
 /* line 1, ../../app/stylesheets/_main_product_tabs.scss */
-#main-product-type-tabs {
+#main-product-type-tabs, #main-myaccount-tabs {
   font-variant: small-caps;
   font-weight: bold;
   font-size: 106%;
 }
 /* line 7, ../../app/stylesheets/_main_product_tabs.scss */
-#main-product-type-tabs li {
+#main-product-type-tabs li, #main-myaccount-tabs li {
   display: inline;
   list-style: none;
   color: #AA5555;
   padding: 3px;
 }
 /* line 12, ../../app/stylesheets/_main_product_tabs.scss */
-#main-product-type-tabs li a {
+#main-product-type-tabs li a, #main-myaccount-tabs li a {
   color: #828282;
 }
 /* line 15, ../../app/stylesheets/_main_product_tabs.scss */
-#main-product-type-tabs li a:hover {
+#main-product-type-tabs li a:hover, #main-myaccount-tabs li a:hover {
   color: #AA4444;
 }
 /* line 18, ../../app/stylesheets/_main_product_tabs.scss */
-#main-product-type-tabs li .selected {
+#main-product-type-tabs li .selected, #main-myaccount-tabs li .selected {
   color: #AA4444 !important;
 }
 /* line 22, ../../app/stylesheets/_main_product_tabs.scss */
-#main-product-type-tabs li:hover {
+#main-product-type-tabs li:hover, #main-myaccount-tabs li:hover {
   color: #AA5555;
+}
+
+/* line 28, ../../app/stylesheets/_main_product_tabs.scss */
+#main-product-type-tabs, #main-shopping-type-tabs {
+  float: left;
+  width: 450px;
+}
+
+/* line 34, ../../app/stylesheets/_main_product_tabs.scss */
+#sub_header_wrapper #main-myaccount-tabs {
+  float: right;
+  width: 220px;
+  text-align: right !important;
+}
+
+/* line 1, ../../app/stylesheets/_widget.scss */
+.ar-widget {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  behavior: url(border-radius.htc);
+  border: 1px #DDD solid;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* line 8, ../../app/stylesheets/_widget.scss */
+.ar-widget li {
+  color: #666;
+  font-family: HighTower,Georgia,serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: left;
+}
+/* line 15, ../../app/stylesheets/_widget.scss */
+.ar-widget li a {
+  color: #666 important;
 }
 
 /* line 1, ../../app/stylesheets/_app.scss */

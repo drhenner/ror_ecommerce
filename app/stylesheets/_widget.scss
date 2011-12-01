@@ -1,0 +1,19 @@
+.ar-widget {
+  @include rounded(4px);
+  border: 1px #DDD solid;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  li {
+    color:#666;
+    font-family: HighTower,Georgia,serif;
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:1em;
+    text-align:left;
+    a {
+      color:#666 important;
+    }
+  }
+}
