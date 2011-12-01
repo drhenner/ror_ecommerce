@@ -1,4 +1,4 @@
-#main-product-type-tabs {
+#main-product-type-tabs, #main-myaccount-tabs {
 
   font-variant: small-caps;
   font-weight:bold;
@@ -21,5 +21,19 @@
   }
   li:hover {
     color: #AA5555;
+  }
+}
+
+
+#main-product-type-tabs, #main-shopping-type-tabs {
+  float:left;
+  width:450px;
+}
+
+#sub_header_wrapper {
+  #main-myaccount-tabs {
+    float:right;
+    width:220px;
+    text-align:right !important;
   }
 }
