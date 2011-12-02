@@ -45,9 +45,9 @@ class Product < ActiveRecord::Base
   #validates :prototype_id,          :presence => true
   validates :permalink, :uniqueness => true, :length => { :maximum => 150 }
   validates :name,                  :presence => true, :length => { :maximum => 165 }
-  validates :description_markup,    :presence => true, :length => { :maximum => 2255 }, :if => :active
-  validates :meta_keywords,         :presence => true,       :length => { :maximum => 255 }
-  validates :meta_description,      :presence => true,       :length => { :maximum => 255 }
+  validates :description_markup,    :presence => true, :length => { :maximum => 2255 },     :if => :active
+  validates :meta_keywords,         :presence => true,       :length => { :maximum => 255 }, :if => :active
+  validates :meta_description,      :presence => true,       :length => { :maximum => 255 }, :if => :active
 
   # gives you the tax rate for the give state_id and the time.
   #  Tax rates can change from year to year so Time is a factor
@@ -206,6 +206,18 @@ class Product < ActiveRecord::Base
     def sanitize_data
       self.permalink = name if permalink.blank? && name
       self.permalink = permalink.squeeze(" ").strip.gsub(' ', '-') if permalink
+      if meta_keywords.blank? && description
+        self.meta_keywords =  [name[0..55],
+                              description.
+                              gsub(/\d/, "").                 # remove non-alpha numeric
+                              squeeze(" ").                   # remove extra whitespace
+                              gsub(/<\/?[^>]*>/, "").         # remove hyper text
+                              split(' ').                     # split into an array
+                              map{|w| w.length > 2 ? w : ''}. # remove words less than 2 characters
+                              join(' ').strip[0..198]         # join and limit to 198 characters
+                              ].join(': ')
+      end
+      self.meta_description = [name[0..55], description.gsub(/<\/?[^>]*>/, "").squeeze(" ").strip[0..198]].join(': ') if name.present? && description.present? && meta_description.blank?
     end
 end
 
