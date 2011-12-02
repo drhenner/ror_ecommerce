@@ -18,7 +18,7 @@ The project has *solr searching*, *compass* and *blueprint for CSS* and uses *jQ
 The gem list is quite large and the project still has a large wish list but it is the most
 complete solution for Rails today and it will only get better.
 
-Please use *Ruby 1.9.2* and enjoy *Rails 3.1.1*.
+Please use *Ruby 1.9.2* and enjoy *Rails 3.1.3*.
 
 ROR_ecommerce is designed differently.  If you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project that you wouldn't see in a normal Rails application.  If you don't like
@@ -142,7 +142,6 @@ Many deploy processes require db/schema.rb to be checked into version control.  
 h2. TODOs:
 
 * product sales (eg. 20% off)
-* make admin UI have a better flow ( images )
 * more documentation / videos for creating products/variants
 * easy setup of fake data for getting started
 
