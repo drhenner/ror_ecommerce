@@ -13,12 +13,28 @@
 
     <ul>
       <!-- <li> <%#= link_to 'Brand',         edit_admin_merchandise_brand_path(@product.brand) %> </li> -->
-        <li> <%= link_to 'Description', edit_admin_merchandise_products_description_path(@product) %> </li>
-        <li> <%= link_to 'Images',      edit_admin_merchandise_images_product_path(@product) %> </li>
+        <li>
+          <%= link_to 'Description',
+                      edit_admin_merchandise_products_description_path(@product),
+                      :style => "#{@product.description.blank? ? 'color:#EF2255;' : ''}" %>
+        </li>
+        <li>
+          <%= link_to 'Images',
+                      edit_admin_merchandise_images_product_path(@product),
+                      :style => "#{@product.images.blank? ? 'color:#EF2255;' : ''}" %>
+        </li>
         <li> <%= link_to 'Product',     edit_admin_merchandise_product_path(@product) %> </li>
-        <li> <%= link_to 'Properties',  edit_admin_merchandise_changes_product_property_path(@product.id) %> </li>
-        <li> <%= link_to 'Variants',    edit_admin_merchandise_multi_product_variant_path(@product) %> </li>
-        <li> <%= link_to "Inventory", admin_inventory_adjustment_path(@product) %> </li>
+        <li> <%= link_to 'Properties',
+                          edit_admin_merchandise_changes_product_property_path(@product.id),
+                          :style => "#{@product.properties.blank? ? 'color:#EF2255;' : ''}" %> </li>
+        <li>
+          <%= link_to 'Variants',
+                      edit_admin_merchandise_multi_product_variant_path(@product),
+                      :style => "#{@product.variants.blank? ? 'color:#EF2255;' : ''}" %> </li>
+        <li>
+          <%= link_to "Inventory",
+                      admin_inventory_adjustment_path(@product) %>
+        </li>
     </ul>
 
   <% end %>
