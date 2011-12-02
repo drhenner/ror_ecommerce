@@ -21,16 +21,16 @@
         <li>
           <%= link_to 'Images',
                       edit_admin_merchandise_images_product_path(@product),
-                      :style => "#{@product.images.blank? ? 'color:#EF2255;' : ''}" %>
+                      :style => "#{@product.images.size == 0 ? 'color:#EF2255;' : ''}" %>
         </li>
         <li> <%= link_to 'Product',     edit_admin_merchandise_product_path(@product) %> </li>
         <li> <%= link_to 'Properties',
                           edit_admin_merchandise_changes_product_property_path(@product.id),
-                          :style => "#{@product.properties.blank? ? 'color:#EF2255;' : ''}" %> </li>
+                          :style => "#{@product.properties.size == 0 ? 'color:#EF2255;' : ''}" %> </li>
         <li>
           <%= link_to 'Variants',
                       edit_admin_merchandise_multi_product_variant_path(@product),
-                      :style => "#{@product.variants.blank? ? 'color:#EF2255;' : ''}" %> </li>
+                      :style => "#{@product.variants.size == 0 ? 'color:#EF2255;' : ''}" %> </li>
         <li>
           <%= link_to "Inventory",
                       admin_inventory_adjustment_path(@product) %>
