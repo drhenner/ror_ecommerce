@@ -8,17 +8,11 @@ Hadean::Application.routes.draw do # |map|
   match 'signup'  => 'customer/registrations#new'
   match 'admin/merchandise' => 'admin/merchandise/summary#index'
   resources :products, :only => [:index, :show, :create]
-  #resources :cart_items
+
   resources :wish_items,  :only => [:index, :destroy]
   resources :states,      :only => [:index]
   resource :about,        :only => [:show]
   resources :terms,       :only => [:index]
-
-  #devise_for :admins
-  #devise_for :admins, :controllers => { :sessions => "admin/sessions" }
-  #resources :admins
-  #devise_for :users
-
 
   root :to => "welcome#index"
 
@@ -92,11 +86,7 @@ Hadean::Application.routes.draw do # |map|
     end
     namespace :shopping do
       resources :carts
-      #resources :billing_addresses
-      #resources :credit_cards
       resources :products
-      #resources :shipping_addresses
-      #resources :shipping_methods
       resources :users
       namespace :checkout do
         resources :billing_addresses, :only => [:index, :update, :new, :create, :select_address] do
