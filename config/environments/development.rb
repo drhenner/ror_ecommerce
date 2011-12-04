@@ -68,5 +68,4 @@ Hadean::Application.configure do
                               :default_style => :product,
                               :url => "/assets/products/:id/:style/:basename.:extension",
                               :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension" }
-  Mime::Type.register "application/pdf", :pdf
 end
