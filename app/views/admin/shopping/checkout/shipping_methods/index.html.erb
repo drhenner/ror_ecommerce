@@ -15,9 +15,11 @@
                 </div>
             </div>
           <% end %>
-          <% items.first.variant.product.shipping_category.shipping_rates.each do |rate| %>
-            <%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_with_rate %>
+          <ul>
+          <% items.first.shipping_rate_options(session_admin_order.sub_total).each do |rate| %>
+            <li><%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_rate_min %></li>
           <% end %>
+          </ul>
       </div>
     <% end %>
 

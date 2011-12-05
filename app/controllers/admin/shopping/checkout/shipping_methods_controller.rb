@@ -7,7 +7,7 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
     else
       ##  TODO  refactopr this method... it seems a bit lengthy
       @shipping_method_ids = session_admin_order.ship_address.state.shipping_zone.shipping_method_ids
-
+      session_admin_order.find_sub_total
       @order_items = OrderItem.includes({:variant => {:product => :shipping_category}}).order_items_in_cart(session_admin_order.id)
       #session_order.order_
       @order_items.each do |item|
@@ -40,7 +40,7 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
     end
   end
   private
-  
+
   def order_items_with_category(category_id)
     items = OrderItem.includes([{:variant => :product}]).
                       where(['order_items.order_id = ? AND
