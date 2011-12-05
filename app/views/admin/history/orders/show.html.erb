@@ -42,6 +42,9 @@
           Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %>
       </div>
   <% end %>
+  <% @order.shipments.empty? %>
+    No Shipments have been made for this Order.
+  <% end %>
 </div>
 
 
