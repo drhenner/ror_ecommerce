@@ -1,20 +1,21 @@
 <p id="notice"><%= notice %></p>
-
-<div  id='order-items'
-      class='span-16 rounded-10 line_item_blue float-left'>
-          Order Number: <%= @order.number %><br/>
-          Customer:     <%= @order.name %><br/>
-          Email:        <%= @order.email %><br/>
-          Completed at: <%= @order.completed_at ? I18n.localize(@order.completed_at, :format => :us_time) : '' %><br/>
-          Shipped:      <%= @order.has_shipment? ? 'Yes' : 'No' %><br/>
+<div class=' span-16 column'>
+  <div  id='order-items'
+        class='rounded-10 line_item_blue float-left'>
+            Order Number: <%= @order.number %><br/>
+            Customer:     <%= @order.name %><br/>
+            Email:        <%= @order.email %><br/>
+            Completed at: <%= @order.completed_at ? I18n.localize(@order.completed_at, :format => :us_time) : '' %><br/>
+            Shipped:      <%= @order.has_shipment? ? 'Yes' : 'No' %><br/>
+  </div>
 </div>
 
 <% if @order.order_items.size > 0 %>
 
-  <div class=' span-8 float-left'>
+  <div class=' span-8 column'>
   <b>Items</b>
     <div  id='order-items'
-          class='span-8 rounded-10 line_item_blue float-left'>
+          class=' rounded-10 line_item_blue '>
 
             <% @order.order_items.each do |item| %>
               <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
@@ -23,27 +24,32 @@
   </div>
 
 <% end %>
-
-<div  id='order-address'
-      class='span-8 rounded-10 line_item_green float-left'>
-          <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
-          <br>
-          <p><%= link_to 'Change Address', admin_history_order_addresses_path(@order), :class => 'button green' %> <br>
-          (This will not change the shipments that have already been placed)</p>
+<div class=' span-8 column'>
+  <b>Shipping Address</b>
+  <div  id='order-address'
+        class='rounded-10 line_item_green '>
+            <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+            <br>
+            <p><%= link_to 'Change Address', admin_history_order_addresses_path(@order), :class => 'button green' %> <br>
+            (This will not change the shipments that have already been placed)</p>
+  </div>
 </div>
 
-<div class=' span-7 float-left'>
+<div class=' span-7 column '>
   <b>Shipments:</b>
   <% @order.shipments.each do |shipment| %>
       <div  id='order-shipment-items'
-            class='span-7 rounded-10 line_item_yellow'>
+            class=' rounded-10 line_item_yellow last'>
           State: <%= shipment.state.humanize %> <br/>
           Shipping Method: <%= shipment.shipping_method.name %> <br/>
           Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %>
       </div>
   <% end %>
-  <% @order.shipments.empty? %>
-    No Shipments have been made for this Order.
+  <% if @order.shipments.empty? %>
+    <div  id='order-shipment-items'
+          class=' rounded-10 line_item_yellow last'>
+      No Shipments have been made for this Order.
+    </div>
   <% end %>
 </div>
 
@@ -52,7 +58,7 @@
   <b>Invoices:</b>
   <% @order.invoices.each do |invoice| %>
       <div  id='order-invoices'
-            class='span-7 rounded-10 line_item_gray'>
+            class=' rounded-10 line_item_gray'>
           Number: <%= invoice.number %> <br/>
           State: <%= invoice.state %> at: <%= I18n.localize(invoice.updated_at, :format => :us_time)%><br/>
           Amount: <%= number_to_currency invoice.amount %>
@@ -62,14 +68,14 @@
 
 <div class=' span-7'>
   <b>RMA:</b>
-  <div class=' span-7 rounded-10 line_item_gray'>
+  <div class=' rounded-10 line_item_gray'>
     <% if @order.return_authorizations.size > 0 %>
        <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order),
-                                :class => 'button heart' %>
+                                :class => 'button ' %>
        <br/><br/>
     <% else %>
       <%= link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order),
-                                :class => 'button heart' %>
+                                :class => 'button ' %>
     <% end %>
   </div>
 </div>
