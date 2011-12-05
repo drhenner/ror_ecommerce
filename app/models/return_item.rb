@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: return_items
+#
+#  id                      :integer(4)      not null, primary key
+#  return_authorization_id :integer(4)      not null
+#  order_item_id           :integer(4)      not null
+#  return_condition_id     :integer(4)
+#  return_reason_id        :integer(4)
+#  returned                :boolean(1)      default(FALSE)
+#  updated_by              :integer(4)
+#  created_at              :datetime
+#  updated_at              :datetime
+#
+
 class ReturnItem < ActiveRecord::Base
   belongs_to :return_reason
   belongs_to :return_condition

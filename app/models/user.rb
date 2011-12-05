@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                :integer(4)      not null, primary key
+#  first_name        :string(255)
+#  last_name         :string(255)
+#  birth_date        :date
+#  email             :string(255)
+#  state             :string(255)
+#  account_id        :integer(4)
+#  customer_cim_id   :string(255)
+#  password_salt     :string(255)
+#  crypted_password  :string(255)
+#  perishable_token  :string(255)
+#  persistence_token :string(255)
+#  access_token      :string(255)
+#  comments_count    :integer(4)      default(0)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable and :timeoutable

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: purchase_order_variants
+#
+#  id                :integer(4)      not null, primary key
+#  purchase_order_id :integer(4)      not null
+#  variant_id        :integer(4)      not null
+#  quantity          :integer(4)      not null
+#  cost              :decimal(8, 2)   not null
+#  is_received       :boolean(1)      default(FALSE)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class PurchaseOrderVariant < ActiveRecord::Base
   belongs_to :purchase_order
   belongs_to :variant

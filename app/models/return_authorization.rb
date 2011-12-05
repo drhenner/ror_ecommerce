@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: return_authorizations
+#
+#  id             :integer(4)      not null, primary key
+#  number         :string(255)
+#  amount         :decimal(8, 2)   not null
+#  restocking_fee :decimal(8, 2)   default(0.0)
+#  order_id       :integer(4)      not null
+#  user_id        :integer(4)      not null
+#  state          :string(255)     not null
+#  created_by     :integer(4)
+#  active         :boolean(1)      default(TRUE)
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 class ReturnAuthorization < ActiveRecord::Base
   has_many   :return_items
   has_many   :comments, :as => :commentable

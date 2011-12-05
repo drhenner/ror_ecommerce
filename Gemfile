@@ -44,6 +44,7 @@ end
 
 group :development do
   #gem 'awesome_print'
+  #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
 
   gem "rails-erd"

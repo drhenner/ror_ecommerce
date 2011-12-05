@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id              :integer(4)      not null, primary key
+#  number          :string(255)
+#  ip_address      :string(255)
+#  email           :string(255)
+#  state           :string(255)
+#  user_id         :integer(4)
+#  bill_address_id :integer(4)
+#  ship_address_id :integer(4)
+#  coupon_id       :integer(4)
+#  active          :boolean(1)      default(TRUE), not null
+#  shipped         :boolean(1)      default(FALSE), not null
+#  shipments_count :integer(4)      default(0)
+#  calculated_at   :datetime
+#  completed_at    :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
+#  credited_amount :decimal(8, 2)   default(0.0)
+#
+
 class Order < ActiveRecord::Base
   has_friendly_id :number, :use_slug => false
 

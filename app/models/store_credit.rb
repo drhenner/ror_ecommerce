@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: store_credits
+#
+#  id         :integer(4)      not null, primary key
+#  amount     :decimal(8, 2)   default(0.0)
+#  user_id    :integer(4)      not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class StoreCredit < ActiveRecord::Base
   attr_accessible :amount, :user_id
 

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: invoices
+#
+#  id              :integer(4)      not null, primary key
+#  order_id        :integer(4)      not null
+#  amount          :decimal(8, 2)   not null
+#  invoice_type    :string(255)     default("Purchase"), not null
+#  state           :string(255)     not null
+#  active          :boolean(1)      default(TRUE), not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#  credited_amount :decimal(8, 2)   default(0.0)
+#
+
 class Invoice < ActiveRecord::Base
   has_many :payments
   has_many :batches, :as => :batchable#, :polymorphic => true

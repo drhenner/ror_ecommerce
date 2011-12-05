@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: transaction_ledgers
+#
+#  id                     :integer(4)      not null, primary key
+#  accountable_type       :string(255)
+#  accountable_id         :integer(4)
+#  transaction_id         :integer(4)
+#  transaction_account_id :integer(4)
+#  tax_amount             :decimal(8, 2)   default(0.0)
+#  debit                  :decimal(8, 2)   not null
+#  credit                 :decimal(8, 2)   not null
+#  period                 :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+
 class TransactionLedger < ActiveRecord::Base
   belongs_to :transaction_account
   belongs_to :transaction

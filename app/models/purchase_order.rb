@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: purchase_orders
+#
+#  id                   :integer(4)      not null, primary key
+#  supplier_id          :integer(4)      not null
+#  invoice_number       :string(255)
+#  tracking_number      :string(255)
+#  notes                :string(255)
+#  state                :string(255)
+#  ordered_at           :datetime        not null
+#  estimated_arrival_on :date
+#  created_at           :datetime
+#  updated_at           :datetime
+#  total_cost           :decimal(8, 2)   default(0.0), not null
+#
+
 class PurchaseOrder < ActiveRecord::Base
   belongs_to :supplier
 

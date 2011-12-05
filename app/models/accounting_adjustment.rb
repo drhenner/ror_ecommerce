@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: accounting_adjustments
+#
+#  id              :integer(4)      not null, primary key
+#  adjustable_id   :integer(4)      not null
+#  adjustable_type :string(255)     not null
+#  notes           :string(255)
+#  amount          :decimal(8, 2)   not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class AccountingAdjustment < ActiveRecord::Base
 
   has_many  :batches,             :as => :batchable

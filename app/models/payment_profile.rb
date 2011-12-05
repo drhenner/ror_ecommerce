@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: payment_profiles
+#
+#  id             :integer(4)      not null, primary key
+#  user_id        :integer(4)
+#  address_id     :integer(4)
+#  payment_cim_id :string(255)
+#  default        :boolean(1)
+#  active         :boolean(1)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  last_digits    :string(255)
+#  month          :string(255)
+#  year           :string(255)
+#  cc_type        :string(255)
+#  first_name     :string(255)
+#  last_name      :string(255)
+#  card_name      :string(255)
+#
+
 ##  NOTE  Payment profile methods have been created however these methods have not been tested in any fashion
 #   These method are here to give you a heads start.  Once CIM is created these methods will be ready for use.
 #

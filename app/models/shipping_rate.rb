@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: shipping_rates
+#
+#  id                    :integer(4)      not null, primary key
+#  shipping_method_id    :integer(4)      not null
+#  rate                  :decimal(8, 2)   default(0.0), not null
+#  shipping_rate_type_id :integer(4)      not null
+#  shipping_category_id  :integer(4)      not null
+#  minimum_charge        :decimal(8, 2)   default(0.0), not null
+#  position              :integer(4)
+#  active                :boolean(1)      default(TRUE)
+#  created_at            :datetime
+#  updated_at            :datetime
+#
+
 class ShippingRate < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 

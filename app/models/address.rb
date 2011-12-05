@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id                :integer(4)      not null, primary key
+#  address_type_id   :integer(4)
+#  first_name        :string(255)
+#  last_name         :string(255)
+#  addressable_type  :string(255)     not null
+#  addressable_id    :integer(4)      not null
+#  address1          :string(255)     not null
+#  address2          :string(255)
+#  city              :string(255)     not null
+#  state_id          :integer(4)
+#  state_name        :string(255)
+#  zip_code          :string(255)     not null
+#  phone_id          :integer(4)
+#  alternative_phone :string(255)
+#  default           :boolean(1)      default(FALSE)
+#  billing_default   :boolean(1)      default(FALSE)
+#  active            :boolean(1)      default(TRUE)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class Address < ActiveRecord::Base
   belongs_to  :state
   belongs_to  :address_type

@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: variants
+#
+#  id           :integer(4)      not null, primary key
+#  product_id   :integer(4)      not null
+#  sku          :string(255)     not null
+#  name         :string(255)
+#  price        :decimal(8, 2)   default(0.0), not null
+#  cost         :decimal(8, 2)   default(0.0), not null
+#  deleted_at   :datetime
+#  master       :boolean(1)      default(FALSE), not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#  brand_id     :integer(4)
+#  inventory_id :integer(4)
+#
+
 class Variant < ActiveRecord::Base
 
 

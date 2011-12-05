@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: transaction_accounts
+#
+#  id         :integer(4)      not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class TransactionAccount < ActiveRecord::Base
   has_many :transaction_ledgers
   REVENUE             = 'Revenue'

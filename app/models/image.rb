@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  id                 :integer(4)      not null, primary key
+#  imageable_id       :integer(4)
+#  imageable_type     :string(255)
+#  image_height       :integer(4)
+#  image_width        :integer(4)
+#  position           :integer(4)
+#  caption            :string(255)
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer(4)
+#  photo_updated_at   :datetime
+#  updated_at         :datetime
+#  created_at         :datetime
+#
+
 require 'paperclip'
 
 class Image < ActiveRecord::Base

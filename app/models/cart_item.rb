@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: cart_items
+#
+#  id           :integer(4)      not null, primary key
+#  user_id      :integer(4)
+#  cart_id      :integer(4)
+#  variant_id   :integer(4)      not null
+#  quantity     :integer(4)      default(1)
+#  active       :boolean(1)      default(TRUE)
+#  item_type_id :integer(4)      not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class CartItem < ActiveRecord::Base
   belongs_to :item_type
   belongs_to :user
