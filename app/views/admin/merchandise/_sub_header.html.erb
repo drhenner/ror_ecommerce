@@ -23,7 +23,7 @@
                       edit_admin_merchandise_images_product_path(@product),
                       :style => "#{@product.images.size == 0 ? 'color:#EF2255;' : ''}" %>
         </li>
-        <li> <%= link_to 'Product',     edit_admin_merchandise_product_path(@product) %> </li>
+        <li> <%= link_to 'Product',     admin_merchandise_product_path(@product) %> </li>
         <li> <%= link_to 'Properties',
                           edit_admin_merchandise_changes_product_property_path(@product.id),
                           :style => "#{@product.properties.size == 0 ? 'color:#EF2255;' : ''}" %> </li>
