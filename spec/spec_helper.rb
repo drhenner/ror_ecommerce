@@ -21,6 +21,8 @@ include Hadean::TestHelpers
 include Authlogic::TestCase
 include ActiveMerchant::Billing
 
+Rails.logger.level = 4
+
 RSpec.configure do |config|
   # == Mock Framework
   #
