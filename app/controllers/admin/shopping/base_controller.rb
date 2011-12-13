@@ -19,7 +19,8 @@ class Admin::Shopping::BaseController < Admin::BaseController
 
   def session_admin_cart
     if session[:admin_cart_id]
-      @admin_cart ||= Cart.find(session[:admin_cart_id])
+      @admin_cart ||= Cart.find_by_id(session[:admin_cart_id])
+      @admin_cart ||= new_admin_cart # just in case the session has a bad ID (normally in development while having 2 apps)
     else
       new_admin_cart
     end
