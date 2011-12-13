@@ -2,14 +2,25 @@
 #header_wrapper {
   width: 950px;
   margin-right: 0;
-  background-color: #57B;
+  text-align: center;
 }
-/* line 10, ../../app/stylesheets/_admin_header.scss */
+/* line 11, ../../app/stylesheets/_admin_header.scss */
 #header_wrapper h1, #header_wrapper h3, #header_wrapper a {
   color: #EEE;
 }
 
 /* line 16, ../../app/stylesheets/_admin_header.scss */
+.header-width {
+  background-color: #777;
+}
+
+/* line 19, ../../app/stylesheets/_admin_header.scss */
+.header-subwidth {
+  background-color: #CCCCCC;
+  border-bottom: 2px solid #444;
+}
+
+/* line 24, ../../app/stylesheets/_admin_header.scss */
 #header_bar {
   width: 950px;
   display: -moz-inline-box;
@@ -17,36 +28,46 @@
   display: inline-block;
   vertical-align: middle;
   *vertical-align: auto;
-  background-color: #57B;
   color: #FFFFFF;
   font-size: large;
   margin-right: 0;
   -moz-border-radius: 0px 0px 9px 9px;
   -webkit-border-radius: 0px 0px 9px 9px;
   behavior: url(border-radius.htc);
+  text-align: center;
 }
 /* line 7, ../../../../.rvm/gems/ruby-1.9.2-p290@ror_e/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
 #header_bar {
   *display: inline;
 }
-/* line 24, ../../app/stylesheets/_admin_header.scss */
+/* line 33, ../../app/stylesheets/_admin_header.scss */
 #header_bar a {
   color: #DDDDDD;
 }
+/* line 36, ../../app/stylesheets/_admin_header.scss */
+#header_bar a:hover {
+  color: #F3F3F3;
+}
 
-/* line 29, ../../app/stylesheets/_admin_header.scss */
+/* line 41, ../../app/stylesheets/_admin_header.scss */
 #header_sub_bar {
   width: 910px;
   margin-right: 0;
   margin-left: 18px;
-  background-color: #ACF;
-  -moz-border-radius: 9px;
-  -webkit-border-radius: 9px;
-  behavior: url(border-radius.htc);
-  border: solid 2px #68C;
+  background-color: #CCC;
+  border-bottom: solid 2px #777;
+  text-align: center;
+}
+/* line 51, ../../app/stylesheets/_admin_header.scss */
+#header_sub_bar a {
+  color: #666;
+}
+/* line 54, ../../app/stylesheets/_admin_header.scss */
+#header_sub_bar a:hover {
+  color: #333;
 }
 
-/* line 40, ../../app/stylesheets/_admin_header.scss */
+/* line 59, ../../app/stylesheets/_admin_header.scss */
 #search_bar {
   width: 710px;
   display: inline;
@@ -63,7 +84,7 @@
   *display: inline;
 }
 
-/* line 47, ../../app/stylesheets/_admin_header.scss */
+/* line 66, ../../app/stylesheets/_admin_header.scss */
 #layout-search {
   margin-left: 5px;
   color: #EEE;
@@ -71,7 +92,7 @@
   font-size: large;
 }
 
-/* line 54, ../../app/stylesheets/_admin_header.scss */
+/* line 73, ../../app/stylesheets/_admin_header.scss */
 #cart_items_button {
   display: inline;
   float: right;
@@ -86,7 +107,7 @@
   *display: inline;
 }
 
-/* line 58, ../../app/stylesheets/_admin_header.scss */
+/* line 77, ../../app/stylesheets/_admin_header.scss */
 #wish_items_button {
   display: inline;
   float: right;

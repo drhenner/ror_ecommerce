@@ -1,0 +1,20 @@
+<div class="header-width">
+  <div class="bp container">
+    <div id='header_wrapper' class="  span-24">
+      <div id="header" class="span-12">
+        <h1 id="hadean-title" class="alt"><%= link_to site_name, root_path %></h1>
+      </div>
+
+      <div id="subheader" class="span-12 last">
+        <h3 class="alt">Your Ruby on Rails E-Commerce Solution.</h3>
+        <div class="alt">
+          <%= current_user.try(:name) %>
+          <%= link_to 'Logout', logout_path, :id => 'admin-logout-button' %>
+        </div>
+      </div>
+    </div>
+    <div id='header_bar' class='float-left span-24'>
+      <%= render :partial => '/shared/admin/header_buttons'  %>
+    </div>
+  </div>
+</div>

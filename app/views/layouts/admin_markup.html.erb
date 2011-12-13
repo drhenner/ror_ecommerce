@@ -23,23 +23,11 @@
     <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
     <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
   </div>
-  <div class="container bp">
-    <div id='header_wrapper' class="span-24 header-image">
-      <div id="header" class="span-12">
-        <h1 id="hadean-title" class="alt"><%= site_name %></h1>
-      </div>
 
-      <div id="subheader" class="span-12 last">
-        <h3 class="alt">Your Virtual Trade Show.</h3>
-        <div class="alt">
-          <%= current_user.try(:name) %>
-          <%= link_to 'Logout', logout_path, :id => 'admin-logout-button' %>
-        </div>
-      </div>
-    </div>
-    <div id='header_bar' class='float-left span-24'>
-      <%= render :partial => '/shared/admin/header_buttons'  %>
-    </div>
+  <%= render :partial => 'shared/admin/header_bar' %>
+
+  <div class="container bp">
+
     <% if  content_for? :header_sub_bar %>
       <div id='header_sub_bar'>
         <%= yield :header_sub_bar %>
