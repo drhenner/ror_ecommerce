@@ -8,7 +8,8 @@
     </div>
     Position: <%= image_form.select       :position, [1,2,3,4,5,6] %><br/>
     Caption:  <%= image_form.text_field   :caption %><br/>
-    Photo:    <%= image_form.file_field   :photo %>
+    Photo:    <%= image_form.file_field   :photo %><br/>
+    Link to Image:  <%= image_form.text_field   :photo_from_link %>
   </p>
 </fieldset>
 <% if !image_form.object.new_record? %>

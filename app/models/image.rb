@@ -33,12 +33,24 @@ class Image < ActiveRecord::Base
   validates :imageable_id,    :presence => true
   validate :validate_photo
 
+  attr_accessor :photo_link
+
   default_scope :order => 'position'
 
   # save the w,h of the original image (from which others can be calculated)
   after_post_process :find_dimensions
   MAIN_LOGO = 'logo'
 
+  def photo_from_link=(val)
+    if !val.blank?
+      self.photo_link = val
+      self.photo = open(val)
+    end
+  end
+
+  def photo_from_link
+    self.photo_link || ''
+  end
   # this will be called after an image is uploaded.
   # => it will set the width and height of the image.
   # => It will not save the object
