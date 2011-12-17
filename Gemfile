@@ -8,6 +8,7 @@ gem 'authlogic', "3.0.3"
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.4.1'
 gem 'compass', "~> 0.11.5"
+# gem 'compass_twitter_bootstrap'
 #  gem 'dalli', '~> 1.0.2'
 
 gem "friendly_id", "~> 3.3"

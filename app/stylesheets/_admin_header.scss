@@ -14,7 +14,9 @@
 
 }
 .header-width {
-  background-color: #777;
+  background-color: #555;
+  height:35px;
+  padding-top: 5px;
 }
 .header-subwidth {
   background-color: #CCCCCC;
@@ -29,12 +31,18 @@
   font-size:    large;
   @include last;
   @include bottom-rounded(9px);
-  text-align:center;
+  text-align:left;
   a {
-    color: #DDDDDD;
+    color: #EEEEEE;
   }
   a:hover {
-    color: #F3F3F3;
+    color: #FFFFFF;
+  }
+  .admin-login {
+    float:right;
+    color: #F6F6F6;
+    padding-right:10px;
+    font-size: 12px;
   }
 }
 
