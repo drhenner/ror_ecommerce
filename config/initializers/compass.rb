@@ -4,7 +4,7 @@
 
 puts '
 ************************************************
-     If you are using heroku go to config/initializers/compass and un-comment the compass config code...
+     If you are using heroku go to config/initializers/compass.rb and un-comment the compass config code...
 ************************************************
 '
 =begin
