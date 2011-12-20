@@ -53,7 +53,7 @@ class Admin::UsersController < Admin::BaseController
     @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
     @user.state = params[:user][:state]                 if params[:user][:state].present? #&& !@user.admin?
     params[:user].delete_if {|key, value| key.to_s == "birth_date" }
-    if @user.update_attributes(params[:user])
+    if @user.save && @user.update_attributes(params[:user])
       flash[:notice] = "#{@user.name} has been updated."
       redirect_to admin_users_url
     else
