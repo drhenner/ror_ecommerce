@@ -1,4 +1,6 @@
-h1. Project Overview
+#ROR Ecommerce
+
+##Project Overview
 
 Please create a ticket if on github you have issues.  They will be addressed ASAP.
 
@@ -20,7 +22,7 @@ complete solution for Rails today and it will only get better.
 
 Please use *Ruby 1.9.2* and enjoy *Rails 3.1.3*.
 
-ROR_ecommerce is designed differently.  If you understand Rails you will understand ROR_ecommerce.
+ROR_ecommerce is designed differently. If you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project that you wouldn't see in a normal Rails application.  If you don't like
 what is in the project just change it like you would in any other Rails app.
 
@@ -33,134 +35,137 @@ We will always need help with UI, Documentation and code so feel free to help.
 h2. Getting Started
 
 We have a google group.  Ask question and help answer questions.
-"ror_ecommerce Google-group":http://groups.google.com/group/ror_ecommerce
+[ror_ecommerce Google-group](http://groups.google.com/group/ror_ecommerce)
 
-install rvm with ruby 1.9.2 or if you have 1.9.2 on your system you're good to go. Please refer to the "rvm":http://beginrescueend.com/rvm/basics/ and "bundler":http://gembundler.com home pages for more details.
+install rvm with ruby 1.9.2 or if you have 1.9.2 on your system you're good to go. Please refer to the [rvm](http://beginrescueend.com/rvm/basics/) and [bundler](http://gembundler.com) home pages for more details.
 
 Configure your database.yml file (add the development and test database)
 
-*# Go into config/config.yml and change the encryption_key
+* Go into config/config.yml and change the encryption_key
 
     $ dd if=/dev/urandom bs=1 count=75 2> /dev/null | xxd -p -c75
     
-		f5317296f3420d698de775dc5675b193f35fdbac576540888a0ae2628fcfb59646d7ef83da76afbb1f8ea7fb70acea887549e475aa7c869b1f82353f12dbad8bd517c941b981bf936772f0
+	will display some random characters like this: Copy what it gives you and paste it under `encryption_key`
 
-*# gem install bundler
-*# bundle install
-*# rake db:create
-*# rake db:migrate
-*# rake db:seed
-*# rake db:test:prepare
+`f5317296f3420d698de775dc5675b193f35fdbac576540888a0ae2628fcfb59646d7ef83da76afbb1f8ea7fb70acea887549e475aa7c869b1f82353f12dbad8bd517c941b981bf936772f0`
+	
 
-######compass install
+* gem install bundler
+* bundle install
+* rake db:create
+* rake db:migrate
+* rake db:seed
+* rake db:test:prepare
+
+####compass install
 
 Need to create config/config.yml and change the encryption key and paypal or auth.net information.
 You can also change config/config.yml.example to config/config.yml until you get your real info.
 
-Paperclip will throw errors if not configured correctly.
-you will need to find out where the Imagemagick program is installed
-type "which identify" in the terminal and set Paperclip.options[:command_path] equal
-to that path in environment.rb: Examples:
-Paperclip.options[:command_path] = "/usr/local/bin"
+Paperclip will throw errors if not configured correctly. You will need to find out where Imagemagick is installed.
+Type `which identify` in the terminal and set `Paperclip.options[:command_path] equal` to that path in environment.rb: Examples:
+
+    Paperclip.options[:command_path] = "/usr/local/bin"
 into:
-Paperclip.options[:command_path] = "/usr/bin"
+    Paperclip.options[:command_path] = "/usr/bin"
 
 
 Once everything is setup, start up the server with 'rails server' and direct it to
-*localhost:3000/admin/overviews*
+
+[localhost:3000/admin/overviews](http://localhost:3000/admin/overviews)
 
 write down the username/password and follow the directions.
 
-h2. Quick Evaluation
+##Quick Evaluation
 
 If you just want to see what ror_ecommerce looks like, before you enter and products into the database run the following command:
 
-*# rake db:seed_fake
+* rake db:seed_fake
 
-Now you should have a minimal dataset to go through the various parts of the app.  Make should you have the config/config.yml setup before you try to checkout though.  Also take a look at "The 15 minute e-commerce video":http://www.ror-e.com/info/videos/7
+Now you should have a minimal dataset to go through the various parts of the app.  Make should you have the config/config.yml setup before you try to checkout though.  Also take a look at [The 15 minute e-commerce video](http://www.ror-e.com/info/videos/7)
 
-h2. YARDOCS
+##YARDOCS
 
 If you would like to see the docs you can generate them locally with the following command:
 
-bc. yardoc --no-private --protected app/models/*.rb
+    yardoc --no-private --protected app/models/*.rb
 
-h2. Adding Dalli for cache and the session store
+##Adding Dalli for cache and the session store
 
-Install memcached, this is easiest to do with "homebrew":http://mxcl.github.com/homebrew/ and :
+Install memcached, If you're on a Mac, the easiest way to install Memcached is to use [homebrew](http://mxcl.github.com/homebrew/) and run:
 
-bc. brew install memcached
+    brew install memcached
 
-bq. memcached -vv
+    memcached -vv
 
-h4.      TO TURN ON THE DALLI COOKIE STORE
+####TO TURN ON THE DALLI COOKIE STORE
 
-  Remove the cookie store on line one of config/initializers/session_store.rb
-  go to the Gemfile and add
+Remove the cookie store on line one of config/initializers/session_store.rb go to the Gemfile and add
 
-bc. gem 'dalli'
+    gem 'dalli'
 
 then
 
-bc. bundle install
+    bundle install
 
- Finally UNCOMMENT the next 2 lines in config/initializers/session_store.rb
+Finally UNCOMMENT the next 2 lines in config/initializers/session_store.rb
 
-bc. require 'action_dispatch/middleware/session/dalli_store'
-Hadean::Application.config.session_store :dalli_store, :key => '_hadean_session_ugrdr6765745ce4vy'
+    require 'action_dispatch/middleware/session/dalli_store'
+    Hadean::Application.config.session_store :dalli_store, :key => '_hadean_session_ugrdr6765745ce4vy'
 
-h4. TO TURN ON THE DALLI CACHE STORE
+####TO TURN ON THE DALLI CACHE STORE
 
-it is also recommended to change the cache store in config/environments/*.rb
+It is also recommended to change the cache store in config/environments/*.rb
 
-bc. config.cache_store = :dalli_store
-
-
-
-h2. Adding Solr Search
+    config.cache_store = :dalli_store
 
 
-bc. brew install solr
 
-p. Uncomment the following in your gemfile
+## Adding Solr Search
 
-bc. #gem 'sunspot_solr'
-#gem 'sunspot_rails', '~> 1.3'
 
-*bundle install*
+    brew install solr
 
-p. start solr before starting you server
-rake sunspot:solr:start
+Uncomment the following in your gemfile
+
+    #gem 'sunspot_solr'
+    #gem 'sunspot_rails', '~> 1.3'
+
+then
+
+    bundle install
+
+start solr before starting you server
+    rake sunspot:solr:start
 
 Go to the *bottom of product.rb* and uncomment the section with *"Product.class_eval"*
 
 
-bq. Take a look at setting up solr
-    "Solr in 5 minutes":http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less
+Take a look at setting up solr
+[Solr in 5 minutes](http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less)
 
 
-    If you get the following error:
+If you get the following error:
     Errno::ECONNREFUSED (Connection refused - connect(2)):
-    when you try to create a product or upload an image you have not started solr search.
-    remember you need to run "rake sunspot:solr:start" or remove solr/search
+when you try to create a product or upload an image you have not started solr search, remember you need to run `rake sunspot:solr:start` or remove solr/search
 
-h2. Before You deploy
+##Before You Deploy
 
 Many deploy processes require db/schema.rb to be checked into version control.  schema.rb was remove from git because this allowed ror_ecommerce users to rebase easily.  Add schema.rb back to version control before you deploy.
 
-h2. TODOs:
+##TODOs:
 
 * product sales (eg. 20% off)
 * more documentation / videos for creating products/variants
 * easy setup of fake data for getting started
 
-h2. Author
+##Author
 
 RoR Ecommerce was written by David Henner:
 
 To view contributors look at Contributors.textile
 
-h2. FYI:
+##FYI:
 
 Shipping categories are categories based off price:
 

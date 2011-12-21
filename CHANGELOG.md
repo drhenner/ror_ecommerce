@@ -1,5 +1,5 @@
 
-h3. 0.10.0 2011-12-04
+###0.10.0 2011-12-04
 
 * Added wizard to create a product
 * css / prettier buttons in admin
@@ -10,16 +10,16 @@ h3. 0.10.0 2011-12-04
 * easier creation of variants
 * default meta data
 
-h3. 0.9.2 2011-11-24
+###0.9.2 2011-11-24
 
 * Add VAT support
 
-h3. 0.9.1 2011-11-23
+###0.9.1 2011-11-23
 
 * Updated Products workflow to be multistep
 * only show active products
 
-h3. 0.9.0 2011-11-21
+###0.9.0 2011-11-21
 
 * Readme improvements
 * removed Solr as a requirement
@@ -29,28 +29,28 @@ h3. 0.9.0 2011-11-21
 * various bugs
 * quick setup for evaluation
 
-h3. 0.9.0rc1 2011-11-12
+###0.9.0rc1 2011-11-12
 
 * CHANGED admin cart to look like the regular cart
 * bugs in checkout process
 * starting to remove formtastic
 
-h3. 0.8.0 2011-11-02
+###0.8.0 2011-11-02
 
 * Better shipments and fulfillment UI
 * remove unused code/views
 * upgrade to rails 3.1
 * upgrade most gems to the current versions
 
-h3. 0.7.0 2011-07-30
+###0.7.0 2011-07-30
 
 * Inventory is now its own model...  TODO move inventory methods to the correct model(from variants)
 
-h3. 0.6.1 2011-05-10
+###0.6.1 2011-05-10
 
 * description_markup is required for tests to pass (validates presence)
 
-h3. 0.6.0 2011-05-09
+###0.6.0 2011-05-09
 
 * Description of products use bluecloth so you can easily create HTML.
 * bug fix in shipping zones
@@ -58,7 +58,7 @@ h3. 0.6.0 2011-05-09
 * change users to active
 * password field showed password fixed bug
 
-h3. 0.5.0 2011-04-04
+###0.5.0 2011-04-04
 
 * Smarter error messages
 * switch to dalli for memcached
@@ -70,26 +70,26 @@ h3. 0.5.0 2011-04-04
 * Date parsing works like ruby 1.8.7
 * code clean up
 
-h3. 0.4.0 2011-01-22
+###0.4.0 2011-01-22
 
 * Store Credits can be use to purchase items
 * UI improvements
 * Much better Cart
 * View products by product_type
 
-h3. 0.3.0 2010-12-30
+###0.3.0 2010-12-30
 
 * YARD docs complete
 * admin grid pagination fix
 
-h3. 0.2.0 2010-12-26
+###0.2.0 2010-12-26
 
 * more YARD docs
 * completed admin_grid tests
 * better looking home page
 * no_image has many sizes now
 
-h3. 00.01.04 2010-12-19
+###00.01.04 2010-12-19
 
 * added YARD docs
 * bug fixed for selecting countries that are available
@@ -99,12 +99,12 @@ h3. 00.01.04 2010-12-19
 * use only taxrates for available countries
 * better look an feel on the header
 
-h3. 00.01.03 2010-12-01
+###00.01.03 2010-12-01
 
 * able to print a basic invoice for an order
 * installed prawnto
 
-h3. 00.01.02 2010-11-21
+###00.01.02 2010-11-21
 
 * able to add countries specific states
 * tax rates can be configured per the country of choice
@@ -112,11 +112,11 @@ h3. 00.01.02 2010-11-21
 * bug fixes for bad pages to add admin forms
 * bug fix - welcome page blows up if there aren't any products
 
-h3. 00.01.01 2010-11-12
+###00.01.01 2010-11-12
 
 * connected Purchase Order to double entry accounting system
 * fixed bugs with editing purchase order screen was a blank screen
 
-h3. 0.1.0 2010-11-12
+###0.1.0 2010-11-12
 
 * Initial version.  This public repo had not been tag with a version yet.  Required for logistics.

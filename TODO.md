@@ -1,4 +1,4 @@
-h2. This is a random list of thoughts that I would like todo.
+##This is a random list of thoughts that I would like todo.
 
 add tax and not adding tax
 
