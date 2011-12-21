@@ -4,40 +4,29 @@
 
 Please create a ticket if on github you have issues.  They will be addressed ASAP.
 
-"Please look at the homepage for more details: www.ror-e.com":http://www.ror-e.com
+[Please look at the homepage for more details](http://www.ror-e.com)
 
-This is a Rails e-commerce platform.  Other e-commerce projects that
-use rails, don't use rails in a standard way.  They use engines or are a separate
-framework altogether.
+This is a Rails e-commerce platform.  Other e-commerce projects that use rails, don't use rails in a standard way.  They use engines or are a separate framework altogether.
 
-ROR ecommerce is a *Rails 3 application* with the intent to allow developers to create
-an ecommerce solution easily.  This solution includes, an Admin for  *Purchase Orders*,
-*Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.  There is a minimal
-customer facing shopping cart understanding that this will be customized.  The cart allows
-you to track your customers *cart history* and includes a *double entry accounting system*.
+ROR ecommerce is a *Rails 3 application* with the intent to allow developers to create an ecommerce solution easily.  This solution includes, an Admin for  *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.  There is a minimal customer facing shopping cart understanding that this will be customized.  The cart allows you to track your customers *cart history* and includes a *double entry accounting system*.
 
-The project has *solr searching*, *compass* and *blueprint for CSS* and uses *jQuery*.
-The gem list is quite large and the project still has a large wish list but it is the most
-complete solution for Rails today and it will only get better.
+The project has *solr searching*, *compass* and *blueprint for CSS* and uses *jQuery*. The gem list is quite large and the project still has a large wish list but it is the most complete solution for Rails today and it will only get better.
 
 Please use *Ruby 1.9.2* and enjoy *Rails 3.1.3*.
 
 ROR_ecommerce is designed differently. If you understand Rails you will understand ROR_ecommerce.
-There is nothing in this project that you wouldn't see in a normal Rails application.  If you don't like
-what is in the project just change it like you would in any other Rails app.
+There is nothing in this project that you wouldn't see in a normal Rails application.  If you don't like what is in the project just change it like you would in any other Rails app.
 
-Contributors are welcome.  For now email David Henner (*drhenner@yahoo.com*) to see how you
-can contribute. (send your patch if you have one.)  Soon there will be a bug tracking
-system and a formal way to submit your patch.
+Contributors are welcome.  For now email David Henner (*drhenner@yahoo.com*) to see how you can contribute. (send your patch if you have one.)  Soon there will be a bug tracking system and a formal way to submit your patch.
 
 We will always need help with UI, Documentation and code so feel free to help.
 
-h2. Getting Started
+##Getting Started
 
 We have a google group.  Ask question and help answer questions.
 [ror_ecommerce Google-group](http://groups.google.com/group/ror_ecommerce)
 
-install rvm with ruby 1.9.2 or if you have 1.9.2 on your system you're good to go. Please refer to the [rvm](http://beginrescueend.com/rvm/basics/) and [bundler](http://gembundler.com) home pages for more details.
+Install rvm with ruby 1.9.2 or if you have 1.9.2 on your system you're good to go. Please refer to the [rvm](http://beginrescueend.com/rvm/basics/) and [bundler](http://gembundler.com) home pages for more details.
 
 Configure your database.yml file (add the development and test database)
 
