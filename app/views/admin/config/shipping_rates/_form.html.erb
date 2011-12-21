@@ -18,6 +18,12 @@
     <%= f.label :rate %>
     <%= f.text_field :rate %>
   </div>
+
+  <div class="field">
+    <%= f.label :minimum_charge %>
+    <%= f.text_field :minimum_charge %>
+  </div>
+
   <div class="field">
     <%= f.label :shipping_rate_type_id %>
     <%= f.select :shipping_rate_type_id, @shipping_rate_types %>
