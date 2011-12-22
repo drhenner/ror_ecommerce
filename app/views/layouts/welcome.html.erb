@@ -30,63 +30,12 @@
     <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
   </div>
 
-
-
-
-    <div class=" bp">
-      <div id="header_wrapper" class='bp'>
-        <div class="container logged-in" id="header">
-          <h1 id="logo">
-            <%= link_to image_tag( "logos/#{Image::MAIN_LOGO}.png", :alt => 'hadean image.'), root_path %>
-          </h1>
-          <ul id="menu-main">
-            <li id="menu-main-discover">
-              <a href="/"> <strong> About </strong> <span>How it Works</span> </a>
-            </li>
-
-            <li class="" id="menu-main-cart">
-                <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
-                    <strong> Cart </strong> <span>view your stuff.</span>
-                <% end %>
-            </li>
-            <li class="" id="menu-main-wish">
-                <%= link_to(wish_items_path, :id => 'wish_items_button') do %>
-                    <strong> Wish List </strong> <span>what you want.</span>
-                <% end %>
-            </li>
-
-            <li class="" id="menu-main-user">
-              <div>
-                <% unless most_likely_user %>
-                  <strong><%= link_to 'Login',  login_path %></strong> or
-                  <span><%= link_to 'Sign up', signup_path %></span>
-                <% else %>
-                  <strong>Hi <%= most_likely_user.first_name %></strong>
-                  <span>(<%= link_to 'not you?', logout_path %>)</span>
-                <% end %>
-              </div>
-            </li>
-
-          </ul>
-
-          <%= render '/layouts/product_search' %>
-        </div>
-      </div>
-      <div id="sub_header_wrapper" class='bp'>
-        <div id="sub_sub_header_wrapper" class='container'>
-          <%= render 'shared/main_product_tabs' %>
-        </div>
-      </div>
-    </div>
-
+    <%= render :partial => '/shared/welcome_header'%>
 
     <div id='content_wrapper' class='container'>
       <%= yield %>
     </div>
-  </div>
-  <div id="footer_buffer" class='bp'>
-    &nbsp;
-  </div>
+
 </div>
   <%= render 'shared/main_footer' %>
   <%= yield :bottom %>
