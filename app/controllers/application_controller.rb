@@ -35,7 +35,16 @@ class ApplicationController < ActionController::Base
   private
 
   def require_user
-    redirect_to login_url and return if logged_out?
+    redirect_to login_url and store_return_location and return if logged_out?
+  end
+
+  def store_return_location
+    # disallow return to login, logout, signup pages
+    disallowed_urls = [ login_url, logout_url ]
+    disallowed_urls.map!{|url| url[/\/\w+$/]}
+    unless disallowed_urls.include?(request.url)
+      session[:return_to] = request.url
+    end
   end
 
   def logged_out?
