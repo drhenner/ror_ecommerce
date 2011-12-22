@@ -6,7 +6,7 @@ a:
     shipping_zone_id: 2
     described_as: State
     id: "1"
-    
+
 b:
   attributes:
     name: Alabama
@@ -23,7 +23,7 @@ c:
     shipping_zone_id: 1
     described_as: State
     id: "3"
-    
+
 d:
   attributes:
     name: American Samoa
@@ -32,7 +32,7 @@ d:
     shipping_zone_id: 4
     described_as: Territory
     id: "4"
-    
+
 e:
   attributes:
     name: Arizona
@@ -41,7 +41,7 @@ e:
     shipping_zone_id: 1
     described_as: State
     id: "5"
-    
+
 f:
   attributes:
     name: California
@@ -50,7 +50,7 @@ f:
     shipping_zone_id: 1
     described_as: State
     id: "6"
-    
+
 g:
   attributes:
     name: Colorado
@@ -59,7 +59,7 @@ g:
     shipping_zone_id: 1
     described_as: State
     id: "7"
-    
+
 h:
   attributes:
     name: Connecticut
@@ -68,7 +68,7 @@ h:
     shipping_zone_id: 1
     described_as: State
     id: "8"
-    
+
 i:
   attributes:
     name: District of Columbia
@@ -77,7 +77,7 @@ i:
     shipping_zone_id: 1
     described_as: State
     id: "9"
-    
+
 j:
   attributes:
     name: Delaware
@@ -86,7 +86,7 @@ j:
     shipping_zone_id: 1
     described_as: State
     id: "10"
-    
+
 k:
   attributes:
     name: Florida
@@ -95,7 +95,7 @@ k:
     shipping_zone_id: 1
     described_as: State
     id: "11"
-    
+
 l:
   attributes:
     name: Georgia
@@ -104,7 +104,7 @@ l:
     shipping_zone_id: 1
     described_as: State
     id: "12"
-    
+
 m:
   attributes:
     name: Guam
@@ -113,7 +113,7 @@ m:
     shipping_zone_id: 4
     described_as: Territory
     id: "13"
-    
+
 n:
   attributes:
     name: Hawaii
@@ -122,7 +122,7 @@ n:
     shipping_zone_id: 2
     described_as: State
     id: "14"
-    
+
 o:
   attributes:
     name: Iowa
@@ -131,7 +131,7 @@ o:
     shipping_zone_id: 1
     described_as: State
     id: "15"
-    
+
 p:
   attributes:
     name: Idaho
@@ -140,7 +140,7 @@ p:
     shipping_zone_id: 1
     described_as: State
     id: "16"
-    
+
 q:
   attributes:
     name: Illinois
@@ -149,7 +149,7 @@ q:
     shipping_zone_id: 1
     described_as: State
     id: "17"
-    
+
 r:
   attributes:
     name: Indiana
@@ -158,7 +158,7 @@ r:
     shipping_zone_id: 1
     described_as: State
     id: "18"
-    
+
 s:
   attributes:
     name: Kansas
@@ -167,7 +167,7 @@ s:
     shipping_zone_id: 1
     described_as: State
     id: "19"
-    
+
 t:
   attributes:
     name: Kentucky
@@ -176,7 +176,7 @@ t:
     shipping_zone_id: 1
     described_as: State
     id: "20"
-    
+
 u:
   attributes:
     name: Louisiana
@@ -185,7 +185,7 @@ u:
     shipping_zone_id: 1
     described_as: State
     id: "21"
-    
+
 v:
   attributes:
     name: Massachusetts
@@ -194,7 +194,7 @@ v:
     shipping_zone_id: 1
     described_as: State
     id: "22"
-    
+
 w:
   attributes:
     name: Maryland
@@ -203,7 +203,7 @@ w:
     shipping_zone_id: 1
     described_as: State
     id: "23"
-    
+
 x:
   attributes:
     name: Maine
@@ -212,7 +212,7 @@ x:
     shipping_zone_id: 1
     described_as: State
     id: "24"
-    
+
 y:
   attributes:
     name: Michigan
@@ -221,7 +221,7 @@ y:
     shipping_zone_id: 1
     described_as: State
     id: "25"
-    
+
 z:
   attributes:
     name: Minnesota
@@ -230,7 +230,7 @@ z:
     shipping_zone_id: 1
     described_as: State
     id: "26"
-    
+
 a1:
   attributes:
     name: Missouri
@@ -239,7 +239,7 @@ a1:
     shipping_zone_id: 1
     described_as: State
     id: "27"
-    
+
 b1:
   attributes:
     name: Mariana Islands
@@ -248,7 +248,7 @@ b1:
     shipping_zone_id: 4
     described_as: Territory
     id: "28"
-    
+
 c1:
   attributes:
     name: Mississippi
@@ -257,7 +257,7 @@ c1:
     shipping_zone_id: 1
     described_as: State
     id: "29"
-    
+
 d1:
   attributes:
     name: Montana
@@ -266,7 +266,7 @@ d1:
     shipping_zone_id: 1
     described_as: State
     id: "30"
-    
+
 e1:
   attributes:
     name: North Carolina
@@ -275,7 +275,7 @@ e1:
     shipping_zone_id: 1
     described_as: State
     id: "31"
-    
+
 f1:
   attributes:
     name: North Dakota
@@ -284,7 +284,7 @@ f1:
     shipping_zone_id: 1
     described_as: State
     id: "32"
-    
+
 g1:
   attributes:
     name: Nebraska
@@ -293,7 +293,7 @@ g1:
     shipping_zone_id: 1
     described_as: State
     id: "33"
-    
+
 h1:
   attributes:
     name: New Hampshire
@@ -302,7 +302,7 @@ h1:
     shipping_zone_id: 1
     described_as: State
     id: "34"
-    
+
 i1:
   attributes:
     name: New Jersey
@@ -311,7 +311,7 @@ i1:
     shipping_zone_id: 1
     described_as: State
     id: "35"
-    
+
 j1:
   attributes:
     name: New Mexico
@@ -320,7 +320,7 @@ j1:
     shipping_zone_id: 1
     described_as: State
     id: "36"
-    
+
 k1:
   attributes:
     name: Nevada
@@ -329,7 +329,7 @@ k1:
     shipping_zone_id: 1
     described_as: State
     id: "37"
-    
+
 l1:
   attributes:
     name: New York
@@ -338,7 +338,7 @@ l1:
     shipping_zone_id: 1
     described_as: State
     id: "38"
-    
+
 m1:
   attributes:
     name: Ohio
@@ -347,7 +347,7 @@ m1:
     shipping_zone_id: 1
     described_as: State
     id: "39"
-    
+
 n1:
   attributes:
     name: Oklahoma
@@ -356,7 +356,7 @@ n1:
     shipping_zone_id: 1
     described_as: State
     id: "40"
-    
+
 o1:
   attributes:
     name: Oregon
@@ -365,7 +365,7 @@ o1:
     shipping_zone_id: 1
     described_as: State
     id: "41"
-    
+
 p1:
   attributes:
     name: Pennsylvania
@@ -374,7 +374,7 @@ p1:
     shipping_zone_id: 1
     described_as: State
     id: "42"
-    
+
 q1:
   attributes:
     name: PUERTO RICO
@@ -383,7 +383,7 @@ q1:
     shipping_zone_id: 4
     described_as: Territory
     id: "43"
-    
+
 r1:
   attributes:
     name: Rhode Island
@@ -392,7 +392,7 @@ r1:
     shipping_zone_id: 1
     described_as: State
     id: "44"
-    
+
 s1:
   attributes:
     name: South Carolina
@@ -401,7 +401,7 @@ s1:
     shipping_zone_id: 1
     described_as: State
     id: "45"
-    
+
 t1:
   attributes:
     name: South Dakota
@@ -410,16 +410,16 @@ t1:
     shipping_zone_id: 1
     described_as: State
     id: "46"
-    
+
 u1:
   attributes:
-    name: Tennesse
+    name: Tennessee
     abbreviation: TN
     country_id: 214
     shipping_zone_id: 1
     described_as: State
     id: "47"
-    
+
 v1:
   attributes:
     name: Texas
@@ -428,7 +428,7 @@ v1:
     shipping_zone_id: 1
     described_as: State
     id: "48"
-    
+
 w1:
   attributes:
     name: Utah
@@ -437,7 +437,7 @@ w1:
     shipping_zone_id: 1
     described_as: State
     id: "49"
-    
+
 x1:
   attributes:
     name: Virginia
@@ -446,7 +446,7 @@ x1:
     shipping_zone_id: 1
     described_as: State
     id: "50"
-    
+
 y1:
   attributes:
     name: Virgin Islands
@@ -455,7 +455,7 @@ y1:
     shipping_zone_id: 4
     described_as: Territory
     id: "51"
-    
+
 z1:
   attributes:
     name: Vermont
@@ -464,7 +464,7 @@ z1:
     shipping_zone_id: 1
     described_as: State
     id: "52"
-    
+
 a2:
   attributes:
     name: Washington
@@ -473,7 +473,7 @@ a2:
     shipping_zone_id: 1
     described_as: State
     id: "53"
-    
+
 b2:
   attributes:
     name: Wisconsin
@@ -482,7 +482,7 @@ b2:
     shipping_zone_id: 1
     described_as: State
     id: "54"
-    
+
 c2:
   attributes:
     name: West Virginia
@@ -491,7 +491,7 @@ c2:
     shipping_zone_id: 1
     described_as: State
     id: "55"
-    
+
 d2:
   attributes:
     name: Wyoming
@@ -500,7 +500,7 @@ d2:
     shipping_zone_id: 1
     described_as: State
     id: "56"
-    
+
 e2:
   attributes:
     name: Ontario
@@ -509,7 +509,7 @@ e2:
     shipping_zone_id: 3
     described_as: Province
     id: "57"
-    
+
 f2:
   attributes:
     name: Quebec
@@ -518,7 +518,7 @@ f2:
     shipping_zone_id: 3
     described_as: Province
     id: "58"
-    
+
 g2:
   attributes:
     name: Nova Scotia
@@ -527,7 +527,7 @@ g2:
     shipping_zone_id: 3
     described_as: Province
     id: "59"
-    
+
 h2:
   attributes:
     name: New Brunswick
@@ -536,7 +536,7 @@ h2:
     shipping_zone_id: 3
     described_as: Province
     id: "60"
-    
+
 i2:
   attributes:
     name: Manitoba
@@ -545,7 +545,7 @@ i2:
     shipping_zone_id: 3
     described_as: Province
     id: "61"
-    
+
 j2:
   attributes:
     name: British Columbia
@@ -554,7 +554,7 @@ j2:
     shipping_zone_id: 3
     described_as: Province
     id: "62"
-    
+
 k2:
   attributes:
     name: Prince Edward Island
@@ -563,7 +563,7 @@ k2:
     shipping_zone_id: 3
     described_as: Province
     id: "63"
-    
+
 l2:
   attributes:
     name: Saskatchewan
@@ -572,7 +572,7 @@ l2:
     shipping_zone_id: 3
     described_as: Province
     id: "64"
-    
+
 m2:
   attributes:
     name: Alberta
@@ -581,7 +581,7 @@ m2:
     shipping_zone_id: 3
     described_as: Province
     id: "65"
-    
+
 n2:
   attributes:
     name: Newfoundland and Labrador
@@ -590,7 +590,7 @@ n2:
     shipping_zone_id: 3
     described_as: Province
     id: "66"
-    
+
 o2:
   attributes:
     name: Northwest Territories
@@ -599,7 +599,7 @@ o2:
     shipping_zone_id: 3
     described_as: Territory
     id: "67"
-    
+
 p2:
   attributes:
     name: Yukon
@@ -608,7 +608,7 @@ p2:
     shipping_zone_id: 3
     described_as: Territory
     id: "68"
-    
+
 q2:
   attributes:
     name: Nunavut
@@ -617,4 +617,4 @@ q2:
     shipping_zone_id: 3
     described_as: Territory
     id: "69"
-    
+
