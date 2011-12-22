@@ -4,7 +4,7 @@ body #body_wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -4em;
+  margin: 0 auto -3em;
 }
 
 a {
@@ -176,6 +176,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
 #content_wrapper {
   padding-top: 7px;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+  padding-bottom: 3em;
 }
 
 .flash_error {

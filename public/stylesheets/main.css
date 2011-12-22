@@ -4,16 +4,20 @@
   background: url("../../images/header/bg-header-wrap.png") repeat-x scroll center bottom white;
 }
 /* line 8, ../../app/stylesheets/_main_header.scss */
+#header_wrapper ul, #header_wrapper ol {
+  padding-left: 0em;
+}
+/* line 11, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header {
   font-family: "Helvetica Neue",Helvetica,Arial,"Liberation Sans",FreeSans,sans-serif;
   height: 59px;
 }
-/* line 12, ../../app/stylesheets/_main_header.scss */
+/* line 15, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header .container {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 16, ../../app/stylesheets/_main_header.scss */
+/* line 19, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header form.search {
   border-right: 1px solid #EEEEEE;
   display: inline;
@@ -21,11 +25,11 @@
   height: 29px;
   padding: 17px 15px 13px;
 }
-/* line 22, ../../app/stylesheets/_main_header.scss */
+/* line 25, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header form.search.input-search {
   width: 230px;
 }
-/* line 26, ../../app/stylesheets/_main_header.scss */
+/* line 29, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #logo {
   display: inline;
   float: left;
@@ -37,12 +41,12 @@
   width: 224px;
   height: 100%;
 }
-/* line 37, ../../app/stylesheets/_main_header.scss */
+/* line 40, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #logo a {
   display: block;
   padding: 0px;
 }
-/* line 41, ../../app/stylesheets/_main_header.scss */
+/* line 44, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #logo a span {
   -moz-box-orient: vertical;
   display: block;
@@ -51,25 +55,24 @@
   vertical-align: middle;
   width: 160px;
 }
-/* line 52, ../../app/stylesheets/_main_header.scss */
+/* line 55, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main {
-  font-size: 0;
   list-style-type: none;
   float: left;
   margin: 0;
   overflow: hidden;
 }
-/* line 59, ../../app/stylesheets/_main_header.scss */
+/* line 61, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li#menu-main-user {
   display: inline-block;
 }
-/* line 61, ../../app/stylesheets/_main_header.scss */
+/* line 63, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li#menu-main-user div {
   display: inline-block;
   padding: 13px 9px;
   border-right: 1px solid #CCCCCC;
 }
-/* line 65, ../../app/stylesheets/_main_header.scss */
+/* line 67, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li#menu-main-user div strong {
   color: #AA5555 !important;
   display: block;
@@ -77,28 +80,28 @@
   font-weight: bold;
   line-height: 15px;
 }
-/* line 72, ../../app/stylesheets/_main_header.scss */
+/* line 74, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li#menu-main-user div span {
   color: #B2B2B2 !important;
   font-size: 12px;
 }
-/* line 76, ../../app/stylesheets/_main_header.scss */
+/* line 78, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li#menu-main-user div a {
   padding: 0px 0px;
   border-right: none;
 }
-/* line 83, ../../app/stylesheets/_main_header.scss */
+/* line 85, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li {
   margin-left: 0;
   display: inline-block;
 }
-/* line 87, ../../app/stylesheets/_main_header.scss */
+/* line 89, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li a {
   display: inline-block;
   padding: 13px 7px;
   border-right: 1px solid #CCCCCC;
 }
-/* line 92, ../../app/stylesheets/_main_header.scss */
+/* line 94, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li a strong {
   color: #AA5555 !important;
   display: block;
@@ -106,26 +109,26 @@
   font-weight: bold;
   line-height: 15px;
 }
-/* line 99, ../../app/stylesheets/_main_header.scss */
+/* line 101, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li a span {
   color: #B2B2B2 !important;
   font-size: 12px;
 }
-/* line 104, ../../app/stylesheets/_main_header.scss */
+/* line 106, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li a #menu-main-fund {
   margin-left: -1px;
 }
-/* line 108, ../../app/stylesheets/_main_header.scss */
+/* line 110, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li.selected {
   border-bottom: 1px solid #FFFFFF;
   border-color: #CCCCCC #CCCCCC #FFFFFF;
   z-index: 1;
 }
-/* line 113, ../../app/stylesheets/_main_header.scss */
+/* line 115, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-main li.selected a {
   background: none repeat scroll 0 0 #FFFFFF;
 }
-/* line 120, ../../app/stylesheets/_main_header.scss */
+/* line 122, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-sub {
   border: 0 none;
   display: inline;
@@ -135,7 +138,7 @@
   overflow: visible;
   padding: 0 0 0 8px;
 }
-/* line 129, ../../app/stylesheets/_main_header.scss */
+/* line 131, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-sub li {
   display: inline;
   float: left;
@@ -146,22 +149,22 @@
   padding-right: 0;
   white-space: nowrap;
 }
-/* line 139, ../../app/stylesheets/_main_header.scss */
+/* line 141, ../../app/stylesheets/_main_header.scss */
 #header_wrapper #header #menu-sub li:first-child, #header_wrapper #header #menu-sub li.first {
   padding-left: 0;
 }
 
-/* line 146, ../../app/stylesheets/_main_header.scss */
+/* line 148, ../../app/stylesheets/_main_header.scss */
 .field.search {
   position: relative;
 }
-/* line 148, ../../app/stylesheets/_main_header.scss */
+/* line 150, ../../app/stylesheets/_main_header.scss */
 .field.search .icon-search {
   left: 8px;
   position: absolute;
   top: 5px;
 }
-/* line 153, ../../app/stylesheets/_main_header.scss */
+/* line 155, ../../app/stylesheets/_main_header.scss */
 .field.search input.text {
   -moz-border-radius: 11px;
   -webkit-border-radius: 11px;
@@ -177,7 +180,7 @@
   width: 225px;
 }
 
-/* line 167, ../../app/stylesheets/_main_header.scss */
+/* line 169, ../../app/stylesheets/_main_header.scss */
 .icon-search {
   -moz-box-orient: vertical;
   display: inline-block;
@@ -187,13 +190,13 @@
   width: 14px;
 }
 
-/* line 178, ../../app/stylesheets/_main_header.scss */
+/* line 180, ../../app/stylesheets/_main_header.scss */
 a {
   color: #AA5555;
   text-decoration: none;
 }
 
-/* line 182, ../../app/stylesheets/_main_header.scss */
+/* line 184, ../../app/stylesheets/_main_header.scss */
 a:visited {
   color: #994444;
 }
@@ -481,7 +484,7 @@ body #body_wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -4em;
+  margin: 0 auto -3em;
 }
 
 /* line 10, ../../app/stylesheets/_app.scss */
@@ -737,9 +740,10 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
 #content_wrapper {
   padding-top: 7px;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+  padding-bottom: 3em;
 }
 
-/* line 181, ../../app/stylesheets/_app.scss */
+/* line 182, ../../app/stylesheets/_app.scss */
 .flash_error {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -753,7 +757,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   color: #8a1f11;
 }
 
-/* line 185, ../../app/stylesheets/_app.scss */
+/* line 186, ../../app/stylesheets/_app.scss */
 .flash_notice {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -767,17 +771,17 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   color: #514721;
 }
 
-/* line 190, ../../app/stylesheets/_app.scss */
+/* line 191, ../../app/stylesheets/_app.scss */
 #right_side_panel {
   text-align: left;
 }
 
-/* line 196, ../../app/stylesheets/_app.scss */
+/* line 197, ../../app/stylesheets/_app.scss */
 #submit_add_to_cart {
   cursor: pointer;
 }
 
-/* line 200, ../../app/stylesheets/_app.scss */
+/* line 201, ../../app/stylesheets/_app.scss */
 .variant_border {
   padding: 3px;
   margin-bottom: 3px;
@@ -789,28 +793,28 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   cursor: pointer;
 }
 
-/* line 209, ../../app/stylesheets/_app.scss */
+/* line 210, ../../app/stylesheets/_app.scss */
 .variant_select {
   text-align: left;
 }
 
-/* line 213, ../../app/stylesheets/_app.scss */
+/* line 214, ../../app/stylesheets/_app.scss */
 .ui-datepicker-calendar table {
   margin: 0;
 }
 
-/* line 216, ../../app/stylesheets/_app.scss */
+/* line 217, ../../app/stylesheets/_app.scss */
 .ui-datepicker-calendar table th, .ui-datepicker-calendar table td {
   padding: 0;
   text-align: center;
 }
 
-/* line 221, ../../app/stylesheets/_app.scss */
+/* line 222, ../../app/stylesheets/_app.scss */
 .individual-cart-item {
   border-bottom: solid 1px #dcd;
 }
 
-/* line 227, ../../app/stylesheets/_app.scss */
+/* line 228, ../../app/stylesheets/_app.scss */
 .line_items_blue {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -821,12 +825,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   margin-bottom: 3px;
 }
 
-/* line 234, ../../app/stylesheets/_app.scss */
+/* line 235, ../../app/stylesheets/_app.scss */
 .box.selected {
   background-color: #f0fff8;
 }
 
-/* line 237, ../../app/stylesheets/_app.scss */
+/* line 238, ../../app/stylesheets/_app.scss */
 .line_item_green {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -837,12 +841,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   margin-bottom: 3px;
 }
 
-/* line 245, ../../app/stylesheets/_app.scss */
+/* line 246, ../../app/stylesheets/_app.scss */
 .line_item_green:hover {
   background-color: #e0ffe8;
 }
 
-/* line 249, ../../app/stylesheets/_app.scss */
+/* line 250, ../../app/stylesheets/_app.scss */
 .line_item_red {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -854,12 +858,12 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 258, ../../app/stylesheets/_app.scss */
+/* line 259, ../../app/stylesheets/_app.scss */
 .line_item_red:hover {
   background-color: #ffe0e8;
 }
 
-/* line 262, ../../app/stylesheets/_app.scss */
+/* line 263, ../../app/stylesheets/_app.scss */
 .line_item_blue {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -871,7 +875,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 271, ../../app/stylesheets/_app.scss */
+/* line 272, ../../app/stylesheets/_app.scss */
 .line_item_yellow {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -883,7 +887,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 280, ../../app/stylesheets/_app.scss */
+/* line 281, ../../app/stylesheets/_app.scss */
 .line_item_light_gray {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -895,7 +899,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 289, ../../app/stylesheets/_app.scss */
+/* line 290, ../../app/stylesheets/_app.scss */
 .line_item_gray {
   padding: 3px;
   -moz-border-radius: 4px;
@@ -907,7 +911,7 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   text-align: left;
 }
 
-/* line 298, ../../app/stylesheets/_app.scss */
+/* line 299, ../../app/stylesheets/_app.scss */
 .dkBlueBox {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -915,17 +919,17 @@ input.text, input.title, input[type="text"], input[type="password"], input[type=
   border: solid #AED2EE 0.5px;
 }
 
-/* line 303, ../../app/stylesheets/_app.scss */
+/* line 304, ../../app/stylesheets/_app.scss */
 .innerBox {
   padding: 8px;
 }
 
-/* line 306, ../../app/stylesheets/_app.scss */
+/* line 307, ../../app/stylesheets/_app.scss */
 .top_border td {
   border-top: solid 2px #ddd;
 }
 
-/* line 312, ../../app/stylesheets/_app.scss */
+/* line 313, ../../app/stylesheets/_app.scss */
 button.ui-button {
   text-shadow: 0 0 0 #000;
 }

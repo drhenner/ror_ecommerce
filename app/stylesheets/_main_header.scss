@@ -5,6 +5,9 @@
   border-bottom: 1px solid #CCCCCC;
   background: url("../../images/header/bg-header-wrap.png") repeat-x scroll center bottom #FFFFFF;
 
+  ul, ol {
+    padding-left: 0em;
+  }
   #header {
     font-family: "Helvetica Neue",Helvetica,Arial,"Liberation Sans",FreeSans,sans-serif;
     height:      59px;
@@ -50,7 +53,6 @@
       }
     }
     #menu-main {
-      font-size: 0;
       list-style-type:none;
       float: left;
       margin: 0;
