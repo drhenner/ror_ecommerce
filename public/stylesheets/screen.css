@@ -505,7 +505,7 @@ form.bp input.ui-pg-input {
 /* line 51, ../../app/stylesheets/blueprint/_form.scss */
 form.bp textarea {
   width: 390px;
-  height: 250px;
+  height: 90px;
 }
 
 /* line 25, ../../app/stylesheets/partials/_two_col.scss */
@@ -1710,5 +1710,5 @@ input.ui-pg-input {
 /* line 51, ../../app/stylesheets/blueprint/_form.scss */
 textarea {
   width: 390px;
-  height: 250px;
+  height: 90px;
 }
