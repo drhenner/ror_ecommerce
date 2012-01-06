@@ -4,7 +4,7 @@
 <div id='order-wrapper' class='span-24'>
   <div class='span-14'>
     <h1>Order Summary</h1>
-    
+
     <div id='order-items-summary'>
       <% i = 1 %>
       <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
@@ -14,7 +14,7 @@
         <% i += 1 %>
       <% end %>
     </div>
-    
+
     <div id='final-order-shipping-address' class='box span-6 rounded-10' style='text-align:left;'>
       <h5>Shipping Address</h5>
       <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
@@ -31,7 +31,7 @@
         <tr class='odd'>
           <th class='column1_header'>
             Item <span class='ss_sprite ss_application_cascade'></span>
-          
+
           </th><th>Price:</th><th>Price + Tax</th>
         </tr>
       </thead>
@@ -53,17 +53,17 @@
       </tfoot>
     </table>
     <div>
-  </div>  
-    <%= form_tag( shopping_order_path(@order), 
+  </div>
+    <%= form_tag( shopping_order_path(@order),
                                   :method => :put,
-                                  #:as   => :order, 
+                                  #:as   => :order,
                                   :id   => 'purchase_order') do  %>
-                                  
-                                  
+
+
       <%# text_field(object_name, method, options = {}) %>
-      
-      
-      
+
+
+
       <div class="field column">
         <%= label_tag  :name %>
       </div>
@@ -72,29 +72,29 @@
         <%= label_tag 'First' %>
          <%= text_field_tag(:first_name, @credit_card.first_name ,:class => 'span-3') %>
       </div>
-      
+
       <div class="field column">
         <%= label_tag :last_name, 'Last' %>
          <%= text_field_tag(:last_name, @credit_card.last_name,:class => 'span-3') %>
       </div>
-      
+
       <div class='clear'></div>
       <div class="field column float-left clear-fix">
         <%= label_tag 'Number'%>
-         <%= text_field_tag(:number, @credit_card.number ,:class => 'span-4 disableAutoComplete') %>
+         <%= text_field_tag(:number, @credit_card.number ,:class => 'span-4 disableAutoComplete', :autocomplete => "off") %>
       </div>
-      
+
       <div class="field column float-left">
         <%= label_tag :verification_value, 'VCC'%>
-         <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'span-1 disableAutoComplete') %>
+         <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'span-1 disableAutoComplete', :autocomplete => "off") %>
       </div>
-      
+
       <div class='clear'></div>
       <div class="field column float-left ">
         <%= label_tag :type, 'Type'%>
          <%= select_tag(:type, options_for_select(['visa', 'mastercard'])) %>
       </div>
-      
+
       <div class="field column float-left">
         <%= label_tag :month %>
         <%= select_tag(:month, options_for_select(['01', '02'])) %>

@@ -31,12 +31,12 @@
   <div class='clear'></div>
     <div class="field column float-left clear-fix">
       <%= label_tag 'Number'%>
-       <%= text_field_tag(:number, @credit_card.number ,:class => 'span-4 disableAutoComplete') %>
+       <%= text_field_tag(:number, @credit_card.number ,:class => 'span-4 disableAutoComplete', :autocomplete => "off") %>
     </div>
 
     <div class="field column float-left">
       <%= label_tag :verification_value, 'VCC'%>
-       <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'span-1 disableAutoComplete') %>
+       <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'span-1 disableAutoComplete', :autocomplete => "off") %>
     </div>
 
   <div class='clear'></div>
