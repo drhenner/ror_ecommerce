@@ -8,6 +8,7 @@ class AddBrandToProducts < ActiveRecord::Migration
       product.brand_id = product.variants.first.try(:brand_id)
       product.save
     end
+    add_index :products, :brand_id
   end
 
   def self.down

@@ -8,5 +8,6 @@ class CreateAccountingAdjustments < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :accounting_adjustments, :adjustable_id
   end
 end
