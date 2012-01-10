@@ -55,7 +55,7 @@ group :development do
   gem 'RedCloth'
 end
 group :test, :development do
-  gem "rspec-rails", "~> 2.7.0"
+  gem "rspec-rails", "~> 2.8.0"
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner'
@@ -66,11 +66,11 @@ group :test do
   gem 'mocha', '~> 0.10.0', :require => false
   gem 'rspec-rails-mocha'
   gem "shoulda"
-  gem "rspec",        "~> 2.7.0"
+  gem "rspec",        "~> 2.8.0"
 
-  gem "rspec-core",         "~> 2.7.1"
-  gem "rspec-expectations", "~> 2.7.0"
-  gem "rspec-mocks",        "~> 2.7.0"
+  gem "rspec-core",         "~> 2.8.0"
+  gem "rspec-expectations", "~> 2.8.0"
+  gem "rspec-mocks",        "~> 2.8.0"
   gem 'email_spec'
 
   gem "faker"
