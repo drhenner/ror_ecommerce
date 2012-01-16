@@ -1,0 +1,15 @@
+@import "blueprint";
+
+//Recommended Blueprint configuration with scoping and semantic layout:
+body.bp {
+  @include blueprint-print(true); }
+
+
+
+  // Generate the blueprint print styles:
+//  @include blueprint-print;
+
+
+@mixin header-image {
+  background: image-url('logos/hadean_wide.png');
+  }

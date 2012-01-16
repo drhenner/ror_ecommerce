@@ -3,11 +3,18 @@ source 'http://rubygems.org'
 ## Bundle rails:
 gem 'rails', '~> 3.1.3'
 
+group :assets do
+  #gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+end
+  gem 'sass-rails', "  ~> 3.1.0"
+
 gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
 gem 'authlogic', "3.0.3"
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.4.1'
-gem 'compass', "~> 0.11.5"
+#gem 'compass', "~> 0.11.5"
+gem 'compass', '~> 0.12.alpha.4'
 # gem 'compass_twitter_bootstrap'
 #  gem 'dalli', '~> 1.0.2'
 

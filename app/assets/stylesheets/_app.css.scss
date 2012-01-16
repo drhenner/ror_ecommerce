@@ -1,0 +1,329 @@
+html,body { height:100%; }
+
+body #body_wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -3em;
+}
+
+body {
+  text-align: center; }
+
+h1, h2, h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333333;
+  letter-spacing: -1px; }
+
+h1 {
+  font-size: 50px; }
+
+h2 {
+  font-size: 30px; }
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: transparent;
+}
+
+.left-text {
+  text-align: left;
+}
+
+.left-text-4 {
+  @include left-text(4px);
+}
+
+.left-text-8 {
+  @include left-text(8px);
+}
+
+.rounded-2 {
+  @include rounded(2px);
+}
+
+.rounded-4 {
+  @include rounded(4px);
+}
+.rounded-6 {
+  @include rounded(6px);
+}
+
+.rounded-8 {
+  @include rounded(8px);
+}
+
+.padding-5 {
+  @include padding(5px);
+}
+
+.padding-10 {
+  @include padding(10px);
+}
+
+#admin-property-names {
+  @include admin-form-wrapper;
+  }
+
+
+// properties admin page
+#admin_properties_page_wrapper {
+  @include admin-page-wrapper;
+}
+#admin_properties_grid_wrapper {
+  @include admin-grid-wrapper;
+}
+
+#admin_new_property_button {
+  @include admin-new-button;
+}
+
+// product_types admin page
+#admin_product_types_page_wrapper {
+  @include admin-page-wrapper;
+}
+#admin_product_types_grid_wrapper {
+  @include admin-grid-wrapper;
+}
+
+#admin_new_product_type_button {
+  @include admin-new-button;
+}
+
+
+#admin-product_type-names {
+  @include admin-form-wrapper;
+  }
+
+// admin-prototype-names admin page
+
+#admin_prototypes_page_wrapper {
+  @include admin-page-wrapper;
+}
+#admin_prototypes_grid_wrapper {
+  @include admin-grid-wrapper;
+}
+#admin_new_prototype_type_button {
+  @include admin-new-button;
+}
+#admin-prototype-names {
+  @include admin-form-wrapper;
+}
+
+.property_form {
+  display: inline;
+  text-align: left;
+}
+.roman-list li {
+  list-style: upper-roman;
+}
+
+textarea.height-20 {
+  height:2em;
+}
+
+textarea.height-30 {
+  height:3em;
+}
+textarea.height-40 {
+  height:4em;
+}
+
+textarea.height-50 {
+  height:5em;
+}
+
+.selectlist-list {
+  list-style: none;
+  margin:     0;
+  padding:    0;
+}
+
+.selectlist-item {
+  // Icon from http://pinvoke.com/
+  background:     #fff image-url('cross-circle.png') no-repeat right center;
+  border-left:    solid 1px #eee;
+  border-top:     solid 1px #eee;
+  border-right:   solid 2px #ccc;
+  border-bottom:  solid 2px #ccc;
+  cursor:         pointer;
+  padding:        0.2em 0.3em;
+  margin:         1px 0;
+}
+
+#admin-product-names {
+  margin:     0  0  0.5em;
+  padding:    0.3em;
+}
+
+// Layout for application
+
+li {
+  list-style: none;
+}
+
+.width-list {
+  li {
+    clear:both;
+    text-align:left;
+  }
+}
+.space-list-40 {
+  li {
+    padding-bottom:40px;
+  }
+}
+
+input.text, input.title, input[type="text"], input[type="password"], input[type="email"] {
+  @include rounded(4px);
+  margin: 0.15em 0;
+  background: -moz-linear-gradient(center top , #E6E6E6 0%, #FFFFFF 100%) repeat-x scroll center top #FFFFFF;
+  border: 1px solid #CCCCCC;
+  height: 16px;
+  font-size: 13px;
+  padding: 6px 5px;
+}
+
+#content_wrapper {
+  padding-top: 7px;
+  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+  padding-bottom: 3em;
+}
+
+.flash_error {
+  @include error;
+}
+
+.flash_notice {
+  @include notice;
+}
+
+// Main welcome page
+#right_side_panel {
+  text-align: left;
+}
+
+// Product page
+
+#submit_add_to_cart {
+  cursor: pointer;
+}
+
+.variant_border {
+  padding: 3px;
+  margin-bottom: 3px;
+  border:   solid 1px #DD8888;
+  @include rounded(4px);
+  background-color: #FFF;
+  cursor: pointer;
+}
+
+.variant_select {
+  text-align: left;
+}
+
+.ui-datepicker-calendar table {
+  margin: 0;
+}
+.ui-datepicker-calendar table th , .ui-datepicker-calendar table td {
+  padding: 0;
+  text-align: center;
+}
+
+.individual-cart-item {
+  border-bottom:   solid 1px #dcd;
+}
+
+// bordered line items
+
+.line_items_blue {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #D0D8EF;
+  background-color: #f0f8ff;
+  margin-bottom: 3px;
+}
+.box.selected {
+  background-color: #f0fff8;
+}
+.line_item_green {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #D0EFD8;
+  background-color: #f0fff8;
+  margin-bottom: 3px;
+}
+
+.line_item_green:hover {
+  background-color: #e0ffe8;
+}
+
+.line_item_red {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #EFD0D8;
+  background-color: #fff0f8;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.line_item_red:hover {
+  background-color: #ffe0e8;
+}
+
+.line_item_blue {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #D0D8EF;
+  background-color: #f0f8ff;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.line_item_yellow {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #ddc;
+  background-color: #EED;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.line_item_light_gray {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #ECECEC;
+  background-color: #F6F6F6;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.line_item_gray {
+  padding: 3px;
+  @include rounded(4px);
+  border:   solid 2px #ddd;
+  background-color: #EEE;
+  margin-bottom: 3px;
+  text-align:left;
+}
+
+.dkBlueBox {
+  @include rounded(8px);
+  border: solid #AED2EE 0.5px;
+}
+
+.innerBox {
+  padding: 8px;
+}
+.top_border td {
+  border-top:   solid 2px #ddd;
+}
+
+// jQuery
+
+button.ui-button {
+  text-shadow: 0 0 0 #000;
+}

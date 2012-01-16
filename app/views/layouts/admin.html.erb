@@ -4,17 +4,14 @@
   <title><%= site_name %></title>
   <link rel="shortcut icon" href="/favicon.ico" />
   <%#= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag 'buttons.css', :media => 'screen, projection' %>
-  <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
   <%= stylesheet_link_tag 'sprite.css' %>
-  <%= stylesheet_link_tag 'print.css', :media => 'print'%>
-  <%= stylesheet_link_tag 'admin.css' %>
+  <%= stylesheet_link_tag 'admin' %>
     <!--[if lt IE 8]
   <%#= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
   <![endif]-->
   <%= csrf_meta_tag %>
 
-  <%= javascript_include_tag 'jquery-1.5.2.min', 'rails', 'jquery-ui-1.8.12.custom.min','application' %>
+  <%= javascript_include_tag 'application' %>
   <%= yield :head %>
 </head>
 <body class="bp">
