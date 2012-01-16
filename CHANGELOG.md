@@ -1,3 +1,12 @@
+###1.0.0rc1 2012-01-16
+
+* Bug Fix: Updating roles
+* Bug Fix: Shipping methods in checkout process
+* Bug Fix: Navigation (mostly in admin)
+* Bug Fix: TEST TIME
+* Use the ASET PIPELINE!!!
+* redirect after login (if you were required to login)
+* readme updates
 
 ###0.10.0 2011-12-04
 
