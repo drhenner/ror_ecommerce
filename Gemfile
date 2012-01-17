@@ -35,7 +35,7 @@ gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
 
 gem 'rake', '= 0.9.2'
-gem 'ssl_requirement'
+#gem 'ssl_requirement'
 gem 'state_machine', '~> 1.0.1'
 #gem 'sunspot_solr'
 #gem 'sunspot_rails', '~> 1.3.0rc'
@@ -80,7 +80,7 @@ group :test do
   end
   gem "autotest-growl"
   #gem "redgreen"
-  gem "ZenTest", '4.5.0'# 4.6 breaks autotest
+  gem "ZenTest", '4.6.2'
 
   ###  THESE ARE ALL FOR CUCUMBER
 #  gem "webrat"  ## USE webrat or capybara NOT BOTH
