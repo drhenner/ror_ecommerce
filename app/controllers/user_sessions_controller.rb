@@ -12,6 +12,7 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       cookies[:hadean_uid] = @user_session.record.access_token
       session[:authenticated_at] = Time.now
+      cookies[:insecure] = false
       ## if there is a cart make sure the user_id is correct
       set_user_to_cart_items
       flash[:notice] = I18n.t('login_successful')
