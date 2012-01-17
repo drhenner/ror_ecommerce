@@ -12,7 +12,7 @@ end
 gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
 gem 'authlogic', "3.0.3"
 gem 'bluecloth',     '~> 2.1.0'
-gem 'cancan', '~> 1.4.1'
+gem 'cancan', '~> 1.6.7'
 #gem 'compass', "~> 0.11.5"
 gem 'compass', '~> 0.12.alpha.4'
 # gem 'compass_twitter_bootstrap'
