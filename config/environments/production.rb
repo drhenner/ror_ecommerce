@@ -16,6 +16,36 @@ Hadean::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  # config.assets.precompile += %w( *.css *.js )
+
+  config.assets.precompile += %w( *.js )
+  config.assets.precompile += [ 'admin.css',
+                                'autocomplete.css',
+                                'chosen.css',
+                                'generic_dialog.css',
+                                'home_page.css',
+                                'ie.css',
+                                'ie6.css',
+                                'jqgrid/ui.jqgrid.css',
+                                'login.css',
+                                'main.css',
+                                'markdown.css',
+                                'outfits.css',
+                                'print.css',
+                                'product_page.css',
+                                'products_page.css',
+                                'screen.css',
+                                'shopping_cart_page.css',
+                                'signup.css',
+                                'sprite.css',
+                                'store_credits.css',
+                                'stylist_admin.css',
+                                'stylist_cart.css',
+                                'tables.css',
+                                'cupertino/jquery-ui-1.8.12.custom.css',
+                                'modstyles.css',
+                                'scaffold.css']
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true

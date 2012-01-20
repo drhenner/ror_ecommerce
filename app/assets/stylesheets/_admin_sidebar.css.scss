@@ -1,3 +1,5 @@
+@import "app_mixins";
+
 .ar-sidebar {
   @include rounded(4px);
   border: 1px #DDD solid;
