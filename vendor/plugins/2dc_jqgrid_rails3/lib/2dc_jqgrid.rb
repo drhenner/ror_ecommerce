@@ -7,8 +7,8 @@ module Jqgrid
 
     def jqgrid_javascripts
       locale = I18n.locale rescue :en
-      js = javascript_include_tag('jquery-ui-1.8.12.custom.min.js') + "\n"
-      js << javascript_include_tag("jqgrid/i18n/grid.locale-#{locale}.js") + "\n"
+      js = javascript_include_tag('jquery/jquery-ui-1.8.17.custom.min.js') + "\n"
+      # js << javascript_include_tag("jqgrid/i18n/grid.locale-#{locale}.js") + "\n"
       js << javascript_include_tag('jqgrid/jquery.jqGrid.min.js') + "\n"
       # Don't know if we need it, if smth not working, just uncomment it
       #js << javascript_include_tag('jqgrid/jquery.layout.js') + "\n"
