@@ -6,7 +6,8 @@ class Admin::UsersController < Admin::BaseController
     authorize! :view_users, current_user
     params[:page] ||= 1
     # @users = User.admin_grid(params)
-    @users = User.admin_grid(params).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page].to_i)
+    @users = User.admin_grid(params).order(sort_column + " " + sort_direction).
+                                    paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
       format.html
       format.json { render :json => @users.to_jqgrid_json(
