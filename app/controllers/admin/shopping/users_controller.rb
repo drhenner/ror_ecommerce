@@ -1,23 +1,14 @@
 class Admin::Shopping::UsersController < Admin::Shopping::BaseController
-  # GET /admin/order/users
-  # GET /admin/order/users.xml
+  helper_method :sort_column, :sort_direction
+
+  # GET /admin/shopping/users
   def index
-
-    @users = User.admin_grid(params)
-    respond_to do |format|
-      format.html
-      format.json { render :json => @users.to_jqgrid_json(
-        [ :first_name, :last_name, :email, :state ],
-        @users.per_page, #params[:page],
-        @users.current_page, #params[:rows],
-        @users.total_entries)
-
-      }
-    end
+   params[:page] ||= 1
+    @users = User.admin_grid(params).order(sort_column + " " + sort_direction).
+                                    paginate(:per_page => 25, :page => params[:page].to_i)
   end
 
-  # POST /admin/order/users
-  # POST /admin/order/users.xml
+  # POST /admin/shopping/users
   def create
     @customer = User.find_by_id(params[:user_id])
     session_admin_cart.customer = @customer
@@ -28,4 +19,13 @@ class Admin::Shopping::UsersController < Admin::Shopping::BaseController
     end
   end
 
+  private
+
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end
