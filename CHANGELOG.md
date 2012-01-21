@@ -1,3 +1,12 @@
+###1.0.0rc2 2012-01-21
+
+* Bug Fix: RMA process broken link
+* remove jqGrid and replaced with normal rails helpers
+* added pretty_table to most admin UI for consistent look and feel
+* use rails 3.1 ssl
+* updated gems (cancan, Zentest)
+* asset pipeline needed updates during production to precompile
+
 ###1.0.0rc1 2012-01-16
 
 * Bug Fix: Updating roles
