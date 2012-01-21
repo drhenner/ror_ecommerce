@@ -26,7 +26,6 @@ Hadean::Application.configure do
                                 'home_page.css',
                                 'ie.css',
                                 'ie6.css',
-                                'jqgrid/ui.jqgrid.css',
                                 'login.css',
                                 'main.css',
                                 'markdown.css',
