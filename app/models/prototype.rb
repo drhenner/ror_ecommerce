@@ -20,8 +20,8 @@ class Prototype < ActiveRecord::Base
     grid = Prototype
     grid = grid.where("active = ?",true)                    unless  params[:show_all].present? &&
                                                               params[:show_all] == 'true'
-    grid = grid.where("prototypes.display_name = ?", params[:display_name])  if params[:display_name].present?
-    grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page].to_i, :per_page => params[:rows].to_i)
+    grid = grid.where("prototypes.name LIKE ?", "#{params[:name]}%")  if params[:name].present?
+    grid
 
   end
 

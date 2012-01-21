@@ -1,16 +1,11 @@
 class Admin::Merchandise::PrototypesController < Admin::BaseController
-
+  helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
-    @prototypes = Prototype.admin_grid(params)
+    @prototypes = Prototype.admin_grid(params).order(sort_column + " " + sort_direction).
+                                              paginate(:per_page => 20, :page => params[:page].to_i)
     respond_to do |format|
       format.html
-      format.json { render :json => @prototypes.to_jqgrid_json(
-        [ :id, :name, :display_active ],
-        @prototypes.per_page, #params[:page],
-        @prototypes.current_page, #params[:rows],
-        @prototypes.total_entries)
-      }
     end
   end
 
@@ -60,4 +55,14 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
     redirect_to :action => :index
   end
+  private
+
+  def sort_column
+    Prototype.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
 end
