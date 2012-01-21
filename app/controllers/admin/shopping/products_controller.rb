@@ -1,17 +1,10 @@
 class Admin::Shopping::ProductsController < Admin::Shopping::BaseController
+  helper_method :sort_column, :sort_direction, :product_types
+
   # GET /admin/order/products
   def index
-    @products = Product.admin_grid(params, true)
-    respond_to do |format|
-      format.html
-      format.json { render :json => @products.to_jqgrid_json(
-        [ :name, :display_price_range ],
-        @products.per_page, #params[:page],
-        @products.current_page, #params[:rows],
-        @products.total_entries)
-
-      }
-    end
+    @products = Product.admin_grid(params, true).order(sort_column + " " + sort_direction).
+                                              paginate(:per_page => 20, :page => params[:page].to_i)
   end
 
   # GET /admin/order/products/1
@@ -45,6 +38,16 @@ class Admin::Shopping::ProductsController < Admin::Shopping::BaseController
 
   private
 
+  def product_types
+    @product_types ||= ProductType.all
+  end
+  def sort_column
+    Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
  # def tax_percentage(tax_rate)
  #   tax_rate ? tax_rate.rate : 0
  # end
