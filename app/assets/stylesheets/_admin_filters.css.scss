@@ -1,0 +1,13 @@
+
+body .admin_filters {
+  text-align:left;
+  ul, ol {
+    padding-left: 0.5em;
+  }
+  &label {
+    display:block;
+  }
+  .search_boxes input {
+    width: 202px;
+  }
+}

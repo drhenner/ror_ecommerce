@@ -344,17 +344,12 @@ class User < ActiveRecord::Base
   # @param [Optional params]
   # @return [ Array[User] ]
   def self.admin_grid(params = {})
-
-    params[:page] ||= 1
-    params[:rows] ||= SETTINGS[:admin_grid_rows]
-
-    grid = User
+    grid = self
     grid = grid.includes(:roles)
     grid = grid.where("users.first_name LIKE ?", "%#{params[:first_name]}%") if params[:first_name].present?
     grid = grid.where("users.last_name LIKE ?",  "%#{params[:last_name]}%")  if params[:last_name].present?
     grid = grid.where("users.email LIKE ?",      "%#{params[:email]}%")      if params[:email].present?
-    grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-    grid.paginate({:page => params[:page].to_i,:per_page => params[:rows].to_i})
+    grid
   end
 
   def deliver_password_reset_instructions!

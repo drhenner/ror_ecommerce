@@ -1,5 +1,6 @@
 //= require  screen
 //= require  print
+//= require  tables
 
 @import "compass";
 @import "blueprint";
@@ -10,4 +11,5 @@
 
 @import "admin_buttons";
 //@import "compass_twitter_bootstrap";
+@import "admin_filters";
 @import "app";

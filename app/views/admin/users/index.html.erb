@@ -1,39 +1,66 @@
 <% content_for :head do -%>
-  <%= javascript_include_tag "admin/index_grid" %>
+  <%#= javascript_include_tag "admin/index_grid" %>
 <% end %>
 
 <% content_for :bottom do -%>
 
-<%= jqgrid_stylesheets %>
-<%= jqgrid_javascripts %>
+<%#= jqgrid_stylesheets %>
+<%#= jqgrid_javascripts %>
   <script>
-    Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/users'));
+    //Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/users'));
   </script>
 
 <% end %>
 
 <h2> Users </h2>
 
+<% content_for :sidemenu do %>
+  <div class='admin_filters'>
+    <%= form_tag admin_users_path, :method => 'get', :id => "users_search" do %>
+      <p>
+        <ul class=' search_boxes'>
+          <li><%= label_tag 'first_name' %> <%= text_field_tag :first_name, params[:first_name] %></li>
+          <li><%= label_tag 'last_name' %>  <%= text_field_tag :last_name, params[:last_name] %></li>
+          <li><%= label_tag 'email' %> <%= text_field_tag :email, params[:email] %></li>
+        </ul>
+        <div style='text-align:center'>
+        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        </div>
+      </p>
+      <div id="users">
+        <%= render 'users' %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+<% end %>
+
+
+
 <div id="admin_users_page_wrapper">
-  <div id="admin_users_grid_wrapper" class='column'>
-    <%= raw jqgrid("Users", "admin_users_grid", admin_users_path,
-      [
-        { :field => "first_name", :label => "First name", :width => 80,  :resizable => false },
-        { :field => "last_name",  :label => "Last",       :width => 80,  :resizable => false },
-        { :field => "email",      :label => "Email",      :width => 195,  :resizable => false },
-        { :field => "state",      :label => "State",      :width => 70,   :resizable => false }
-      ], 
-      {
-        :height             => "390",
-        :alt_rows           => true,
-        :direct_selection   => true,
-        :editable           => true,
-        :selection_handler  => "Hadean.AdminIndexForm.editSelection",
-        :rownumbers         => false,
-        :rows_per_page      => 20,
-        :row_list           => [20, 50, 100]
-      }
-    ) %>
+  <div id="admin_users_grid_wrapper" class='column pretty_table'>
+
+    <table>
+      <thead>
+      <tr>
+        <th><%= sortable "first_name" %></th>
+        <th><%= sortable "last_name" %></th>
+        <th><%= sortable "email" %></th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.first_name, edit_admin_user_path(user) %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.state %></td>
+        </tr>
+      <% end %>
+    </table>
+
+
+  <%= will_paginate @users %>
   </div>
 
   <div id="admin_new_user_button" class="admin_new_button last">

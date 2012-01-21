@@ -179,8 +179,9 @@ li {
 
 input.text, input.title, input[type="text"], input[type="password"], input[type="email"] {
   @include rounded(4px);
+  @include gradient();
   margin: 0.15em 0;
-  background: -moz-linear-gradient(center top , #E6E6E6 0%, #FFFFFF 100%) repeat-x scroll center top #FFFFFF;
+  //background: -moz-linear-gradient(center top , #E6E6E6 0%, #FFFFFF 100%) repeat-x scroll center top #FFFFFF;
   border: 1px solid #CCCCCC;
   height: 16px;
   font-size: 13px;

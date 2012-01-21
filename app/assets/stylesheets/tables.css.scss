@@ -1,12 +1,17 @@
  @import "compass";
  @import "blueprint";
+ @import "app_mixins";
 
 .pretty_table table {
+  @include rounded(6px);
   width:95%;
   border-top:1px solid #e5eff8;
   border-right:1px solid #e5eff8;
   margin:1em auto;
   border-collapse:collapse;
+  &thead {
+    @include rounded(6px);
+  }
 }
 
 .pretty_table td {
@@ -23,7 +28,7 @@
 
 .pretty_table tr.odd td,
 .pretty_table tr.odd .column1 {
-  background:#f4f9fe url(../../images/pretty_table_background.gif) no-repeat;
+  background:#f4f9fe image-url('pretty_table_background.gif') no-repeat;
 }
 .pretty_table .column1 {
   background:#f9fcfe;
@@ -52,5 +57,22 @@
   font-weight: bold;
   font-size: 1.1em;
   font-style: normal;
+}
+
+.pretty_table th a {
+  padding-right: 16px;
+}
+.pretty_table th .current {
+  padding-right: 16px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty_table th .asc {
+  background-image: image-url('table_icons/sort_asc.png');
+}
+
+.pretty_table th .desc {
+  background-image: image-url('table_icons/sort_desc.png');
 }
 
