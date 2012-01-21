@@ -1,37 +1,63 @@
 <% content_for :head do -%>
-  <%= javascript_include_tag "admin/index_grid" %>
+  <%#= javascript_include_tag "admin/index_grid" %>
 <% end %>
 <%= render :partial => '/admin/fulfillment/sub_header'%>
+
+<% content_for :sidemenu do %>
+  <div class='admin_filters'>
+    <%= form_tag admin_fulfillment_orders_path, :method => 'get', :id => "orders_search" do %>
+      <p>
+        <ul class=' search_boxes'>
+          <li><%= label_tag 'Number' %> <%= text_field_tag :number, params[:number] %></li>
+          <li><%= label_tag 'Email' %>  <%= text_field_tag :email, params[:email] %></li>
+          <li><%= label_tag 'shipped' %>  <%= check_box_tag :shipped, 'true', params[:shipped] == 'true' %></li>
+        </ul>
+        <div style='text-align:center'>
+        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        </div>
+      </p>
+      <div id="order_hidden">
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+<% end %>
 
 <h2> Shipping Orders</h2>
 
 <div id="admin_fulfillment_orders_page_wrapper">
   <div id="admin_fulfillment_orders_grid_wrapper" class='column'>
-    <%= raw jqgrid("Orders", "admin_fulfillment_orders_grid", admin_fulfillment_orders_path,
-      [
-        { :field => "display_completed_at",   :label => "Completed",     :width => 100,  :resizable => false },
-        { :field => "email", :label => "Email",  :width => 200,   :resizable => false },
-        { :field => "number", :label => "Number",  :width => 100,   :resizable => false },
-        { :field => "name", :label => "Name",  :width => 100,   :resizable => false }
-      ], 
-      {
-        :height             => "350",
-        :alt_rows           => true,
-        :direct_selection   => true,
-        :editable           => true,
-        :selection_handler  => "Hadean.AdminIndexForm.editSelection",
-        :rownumbers         => false,
-        :rows_per_page      => 20,
-        :row_list           => [20, 50, 100]
-      }
-    ) %>
+      <table>
+        <thead>
+        <tr>
+          <th><%= sortable "number" %></th>
+          <th><%= sortable "email" %></th>
+          <th><%= "Name" %></th>
+          <th>Status</th>
+          <th><%= 'Shipped' %></th>
+        </tr>
+        </thead>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= link_to order.number, edit_admin_fulfillment_order_path(order) %></td>
+            <td><%= order.email %></td>
+            <td><%= order.name %></td>
+            <td><%= order.display_completed_at %></td>
+            <td><%= order.shipped.to_s %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    <%= will_paginate @orders %>
   </div>
 
 </div>
-<%= jqgrid_stylesheets %>
-<%= jqgrid_javascripts %>
+<%#= jqgrid_stylesheets %>
+<%#= jqgrid_javascripts %>
 
 
 <script>
-  Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/fulfillment/orders'));
+  //Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/fulfillment/orders'));
 </script>
