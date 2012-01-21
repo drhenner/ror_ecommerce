@@ -20,5 +20,5 @@ class Comment < ActiveRecord::Base
 
   validates :note,              :presence => true,       :length => { :maximum => 1255 }
   validates :commentable_type,  :presence => true
-  validates :commentable_id,    :presence => true
+  #validates :commentable_id,    :presence => true
 end

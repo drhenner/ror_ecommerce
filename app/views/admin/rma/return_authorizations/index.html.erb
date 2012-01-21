@@ -1,31 +1,56 @@
 <h2>RMA`s</h2>
 
 <% content_for :head do -%>
-  <%= javascript_include_tag "admin/index_grid" %>
+  <%#= javascript_include_tag "admin/index_grid" %>
 <% end %>
 <%= render :partial => '/admin/rma/sub_header'%>
 
+<% content_for :sidemenu do %>
+  <div class='admin_filters'>
+    <%= form_tag admin_rma_order_return_authorizations_path(@order), :method => 'get', :id => "products_search" do %>
+      <p>
+        <ul class=' search_boxes'>
+          <li><%= label_tag 'Number' %> <%= text_field_tag :number, params[:number] %></li>
+          <li><%= label_tag 'Status' %> <%= text_field_tag :state, params[:state] %></li>
+        </ul>
+        <div style='text-align:center'>
+          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        </div>
+      </p>
+      <div id="order_hidden">
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+<% end %>
+
 <div id="admin_rma_page_wrapper">
-  <div id="admin_rma_grid_wrapper" class='column'>
-    <%= raw jqgrid("RMA`s", "admin_rma_grid", admin_rma_order_return_authorizations_path(@order),
-      [
-        { :field => "user_name",    :label => "Customer", :width => 140, :resizable => false },
-        { :field => "order_number", :label => "Order #",  :width => 90,  :resizable => false },
-        { :field => "number",       :label => "Number",  :width => 70,   :resizable => false },
-        { :field => "amount",       :label => "amount",  :width => 70,   :resizable => false },
-        { :field => "state",        :label => "Status",  :width => 70,   :resizable => false }
-      ],
-      {
-        :height             => "390",
-        :alt_rows           => true,
-        :direct_selection   => true,
-        :editable           => false,
-        :selection_handler  => "Hadean.AdminIndexForm.showSelection",
-        :rownumbers         => false,
-        :rows_per_page      => 20,
-        :row_list           => [20, 50, 100]
-      }
-    ) %>
+  <div id="admin_rma_grid_wrapper" class='column pretty_table'>
+
+      <table>
+        <thead>
+        <tr>
+          <th><%= sortable "number" %></th>
+          <th><%= sortable "amount" %></th>
+            <th><%= sortable "User" %></th>
+            <th><%=  "order_number" %></th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <% @return_authorizations.each do |return_authorization| %>
+          <tr>
+            <td><%= link_to return_authorization.number, edit_admin_rma_order_return_authorization_path(@order, return_authorization) %></td>
+            <td><%= return_authorization.amount %></td>
+            <td><%= return_authorization.user_name %></td>
+            <td><%= return_authorization.order_number %></td>
+            <td><%= return_authorization.state %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    <%= will_paginate @return_authorizations %>
   </div>
 
   <div id="admin_new_rma_button" class="admin_new_button last">
@@ -35,9 +60,6 @@
                 :id => "new_rma_button" %>
   </div>
 </div>
-<%= jqgrid_stylesheets %>
-<%= jqgrid_javascripts %>
-
 
 <div class='span-10'>
 
@@ -45,9 +67,6 @@
               admin_history_order_path(@order),
               :class => 'button heart' %>
 </div>
-<script>
-  Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/rma/orders/<%=@order.id%>/return_authorizations'));
-</script>
 
 
 

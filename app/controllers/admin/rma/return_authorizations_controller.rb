@@ -1,31 +1,24 @@
 class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
+  helper_method :sort_column, :sort_direction
   # GET /return_authorizations
-  # GET /return_authorizations.xml
   def index
+    params[:page] ||= 1
     load_info
-    @return_authorizations = ReturnAuthorization.admin_grid(params)
+    @return_authorizations = ReturnAuthorization.admin_grid(params).order(sort_column + " " + sort_direction).
+                                              paginate(:per_page => 20, :page => params[:page].to_i)
 
     respond_to do |format|
       format.html
-      format.json { render :json => @return_authorizations.to_jqgrid_json(
-        [ :user_name, :order_number, :number, :amount, :state ],
-        @return_authorizations.per_page, #params[:page],
-        @return_authorizations.current_page, #params[:rows],
-        @return_authorizations.total_entries)
-
-      }
     end
   end
 
   # GET /return_authorizations/1
-  # GET /return_authorizations/1.xml
   def show
     load_info
     @return_authorization = ReturnAuthorization.find(params[:id])
   end
 
   # GET /return_authorizations/new
-  # GET /return_authorizations/new.xml
   def new
     load_info
 
@@ -42,10 +35,11 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
   end
 
   # POST /return_authorizations
-  # POST /return_authorizations.xml
   def create
     load_info
     @return_authorization = @order.return_authorizations.new(params[:return_authorization])
+    @return_authorization.created_by = current_user.id
+    @return_authorization.user_id    = @order.user_id
 
     respond_to do |format|
       if @return_authorization.save
@@ -58,7 +52,6 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
   end
 
   # PUT /return_authorizations/1
-  # PUT /return_authorizations/1.xml
   def update
     load_info
     @return_authorization = ReturnAuthorization.find(params[:id])
@@ -85,7 +78,6 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
     render :action => 'show'
   end
   # DELETE /return_authorizations/1
-  # DELETE /return_authorizations/1.xml
   def destroy
     load_info
     @return_authorization = ReturnAuthorization.find(params[:id])
@@ -113,4 +105,14 @@ private
                                                 {:variant => [:product, :variant_properties]}]
                               }]).find(params[:order_id])
   end
+
+  def sort_column
+    return 'users.last_name' if params[:sort] == 'user_name'
+    ReturnAuthorization.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
 end
