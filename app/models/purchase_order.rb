@@ -90,7 +90,7 @@ class PurchaseOrder < ActiveRecord::Base
   # @param [none]
   # @return [String]  "Yes" or "No"
   def display_received
-    (state == RECEIVED) ? 'Yes' : 'No'
+    receive_po ? 'Yes' : 'No'
   end
 
   def display_estimated_arrival_on
@@ -124,7 +124,7 @@ class PurchaseOrder < ActiveRecord::Base
         batch.transactions.push(transaction)
         batch.save
   end
-  
+
   def pay_for_order
     now = Time.zone.now
     if self.batches.empty?
@@ -156,18 +156,11 @@ class PurchaseOrder < ActiveRecord::Base
   # @param [Optional params]
   # @return [ Array[PurchaseOrder] ]
   def self.admin_grid(params = {})
-
-    params[:page] ||= 1
-    params[:rows] ||= SETTINGS[:admin_grid_rows]
-
     grid = includes(:supplier)
-    grid = grid.where("suppliers.name = ?",                  params[:name])            if params[:name].present?
-    grid = grid.where("purchase_orders.invoice_number = ?",  params[:invoice_number])  if params[:invoice_number].present?
-    grid = grid.where("purchase_orders.tracking_number = ?", params[:tracking_number]) if params[:tracking_number].present?
-
-    grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-    grid = grid.limit(params[:rows].to_i)
-    grid.paginate({:page => params[:page].to_i})
+    grid = grid.where("suppliers.name LIKE ?",                  "#{params[:supplier_name]}%")   if params[:supplier_name].present?
+    grid = grid.where("purchase_orders.invoice_number LIKE ?",  "#{params[:invoice_number]}%")  if params[:invoice_number].present?
+    grid = grid.where("purchase_orders.tracking_number LIKE ?", "#{params[:tracking_number]}%") if params[:tracking_number].present?
+    grid
   end
 
   # paginated results from the admin PurchaseOrder grid for PO to receive
@@ -180,9 +173,9 @@ class PurchaseOrder < ActiveRecord::Base
     params[:rows] ||= SETTINGS[:admin_grid_rows]
 
     grid = where(['purchase_orders.state != ?', PurchaseOrder::RECEIVED])#.where("suppliers.name = ?", params[:name])
-    grid = grid.where("suppliers.name = ?",                  params[:name])            if params[:name].present?
-    grid = grid.where("purchase_orders.invoice_number = ?",  params[:invoice_number])  if params[:invoice_number].present?
-    grid = grid.where("purchase_orders.tracking_number = ?", params[:tracking_number]) if params[:tracking_number].present?
+    grid = grid.where("suppliers.name LIKE ?",                  params[:name])            if params[:name].present?
+    grid = grid.where("purchase_orders.invoice_number LIKE ?",  "#{params[:invoice_number]}%")  if params[:invoice_number].present?
+    grid = grid.where("purchase_orders.tracking_number LIKE ?", "#{params[:tracking_number]}%") if params[:tracking_number].present?
 
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")
     grid.includes([:supplier, :purchase_order_variants]).paginate({:page => params[:page].to_i,:per_page => params[:rows].to_i})

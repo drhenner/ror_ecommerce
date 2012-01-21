@@ -1,8 +1,11 @@
 class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   # GET /purchase_orders
-  # GET /purchase_orders.xml
   def index
-    @purchase_orders = PurchaseOrder.admin_grid(params)
+    params[:page] ||= 1
+    @purchase_orders = PurchaseOrder.admin_grid(params).order(sort_column + " " + sort_direction).
+                                                        paginate(:per_page => 25, :page => params[:page].to_i)
+
     respond_to do |format|
       format.html
       format.json { render :json => @purchase_orders.to_jqgrid_json(
@@ -16,7 +19,6 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   end
 
   # GET /purchase_orders/1
-  # GET /purchase_orders/1.xml
   def show
     @purchase_order = PurchaseOrder.find(params[:id])
   end
@@ -44,7 +46,6 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   end
 
   # POST /purchase_orders
-  # POST /purchase_orders.xml
   def create
     #args = params[:purchase_order].reject{|key,val| key == :new_purchase_order_variants}
     @purchase_order = PurchaseOrder.new(params[:purchase_order])
@@ -60,10 +61,8 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   end
 
   # PUT /purchase_orders/1
-  # PUT /purchase_orders/1.xml
   def update
     @purchase_order = PurchaseOrder.find(params[:id])
-
     respond_to do |format|
       if @purchase_order.update_attributes(params[:purchase_order])
         format.html { redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.') }
@@ -75,7 +74,6 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   end
 
   # DELETE /purchase_orders/1
-  # DELETE /purchase_orders/1.xml
   def destroy
     @purchase_order = PurchaseOrder.find(params[:id])
     @purchase_order.destroy
@@ -86,5 +84,14 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   def form_info
     @select_suppliers = Supplier.all.collect{|s| [s.name, s.id]}
     @select_variants  = Variant.includes(:product).all.collect {|v| [v.name_with_sku, v.id]}
+  end
+
+  def sort_column
+    return 'suppliers.name' if params[:sort] == 'supplier_name'
+    PurchaseOrder.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
