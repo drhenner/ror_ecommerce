@@ -1,18 +1,15 @@
 class Admin::Config::ShippingZonesController < Admin::Config::BaseController
   # GET /admin/config/shipping_zones
-  # GET /admin/config/shipping_zones.xml
   def index
     @shipping_zones = ShippingZone.all
   end
 
   # GET /admin/config/shipping_zones/1
-  # GET /admin/config/shipping_zones/1.xml
   def show
     @shipping_zone = ShippingZone.find(params[:id])
   end
 
   # GET /admin/config/shipping_zones/new
-  # GET /admin/config/shipping_zones/new.xml
   def new
     @shipping_zone = ShippingZone.new
   end
@@ -23,7 +20,6 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
   end
 
   # POST /admin/config/shipping_zones
-  # POST /admin/config/shipping_zones.xml
   def create
     @shipping_zone = ShippingZone.new(params[:shipping_zone])
 
@@ -37,7 +33,6 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
   end
 
   # PUT /admin/config/shipping_zones/1
-  # PUT /admin/config/shipping_zones/1.xml
   def update
     @shipping_zone = ShippingZone.find(params[:id])
 
@@ -51,7 +46,6 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
   end
 
   # DELETE /admin/config/shipping_zones/1
-  # DELETE /admin/config/shipping_zones/1.xml
   def destroy
     @shipping_zone = ShippingZone.find(params[:id])
     @shipping_zone.destroy

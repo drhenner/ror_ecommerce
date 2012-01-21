@@ -1,6 +1,5 @@
 class Admin::Config::TaxRatesController < Admin::Config::BaseController
   # GET /tax_rates
-  # GET /tax_rates.xml
   def index
     @tax_rates = TaxRate.all
 
@@ -10,7 +9,6 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
   end
 
   # GET /tax_rates/1
-  # GET /tax_rates/1.xml
   def show
     @tax_rate = TaxRate.find(params[:id])
 
@@ -20,7 +18,6 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
   end
 
   # GET /tax_rates/new
-  # GET /tax_rates/new.xml
   def new
     @tax_rate = TaxRate.new
     form_info
@@ -36,7 +33,6 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
   end
 
   # POST /tax_rates
-  # POST /tax_rates.xml
   def create
     @tax_rate = TaxRate.new(params[:tax_rate])
 
@@ -51,7 +47,6 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
   end
 
   # PUT /tax_rates/1
-  # PUT /tax_rates/1.xml
   def update
     @tax_rate = TaxRate.find(params[:id])
 
@@ -66,7 +61,6 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
   end
 
   # DELETE /tax_rates/1
-  # DELETE /tax_rates/1.xml
   def destroy
     @tax_rate = TaxRate.find(params[:id])
     @tax_rate.update_attributes(:active => false)

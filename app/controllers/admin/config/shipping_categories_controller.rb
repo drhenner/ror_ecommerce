@@ -1,6 +1,5 @@
 class Admin::Config::ShippingCategoriesController < Admin::Config::BaseController
   # GET /admin/merchandise/shipping_categories
-  # GET /admin/merchandise/shipping_categories.xml
   def index
     @shipping_categories = ShippingCategory.all
 
@@ -10,7 +9,6 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   end
 
   # GET /admin/merchandise/shipping_categories/1
-  # GET /admin/merchandise/shipping_categories/1.xml
   def show
     @shipping_category = ShippingCategory.find(params[:id])
 
@@ -20,7 +18,6 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   end
 
   # GET /admin/merchandise/shipping_categories/new
-  # GET /admin/merchandise/shipping_categories/new.xml
   def new
     form_info
     @shipping_category = ShippingCategory.new
@@ -37,7 +34,6 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   end
 
   # POST /admin/merchandise/shipping_categories
-  # POST /admin/merchandise/shipping_categories.xml
   def create
     @shipping_category = ShippingCategory.new(params[:shipping_category])
 
@@ -52,7 +48,6 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   end
 
   # PUT /admin/merchandise/shipping_categories/1
-  # PUT /admin/merchandise/shipping_categories/1.xml
   def update
     @shipping_category = ShippingCategory.find(params[:id])
 
@@ -67,7 +62,6 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   end
 
   # DELETE /admin/merchandise/shipping_categories/1
-  # DELETE /admin/merchandise/shipping_categories/1.xml
   #def destroy
   #  @shipping_category = ShippingCategory.find(params[:id])
   # # @shipping_category.destroy

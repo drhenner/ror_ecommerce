@@ -1,6 +1,5 @@
 class Admin::Config::ShippingRatesController < Admin::Config::BaseController
   # GET /shipping_rates
-  # GET /shipping_rates.xml
   def index
     form_info
     if @shipping_methods.empty?
@@ -12,13 +11,11 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
   end
 
   # GET /shipping_rates/1
-  # GET /shipping_rates/1.xml
   def show
     @shipping_rate = ShippingRate.find(params[:id])
   end
 
   # GET /shipping_rates/new
-  # GET /shipping_rates/new.xml
   def new
     form_info
     if @shipping_categories.empty?
@@ -39,7 +36,6 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
   end
 
   # POST /shipping_rates
-  # POST /shipping_rates.xml
   def create
     @shipping_rate = ShippingRate.new(params[:shipping_rate])
 
@@ -54,7 +50,6 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
   end
 
   # PUT /shipping_rates/1
-  # PUT /shipping_rates/1.xml
   def update
     @shipping_rate = ShippingRate.find(params[:id])
 
@@ -69,7 +64,6 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
   end
 
   # DELETE /shipping_rates/1
-  # DELETE /shipping_rates/1.xml
   def destroy
     @shipping_rate = ShippingRate.find(params[:id])
     @shipping_rate.destroy

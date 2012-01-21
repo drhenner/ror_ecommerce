@@ -1,18 +1,15 @@
 class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   # GET /admin/config/shipping_methods
-  # GET /admin/config/shipping_methods.xml
   def index
     @shipping_methods = ShippingMethod.all
   end
 
   # GET /admin/config/shipping_methods/1
-  # GET /admin/config/shipping_methods/1.xml
   def show
     @shipping_method = ShippingMethod.find(params[:id])
   end
 
   # GET /admin/config/shipping_methods/new
-  # GET /admin/config/shipping_methods/new.xml
   def new
 
     form_info
@@ -34,7 +31,6 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   end
 
   # POST /admin/config/shipping_methods
-  # POST /admin/config/shipping_methods.xml
   def create
     @shipping_method = ShippingMethod.new(params[:shipping_method])
 
@@ -49,7 +45,6 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   end
 
   # PUT /admin/config/shipping_methods/1
-  # PUT /admin/config/shipping_methods/1.xml
   def update
     @shipping_method = ShippingMethod.find(params[:id])
 
@@ -64,7 +59,6 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   end
 
   # DELETE /admin/config/shipping_methods/1
-  # DELETE /admin/config/shipping_methods/1.xml
   #def destroy
   #  @shipping_method = ShippingMethod.find(params[:id])
   #  #@shipping_method.destroy

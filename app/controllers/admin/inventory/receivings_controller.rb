@@ -7,12 +7,6 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
                                                         paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
       format.html
-      format.json { render :json => @purchase_orders.to_jqgrid_json(
-        [ :supplier_name, :invoice_number, :tracking_number, :display_estimated_arrival_on, :display_received ],
-        @purchase_orders.per_page,
-        @purchase_orders.current_page,
-        @purchase_orders.total_entries)
-      }
     end
   end
 

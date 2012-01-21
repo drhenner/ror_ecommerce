@@ -8,13 +8,6 @@ class Admin::Inventory::SuppliersController < Admin::BaseController
                                               paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
       format.html
-      format.json { render :json => @suppliers.to_jqgrid_json(
-        [ :name, :email ],
-        @suppliers.per_page,
-        @suppliers.current_page,
-        @suppliers.total_entries)
-
-      }
     end
   end
 

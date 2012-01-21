@@ -2,16 +2,11 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
   helper_method :sort_column, :sort_direction
   # GET /admin/fulfillment/orders
   def index
-    @orders = Order.fulfillment_grid(params).order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page].to_i)
+    @orders = Order.fulfillment_grid(params).order(sort_column + " " + sort_direction).
+                                            paginate(:per_page => 25, :page => params[:page].to_i)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @orders.to_jqgrid_json(
-        [ :display_completed_at, :email, :number, :name ],
-        @orders.per_page,
-        @orders.current_page,
-        @orders.total_entries)
-      }
     end
   end
 

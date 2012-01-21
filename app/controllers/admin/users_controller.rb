@@ -10,12 +10,6 @@ class Admin::UsersController < Admin::BaseController
                                     paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
       format.html
-      format.json { render :json => @users.to_jqgrid_json(
-        [ :first_name, :last_name, :email, :state ],
-        @users.per_page, #params[:page],
-        @users.current_page, #params[:rows],
-        @users.total_entries)
-      }
     end
   end
 

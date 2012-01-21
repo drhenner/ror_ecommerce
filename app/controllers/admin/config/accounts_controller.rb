@@ -1,18 +1,15 @@
 class Admin::Config::AccountsController < Admin::Config::BaseController
   # GET /accounts
-  # GET /accounts.xml
   def index
     @accounts = Account.all
   end
 
   # GET /accounts/1
-  # GET /accounts/1.xml
   def show
     @account = Account.find(params[:id])
   end
 
   # GET /accounts/new
-  # GET /accounts/new.xml
   def new
     @account = Account.new
   end
@@ -23,7 +20,6 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   end
 
   # POST /accounts
-  # POST /accounts.xml
   def create
     @account = Account.new(params[:account])
 
@@ -37,7 +33,6 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   end
 
   # PUT /accounts/1
-  # PUT /accounts/1.xml
   def update
     @account = Account.find(params[:id])
 
@@ -51,7 +46,6 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   end
 
   # DELETE /accounts/1
-  # DELETE /accounts/1.xml
   def destroy
     @account = Account.find(params[:id])
     @account.destroy

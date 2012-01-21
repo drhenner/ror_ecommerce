@@ -7,12 +7,6 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
                                               paginate(:per_page => 20, :page => params[:page].to_i)
     respond_to do |format|
       format.html
-      format.json { render :json => @properties.to_jqgrid_json(
-        [ :identifing_name, :display_name, :display_active ],
-        @properties.per_page, #params[:page],
-        @properties.current_page, #params[:rows],
-        @properties.total_entries)
-      }
     end
   end
 
