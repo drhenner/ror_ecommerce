@@ -1,8 +1,11 @@
 class Admin::Inventory::SuppliersController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   respond_to :json, :html
 
   def index
-    @suppliers = Supplier.admin_grid(params)
+    params[:page] ||= 1
+    @suppliers = Supplier.admin_grid(params).order(sort_column + " " + sort_direction).
+                                              paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
       format.html
       format.json { render :json => @suppliers.to_jqgrid_json(

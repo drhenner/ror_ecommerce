@@ -3,26 +3,49 @@
 <% end %>
 <%= render :partial => '/admin/inventory/sub_header'%>
 
+<% content_for :sidemenu do %>
+  <div class='admin_filters'>
+    <%= form_tag admin_inventory_suppliers_path, :method => 'get', :id => "suppliers_search" do %>
+      <p>
+        <ul class=' search_boxes'>
+          <li><%= label_tag 'Name' %> <%= text_field_tag :name, params[:name] %></li>
+          <li><%= label_tag 'Email' %> <%= text_field_tag :email, params[:email] %></li>
+        </ul>
+        <div style='text-align:center'>
+          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        </div>
+      </p>
+      <div id="order_hidden">
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+<% end %>
+
 <h2> Suppliers </h2>
 
 <div id="admin_suppliers_page_wrapper">
-  <div id="admin_suppliers_grid_wrapper" class='column'>
-    <%= raw jqgrid("Suppliers", "admin_suppliers_grid", admin_inventory_suppliers_path,
-      [
-        { :field => "display_name",   :label => "Name",     :width => 220,  :resizable => false },
-        { :field => "email", :label => "Email",  :width => 200,   :resizable => false }
-      ], 
-      {
-        :height             => "350",
-        :alt_rows           => true,
-        :direct_selection   => true,
-        :editable           => true,
-        :selection_handler  => "Hadean.AdminIndexForm.editSelection",
-        :rownumbers         => false,
-        :rows_per_page      => 20,
-        :row_list           => [20, 50, 100]
-      }
-    ) %>
+  <div id="admin_suppliers_grid_wrapper" class='column pretty_table'>
+
+      <table>
+        <thead>
+        <tr>
+          <th><%= sortable "name", "Name" %></th>
+          <th><%= sortable "email" %></th>
+        </tr>
+        </thead>
+        <% @suppliers.each do |supplier| %>
+          <tr>
+            <td><%= link_to supplier.name, edit_admin_inventory_supplier_path(supplier) %></td>
+            <td><%= supplier.email %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    <%= will_paginate @suppliers %>
+
   </div>
 
   <div id="admin_new_supplier_button" class="admin_new_button last">
