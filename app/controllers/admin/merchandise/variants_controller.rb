@@ -1,18 +1,13 @@
 class Admin::Merchandise::VariantsController < Admin::BaseController
-
+  helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
+    params[:page] ||= 1
     @product = Product.find(params[:product_id])
-    @variants = @product.variants.admin_grid(@product, params)
+    @variants = @product.variants.admin_grid(@product, params).order(sort_column + " " + sort_direction).
+                                              paginate(:per_page => 20, :page => params[:page].to_i)
     respond_to do |format|
       format.html
-      format.json { render :json => @variants.to_jqgrid_json(
-        [ :product_name, :sku, :price ],
-        @variants.per_page, #params[:page],
-        @variants.current_page, #params[:rows],
-        @variants.total_entries)
-
-      }
     end
   end
 
@@ -76,4 +71,13 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
       #@select_variant_types = VariantType.all.collect{|pt| [pt.name, pt.id]}
       #@select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
     end
+
+    def sort_column
+      Variant.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
 end

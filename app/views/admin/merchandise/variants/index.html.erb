@@ -1,49 +1,72 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
 <% content_for :head do -%>
-  <%= javascript_include_tag "admin/index_grid" %>
+  <%#= javascript_include_tag "admin/index_grid" %>
+<% end %>
+
+<% content_for :sidemenu do %>
+  <div class='admin_filters'>
+    <%= form_tag admin_merchandise_product_variants_path(@product), :method => 'get', :id => "variants_search" do %>
+      <p>
+        <ul class=' search_boxes'>
+          <!--
+          <li><%= label_tag 'product_name' %> <%= text_field_tag :product_name, params[:product_name] %></li>
+          -->
+          <li><%= label_tag 'sku' %> <%= text_field_tag :sku, params[:sku] %></li>
+          <!--
+          <li><%= label_tag 'price' %> <%= text_field_tag :price, params[:price] %></li>
+          -->
+        </ul>
+        <div style='text-align:center'>
+          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        </div>
+      </p>
+      <div id="order_hidden">
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
 <% end %>
 
 <h2> <%= @product.name %> Variants</h2>
 
 <div id="admin_variants_page_wrapper">
-  <div id="admin_variants_grid_wrapper">
-    <%= raw jqgrid("Variant", "admin_variants_grid", admin_merchandise_product_variants_path(@product),
-      [
-        { :field => "product_name",   :label => "Name",   :width => 280,  :resizable => false },
-        { :field => "sku",            :label => "SKU",    :width => 170,  :resizable => false },
-        { :field => "price",          :label => "Price",  :width => 70,   :resizable => false }
-      ], 
-      {
-        :height             => "350",
-        :alt_rows           => true,
-        :direct_selection   => true,
-        :editable           => true,
-        :selection_handler  => "Hadean.AdminIndexForm.editSelection",
-        :rownumbers         => false,
-        :rows_per_page      => 20,
-        :row_list           => [20, 50, 100]
-      }
-    ) %>
+  <div id="admin_variants_grid_wrapper" class='pretty_table'>
+
+
+      <table>
+        <thead>
+        <tr>
+              <th><%= "product_name" %></th>
+                  <th><%= sortable "sku" %></th>
+                   <th><%= "price" %></th>
+        </tr>
+        </thead>
+        <% @variants.each do |variant| %>
+          <tr>
+            <td><%= link_to variant.product_name, edit_admin_merchandise_product_variant_path(@product, variant) %></td>
+            <td><%= variant.sku %></td>
+            <td><%= variant.price %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    <%= will_paginate @variants %>
+
   </div>
 
   <div id="admin_new_variant_button" class="admin_new_button last">
-    <%= link_to "New Variant", new_admin_merchandise_product_variant_path(@product), 
-                                :class  => "button green", 
+    <%= link_to "New Variant", new_admin_merchandise_product_variant_path(@product),
+                                :class  => "button green",
                                 :id     => "new_product_button" %>
   </div>
-  
+
   <div id="admin_product_button" class="admin_product_button last">
-    <%= link_to "View Product", admin_merchandise_product_path(@product), 
-                                :class  => "button spade", 
+    <%= link_to "View Product", admin_merchandise_product_path(@product),
+                                :class  => "button spade",
                                 :id     => "new_product_button" %>
   </div>
-  
+
 </div>
-<%= jqgrid_stylesheets %>
-<%= jqgrid_javascripts %>
-
-
-<script>
-  Hadean.AdminIndexForm.registerOnLoadHandler(Hadean.AdminIndexForm.initialize('/admin/merchandise/products/<%=@product.id%>/variants'));
-</script>
