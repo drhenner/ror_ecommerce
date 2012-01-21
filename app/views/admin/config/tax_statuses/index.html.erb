@@ -2,22 +2,23 @@
 
 <h1>Tax Statuses</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class=' pretty_table'>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+    </thead>
 
-<% @tax_statuses.each do |tax_status| %>
-  <tr>
-    <td><%= tax_status.name %></td>
-    <td><%= link_to 'Show', admin_config_tax_status_path(tax_status) %></td>
-    <td><%= link_to 'Edit', edit_admin_config_tax_status_path(tax_status) %></td>
-  </tr>
-<% end %>
-</table>
-
+  <% @tax_statuses.each do |tax_status| %>
+    <tr>
+      <td><%= link_to tax_status.name, admin_config_tax_status_path(tax_status) %></td>
+      <td><%= link_to 'Edit', edit_admin_config_tax_status_path(tax_status) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 <br />
 
 <%= link_to 'New Tax status', new_admin_config_tax_status_path, :class => 'button' %>

@@ -1,29 +1,32 @@
 <%= render :partial => '/admin/config/sub_header'%>
 <h1>Shipping Rates</h1>
 
-<table>
-  <tr>
-    <th>Shipping Method</th>
-    <th>Rate</th>
-    <th>Shipping rate type</th>
-    <th>Minimum Charge</th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class=' pretty_table'>
+  <table>
+    <thead>
+    <tr>
+      <th>Shipping Method</th>
+      <th>Rate</th>
+      <th>Shipping rate type</th>
+      <th>Minimum Charge</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
 
-<% @shipping_rates.each do |shipping_rate| %>
-  <tr>
-    <td><%= shipping_rate.shipping_method.name %></td>
-    <td><%= shipping_rate.rate %></td>
-    <td><%= shipping_rate.shipping_rate_type.name %></td>
-    <td><%= shipping_rate.minimum_charge %></td>
+  <% @shipping_rates.each do |shipping_rate| %>
+    <tr>
+      <td><%= shipping_rate.shipping_method.name %></td>
+      <td><%= shipping_rate.rate %></td>
+      <td><%= shipping_rate.shipping_rate_type.name %></td>
+      <td><%= shipping_rate.minimum_charge %></td>
 
-    <td><%= link_to 'Show', admin_config_shipping_rate_path(shipping_rate) %></td>
-    <td><%= link_to 'Edit', edit_admin_config_shipping_rate_path(shipping_rate) %></td>
-  </tr>
-<% end %>
-</table>
-
+      <td><%= link_to 'Show', admin_config_shipping_rate_path(shipping_rate) %></td>
+      <td><%= link_to 'Edit', edit_admin_config_shipping_rate_path(shipping_rate) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 <br />
 
 <%= link_to 'New Shipping rate', new_admin_config_shipping_rate_path, :class => 'button' %>

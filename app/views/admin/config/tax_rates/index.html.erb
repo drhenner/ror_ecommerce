@@ -2,34 +2,37 @@
 
 <h1>Tax Rates</h1>
 
-<table>
-  <tr>
-    <th>Percentage</th>
-    <th>Product type</th>
-    <th>State</th>
-    <th>Start date</th>
-    <th>End date</th>
-    <th>Active</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class=' pretty_table'>
+  <table>
+    <thead>
+    <tr>
+      <th>Percentage</th>
+      <th>Product type</th>
+      <th>State</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Active</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
 
-<% @tax_rates.each do |tax_rate| %>
-  <tr>
-    <td><%= tax_rate.percentage %></td>
-    <td><%= tax_rate.tax_status.name %></td>
-    <td><%= tax_rate.state.name %></td>
-    <td><%= tax_rate.start_date %></td>
-    <td><%= tax_rate.end_date %></td>
-    <td><%= tax_rate.active.to_s %></td>
-    <td><%= link_to 'Show', admin_config_tax_rate_path(tax_rate) %></td>
-    <td><%= link_to 'Edit', edit_admin_config_tax_rate_path(tax_rate) %></td>
-    <td><%= link_to 'Destroy', admin_config_tax_rate_path(tax_rate), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+  <% @tax_rates.each do |tax_rate| %>
+    <tr>
+      <td><%= tax_rate.percentage %></td>
+      <td><%= tax_rate.tax_status.name %></td>
+      <td><%= tax_rate.state.name %></td>
+      <td><%= tax_rate.start_date %></td>
+      <td><%= tax_rate.end_date %></td>
+      <td><%= tax_rate.active.to_s %></td>
+      <td><%= link_to 'Show', admin_config_tax_rate_path(tax_rate) %></td>
+      <td><%= link_to 'Edit', edit_admin_config_tax_rate_path(tax_rate) %></td>
+      <td><%= link_to 'Destroy', admin_config_tax_rate_path(tax_rate), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 <br />
 
 <%= link_to 'New Tax rate', new_admin_config_tax_rate_path, :class => 'button' %>

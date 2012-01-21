@@ -1,22 +1,24 @@
 <%= render :partial => '/admin/config/sub_header'%>
 <h1>Shipping Methods</h1>
+<div class=' pretty_table'>
+  <table class=''>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
 
-<table class='pretty_table'>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @shipping_methods.each do |shipping_method| %>
-  <tr>
-    <td><%= shipping_method.name %> </td>
-    <td><%= link_to 'Show', admin_config_shipping_method_path(shipping_method) %></td>
-    <td><%= link_to 'Edit', edit_admin_config_shipping_method_path(shipping_method) %></td>
-  </tr>
-<% end %>
-</table>
-
+  <% @shipping_methods.each do |shipping_method| %>
+    <tr>
+      <td><%= shipping_method.name %> </td>
+      <td><%= link_to 'Show', admin_config_shipping_method_path(shipping_method) %></td>
+      <td><%= link_to 'Edit', edit_admin_config_shipping_method_path(shipping_method) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 <br />
 
 <%= link_to 'New Shipping method', new_admin_config_shipping_method_path, :class => 'button' %>

@@ -1,28 +1,27 @@
 <h2> Orders</h2>
+<div class=' pretty_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Completed at</th>
+        <th>Shipped</th>
+      </tr>
+    </thead>
 
-<table>
-  <tr>
-    <th>Number</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Completed at</th>
-    <th>Shipped</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @orders.each do |order| %>
-  <tr>
-    <td><%= order.number %></td>
-    <td><%= order.name %></td>
-    <td><%= order.email %></td>
-    <td><%= order.completed_at %></td>
-    <td><%= order.has_shipment?.to_s %></td>
-    <td><%= link_to 'Show', admin_history_order_path(order) %></td>
-    <td><%# link_to 'Edit', edit_admin_history_order_path(order) %></td>
-  </tr>
-<% end %>
-</table>
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= link_to order.number, admin_history_order_path(order) %></td>
+      <td><%= order.name %></td>
+      <td><%= order.email %></td>
+      <td><%= order.completed_at %></td>
+      <td><%= order.has_shipment?.to_s %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 
 <br />
 

@@ -1,29 +1,34 @@
 <%= render :partial => '/admin/fulfillment/sub_header'%>
 <h1> Invoices </h1>
 
-<table>
-  <tr>
-    <th>Amount</th>
-    <th>State</th>
-    <th>Order</th>
-    <th>Type</th>
-  </tr>
-  <% for invoice in @invoices %>
+<div class=' pretty_table'>
+  <table>
+    <thead>
     <tr>
-      <td><%= invoice.amount %></td>
-      <td><%= invoice.state %></td>
-      <td><%= invoice.order.number %></td>
-      <td><%= invoice.invoice_type %></td>
-      <td><%= link_to "Show", admin_document_invoice_path(invoice) %></td>
-      <td>
-        <% if invoice.authorized? %>
-          <%= link_to "Cancel", admin_document_invoice_path(invoice), :confirm => 'Are you sure?', :method => :delete %>
-        <% end %>
-      </td>
+      <th>Amount</th>
+      <th>State</th>
+      <th>Order</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
     </tr>
-  <% end %>
-</table>
-
+    </thead>
+    <% for invoice in @invoices %>
+      <tr>
+        <td><%= invoice.amount %></td>
+        <td><%= invoice.state %></td>
+        <td><%= invoice.order.number %></td>
+        <td><%= invoice.invoice_type %></td>
+        <td><%= link_to "Show", admin_document_invoice_path(invoice) %></td>
+        <td>
+          <% if invoice.authorized? %>
+            <%= link_to "Cancel", admin_document_invoice_path(invoice), :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 <p>
 <%= will_paginate @invoices %>
 <%#= link_to "New Invoice", new_admin_document_invoice_path, :class => 'button' %></p>

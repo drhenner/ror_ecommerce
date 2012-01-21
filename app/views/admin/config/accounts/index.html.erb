@@ -1,7 +1,8 @@
 <%= render :partial => '/admin/config/sub_header'%>
 <h1>Listing accounts</h1>
-
+<div class=' pretty_table'>
 <table>
+  <thead>
   <tr>
     <th>Account type</th>
     <th>Monthly charge</th>
@@ -9,6 +10,7 @@
     <th></th>
     <th></th>
   </tr>
+  </thead>
 
 <% @accounts.each do |account| %>
   <tr>
@@ -20,7 +22,7 @@
   </tr>
 <% end %>
 </table>
-
+</div>
 <br />
 
 <%= link_to 'New Account', new_admin_config_account_path, :class => 'button' %>

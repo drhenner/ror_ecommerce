@@ -6,7 +6,9 @@
   <h2>Shipments </h2>
 <% end %>
 
+<div class=' pretty_table'>
 <table>
+  <thead>
   <tr>
     <th>Number</th>
     <th>Shipped at</th>
@@ -15,7 +17,9 @@
     <th>Items</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
+  </thead>
 
 <% @shipments.each do |shipment| %>
   <% if shipment.has_items? %>
@@ -42,4 +46,4 @@
   <% end %>
 <% end %>
 </table>
-
+</div>

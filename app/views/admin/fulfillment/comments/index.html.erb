@@ -1,17 +1,19 @@
 <h1> Order <%= order.number %> Comments </h1>
 
+<div class=' pretty_table'>
 <table>
+  <thead>
   <tr>
-    <th>Name</th>
+    <th>Name</th><th></th><th></th>
   </tr>
+  </thead>
   <% for comment in order.comments %>
     <tr>
-      <td><%= comment.name %></td>
-      <td><%= link_to "Show", admin_fulfillment_order_comment_path(order, comment) %></td>
+      <td><%= link_to comment.name, admin_fulfillment_order_comment_path(order, comment) %></td>
       <td><%= link_to "Edit", edit_admin_fulfillment_order_comment_path(order, comment) %></td>
       <td><%= link_to "Destroy", admin_fulfillment_order_comment_path(order, comment), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
-
+</div>
 <p><%= link_to "New Comment", new_admin_fulfillment_order_comment_path(order), :class => 'button' %></p>

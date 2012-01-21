@@ -2,22 +2,25 @@
 
 <h1> Shipping Zones</h1>
 
-<table class='span-12'>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class=' pretty_table'>
+  <table class='span-12'>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
 
-<% @shipping_zones.each do |shipping_zone| %>
-  <tr>
-    <td><%= shipping_zone.name %> </td>
-    <td><%= link_to 'Show', admin_config_shipping_zone_path(shipping_zone) %></td>
-    <td><%= link_to 'Edit', edit_admin_config_shipping_zone_path(shipping_zone) %></td>
-  </tr>
-<% end %>
-</table>
-
+  <% @shipping_zones.each do |shipping_zone| %>
+    <tr>
+      <td><%= shipping_zone.name %> </td>
+      <td><%= link_to 'Show', admin_config_shipping_zone_path(shipping_zone) %></td>
+      <td><%= link_to 'Edit', edit_admin_config_shipping_zone_path(shipping_zone) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 <br />
 
 <%= link_to 'New Shipping zone', new_admin_config_shipping_zone_path, :class => 'button' %>
