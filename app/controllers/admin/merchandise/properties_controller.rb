@@ -1,7 +1,10 @@
 class Admin::Merchandise::PropertiesController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
-    @properties = Property.admin_grid(params)
+    params[:page] ||= 1
+    @properties = Property.admin_grid(params).order(sort_column + " " + sort_direction).
+                                              paginate(:per_page => 20, :page => params[:page].to_i)
     respond_to do |format|
       format.html
       format.json { render :json => @properties.to_jqgrid_json(
@@ -46,6 +49,16 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
     @property.save
 
     redirect_to :action => :index
+  end
+
+  private
+
+  def sort_column
+    Property.column_names.include?(params[:sort]) ? params[:sort] : "identifing_name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

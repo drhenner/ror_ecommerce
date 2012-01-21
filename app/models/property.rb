@@ -25,14 +25,12 @@ class Property < ActiveRecord::Base
   # @return [ Array[Property] ]
   def self.admin_grid(params = {})
 
-    params[:page] ||= 1
-    params[:rows] ||= 25
-
     grid = Property
     grid = grid.where("active = ?",true)                    unless  params[:show_all].present? &&
                                                               params[:show_all] == 'true'
-    grid = grid.where("properties.display_name = ?", params[:display_name])  if params[:display_name].present?
-    grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page].to_i, :per_page => params[:rows].to_i)
+    grid = grid.where("properties.display_name LIKE ?", "#{params[:display_name]}%")  if params[:display_name].present?
+    grid = grid.where("properties.identifing_name LIKE ?", "#{params[:identifing_name]}%")  if params[:identifing_name].present?
+    grid
 
   end
 
