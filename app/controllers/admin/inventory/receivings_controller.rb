@@ -1,8 +1,10 @@
 class Admin::Inventory::ReceivingsController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   def index
     # by default find all POs that are not received
-
-    @purchase_orders = PurchaseOrder.receiving_admin_grid(params)
+    params[:page] ||= 1
+    @purchase_orders = PurchaseOrder.receiving_admin_grid(params).order(sort_column + " " + sort_direction).
+                                                        paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
       format.html
       format.json { render :json => @purchase_orders.to_jqgrid_json(
@@ -10,7 +12,6 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
         @purchase_orders.per_page,
         @purchase_orders.current_page,
         @purchase_orders.total_entries)
-
       }
     end
   end
@@ -47,5 +48,14 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
 private
   def form_info
 
+  end
+
+  def sort_column
+    return 'suppliers.name' if params[:sort] == 'supplier_name'
+    PurchaseOrder.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

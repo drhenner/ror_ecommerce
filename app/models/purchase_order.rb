@@ -168,17 +168,11 @@ class PurchaseOrder < ActiveRecord::Base
   # @param [Optional params]
   # @return [ Array[PurchaseOrder] ]
   def self.receiving_admin_grid(params = {})
-
-    params[:page] ||= 1
-    params[:rows] ||= SETTINGS[:admin_grid_rows]
-
     grid = where(['purchase_orders.state != ?', PurchaseOrder::RECEIVED])#.where("suppliers.name = ?", params[:name])
-    grid = grid.where("suppliers.name LIKE ?",                  params[:name])            if params[:name].present?
+    grid = grid.includes([:supplier, :purchase_order_variants])
+    grid = grid.where("suppliers.name LIKE ?",                  "#{params[:supplier_name]}%")   if params[:supplier_name].present?
     grid = grid.where("purchase_orders.invoice_number LIKE ?",  "#{params[:invoice_number]}%")  if params[:invoice_number].present?
     grid = grid.where("purchase_orders.tracking_number LIKE ?", "#{params[:tracking_number]}%") if params[:tracking_number].present?
-
-    grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-    grid.includes([:supplier, :purchase_order_variants]).paginate({:page => params[:page].to_i,:per_page => params[:rows].to_i})
-
+    grid
   end
 end
