@@ -3,26 +3,56 @@
 <% end %>
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
+<% content_for :sidemenu do %>
+  <div class='admin_filters'>
+    <%= form_tag admin_merchandise_products_path, :method => 'get', :id => "products_search" do %>
+      <p>
+        <ul class=' search_boxes'>
+          <li><%= label_tag 'Name' %> <%= text_field_tag :name, params[:name] %></li>
+          <li><%= label_tag 'Product Type' %>
+              <%= select_tag "product_type_id", options_from_collection_for_select(product_types, "id", "name"), :include_blank => true %>
+          </li>
+        </ul>
+        <div style='text-align:center'>
+          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        </div>
+      </p>
+      <div id="order_hidden">
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+<% end %>
+
 <h2> Products </h2>
 
-<div id="admin_products_page_wrapper">
-
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Active</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <% for product in @products %>
+<div id="admin_products_page_wrapper" class='pretty_table'>
+    <table>
+      <thead>
       <tr>
-        <td><%= link_to product.name, admin_merchandise_product_path(product) %></td>
-        <td><%= product.available? ? 'Yes' : 'No' %></td>
-        <td><%= link_to "Edit",           edit_admin_merchandise_product_path(product) %></td>
-        <td><%= link_to "Edit Variants",  edit_admin_merchandise_multi_product_variant_path(product) %></td>
+          <th><%= sortable "name" %></th>
+          <th>Active</th>
+          <th><%= 'Product Type' %></th>
+          <th></th>
+          <th></th>
       </tr>
-    <% end %>
-  </table>
+      </thead>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= link_to product.name, edit_admin_merchandise_product_path(product) %></td>
+          <td><%=  product.available? ? 'Yes' : 'No' %></td>
+          <td><%=  product.product_type.name %></td>
+          <td><%= link_to "Edit Variants",  edit_admin_merchandise_multi_product_variant_path(product) %></td>
+          <td><%= link_to "Show",  admin_merchandise_product_path(product) %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  <%= will_paginate @products %>
+
+
   <div id="admin_new_product_button" class="admin_new_button last">
     <%= link_to "New Product", new_admin_merchandise_product_path,
                 :class => "button", :id => "new_product_button" %>
@@ -31,7 +61,6 @@
   </div>
 </div>
 
-  <%= will_paginate @products %>
 <%#= jqgrid_stylesheets %>
 <%#= jqgrid_javascripts %>
 

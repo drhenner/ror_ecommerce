@@ -1,9 +1,10 @@
 class Admin::Merchandise::ProductsController < Admin::BaseController
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :product_types
   respond_to :html, :json
   authorize_resource
 
   def index
+    params[:page] ||= 1
     @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
@@ -115,6 +116,10 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       @select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
       @select_tax_status        = TaxStatus.all.collect {|ts| [ts.name, ts.id]}
       @brands        = Brand.order(:name).all.collect {|ts| [ts.name, ts.id]}
+    end
+
+    def product_types
+      @product_types ||= ProductType.all
     end
 
       def sort_column
