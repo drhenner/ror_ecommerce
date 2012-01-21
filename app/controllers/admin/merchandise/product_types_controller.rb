@@ -1,7 +1,10 @@
 class Admin::Merchandise::ProductTypesController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
-    @product_types = ProductType.admin_grid(params)
+    params[:page] ||= 1
+    @product_types = ProductType.admin_grid(params).order(sort_column + " " + sort_direction).
+                                              paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
       format.html
       format.json { render :json => @product_types.to_jqgrid_json(
@@ -66,4 +69,11 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
     @product_types = ProductType.all
   end
 
+  def sort_column
+    ProductType.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end

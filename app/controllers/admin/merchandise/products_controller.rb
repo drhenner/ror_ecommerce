@@ -1,9 +1,11 @@
 class Admin::Merchandise::ProductsController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   respond_to :html, :json
   authorize_resource
 
   def index
-    @products = Product.admin_grid(params)
+    @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).
+                                              paginate(:per_page => 25, :page => params[:page].to_i)
     respond_to do |format|
       format.html
       format.json { render :json => @products.to_jqgrid_json(
@@ -114,5 +116,13 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       @select_tax_status        = TaxStatus.all.collect {|ts| [ts.name, ts.id]}
       @brands        = Brand.order(:name).all.collect {|ts| [ts.name, ts.id]}
     end
+
+      def sort_column
+        Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      end
+
+      def sort_direction
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      end
 
 end
