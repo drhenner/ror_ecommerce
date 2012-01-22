@@ -8,7 +8,7 @@ class Admin::Inventory::OverviewsController < Admin::BaseController
     @products = Product.where(['products.deleted_at IS NULL']).
                         order("#{params[:sidx]} #{params[:sord]}").
                         limit(params[:rows]).
-                        includes({:variants => {:variant_properties => :property}}).
+                        includes({:variants => [{:variant_properties => :property}, :inventory]}).
                         paginate({:page => params[:page]})
 
   end
