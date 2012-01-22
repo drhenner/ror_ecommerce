@@ -31,7 +31,7 @@ describe Admin::Merchandise::ProductTypesController do
   it "create action should redirect when model is valid" do
     @product_type = Factory.build(:product_type)
     ProductType.any_instance.stubs(:valid?).returns(true)
-    post :create, :product_type => @product_type.attributes
+    post :create, :product_type => @product_type.attributes.reject {|k,v| !['name','parent_id'].include?(k)}
     response.should redirect_to(admin_merchandise_product_types_url)
   end
 

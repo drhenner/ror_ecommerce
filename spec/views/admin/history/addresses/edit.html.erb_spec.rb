@@ -18,6 +18,6 @@ describe "admin/history/addresses/edit.html.erb" do
   end
 
   it "renders the edit address form" do
-    render
+    render :template => "admin/history/addresses/edit", :handlers => [:erb]
   end
 end

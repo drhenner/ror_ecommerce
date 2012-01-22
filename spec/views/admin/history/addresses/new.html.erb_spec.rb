@@ -8,6 +8,6 @@ describe "admin/history/addresses/new.html.erb" do
   end
 
   it "renders new address form" do
-    render
+    render :template => "admin/history/addresses/new", :handlers => [:erb]
   end
 end

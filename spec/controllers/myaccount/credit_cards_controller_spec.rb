@@ -3,16 +3,11 @@ require  'spec_helper'
 describe Myaccount::CreditCardsController do
   render_views
 
-
-
   before(:each) do
     activate_authlogic
-
     @user = Factory(:user)
     login_as(@user)
   end
-
-
 
   it "index action should render index template" do
     get :index

@@ -9,6 +9,6 @@ describe "myaccount/orders/index.html.erb" do
   end
 
   it "renders a list of myaccount_orders" do
-    render
+    render :template => "myaccount/orders/index"
   end
 end

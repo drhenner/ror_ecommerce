@@ -44,7 +44,8 @@ end
 describe "Admin::Overviews" do
   describe "GET /admin_overviews" do
     it "If a user has already been created this page will redirect to root_url for non-admins" do
-      User.create!(:first_name => 'Dave', :last_name => 'Henner',:email => 'test@admin.com', :password => 'secret1', :password_confirmation => 'secret1')
+      #User.create!(:first_name => 'Dave', :last_name => 'Henner',:email => 'test@admin.com', :password => 'secret1', :password_confirmation => 'secret1')
+      user = Factory(:admin_user)
       visit admin_overviews_path
       #response.should redirect_to( root_url)
       page.should have_content('Login or')

@@ -13,9 +13,9 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
   end
 
   def create
-      if params[:coupon][:type] == 'coupon_value'
+      if params[:coupon][:c_type] == 'coupon_value'
         @coupon = CouponValue.new(params[:coupon])
-      elsif params[:coupon][:type] == 'coupon_percent'
+      elsif params[:coupon][:c_type] == 'coupon_percent'
         @coupon = CouponPercent.new(params[:coupon])
       else
         @coupon = Coupon.new(params[:coupon])

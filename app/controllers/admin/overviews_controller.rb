@@ -17,7 +17,8 @@ class Admin::OverviewsController < ApplicationController
                        :last_name => 'User',
                        :email => 'admin@notarealemail.com',
                        :password => @password,
-                       :password_confirmation => @password)
+                       :password_confirmation => @password
+                       )
       @user.role_ids = Role.all.collect{|r| r.id }
       if @user.active? || @user.activate!
         @user.save

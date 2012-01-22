@@ -7,6 +7,6 @@ describe "admin/rma/return_authorizations/show.html.erb" do
   end
 
   it "renders attributes in <p>" do
-    render
+    render :template => "admin/rma/return_authorizations/show", :handlers => [:erb]
   end
 end

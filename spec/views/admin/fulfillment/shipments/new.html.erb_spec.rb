@@ -8,7 +8,7 @@ describe "admin/fulfillment/shipments/new.html.erb" do
   end
 
   it "renders new shipment form" do
-    render
+    render :template => "admin/fulfillment/shipments/new", :handlers => [:erb]
 
   end
 end

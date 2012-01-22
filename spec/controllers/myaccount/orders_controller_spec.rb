@@ -17,7 +17,9 @@ describe Myaccount::OrdersController do
   end
 
   it "show action should render show template" do
-    @order = Factory(:order, :user => @user, :state => 'complete')
+    @order = Factory.build(:order, :user => @user )
+    @order.state = 'complete'
+    @order.save
     get :show, :id => @order.number
     response.should render_template(:show)
   end
@@ -33,7 +35,9 @@ describe Myaccount::OrdersController do
   end
 
   it "show action should go to login page" do
-    @order = Factory(:order, :state => 'complete')
+    @order = Factory.build(:order, :user => @user )
+    @order.state = 'complete'
+    @order.save
     get :show, :id => @order.id
     response.should redirect_to(login_url)
   end

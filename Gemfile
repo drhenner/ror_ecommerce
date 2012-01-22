@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '~> 3.1.3'
+gem 'rails', '~> 3.2.0'
 
 group :assets do
   #gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
+  gem 'uglifier', '>= 1.0.3'
 end
-  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'sass-rails', "  ~> 3.2.3"
 
 gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
 gem 'authlogic', "3.0.3"
@@ -34,7 +34,7 @@ gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
 
 gem 'rake', '= 0.9.2'
-gem 'state_machine', '~> 1.0.1'
+gem 'state_machine', '~> 1.1.2'
 #gem 'sunspot_solr'
 #gem 'sunspot_rails', '~> 1.3.0rc'
 gem 'will_paginate', '~> 3.0.0'
@@ -58,7 +58,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'factory_girl_rails', "~> 1.1.0"
+  gem 'factory_girl_rails', "~> 1.6.0"
   gem 'mocha', '~> 0.10.0', :require => false
   gem 'rspec-rails-mocha'
   gem "shoulda"

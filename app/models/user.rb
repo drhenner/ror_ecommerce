@@ -158,7 +158,7 @@ class User < ActiveRecord::Base
     end
 
     event :cancel do
-      transition :from => any, :to => :canceled
+      transition :from => [:inactive, :active, :unregistered, :registered, :registered_with_credit, :canceled], :to => :canceled
     end
 
   end

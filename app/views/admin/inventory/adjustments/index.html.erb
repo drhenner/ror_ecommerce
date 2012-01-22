@@ -2,17 +2,19 @@
 
 <h1> Inventory Adjustments </h1>
 
+<div  class='span-8 pretty_table'>
 <table>
+  <thead>
   <tr>
     <th>Name</th>
   </tr>
+  </thead>
   <% for product in @products %>
     <tr>
-      <td><%= product.name %></td>
-      <td><%= link_to "Show", admin_inventory_adjustment_path(product) %></td>
+      <td><%= link_to product.name, admin_inventory_adjustment_path(product) %></td>
     </tr>
   <% end %>
 </table>
-
+</div>
 <%= will_paginate @products %>
 

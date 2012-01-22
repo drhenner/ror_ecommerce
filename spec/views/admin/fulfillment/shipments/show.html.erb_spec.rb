@@ -6,7 +6,7 @@ describe "admin/fulfillment/shipments/show.html.erb" do
   end
 
   it "renders attributes in <p>" do
-    render
-    
+    render :template => "admin/fulfillment/shipments/show", :handlers => [:erb]
+
   end
 end

@@ -4,22 +4,30 @@ Factory.sequence :email do |n|
 end
 # USER
 
-Factory.define :user do |s|
-  s.first_name  'John'
-  s.last_name   'Doe'
-  s.email       { Factory.next(:email) }
-  s.password              'pasword'
-  s.password_confirmation "pasword"
+FactoryGirl.define do
+  factory :user do
+    first_name  'John'
+    last_name   'Doe'
+    email       { Factory.next(:email) }
+    password              'pasword'
+    password_confirmation "pasword"
+    after_build {|user| user.send(:initialize_state_machines, :dynamic => :force)}
+  end
+
+  factory :registered_user, :parent => :user do
+    state    'registered'
+    birth_date  Time.now.to_date
+  end
+  factory :registered_user_with_credit, :parent => :registered_user do
+    state    'registered_with_credit'
+  end
 end
 
-Factory.define :registered_user, :parent => :user do |s|
-  s.state    'registered'
-  s.birth_date  Time.now.to_date
-end
 
-Factory.define :registered_user_with_credit, :parent => :registered_user do |s|
-  s.state    'registered_with_credit'
-end
+
+
+
+
 
 
 Factory.define :admin_user, :parent => :user do |f|

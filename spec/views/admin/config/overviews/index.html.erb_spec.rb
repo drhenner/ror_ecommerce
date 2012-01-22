@@ -6,6 +6,6 @@ describe "admin/config/overviews/index.html.erb" do
   end
 
   it "renders a list of admin_config_overviews" do
-    render
+    render :template => "admin/config/overviews/index", :handlers => [:erb]
   end
 end

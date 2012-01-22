@@ -27,6 +27,7 @@ class Coupon < ActiveRecord::Base
 
   COUPON_TYPES = ['coupon_percent', 'coupon_value']
   # order must respond to item_prices
+  attr_accessor :c_type
 
   # amount the coupon will reduce the order
   def value(item_prices)

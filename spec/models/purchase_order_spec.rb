@@ -163,7 +163,9 @@ end
 
 describe PurchaseOrder, "#receiving_admin_grid(params = {})" do
   it "should return PurchaseOrders " do
-    purchase_order1 = Factory(:purchase_order, :state => PurchaseOrder::RECEIVED)
+    purchase_order1 = Factory(:purchase_order)
+    purchase_order1.state = PurchaseOrder::RECEIVED
+    purchase_order1.save
     purchase_order2 = Factory(:purchase_order)
     admin_grid = PurchaseOrder.receiving_admin_grid
     admin_grid.size.should == 1

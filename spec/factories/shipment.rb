@@ -1,11 +1,15 @@
 
-Factory.define :shipment do |f|
-  #f.number          "34567kjhgf"
-  f.order           { |c| c.association(:order) }
-  f.address         { |c| c.association(:address) }
-  #f.address_id      1 
-  f.shipping_method { |c| c.association(:shipping_method) }
-  f.state           "ready_to_ship"
-  f.shipped_at      nil
-  f.active          true
+FactoryGirl.define do
+  factory :shipment do
+    order           { |c| c.association(:order) }
+    address         { |c| c.association(:address) }
+    #address_id      1
+    shipping_method { |c| c.association(:shipping_method) }
+    state           "ready_to_ship"
+    shipped_at      nil
+    active          true
+
+    after_build {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+  end
+
 end

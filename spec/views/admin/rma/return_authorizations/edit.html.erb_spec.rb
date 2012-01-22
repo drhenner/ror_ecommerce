@@ -7,7 +7,7 @@ describe "admin/rma/return_authorizations/edit.html.erb" do
   end
 
   it "renders the edit return_authorization form" do
-    render
+    render :template => "admin/rma/return_authorizations/edit", :handlers => [:erb]
 
     #rendered.should have_selector("form", :action => return_authorization_path(@return_authorization), :method => "post") do |form|
     #  form.should have_selector("input#return_authorization_number", :name => "return_authorization[number]")

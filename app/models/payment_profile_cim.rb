@@ -4,7 +4,8 @@ module PaymentProfileCim
 
   def create
     if super and create_payment_profile
-      user.update_attributes({:payment_profile_id => self.id})
+      # user.payment_profile_id = self.id  #  add this line if the user has a default payment_profile
+      # user.save
       return true
     else
       if self.id

@@ -10,7 +10,7 @@ describe "admin/fulfillment/shipments/index.html.erb" do
   end
 
   it "renders a list of shipments" do
-    render
-    
+    render :template => "admin/fulfillment/shipments/index", :handlers => [:erb]
+
   end
 end

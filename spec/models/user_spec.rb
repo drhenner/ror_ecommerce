@@ -66,11 +66,11 @@ describe User, '.registered_user?' do
     user.registered_user?.should be_false
   end
   it "should return true for a registered user" do
-    user = Factory.build(:registered_user)
+    user = registered_user_factory
     user.registered_user?.should be_true
   end
   it "should return true for a user registered_with_credit" do
-    user = Factory.build(:registered_user_with_credit)
+    user = registered_with_credit_user_factory
     user.registered_user?.should be_true
   end
 end

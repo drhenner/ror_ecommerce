@@ -70,6 +70,18 @@ RSpec.configure do |config|
 
 end
 
+def registered_user_factory
+  u = Factory.build(:user)
+  u.state = 'registered'
+  u
+end
+def registered_with_credit_user_factory
+  u = Factory.build(:user)
+  u.state = 'registered_with_credit'
+  u
+end
+
+
 #class ActionController::TestCase
 #  include Authlogic::TestCase
 #  #setup :activate_authlogic

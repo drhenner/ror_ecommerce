@@ -1,12 +1,14 @@
 
-Factory.define :order_item do |u|
-  u.price         3.00
-  u.total         3.15
-  u.order         { |c| c.association(:order) }
-  u.variant       { |c| c.association(:variant) }
-  u.tax_rate      { |c| c.association(:tax_rate) }
-  u.shipping_rate { |c| c.association(:shipping_rate) }
-  u.shipment      { |c| c.association(:shipment) }
+FactoryGirl.define do
+  factory :order_item do
+    price         3.00
+    total         3.15
+    order         { |c| c.association(:order) }
+    variant       { |c| c.association(:variant) }
+    tax_rate      { |c| c.association(:tax_rate) }
+    shipping_rate { |c| c.association(:shipping_rate) }
+    shipment      { |c| c.association(:shipment) }
+    after_build {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+  end
 
 end
-

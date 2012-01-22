@@ -1,11 +1,15 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
 
-Factory.define :return_authorization do |f|
-  f.number          "34567kjhgf"
-  f.amount          "9.99"
-  f.restocking_fee  "3.98"
-  f.order           { |c| c.association(:order) }
-  f.state           "authorized"
-  f.user            { |c| c.association(:user) }
-  f.created_by      { |c| c.association(:user) }
+FactoryGirl.define do
+  factory :return_authorization do
+    number          "34567kjhgf"
+    amount          "9.99"
+    restocking_fee  "3.98"
+    order           { |c| c.association(:order) }
+    state           "authorized"
+    user            { |c| c.association(:user) }
+    created_by      { |c| c.association(:user) }
+
+    after_build {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+  end
+
 end

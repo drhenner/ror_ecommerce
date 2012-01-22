@@ -11,7 +11,7 @@ describe "admin/fulfillment/orders/edit.html.erb" do
   end
 
   it "renders the edit order form" do
-    render
+    render :template => "admin/fulfillment/orders/edit", :handlers => [:erb]
 
   end
 end
