@@ -19,10 +19,13 @@ gem 'compass', '~> 0.12.alpha.4'
 
 gem "friendly_id", "~> 3.3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
+gem 'haml-rails'
 gem "jquery-rails"
 
 #gem 'memcache-client', '~> 1.8.5'
-gem 'mysql2', '~> 0.3.10'
+group :production do
+  gem 'mysql2', '~> 0.3.10'
+end
 
 gem 'nested_set', '~> 1.6.3'
 gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
@@ -33,13 +36,14 @@ gem 'prawn', '~> 0.12.0'
 gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
 
-gem 'rake', '= 0.9.2'
+gem 'rake'
 gem 'state_machine', '~> 1.1.2'
 #gem 'sunspot_solr'
 #gem 'sunspot_rails', '~> 1.3.0rc'
 gem 'will_paginate', '~> 3.0.0'
 
 group :development do
+  gem 'sqlite3'
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
@@ -49,7 +53,10 @@ group :development do
   # YARD AND REDCLOTH are for generating yardocs
   gem 'yard'
   gem 'RedCloth'
+  gem 'erb2haml'
+  gem 'rails_best_practices'
 end
+
 group :test, :development do
   gem "rspec-rails", "~> 2.8.0"
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
