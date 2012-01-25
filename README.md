@@ -46,6 +46,20 @@ Configure your database.yml file (add the development and test database)
 * rake db:seed
 * rake db:test:prepare
 
+##Quick Evaluation
+
+If you just want to see what ror_ecommerce looks like, before you enter and products into the database run the following command:
+
+* rake db:seed_fake
+
+Now you should have a minimal dataset to go through the various parts of the app.  Make should you have the config/config.yml setup before you try to checkout though.  Also take a look at [The 15 minute e-commerce video](http://www.ror-e.com/info/videos/7)
+
+##YARDOCS
+
+If you would like to see the docs you can generate them locally with the following command:
+
+    yardoc --no-private --protected app/models/*.rb
+
 ####compass install
 
 Need to create config/config.yml and change the encryption key and paypal or auth.net information.
@@ -64,20 +78,6 @@ Once everything is setup, start up the server with 'rails server' and direct it 
 [localhost:3000/admin/overviews](http://localhost:3000/admin/overviews)
 
 write down the username/password and follow the directions.
-
-##Quick Evaluation
-
-If you just want to see what ror_ecommerce looks like, before you enter and products into the database run the following command:
-
-* rake db:seed_fake
-
-Now you should have a minimal dataset to go through the various parts of the app.  Make should you have the config/config.yml setup before you try to checkout though.  Also take a look at [The 15 minute e-commerce video](http://www.ror-e.com/info/videos/7)
-
-##YARDOCS
-
-If you would like to see the docs you can generate them locally with the following command:
-
-    yardoc --no-private --protected app/models/*.rb
 
 ##Adding Dalli for cache and the session store
 
