@@ -5,3 +5,4 @@ In no specific order the following have contributed to RoR ecommerce.
 * Yury Velikanau
 * Torsten Rüger
 * Dean Perry
+* Denis Peplin
