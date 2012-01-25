@@ -20,7 +20,18 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
+    attribs =  params[:user]
+    role_ids    = params[:user][:role_ids]
+    state       = params[:user][:state]
+    birth_date  = params[:user][:birth_date]
+
+    attribs.delete(:role_ids)
+    attribs.delete(:state)
+    attribs.delete(:birth_date)
+
     @user = User.new(params[:user])
+    @user.role_ids  = role_ids
+    @user.state     = state
     @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
     authorize! :create_users, current_user
     if @user.save
@@ -46,8 +57,11 @@ class Admin::UsersController < Admin::BaseController
     @user.role_ids = params[:user][:role_ids]
     @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
     @user.state = params[:user][:state]                 if params[:user][:state].present? #&& !@user.admin?
-    params[:user].delete_if {|key, value| key.to_s == "birth_date" }
-    if @user.save && @user.update_attributes(params[:user])
+    attribs =  params[:user]
+    attribs.delete(:role_ids)
+    attribs.delete(:state)
+    attribs.delete(:birth_date)
+    if @user.save && @user.update_attributes(attribs)
       flash[:notice] = "#{@user.name} has been updated."
       redirect_to admin_users_url
     else
