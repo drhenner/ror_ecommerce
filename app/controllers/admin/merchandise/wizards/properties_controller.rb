@@ -4,8 +4,8 @@ class Admin::Merchandise::Wizards::PropertiesController < Admin::Merchandise::Wi
   end
 
   def create
-    @property = Property.new(params[:property])
-    flash[:notice] = "Successfully created property." if @property.save
+    property = Property.new(params[:property])
+    flash[:notice] = "Successfully created property." if property.save
     form_info
     render :action => 'index'
   end
