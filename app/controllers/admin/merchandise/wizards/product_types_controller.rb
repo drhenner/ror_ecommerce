@@ -7,7 +7,7 @@ class Admin::Merchandise::Wizards::ProductTypesController < Admin::Merchandise::
   def create
     product_type = ProductType.new(params[:product_type])
 
-    flash[:notice] = "Successfully created product type." if @product_type.save
+    flash[:notice] = "Successfully created product type." if product_type.save
     form_info
     render :action => 'index'
   end
