@@ -22,7 +22,9 @@ gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 
 #gem 'memcache-client', '~> 1.8.5'
-gem 'mysql2', '~> 0.3.10'
+group :production do
+  gem 'mysql2', '~> 0.3.10'
+end
 
 gem 'nested_set', '~> 1.6.3'
 gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
@@ -40,6 +42,7 @@ gem 'state_machine', '~> 1.1.2'
 gem 'will_paginate', '~> 3.0.0'
 
 group :development do
+  gem 'sqlite3'
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
