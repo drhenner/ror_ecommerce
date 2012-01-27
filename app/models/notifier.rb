@@ -26,4 +26,16 @@ class Notifier < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Reset Password Instructions")
   end
+
+
+  def order_confirmation(order,invoice)
+    @invoice = invoice
+    @order  = order
+    @user   = order.user
+    @url    = root_url
+    @site_name = 'site_name'
+    mail(:to => order.email,
+         :subject => "Order Confirmation")
+  end
+
 end
