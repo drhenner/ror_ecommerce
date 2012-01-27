@@ -95,16 +95,3 @@ group :test do
 #  gem "launchy"
 
 end
-
-
-
-
-
-## require 'riak-sessions'
-#gem 'curb' # Faster HTTP
-#gem 'yajl-ruby' # Faster JSON
-#gem 'riak-client', :require => 'riak'
-#gem 'ripple'
-#gem 'riak-sessions'
-#gem 'dalli', '~> 1.0.0'
-#gem 'validation_reflection',      :branch => "rails-3"
