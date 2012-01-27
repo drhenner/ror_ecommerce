@@ -53,6 +53,7 @@ group :development do
   gem 'yard'
   gem 'RedCloth'
 end
+
 group :test, :development do
   gem "rspec-rails", "~> 2.8.0"
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
