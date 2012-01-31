@@ -8,14 +8,12 @@
     <tr>
       <th>Name</th>
       <th></th>
-      <th></th>
     </tr>
     </thead>
 
   <% @shipping_zones.each do |shipping_zone| %>
     <tr>
-      <td><%= shipping_zone.name %> </td>
-      <td><%= link_to 'Show', admin_config_shipping_zone_path(shipping_zone) %></td>
+      <td><%= link_to shipping_zone.name, admin_config_shipping_zone_path(shipping_zone) %></td>
       <td><%= link_to 'Edit', edit_admin_config_shipping_zone_path(shipping_zone) %></td>
     </tr>
   <% end %>
