@@ -2,13 +2,8 @@ require 'spec_helper'
 
 describe State do
   describe "Valid Seed data" do
-    
-    State.all.each do |my_state|
-      it "should be valid" do 
-        my_state.should be_valid
-      end
+      State.first.should be_valid
     end
-    
   end
 end
 
@@ -16,16 +11,16 @@ end
 describe State, " methods" do
   before(:each) do
     @state ||= State.new( :abbreviation => 'CA', :name => 'California')
-    #@mock_state.stub!(:abbreviation).and_return  'CA' 
-    #@mock_state.stub!(:name).and_return  'California' 
+    #@mock_state.stub!(:abbreviation).and_return  'CA'
+    #@mock_state.stub!(:name).and_return  'California'
   end
-  
+
   context ".abbreviation_name(append_name = )" do
-  
+
     it 'should return the correct string with no params' do
       @state.abbreviation_name.should == 'CA - California'
     end
-    
+
     it 'should return the correct string with  params' do
       @state.abbreviation_name('JJJ').should == 'CA - California JJJ'
     end
@@ -46,13 +41,13 @@ describe State, "class methods" do
     @states.first.first.class.should  == String
     @states.first.last.class.should   == Fixnum
   end
-  
+
   context 'all_with_country_id(country_id)' do
     before(:each) do
       @country = Country.find(Country::CANADA_ID)
       @states = State.all_with_country_id(@country.id)
-    end 
-    
+    end
+
     it 'should return an array of States' do
       @states.first.class.should        == State
     end

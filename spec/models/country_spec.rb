@@ -2,16 +2,10 @@ require 'spec_helper'
 
 describe Country do
   describe "Valid Seed data" do
-    
-    Country.all.each do |country|
-      it "should be valid" do 
-        country.should be_valid
-      end
+        Country.first.should be_valid
     end
-    
   end
-  
-  
+
   context "#form_selector" do
     @countries = Country.form_selector
     @countries.class.should              == Array
@@ -25,13 +19,13 @@ describe Country do
   before(:each) do
     @country ||= Country.new( :abbreviation => 'US', :name => 'United States')
   end
-  
+
   context ".abbreviation_name(append_name = )" do
-  
+
     it 'should return the correct string with no params' do
       @country.abbreviation_name.should == 'US - United States'
     end
-    
+
     it 'should return the correct string with  params' do
       @country.abbreviation_name('JJJ').should == 'US - United States JJJ'
     end
