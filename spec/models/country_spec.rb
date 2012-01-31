@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Country do
-  describe "Valid Seed data" do
-        Country.first.should be_valid
-  end
 
   context "#form_selector" do
     @countries = Country.form_selector
