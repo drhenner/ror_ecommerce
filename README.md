@@ -6,13 +6,15 @@ Please create a ticket if on github you have issues.  They will be addressed ASA
 
 [Please look at the homepage for more details](http://www.ror-e.com)
 
+![Alt text](http://ror-e.com/images/logo.png "ROR Ecommerce")
+
 This is a Rails e-commerce platform.  Other e-commerce projects that use rails, don't use rails in a standard way.  They use engines or are a separate framework altogether.
 
 ROR ecommerce is a *Rails 3 application* with the intent to allow developers to create an ecommerce solution easily.  This solution includes, an Admin for  *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.  There is a minimal customer facing shopping cart understanding that this will be customized.  The cart allows you to track your customers *cart history* and includes a *double entry accounting system*.
 
 The project has *solr searching*, *compass* and *blueprint for CSS* and uses *jQuery*. The gem list is quite large and the project still has a large wish list but it is the most complete solution for Rails today and it will only get better.
 
-Please use *Ruby 1.9.2* and enjoy *Rails 3.1.3*.
+Please use *Ruby 1.9.2* and enjoy *Rails 3.2*.
 
 ROR_ecommerce is designed differently. If you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project that you wouldn't see in a normal Rails application.  If you don't like what is in the project just change it like you would in any other Rails app.
@@ -33,11 +35,11 @@ Configure your database.yml file (add the development and test database)
 * Go into config/config.yml and change the encryption_key
 
     $ dd if=/dev/urandom bs=1 count=75 2> /dev/null | xxd -p -c75
-    
-	will display some random characters like this: Copy what it gives you and paste it under `encryption_key`
+
+  will display some random characters like this: Copy what it gives you and paste it under `encryption_key`
 
 `f5317296f3420d698de775dc5675b193f35fdbac576540888a0ae2628fcfb59646d7ef83da76afbb1f8ea7fb70acea887549e475aa7c869b1f82353f12dbad8bd517c941b981bf936772f0`
-	
+
 
 * gem install bundler
 * bundle install
