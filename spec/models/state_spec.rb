@@ -3,7 +3,6 @@ require 'spec_helper'
 describe State do
   describe "Valid Seed data" do
       State.first.should be_valid
-    end
   end
 end
 
