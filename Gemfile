@@ -36,7 +36,7 @@ gem 'prawn', '~> 0.12.0'
 gem 'rails3-generators', '~> 0.17.0'
 gem 'rmagick',    :require => 'RMagick'
 
-gem 'rake', '= 0.9.2'
+gem 'rake', '~> 0.9.2'
 gem 'state_machine', '~> 1.1.2'
 #gem 'sunspot_solr'
 #gem 'sunspot_rails', '~> 1.3.0rc'
