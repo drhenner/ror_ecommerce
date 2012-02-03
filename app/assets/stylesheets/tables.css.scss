@@ -9,7 +9,7 @@
   border-right:1px solid #e5eff8;
   margin:1em auto;
   border-collapse:collapse;
-  &thead {
+  thead {
     @include rounded(6px);
   }
 }
