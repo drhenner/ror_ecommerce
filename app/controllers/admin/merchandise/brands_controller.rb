@@ -39,6 +39,13 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
     end
   end
 
+  def destroy
+    @brand = Brand.find(params[:id])
+    @brand.destroy
+
+    redirect_to admin_merchandise_brands_url
+  end
+
   private
 
   def form_info
