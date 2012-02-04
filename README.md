@@ -48,6 +48,12 @@ Configure your database.yml file (add the development and test database)
 * rake db:seed
 * rake db:test:prepare
 
+Once everything is setup, start up the server with 'rails server' and direct it to
+
+[localhost:3000/admin/overviews](http://localhost:3000/admin/overviews)
+
+write down the username/password and follow the directions.
+
 ##Quick Evaluation
 
 If you just want to see what ror_ecommerce looks like, before you enter and products into the database run the following command:
@@ -73,13 +79,6 @@ Type `which identify` in the terminal and set `Paperclip.options[:command_path] 
     Paperclip.options[:command_path] = "/usr/local/bin"
 into:
     Paperclip.options[:command_path] = "/usr/bin"
-
-
-Once everything is setup, start up the server with 'rails server' and direct it to
-
-[localhost:3000/admin/overviews](http://localhost:3000/admin/overviews)
-
-write down the username/password and follow the directions.
 
 ##Adding Dalli for cache and the session store
 
