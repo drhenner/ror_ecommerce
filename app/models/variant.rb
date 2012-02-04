@@ -186,8 +186,8 @@ class Variant < ActiveRecord::Base
   # @param [none]
   # @return [VariantProperty]
   def primary_property
-    pp = self.variant_properties.where({ :variant_properties => {:primary => true}}).find(:first)
-    pp ? pp : self.variant_properties.find(:first)
+    pp = self.variant_properties.where({ :variant_properties => {:primary => true}}).first
+    pp ? pp : self.variant_properties.first
   end
 
   # returns the product name with sku
