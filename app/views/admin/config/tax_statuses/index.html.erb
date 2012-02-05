@@ -8,6 +8,7 @@
     <tr>
       <th>Name</th>
       <th></th>
+      <th></th>
     </tr>
     </thead>
 
@@ -15,6 +16,7 @@
     <tr>
       <td><%= link_to tax_status.name, admin_config_tax_status_path(tax_status) %></td>
       <td><%= link_to 'Edit', edit_admin_config_tax_status_path(tax_status) %></td>
+      <td><%= link_to 'Delete', admin_config_tax_status_path(tax_status), confirm: 'Are you sure?', method: :delete %></td>
     </tr>
   <% end %>
   </table>
