@@ -45,10 +45,4 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
     end
   end
 
-  # DELETE /admin/config/shipping_zones/1
-  def destroy
-    @shipping_zone = ShippingZone.find(params[:id])
-    @shipping_zone.destroy
-    redirect_to(admin_config_shipping_zones_url)
-  end
 end

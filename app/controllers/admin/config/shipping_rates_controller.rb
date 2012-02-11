@@ -63,13 +63,6 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
     end
   end
 
-  # DELETE /shipping_rates/1
-  def destroy
-    @shipping_rate = ShippingRate.find(params[:id])
-    @shipping_rate.destroy
-    redirect_to(admin_config_shipping_rates_url)
-  end
-
   private
 
   def form_info
