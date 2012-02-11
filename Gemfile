@@ -52,8 +52,8 @@ group :development do
   gem "rails-erd"
   gem "ruby-debug19"
   # YARD AND REDCLOTH are for generating yardocs
-  gem 'yard'
-  gem 'RedCloth'
+  # gem 'yard'
+  # gem 'RedCloth'
 end
 group :test, :development do
   gem "rspec-rails", "~> 2.8.0"

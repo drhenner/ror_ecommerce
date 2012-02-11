@@ -58,7 +58,9 @@ Now you should have a minimal dataset to go through the various parts of the app
 
 ##YARDOCS
 
-If you would like to see the docs you can generate them locally with the following command:
+If you would like to see the docs first uncomment "gem 'yard'" and "gem 'RedCloth'" in the Gemfile
+
+Then you can generate the docs with the following command:
 
     yardoc --no-private --protected app/models/*.rb
 
