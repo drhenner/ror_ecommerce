@@ -1,6 +1,7 @@
 .DS_Store
 nbproject/*
 nbproject
+.idea
 .vimrc
 .rvmrc
 .vim
@@ -24,6 +25,7 @@ solr/*
 public/assets/**/*
 public/assets/*
 coverage/*
+ERD.pdf
 Gemfile.lock
 config/config.yml
 config/database.yml

@@ -8,6 +8,8 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_admin_merchandise_brand_path(@brand), :class => 'button' %> |
+  <%= link_to "Edit", edit_admin_merchandise_brand_path(@brand), :class => 'button' %>
+  <%= link_to "Delete", admin_merchandise_brand_path(@brand), confirm: 'Are you sure?', method: :delete, :class => 'button' %>
+  <%= link_to "New Brand", new_admin_merchandise_brand_path, :class => 'button' %>
   <%= link_to "View All", admin_merchandise_brands_path, :class => 'button' %>
 </p>
