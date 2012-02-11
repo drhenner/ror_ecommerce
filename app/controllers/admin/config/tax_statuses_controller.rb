@@ -49,7 +49,11 @@ class Admin::Config::TaxStatusesController < Admin::Config::BaseController
   # DELETE /tax_statuses/1
   def destroy
     @tax_status = TaxStatus.find(params[:id])
-    @tax_status.destroy
+    if @tax_status.products.empty?  && @tax_status.tax_rates.empty?
+      @tax_status.destroy
+    else
+      flash[:alert] = "Sorry this Tax Status is already associated with a product or tax_rate.  You can not delete this Tax Status."
+    end
     redirect_to(admin_config_tax_statuses_url)
   end
 end
