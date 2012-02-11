@@ -232,6 +232,16 @@ class Product < ActiveRecord::Base
     def sanitize_data
       self.permalink = name if permalink.blank? && name
       self.permalink = permalink.squeeze(" ").strip.gsub(' ', '-') if permalink
+
+      # TODO: populate auto-description using product properties
+      if description.blank?
+        self.description = self.name
+      end
+
+      if description_markup.blank?
+        self.description_markup = self.description
+      end
+
       if meta_keywords.blank? && description
         self.meta_keywords =  [name[0..55],
                               description.

@@ -23,6 +23,14 @@
 
 <div class='clear'></div>
   <div class='span-3'>
+    <%= form.label :description %>
+  </div>
+  <div class='span-6 last'>
+    <%= form.text_field :description %>
+  </div>
+
+<div class='clear'></div>
+  <div class='span-3'>
     <%= form.label :permalink %>
   </div>
   <div class='span-6 last'>
@@ -89,6 +97,15 @@
 
   <div class='span-6 last'>
     <%= form.select :brand_id, @brands %>
+  </div>
+
+<div class='clear'></div>
+  <div class='span-3'>
+    <%= form.label :active %>
+  </div>
+
+  <div class='span-6 last'>
+    <%= form.check_box :active %>
   </div>
   <%#= render :partial => 'admin/merchandise/products/shipping_rates_form'  %>
 </fieldset>
