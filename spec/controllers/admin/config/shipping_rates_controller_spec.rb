@@ -84,10 +84,4 @@ describe Admin::Config::ShippingRatesController do
     response.should redirect_to(admin_config_shipping_rate_url(assigns[:shipping_rate]))
   end
 
-  it "destroy action should destroy model and redirect to index action" do
-    @shipping_rate = Factory(:shipping_rate)
-    delete :destroy, :id => @shipping_rate.id
-    response.should redirect_to(admin_config_shipping_rates_url)
-    ShippingRate.exists?(@shipping_rate.id).should be_false
-  end
 end

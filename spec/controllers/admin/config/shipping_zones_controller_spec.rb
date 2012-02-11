@@ -58,10 +58,4 @@ describe Admin::Config::ShippingZonesController do
     response.should redirect_to(admin_config_shipping_zone_url(assigns[:shipping_zone]))
   end
 
-  it "destroy action should destroy model and redirect to index action" do
-    @shipping_zone = ShippingZone.first
-    delete :destroy, :id => @shipping_zone.id
-    response.should redirect_to(admin_config_shipping_zones_url)
-    ShippingZone.exists?(@shipping_zone.id).should be_false
-  end
 end
