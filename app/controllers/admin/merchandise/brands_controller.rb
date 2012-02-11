@@ -41,7 +41,12 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
 
   def destroy
     @brand = Brand.find(params[:id])
-    @brand.destroy
+
+    if @brand.products.empty?
+      @brand.destroy
+    else
+      flash[:alert] = "Sorry this brand is already associated with a product.  You can not delete this brand."
+    end
 
     redirect_to admin_merchandise_brands_url
   end
