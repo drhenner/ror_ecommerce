@@ -1,3 +1,15 @@
+###1.0.0rc3 2012-02-12
+
+* Better looking MyAccounts Section
+* Prevent careless deleting of ShippingZones/rate/tax info/brand
+* Easier install (no yard docs by default..  Breaks with older MAC's)
+* Asset pipeline fixes in production
+* Compass Upgrade involved fixes
+* Bug with adding multiple properties in wizard
+* Rails 3.2
+* Clean out Gems
+* better Readme
+
 ###1.0.0rc2 2012-01-21
 
 * Bug Fix: RMA process broken link
