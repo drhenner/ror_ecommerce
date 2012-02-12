@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
                 :session_cart,
                 :is_production_simulation,
                 :search_product,
-                :product_types
+                :product_types,
+                :myaccount_tab
 
   before_filter :secure_session
 
@@ -33,6 +34,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def myaccount_tab
+    false
+  end
 
   def require_user
     redirect_to login_url and store_return_location and return if logged_out?

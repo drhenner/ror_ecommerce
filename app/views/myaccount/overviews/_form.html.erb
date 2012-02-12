@@ -1,0 +1,36 @@
+<div id='myaccount-profile_name_form'>
+  <fieldset id="myaccount-profile" class='span-12'>
+     <ul>
+       <li>
+         <%= f.label :first_name %>
+         <%= f.text_field :first_name %>
+        </li>
+        <li>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name %>
+        </li>
+        <li>
+          <%= f.label :email %>
+          <%= f.text_field :email %>
+        </li>
+        <li>
+          <%= f.label :form_birth_date, "Birthday" %>
+          <%= f.text_field :form_birth_date, :class => 'ui-yearpicker' %>
+        </li>
+     </ul>
+  </fieldset>
+</div>
+<div id='myaccount-profile_form'>
+  <fieldset id="myaccount-profile-password" class='span-12'>
+    <ul>
+      <li>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </li>
+      <li>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </li>
+    </ul>
+  </fieldset>
+</div>

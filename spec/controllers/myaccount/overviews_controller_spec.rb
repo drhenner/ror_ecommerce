@@ -14,6 +14,23 @@ describe Myaccount::OverviewsController do
     get :show
     response.should render_template(:show)
   end
+
+  it "edit action should render edit template" do
+    get :edit
+    response.should render_template(:edit)
+  end
+
+  it "update action should render edit template when model is invalid" do
+    User.any_instance.stubs(:valid?).returns(false)
+    put :update, :user => @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password','birth_date'].include?(k)}
+    response.should render_template(:edit)
+  end
+
+  it "update action should redirect when model is valid" do
+    User.any_instance.stubs(:valid?).returns(true)
+    put :update, :user => @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password','birth_date'].include?(k)}
+    response.should redirect_to(myaccount_overview_url())
+  end
 end
 
 describe Myaccount::OverviewsController do

@@ -27,7 +27,7 @@ Hadean::Application.routes.draw do # |map|
     resources :addresses
     resources :credit_cards
     resource  :store_credit, :only => [:show]
-    resource  :overview, :only => [:show]
+    resource  :overview, :only => [:show, :edit, :update]
   end
 
   namespace :shopping do

@@ -7,6 +7,7 @@
   <%#= stylesheet_link_tag :all %>
   <%= stylesheet_link_tag 'sprite.css' %>
   <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'myaccount.css' if myaccount_tab %>
     <!--[if lt IE 8]
   <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
   <![endif]-->
@@ -29,6 +30,7 @@
     <%= render :partial => '/shared/welcome_header'%>
 
     <div id='content_wrapper' class='container'>
+      <%= render :partial => '/shared/myaccount_subheader' if myaccount_tab %>
       <%= yield %>
     </div>
 

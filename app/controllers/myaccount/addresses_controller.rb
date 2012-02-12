@@ -51,4 +51,8 @@ class Myaccount::AddressesController < Myaccount::BaseController
   def form_info
     @states = State.form_selector
   end
+
+  def selected_myaccount_tab(tab)
+    tab == 'address'
+  end
 end

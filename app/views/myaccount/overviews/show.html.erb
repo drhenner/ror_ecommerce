@@ -1,23 +1,39 @@
-<h1 style='text-align:left;'> My Account </h1>
-<div class='span-18 column' style='width:708px;'>
-  <div class='ar-widget'>
-    <h3 style='text-align:left;'> My Orders </h3>
-    <%= link_to 'View My Orders', myaccount_orders_path %>
-  </div>
-  <div class='ar-widget'>
-    <h3 style='text-align:left;'> My Credit Cards </h3>
-    <%= link_to 'View My Credit Cards', myaccount_credit_cards_path %>
-  </div>
-  <div class='ar-widget'>
-    <h3 style='text-align:left;'> My Addresses </h3>
-    <%= link_to 'View My Addresses', myaccount_addresses_path %>
-  </div>
-  <div class='ar-widget'>
-    <h3 style='text-align:left;'> My Store Credits </h3>
-    <%= link_to 'View My Store Credits', myaccount_store_credit_path %>
-  </div>
-</div>
-<div class='span-6 last ar-widget'>
-  Add Something here.
+<div class='span-10 column'>
+  <h3> <%= current_user.name %> Profile </h3>
 
+  <ul id='profile_details' >
+    <li>
+      <label>Birth Date:</label>
+      <%= current_user.birth_date %>
+    </li>
+    <li>
+      <label>Email:</label>
+      <%= current_user.email %>
+    </li>
+
+    <li>
+      <%= link_to "Edit", edit_myaccount_overview_path() %>
+    </li>
+  </ul>
+</div>
+
+<div class='span-8 column'>
+  <div>
+    <h3> Address: </h3>
+    <% if current_user.default_shipping_address %>
+      <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => current_user.default_shipping_address } %>
+      <%= link_to "Edit", edit_myaccount_address_path(current_user.default_shipping_address) %>
+    <% else %>
+      No Address Saved.<br/>
+      <%= link_to "New", new_myaccount_address_path() %>
+    <% end %>
+  </div>
+
+</div>
+
+<div class='span-6 last column'>
+  <div>
+    <h3> Store Credits: </h3>
+    <%= number_to_currency current_user.store_credit.amount %>
+  </div>
 </div>

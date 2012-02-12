@@ -51,4 +51,8 @@ class Myaccount::CreditCardsController < Myaccount::BaseController
   def form_info
 
   end
+
+  def selected_myaccount_tab(tab)
+    tab == 'credit_cards'
+  end
 end

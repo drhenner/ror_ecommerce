@@ -1,0 +1,26 @@
+<div class='span-24 last'>
+  <div class='span-6 column'>
+    <% if content_for? :account_title %>
+      <h2><%= yield :account_title %></h2>
+    <% else %>
+      <h2>My Account</h2>
+    <% end %>
+  </div>
+  <div class='span-18 last column'>
+    <div id='myaccount-header-menu'>
+      <ul>
+        <li <%= selected_myaccount_tab('address') ? 'class=selected' : '' %>>
+          <%= link_to 'Addresses', myaccount_addresses_path() %></li>
+        <li <%= selected_myaccount_tab('credit_cards') ? 'class=selected' : '' %>>
+          <%= link_to 'Credit Cards', myaccount_credit_cards_path() %></li>
+        <li <%= selected_myaccount_tab('orders') ? 'class=selected' : '' %>>
+          <%= link_to 'Orders', myaccount_orders_path() %>
+        </li>
+        <li <%= selected_myaccount_tab('profile') ? 'class=selected' : '' %>>
+          <%= link_to 'Profile', myaccount_overview_path() %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
