@@ -15,6 +15,13 @@ describe Myaccount::OverviewsController do
     response.should render_template(:show)
   end
 
+  it "show action should render show template" do
+    @address = Factory(:address, :addressable => @user)
+    @user.stubs(:default_shipping_address).returns(@address)
+    get :show
+    response.should render_template(:show)
+  end
+
   it "edit action should render edit template" do
     get :edit
     response.should render_template(:edit)
