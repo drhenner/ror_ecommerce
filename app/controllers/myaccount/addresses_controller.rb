@@ -1,6 +1,6 @@
 class Myaccount::AddressesController < Myaccount::BaseController
   def index
-    @addresses = current_user.addresses
+    @addresses = current_user.shipping_addresses
   end
 
   def show
@@ -10,16 +10,21 @@ class Myaccount::AddressesController < Myaccount::BaseController
   def new
     form_info
     @address = Address.new
+    @address.default = true          if current_user.default_shipping_address.nil?
   end
 
   def create
     @address = current_user.addresses.new(params[:address])
-    if @address.save
-      flash[:notice] = "Successfully created address."
-      redirect_to myaccount_address_url(@address)
-    else
-      form_info
-      render :action => 'new'
+    @address.default = true          if current_user.default_shipping_address.nil?
+    @address.billing_default = true  if current_user.default_billing_address.nil?
+
+    respond_to do |format|
+      if @address.save_default_address(current_user, params[:address])
+        format.html { redirect_to(myaccount_address_url(@address), :notice => 'Address was successfully created.') }
+      else
+        form_info
+        format.html { render :action => "new" }
+      end
     end
   end
 
@@ -30,7 +35,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
 
   def update
     @address = current_user.addresses.find(params[:id])
-    if @address.update_attributes(params[:address])
+    if @address.save_default_address(current_user, params[:address])
       flash[:notice] = "Successfully updated address."
       redirect_to myaccount_address_url(@address)
     else

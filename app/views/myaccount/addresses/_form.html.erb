@@ -64,7 +64,8 @@
       </div>
 </div>
   <div class="field column">
-    <%= check_box_tag :default, 1, f.object.default? %><%= f.label :default, "Make this my default shipping method", :class => 'auto_width' %>
+    <%= f.check_box :default %>
+    <%= f.label :default, "Make this my default shipping method", :class => 'auto_width' %>
   </div>
 
   <div class="actions column prepend-1">

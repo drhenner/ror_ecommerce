@@ -51,14 +51,16 @@ describe Myaccount::AddressesController do
   it "update action should render edit template when model is invalid" do
     @address = Factory(:address, :addressable => @user)
     Address.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @address.id
+    address = Factory.build(:address, :default => true)
+    put :update, :id => @address.id, :address => address.attributes
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @address = Factory(:address, :addressable => @user)
     Address.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @address.id
+    address = Factory.build(:address, :default => true)
+    put :update, :id => @address.id, :address => address.attributes
     response.should redirect_to(myaccount_address_url(assigns[:address]))
   end
 
