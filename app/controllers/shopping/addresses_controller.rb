@@ -22,7 +22,7 @@ class Shopping::AddressesController < Shopping::BaseController
       @shopping_address = current_user.addresses.new(params[:address])
       @shopping_address.default = true          if current_user.default_shipping_address.nil?
       @shopping_address.billing_default = true  if current_user.default_billing_address.nil?
-      @shopping_address.save
+      @shopping_address.save_default_address(current_user, params[:address])
     elsif params[:shopping_address_id].present?
       @shopping_address = current_user.addresses.find(params[:shopping_address_id])
     end
