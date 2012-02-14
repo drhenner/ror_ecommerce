@@ -1,3 +1,7 @@
+###1.0.0 2012-02-14
+
+* Small bug with saving default address not saving correctly
+
 ###1.0.0rc3 2012-02-12
 
 * Better looking MyAccounts Section
