@@ -20,9 +20,9 @@
 <div class='span-8 column'>
   <div>
     <h3> Address: </h3>
-    <% if current_user.default_shipping_address %>
-      <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => current_user.default_shipping_address } %>
-      <%= link_to "Edit", edit_myaccount_address_path(current_user.default_shipping_address) %>
+    <% if current_user.shipping_address %>
+      <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => current_user.shipping_address } %>
+      <%= link_to "Edit", edit_myaccount_address_path(current_user.shipping_address) %>
     <% else %>
       No Address Saved.<br/>
       <%= link_to "New", new_myaccount_address_path() %>

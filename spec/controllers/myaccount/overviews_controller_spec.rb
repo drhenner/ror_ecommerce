@@ -17,7 +17,7 @@ describe Myaccount::OverviewsController do
 
   it "show action should render show template" do
     @address = Factory(:address, :addressable => @user)
-    @user.stubs(:default_shipping_address).returns(@address)
+    @user.stubs(:shipping_address).returns(@address)
     get :show
     response.should render_template(:show)
   end
