@@ -3,7 +3,7 @@
     <div id='header_bar' class='float-left span-24'>
       <%= render :partial => '/shared/admin/header_buttons'  %>
       <div class="admin-login">
-        <span><%= current_user.name %></span>
+        <span><%= current_user.name %></span><br/>
         <%= link_to 'Logout', logout_path, :id => 'admin-logout-button' %>
       </div>
     </div>
