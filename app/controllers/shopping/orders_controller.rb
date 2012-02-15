@@ -63,17 +63,17 @@ class Shopping::OrdersController < Shopping::BaseController
           redirect_to myaccount_order_path(@order)
         else
           form_info
-          flash[:error] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
+          flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
           render :action => "index"
         end
       else
         form_info
-        flash[:error] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
+        flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
         render :action => 'index'
       end
     else
       form_info
-      flash[:error] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
+      flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
       render :action => 'index'
     end
   end
