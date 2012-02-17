@@ -13,33 +13,36 @@
 #
 
 class Phone < ActiveRecord::Base
-
+  include ActionView::Helpers::NumberHelper
   belongs_to :phone_type
   #belongs_to :phone_priority
   belongs_to :phoneable, :polymorphic => true
 
-  validates :number,  :presence => true,
+  validates :phone_type_id,  :presence => true
+  validates :number,  :presence => true, :numericality => true,
                       :format   => { :with => CustomValidators::Numbers.phone_number_validator },
                       :length   => { :maximum => 255 }
 
+  before_validation :sanitize_data
+  after_save        :default_phone_check
 
-  # Use this method to create a phone
-  # * This method will create a new phone object and if the phone is a default phone it
-  # * will make all other phones that belong to the user non-default
-  #
-  # @param [object] object associated to the phone (user or possibly a company in the future)
-  # @param [Hash] hash of attributes for the new phone
-  # @ return [Boolean] true or nil
-  def save_default_phone(object, params)
-    Phone.transaction do
-      if params[:default] && params[:default] != '0'
-        Address.update_all(["phones.primary = ?", false],
-                            ["phones.phoneable_id = ? AND phones.phoneable_type = ? ", object.id, object.class.to_s]) if object
-        self.default = true
-      end
-      self.phoneable = object
-      self.save
+  def display_number=(val)
+    self.number = val
+  end
+  def display_number
+    number_to_phone( self.number )
+  end
+  private
 
+    def default_phone_check
+        Phone.update_all(["phones.primary = ?", false],
+                          ["phones.phoneable_id = ? AND phones.phoneable_type = ? AND id <> ?",
+                            phoneable_id, phoneable_type, id]) if self.primary
+    end
+
+    def sanitize_data
+      #  remove non-digits
+      self.number.gsub!(/\W+/, '') if number
     end
   end
 end

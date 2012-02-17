@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
                   :birth_date,
                   :form_birth_date,
                   :address_attributes,
-                  :phone_attributes
+                  :phones_attributes
 
   belongs_to :account
 
@@ -133,7 +133,8 @@ class User < ActiveRecord::Base
   validate :validate_age
   #validates :password,    :presence => { :if => :password_required? }, :confirmation => true
 
-  accepts_nested_attributes_for :addresses, :phones, :user_roles
+  accepts_nested_attributes_for :addresses, :user_roles
+  accepts_nested_attributes_for :phones, :reject_if => lambda { |t| ( t['display_number'].gsub(/\D+/, '').blank?) }
 
   state_machine :state, :initial => :active do
     state :inactive
