@@ -44,5 +44,5 @@ class Phone < ActiveRecord::Base
       #  remove non-digits
       self.number.gsub!(/\W+/, '') if number
     end
-  end
+
 end
