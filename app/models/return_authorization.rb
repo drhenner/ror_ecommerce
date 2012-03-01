@@ -49,7 +49,7 @@ class ReturnAuthorization < ActiveRecord::Base
   state_machine :initial => 'authorized' do
     #after_transition :to => 'received', :do => :process_receive
     #after_transition :to => 'cancelled', :do => :process_canceled
-    before_transition :to => 'complete', :do => :process_ledger_transactions
+    before_transition :to => 'complete', :do => [:process_ledger_transactions, :mark_items_returned]
 
     event :receive do
       transition :to => 'received', :from => 'authorized'
@@ -58,7 +58,7 @@ class ReturnAuthorization < ActiveRecord::Base
       transition :to => 'cancelled', :from => 'authorized'
     end
     event :complete do # do this after a payment was returned to the customer
-      transition :to => 'complete', :from => 'authorized'
+      transition :to => 'complete', :from => ['authorized', 'received']
     end
   end
 
@@ -71,6 +71,10 @@ class ReturnAuthorization < ActiveRecord::Base
     ##  credit => cash
     ##  debit  => revenue
     Invoice.process_rma(amount - restocking_fee, order )
+  end
+
+  def mark_items_returned
+    return_items.map(&:mark_returned!)
   end
 
   # number of the order that is returning the item

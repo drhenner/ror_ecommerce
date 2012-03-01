@@ -56,6 +56,7 @@ class Order < ActiveRecord::Base
   CHARACTERS_SEED = 21
 
   state_machine :initial => 'in_progress' do
+    after_transition :to => 'paid', :do => [:mark_items_paid]
 
     event :complete do
       transition :to => 'complete', :from => 'in_progress'
@@ -77,6 +78,10 @@ class Order < ActiveRecord::Base
   #    :shipping_method  => nil,
   #    :order_items => {}# the key is variant_id , a hash of {variant, shipping_rate, quantity, tax_rate, total, shipping_category_id}
   #  }
+
+  def mark_items_paid
+    order_items.map(&:pay!)
+  end
 
   # user name on the order
   #
@@ -165,6 +170,8 @@ class Order < ActiveRecord::Base
   # @return [Payment] payment object
   def capture_invoice(invoice)
     payment = invoice.capture_payment({})
+    self.pay! if payment.success
+    payment
   end
 
 

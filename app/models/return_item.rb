@@ -28,4 +28,9 @@ class ReturnItem < ActiveRecord::Base
   validates :return_reason_id,        :presence => true
   #validates :return_authorization_id, :presence => true
 
+  def mark_returned!
+    self.returned = true
+    self.order_item.return!
+    save
+  end
 end

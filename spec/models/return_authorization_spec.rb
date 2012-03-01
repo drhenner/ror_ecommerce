@@ -7,6 +7,17 @@ describe ReturnAuthorization, 'instance methods' do
     @return_authorization = Factory(:return_authorization, :order => @order, :user => @user)
   end
 
+  context '.mark_items_returned' do
+    it 'should mark items returned' do
+      order_item                = Factory.build(:order_item, :order => @order)
+      order_item.state = 'paid'
+      order_item.save
+      return_item               = Factory(:return_item, :order_item => order_item, :return_authorization => @return_authorization)
+      @return_authorization.mark_items_returned
+      order_item.reload.state.should == 'returned'
+      return_item.reload.returned.should be_true
+    end
+  end
   context '.process_ledger_transactions' do
     it 'should call process rma' do
       Invoice.expects(:process_rma).once

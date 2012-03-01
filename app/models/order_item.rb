@@ -37,11 +37,17 @@ class OrderItem < ActiveRecord::Base
     @beginning_total            = self.total            rescue @beginning_total = nil # this stores the initial value of the total
   end
 
- state_machine :initial => 'unpaid' do
+  state_machine :initial => 'unpaid' do
 
+    event :pay do
+      transition :to => 'paid', :from => ['unpaid']
+    end
 
-   #after_transition :to => 'complete', :do => [:update_inventory]
- end
+    event :return do
+      transition :to => 'returned', :from => ['paid']
+    end
+    #after_transition :to => 'complete', :do => [:update_inventory]
+  end
 
  # if the order item has been shipped it will return true
  #
