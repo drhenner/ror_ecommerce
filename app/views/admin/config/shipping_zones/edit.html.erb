@@ -2,7 +2,7 @@
 <h1>Editing Shipping Zone</h1>
 
 
-<%= form_for(@shipping_zone, :as => :shipping_zone, :url => admin_config_shipping_zone_path(@shipping_zone)) do |f| %>
+<%= form_for(@shipping_zone, :url => admin_config_shipping_zone_path(@shipping_zone)) do |f| %>
   <%= render :partial =>  'form', :locals => {:f => f} %>
 <% end %>
 
