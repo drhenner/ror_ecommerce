@@ -2,9 +2,9 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'shoulda/integrations/rspec2' # Add this line
+#require 'shoulda/integrations/rspec2' # Add this line
 require "authlogic/test_case"
-require 'shoulda'
+#require 'shoulda'
 require 'mocha'
 require "email_spec"
 require 'capybara/rspec'
