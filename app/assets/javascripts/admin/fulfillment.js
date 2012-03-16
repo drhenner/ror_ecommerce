@@ -128,4 +128,4 @@ Hadean.Fulfillment = {
     jQuery('#dialog').dialog('open');
     return false;
   }// cancelInvoice
-}
+};

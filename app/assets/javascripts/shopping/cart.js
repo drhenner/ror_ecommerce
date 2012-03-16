@@ -28,11 +28,11 @@ Hadean.Cart = {
       jQuery('.variant_border').click( function() {
           jQuery('#cart_item_variant_id').val(this.getAttribute("data-variant"));
           jQuery(".variant_border").removeClass('selected_variant');
-          jQuery(this).addClass('selected_variant')
+          jQuery(this).addClass('selected_variant');
           //jQuery('#submit_add_to_cart').removeClass('add-to-cart').addClass('ready-to-add-to-cart');
         }
-      )
+      );
 
     }
   }
-}
+};

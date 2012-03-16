@@ -28,7 +28,7 @@ Hadean.FulfillmentNote = {
       dataType: 'json'
     });
   }
-}
+};
 
 jQuery(function() {
   Hadean.FulfillmentNote.initialize();

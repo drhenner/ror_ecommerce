@@ -9,25 +9,25 @@ Hadean.Utility = {
 
 
 Hadean.AdminMerchandiseProductForm = {
-    
+
     productCheckboxesDiv  : '#product_properties',
     prototypeSelectId     : '#product_prototype_id',
     formController        : '/admin/merchandise/products',
     productId             : null,
-    
+
     initialize : function(product_Id) {
 
       this.productId  = product_Id;
       var prototype       = jQuery(Hadean.AdminMerchandiseProductForm.prototypeSelectId);
       prototype.
               bind('change',
-                function() { 
+                function() {
                   Hadean.AdminMerchandiseProductForm.addProperties(
-                    jQuery(Hadean.AdminMerchandiseProductForm.prototypeSelectId + " option:selected").first().val()
-                  ) 
+                    jQuery(Hadean.AdminMerchandiseProductForm.prototypeSelectId + " option:selected").first().val();
+                  );
                 }
               );
-    }, 
+    },
     addProperties : function(id) {
       if ( typeof id == 'undefined' || id == 0 ) {
         //  show all properties...
@@ -56,16 +56,16 @@ $('#product_properties').children().fadeIn();
       //alert(json.responseText);
       properties = JSON.parse(json.responseText);
       //alert(properties.property[0])
-      jQuery.each (properties.active, function(p,value) { 
+      jQuery.each (properties.active, function(p,value) {
         jQuery('#property_' + value ).fadeIn();
       });
-      
-      jQuery.each (properties.inactive, function(p,value) { 
+
+      jQuery.each (properties.inactive, function(p,value) {
         propertyId = '#property_' + value;
         jQuery(propertyId ).hide();
         jQuery(propertyId + ' input:text')[0].value = '';
       });
     }
-}
+};
 
 MerchProductForm = Hadean.AdminMerchandiseProductForm

@@ -14,10 +14,10 @@ if (typeof Hadean.Admin.products == "undefined") {
           // If the user clicks add new variant button
           jQuery('.add_variant_child').live('click', function() {
             Hadean.Admin.products.addVariant();// product_table_body
-          })
+          });
           jQuery('.remove_variant_child').live('click', function() {
             Hadean.Admin.products.removeVariant(this);// product_table_body
-          })
+          });
         },
         addVariant : function(){
           var content =  $('#variants_fields_template').html() ;
@@ -35,4 +35,4 @@ if (typeof Hadean.Admin.products == "undefined") {
     jQuery(function() {
       Hadean.Admin.products.initialize();
     });
-}
+};

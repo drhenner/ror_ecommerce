@@ -22,13 +22,13 @@ if (typeof Hadean.Admin.purchaseOrder == "undefined") {
             jQuery('#purchase_order_purchase_order_variants_attributes_'+ new_id +'_variant_id').addClass('chzn-select');
             jQuery(".chzn-select").chosen();
             return false;
-          })
+          });
 
           jQuery('.select_variants').live('change', function(){
             //alert($(this).val());
             Hadean.Admin.purchaseOrder.prefillCost(this);
             return false;
-          })
+          });
         },
         prefillCost : function(obj) {
           jQuery.ajax( {
