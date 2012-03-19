@@ -23,7 +23,7 @@ Hadean.AdminMerchandiseProductForm = {
               bind('change',
                 function() {
                   Hadean.AdminMerchandiseProductForm.addProperties(
-                    jQuery(Hadean.AdminMerchandiseProductForm.prototypeSelectId + " option:selected").first().val();
+                    jQuery(Hadean.AdminMerchandiseProductForm.prototypeSelectId + " option:selected").first().val()
                   );
                 }
               );
