@@ -21,7 +21,7 @@ module InvoicePrinter
       end
     rescue
       pdf.bounding_box([20,720], :width => 120) do
-        pdf.draw_text "LOGO", :size => 32
+        pdf.draw_text "LOGO", {:size => 32, :at => [100, 100]}
       end
     end
   end
