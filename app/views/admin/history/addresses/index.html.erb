@@ -1,8 +1,8 @@
 <h1><%= @order.user.name %>'s  Addresses</h1>
 <p>Select the Address to change the shipment to or Create a new address.</p>
 <table>
-  <tr>
-    <th>First name</th>
+  <tr class='odd'>
+    <th class='column1_header'>First name</th>
     <th>Last name</th>
     <th>Address1</th>
     <th>Address2</th>
@@ -14,7 +14,7 @@
   </tr>
 
 <% @addresses.each do |address| %>
-  <tr>
+  <tr class='<%= cycle("odd", "")%>'>
     <td><%= address.first_name %></td>
     <td><%= address.last_name %></td>
     <td><%= address.address1 %></td>

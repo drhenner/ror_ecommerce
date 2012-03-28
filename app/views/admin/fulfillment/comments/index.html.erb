@@ -3,12 +3,12 @@
 <div class=' pretty_table'>
 <table>
   <thead>
-  <tr>
-    <th>Name</th><th></th><th></th>
+  <tr class='odd'>
+    <th class='column1_header'>Name</th><th></th><th></th>
   </tr>
   </thead>
   <% for comment in order.comments %>
-    <tr>
+    <tr class='<%= cycle("odd", "")%>'>
       <td><%= link_to comment.name, admin_fulfillment_order_comment_path(order, comment) %></td>
       <td><%= link_to "Edit", edit_admin_fulfillment_order_comment_path(order, comment) %></td>
       <td><%= link_to "Destroy", admin_fulfillment_order_comment_path(order, comment), :confirm => 'Are you sure?', :method => :delete %></td>

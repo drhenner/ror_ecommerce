@@ -3,8 +3,8 @@
 <div class=' pretty_table'>
 <table>
   <thead>
-  <tr>
-    <th>Account type</th>
+  <tr class='odd'>
+    <th class='column1_header'>Account type</th>
     <th>Monthly charge</th>
     <th>Active</th>
     <th></th>
@@ -13,7 +13,7 @@
   </thead>
 
 <% @accounts.each do |account| %>
-  <tr>
+  <tr class='<%= cycle("odd", "")%>'>
     <td><%= account.account_type %></td>
     <td><%= account.monthly_charge %></td>
     <td><%= account.active %></td>

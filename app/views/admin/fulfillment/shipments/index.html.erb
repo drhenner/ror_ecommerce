@@ -9,8 +9,8 @@
 <div class=' pretty_table'>
 <table>
   <thead>
-  <tr>
-    <th>Number</th>
+  <tr class='odd'>
+    <th class='column1_header'>Number</th>
     <th>Shipped at</th>
     <th>Tracking</th>
     <th>State</th>
@@ -23,7 +23,7 @@
 
 <% @shipments.each do |shipment| %>
   <% if shipment.has_items? %>
-      <tr>
+      <tr class='<%= cycle("odd", "")%>'>
         <td><%= shipment.number %></td>
         <td><%= I18n.localize(shipment.shipped_at, :format => :us_time) if shipment.shipped_at %></td>
         <td><%= shipment.tracking %></td>

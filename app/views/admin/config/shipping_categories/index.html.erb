@@ -4,14 +4,14 @@
 <div class=' pretty_table'>
 <table>
   <thead>
-  <tr>
-    <th>Name</th>
+  <tr class='odd'>
+    <th class='column1_header'>Name</th>
     <th></th>
   </tr>
   </thead>
 
 <% @shipping_categories.each do |shipping_category| %>
-  <tr>
+  <tr class='<%= cycle("odd", "")%>'>
     <td><%= shipping_category.name %></td>
     <td><%= link_to 'Edit', edit_admin_config_shipping_category_path(shipping_category) %></td>
   </tr>

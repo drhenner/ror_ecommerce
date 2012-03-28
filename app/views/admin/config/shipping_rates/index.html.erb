@@ -4,8 +4,8 @@
 <div class=' pretty_table'>
   <table>
     <thead>
-    <tr>
-      <th>Shipping Method</th>
+    <tr class='odd'>
+      <th class='column1_header'>Shipping Method</th>
       <th>Rate</th>
       <th>Shipping rate type</th>
       <th>Minimum Charge</th>
@@ -15,7 +15,7 @@
     </thead>
 
   <% @shipping_rates.each do |shipping_rate| %>
-    <tr>
+    <tr class='<%= cycle("odd", "")%>'>
       <td><%= shipping_rate.shipping_method.name %></td>
       <td><%= shipping_rate.rate %></td>
       <td><%= shipping_rate.shipping_rate_type.name %></td>

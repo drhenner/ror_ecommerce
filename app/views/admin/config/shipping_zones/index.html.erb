@@ -5,14 +5,14 @@
 <div class=' pretty_table'>
   <table class='span-12'>
     <thead>
-    <tr>
-      <th>Name</th>
+    <tr class='odd'>
+      <th class='column1_header'>Name</th>
       <th></th>
     </tr>
     </thead>
 
   <% @shipping_zones.each do |shipping_zone| %>
-    <tr>
+    <tr class='<%= cycle("odd", "")%>'>
       <td><%= link_to shipping_zone.name, admin_config_shipping_zone_path(shipping_zone) %></td>
       <td><%= link_to 'Edit', edit_admin_config_shipping_zone_path(shipping_zone) %></td>
     </tr>

@@ -3,8 +3,8 @@
 <div class=' pretty_table'>
 <table>
   <thead>
-  <tr>
-    <th>Code</th>
+  <tr class='odd'>
+    <th class='column1_header'>Code</th>
     <th>Type</th>
     <th>Starts at</th>
     <th>Expires at</th>
@@ -12,7 +12,7 @@
   </tr>
   </thead>
   <% for coupon in @coupons %>
-    <tr>
+    <tr class='<%= cycle("odd", "")%>'>
       <td><%= link_to coupon.code, admin_generic_coupon_path(coupon) %></td>
       <td><%= coupon.type %></td>
       <td><%= coupon.display_start_time %></td>

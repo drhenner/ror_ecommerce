@@ -5,8 +5,8 @@
 <div class=' pretty_table'>
   <table>
     <thead>
-    <tr>
-      <th>Percentage</th>
+    <tr class='odd'>
+      <th class='column1_header'>Percentage</th>
       <th>Product type</th>
       <th>State</th>
       <th>Start date</th>
@@ -19,7 +19,7 @@
     </thead>
 
   <% @tax_rates.each do |tax_rate| %>
-    <tr>
+    <tr class='<%= cycle("odd", "")%>'>
       <td><%= tax_rate.percentage %></td>
       <td><%= tax_rate.tax_status.name %></td>
       <td><%= tax_rate.state.name %></td>

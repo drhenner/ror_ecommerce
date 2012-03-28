@@ -3,15 +3,15 @@
 <div class=' pretty_table'>
   <table class=''>
     <thead>
-    <tr>
-      <th>Name</th>
+    <tr class='odd'>
+      <th class='column1_header'>Name</th>
       <th></th>
       <th></th>
     </tr>
     </thead>
 
   <% @shipping_methods.each do |shipping_method| %>
-    <tr>
+    <tr class='<%= cycle("odd", "")%>'>
       <td><%= shipping_method.name %> </td>
       <td><%= link_to 'Show', admin_config_shipping_method_path(shipping_method) %></td>
       <td><%= link_to 'Edit', edit_admin_config_shipping_method_path(shipping_method) %></td>

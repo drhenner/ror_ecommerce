@@ -33,14 +33,14 @@
 
       <table>
         <thead>
-        <tr>
-            <th><%= sortable 'identifing_name',"ID name" %></th>
+        <tr class='odd'>
+            <th class='column1_header'><%= sortable 'identifing_name',"ID name" %></th>
             <th><%= sortable "display_name" %></th>
             <th>Active</th>
         </tr>
         </thead>
         <% @properties.each do |property| %>
-          <tr>
+          <tr class='<%= cycle("odd", "")%>'>
             <td><%= link_to property.identifing_name, edit_admin_merchandise_property_path(property) %></td>
             <td><%= property.display_name %></td>
             <td><%= property.display_active %></td>

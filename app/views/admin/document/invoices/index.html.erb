@@ -4,8 +4,8 @@
 <div class=' pretty_table'>
   <table>
     <thead>
-    <tr>
-      <th>Amount</th>
+    <tr class='odd'>
+      <th class='column1_header'>Amount</th>
       <th>State</th>
       <th>Order</th>
       <th>Type</th>
@@ -14,7 +14,7 @@
     </tr>
     </thead>
     <% for invoice in @invoices %>
-      <tr>
+      <tr class='<%= cycle("odd", "")%>'>
         <td><%= invoice.amount %></td>
         <td><%= invoice.state %></td>
         <td><%= invoice.order.number %></td>

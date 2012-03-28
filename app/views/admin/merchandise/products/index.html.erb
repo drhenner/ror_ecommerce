@@ -28,8 +28,8 @@
 <div id="admin_products_page_wrapper" class='pretty_table'>
     <table>
       <thead>
-      <tr>
-          <th><%= sortable "name" %></th>
+      <tr class='odd'>
+          <th class='column1_header'><%= sortable "name" %></th>
           <th>Active</th>
           <th><%= 'Product Type' %></th>
           <th></th>
@@ -37,7 +37,7 @@
       </tr>
       </thead>
       <% @products.each do |product| %>
-        <tr>
+        <tr class='<%= cycle("odd", "")%>'>
           <td><%= link_to product.name, edit_admin_merchandise_product_path(product) %></td>
           <td><%=  product.available? ? 'Yes' : 'No' %></td>
           <td><%=  product.product_type.name %></td>

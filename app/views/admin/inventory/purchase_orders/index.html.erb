@@ -36,8 +36,8 @@
 
       <table>
         <thead>
-        <tr>
-          <th><%= sortable "supplier_name" %></th>
+        <tr class='odd'>
+          <th class='column1_header'><%= sortable "supplier_name" %></th>
           <th><%= sortable "invoice_number" %></th>
           <th><%= sortable "tracking_number" %></th>
           <th><%= label_tag "estimated_arrival" %></th>
@@ -45,7 +45,7 @@
         </tr>
         </thead>
         <% @purchase_orders.each do |order| %>
-          <tr>
+          <tr class='<%= cycle("odd", "")%>'>
             <td><%= link_to order.supplier_name, edit_admin_inventory_purchase_order_path(order) %></td>
             <td><%= order.invoice_number %></td>
             <td><%= order.tracking_number %></td>

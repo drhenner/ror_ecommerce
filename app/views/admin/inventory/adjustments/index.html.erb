@@ -5,12 +5,12 @@
 <div  class='span-8 pretty_table'>
 <table>
   <thead>
-  <tr>
-    <th>Name</th>
+  <tr class='odd'>
+    <th class='column1_header'>Name</th>
   </tr>
   </thead>
   <% for product in @products %>
-    <tr>
+    <tr class='<%= cycle("odd", "")%>'>
       <td><%= link_to product.name, admin_inventory_adjustment_path(product) %></td>
     </tr>
   <% end %>

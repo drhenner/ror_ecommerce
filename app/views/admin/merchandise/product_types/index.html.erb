@@ -30,12 +30,12 @@
 
       <table>
         <thead>
-        <tr>
-          <th><%= sortable "name" %></th>
+        <tr class='odd'>
+          <th class='column1_header' ><%= sortable "name" %></th>
         </tr>
         </thead>
         <% @product_types.each do |product_type| %>
-          <tr>
+          <tr class='<%= cycle("odd", "")%>'>
             <td><%= link_to product_type.name, edit_admin_merchandise_product_type_path(product_type) %></td>
           </tr>
         <% end %>

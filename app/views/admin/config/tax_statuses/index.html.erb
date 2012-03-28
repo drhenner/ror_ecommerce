@@ -5,15 +5,15 @@
 <div class=' pretty_table'>
   <table>
     <thead>
-    <tr>
-      <th>Name</th>
+    <tr class='odd'>
+      <th class='column1_header'>Name</th>
       <th></th>
       <th></th>
     </tr>
     </thead>
 
   <% @tax_statuses.each do |tax_status| %>
-    <tr>
+    <tr class='<%= cycle("odd", "")%>'>
       <td><%= link_to tax_status.name, admin_config_tax_status_path(tax_status) %></td>
       <td><%= link_to 'Edit', edit_admin_config_tax_status_path(tax_status) %></td>
       <td><%= link_to 'Delete', admin_config_tax_status_path(tax_status), confirm: 'Are you sure?', method: :delete %></td>

@@ -30,13 +30,13 @@
 
       <table>
         <thead>
-        <tr>
-          <th><%= sortable "name", "Name" %></th>
+        <tr class='odd'>
+          <th class='column1_header'><%= sortable "name", "Name" %></th>
           <th><%= sortable "email" %></th>
         </tr>
         </thead>
         <% @suppliers.each do |supplier| %>
-          <tr>
+          <tr class='<%= cycle("odd", "")%>'>
             <td><%= link_to supplier.name, edit_admin_inventory_supplier_path(supplier) %></td>
             <td><%= supplier.email %></td>
           </tr>
