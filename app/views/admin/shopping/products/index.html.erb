@@ -31,15 +31,15 @@
   <div id="admin_shopping_products_grid_wrapper" class='column pretty_table'>
       <table>
         <thead>
-        <tr>
-            <th><%= sortable "name" %></th>
+        <tr class='odd'>
+            <th class='column1_header'><%= sortable "name" %></th>
             <th>Available</th>
             <th><%= 'Product Type' %></th>
             <th> Price Range </th>
         </tr>
         </thead>
         <% @products.each do |product| %>
-          <tr>
+          <tr class='<%= cycle("odd", "")%>'>
             <td><%= link_to product.name, edit_admin_shopping_product_path(product) %></td>
             <td><%=  product.available? ? 'Yes' : 'No' %></td>
             <td><%=  product.product_type.name %></td>
