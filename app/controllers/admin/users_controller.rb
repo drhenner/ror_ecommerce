@@ -8,9 +8,6 @@ class Admin::UsersController < Admin::BaseController
     # @users = User.admin_grid(params)
     @users = User.admin_grid(params).order(sort_column + " " + sort_direction).
                                     paginate(:per_page => 25, :page => params[:page].to_i)
-    respond_to do |format|
-      format.html
-    end
   end
 
   def new

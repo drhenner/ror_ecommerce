@@ -7,19 +7,12 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
       @order = Order.find_by_number(params[:order_id])
       @shipments = @shipments.where(['shipments.order_id = ?', @order.id])
     end
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   # GET /admin/fulfillment/shipments/1
   # GET /admin/fulfillment/shipments/1.xml
   def show
     @shipment = Shipment.includes([:order, :address, {:order_items => {:variant => :product} }]).find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
   end
 
   # GET /admin/fulfillment/shipments/new
@@ -27,9 +20,6 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   def new
     @shipment = Shipment.new
     form_info
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
   # GET /admin/fulfillment/shipments/1/edit

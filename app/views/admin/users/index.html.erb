@@ -1,8 +1,4 @@
 
-<% content_for :bottom do -%>
-
-<% end %>
-
 <h2> Users </h2>
 
 <% content_for :sidemenu do %>
@@ -33,15 +29,15 @@
 
     <table>
       <thead>
-      <tr>
-        <th><%= sortable "first_name" %></th>
+      <tr class='odd'>
+        <th  class='column1_header'><%= sortable "first_name" %></th>
         <th><%= sortable "last_name" %></th>
         <th><%= sortable "email" %></th>
         <th>Status</th>
       </tr>
       </thead>
       <% @users.each do |user| %>
-        <tr>
+        <tr class='<%= cycle("odd", "")%>'>
           <td><%= link_to user.first_name, edit_admin_user_path(user) %></td>
           <td><%= user.last_name %></td>
           <td><%= user.email %></td>

@@ -2,12 +2,10 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
   helper_method :sort_column, :sort_direction
   # GET /admin/fulfillment/orders
   def index
+    params[:page] ||= 1
     @orders = Order.fulfillment_grid(params).order(sort_column + " " + sort_direction).
                                             paginate(:per_page => 25, :page => params[:page].to_i)
 
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   # GET /admin/fulfillment/orders/1
@@ -68,7 +66,7 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
     end
   end
 
-  private
+  protected
 
   def sort_column
     Order.column_names.include?(params[:sort]) ? params[:sort] : "number"
