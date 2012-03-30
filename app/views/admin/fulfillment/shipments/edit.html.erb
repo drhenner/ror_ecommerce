@@ -11,7 +11,7 @@
       <%= render :partial => 'form', :locals => {:f => f } %>
     <% end %>
     <%= link_to 'Show', admin_fulfillment_shipment_path(@shipment) %> |
-    <%= link_to 'Back', admin_fulfillment_shipments_path(:order_id => @shipment.order_id) %>
+    <%= link_to 'Back', admin_fulfillment_shipments_path(:order_id => @shipment.order.number) %>
   </div>
 
   <div id='shipment_comment_form_wrapper' class='span-11'>
