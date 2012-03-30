@@ -28,17 +28,20 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
     form_info
   end
 
-  # POST /admin/fulfillment/shipments
-  # POST /admin/fulfillment/shipments.xml
+
+  # create shipments if they wre created already
   def create
-    @shipment = Shipment.new(params[:shipment])
+    #@shipment = Shipment.new(params[:shipment])
+    @order = Order.find_by_number(params[:order_number])
 
     respond_to do |format|
-      if @shipment.save
-        format.html { redirect_to(admin_fulfillment_shipment_path(@shipment, :order_id => @shipment.order.number), :notice => 'Shipment was successfully created.') }
+      if @order.shipments.count == 0
+        @shipments = Shipment.create_shipments_with_items(@order)
+        format.html { redirect_to(admin_fulfillment_shipments_path(:order_id => @order.number), :notice => 'Shipment was successfully created.') }
       else
         form_info
-        format.html { render :action => "new" }
+        flash[:alert] = 'This order already has a shipment.'
+        format.html { redirect_to(edit_admin_fulfillment_order_path( @order )) }
       end
     end
   end
