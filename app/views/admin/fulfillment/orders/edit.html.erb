@@ -46,7 +46,7 @@
         </div>
     <% end %>
     <div class='span-7 rounded-10 line_item_blue'>
-      <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(:number => @order.number) %>
+      <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(:order_id => @order.number) %>
     </div>
 
   <% end %>
