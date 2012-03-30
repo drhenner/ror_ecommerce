@@ -11,6 +11,7 @@
   <thead>
   <tr class='odd'>
     <th class='column1_header'>Number</th>
+    <th>Order #</th>
     <th>Shipped at</th>
     <th>Tracking</th>
     <th>State</th>
@@ -25,6 +26,7 @@
   <% if shipment.has_items? %>
       <tr class='<%= cycle("odd", "")%>'>
         <td><%= shipment.number %></td>
+        <td><%= link_to shipment.order.number, edit_admin_fulfillment_order_path(shipment.order) %></td>
         <td><%= I18n.localize(shipment.shipped_at, :format => :us_time) if shipment.shipped_at %></td>
         <td><%= shipment.tracking %></td>
         <td><%= shipment.state %></td>
