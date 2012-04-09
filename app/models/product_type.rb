@@ -1,6 +1,6 @@
 class ProductType < ActiveRecord::Base
   acts_as_nested_set  #:order => "name"
-  has_many :products
+  has_many :products, dependent: :restrict
 
   validates :name,    :presence => true, :length => { :maximum => 255 }
 
