@@ -151,7 +151,7 @@ class OrderItem < ActiveRecord::Base
   def item_total(coupon = nil)
     # shipping charges are calculated in order.rb
 
-    self.total ||= calculate_total(coupon = nil)
+    self.total ||= calculate_total(coupon)
   end
 
   # this is the price after coupons and taxes
