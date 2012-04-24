@@ -3,6 +3,24 @@ require  'spec_helper'
 describe Shopping::CouponsController do
   render_views
 
+  before(:each) do
+    activate_authlogic
+
+    @cur_user = Factory(:user)
+    login_as(@cur_user)
+
+    #stylist_cart
+    @variant  = Factory(:variant)
+
+    create_cart(@cur_user, @cur_user, [@variant])
+
+    @address      = Factory(:address)
+    @order        = Factory(:order, :ship_address_id => @address.id)
+    @order_item   = Factory(:order_item, :order => @order, :variant => @variant)
+    @order.stubs(:order_items).returns([@order_item])
+    @controller.stubs(:find_or_create_order).returns(@order)
+  end
+
   it "show action should render show template" do
     get :show
     response.should render_template(:show)

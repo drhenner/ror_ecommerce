@@ -50,21 +50,24 @@ describe Coupon do
     context "eligible?(at)" do
 
       it "should return true" do
+        order = Factory(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now - 1.days)
         @coupon_value.stubs(:expires_at).returns(Time.now + 1.days)
-        @coupon_value.eligible?.should be_true
+        @coupon_value.eligible?(order).should be_true
       end
 
       it "should return false" do
+        order = Factory(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now - 3.days)
         @coupon_value.stubs(:expires_at).returns(Time.now - 1.days)
-        @coupon_value.eligible?.should be_false
+        @coupon_value.eligible?(order).should be_false
       end
 
       it "should return false" do
+        order = Factory(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now + 1.days)
         @coupon_value.stubs(:expires_at).returns(Time.now + 18.days)
-        @coupon_value.eligible?.should be_false
+        @coupon_value.eligible?(order).should be_false
       end
     end
 

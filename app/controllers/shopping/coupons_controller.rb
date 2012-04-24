@@ -1,4 +1,4 @@
-class Shopping::CouponsController < ApplicationController
+class Shopping::CouponsController < Shopping::BaseController
   def show
     form_info
   end
@@ -6,7 +6,7 @@ class Shopping::CouponsController < ApplicationController
   def create
     @coupon = Coupon.find_by_code(params[:coupon][:code])
 
-    if @coupon && @coupon.eligible? && update_order_coupon_id(@coupon.id)
+    if @coupon && @coupon.eligible?(session_order) && update_order_coupon_id(@coupon.id)
       flash[:notice] = "Successfully added coupon code #{@coupon.code}."
       redirect_to shopping_orders_url
     else

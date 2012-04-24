@@ -358,6 +358,14 @@ class User < ActiveRecord::Base
     Notifier.password_reset_instructions(self).deliver
   end
 
+  def number_of_finished_orders
+    finished_orders.count
+  end
+
+  def number_of_finished_orders_at(at)
+    finished_orders.select{|o| o.completed_at < at }.size
+  end
+
   private
 
   def validate_age

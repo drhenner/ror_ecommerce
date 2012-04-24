@@ -39,7 +39,7 @@ class Coupon < ActiveRecord::Base
     item_prices.sum > minimum_value && eligible?(at)
   end
 
-  def eligible?(at = Time.zone.now)
+  def eligible?(order, at = Time.zone.now)
     starts_at <= at && expires_at >= at
   end
 
