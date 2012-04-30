@@ -258,7 +258,7 @@ class Order < ActiveRecord::Base
   # @param [none]
   # @return [Float] amount the coupon reduces the value of the order
   def coupon_amount
-    coupon_id ? coupon.value(item_prices) : 0.0
+    coupon_id ? coupon.value(item_prices, self) : 0.0
   end
 
   # called when creating the invoice.  This does not change the store_credit amount

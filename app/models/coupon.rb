@@ -30,12 +30,12 @@ class Coupon < ActiveRecord::Base
   attr_accessor :c_type
 
   # amount the coupon will reduce the order
-  def value(item_prices)
-    qualified?(item_prices) ? coupon_amount(item_prices) : 0.0
+  def value(item_prices, order)
+    qualified?(item_prices, order) ? coupon_amount(item_prices) : 0.0
   end
 
   # Does the coupon meet the criteria to apply it.  (is the order price total over the coupon's minimum value)
-  def qualified?(item_prices, at = Time.zone.now)
+  def qualified?(item_prices, order, at = Time.zone.now)
     item_prices.sum > minimum_value && eligible?(at)
   end
 
@@ -55,7 +55,7 @@ class Coupon < ActiveRecord::Base
 
   # dumby method to be called on the specific type of coupon  (single table inhertance)
   def coupon_amount(item_prices)
-    0.0
+    (item_prices >= minimum_value) ? amount : 0.0
   end
 
   # This is the value of the items that you will apply the coupon on.

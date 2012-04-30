@@ -46,6 +46,11 @@
       <tr>
         <td></td><td>Shipping Charges:</td><td><%= @order.shipping_charges %></td>
       </tr>
+      <% if @order.coupon_amount > 0.0 %>
+        <tr>
+          <td></td><td>Coupon:</td><td><%= @order.coupon_amount %></td>
+        </tr>
+      <% end %>
       <tfoot>
         <tr class='even'>
           <td></td><td>Total:</td><td><em><%= @order.total %></em></td>

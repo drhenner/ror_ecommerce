@@ -24,6 +24,7 @@ describe Coupon do
 
   context "coupon instance methods" do
     before(:each) do
+      @order        = Factory(:order)
       @coupon_value = Factory(:coupon_value, :amount => 5.00)
     end
 
@@ -31,19 +32,19 @@ describe Coupon do
       it "should sum the prices for combine coupons" do
         @coupon_value.stubs(:combine).returns(true)
         @coupon_value.stubs(:qualified?).returns(true)
-        @coupon_value.value([2.01, 9.00]).should == 5.00
+        @coupon_value.value([2.01, 9.00], @order).should == 5.00
       end
 
       it "should return the max price for non-combine coupons" do
         @coupon_value.stubs(:combine).returns(false)
         @coupon_value.stubs(:qualified?).returns(true)
-        @coupon_value.value([2.01, 9.00]).should == 5.00
+        @coupon_value.value([2.01, 9.00], @order).should == 5.00
       end
 
       it "should return 0.00 for an order that doesnt qualify" do
         @coupon_value.stubs(:combine).returns(true)
         @coupon_value.stubs(:qualified?).returns(false)
-        @coupon_value.value([2.01, 9.00]).should == 0.00
+        @coupon_value.value([2.01, 9.00], @order).should == 0.00
       end
     end
 
@@ -77,12 +78,12 @@ describe Coupon do
       it "should return true" do
         @coupon_value.stubs(:minimum_value).returns(10.00)
         @coupon_value.stubs(:eligible?).returns(true)
-        @coupon_value.qualified?([2.01, 9.00]).should be_true
+        @coupon_value.qualified?([2.01, 9.00], @order).should be_true
       end
 
       it "should return false" do
         @coupon_value.stubs(:minimum_value).returns(20.00)
-        @coupon_value.qualified?([2.01, 9.00]).should be_false
+        @coupon_value.qualified?([2.01, 9.00], @order).should be_false
       end
     end
 
@@ -121,6 +122,7 @@ describe Coupon do
 
   context "coupon instance methods" do
     before(:each) do
+      @order        = Factory(:order)
       @coupon_percent = Factory(:coupon_percent, :percent => 10)
     end
 
@@ -128,19 +130,19 @@ describe Coupon do
       it "should sum the prices for combine coupons" do
         @coupon_percent.stubs(:combine).returns(true)
         @coupon_percent.stubs(:qualified?).returns(true)
-        @coupon_percent.value([2.01, 9.00]).should == 1.10
+        @coupon_percent.value([2.01, 9.00], @order).should == 1.10
       end
 
       it "should return the max price for non-combine coupons" do
         @coupon_percent.stubs(:combine).returns(false)
         @coupon_percent.stubs(:qualified?).returns(true)
-        @coupon_percent.value([2.01, 9.00]).should == 0.90
+        @coupon_percent.value([2.01, 9.00], @order).should == 0.90
       end
 
       it "should return 0.00 for an order that doesnt qualify" do
         @coupon_percent.stubs(:combine).returns(true)
         @coupon_percent.stubs(:qualified?).returns(false)
-        @coupon_percent.value([2.01, 9.00]).should == 0.00
+        @coupon_percent.value([2.01, 9.00], @order).should == 0.00
       end
     end
   end
