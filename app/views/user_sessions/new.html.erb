@@ -45,12 +45,12 @@
 
               <li>
                   <%=form.label :email, 'Email' %>
-                  <%= form.email_field :email %>
+                  <%= form.email_field :email, :autocomplete => 'off', :autocapitalize => 'off' %>
               </li>
 
               <li>
                   <%=form.label :password, 'Password' %>
-                  <%= form.password_field :password %>
+                  <%= form.password_field :password, :autocomplete => 'off', :autocapitalize => 'off' %>
               </li>
 
          </ol>
@@ -78,7 +78,7 @@
               </li>
               <li>
                   <%=form.label :email, 'Email' %>
-                  <%= form.email_field :email %>
+                  <%= form.email_field :email, :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
               <li>
                   <%=form.label :birth_date %>
@@ -86,11 +86,11 @@
               </li>
               <li>
                   <%=form.label :password, 'Password' %>
-                  <%= form.password_field :password %>
+                  <%= form.password_field :password, :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
               <li>
                   <%=form.label :password_confirmation, 'Confirm' %>
-                  <%= form.password_field :password_confirmation %>
+                  <%= form.password_field :password_confirmation, :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
          </ol>
       <%#= form.buttons do %>
