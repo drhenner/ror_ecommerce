@@ -60,7 +60,9 @@
         </tr><tr>
           <td>Brand </td><td> <%= ff.select :brand_id, @brands, { :include_blank => true }, :class => 'span-3' %> </td>
         </tr>
-
+        <tr>
+          <td>Inactivate </td><td> <%= ff.check_box :inactivate, :class => 'span-3' %> </td>
+        </tr>
           <% @product.properties.each do |property| %>
             <tr style='background:#ACF;text-align:center;'> <th colspan=2> <%= property.display_name %> </th> </tr>
             <% variant_id = variant.id rescue nil %>

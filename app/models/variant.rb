@@ -74,6 +74,15 @@ class Variant < ActiveRecord::Base
     deleted_at.nil? || deleted_at > Time.zone.now
   end
 
+  # This is a form helper to inactivate a variant
+  def inactivate=(val)
+    self.deleted_at = Time.zone.now if !deleted_at && (val && (val == '1' || val.to_s == 'true'))
+  end
+
+  def inactivate
+    deleted_at ? true : false
+  end
+
   # returns true if the stock level is above or == the out of stock level
   #
   # @param [none]
