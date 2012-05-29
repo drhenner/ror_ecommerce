@@ -4,7 +4,7 @@ describe ShippingRate, 'instance methods' do
   before(:each) do
     @shipping_rate = Factory.build(:shipping_rate, :rate => 5.50)
   end
-  
+
   context ".individual?" do
     # shipping_rate_type_id == ShippingRateType::INDIVIDUAL_ID
     it "should return true" do
@@ -12,7 +12,7 @@ describe ShippingRate, 'instance methods' do
       @shipping_rate.shipping_rate_type = ship_rate_type
       @shipping_rate.individual?.should be_true
     end
-    
+
     it "should return true" do
       ship_rate_type = ShippingRateType.find_by_name('Order')
       @shipping_rate.shipping_rate_type = ship_rate_type
@@ -45,7 +45,14 @@ describe ShippingRate, 'instance methods' do
     it "should return the name_with_rate" do
       shipping_method = Factory(:shipping_method, :name => 'shipname')
       @shipping_rate.shipping_method = shipping_method
+      @shipping_rate.stubs(:individual?).returns(false)
       @shipping_rate.name_with_rate.should == 'shipname - $5.50'
+    end
+    it "should return the name_with_rate" do
+      shipping_method = Factory(:shipping_method, :name => 'shipname')
+      @shipping_rate.shipping_method = shipping_method
+      @shipping_rate.stubs(:individual?).returns(true)
+      @shipping_rate.name_with_rate.should == 'shipname - $5.50 / item'
     end
   end
 end

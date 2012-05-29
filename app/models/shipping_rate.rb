@@ -67,8 +67,8 @@ class ShippingRate < ActiveRecord::Base
   #
   # @param [none]
   # @return [ String ]
-  def name_with_rate
-    [shipping_method.name, number_to_currency(rate)].join(' - ')
+  def name_rate_min
+    [name_with_rate, "(min order => #{minimum_charge})" ].join(' ')
   end
 
   # the shipping method name, and $$$ rate
@@ -76,7 +76,16 @@ class ShippingRate < ActiveRecord::Base
   #
   # @param [none]
   # @return [ String ]
-  def name_rate_min
-    [name_with_rate, "(min order => #{minimum_charge})" ].join(' ')
+  def name_with_rate
+    [shipping_method.name, charge_amount].compact.join(' - ')
   end
+
+  private
+    def charge_amount
+      number_to_currency(rate) + per_item_verbage
+    end
+
+    def per_item_verbage
+      individual? ? ' / item' : ''
+    end
 end
