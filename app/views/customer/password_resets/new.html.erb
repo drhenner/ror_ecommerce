@@ -2,18 +2,19 @@
   <%= stylesheet_link_tag 'signup.css' %>
   <%#= stylesheet_link_tag 'cupertino/jquery-ui-1.8.12.custom' %>
 <% end %>
+<div style='margin-bottom:20px;'>
+  <h1> <%= I18n.t :reset_password_title %> </h1>
 
-<h1> <%= I18n.t :reset_password_title %> </h1>
+  <p>
+    <%=t :reset_password_text %>
+  </p>
 
-<p>
-  <%=t :reset_password_text %>
-</p>
+  <%= form_for(@user, :url => customer_password_reset_path(@user)) do |f| %>
 
-<%= form_for(@user, :url => customer_password_reset_path(@user)) do |f| %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-
-<% end %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </div>
+    <%= submit_tag 'Continue', :class => 'button' %>
+  <% end %>
+</div>
