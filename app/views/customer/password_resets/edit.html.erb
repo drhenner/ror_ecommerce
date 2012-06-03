@@ -1,10 +1,10 @@
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'signup.css' %>
-  <%#= stylesheet_link_tag 'cupertino/jquery-ui-1.8.12.custom' %>
 <% end %>
+<div style='margin-bottom:20px;'>
+  <h1> Password Reset </h1>
 
-<h1> Edit Password Reset </h1>
-
-<%= form_for(@user, :url => customer_password_reset_path(@user)) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
-<% end %>
+  <%= form_for(@user, :url => customer_password_reset_path(:id => @user.perishable_token)) do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  <% end %>
+</div>
