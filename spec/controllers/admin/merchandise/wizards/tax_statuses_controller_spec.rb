@@ -6,7 +6,7 @@ describe Admin::Merchandise::Wizards::TaxStatusesController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
 
     controller.session[:product_wizard] = {}

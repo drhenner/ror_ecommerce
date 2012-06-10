@@ -5,7 +5,7 @@ module Hadean
       #activate_authlogic
       user_session_for user
 
-      #u ||= FactoryGirl.create(user)
+      #u ||= create(user)
       controller.stubs(:current_user).returns(user)
       #u
     end
@@ -18,7 +18,7 @@ module Hadean
     #  UserSession.find.user
     #end
 
-    def set_current_user(user = FactoryGirl.create(:user))
+    def set_current_user(user = create(:user))
       UserSession.create(user)
       controller.stubs(:current_user).returns(user)
     end

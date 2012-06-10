@@ -7,7 +7,7 @@ describe Myaccount::AddressesController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     login_as(@user)
   end
 
@@ -18,7 +18,7 @@ describe Myaccount::AddressesController do
   end
 
   it "show action should render show template" do
-    @address = FactoryGirl.create(:address, :addressable => @user)
+    @address = create(:address, :addressable => @user)
     get :show, :id => @address.id
     response.should render_template(:show)
   end
@@ -30,42 +30,42 @@ describe Myaccount::AddressesController do
 
   it "create action should render new template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
-    address = FactoryGirl.build(:address)
+    address = build(:address)
     post :create, :address => address.attributes
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
-    address = FactoryGirl.build(:address)
+    address = build(:address)
     post :create, :address => address.attributes
     response.should redirect_to(myaccount_address_url(assigns[:address]))
   end
 
   it "edit action should render edit template" do
-    @address = FactoryGirl.create(:address, :addressable => @user)
+    @address = create(:address, :addressable => @user)
     get :edit, :id => @address.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @address = FactoryGirl.create(:address, :addressable => @user)
+    @address = create(:address, :addressable => @user)
     Address.any_instance.stubs(:valid?).returns(false)
-    address = FactoryGirl.build(:address, :default => true)
+    address = build(:address, :default => true)
     put :update, :id => @address.id, :address => address.attributes
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @address = FactoryGirl.create(:address, :addressable => @user)
+    @address = create(:address, :addressable => @user)
     Address.any_instance.stubs(:valid?).returns(true)
-    address = FactoryGirl.build(:address, :default => true)
+    address = build(:address, :default => true)
     put :update, :id => @address.id, :address => address.attributes
     response.should redirect_to(myaccount_address_url(assigns[:address]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @address = FactoryGirl.create(:address, :addressable => @user)
+    @address = create(:address, :addressable => @user)
     delete :destroy, :id => @address.id
     response.should redirect_to(myaccount_addresses_url)
     Address.exists?(@address.id).should be_true

@@ -6,9 +6,9 @@ describe Admin::Merchandise::Wizards::ProductsController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
-    @property = FactoryGirl.create(:property)
+    @property = create(:property)
     controller.session[:product_wizard] = {}
     controller.session[:product_wizard][:brand_id] = 7# @brand.id
     controller.session[:product_wizard][:product_type_id] = 7# @brand.id

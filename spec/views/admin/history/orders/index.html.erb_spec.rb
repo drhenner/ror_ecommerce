@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "admin/history/orders/index.html.erb" do
   before(:each) do
 
-    order = FactoryGirl.create(:order)
+    order = create(:order)
     @orders = [
       order,
       order

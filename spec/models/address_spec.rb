@@ -4,7 +4,7 @@ describe Address do
   context "Valid Address" do
     before(:each) do
       User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-      @address = FactoryGirl.build(:address)
+      @address = build(:address)
     end
 
     it "should be valid with minimum attribues" do
@@ -17,7 +17,7 @@ describe Address, "methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     state = State.find_by_abbreviation('CA')
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     @address = @user.addresses.new(:first_name => 'Perez',
                           :last_name  => 'Hilton',
                           :address1   => '7th street',
@@ -179,8 +179,8 @@ end
 describe Address, "#save_default_address(object, params)" do
 
   before(:each) do
-    @user     = FactoryGirl.create(:user)
-    @address  = FactoryGirl.create(:address)
+    @user     = create(:user)
+    @address  = create(:address)
     @params   = @address.attributes
     @params[:default] = '1'
   end
@@ -192,8 +192,8 @@ describe Address, "#save_default_address(object, params)" do
 
   it "should only the last default address should be the default address" do
 
-    @address2   = FactoryGirl.create(:address)
-    @params2    = FactoryGirl.create(:address).attributes
+    @address2   = create(:address)
+    @params2    = create(:address).attributes
     #puts @address2.address_type_id.to_s
     @params2[:default] = '1'
     @address2.save_default_address(@user, @params2)

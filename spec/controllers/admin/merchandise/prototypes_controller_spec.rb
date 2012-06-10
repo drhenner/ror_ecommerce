@@ -6,12 +6,12 @@ describe Admin::Merchandise::PrototypesController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 
   it "index action should render index template" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = create(:prototype)
     get :index
     response.should render_template(:index)
   end
@@ -23,7 +23,7 @@ describe Admin::Merchandise::PrototypesController do
   end
 
   it "new action should render new template" do
-    @property = FactoryGirl.create(:property)
+    @property = create(:property)
     get :new
     response.should render_template(:new)
   end
@@ -41,27 +41,27 @@ describe Admin::Merchandise::PrototypesController do
   end
 
   it "edit action should render edit template" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = create(:prototype)
     get :edit, :id => @prototype.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = create(:prototype)
     Prototype.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @prototype.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = create(:prototype)
     Prototype.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @prototype.id
     response.should redirect_to(admin_merchandise_prototypes_url())
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = create(:prototype)
     delete :destroy, :id => @prototype.id
     response.should redirect_to(admin_merchandise_prototypes_url)
     Prototype.find(@prototype.id).active.should be_false

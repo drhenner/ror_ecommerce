@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "admin/history/addresses/edit.html.erb" do
   before(:each) do
-    @order = FactoryGirl.create(:order)
-    @address = FactoryGirl.create(:address)
+    @order = create(:order)
+    @address = create(:address)
     view.stubs(:states).returns([])
   #  assign(:address, stub_model(Address,
   #    :new_record? => false,

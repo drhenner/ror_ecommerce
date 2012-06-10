@@ -6,7 +6,7 @@ describe Admin::Config::ShippingMethodsController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 
@@ -16,7 +16,7 @@ describe Admin::Config::ShippingMethodsController do
   end
 
   it "show action should render show template" do
-    @shipping_method = FactoryGirl.create(:shipping_method)
+    @shipping_method = create(:shipping_method)
     get :show, :id => @shipping_method.id
     response.should render_template(:show)
   end
@@ -39,20 +39,20 @@ describe Admin::Config::ShippingMethodsController do
   end
 
   it "edit action should render edit template" do
-    @shipping_method = FactoryGirl.create(:shipping_method)
+    @shipping_method = create(:shipping_method)
     get :edit, :id => @shipping_method.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_method = FactoryGirl.create(:shipping_method)
+    @shipping_method = create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @shipping_method.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_method = FactoryGirl.create(:shipping_method)
+    @shipping_method = create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_method.id
     response.should redirect_to(admin_config_shipping_method_url(assigns[:shipping_method]))

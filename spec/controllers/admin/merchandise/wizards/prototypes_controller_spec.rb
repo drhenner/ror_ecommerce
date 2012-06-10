@@ -6,14 +6,14 @@ describe Admin::Merchandise::Wizards::PrototypesController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
     controller.session[:product_wizard] = {}
   end
 
   it "update action should redirect when model is valid" do
-    @property = FactoryGirl.create(:property)
-    @prototype = FactoryGirl.create(:prototype)
+    @property = create(:property)
+    @prototype = create(:prototype)
     @prototype.stubs(:properties).returns([@property])
     @prototype.stubs(:property_ids).returns([@property.id])
     #Prototype.any_instance.stubs(:find_by_id).returns(@prototype)

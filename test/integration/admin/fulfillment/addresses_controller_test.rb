@@ -22,8 +22,8 @@ class Admin::Fulfillment::AddressesControllerTest < ActionController::TestCase
   context "GET edit" do
     before do
       admin_user = login_as(Factory.create(:admin_user))
-      @address    = FactoryGirl.create(:address)
-      @shipment    = FactoryGirl.create(:shipment, :address => @address)
+      @address    = create(:address)
+      @shipment    = create(:shipment, :address => @address)
       
       get :edit , {:shipment_id => @shipment.id, :id => @address.id }
     end

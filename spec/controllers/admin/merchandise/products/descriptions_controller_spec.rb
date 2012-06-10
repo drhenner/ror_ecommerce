@@ -6,25 +6,25 @@ describe Admin::Merchandise::Products::DescriptionsController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 
   it "edit action should render edit template" do
-    @product = FactoryGirl.create(:product, :active => false, :description_markup => nil, :description => nil)
+    @product = create(:product, :active => false, :description_markup => nil, :description => nil)
     get :edit, :id => @product.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @product = FactoryGirl.create(:product)
+    @product = create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @product.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @product = FactoryGirl.create(:product, :active => false, :description_markup => nil, :description => nil)
+    @product = create(:product, :active => false, :description_markup => nil, :description => nil)
     Product.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @product.id, :product => {:description_markup => '**Hi Everybody**'}
     @product.reload

@@ -4,7 +4,7 @@ describe Cart, ".sub_total" do
   # shopping_cart_items.inject(0) {|sum, item| item.total + sum}
   
   before(:each) do
-    @cart = FactoryGirl.create(:cart_with_two_5_dollar_items)
+    @cart = create(:cart_with_two_5_dollar_items)
   end
   
   it "should calculate subtotal correctly" do
@@ -14,7 +14,7 @@ end
 
 describe Cart, " instance methods" do
   before(:each) do
-    @cart = FactoryGirl.create(:cart_with_two_5_dollar_items)
+    @cart = create(:cart_with_two_5_dollar_items)
   end
 
   #  items_to_add_or_destroy is exersized within add_items_to_checkout
@@ -29,7 +29,7 @@ describe Cart, " instance methods" do
   context " add_items_to_checkout" do
     
     before(:each) do
-      @order = FactoryGirl.create(:in_progress_order)
+      @order = create(:in_progress_order)
     end
     
     it 'should add item to in_progress orders' do
@@ -45,16 +45,16 @@ describe Cart, " instance methods" do
     
     it 'should add only needed items already in order to in_progress orders' do
       @cart.add_items_to_checkout(@order)
-      @cart.shopping_cart_items.push(FactoryGirl.create(:cart_item))
+      @cart.shopping_cart_items.push(create(:cart_item))
       @cart.add_items_to_checkout(@order)
       @order.order_items.size.should == 3     
     end
     
     it 'should remove items not in cart to in_progress orders' do
-      @cart.shopping_cart_items.push(FactoryGirl.create(:cart_item))
+      @cart.shopping_cart_items.push(create(:cart_item))
       @cart.add_items_to_checkout(@order) ##
       @order.order_items.size.should == 3 
-      cart = FactoryGirl.create(:cart_with_two_5_dollar_items)
+      cart = create(:cart_with_two_5_dollar_items)
       cart.add_items_to_checkout(@order)
       @order.order_items.size.should == 2
     end
@@ -63,7 +63,7 @@ describe Cart, " instance methods" do
   context ".save_user(u)" do
     #pending "test for save_user(u)"
     it 'should assign the user to the cart' do
-      user = FactoryGirl.create(:user)
+      user = create(:user)
       @cart.save_user(user)
       @cart.user.should == user
     end
@@ -74,13 +74,13 @@ end
 describe Cart, '' do
   
   before(:each) do
-    @cart = FactoryGirl.create(:cart_with_two_items)
+    @cart = create(:cart_with_two_items)
   end
   
   context 'mark_items_purchased(order)' do
     it 'should mark cart items as purchased' do
       
-      order = FactoryGirl.create(:order)
+      order = create(:order)
       order.stubs(:variant_ids).returns(@cart.cart_items.collect{|ci| ci.variant_id})
       @cart.mark_items_purchased(order)
       @cart.cart_items.each do |ci|
@@ -90,7 +90,7 @@ describe Cart, '' do
     
     it 'should not mark cart items as purchased if it isnt in the order' do
       
-      order = FactoryGirl.create(:order)
+      order = create(:order)
       order.stubs(:variant_ids).returns([])
       @cart.mark_items_purchased(order)
       @cart.cart_items.each do |ci|
@@ -103,8 +103,8 @@ end
 describe Cart, ".add_variant" do
   # need to stub variant.sold_out? and_return(false)
   before(:each) do
-    @cart = FactoryGirl.create(:cart_with_two_5_dollar_items)
-    @variant = FactoryGirl.create(:variant)
+    @cart = create(:cart_with_two_5_dollar_items)
+    @variant = create(:variant)
   end
   
   it 'should add variant to cart' do
@@ -139,7 +139,7 @@ end
 
 describe Cart, ".remove_variant" do
   it 'should inactivate variant in cart' do
-    @cart = FactoryGirl.create(:cart_with_two_items)
+    @cart = create(:cart_with_two_items)
     variant_ids =  @cart.cart_items.collect {|ci| ci.variant.id }
     @cart.remove_variant(variant_ids.first)
     @cart.cart_items.each do |ci|

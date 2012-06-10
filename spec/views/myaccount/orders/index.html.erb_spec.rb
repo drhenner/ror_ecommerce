@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "myaccount/orders/index.html.erb" do
   before(:each) do
     @orders = [
-      FactoryGirl.create(:order),
-      FactoryGirl.create(:order)
+      create(:order),
+      create(:order)
     ]
   end
 

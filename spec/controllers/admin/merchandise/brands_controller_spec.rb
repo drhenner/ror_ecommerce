@@ -6,7 +6,7 @@ describe Admin::Merchandise::BrandsController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 
@@ -16,7 +16,7 @@ describe Admin::Merchandise::BrandsController do
   end
 
   it "show action should render show template" do
-    @brand = FactoryGirl.create(:brand)
+    @brand = create(:brand)
     get :show, :id => @brand.id
     response.should render_template(:show)
   end
@@ -39,20 +39,20 @@ describe Admin::Merchandise::BrandsController do
   end
 
   it "edit action should render edit template" do
-    @brand = FactoryGirl.create(:brand)
+    @brand = create(:brand)
     get :edit, :id => @brand.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @brand = FactoryGirl.create(:brand)
+    @brand = create(:brand)
     Brand.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @brand.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @brand = FactoryGirl.create(:brand)
+    @brand = create(:brand)
     Brand.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @brand.id
     response.should redirect_to(admin_merchandise_brand_url(assigns[:brand]))

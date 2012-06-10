@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "admin/fulfillment/orders/edit.html.erb" do
   before(:each) do
-    @order = FactoryGirl.create(:order)
+    @order = create(:order)
     #assign(:order, stub_model(Order,
     #  :new_record? => false,
     #  :email => "MyString",

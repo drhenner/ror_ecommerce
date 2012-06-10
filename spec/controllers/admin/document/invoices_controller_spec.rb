@@ -6,7 +6,7 @@ describe Admin::Document::InvoicesController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 
@@ -16,7 +16,7 @@ describe Admin::Document::InvoicesController do
   end
 
   it "show action should render show template" do
-    invoice = FactoryGirl.create(:invoice)
+    invoice = create(:invoice)
     get :show, :id => invoice.id
     response.should render_template(:show)
   end

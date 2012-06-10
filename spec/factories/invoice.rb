@@ -8,6 +8,6 @@ FactoryGirl.define do
   end
 
   factory :invoice_with_batch, :parent => :invoice do
-    batches  { [ FactoryGirl.create(:batch) ]}
+    batches  { [ create(:batch) ]}
   end
 end

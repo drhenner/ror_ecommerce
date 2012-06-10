@@ -9,7 +9,7 @@ describe Notifier, "Signup Email" do
     before(:each) do
       #"jojo@yahoo.com", "Jojo Binks"
       #[first_name.capitalize, last_name.capitalize ]
-      @user  = FactoryGirl.create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
+      @user  = create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
       @email = Notifier.signup_notification(@user)
     end
 
@@ -40,10 +40,10 @@ describe Notifier, "#order_confirmation" do
     before(:each) do
       #"jojo@yahoo.com", "Jojo Binks"
       #[first_name.capitalize, last_name.capitalize ]
-      @user         = FactoryGirl.create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
-      @order_item   = FactoryGirl.create(:order_item)
-      @order        = FactoryGirl.create(:order, :email => 'myfake@email.com', :user => @user)
-      @invoice        = FactoryGirl.create(:invoice, :order => @order)
+      @user         = create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
+      @order_item   = create(:order_item)
+      @order        = create(:order, :email => 'myfake@email.com', :user => @user)
+      @invoice        = create(:invoice, :order => @order)
       @order.stubs(:order_items).returns([@order_item])
       @email = Notifier.order_confirmation(@order, @invoice)
     end
