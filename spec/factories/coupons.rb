@@ -6,38 +6,40 @@
 #:percent       =>  nil,
 #:description   =>  "Describe my coupon",
 #:combine       =>  false
-Factory.define :coupon do |f|
-  f.type          "CouponValue"
-  f.code          "TEST COUPON"
-  f.amount        "10.00"
-  f.minimum_value "19.99"
-  f.percent     nil
-  f.description "Describe my coupon"
-  f.combine     false
-  f.starts_at   "2011-01-08 19:39:58"
-  f.expires_at  "2012-01-08 19:39:58"
-end
+FactoryGirl.define do
+  factory :coupon do
+    type          "CouponValue"
+    code          "TEST COUPON"
+    amount        "10.00"
+    minimum_value "19.99"
+    percent     nil
+    description "Describe my coupon"
+    combine     false
+    starts_at   "2011-01-08 19:39:58"
+    expires_at  "2012-01-08 19:39:58"
+  end
 
-Factory.define :coupon_percent do |f|
-  f.type          "CouponPercent"
-  f.code          "TEST COUPON"
-  f.amount        "10.00"
-  f.minimum_value "19.99"
-  f.percent     10
-  f.description "Describe my coupon"
-  f.combine     false
-  f.starts_at   "2011-01-08 19:39:58"
-  f.expires_at  "2012-01-08 19:39:58"
-end
+  factory :coupon_percent do
+    type          "CouponPercent"
+    code          "TEST COUPON"
+    amount        "10.00"
+    minimum_value "19.99"
+    percent     10
+    description "Describe my coupon"
+    combine     false
+    starts_at   "2011-01-08 19:39:58"
+    expires_at  "2012-01-08 19:39:58"
+  end
 
-Factory.define :coupon_value do |f|
-  f.type          "CouponValue"
-  f.code          "TEST COUPON"
-  f.amount        "10.00"
-  f.minimum_value "19.99"
-  f.percent     nil
-  f.description "Describe my coupon"
-  f.combine     false
-  f.starts_at   "2011-01-08 19:39:58"
-  f.expires_at  "2012-01-08 19:39:58"
+  factory :coupon_value do
+    type          "CouponValue"
+    code          "TEST COUPON"
+    amount        "10.00"
+    minimum_value "19.99"
+    percent     nil
+    description "Describe my coupon"
+    combine     false
+    starts_at   "2011-01-08 19:39:58"
+    expires_at  "2012-01-08 19:39:58"
+  end
 end# Read about factories at http://github.com/thoughtbot/factory_girl

@@ -13,10 +13,10 @@ describe WishItemsController do
   render_views
   before(:each) do
     activate_authlogic
-    @cur_user = Factory(:user)
+    @cur_user = FactoryGirl.create(:user)
     login_as(@cur_user)
-    @variant = Factory(:variant)
-    @wish_item = Factory(:cart_item, :item_type_id => ItemType::WISH_LIST_ID, :user_id => @cur_user.id, :variant => @variant)
+    @variant = FactoryGirl.create(:variant)
+    @wish_item = FactoryGirl.create(:cart_item, :item_type_id => ItemType::WISH_LIST_ID, :user_id => @cur_user.id, :variant => @variant)
 
   end
   it "index action should render index template" do

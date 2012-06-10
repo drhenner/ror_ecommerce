@@ -1,5 +1,6 @@
-
-Factory.define :supplier do |s|
-  s.name  'Macys'
-  s.email 'email@mail.co'
+FactoryGirl.define do
+  factory :supplier do
+    name  'Macys'
+    email 'email@mail.co'
+  end
 end

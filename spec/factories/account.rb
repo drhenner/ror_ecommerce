@@ -1,6 +1,7 @@
-
-Factory.define :account do |u|
-  u.name            'Free'
-  u.account_type    'Free'
-  u.monthly_charge  0.00
+FactoryGirl.define do
+  factory :account do
+    name            'Free'
+    account_type    'Free'
+    monthly_charge  0.00
+  end
 end

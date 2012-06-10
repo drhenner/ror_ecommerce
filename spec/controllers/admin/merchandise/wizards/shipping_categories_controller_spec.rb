@@ -6,7 +6,7 @@ describe Admin::Merchandise::Wizards::ShippingCategoriesController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = FactoryGirl.create(:admin_user)
     login_as(@user)
     controller.session[:product_wizard] = {}
     controller.session[:product_wizard][:brand_id] = 7# @brand.id
@@ -33,14 +33,14 @@ describe Admin::Merchandise::Wizards::ShippingCategoriesController do
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_category = Factory(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     ShippingCategory.stubs(:find_by_id).returns(nil)
     put :update, :id => @shipping_category.id
     response.should render_template(:index)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_category = Factory(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     #ShippingCategory.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_category.id
     controller.session[:product_wizard][:shipping_category_id].should   == @shipping_category.id

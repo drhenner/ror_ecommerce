@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "admin/fulfillment/shipments/show.html.erb" do
   before(:each) do
-    @shipment = Factory(:shipment)
+    @shipment = FactoryGirl.create(:shipment)
   end
 
   it "renders attributes in <p>" do

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Product, ".instance methods with images" do
   before(:each) do
-    @product = Factory(:product_with_image)
+    @product = FactoryGirl.create(:product_with_image)
   end
 
   context "featured_image" do
@@ -31,59 +31,59 @@ end
 describe Product, ".tax_rate" do
   # use case tax rate end date is nil and the start_date < now
   it 'should return the tax rate' do
-    tax_rate    = Factory(:tax_rate,
+    tax_rate    = FactoryGirl.create(:tax_rate,
                           :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => nil)
-    product  = Factory(:product)
+    product  = FactoryGirl.create(:product)
     product.tax_rate(1, Time.zone.now).should == tax_rate
   end
   # use case tax rate end date is next month and the start_date < now
   it 'should return the tax rate' do
-    tax_rate    = Factory(:tax_rate,
+    tax_rate    = FactoryGirl.create(:tax_rate,
                           :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => (Time.zone.now + 1.month))
-    product  = Factory(:product)
+    product  = FactoryGirl.create(:product)
     product.tax_rate(1, Time.zone.now).should == tax_rate
   end
   # use case tax rate end date is one month ago and the start_date < now but the time was 2 months ago
   it 'should return the tax rate' do
-    tax_rate    = Factory(:tax_rate,
+    tax_rate    = FactoryGirl.create(:tax_rate,
                           :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => (Time.zone.now - 1.month))
-    product  = Factory(:product)
+    product  = FactoryGirl.create(:product)
     product.tax_rate(1, (Time.zone.now - 2.month)).should == tax_rate
   end
   # there are no tax rates
   it 'should not return the tax rate' do
-    product  = Factory(:product)
+    product  = FactoryGirl.create(:product)
     product.tax_rate(1, (Time.zone.now - 2.month)).should be_nil
   end
   # the tax rate starts next month
   it 'should not return any tax rates' do
-    tax_rate    = Factory(:tax_rate,
+    tax_rate    = FactoryGirl.create(:tax_rate,
                           :state_id   => 1,
                           :start_date => (Time.zone.now - 1.month),
                           :end_date   => nil)
-    product  = Factory(:product)
+    product  = FactoryGirl.create(:product)
     product.tax_rate(1, (Time.zone.now - 2.month)).should be_nil
   end
   # the tax rate changes next month but is 5% now and next month will be 10%
   it 'should return any tax rates of 5%' do
-    tax_rate    = Factory(:tax_rate,
+    tax_rate    = FactoryGirl.create(:tax_rate,
                           :percentage => 5.0,
                           :state_id   => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date   => (Time.zone.now + 1.month))
 
-    tax_rate2    = Factory(:tax_rate,
+    tax_rate2    = FactoryGirl.create(:tax_rate,
                           :percentage => 10.0,
                           :state_id   => 1,
                           :start_date => (Time.zone.now + 1.month),
                           :end_date   => (Time.zone.now + 1.year))
-    product  = Factory(:product)
+    product  = FactoryGirl.create(:product)
     product.tax_rate(1).should == tax_rate
   end
 
@@ -91,10 +91,10 @@ end
 
 describe Product, ".instance methods" do
   before(:each) do
-    product  = Factory(:product)
-    @previous_master = Factory(:variant, :product => product, :master => true, :price => 15.05, :deleted_at => (Time.zone.now - 1.day ))
-    Factory(:variant, :product => product, :master => true, :price => 15.01)
-    Factory(:variant, :product => product, :master => false, :price => 10.00)
+    product  = FactoryGirl.create(:product)
+    @previous_master = FactoryGirl.create(:variant, :product => product, :master => true, :price => 15.05, :deleted_at => (Time.zone.now - 1.day ))
+    FactoryGirl.create(:variant, :product => product, :master => true, :price => 15.01)
+    FactoryGirl.create(:variant, :product => product, :master => false, :price => 10.00)
     @product  = Product.find(product.id)
   end
 
@@ -160,8 +160,8 @@ describe Product, "class methods" do
   context "#admin_grid(params = {}, active_state = nil)" do
 
     it "should return Products " do
-      product1 = Factory(:product)
-      product2 = Factory(:product)
+      product1 = FactoryGirl.create(:product)
+      product2 = FactoryGirl.create(:product)
       admin_grid = Product.admin_grid
       admin_grid.size.should == 2
       admin_grid.include?(product1).should be_true

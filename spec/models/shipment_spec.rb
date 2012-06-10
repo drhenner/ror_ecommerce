@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Shipment, 'instance methods' do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @shipment = Factory(:shipment)
+    @shipment = FactoryGirl.create(:shipment)
   end
 
   context '.set_to_shipped' do
@@ -20,7 +20,7 @@ describe Shipment, 'instance methods' do
       @shipment.has_items?.should be_false
     end
     it 'should have items' do
-      order_item = Factory(:order_item)
+      order_item = FactoryGirl.create(:order_item)
       @shipment.order_items.push(order_item)
       @shipment.has_items?.should be_false
     end
@@ -30,9 +30,9 @@ describe Shipment, 'instance methods' do
     #order_items.each{ |item| item.variant.subtract_pending_to_customer(1) }
     #order_items.each{ |item| item.variant.subtract_count_on_hand(1) }
     it "should subtract the count on hand and pending to customer for each order_item" do
-      @inventory  = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
-      @variant    = Factory(:variant, :inventory => @inventory)
-      @order_item = Factory(:order_item, :variant => @variant)
+      @inventory  = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
+      @variant    = FactoryGirl.create(:variant, :inventory => @inventory)
+      @order_item = FactoryGirl.create(:order_item, :variant => @variant)
       @shipment.order_items.push(@order_item)
       @shipment.ship_inventory
       variant_after_shipment = Variant.find(@variant.id)
@@ -71,11 +71,11 @@ end
 describe Shipment, 'instance method from build' do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @user = Factory(:user)
-    @address1 = Factory(:address, :addressable => @user)
-    @address2 = Factory(:address, :addressable => @user)
-    @order = Factory(:order, :user => @user)
-    @shipment = Factory(:shipment, :order => @order)
+    @user = FactoryGirl.create(:user)
+    @address1 = FactoryGirl.create(:address, :addressable => @user)
+    @address2 = FactoryGirl.create(:address, :addressable => @user)
+    @order = FactoryGirl.create(:order, :user => @user)
+    @shipment = FactoryGirl.create(:shipment, :order => @order)
   end
 
   context '.shipping_addresses' do
@@ -90,7 +90,7 @@ end
 describe Shipment, 'instance method from build' do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @shipment = Factory.build(:shipment)
+    @shipment = FactoryGirl.build(:shipment)
   end
 
   context '.set_number, save_shipment_number and set_shipment_number' do
@@ -107,14 +107,14 @@ end
 describe Shipment, '#create_shipments_with_items(order)' do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @order     = Factory(:order)
+    @order     = FactoryGirl.create(:order)
 
-    #@shipment = Factory.build(:shipment, :order => order, :state => 'pending')
+    #@shipment = FactoryGirl.build(:shipment, :order => order, :state => 'pending')
   end
 
   it 'should create shipments with the items in the order'do
-    order_item = Factory(:order_item, :order => @order)
-    order_item2 = Factory(:order_item, :order => @order)
+    order_item = FactoryGirl.create(:order_item, :order => @order)
+    order_item2 = FactoryGirl.create(:order_item, :order => @order)
     @order.order_items.push(order_item)
     @order.order_items.push(order_item2)
     @order.save
@@ -128,11 +128,11 @@ describe Shipment, '#create_shipments_with_items(order)' do
 #shipping_method_id
 
   it 'should create 1 shipment with items with the same shipping method'do
-    #shipping_method = Factory(:shipping_method)
-    shipping_rate = Factory(:shipping_rate)
+    #shipping_method = FactoryGirl.create(:shipping_method)
+    shipping_rate = FactoryGirl.create(:shipping_rate)
 
-    order_item  = Factory(:order_item, :order => @order, :shipping_rate => shipping_rate)
-    order_item2 = Factory(:order_item, :order => @order, :shipping_rate => shipping_rate)
+    order_item  = FactoryGirl.create(:order_item, :order => @order, :shipping_rate => shipping_rate)
+    order_item2 = FactoryGirl.create(:order_item, :order => @order, :shipping_rate => shipping_rate)
     @order.order_items.push(order_item)
     @order.order_items.push(order_item2)
     @order.save
@@ -153,7 +153,7 @@ describe Shipment, 'Class Methods' do
 
   describe Shipment, '#find_fulfillment_shipment(id)' do
     it 'should return the shipment' do
-      shipment = Factory(:shipment)
+      shipment = FactoryGirl.create(:shipment)
       s = Shipment.find_fulfillment_shipment(shipment.id)
       s.id.should == shipment.id
     end
@@ -161,7 +161,7 @@ describe Shipment, 'Class Methods' do
 
   describe Shipment, "#id_from_number(num)" do
     it 'should return shipment id' do
-      shipment     = Factory(:shipment)
+      shipment     = FactoryGirl.create(:shipment)
       shipment_id  = Shipment.id_from_number(shipment.number)
       shipment_id.should == shipment.id
     end
@@ -169,7 +169,7 @@ describe Shipment, 'Class Methods' do
 
   describe Shipment, "#find_by_number(num)" do
     it 'should find the shipment by number' do
-      shipment = Factory(:shipment)
+      shipment = FactoryGirl.create(:shipment)
       find_shipment = Shipment.find_by_number(shipment.number)
       find_shipment.id.should == shipment.id
     end

@@ -6,7 +6,7 @@ describe Admin::Config::ShippingCategoriesController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = FactoryGirl.create(:admin_user)
     login_as(@user)
   end
 
@@ -16,7 +16,7 @@ describe Admin::Config::ShippingCategoriesController do
   end
 
   it "show action should render show template" do
-    @shipping_category = Factory(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     get :show, :id => @shipping_category.id
     response.should render_template(:show)
   end
@@ -39,20 +39,20 @@ describe Admin::Config::ShippingCategoriesController do
   end
 
   it "edit action should render edit template" do
-    @shipping_category = Factory(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     get :edit, :id => @shipping_category.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_category = Factory(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     ShippingCategory.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @shipping_category.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_category = Factory(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     ShippingCategory.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_category.id, :shipping_category => {:name => 'clothing'}
     response.should redirect_to(admin_config_shipping_rates_url())

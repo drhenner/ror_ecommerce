@@ -11,12 +11,12 @@ end
 describe Invoice, "instance methods" do
   before(:each) do 
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @invoice = Factory(:invoice, :created_at => '2010-11-26 23:55:14')
+    @invoice = FactoryGirl.create(:invoice, :created_at => '2010-11-26 23:55:14')
   end
 
   context '.order_ship_address_lines' do
     it 'should display invoice created_at date in the correct format' do
-      #@invoice.order.expects(:ship_address).returns(Factory(:address))
+      #@invoice.order.expects(:ship_address).returns(FactoryGirl.create(:address))
       @invoice.order.ship_address.expects(:try).with(:full_address_array).once
       @invoice.order_ship_address_lines
     end
@@ -24,7 +24,7 @@ describe Invoice, "instance methods" do
   
   context '.order_billing_address_lines' do
     it 'should display invoice created_at date in the correct format' do
-      #@invoice.order.expects(:bill_address).returns(Factory(:address))
+      #@invoice.order.expects(:bill_address).returns(FactoryGirl.create(:address))
       @invoice.order.bill_address.expects(:try).with(:full_address_array).once
       @invoice.order_billing_address_lines
     end
@@ -98,7 +98,7 @@ end
 describe Invoice, "#process_rma(return_amount, order)" do
   it 'should create a invoice for an RMA' do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    order = Factory(:order)
+    order = FactoryGirl.create(:order)
     invoice = Invoice.process_rma(20.55, order)
     #@invoice.stubs(:batches).returns([])
     #invoice.capture_complete_order.should be_true
@@ -110,12 +110,12 @@ end
 describe Invoice, "Class methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @invoice = Factory(:invoice)
+    @invoice = FactoryGirl.create(:invoice)
   end
 
   describe Invoice, "#id_from_number(num)" do
     it 'should return invoice id' do
-      invoice     = Factory(:invoice)
+      invoice     = FactoryGirl.create(:invoice)
       invoice_id  = Invoice.id_from_number(invoice.number)
       invoice_id.should == invoice.id
     end
@@ -123,7 +123,7 @@ describe Invoice, "Class methods" do
 
   describe Invoice, "#find_by_number(num)" do
     it 'should find the invoice by number' do
-      invoice = Factory(:invoice)
+      invoice = FactoryGirl.create(:invoice)
       find_invoice = Invoice.find_by_number(invoice.number)
       find_invoice.id.should == invoice.id
     end
@@ -135,7 +135,7 @@ end
 
 describe Invoice, "#generate(order_id, charge_amount)" do
   it 'should find the invoice by number' do
-    #invoice = Factory(:invoice)
+    #invoice = FactoryGirl.create(:invoice)
     charge_amount = 20.15
     invoice = Invoice.generate(1, charge_amount)
     invoice.id.should == nil
@@ -149,25 +149,25 @@ describe Invoice, 'optimize' do
   end
   describe Invoice, ".unique_order_number" do
     it 'should return a unique_order_number' do
-      invoice = Factory(:invoice)
+      invoice = FactoryGirl.create(:invoice)
       invoice.send(:unique_order_number).length.should > 8
     end
   end
 
   describe Invoice, ".authorization_reference" do
     it 'will return a confirmation id if there is a successful payment' do
-      invoice = Factory(:invoice)
-      payment = Factory(:payment, :invoice => invoice, :action => 'authorization', :success => true, :confirmation_id => 'good')
+      invoice = FactoryGirl.create(:invoice)
+      payment = FactoryGirl.create(:payment, :invoice => invoice, :action => 'authorization', :success => true, :confirmation_id => 'good')
       invoice.authorization_reference.should == payment.confirmation_id
     end 
   end
 
   describe Invoice, ".succeeded?" do
     it 'will return a true if authorized or paid' do
-      invoice = Factory(:invoice, :state => 'authorized')
+      invoice = FactoryGirl.create(:invoice, :state => 'authorized')
       invoice.succeeded?.should be_true
       
-      invoice = Factory(:invoice, :state => 'paid')
+      invoice = FactoryGirl.create(:invoice, :state => 'paid')
       invoice.succeeded?.should be_true
     end
   end
@@ -175,7 +175,7 @@ end
 
 describe Invoice, ".integer_amount" do
   it 'should reprent the dollar amount in integer form' do
-    invoice = Factory(:invoice, :amount => 13.56)
+    invoice = FactoryGirl.create(:invoice, :amount => 13.56)
     invoice.integer_amount.should == 1356
   end
 end
@@ -220,14 +220,14 @@ end
 
 describe Invoice, ".user_id" do 
   it 'should give the orders user_id' do
-    invoice = Factory(:invoice)
+    invoice = FactoryGirl.create(:invoice)
     invoice.user_id.should == invoice.order.user_id
   end
 end
 
 describe Invoice, ".user" do
   it 'should give the orders user_id' do
-    invoice = Factory(:invoice)
+    invoice = FactoryGirl.create(:invoice)
     invoice.user.id.should == invoice.order.user.id
   end
 end

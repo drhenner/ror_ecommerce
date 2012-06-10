@@ -1,9 +1,7 @@
-Factory.sequence :product_type_name do |i|
-  "Product type Name #{i}"
-end
-
-Factory.define :product_type do |u|
-  u.name        { Factory.next(:product_type_name) }
-  u.active      true
-  #u.parent_id
+FactoryGirl.define do
+  factory :product_type do
+    sequence(:name)        { |i| "Product type Name #{i}" }
+    active      true
+    #parent_id
+  end
 end

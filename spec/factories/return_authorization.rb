@@ -1,4 +1,3 @@
-
 FactoryGirl.define do
   factory :return_authorization do
     number          "34567kjhgf"
@@ -9,7 +8,6 @@ FactoryGirl.define do
     user            { |c| c.association(:user) }
     created_by      { |c| c.association(:user) }
 
-    after_build {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+    after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
   end
-
 end

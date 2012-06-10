@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Brand do
   context " Brand" do
     before(:each) do
-      @brand = Factory.build(:brand)
+      @brand = FactoryGirl.build(:brand)
     end
     
     it "should be valid with minimum attribues" do

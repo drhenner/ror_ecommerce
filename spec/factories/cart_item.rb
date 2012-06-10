@@ -1,29 +1,24 @@
+FactoryGirl.define do
+  factory :cart_item_without_variant, :class => CartItem do
+    item_type_id     ItemType::SHOPPING_CART_ID#{ ItemType.first }
+    #user          { |c| c.association(:user) }
+    cart          { |c| c.association(:cart) }
+    quantity      1
+    active        true
+  end
 
-Factory.define :cart_item_without_variant, :class => CartItem do |ci|
-  #factory :cart_item do
-    ci.item_type_id     ItemType::SHOPPING_CART_ID#{ ItemType.first }
-    #ci.user          { |c| c.association(:user) }
-    ci.cart          { |c| c.association(:cart) }
-    ci.quantity      1
-    ci.active        true
-  #end
+  factory :cart_item do |ci|
+    item_type_id     ItemType::SHOPPING_CART_ID#{ ItemType.first }
+    #user          { |c| c.association(:user) }
+    variant       { |c| c.association(:variant) }
+    cart          { |c| c.association(:cart) }
+    quantity      1
+    active        true
+  end
 
-end
-
-Factory.define :cart_item do |ci|
-  #factory :cart_item do
-    ci.item_type_id     ItemType::SHOPPING_CART_ID#{ ItemType.first }
-    #ci.user          { |c| c.association(:user) }
-    ci.variant       { |c| c.association(:variant) }
-    ci.cart          { |c| c.association(:cart) }
-    ci.quantity      1
-    ci.active        true
-  #end
-
-end
-
-Factory.define :five_dollar_cart_item, :parent => :cart_item do |ci|
-  ci.variant       { |c| c.association(:five_dollar_variant) }
-  ci.item_type_id     ItemType::SHOPPING_CART_ID#{ ItemType.first }
-  ci.active        true
+  factory :five_dollar_cart_item, :parent => :cart_item do |ci|
+    variant       { |c| c.association(:five_dollar_variant) }
+    item_type_id     ItemType::SHOPPING_CART_ID#{ ItemType.first }
+    active        true
+  end
 end

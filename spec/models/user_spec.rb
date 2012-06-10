@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
   context "Valid User" do
     before(:each) do
-      @user = Factory.build(:user)
+      @user = FactoryGirl.build(:user)
     end
 
     it "should be valid with minimum attributes" do
@@ -14,17 +14,17 @@ describe User do
 
   context "Invalid User" do
     before(:each) do
-      @user = Factory.build(:user, :form_birth_date => '05/05/1900')
+      @user = FactoryGirl.build(:user, :form_birth_date => '05/05/1900')
     end
 
     it "should be valid with minimum attributes(Too old)" do
-      @user = Factory.build(:user, :form_birth_date => '05/05/1900')
+      @user = FactoryGirl.build(:user, :form_birth_date => '05/05/1900')
       @user.should_not be_valid
     end
 
     it "should be valid with minimum attributes(Not born yet)" do
       now = Time.now + 10.days
-      @user = Factory.build(:user, :form_birth_date => now.strftime("%m/%d/%Y"))
+      @user = FactoryGirl.build(:user, :form_birth_date => now.strftime("%m/%d/%Y"))
       @user.should_not be_valid
     end
   end
@@ -33,7 +33,7 @@ end
 
 describe User, ".form_birth_date(val)" do
   it "should return the correct b-day" do
-    user = Factory(:user, :form_birth_date => '05/18/1975')
+    user = FactoryGirl.create(:user, :form_birth_date => '05/18/1975')
     #should_receive(:authenticate).with("password").and_return(true)
     user.birth_date.should_not be_blank
     user.form_birth_date.should == '05/18/1975'
@@ -41,7 +41,7 @@ describe User, ".form_birth_date(val)" do
   end
 
   it "should return the correct b-day" do
-    user = Factory(:user, :form_birth_date => '')
+    user = FactoryGirl.create(:user, :form_birth_date => '')
     #should_receive(:authenticate).with("password").and_return(true)
     user.birth_date.should be_blank
     user.form_birth_date.should == nil
@@ -52,7 +52,7 @@ end
 
 describe User, ".name" do
   it "should return the correct name" do
-    user = Factory.build(:registered_user)
+    user = FactoryGirl.build(:registered_user)
     #should_receive(:authenticate).with("password").and_return(true)
     user.stubs(:first_name).returns("Fred")
     user.stubs(:last_name).returns("Flint")
@@ -62,7 +62,7 @@ end
 
 describe User, '.registered_user?' do
   it "should return false for an unregistered user" do
-    user = Factory.build(:user)
+    user = FactoryGirl.build(:user)
     user.registered_user?.should be_false
   end
   it "should return true for a registered user" do
@@ -83,17 +83,17 @@ describe User, "instance methods" do
 
   context ".admin?" do
     it 'ahould be an admin' do
-      user = Factory(:admin_user)
+      user = FactoryGirl.create(:admin_user)
       user.admin?.should be_true
     end
 
     it 'ahould be an admin' do
-      user = Factory(:super_admin_user)
+      user = FactoryGirl.create(:super_admin_user)
       user.admin?.should be_true
     end
 
     it 'ahould not be an admin' do
-      user = Factory(:user)
+      user = FactoryGirl.create(:user)
       user.admin?.should be_false
     end
   end
@@ -102,7 +102,7 @@ end
 describe User, "instance methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
   end
 
   context ".active?" do
@@ -154,7 +154,7 @@ describe User, "instance methods" do
 
   context ".might_be_interested_in_these_products" do
     it 'should find products' do
-      product = Factory(:product)
+      product = FactoryGirl.create(:product)
       @user.might_be_interested_in_these_products.include?(product).should be_true
     end
 
@@ -177,24 +177,24 @@ describe User, "instance methods" do
   context ".billing_address" do
     # default_billing_address ? default_billing_address : default_shipping_address
     it 'should return nil if you dont have an address' do
-      #add = Factory(:address, :addressable => @user, :default => true)
+      #add = FactoryGirl.create(:address, :addressable => @user, :default => true)
       @user.billing_address.should be_nil
     end
 
     it 'should use your shipping address if you dont have a default billing address' do
-      add = Factory(:address, :addressable => @user, :default => true)
+      add = FactoryGirl.create(:address, :addressable => @user, :default => true)
       @user.billing_address.should == add
     end
 
     it 'should use your default billing address if you have one available' do
-      add = Factory(:address, :addressable => @user, :default => true)
-      bill_add = Factory(:address, :addressable => @user, :billing_default => true)
+      add = FactoryGirl.create(:address, :addressable => @user, :default => true)
+      bill_add = FactoryGirl.create(:address, :addressable => @user, :billing_default => true)
       @user.billing_address.should == bill_add
     end
 
     it 'should return the first address if not defaults are set' do
-      #add = Factory(:address, :addressable => @user, :default => true)
-      add = Factory(:address, :addressable => @user)
+      #add = FactoryGirl.create(:address, :addressable => @user, :default => true)
+      add = FactoryGirl.create(:address, :addressable => @user)
       @user.billing_address.should == add
     end
   end
@@ -202,19 +202,19 @@ describe User, "instance methods" do
   context ".shipping_address" do
     # default_billing_address ? default_billing_address : default_shipping_address
     it 'should return nil if you dont have an address' do
-      #add = Factory(:address, :addressable => @user, :default => true)
+      #add = FactoryGirl.create(:address, :addressable => @user, :default => true)
       @user.shipping_address.should be_nil
     end
 
     it 'should use your default shipping address if you have one available' do
-      add = Factory(:address, :addressable => @user, :default => true)
-      bill_add = Factory(:address, :addressable => @user, :billing_default => true)
+      add = FactoryGirl.create(:address, :addressable => @user, :default => true)
+      bill_add = FactoryGirl.create(:address, :addressable => @user, :billing_default => true)
       @user.shipping_address.should == add
     end
 
     it 'should return the first address if not defaults are set' do
-      #add = Factory(:address, :addressable => @user, :default => true)
-      add = Factory(:address, :addressable => @user)
+      #add = FactoryGirl.create(:address, :addressable => @user, :default => true)
+      add = FactoryGirl.create(:address, :addressable => @user)
       @user.shipping_address.should == add
     end
   end
@@ -288,7 +288,7 @@ describe User, "instance methods" do
   context ".merchant_description" do
     # [name, default_shipping_address.try(:address_lines)].compact.join(', ')
     it 'should show the name and address lines' do
-      address = Factory(:address, :address1 => 'Line one street', :address2 => 'Line two street')
+      address = FactoryGirl.create(:address, :address1 => 'Line one street', :address2 => 'Line two street')
       @user.first_name = 'First'
       @user.last_name  = 'Second'
 
@@ -297,7 +297,7 @@ describe User, "instance methods" do
     end
 
     it 'should show the name and address lines without address2' do
-      address = Factory(:address, :address1 => 'Line one street', :address2 => nil)
+      address = FactoryGirl.create(:address, :address1 => 'Line one street', :address2 => nil)
       @user.first_name = 'First'
       @user.last_name  = 'Second'
 
@@ -311,7 +311,7 @@ end
 describe User, 'store_credit methods' do
   context '.start_store_credits' do
     it 'should create store_credit object on create' do
-      user = Factory(:user)
+      user = FactoryGirl.create(:user)
       user.store_credit.should_not be_nil
       user.store_credit.id.should_not be_nil
     end
@@ -322,7 +322,7 @@ describe User, 'private methods' do
 
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @user = Factory.build(:user)
+    @user = FactoryGirl.build(:user)
   end
 
   context ".password_required?" do
@@ -368,8 +368,8 @@ end
 describe User, "#admin_grid(params = {})" do
   it "should return users " do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    user1 = Factory(:user)
-    user2 = Factory(:user)
+    user1 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user)
     admin_grid = User.admin_grid
     admin_grid.size.should == 2
     admin_grid.include?(user1).should be_true

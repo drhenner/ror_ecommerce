@@ -6,9 +6,9 @@ describe Admin::Inventory::OverviewsController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = FactoryGirl.create(:admin_user)
     login_as(@user)
-    @product = Factory(:product)
+    @product = FactoryGirl.create(:product)
   end
 
   it "index action should render index template" do

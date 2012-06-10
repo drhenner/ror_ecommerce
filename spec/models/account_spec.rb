@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Account do
   context "Valid Account" do
     before(:each) do
-      @account = Factory.build(:account)
+      @account = FactoryGirl.build(:account)
     end
     
     it "should be valid with minimum attributes" do

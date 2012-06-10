@@ -4,7 +4,7 @@ describe Coupon do
 
   context "Percent Coupon" do
     before(:each) do
-      @coupon_percent = Factory.build(:coupon_percent)
+      @coupon_percent = FactoryGirl.build(:coupon_percent)
     end
 
     it "should be valid " do
@@ -14,7 +14,7 @@ describe Coupon do
 
   context "Value Coupon" do
     before(:each) do
-      @coupon_value = Factory.build(:coupon_value)
+      @coupon_value = FactoryGirl.build(:coupon_value)
     end
 
     it "should be valid " do
@@ -24,8 +24,8 @@ describe Coupon do
 
   context "coupon instance methods" do
     before(:each) do
-      @order        = Factory(:order)
-      @coupon_value = Factory(:coupon_value, :amount => 5.00)
+      @order        = FactoryGirl.create(:order)
+      @coupon_value = FactoryGirl.create(:coupon_value, :amount => 5.00)
     end
 
     context "value(item_prices)" do
@@ -51,21 +51,21 @@ describe Coupon do
     context "eligible?(at)" do
 
       it "should return true" do
-        order = Factory(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now - 1.days)
         @coupon_value.stubs(:expires_at).returns(Time.now + 1.days)
         @coupon_value.eligible?(order).should be_true
       end
 
       it "should return false" do
-        order = Factory(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now - 3.days)
         @coupon_value.stubs(:expires_at).returns(Time.now - 1.days)
         @coupon_value.eligible?(order).should be_false
       end
 
       it "should return false" do
-        order = Factory(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now + 1.days)
         @coupon_value.stubs(:expires_at).returns(Time.now + 18.days)
         @coupon_value.eligible?(order).should be_false
@@ -122,8 +122,8 @@ describe Coupon do
 
   context "coupon instance methods" do
     before(:each) do
-      @order        = Factory(:order)
-      @coupon_percent = Factory(:coupon_percent, :percent => 10)
+      @order        = FactoryGirl.create(:order)
+      @coupon_percent = FactoryGirl.create(:coupon_percent, :percent => 10)
     end
 
     context "value(item_prices)" do

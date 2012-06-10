@@ -1,4 +1,3 @@
-
 FactoryGirl.define do
   factory :shipment do
     order           { |c| c.association(:order) }
@@ -9,7 +8,6 @@ FactoryGirl.define do
     shipped_at      nil
     active          true
 
-    after_build {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+    after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
   end
-
 end

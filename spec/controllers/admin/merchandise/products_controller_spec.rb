@@ -6,20 +6,20 @@ describe Admin::Merchandise::ProductsController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = FactoryGirl.create(:admin_user)
     login_as(@user)
 
     controller.stubs(:current_ability).returns(Ability.new(@user))
   end
 
   it "index action should render index template" do
-    @product = Factory(:product)
+    @product = FactoryGirl.create(:product)
     get :index
     response.should render_template(:index)
   end
 
   it "show action should render show template" do
-    @product = Factory(:product)
+    @product = FactoryGirl.create(:product)
     get :show, :id => @product.id
     response.should render_template(:show)
   end
@@ -31,7 +31,7 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "new action should render new template" do
-    @prototype = Factory(:prototype)
+    @prototype = FactoryGirl.create(:prototype)
     get :new
     response.should render_template(:new)
   end
@@ -43,41 +43,41 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "create action should redirect when model is valid" do
-    @product = Factory.build(:product, :description_markup => nil, :active => false)
+    @product = FactoryGirl.build(:product, :description_markup => nil, :active => false)
     Product.any_instance.stubs(:valid?).returns(true)
     post :create, :product => @product.attributes
     response.should redirect_to(edit_admin_merchandise_products_description_url(assigns[:product]))
   end
 
   it "edit action should render edit template" do
-    @product = Factory(:product)
+    @product = FactoryGirl.create(:product)
     get :edit, :id => @product.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @product = Factory(:product)
+    @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @product.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @product = Factory(:product)
+    @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @product.id
     response.should redirect_to(admin_merchandise_product_url(assigns[:product]))
   end
 
   it "activate action should redirect when model is valid" do
-    @product = Factory(:product, :active => false)
+    @product = FactoryGirl.create(:product, :active => false)
     put :activate, :id => @product.id
     @product.reload
     @product.active.should be_true
     response.should redirect_to(admin_merchandise_product_url(assigns[:product]))
   end
   it "activate action should redirect to create description when model is valid" do
-    @product = Factory(:product, :active => false, :description_markup => nil)
+    @product = FactoryGirl.create(:product, :active => false, :description_markup => nil)
     put :activate, :id => @product.id
     @product.reload
     @product.active.should be_false
@@ -85,7 +85,7 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @product = Factory(:product)
+    @product = FactoryGirl.create(:product)
     delete :destroy, :id => @product.id
     response.should redirect_to(admin_merchandise_product_url(@product))
     Product.find(@product.id).active.should be_false

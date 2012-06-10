@@ -6,7 +6,7 @@ describe Myaccount::OverviewsController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
     login_as(@user)
   end
 
@@ -16,7 +16,7 @@ describe Myaccount::OverviewsController do
   end
 
   it "show action should render show template" do
-    @address = Factory(:address, :addressable => @user)
+    @address = FactoryGirl.create(:address, :addressable => @user)
     @user.stubs(:shipping_address).returns(@address)
     get :show
     response.should render_template(:show)
