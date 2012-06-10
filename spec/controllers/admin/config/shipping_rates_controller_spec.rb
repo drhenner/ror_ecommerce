@@ -6,7 +6,7 @@ describe Admin::Config::ShippingRatesController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 
@@ -17,14 +17,14 @@ describe Admin::Config::ShippingRatesController do
   end
 
   it "index action should render index template" do
-    shipping_method = Factory(:shipping_method)
+    shipping_method = create(:shipping_method)
     ShippingMethod.stubs(:all).returns([shipping_method])
     get :index
     response.should render_template(:index)
   end
 
   it "show action should render show template" do
-    @shipping_rate = Factory(:shipping_rate)
+    @shipping_rate = create(:shipping_rate)
     get :show, :id => @shipping_rate.id
     response.should render_template(:show)
   end
@@ -36,7 +36,7 @@ describe Admin::Config::ShippingRatesController do
   end
 
   it "new action should render new template" do
-    shipping_category = Factory(:shipping_category)
+    shipping_category = create(:shipping_category)
     ShippingCategory.stubs(:all).returns([shipping_category])
     ShippingMethod.stubs(:all).returns([])
     get :new
@@ -44,9 +44,9 @@ describe Admin::Config::ShippingRatesController do
   end
 
   it "new action should render new template" do
-    shipping_category = Factory(:shipping_category)
+    shipping_category = create(:shipping_category)
     ShippingCategory.stubs(:all).returns([shipping_category])
-    shipping_method = Factory(:shipping_method)
+    shipping_method = create(:shipping_method)
     ShippingMethod.stubs(:all).returns([shipping_method])
     get :new
     response.should render_template(:new)
@@ -65,20 +65,20 @@ describe Admin::Config::ShippingRatesController do
   end
 
   it "edit action should render edit template" do
-    @shipping_rate = Factory(:shipping_rate)
+    @shipping_rate = create(:shipping_rate)
     get :edit, :id => @shipping_rate.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_rate = Factory(:shipping_rate)
+    @shipping_rate = create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @shipping_rate.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_rate = Factory(:shipping_rate)
+    @shipping_rate = create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_rate.id
     response.should redirect_to(admin_config_shipping_rate_url(assigns[:shipping_rate]))

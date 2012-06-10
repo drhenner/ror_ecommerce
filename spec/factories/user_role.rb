@@ -1,5 +1,6 @@
-
-Factory.define :user_role do |ur|
-  ur.user_id 1
-  ur.role_id Role::ADMIN_ID
+FactoryGirl.define do
+  factory :user_role do
+    user_id 1
+    role_id Role::ADMIN_ID
+  end
 end

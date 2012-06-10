@@ -5,7 +5,7 @@ describe Admin::Config::OverviewsController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 

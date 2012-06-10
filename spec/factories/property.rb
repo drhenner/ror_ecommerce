@@ -1,5 +1,6 @@
-
-Factory.define :property do |f|
-  f.identifing_name   'name to identify'
-  f.display_name      'name to display'
+FactoryGirl.define do
+  factory :property do
+    identifing_name   'name to identify'
+    display_name      'name to display'
+  end
 end

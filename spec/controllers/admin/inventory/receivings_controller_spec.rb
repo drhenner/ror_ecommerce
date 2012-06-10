@@ -6,9 +6,9 @@ describe Admin::Inventory::ReceivingsController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
-    @purchase_order = Factory(:purchase_order)
+    @purchase_order = create(:purchase_order)
   end
 
   it "show action should render show template" do

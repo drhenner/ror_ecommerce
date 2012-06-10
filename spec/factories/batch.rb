@@ -1,6 +1,6 @@
-
-Factory.define :batch do |u|
-  #u.batchable_type  'Order'
-  u.batchable       { |c| c.association(:order) }
-  u.name            'Blah'
+FactoryGirl.define do
+  factory :batch do
+    batchable       { |c| c.association(:order) }
+    name            'Blah'
+  end
 end

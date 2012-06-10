@@ -1,7 +1,8 @@
-
-Factory.define :product_property do |u|
-  u.product         { |c| c.association(:product) }
-  u.property        { |c| c.association(:property) }
-  u.description     'Red, Blue and Orange Flavors'
-  #u.position       1
+FactoryGirl.define do
+  factory :product_property do
+    product         { |c| c.association(:product) }
+    property        { |c| c.association(:property) }
+    description     'Red, Blue and Orange Flavors'
+    #position       1
+  end
 end

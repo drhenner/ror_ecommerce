@@ -1,4 +1,5 @@
-
-Factory.define :shipping_category do |f|
-  f.name          "34567kjhgf"
+FactoryGirl.define do
+  factory :shipping_category do
+    name          "34567kjhgf"
+  end
 end

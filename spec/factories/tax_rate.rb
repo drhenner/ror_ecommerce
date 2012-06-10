@@ -1,9 +1,10 @@
-
-Factory.define :tax_rate do |f|
-  f.percentage      7.25
-  f.tax_status      { TaxStatus.first }
-  f.state           { State.first }
-  f.start_date      Time.now.to_date
-  f.end_date        (Time.now + 1.day).to_date
-  f.active          true
+FactoryGirl.define do
+  factory :tax_rate do
+    percentage      7.25
+    tax_status      { TaxStatus.first }
+    state           { State.first }
+    start_date      Time.now.to_date
+    end_date        (Time.now + 1.day).to_date
+    active          true
+  end
 end

@@ -1,7 +1,5 @@
-Factory.sequence :brand_number do |i|
-  i
-end
-
-Factory.define :brand do |u|
-  u.name            { "Brand Name #{ Factory.next(:brand_number) }" }
+FactoryGirl.define do
+  factory :brand do
+    sequence(:name) { |n| "Brand Name #{n}" }
+  end
 end

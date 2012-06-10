@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ShippingMethod do
   context "Valid ShippingMethod" do
     before(:each) do
-      @shipping_method = Factory.build(:shipping_method)
+      @shipping_method = build(:shipping_method)
     end
     
     it "should be valid with minimum attributes" do

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "admin/history/addresses/index.html.erb" do
   before(:each) do
 
-    address = Factory(:address)
-    @order = Factory(:order)
+    address = create(:address)
+    @order = create(:order)
     @addresses = [
       address,
       address

@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe PurchaseOrderVariant, "instance methods" do
   before(:each) do
-    @inventory              = Factory(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
-    @variant                = Factory(:variant, :inventory => @inventory)
-    @purchase_order_variant = Factory(:purchase_order_variant, :variant => @variant, :quantity => 10)
+    @inventory              = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
+    @variant                = create(:variant, :inventory => @inventory)
+    @purchase_order_variant = create(:purchase_order_variant, :variant => @variant, :quantity => 10)
   end
 
   context ".receive!" do

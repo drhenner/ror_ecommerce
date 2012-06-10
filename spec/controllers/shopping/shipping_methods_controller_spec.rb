@@ -6,17 +6,17 @@ describe Shopping::ShippingMethodsController do
   before(:each) do
     activate_authlogic
 
-    @cur_user = Factory(:user)
+    @cur_user = create(:user)
     login_as(@cur_user)
 
     #stylist_cart
-    @variant  = Factory(:variant)
+    @variant  = create(:variant)
 
     create_cart(@cur_user, @cur_user, [@variant])
 
-    @address      = Factory(:address)
-    @order        = Factory(:order, :ship_address_id => @address.id)
-    @order_item   = Factory(:order_item, :order => @order, :variant => @variant)
+    @address      = create(:address)
+    @order        = create(:order, :ship_address_id => @address.id)
+    @order_item   = create(:order_item, :order => @order, :variant => @variant)
     @order.stubs(:order_items).returns([@order_item])
     @controller.stubs(:find_or_create_order).returns(@order)
   end
@@ -32,26 +32,26 @@ describe Shopping::ShippingMethodsController do
   before(:each) do
     activate_authlogic
 
-    @cur_user = Factory(:user)
+    @cur_user = create(:user)
     login_as(@cur_user)
 
     #stylist_cart
-    @variant  = Factory(:variant)
+    @variant  = create(:variant)
 
     create_cart(@cur_user, @cur_user, [@variant])
 
   end
   it "update action should render edit template when model is invalid" do
-    @variant2  = Factory(:variant)
-    @address      = Factory(:address)
-    @order        = Factory(:order, :ship_address_id => @address)
-    @order_item   = Factory(:order_item, :order => @order, :variant => @variant)
-    @order_item2   = Factory(:order_item, :order => @order, :variant => @variant2)
+    @variant2  = create(:variant)
+    @address      = create(:address)
+    @order        = create(:order, :ship_address_id => @address)
+    @order_item   = create(:order_item, :order => @order, :variant => @variant)
+    @order_item2   = create(:order_item, :order => @order, :variant => @variant2)
     @order.stubs(:order_items).returns([@order_item, @order_item2])
     @controller.stubs(:find_or_create_order).returns(@order)
 
-    @shipping_rate = Factory(:shipping_rate)
-    @shipping_method = Factory(:shipping_method)
+    @shipping_rate = create(:shipping_rate)
+    @shipping_method = create(:shipping_method)
     #ShippingMethod.any_instance.stubs(:valid?).returns(false)
     #ShippingMethod.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_method.id,
@@ -65,14 +65,14 @@ describe Shopping::ShippingMethodsController do
 
   it "update action should redirect when model is valid" do
 
-    @address      = Factory(:address)
-    @order        = Factory(:order, :ship_address_id => @address)
-    @order_item   = Factory(:order_item, :order => @order, :variant => @variant)
+    @address      = create(:address)
+    @order        = create(:order, :ship_address_id => @address)
+    @order_item   = create(:order_item, :order => @order, :variant => @variant)
     @order.stubs(:order_items).returns([@order_item])
     @controller.stubs(:find_or_create_order).returns(@order)
 
-    @shipping_rate = Factory(:shipping_rate)
-    @shipping_method = Factory(:shipping_method)
+    @shipping_rate = create(:shipping_rate)
+    @shipping_method = create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_method.id, :shipping_category => {@variant.product.shipping_category_id => @shipping_rate.id }
     response.should redirect_to(shopping_orders_url)

@@ -6,7 +6,7 @@ describe Admin::Merchandise::Wizards::PropertiesController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
     controller.session[:product_wizard] = {}
     controller.session[:product_wizard][:brand_id] = 7# @brand.id
@@ -31,13 +31,13 @@ describe Admin::Merchandise::Wizards::PropertiesController do
   end
 
   it "update action should render edit template when model is invalid" do
-    @property = Factory(:property)
+    @property = create(:property)
     put :update, :id => @property.id, :property => {:ids => [ ]}
     response.should render_template(:index)
   end
 
   it "update action should redirect when model is valid" do
-    @property = Factory(:property)
+    @property = create(:property)
     put :update, :id => @property.id, :property => {:ids => [ @property.id ]}
     controller.session[:product_wizard][:property_ids].should == [@property.id]
     response.should redirect_to(admin_merchandise_wizards_tax_statuses_url)

@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "admin/rma/return_authorizations/new.html.erb" do
   before(:each) do
-    @order = Factory(:order)
-    @return_authorization = Factory.build(:return_authorization)
+    @order = create(:order)
+    @return_authorization = build(:return_authorization)
 
-    @order = Factory(:order)
+    @order = create(:order)
   end
 
   it "renders new return_authorization form" do

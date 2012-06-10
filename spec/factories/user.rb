@@ -1,17 +1,11 @@
-
-Factory.sequence :email do |n|
-  "person#{n}@example.com"
-end
-# USER
-
 FactoryGirl.define do
   factory :user do
     first_name  'John'
     last_name   'Doe'
-    email       { Factory.next(:email) }
+    sequence(:email)      { |n| "person#{n}@example.com" }
     password              'pasword'
     password_confirmation "pasword"
-    after_build {|user| user.send(:initialize_state_machines, :dynamic => :force)}
+    after(:build) {|user| user.send(:initialize_state_machines, :dynamic => :force)}
   end
 
   factory :registered_user, :parent => :user do
@@ -21,19 +15,13 @@ FactoryGirl.define do
   factory :registered_user_with_credit, :parent => :registered_user do
     state    'registered_with_credit'
   end
+
+  factory :admin_user, :parent => :user do
+    roles     { [Role.find_by_name('administrator')] }
+  end
+
+  factory :super_admin_user, :parent => :user do
+    roles     { [Role.find_by_name('super_administrator')] }
+  end
 end
 
-
-
-
-
-
-
-
-Factory.define :admin_user, :parent => :user do |f|
-  f.roles     { [Role.find_by_name('administrator')] }
-end
-
-Factory.define :super_admin_user, :parent => :user do |f|
-  f.roles     { [Role.find_by_name('super_administrator')] }
-end

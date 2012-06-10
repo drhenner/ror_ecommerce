@@ -1,7 +1,8 @@
-
-Factory.define :image do |u|
-  #u.batchable_type  'Order'
-  u.imageable       { |c| c.association(:product) }
-  u.caption         'Caption blah.'
-  u.position        1
+FactoryGirl.define do
+  factory :image do
+    #batchable_type  'Order'
+    imageable       { |c| c.association(:product) }
+    caption         'Caption blah.'
+    position        1
+  end
 end

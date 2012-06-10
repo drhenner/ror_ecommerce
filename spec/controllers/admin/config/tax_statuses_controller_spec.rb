@@ -6,7 +6,7 @@ describe Admin::Config::TaxStatusesController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 

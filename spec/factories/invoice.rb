@@ -1,12 +1,13 @@
+FactoryGirl.define do
+  factory :invoice do
+    order           { |c| c.association(:order) }
+    amount          20.13
+    state           'authorized'
+    active          true
+    invoice_type    'Purchase'
+  end
 
-Factory.define :invoice do |u|
-  u.order           { |c| c.association(:order) }
-  u.amount          20.13
-  u.state           'authorized'
-  u.active          true
-  u.invoice_type    'Purchase'
-end
-
-Factory.define :invoice_with_batch, :parent => :invoice do |i|
-  i.batches  { [ Factory(:batch) ]}
+  factory :invoice_with_batch, :parent => :invoice do
+    batches  { [ create(:batch) ]}
+  end
 end

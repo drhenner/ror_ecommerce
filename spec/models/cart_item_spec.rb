@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CartItem do
   context "CartItem" do
     before(:each) do
-      @cart_item = Factory.build(:cart_item)
+      @cart_item = build(:cart_item)
     end
     
     it "should be valid with minimum attributes" do
@@ -16,7 +16,7 @@ end
 
 describe Cart, " instance methods" do
   before(:each) do
-    @cart_item = Factory(:five_dollar_cart_item)
+    @cart_item = create(:five_dollar_cart_item)
     @cart_item.item_type_id = ItemType::SHOPPING_CART_ID
   end
   context " price" do

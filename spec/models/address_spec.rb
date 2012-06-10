@@ -4,23 +4,21 @@ describe Address do
   context "Valid Address" do
     before(:each) do
       User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-      @address = Factory.build(:address)
+      @address = build(:address)
     end
-    
+
     it "should be valid with minimum attribues" do
       @address.should be_valid
     end
-    
   end
-  
 end
 
 describe Address, "methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     state = State.find_by_abbreviation('CA')
-    @user = Factory(:user)
-    @address = @user.addresses.new(:first_name => 'Perez', 
+    @user = create(:user)
+    @address = @user.addresses.new(:first_name => 'Perez',
                           :last_name  => 'Hilton',
                           :address1   => '7th street',
                           :city       => 'Fredville',
@@ -33,7 +31,7 @@ describe Address, "methods" do
                           :active           => true
                           )
   end
-  
+
   context ".name" do
     it 'should return the correct string with no params' do
       @address.name.should == 'Perez Hilton'
@@ -70,15 +68,15 @@ describe Address, "methods" do
       cc_params[:zip].should     == '13156'
       cc_params[:country].should == 'US'
 
-      
+
     end
   end
 =begin
   def self.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )
-    new_address = Address.new(params.merge( :address_type_id  => address_type_id, 
-                              :addressable_type => old_address.addressable_type, 
+    new_address = Address.new(params.merge( :address_type_id  => address_type_id,
+                              :addressable_type => old_address.addressable_type,
                               :addressable_id   => old_address.addressable_id ))
-    
+
     new_address.default = true if old_address.default
     if new_address.valid? && new_address.save_default_address
       old_address.update_attributes(:active => false)
@@ -90,7 +88,7 @@ describe Address, "methods" do
   end
 =end
   context "#update_address" do
-    
+
     context 'valid new address' do
       it 'should inactivate the old address' do
         @address.save
@@ -102,7 +100,7 @@ describe Address, "methods" do
         new_address.id.should_not == @address.id
       end
     end
-    
+
     context 'invalid new address' do
       it 'should not inactivate the old address when it isnt saved' do
         @address.save
@@ -155,7 +153,7 @@ describe Address, "methods" do
   end
 
   describe Address, ".sanitize_data" do
-    address = Address.new(:first_name => ' Perez ', 
+    address = Address.new(:first_name => ' Perez ',
                           :last_name  => ' Hilton ',
                           :address1   => ' 1st street ',
                           :address2   => ' 2nd street ',
@@ -179,23 +177,23 @@ describe Address, "methods" do
 end
 
 describe Address, "#save_default_address(object, params)" do
-  
+
   before(:each) do
-    @user     = Factory.create(:user)
-    @address  = Factory.create(:address)
+    @user     = create(:user)
+    @address  = create(:address)
     @params   = @address.attributes
     @params[:default] = '1'
   end
-  
+
   it "should save the address" do
     @address.save_default_address(@user, @params)
     @address.id.should_not be_nil
   end
-  
+
   it "should only the last default address should be the default address" do
-    
-    @address2   = Factory.create(:address)
-    @params2    = Factory.create(:address).attributes
+
+    @address2   = create(:address)
+    @params2    = create(:address).attributes
     #puts @address2.address_type_id.to_s
     @params2[:default] = '1'
     @address2.save_default_address(@user, @params2)
@@ -203,6 +201,4 @@ describe Address, "#save_default_address(object, params)" do
     @address.default.should       be_true
     @address2.reload.default.should_not  be_true
   end
-  
-  
 end

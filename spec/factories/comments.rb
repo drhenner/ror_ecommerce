@@ -1,9 +1,8 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
-
-Factory.define :comment do |f|
-  f.note "My Note"
-  #f.commentable_type "MyString"
-  f.commentable { |c| c.association(:return_authorization) }
-  f.created_by  { |c| c.association(:user) }
-  f.user        { |c| c.association(:user) }
+FactoryGirl.define do
+  factory :comment do
+    note "My Note"
+    commentable { |c| c.association(:return_authorization) }
+    created_by  { |c| c.association(:user) }
+    user        { |c| c.association(:user) }
+  end
 end

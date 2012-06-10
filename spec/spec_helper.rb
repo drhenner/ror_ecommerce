@@ -29,6 +29,7 @@ RSpec.configure do |config|
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
   config.mock_with :mocha
+  config.include FactoryGirl::Syntax::Methods
   # config.mock_with :flexmock
   # config.mock_with :rr
   # config.mock_with :rspec
@@ -71,12 +72,12 @@ RSpec.configure do |config|
 end
 
 def registered_user_factory
-  u = Factory.build(:user)
+  u = build(:user)
   u.state = 'registered'
   u
 end
 def registered_with_credit_user_factory
-  u = Factory.build(:user)
+  u = build(:user)
   u.state = 'registered_with_credit'
   u
 end

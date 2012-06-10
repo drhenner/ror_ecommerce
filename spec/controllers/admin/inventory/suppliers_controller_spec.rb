@@ -6,7 +6,7 @@ describe Admin::Inventory::SuppliersController do
   before(:each) do
     activate_authlogic
 
-    @user = Factory(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 
@@ -17,7 +17,7 @@ describe Admin::Inventory::SuppliersController do
   end
 
   it "show action should render show template" do
-    @supplier = Factory(:supplier)
+    @supplier = create(:supplier)
     get :show, :id => @supplier.id
     response.should render_template(:show)
   end
@@ -40,20 +40,20 @@ describe Admin::Inventory::SuppliersController do
   end
 
   it "edit action should render edit template" do
-    @supplier = Factory(:supplier)
+    @supplier = create(:supplier)
     get :edit, :id => @supplier.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @supplier = Factory(:supplier)
+    @supplier = create(:supplier)
     Supplier.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @supplier.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @supplier = Factory(:supplier)
+    @supplier = create(:supplier)
     Supplier.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @supplier.id
     response.should redirect_to(admin_inventory_suppliers_url())

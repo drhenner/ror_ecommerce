@@ -4,9 +4,9 @@ describe Admin::Fulfillment::CommentsController do
   render_views
 
   before(:each) do
-    @order = Factory(:order)
+    @order = create(:order)
     activate_authlogic
-    @user = Factory(:admin_user)
+    @user = create(:admin_user)
     login_as(@user)
   end
 
@@ -16,7 +16,7 @@ describe Admin::Fulfillment::CommentsController do
   end
 
   it "show action should render show template" do
-    @comment = Factory(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
+    @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     get :show, :id => @comment.id, :order_id => @order.number
     response.should render_template(:show)
   end
@@ -27,14 +27,14 @@ describe Admin::Fulfillment::CommentsController do
   end
 
   it "create action should render new template when model is invalid" do
-    @comment = Factory(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
+    @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(false)
     post :create, :order_id => @order.number, :comment => @comment.attributes
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    @comment = Factory(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
+    @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, :order_id => @order.number, :comment => @comment.attributes
     #response.should redirect_to(admin_fulfillment_order_comment_url(@order, assigns[:comment]))
@@ -43,7 +43,7 @@ describe Admin::Fulfillment::CommentsController do
 
 
   it "create action should redirect when model is valid" do
-    @comment = Factory(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
+    @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, :order_id => @order.number, :comment => @comment.attributes, :format => 'json'
     #response.should redirect_to(admin_fulfillment_order_comment_url(@order, assigns[:comment]))
@@ -51,27 +51,27 @@ describe Admin::Fulfillment::CommentsController do
   end
 
   it "edit action should render edit template" do
-    @comment = Factory(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
+    @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     get :edit, :id => @comment.id, :order_id => @order.number
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @comment = Factory(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
+    @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @comment.id, :order_id => @order.number, :comment => @comment.attributes
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @comment = Factory(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
+    @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @comment.id, :order_id => @order.number, :comment => @comment.attributes
     response.should redirect_to(admin_fulfillment_order_comment_url(@order, assigns[:comment]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @comment = Factory(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
+    @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     delete :destroy, :id => @comment.id, :order_id => @order.number
     response.should redirect_to(admin_fulfillment_order_comments_url(@order))
     Comment.exists?(@comment.id).should be_false

@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe "admin/fulfillment/addresses/edit.html.erb" do
   before(:each) do
-    @address = Factory(:address)
+    @address = create(:address)
     @addresses =  [
-      Factory(:address),
-      Factory(:address)
+      create(:address),
+      create(:address)
     ]
-    @shipment = Factory(:shipment)
+    @shipment = create(:shipment)
   end
 
   it "renders the edit address form" do
