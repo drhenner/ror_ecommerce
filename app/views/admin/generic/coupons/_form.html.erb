@@ -1,7 +1,6 @@
 <% if @coupon.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@coupon.errors.count, "error") %> prohibited this coupon from being saved:</h2>
-
     <ul>
     <% @coupon.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -10,53 +9,20 @@
   </div>
 <% end %>
 
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </div>
+<%= f.input :code %>
 
-  <% unless @coupon.id %>
-    <div class="field">
-      <%= f.label :type %><br />
-      <%= f.select :type, @coupon_types, { :include_blank => true } %>
-    </div>
-  <% end %>
+<% unless @coupon.persisted? %>
+  <%= f.input :type, :label => 'Type', :collection => @coupon_types, :include_blank => true %>
+<% end %>
 
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </div>
+<%= f.input :amount %>
+<%= f.input :minimum_value %>
+<%= f.input :percent %>
+<%= f.input :description, :as => :text %>
+<%= f.check_box :combine %>
+<%= f.input :starts_at %>
+<%= f.input :expires_at %>
 
-  <div class="field">
-    <%= f.label :minimum_value %><br />
-    <%= f.text_field :minimum_value %>
-  </div>
-
-  <div class="field">
-    <%= f.label :percent %><br />
-    <%= f.text_field :percent %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :combine %><br />
-    <%= f.check_box :combine %>
-  </div>
-
-  <div class="field">
-    <%= f.label :starts_at %><br />
-    <%= f.date_select :starts_at %>
-  </div>
-
-  <div class="field">
-    <%= f.label :expires_at %><br />
-    <%= f.date_select :expires_at %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="actions">
+  <%= f.submit %>
+</div>

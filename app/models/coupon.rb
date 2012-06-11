@@ -25,9 +25,8 @@ class Coupon < ActiveRecord::Base
   validates :starts_at,     :presence => true
   validates :expires_at,    :presence => true
 
-  COUPON_TYPES = ['coupon_percent', 'coupon_value']
+  COUPON_TYPES = ['CouponPercent', 'CouponValue']
   # order must respond to item_prices
-  attr_accessor :c_type
 
   # amount the coupon will reduce the order
   def value(item_prices, order)
