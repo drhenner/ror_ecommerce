@@ -21,7 +21,7 @@ solr
 solr/*
 
 .project
-*.swp
+*.sw*
 public/assets/**/*
 public/assets/*
 coverage/*
