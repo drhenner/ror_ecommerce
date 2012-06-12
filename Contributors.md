@@ -6,3 +6,4 @@ In no specific order the following have contributed to RoR ecommerce.
 * Torsten Rüger
 * Dean Perry
 * Denis Peplin
+* Daniel Konishi
