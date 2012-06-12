@@ -18,6 +18,6 @@
 <hr style='color:#aac'/>
 <br />
 
-<%= form_for @shipping_category, :url => admin_merchandise_wizards_shipping_categories_path do |shipping_category_form| %>
+<%= simple_form_for @shipping_category, :url => admin_merchandise_wizards_shipping_categories_path do |shipping_category_form| %>
   <%= render :partial =>  'form', :locals => {:f => shipping_category_form}  %>
 <% end %>

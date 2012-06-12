@@ -2,7 +2,7 @@
 
 <h2>New Product Type</h2>
 
-<%= form_for @product_type, :url  => admin_merchandise_product_types_path,
+<%= simple_form_for @product_type, :url  => admin_merchandise_product_types_path,
                         :html => {:class => 'prepend-6'}  do |form| %>
   <%= render :partial => '/admin/merchandise/product_types/form', :locals => {:form => form, :button_action => "Create"}%>
 <% end %>

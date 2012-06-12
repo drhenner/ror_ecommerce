@@ -2,7 +2,7 @@
 <h1>New account</h1>
 
 
-<%= form_for( @account, :url => admin_config_accounts_path) do |f| %>
+<%= simple_form_for( @account, :url => admin_config_accounts_path) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 

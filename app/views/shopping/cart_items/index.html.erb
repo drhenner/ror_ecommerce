@@ -5,7 +5,7 @@
 
 <div id='cart-items-wrapper' class='items-wrapper span-18 last'>
 
-  <%= form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>
+  <%= simple_form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>
 
     <% unless @cart_items.blank? %>
       <div id='update-cart-wrapper' class='span-15'>

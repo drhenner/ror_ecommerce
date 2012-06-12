@@ -10,18 +10,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :account_type %><br />
-    <%= f.text_field :account_type %>
-  </div>
-  <div class="field">
-    <%= f.label :monthly_charge %><br />
-    <%= f.text_field :monthly_charge %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
+  <%= f.input :account_type %>
+  <%= f.input :monthly_charge %>
+  <%= f.input :active %>
   <div class="actions">
     <%= f.submit %>
   </div>

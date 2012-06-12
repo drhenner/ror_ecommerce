@@ -36,7 +36,7 @@
 <div id='login-wrapper' class='hadean-login'>
   <div id='login' class='hadean-login span-8 '>
 
-    <%= form_for  @user_session, :as => :user_session,
+    <%= simple_form_for  @user_session, :as => :user_session,
                   :url => user_sessions_path(@user_session),
                   :html => {:class => 'span-12'} do |form| %>
       <h3>Log in.</h3>
@@ -63,7 +63,7 @@
   </div>
 
   <div id='signup'>
-    <%= form_for @user, :url => customer_registrations_path(@user)  do |form| %>
+    <%= simple_form_for @user, :url => customer_registrations_path(@user)  do |form| %>
       <h3>New to <%= site_name %>?</h3>
       <p>A <%= site_name %> account is required to checkout. </p>
       <fieldset>

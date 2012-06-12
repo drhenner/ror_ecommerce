@@ -2,7 +2,7 @@
 
 <h1> Inventory Adjustment  for <%= @variant.product_name %> </h1>
 
-<%= form_for(@variant, :url => admin_inventory_adjustment_path(@variant)) do |f| %>
+<%= simple_form_for(@variant, :url => admin_inventory_adjustment_path(@variant)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 
   <div class=" generic_submit_button">

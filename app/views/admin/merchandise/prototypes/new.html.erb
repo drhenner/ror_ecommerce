@@ -2,7 +2,7 @@
 
 <h2>New Prototype</h2>
 
-<%= form_for @prototype, :url  => admin_merchandise_prototypes_path,
+<%= simple_form_for @prototype, :url  => admin_merchandise_prototypes_path,
                         :html => {:class => 'prepend-6'}  do |form| %>
   <%= render :partial => '/admin/merchandise/prototypes/form', :locals => {:form => form}%>
 

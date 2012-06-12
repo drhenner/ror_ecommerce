@@ -37,6 +37,6 @@ class Country < ActiveRecord::Base
   # @param none
   # @return [Array] an array of arrays with [string, country.id]
   def self.form_selector
-    find(ACTIVE_COUNTRY_IDS, :order => 'abbreviation ASC').collect { |c| [c.abbrev_and_name, c.id] }
+    find(ACTIVE_COUNTRY_IDS, :order => 'abbreviation ASC')
   end
 end

@@ -21,6 +21,11 @@ class TaxRate < ActiveRecord::Base
   validates :state_id,      :presence => true
   validates :start_date,    :presence => true
 
+  delegate :country, :to => :state
+
+  def country=(value)
+  end
+
   def tax_percentage
     GlobalConstants::VAT_TAX_SYSTEM ? 0.0 : percentage
   end

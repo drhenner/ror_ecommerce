@@ -1,6 +1,6 @@
 <h1>Editing <%= file_name %></h1>
 
-<%%= form_for(@<%= file_name %>, :url => <%= index_helper %>_path(@<%= file_name %>)) do |f| %>
+<%%= simple_form_for(@<%= file_name %>, :url => <%= index_helper %>_path(@<%= file_name %>)) do |f| %>
   <%%= render 'form', :locals => {:f => f} %>
 <%% end %>
 

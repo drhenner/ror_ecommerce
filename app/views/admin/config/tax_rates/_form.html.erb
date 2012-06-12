@@ -1,49 +1,21 @@
-
-  <% if @tax_rate.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tax_rate.errors.count, "error") %> prohibited this tax_rate from being saved:</h2>
-
-      <ul>
+<% if @tax_rate.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@tax_rate.errors.count, "error") %> prohibited this Tax Rate from being saved:</h2>
+    <ul>
       <% @tax_rate.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+  </div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :percentage %><br />
-    <%= f.text_field :percentage %>
-  </div>
-  <div class="field">
-    <%= f.label :tax_status_id %><br />
-    <%= f.select :tax_status_id, @tax_statuses, {:include_blank => true} %>
-  </div>
-
-
-  <div class="field">
-    <%= label_tag :country %><br />
-    <%= select_tag :select_country,
-                    options_from_collection_for_select(@countries, "second", "first"),
-                    {:include_blank => true} %>
-  </div>
-
-  <div class="field">
-    <%= f.label :state_id %><br />
-    <%= f.select :state_id, @states, {:include_blank => true} %>
-  </div>
-  <div class="field">
-    <%= f.label :start_date %><br />
-    <%= f.date_select :start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %><br />
-    <%= f.date_select :end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= f.input :percentage %>
+<%= f.association :tax_status, :collection => @tax_statuses %>
+<%= f.input :country, :collection => @countries, :input_html => { :id => 'select_country' } %>
+<%= f.association :state, :collection => @states %>
+<%= f.input :start_date %>
+<%= f.input :end_date %>
+<%= f.check_box :active %>
+<div class="actions">
+  <%= f.submit %>
+</div>

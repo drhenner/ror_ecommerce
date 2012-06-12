@@ -7,8 +7,7 @@
 
 <h1>Edit <%= @user.name %> </h1>
 
-<%= form_for @user, :url => admin_user_path(@user)  do |form| %>
-    <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
-    <%= form.submit "Update", :class => 'button' %>
-
+<%= simple_form_for @user, :url => admin_user_path(@user)  do |f| %>
+  <%= render :partial => '/admin/users/form', :locals => {:f => f} %>
+  <%= f.submit "Update", :class => 'button' %>
 <% end %>

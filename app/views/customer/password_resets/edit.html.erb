@@ -4,7 +4,7 @@
 <div style='margin-bottom:20px;'>
   <h1> Password Reset </h1>
 
-  <%= form_for(@user, :url => customer_password_reset_path(:id => @user.perishable_token)) do |f| %>
+  <%= simple_form_for(@user, :url => customer_password_reset_path(:id => @user.perishable_token)) do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>
 </div>

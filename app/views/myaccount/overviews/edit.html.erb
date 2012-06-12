@@ -1,6 +1,6 @@
 <h3> Edit Profile </h3>
 
-<%= form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f| %>
+<%= simple_form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f| %>
   <%=  render :partial => 'form', :locals => {:f => f} %>
   <div class="actions"><%= f.submit 'Update' , :class => 'button' %></div>
 <% end %>

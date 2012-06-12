@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 describe Country do
-
   context "#form_selector" do
-    @countries = Country.form_selector
-    @countries.class.should              == Array
-    @countries.first.class.should        == Array
-    @countries.first.first.class.should  == String
-    @countries.first.last.class.should   == Fixnum
+    it "should return only the active countries" do
+      @countries = Country.form_selector
+      @countries.collect(&:id).should == Country::ACTIVE_COUNTRY_IDS
+      @countries.collect(&:name).should == ["Canada", "United States"]
+    end
   end
 end
 
@@ -17,7 +16,6 @@ describe Country do
   end
 
   context ".abbreviation_name(append_name = )" do
-
     it 'should return the correct string with no params' do
       @country.abbreviation_name.should == 'US - United States'
     end

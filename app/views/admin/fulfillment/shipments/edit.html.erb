@@ -7,7 +7,7 @@
 <div class='span-22'>
   <div id='shipment_form_wrapper' class='span-10 column'>
     <h2>Edit Shipment</h2>
-    <%= form_for(@shipment, :url => admin_fulfillment_shipment_path(@shipment)) do |f| %>
+    <%= simple_form_for(@shipment, :url => admin_fulfillment_shipment_path(@shipment)) do |f| %>
       <%= render :partial => 'form', :locals => {:f => f } %>
     <% end %>
     <%= link_to 'Show', admin_fulfillment_shipment_path(@shipment) %> |
@@ -24,7 +24,7 @@
       </ul>
     </div>
 
-    <%= form_for( @comment,
+    <%= simple_form_for( @comment,
 
                   :url => admin_fulfillment_order_comments_path(@shipment.order),
                   :html => {'data-order_id' => @shipment.order.number}

@@ -49,7 +49,7 @@
     <% end %>
   </div>
   <div id='add-to-cart_form-wrapper' class='span-6 float-left last'>
-    <%= form_for  @cart_item, :as => :cart_item,
+    <%= simple_form_for  @cart_item, :as => :cart_item,
                   :url  => shopping_cart_items_path(@cart_item),
                   :html => { :id => 'new_cart_item' } do |f| %>
         <%= f.hidden_field :variant_id, :value => @product.variants.first.try(:id) %>

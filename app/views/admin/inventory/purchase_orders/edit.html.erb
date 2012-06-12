@@ -2,7 +2,7 @@
 
 <h1>Edit Purchase Order</h1>
 
-<%= form_for @purchase_order, :url  => admin_inventory_purchase_order_path(@purchase_order),
+<%= simple_form_for @purchase_order, :url  => admin_inventory_purchase_order_path(@purchase_order),
                         :html => {:class => ''}  do |form| %>
   <%= render :partial => '/admin/inventory/purchase_orders/form', :locals => {:form => form}%>
 

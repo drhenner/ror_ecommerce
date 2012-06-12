@@ -2,7 +2,7 @@
 
 <h2>Edit Supplier</h2>
 
-<%= form_for @supplier, :url  => admin_inventory_supplier_path(@supplier),
+<%= simple_form_for @supplier, :url  => admin_inventory_supplier_path(@supplier),
                         :html => {:class => 'prepend-6'}  do |form| %>
   <%= render :partial => '/admin/inventory/suppliers/form', :locals => {:form => form}%>
 

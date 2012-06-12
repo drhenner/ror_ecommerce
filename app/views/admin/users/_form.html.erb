@@ -1,53 +1,18 @@
 <div id='registration_name_form'>
-  <fieldset id="admin-user_info" class='span-12'>
-     <ul>
-       <li>
-         <%= form.label :first_name %>
-         <%= form.text_field :first_name %>
-        </li>
-        <li>
-          <%= form.label :last_name %>
-          <%= form.text_field :last_name %>
-        </li>
-        <li>
-          <%= form.label :email %>
-          <%= form.text_field :email %>
-        </li>
-        <li>
-          <%= form.label :form_birth_date, "Birthday" %>
-          <%= form.text_field :form_birth_date, :class => 'ui-yearpicker' %>
-        </li>
-        <li>
-          <%= form.label :state %>
-          <%= form.select :state, @states %>
-        </li>
-     </ul>
-  </fieldset>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :form_birth_date, :as => :string, :input_html => { :class => 'ui-yearpicker' } %>
+  <%= f.input :state, :label => 'State', :collection => @states %>
 </div>
 <div id='registration_form'>
-  <fieldset id="admin-password" class='span-12'>
-    <ul>
-      <li>
-        <%= form.label :password %>
-        <%= form.password_field :password %>
-      </li>
-      <li>
-        <%= form.label :password_confirmation %>
-        <%= form.password_field :password_confirmation %>
-      </li>
-    </ul>
-  </fieldset>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
 </div>
 
 <fieldset id="admin-product-properties" class='span-12'>
   <legend>Roles</legend>
-  <% @all_roles.each do |role| %>
-
-      <div class="property_form left span-9 last">
-        <% checked = @user.id && @user.roles.include?(role)%>
-        <%= check_box_tag "user[role_ids][]", role.id, checked %>
-        <%= role.name %>
-      </div>
-  <% end %>
-
+  <div class="property_form left span-9 last">
+    <%= f.collection_check_boxes :role_ids, @all_roles, :id, :name %>
+  </div>
 </fieldset>

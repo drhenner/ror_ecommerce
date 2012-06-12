@@ -1,6 +1,6 @@
 <h1>New Address for <%= @order.user.name %> </h1>
 
-<%= form_for(@address, :url => admin_history_order_addresses_path(@order)) do |f| %>
+<%= simple_form_for(@address, :url => admin_history_order_addresses_path(@order)) do |f| %>
   <%= render :partial => '/admin/history/addresses/form', :locals => {:f => f } %>
 <% end %>
 

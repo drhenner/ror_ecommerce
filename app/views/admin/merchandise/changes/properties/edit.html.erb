@@ -2,7 +2,7 @@
 
 <h1> Edit Property </h1>
 
-<%= form_for(@product, :url => admin_merchandise_changes_product_property_path(@product.id)) do |f| %>
+<%= simple_form_for(@product, :url => admin_merchandise_changes_product_property_path(@product.id)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
   <div class=" generic_submit_button">
     <%= f.submit "Update",

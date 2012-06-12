@@ -1,4 +1,4 @@
-<%= form_for search_product, :html => {:class => 'search'} do %>
+<%= simple_form_for search_product, :html => {:class => 'search'} do %>
   <div class="field search">
     <span class="icon-search"></span>
     <%= text_field_tag 'q', nil , :class => 'input-search text', :id => 'term' %>

@@ -1,20 +1,15 @@
-
-  <% if @shipping_zone.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shipping_zone.errors.count, "error") %> prohibited this Shipping Zone from being saved:</h2>
-
-      <ul>
+<% if @shipping_zone.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@shipping_zone.errors.count, "error") %> prohibited this Shipping Zone from being saved:</h2>
+    <ul>
       <% @shipping_zone.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    </ul>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% end %>
+
+<%= f.input :name %>
+<div class="actions">
+  <%= f.submit %>
+</div>

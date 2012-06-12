@@ -1,4 +1,4 @@
-<%= form_for( @shipping_address, :url => admin_shopping_checkout_shipping_addresses_path) do |f| %>
+<%= simple_form_for( @shipping_address, :url => admin_shopping_checkout_shipping_addresses_path) do |f| %>
   <% if @shipping_address.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@shipping_address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>

@@ -1,6 +1,6 @@
 <h1>Editing Address</h1>
 
-<%= form_for(@shopping_address, :url => shopping_address_path(@shopping_address)) do |f| %>
+<%= simple_form_for(@shopping_address, :url => shopping_address_path(@shopping_address)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 

@@ -1,7 +1,7 @@
 <%= render :partial => '/admin/config/sub_header'%>
-<h1>New tax_status</h1>
+<h1>New Tax Status</h1>
 
-<%= form_for(@tax_status, :url => admin_config_tax_statuses_path) do |f| %>
+<%= simple_form_for(@tax_status, :url => admin_config_tax_statuses_path) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 

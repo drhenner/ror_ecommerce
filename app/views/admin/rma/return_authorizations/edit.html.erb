@@ -1,6 +1,6 @@
 <h2>Edit RMA</h2>
 
-<%= form_for(@return_authorization, :url => admin_rma_order_return_authorization_path(@order, @return_authorization)) do |f| %>
+<%= simple_form_for(@return_authorization, :url => admin_rma_order_return_authorization_path(@order, @return_authorization)) do |f| %>
   <%= render :partial => '/admin/rma/return_authorizations/form', :locals => {:f => f} %>
 <% end %>
 

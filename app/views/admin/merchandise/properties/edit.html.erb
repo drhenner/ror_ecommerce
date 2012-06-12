@@ -2,7 +2,7 @@
 
 <h2>Edit Property</h2>
 
-<%= form_for @property, :url  => admin_merchandise_property_path(@property),
+<%= simple_form_for @property, :url  => admin_merchandise_property_path(@property),
                         :html => {:class => 'prepend-6'}  do |form| %>
   <%= render :partial => '/admin/merchandise/properties/form', :locals => {:form => form } %>
   <div class=" generic_submit_button">

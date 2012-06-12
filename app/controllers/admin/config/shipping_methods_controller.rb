@@ -11,7 +11,6 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
 
   # GET /admin/config/shipping_methods/new
   def new
-
     form_info
     if @shipping_zones.empty?
         flash[:notice] = "You must create a Shipping Zone before you create a Shipping Method."
@@ -72,6 +71,6 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   private
 
   def form_info
-    @shipping_zones = ShippingZone.all.map{|sz| [sz.name, sz.id]}
+    @shipping_zones = ShippingZone.all
   end
 end

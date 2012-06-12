@@ -2,7 +2,7 @@
 
 <h2>Edit Product Type</h2>
 
-<%= form_for @product_type, :url  => admin_merchandise_product_type_path(@product_type),
+<%= simple_form_for @product_type, :url  => admin_merchandise_product_type_path(@product_type),
                         :html => {:class => 'prepend-6'}  do |form| %>
   <%= render :partial => '/admin/merchandise/product_types/form', :locals => {:form => form, :button_action => "Update"}%>
 <% end %>

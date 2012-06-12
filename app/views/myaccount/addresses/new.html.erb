@@ -1,6 +1,6 @@
 <h1> New Address </h1>
 
-<%= form_for(@address, :url => myaccount_addresses_path(@address)) do |f| %>
+<%= simple_form_for(@address, :url => myaccount_addresses_path(@address)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 

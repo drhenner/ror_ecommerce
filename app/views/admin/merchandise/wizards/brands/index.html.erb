@@ -21,6 +21,6 @@
 <% unless  @brands.empty? %>
   <h2>Create a New Brand</h2>
 <% end %>
-<%= form_for @brand, :url => admin_merchandise_wizards_brands_path do |brand_form| %>
+<%= simple_form_for @brand, :url => admin_merchandise_wizards_brands_path do |brand_form| %>
   <%= render :partial =>  'form', :locals => {:f => brand_form}  %>
 <% end %>

@@ -1,20 +1,14 @@
-
-  <% if @tax_status.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tax_status.errors.count, "error") %> prohibited this tax_status from being saved:</h2>
-
-      <ul>
+<% if @tax_status.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@tax_status.errors.count, "error") %> prohibited this Tax Status from being saved:</h2>
+    <ul>
       <% @tax_status.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    </ul>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% end %>
+<%= f.input :name %>
+<div class="actions">
+  <%= f.submit %>
+</div>

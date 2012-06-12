@@ -2,7 +2,7 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 <h1> Edit Brand </h1>
 <p>
-<%= form_for(@brand, :url => admin_merchandise_brand_path(@brand)) do |f| %>
+<%= simple_form_for(@brand, :url => admin_merchandise_brand_path(@brand)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
   <div class="actions">
     <%= f.submit 'Update', :class => 'button' %>

@@ -2,7 +2,7 @@
 
 <h1>Receive Purchase Order</h1>
 
-<%= form_for @purchase_order, :url  => admin_inventory_receiving_path(@purchase_order),
+<%= simple_form_for @purchase_order, :url  => admin_inventory_receiving_path(@purchase_order),
                               :html => {:class => 'prepend-4'}  do |form| %>
 
   <fieldset id="admin-product-names" class='span-11 fields'>

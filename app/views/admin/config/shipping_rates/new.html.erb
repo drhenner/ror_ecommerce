@@ -1,7 +1,7 @@
 <%= render :partial => '/admin/config/sub_header'%>
 <h1>New Shipping Rate</h1>
 
-<%= form_for(@shipping_rate, :url => admin_config_shipping_rates_path) do |f| %>
+<%= simple_form_for(@shipping_rate, :url => admin_config_shipping_rates_path) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 

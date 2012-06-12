@@ -2,7 +2,7 @@
 
 <h2>Add Product Images</h2>
 <div class='span-18 '>
-  <%= form_for @product, :url  => admin_merchandise_images_product_path(@product),
+  <%= simple_form_for @product, :url  => admin_merchandise_images_product_path(@product),
                           :html => {:class => '', :multipart => true}  do |form| %>
     <%= render :partial => '/admin/merchandise/images/products/form', :locals => {:form => form}%>
 
