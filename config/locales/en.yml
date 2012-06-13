@@ -18,6 +18,7 @@ en:
   the_order_purchased:  "The order has been purchased."
   is_not_valid:         'is not valid.'
   login_successful:     "Login successful!"
+  login_failure:        "Invalid email or password."
   logout_successful:    "Logout successful!"
 
   select_address_before_shipping_method:  'Select an address before you select a shipping method.'
