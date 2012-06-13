@@ -138,7 +138,7 @@ class OrderItem < ActiveRecord::Base
   def adjusted_price(coupon = nil)
     ## coupon credit is calculated at the order level but because taxes we need to apply it now
     # => this calculation will be complete in the version of Hadean
-    coupon_credit = coupon ? coupon.value(variant) : 0.0
+    coupon_credit = coupon ? coupon.value([self.price], order) : 0.0
 
     self.price - coupon_credit
   end
