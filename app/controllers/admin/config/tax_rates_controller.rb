@@ -72,6 +72,6 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
     @countries    = Country.form_selector
     @states       = State.all_with_country_id(@tax_rate.state.country_id) if  @tax_rate.state_id
     @states       ||= []
-    @tax_statuses = TaxStatus.all.collect{|pt| [ pt.name, pt.id] }
+    @tax_categories = TaxCategory.all.collect{|pt| [ pt.name, pt.id] }
   end
 end

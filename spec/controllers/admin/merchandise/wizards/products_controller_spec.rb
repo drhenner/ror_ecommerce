@@ -13,7 +13,7 @@ describe Admin::Merchandise::Wizards::ProductsController do
     controller.session[:product_wizard][:brand_id] = 7# @brand.id
     controller.session[:product_wizard][:product_type_id] = 7# @brand.id
     controller.session[:product_wizard][:property_ids]    = [@property.id]
-    controller.session[:product_wizard][:tax_status_id]   = 9
+    controller.session[:product_wizard][:tax_category_id]   = 9
     controller.session[:product_wizard][:shipping_category_id] = 3
   end
 
@@ -34,7 +34,7 @@ describe Admin::Merchandise::Wizards::ProductsController do
                                 :permalink => 'hi',
                                 :product_type_id => 2,
                                 :shipping_category_id => 4,
-                                :tax_status_id =>6}
+                                :tax_category_id =>6}
     response.should redirect_to(edit_admin_merchandise_products_description_url(assigns[:product]))
   end
 end

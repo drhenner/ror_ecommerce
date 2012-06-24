@@ -107,7 +107,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       #@select_product_types     = ProductType.all#.collect{|pt| [pt.name, pt.id]}
       #@all_shipping_rates = ShippingRate.all#.collect {|sr| [sr.name, sr.id]}
       @select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
-      @select_tax_status        = TaxStatus.all.collect {|ts| [ts.name, ts.id]}
+      @select_tax_category        = TaxCategory.all.collect {|ts| [ts.name, ts.id]}
       @brands        = Brand.order(:name).all.collect {|ts| [ts.name, ts.id]}
     end
 

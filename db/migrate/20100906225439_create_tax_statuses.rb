@@ -1,3 +1,5 @@
+class TaxStatus < ActiveRecord::Base; end
+
 class CreateTaxStatuses < ActiveRecord::Migration
   def self.up
     create_table :tax_statuses do |t|

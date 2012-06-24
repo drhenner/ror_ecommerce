@@ -1,6 +1,6 @@
 require  'spec_helper'
 
-describe Admin::Config::TaxStatusesController do
+describe Admin::Config::TaxCategoriesController do
   render_views
 
   before(:each) do
@@ -16,8 +16,8 @@ describe Admin::Config::TaxStatusesController do
   end
 
   it "show action should render show template" do
-    @tax_status = TaxStatus.first
-    get :show, :id => @tax_status.id
+    @tax_category = TaxCategory.first
+    get :show, :id => @tax_category.id
     response.should render_template(:show)
   end
 
@@ -27,41 +27,41 @@ describe Admin::Config::TaxStatusesController do
   end
 
   it "create action should render new template when model is invalid" do
-    TaxStatus.any_instance.stubs(:valid?).returns(false)
+    TaxCategory.any_instance.stubs(:valid?).returns(false)
     post :create
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    TaxStatus.any_instance.stubs(:valid?).returns(true)
-    post :create, :tax_status => {:name => 'Jewels'}
-    response.should redirect_to(admin_config_tax_statuses_url())
+    TaxCategory.any_instance.stubs(:valid?).returns(true)
+    post :create, :tax_category => {:name => 'Jewels'}
+    response.should redirect_to(admin_config_tax_categories_url())
   end
 
   it "edit action should render edit template" do
-    @tax_status = TaxStatus.first
-    get :edit, :id => @tax_status.id
+    @tax_category = TaxCategory.first
+    get :edit, :id => @tax_category.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @tax_status = TaxStatus.first
-    TaxStatus.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @tax_status.id
+    @tax_category = TaxCategory.first
+    TaxCategory.any_instance.stubs(:valid?).returns(false)
+    put :update, :id => @tax_category.id
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @tax_status = TaxStatus.first
-    TaxStatus.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @tax_status.id
-    response.should redirect_to(admin_config_tax_statuses_url())
+    @tax_category = TaxCategory.first
+    TaxCategory.any_instance.stubs(:valid?).returns(true)
+    put :update, :id => @tax_category.id
+    response.should redirect_to(admin_config_tax_categories_url())
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @tax_status = TaxStatus.create(:name => 'Jewels')
-    delete :destroy, :id => @tax_status.id
-    response.should redirect_to(admin_config_tax_statuses_url)
-    TaxStatus.exists?(@tax_status.id).should be_false
+    @tax_category = TaxCategory.create(:name => 'Jewels')
+    delete :destroy, :id => @tax_category.id
+    response.should redirect_to(admin_config_tax_categories_url)
+    TaxCategory.exists?(@tax_category.id).should be_false
   end
 end

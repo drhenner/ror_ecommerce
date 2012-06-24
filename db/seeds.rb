@@ -22,9 +22,9 @@ states_list   = YAML::load( File.open( file_to_load ) )
 states_list.each_pair do |key,state|
   s = State.find_by_abbreviation_and_country_id(state['attributes']['abbreviation'], state['attributes']['country_id'])
   State.create(state['attributes']) unless s
-end 
+end
 
-roles = Role::ROLES 
+roles = Role::ROLES
 roles.each do |role|
   Role.find_or_create_by_name(role)
 end
@@ -56,8 +56,8 @@ ShippingZone::LOCATIONS.each do |loc|
   ShippingZone.find_or_create_by_name(loc)
 end
 
-TaxStatus::STATUSES.each do |status|
-  TaxStatus.find_or_create_by_name(status)
+TaxCategory::STATUSES.each do |status|
+  TaxCategory.find_or_create_by_name(status)
 end
 
 TransactionAccount::ACCOUNT_TYPES.each do |acc_type|

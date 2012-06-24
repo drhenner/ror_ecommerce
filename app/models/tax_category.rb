@@ -1,4 +1,4 @@
-class TaxStatus < ActiveRecord::Base
+class TaxCategory < ActiveRecord::Base
   has_many :products
   has_many :tax_rates
 

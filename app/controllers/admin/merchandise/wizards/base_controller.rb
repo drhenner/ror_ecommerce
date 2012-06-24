@@ -9,7 +9,7 @@ private
       new_admin_merchandise_wizards_product_url
     end
   end
-  
+
   def next_wizard_form
     if !session[:product_wizard]
       reset_product_wizard
@@ -22,8 +22,8 @@ private
       admin_merchandise_wizards_properties_url
     #elsif !session[:product_wizard][:tax_category_id]
     #  admin_merchandise_wizards_tax_categories_url
-    elsif !session[:product_wizard][:tax_status_id]
-      admin_merchandise_wizards_tax_statuses_url
+    elsif !session[:product_wizard][:tax_category_id]
+      admin_merchandise_wizards_tax_categories_url
     elsif !session[:product_wizard][:shipping_category_id]
       admin_merchandise_wizards_shipping_categories_url
     else

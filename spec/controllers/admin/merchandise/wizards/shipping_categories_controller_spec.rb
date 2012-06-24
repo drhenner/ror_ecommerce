@@ -12,7 +12,7 @@ describe Admin::Merchandise::Wizards::ShippingCategoriesController do
     controller.session[:product_wizard][:brand_id] = 7# @brand.id
     controller.session[:product_wizard][:product_type_id] = 7# @brand.id
     controller.session[:product_wizard][:property_ids]    = [1,2]
-    controller.session[:product_wizard][:tax_status_id]   = 9
+    controller.session[:product_wizard][:tax_category_id]   = 9
   end
 
   it "index action should render index template" do

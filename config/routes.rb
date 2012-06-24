@@ -116,7 +116,7 @@ Hadean::Application.routes.draw do # |map|
       resources :shipping_methods
       resources :shipping_zones
       resources :tax_rates
-      resources :tax_statuses
+      resources :tax_categories
     end
 
     namespace :generic do
@@ -151,7 +151,7 @@ Hadean::Application.routes.draw do # |map|
         resources :products,            :only => [:new, :create]
         resources :properties,          :only => [:index, :create, :update]
         resources :prototypes,          :only => [:update]
-        resources :tax_statuses,        :only => [:index, :create, :update]
+        resources :tax_categories,        :only => [:index, :create, :update]
         resources :shipping_categories, :only => [:index, :create, :update]
         resources :product_types,       :only => [:index, :create, :update]
       end

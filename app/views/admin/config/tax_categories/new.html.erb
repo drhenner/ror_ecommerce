@@ -1,0 +1,8 @@
+<%= render :partial => '/admin/config/sub_header'%>
+<h1>New Tax Category</h1>
+
+<%= form_for(@tax_category, :url => admin_config_tax_categories_path) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<%= link_to 'Back', admin_config_tax_categories_path, :class => 'button' %>
