@@ -4,6 +4,7 @@ nbproject
 .idea
 .vimrc
 .rvmrc
+.powrc
 .vim
 .sass-cache/
 /.bundle
