@@ -9,17 +9,26 @@ begin
     VAT_TAX_SYSTEM = HADEAN_CONFIG['vat']
   end
 rescue  Exception => e
-  puts "#{ e } (#{ e.class })!"
-  raise "
-  ############################################################################################
-  ############################################################################################
-    You need to setup the config.yml
-    copy config.yml.example to config.yml
+  if Rails.env == 'test'
+    # try loading the example config file for travis CI
+    raw_config = File.read("config.yml.example.yml")
+    HADEAN_CONFIG = YAML.load(raw_config)[Rails.env]
+    module GlobalConstants
+      VAT_TAX_SYSTEM = HADEAN_CONFIG['vat']
+    end
+  else
+    puts "#{ e } (#{ e.class })!"
+    raise "
+    ############################################################################################
+    ############################################################################################
+      You need to setup the config.yml
+      copy config.yml.example to config.yml
 
-    Make sure you personalize the passwords in this file and for security never check this file in.
-  ############################################################################################
-  ############################################################################################
-  "
+      Make sure you personalize the passwords in this file and for security never check this file in.
+    ############################################################################################
+    ############################################################################################
+    "
+  end
 end
 
 CIM_LOGIN_ID = HADEAN_CONFIG['authnet']['login']
