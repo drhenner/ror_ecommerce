@@ -6,6 +6,7 @@ FactoryGirl.define do
       get_percentage 50
       deal_type     { DealType.first }
       product_type  { |c| c.association(:product_type) }
+      get_amount   nil
     end
 end
 

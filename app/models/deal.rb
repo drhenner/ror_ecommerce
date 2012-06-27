@@ -23,7 +23,11 @@ class Deal < ActiveRecord::Base
     where(['deals.product_type_id IN (?)', h.first]).
     where(['deals.created_at <= ?', at]).where(['deals.deleted_at >= ? OR deals.deleted_at IS NULL', at]).
     order('deals.get_percentage DESC').first
-    deal ?  ((h.last.sort.reverse[0..(deal.buy_quantity - 1)].min) * deal.get_percentage).to_f / 100.0 : false
+    if deal && deal.get_amount && deal.get_amount > 0.0
+      deal.get_amount.to_f / 100.0
+    else
+      deal ?  ((h.last.sort.reverse[0..(deal.buy_quantity - 1)].min) * deal.get_percentage).to_f / 100.0 : false
+    end
   end
 
   # [item1.price,item2.price,item3.price ].sort.reverse[0..4].min
