@@ -35,7 +35,7 @@ describe Myaccount::OrdersController do
   end
 
   it "show action should go to login page" do
-    @order = create(:order, :user => @user )
+    @order = create(:order)
     @order.state = 'complete'
     @order.save
     get :show, :id => @order.id
