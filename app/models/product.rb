@@ -63,7 +63,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :variants, :reject_if => proc { |attributes| attributes['sku'].blank? }
   accepts_nested_attributes_for :product_properties, :reject_if => proc { |attributes| attributes['description'].blank? }, :allow_destroy => true
 
-  accepts_nested_attributes_for :images, :reject_if => lambda { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }
+  accepts_nested_attributes_for :images, :reject_if => lambda { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, :allow_destroy => true
 
   validates :shipping_category_id,  :presence => true
   validates :tax_category_id,         :presence => true
