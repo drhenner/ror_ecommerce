@@ -1,3 +1,13 @@
+###1.1.0 2012-06-26
+* Add Deals (Buy 5 get 6th for 50% off)
+* Change TaxStatus to TaxCategory
+* More fulfillment functionality (create new shipment if it hasn't been created)
+* Better looking admin UI
+* BUG - coupon at a given time
+* BUG - reset PAssword
+* BUG - Name regex
+* BUG creditcard months should be all months
+
 ###1.0.0 2012-02-14
 
 * Small bug with saving default address not saving correctly
