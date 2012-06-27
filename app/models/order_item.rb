@@ -49,6 +49,14 @@ class OrderItem < ActiveRecord::Base
     #after_transition :to => 'complete', :do => [:update_inventory]
   end
 
+  def product_type
+    variant.product.product_type
+  end
+
+  def product_type_ids
+    product_type.self_and_ancestors.map(&:id)
+  end
+
  # if the order item has been shipped it will return true
  #
  # @param [none]

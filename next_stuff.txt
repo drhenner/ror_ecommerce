@@ -1,0 +1,11 @@
+ToDo:  1 - referrals
+
+rails g model  referral_bonus name:string  quantity_needed:integer  amount:integer
+
+rails g model  referral_type name:string
+
+rails g model  referral_program name:string description:text active:boolean referral_bonus_id:integer
+
+rails g model referral name:string email:string zip_code:string phone_number:string referring_user_id:integer referral_program_id:integer referral_user_id:integer referral_type_id:integer sent_at:datetime clicked_at:datetime  registered_at:datetime purchased_at:datetime applied:boolean
+
+2 -

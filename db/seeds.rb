@@ -41,6 +41,10 @@ ItemType::NAMES.each do |item_type|
   ItemType.find_or_create_by_name(item_type)
 end
 
+DealType::TYPES.each do |dt|
+  DealType.find_or_create_by_name(dt)
+end
+
 Account::TYPES.each_pair do |acc_type, value|
   acc = Account.find_by_name(acc_type)
   unless acc

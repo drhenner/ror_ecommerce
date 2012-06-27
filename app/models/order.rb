@@ -45,7 +45,7 @@ class Order < ActiveRecord::Base
 
   # after_find :set_beginning_values
 
-  attr_accessor :total, :sub_total
+  attr_accessor :total, :sub_total, :deal_amount
 
   #validates :number,     :presence => true
   validates :user_id,     :presence => true
@@ -226,6 +226,20 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # This returns a hash where product_type_id is the key and an Array of prices are the values.
+  #   This method is specifically used for Deal.rb
+  #
+  # @return [Hash] This returns a hash of { product_type_id => [price, price]}
+  def number_of_a_given_product_type
+     return_hash = order_items.inject({}) do |hash, oi|
+       oi.product_type_ids.each do |product_type_id|
+         hash[product_type_id] ||= []
+         hash[product_type_id] << oi.price#.to_s
+       end
+       hash
+     end#.sort_by{|v| v.values.first.size }.reverse
+     return_hash.delete_if{|k,v| k == 1}
+  end
   # looks at all the order items and determines if the order has all the required elements to complete a checkout
   #
   # @param [none]
@@ -241,8 +255,9 @@ class Order < ActiveRecord::Base
   # @return [none]  Sets sub_total and total for the object
   def find_total(force = false)
     calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
+    self.deal_amount = Deal.best_qualifing_deal(self)
     self.find_sub_total
-    self.total = (self.total + shipping_charges - coupon_amount ).round_at( 2 )
+    self.total = (self.total + shipping_charges - deal_amount - coupon_amount ).round_at( 2 )
   end
 
   def find_sub_total
