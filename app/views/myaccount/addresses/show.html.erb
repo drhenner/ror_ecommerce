@@ -6,6 +6,6 @@
 
 <p>
   <%= link_to "Edit", edit_myaccount_address_path(@address), :class => 'button ar-small-black-button' %> |
-  <%= link_to "Destroy", myaccount_address_path(@address), :confirm => 'Are you sure?', :method => :delete, :class => 'button' %> |
+  <%= link_to "Destroy", myaccount_address_path(@address), :data => { :confirm => 'Are you sure?'}, :method => :delete, :class => 'button' %> |
   <%= link_to "View All", myaccount_addresses_path, :class => 'button ar-small-black-button' %>
 </p>

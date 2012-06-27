@@ -28,7 +28,7 @@
         <td>
         <%#  YOU SHOULD NOT EDIT THIS..  OLD ORDERS WILL NO LONGER CALCULATE CORRECTLY.  set Deleted_at and create a new promotion %>
         <%#= link_to "", edit_admin_generic_deal_path(deal), :class => 'ss_sprite ss_application_edit' %></td>
-        <td><%= link_to "", [:admin, :generic, deal], :confirm => 'Are you sure?', :method => :delete, :class => 'ss_sprite ss_cross' %></td>
+        <td><%= link_to "", [:admin, :generic, deal], :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'ss_sprite ss_cross' %></td>
       </tr>
     <% end %>
     </tbody>

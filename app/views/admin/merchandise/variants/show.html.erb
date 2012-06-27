@@ -63,5 +63,5 @@
 <% if @variant.active? %>
   <%= link_to 'Inactivate Variant',
               admin_merchandise_product_variant_path(@product, @variant),
-              :class => 'button red-button', :method => :delete, :confirm => "Are you sure?" %>
+              :class => 'button red-button', :method => :delete, :data => {:confirm => "Are you sure?"} %>
 <% end %>

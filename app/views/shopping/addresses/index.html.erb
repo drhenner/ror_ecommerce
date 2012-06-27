@@ -10,7 +10,7 @@
       <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address} %>
       <%= button_to 'Use', select_address_shopping_address_path(shopping_address), :class => 'button spade inline-block', :method => :put %>
       <%= link_to 'Edit', edit_shopping_address_path(shopping_address) %>
-      <%= link_to 'Delete', shopping_address_path(shopping_address), :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to 'Delete', shopping_address_path(shopping_address), :data => {:confirm => 'Are you sure?'}, :method => :delete %>
     </div>
     <hr style='color:#aac'/>
   <% end %>
