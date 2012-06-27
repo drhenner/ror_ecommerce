@@ -1,0 +1,35 @@
+<%= render :partial => '/admin/generic/sub_header'%>
+<h1> Deal </h1>
+
+<ul>
+  <li>
+    <label>Buy Quantity:</label>
+    <%= @deal.buy_quantity %>
+  </li>
+  <li>
+    <label>Get Percentage:</label>
+    <%= @deal.get_percentage %>
+  </li>
+  <li>
+    <label>Deal Type:</label>
+    <%= @deal.deal_type.name %>
+  </li>
+  <li>
+    <label>Product Type:</label>
+    <%= @deal.product_type.name %>
+  </li>
+  <li>
+    <label>Get Amount:</label>
+    <%= @deal.get_amount %>
+  </li>
+  <li>
+    <label>Deleted At:</label>
+    <%= @deal.deleted_at %>
+  </li>
+</ul>
+<p>
+  <%#  YOU SHOULD NOT EDIT THIS..  OLD ORDERS WILL NO LONGER CALCULATE CORRECTLY.  set Deleted_at and create a new promotion %>
+  <%#= link_to "Edit", edit_admin_generic_deal_path(@deal), :class => 'button' %> |
+  <%= link_to "Destroy", [:admin, :generic, @deal], :confirm => 'Are you sure?', :method => :delete, :class => 'button' %> |
+  <%= link_to "View All", admin_generic_deals_path, :class => 'button' %>
+</p>

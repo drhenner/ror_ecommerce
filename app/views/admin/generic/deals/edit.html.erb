@@ -1,0 +1,12 @@
+<%= render :partial => '/admin/generic/sub_header'%>
+<h1> Edit Deal </h1>
+
+<%= form_for @deal, :url => [:admin, :generic, @deal] do |f| %>
+  <%=  render :partial => 'form', :locals => {:f => f} %>
+  <div class="actions"><%= f.submit 'Update' , :class => 'button' %></div>
+<% end %>
+
+<p>
+  <%= link_to "Show", [:admin, :generic, @deal], :class => 'button' %> |
+  <%= link_to "View All", admin_generic_deals_path, :class => 'button' %>
+</p>
