@@ -1,21 +1,21 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
-<h1> Brands </h1>
-<div class=' pretty_table'>
-<table>
-  <thead>
-  <tr class='odd'>
-    <th class='column1_header'>Name</th><th></th><th></th>
-  </tr>
-  </thead>
-  <% for brand in @brands %>
-    <tr class='<%= cycle("odd", "")%>'>
-      <td><%= link_to brand.name, admin_merchandise_brand_path(brand) %></td>
-      <td><%= link_to "Edit", edit_admin_merchandise_brand_path(brand) %></td>
-      <td><%= link_to "Delete", admin_merchandise_brand_path(brand), confirm: 'Are you sure?', method: :delete %></td>
-    </tr>
-  <% end %>
-</table>
-</div>
-
+<h3>Brands</h3>
 <p><%= link_to "New Brand", new_admin_merchandise_brand_path, :class => 'button' %></p>
+
+<div class="admin_brands">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'>Name</th><th></th><th></th>
+    </tr>
+    </thead>
+    <% for brand in @brands %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to brand.name, admin_merchandise_brand_path(brand) %></td>
+        <td><%= link_to "Edit", edit_admin_merchandise_brand_path(brand) %></td>
+        <td><%= link_to "Delete", admin_merchandise_brand_path(brand), confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
