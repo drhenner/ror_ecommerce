@@ -19,26 +19,27 @@
     <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
   </div>
 
-  <%= render :partial => 'shared/admin/header_bar' %>
+  <div class="container">
+    <div class="row">
+      <%= render :partial => "shared/admin/header_bar" %>
 
-  <div class="container bp">
+      <% if content_for? :header_sub_bar %>
+        <div id='header_sub_bar'>
+          <%= yield :header_sub_bar %>
+        </div>
+      <% end %>
 
-    <% if  content_for? :header_sub_bar %>
-      <div id='header_sub_bar'>
-        <%= yield :header_sub_bar %>
-      </div>
-    <% end %>
-
-    <% if content_for?(:sidemenu) %>
-      <div class='span-18'>
+      <% if content_for?(:sidemenu) %>
+        <div class='span-18'>
+          <%= yield %>
+        </div>
+        <div id='sidemenu' class='span-6 last ar-sidebar' >
+          <%= yield :sidemenu %>
+        </div>
+      <% else %>
         <%= yield %>
-      </div>
-      <div id='sidemenu' class='span-6 last ar-sidebar' >
-        <%= yield :sidemenu %>
-      </div>
-    <% else %>
-      <%= yield %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
   <%= yield :bottom %>
@@ -51,6 +52,10 @@
     }
   );
   </script>
+
+<% if Rails.env.development? %>
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<% end %>
 
 </body>
   <%= yield :below_body %>
