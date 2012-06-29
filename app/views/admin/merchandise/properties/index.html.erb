@@ -1,57 +1,44 @@
-<% content_for :head do -%>
-  <%#= javascript_include_tag "admin/index_grid" %>
-<% end %>
-
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
 <% content_for :sidemenu do %>
+  <%= link_to "New Property", new_admin_merchandise_property_path, :class => "button", :id => "new_property_button" %>
   <div class='admin_filters'>
     <%= form_tag admin_merchandise_properties_path, :method => 'get', :id => "products_search" do %>
-      <p>
-        <ul class=' search_boxes'>
-          <li><%= label_tag 'identifing_name' %> <%= text_field_tag :identifing_name, params[:identifing_name] %></li>
-          <li><%= label_tag 'display_name' %> <%= text_field_tag :display_name, params[:display_name] %></li>
-        </ul>
-        <div style='text-align:center'>
-          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
-        </div>
-      </p>
-      <div id="order_hidden">
-        <%= hidden_field_tag :direction, params[:direction] %>
-        <%= hidden_field_tag :sort, params[:sort] %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+
+      <label>Indentifing Name</label>
+      <%= text_field_tag :identifing_name, params[:identifing_name] %>
+
+      <label>Display Name</label>
+      <%= text_field_tag :display_name, params[:display_name] %>
+      <div style='text-align:center'>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
       </div>
     <% end %>
-    <div class='clearfix'></div>
   </div>
 <% end %>
 
 
-<h2> Properties </h2>
+<h3>Properties</h3>
 
-<div id="admin_properties_page_wrapper">
-  <div id="admin_properties_grid_wrapper" class='column pretty_table'>
+<div class="admin_properties">
+  <table>
+    <thead>
+    <tr class='odd'>
+        <th class='column1_header'><%= sortable 'identifing_name',"ID name" %></th>
+        <th><%= sortable "display_name" %></th>
+        <th>Active</th>
+    </tr>
+    </thead>
+    <% @properties.each do |property| %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to property.identifing_name, edit_admin_merchandise_property_path(property) %></td>
+        <td><%= property.display_name %></td>
+        <td><%= property.display_active %></td>
+      </tr>
+    <% end %>
+  </table>
 
-      <table>
-        <thead>
-        <tr class='odd'>
-            <th class='column1_header'><%= sortable 'identifing_name',"ID name" %></th>
-            <th><%= sortable "display_name" %></th>
-            <th>Active</th>
-        </tr>
-        </thead>
-        <% @properties.each do |property| %>
-          <tr class='<%= cycle("odd", "")%>'>
-            <td><%= link_to property.identifing_name, edit_admin_merchandise_property_path(property) %></td>
-            <td><%= property.display_name %></td>
-            <td><%= property.display_active %></td>
-          </tr>
-        <% end %>
-      </table>
-
-    <%= will_paginate @properties %>
-  </div>
+  <%= will_paginate @properties %>
 </div>
-  <div id="admin_new_property_button" class="admin_new_button last">
-    <%= link_to "New Property", new_admin_merchandise_property_path, :class => "button", :id => "new_property_button" %>
-  </div>
-
