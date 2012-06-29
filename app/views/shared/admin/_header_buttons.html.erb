@@ -2,7 +2,22 @@
 
 <li><%= link_to 'History', admin_history_orders_path, :id => 'admin_history_button' %></li>
 <li><%= link_to 'Orders', admin_shopping_carts_path, :id => 'admin_orders_button' %></li>
-<li><%= link_to 'Merchandise', admin_merchandise_path, :id => 'merchandise_button' %></li>
+<li class="has-flyout">
+	<%= link_to 'Merchandise', admin_merchandise_path, :id => 'merchandise_button' %>
+	<a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Products', admin_merchandise_products_path %></li>
+		<li><%= link_to 'Properties', admin_merchandise_properties_path %></li>
+		<li><%= link_to 'Product Types', admin_merchandise_product_types_path %></li>
+		<li><%= link_to 'Prototypes', admin_merchandise_prototypes_path %></li>
+		<li><%= link_to 'Brands', admin_merchandise_brands_path %></li>
+  </ul>
+
+</li>
+
+
+
+
 <li><%= link_to "Inventory", admin_inventory_overviews_path, :id => "admin_inventory_button" %></li>
 <li><%= link_to "Users", admin_users_path, :id => "admin_users_button" %></li>
 <li><%= link_to "Config", admin_config_overviews_path, :id => "admin_config_accounts_path" %></li>

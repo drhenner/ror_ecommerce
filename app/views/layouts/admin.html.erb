@@ -10,7 +10,14 @@
   <![endif]-->
   <%= csrf_meta_tag %>
 
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "admin/jquery.min" %>
+  <%= javascript_include_tag "admin/app" %>
+  <%= javascript_include_tag "admin/jquery.customforms" %>
+  <%= javascript_include_tag "admin/jquery.placeholder.min" %>
+  <%= javascript_include_tag "admin/jquery.reveal" %>
+  <%= javascript_include_tag "admin/jquery.tooltips" %>
+  <%= javascript_include_tag "admin/modernizr.foundation" %>
+
   <%= yield :head %>
 </head>
 <body class="bp">
