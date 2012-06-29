@@ -1,55 +1,38 @@
-<% content_for :head do -%>
-  <%#= javascript_include_tag "admin/index_grid" %>
-<% end %>
-
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
 <% content_for :sidemenu do %>
+  <%= link_to "New Prototype", new_admin_merchandise_prototype_path, :class  => "button"%>
   <div class='admin_filters'>
     <%= form_tag admin_merchandise_prototypes_path, :method => 'get', :id => "products_search" do %>
-      <p>
-        <ul class=' search_boxes'>
-          <li><%= label_tag 'name' %> <%= text_field_tag :name, params[:name] %></li>
-        </ul>
-        <div style='text-align:center'>
-          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
-        </div>
-      </p>
-      <div id="order_hidden">
-        <%= hidden_field_tag :direction, params[:direction] %>
-        <%= hidden_field_tag :sort, params[:sort] %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+
+      <label>Name</label>
+      <%= text_field_tag :name, params[:name] %>
+      <div style="text-align:center">
+        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
       </div>
     <% end %>
-    <div class='clearfix'></div>
   </div>
 <% end %>
 
-<h2> Prototypes </h2>
+<h3>Prototypes</h3>
 
-<div id="admin_prototypes_page_wrapper">
-  <div id="admin_prototypes_grid_wrapper" class='column pretty_table'>
+<div class="admin_prototypes">
+  <table>
+    <thead>
+    <tr class='odd'>
+        <th class='column1_header'><%= sortable "name" %></th>
+        <th>Active</th>
+    </tr>
+    </thead>
+    <% @prototypes.each do |prototype| %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to prototype.name, edit_admin_merchandise_prototype_path(prototype) %></td>
+        <td><%= prototype.display_active %></td>
+      </tr>
+    <% end %>
+  </table>
 
-      <table>
-        <thead>
-        <tr class='odd'>
-            <th class='column1_header'><%= sortable "name" %></th>
-            <th>Active</th>
-        </tr>
-        </thead>
-        <% @prototypes.each do |prototype| %>
-          <tr class='<%= cycle("odd", "")%>'>
-            <td><%= link_to prototype.name, edit_admin_merchandise_prototype_path(prototype) %></td>
-            <td><%= prototype.display_active %></td>
-          </tr>
-        <% end %>
-      </table>
-
-    <%= will_paginate @prototypes %>
-  </div>
+  <%= will_paginate @prototypes %>
 </div>
-  <div  id="admin_new_prototype_button"
-        class="admin_new_button last">
-    <%= link_to "New Prototype", new_admin_merchandise_prototype_path,
-                                          :class  => "button",
-                                          :id     => "new_prototype_button" %>
-  </div>
