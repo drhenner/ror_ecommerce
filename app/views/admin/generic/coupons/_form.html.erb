@@ -10,53 +10,35 @@
   </div>
 <% end %>
 
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </div>
+<fieldset>
+  <label>Code</label>
+  <%= f.text_field :code %>
 
   <% unless @coupon.id %>
-    <div class="field">
-      <%= f.label :type %><br />
-      <%= f.select :type, @coupon_types, { :include_blank => true } %>
-    </div>
+    <label>Type</label>
+    <%= f.select :type, @coupon_types, { :include_blank => true } %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </div>
+  <label>Amount</label>
+  <%= f.text_field :amount %>
 
-  <div class="field">
-    <%= f.label :minimum_value %><br />
-    <%= f.text_field :minimum_value %>
-  </div>
+  <label>Minimum Value</label>
+  <%= f.text_field :minimum_value %>
 
-  <div class="field">
-    <%= f.label :percent %><br />
-    <%= f.text_field :percent %>
-  </div>
+  <label>Percent</label>
+  <%= f.text_field :percent %>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
+  <label>Description</label>
+  <%= f.text_area :description %>
 
-  <div class="field">
-    <%= f.label :combine %><br />
-    <%= f.check_box :combine %>
-  </div>
+  <label>Combine</label>
+  <%= f.check_box :combine %>
 
-  <div class="field">
-    <%= f.label :starts_at %><br />
-    <%= f.date_select :starts_at %>
-  </div>
+  <label>Starts at</label>
+  <%= f.date_select :starts_at %>
 
-  <div class="field">
-    <%= f.label :expires_at %><br />
-    <%= f.date_select :expires_at %>
-  </div>
+  <label>Expires at</label>
+  <%= f.date_select :expires_at %>
+</fieldset>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= f.submit "Create", :class => "button" %>

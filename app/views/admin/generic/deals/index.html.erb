@@ -1,19 +1,16 @@
-<%= render :partial => '/admin/generic/sub_header'%>
+<h3>Deals</h3>
 
-<h1> Deals </h1>
-
-<div id="admin_deal_grid_wrapper" class='pretty_table'>
+<div class="admin_deals">
   <table>
     <tr class='odd'>
-
-        <th  class='column1_header'><%= sortable 'buy_quantity', 'Buy Quantity' %></th>
-        <th>Get Percentage</th>
-        <th>Deal Type</th>
-        <th>Product Type</th>
-        <th>Get Amount</th>
-        <th>Deleted At</th>
-        <th></th>
-        <th></th>
+      <th  class='column1_header'><%= sortable 'buy_quantity', 'Buy Quantity' %></th>
+      <th>Get Percentage</th>
+      <th>Deal Type</th>
+      <th>Product Type</th>
+      <th>Get Amount</th>
+      <th>Deleted At</th>
+      <th></th>
+      <th></th>
     </tr>
     <tbody>
     <% for deal in @deals %>
@@ -37,4 +34,4 @@
 
 <%= will_paginate @deals %>
 
-<p><%= link_to "New Deal", new_admin_generic_deal_path, :class => 'button' %></p>
+<%= link_to "New Deal", new_admin_generic_deal_path, :class => "button" %>

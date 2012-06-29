@@ -1,30 +1,28 @@
-<%= render :partial => '/admin/generic/sub_header'%>
-<h1> Coupons </h1>
+<h3>Coupons</h3>
 
-<div class=' pretty_table'>
-<table>
-  <thead>
-  <tr class='odd'>
-    <th class='column1_header'>Code</th>
-    <th>Type</th>
-    <th>Starts at</th>
-    <th>Expires at</th>
-    <th></th>
-  </tr>
-  </thead>
-  <% for coupon in @coupons %>
-    <tr class='<%= cycle("odd", "")%>'>
-      <td>
-        <%= link_to coupon.code, admin_generic_coupon_path(coupon),
-                    :style => "#{(coupon.expires_at <= Time.zone.now) ? 'color:#F65566' : ''}" %>
-      </td>
-      <td><%= coupon.type %></td>
-      <td><%= coupon.display_start_time %></td>
-      <td><%= coupon.display_expires_time %></td>
-      <td><%= link_to "Edit", edit_admin_generic_coupon_path(coupon) %></td>
+<div class="admin_coupons">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'>Code</th>
+      <th>Type</th>
+      <th>Starts at</th>
+      <th>Expires at</th>
+      <th></th>
     </tr>
-  <% end %>
-</table>
+    </thead>
+    <% for coupon in @coupons %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td>
+          <%= link_to coupon.code, admin_generic_coupon_path(coupon), :style => "#{(coupon.expires_at <= Time.zone.now) ? 'color:#F65566' : ''}" %>
+        </td>
+        <td><%= coupon.type %></td>
+        <td><%= coupon.display_start_time %></td>
+        <td><%= coupon.display_expires_time %></td>
+        <td><%= link_to "Edit", edit_admin_generic_coupon_path(coupon) %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
 <p><%= link_to "New Coupon", new_admin_generic_coupon_path, :class => 'button' %></p>
