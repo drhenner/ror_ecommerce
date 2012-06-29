@@ -14,13 +14,13 @@
   <%= yield :head %>
 </head>
 <body class="bp">
-  <div class="bp">
-    <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
-    <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
-  </div>
-
   <div class="container">
     <div class="row">
+      <div class="flash_messages">
+        <%= raw "<div class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice %>
+        <%= raw "<div class='alert-box error'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
+      </div>
+
       <%= render :partial => "shared/admin/header_bar" %>
 
       <% if content_for? :header_sub_bar %>
