@@ -1,29 +1,20 @@
-
-<fieldset id="admin-product-names" class='span-11 <%= po_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
-
-  <div class='span-11'>
-    <div class='span-10'>
-      <%= po_form.label :variant_id %>
-      <% if po_form.object.id %>
-        <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => 'chzn-select select_variants' %>
-      <% else %>
-        <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => 'select_variants' %>
-      <% end %>
-    </div>
-    <div style='float:right;'>
-      <%= remove_child_link('remove', po_form) %>
-    </div>
+<fieldset class="twelve columns <%= po_form.object.new_record? ? 'new_fields' : 'fields' %>">
+  <div style='float:right;'>
+    <%= remove_child_link('remove', po_form) %>
   </div>
-  <div class='span-11'>
-    <div class='span-5'>
-      <%= po_form.label :quantity %>
-      <%= po_form.text_field :quantity, :class => 'span-2'%>
-    </div>
+  <label>Variant</label>
+  <% if po_form.object.id %>
+    <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "chzn-select select_variants ten columns" %>
+  <% else %>
+    <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "select_variants ten columns" %>
+  <% end %>
 
-    <div class='span-5'>
-      <%= po_form.label :cost %>
-      <%= po_form.text_field :cost, :class => 'span-2' %>
-    </div>
+  <div class="six columns">
+    <label>Quantity</label>
+    <%= po_form.text_field :quantity %>
   </div>
-
+  <div class="six columns">
+    <label>Cost</label>
+    <%= po_form.text_field :cost %>
+  </div>
 </fieldset>
