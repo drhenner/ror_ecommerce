@@ -1,8 +1,6 @@
-<%= render :partial => '/admin/config/sub_header'%>
+<h3>Tax Category</h3>
 
-<h1>Tax Category</h1>
-
-<div class=' pretty_table'>
+<div class="admin_tax_categories">
   <table>
     <thead>
     <tr class='odd'>
@@ -14,13 +12,11 @@
 
   <% @tax_categories.each do |tax_category| %>
     <tr class='<%= cycle("odd", "")%>'>
-      <td><%= link_to tax_category.name, admin_config_tax_category_path(tax_category) %></td>
-      <td><%= link_to 'Edit', edit_admin_config_tax_category_path(tax_category) %></td>
-      <td><%= link_to 'Delete', admin_config_tax_category_path(tax_category), :data => { :confirm => 'Text' }, :method => :delete %></td>
+      <td><%= link_to tax_category.name, edit_admin_config_tax_category_path(tax_category) %></td>
+      <td><%= link_to "Delete", admin_config_tax_category_path(tax_category), :data => { :confirm => 'Text' }, :method => :delete %></td>
     </tr>
   <% end %>
   </table>
 </div>
-<br />
 
-<%= link_to 'New Tax status', new_admin_config_tax_category_path, :class => 'button' %>
+<%= link_to 'New Tax status', new_admin_config_tax_category_path, :class => "button" %>

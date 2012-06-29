@@ -1,8 +1,6 @@
-<%= render :partial => '/admin/config/sub_header'%>
+<h3>Tax Rates</h3>
 
-<h1>Tax Rates</h1>
-
-<div class=' pretty_table'>
+<div class="admin_tax_rates">
   <table>
     <thead>
     <tr class='odd'>
@@ -33,6 +31,5 @@
   <% end %>
   </table>
 </div>
-<br />
 
 <%= link_to 'New Tax rate', new_admin_config_tax_rate_path, :class => 'button' %>

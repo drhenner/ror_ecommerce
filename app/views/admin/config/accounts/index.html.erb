@@ -1,28 +1,27 @@
-<%= render :partial => '/admin/config/sub_header'%>
-<h1>Listing accounts</h1>
-<div class=' pretty_table'>
-<table>
-  <thead>
-  <tr class='odd'>
-    <th class='column1_header'>Account type</th>
-    <th>Monthly charge</th>
-    <th>Active</th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
+<h3>Listing Accounts</h3>
 
-<% @accounts.each do |account| %>
-  <tr class='<%= cycle("odd", "")%>'>
-    <td><%= account.account_type %></td>
-    <td><%= account.monthly_charge %></td>
-    <td><%= account.active %></td>
-    <td><%= link_to 'Show', admin_config_account_path(account) %></td>
-    <td><%= link_to 'Edit', edit_admin_config_account_path(account) %></td>
-  </tr>
-<% end %>
-</table>
+<div class="admin_accounts">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'>Account type</th>
+      <th>Monthly charge</th>
+      <th>Active</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+  <% @accounts.each do |account| %>
+    <tr class='<%= cycle("odd", "")%>'>
+      <td><%= account.account_type %></td>
+      <td><%= account.monthly_charge %></td>
+      <td><%= account.active %></td>
+      <td><%= link_to "Edit", edit_admin_config_account_path(account) %></td>
+      <td><%= link_to "Delete", admin_config_account_path(account), :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
 </div>
-<br />
 
 <%= link_to 'New Account', new_admin_config_account_path, :class => 'button' %>

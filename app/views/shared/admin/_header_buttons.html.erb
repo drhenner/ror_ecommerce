@@ -17,15 +17,28 @@
 	<%= link_to "Inventory", admin_inventory_overviews_path, :id => "admin_inventory_button" %>
 	<a href="#" class="flyout-toggle"><span></span></a>
   <ul class="flyout">
-  	<li></li>
-  	  <li><%= link_to 'Overviews', admin_inventory_overviews_path %></li>
-  	  <li><%= link_to 'Suppliers', admin_inventory_suppliers_path %></li>
-		  <li><%= link_to 'Receive', admin_inventory_receivings_path %></li>
-		  <li><%= link_to 'Purchase Orders', admin_inventory_purchase_orders_path %></li>
-		  <li><%= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
-  </ul
+	  <li><%= link_to 'Overviews', admin_inventory_overviews_path %></li>
+	  <li><%= link_to 'Suppliers', admin_inventory_suppliers_path %></li>
+	  <li><%= link_to 'Receive', admin_inventory_receivings_path %></li>
+	  <li><%= link_to 'Purchase Orders', admin_inventory_purchase_orders_path %></li>
+	  <li><%= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
+  </ul>
 </li>
 <li><%= link_to "Users", admin_users_path, :id => "admin_users_button" %></li>
-<li><%= link_to "Config", admin_config_overviews_path, :id => "admin_config_accounts_path" %></li>
+<li class="has-flyout">
+	<%= link_to "Config", admin_config_overviews_path, :id => "admin_config_accounts_path" %>
+	<a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+		<li><%= link_to 'Accounts',           admin_config_accounts_path %></li>
+		<li><%= link_to 'Shipping Zones',     admin_config_shipping_zones_path %></li>
+		<li><%= link_to 'Shipping Methods',   admin_config_shipping_methods_path %></li>
+		<li><%= link_to 'Shipping Rates',     admin_config_shipping_rates_path %></li>
+		<li><%= link_to 'Tax Rates',          admin_config_tax_rates_path %></li>
+		<li><%= link_to 'Tax Categories',       admin_config_tax_categories_path %></li>
+		<li><%= link_to 'Shipping Categories',  admin_config_shipping_categories_path %></li>
+	</ul>
+</li>
+
+
 <li><%= link_to "Manage", admin_generic_coupons_path, :id => "admin_manage_button" %></li>
 <li><%= link_to "Fulfillment", admin_fulfillment_orders_path, :id => "admin_fulfillment_button" %></li>

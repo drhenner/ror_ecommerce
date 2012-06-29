@@ -1,49 +1,36 @@
+<% if @tax_rate.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@tax_rate.errors.count, "error") %> prohibited this tax_rate from being saved:</h2>
 
-  <% if @tax_rate.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tax_rate.errors.count, "error") %> prohibited this tax_rate from being saved:</h2>
+    <ul>
+    <% @tax_rate.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-      <ul>
-      <% @tax_rate.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<fieldset>
+  <label>Percentage</label>
+  <%= f.text_field :percentage %>
 
-  <div class="field">
-    <%= f.label :percentage %><br />
-    <%= f.text_field :percentage %>
-  </div>
-  <div class="field">
-    <%= f.label :tax_category_id %><br />
-    <%= f.select :tax_category_id, @tax_categories, {:include_blank => true} %>
-  </div>
+  <label>Tax Category</label>
+  <%= f.select :tax_category_id, @tax_categories, {:include_blank => true} %>
 
+  <label>Country</label>
+  <%= select_tag :select_country, options_from_collection_for_select(@countries, "second", "first"), {:include_blank => true} %>
 
-  <div class="field">
-    <%= label_tag :country %><br />
-    <%= select_tag :select_country,
-                    options_from_collection_for_select(@countries, "second", "first"),
-                    {:include_blank => true} %>
-  </div>
+  <label>State</label>
+  <%= f.select :state_id, @states, {:include_blank => true} %>
 
-  <div class="field">
-    <%= f.label :state_id %><br />
-    <%= f.select :state_id, @states, {:include_blank => true} %>
-  </div>
-  <div class="field">
-    <%= f.label :start_date %><br />
-    <%= f.date_select :start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %><br />
-    <%= f.date_select :end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <label>Start Date</label>
+  <%= f.date_select :start_date %>
+
+  <label>End Date</label>
+  <%= f.date_select :end_date %>
+
+  <label>Active</label>
+  <%= f.check_box :active %>
+</fieldset>
+
+<%= f.submit "Create", :class => "button" %>
