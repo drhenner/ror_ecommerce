@@ -35,12 +35,12 @@ describe Admin::Generic::CouponsController do
   end
 
   it "create action should redirect when model is valid" do
-    @coupon = create(:coupon_value)
+    @coupon = FactoryGirl.build(:coupon_value)
     CouponValue.any_instance.stubs(:valid?).returns(true)
     attribs =  @coupon.attributes.merge(:c_type => 'coupon_value')
     attribs.delete('type')
     post :create, :coupon => attribs
-    response.should redirect_to(admin_generic_coupon_url(assigns[:coupon]))
+    response.should redirect_to(admin_generic_coupon_url(assigns[:new_coupon]))
   end
 
   it "edit action should render edit template" do
@@ -60,7 +60,7 @@ describe Admin::Generic::CouponsController do
     @coupon = create(:coupon)
     CouponValue.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @coupon.id, :coupon => @coupon.attributes.delete(:type)
-    response.should redirect_to(admin_generic_coupon_url(assigns[:coupon]))
+    response.should redirect_to(admin_generic_coupon_url(@coupon.id))
   end
 
   it "destroy action should destroy model and redirect to index action" do
