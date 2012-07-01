@@ -1,9 +1,9 @@
-<% if @coupon.errors.any? %>
+<% if @new_coupon.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@coupon.errors.count, "error") %> prohibited this coupon from being saved:</h2>
+    <h2><%= pluralize(@new_coupon.errors.count, "error") %> prohibited this coupon from being saved:</h2>
 
     <ul>
-    <% @coupon.errors.full_messages.each do |msg| %>
+    <% @new_coupon.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
@@ -17,8 +17,8 @@
 
   <% unless @coupon.id %>
     <div class="field">
-      <%= f.label :type %><br />
-      <%= f.select :type, @coupon_types, { :include_blank => true } %>
+      <%= f.label :c_type %><br />
+      <%= f.select :c_type, @coupon_types, { :include_blank => true } %>
     </div>
   <% end %>
 
