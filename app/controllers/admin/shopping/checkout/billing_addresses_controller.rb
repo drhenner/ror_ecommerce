@@ -1,6 +1,10 @@
 class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::Checkout::BaseController
+  helper_method :countries
   def index
     @billing_address = Address.new
+    if !HADEAN_CONFIG['require_state_in_address'] && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
+      @billing_address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
+    end
     form_info
     respond_to do |format|
       format.html # index.html.erb
@@ -11,6 +15,9 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
     old_address       = Address.find_by_id(params[:old_address_id])
     attributes        = old_address.try(:address_attributes)
     @billing_address = session_admin_cart.customer.addresses.new(attributes)
+    if !HADEAN_CONFIG['require_state_in_address'] && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
+      @billing_address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
+    end
     form_info
     respond_to do |format|
       format.html # new.html.erb
@@ -76,6 +83,9 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
   def form_info
     @billing_addresses = session_admin_cart.customer.billing_addresses
     @states     = State.form_selector
+  end
+  def countries
+    @countries ||= Country.where(['id IN (?)', HADEAN_CONFIG['available_country_ids_to_ship']]).map{|sz| [sz.name, sz.id]}
   end
   def update_order_address_id(id)
     session_admin_order.update_attributes( :bill_address_id => id )

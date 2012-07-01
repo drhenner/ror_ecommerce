@@ -32,12 +32,23 @@
     </div>
   <div class='clear'></div>
 
-    <div class="field column">
-
-      <%= f.label :state_id, "State/Province" %>
-      <%= f.select  :state_id, @states,
-                    :include_blank => true %>
-    </div>
+    <% if HADEAN_CONFIG['require_state_in_address'] %>
+      <div class="field column">
+        <%= f.label    :state_id, "State/Province" %>
+        <%= f.select   :state_id, @states,
+                      :include_blank => true %>
+      </div>
+    <% elsif HADEAN_CONFIG['available_country_ids_to_ship'].size == 1 %>
+      <div class="field column">
+        <%= f.hidden_field   :country_id %>
+      </div>
+    <% else %>
+      <div class="field column">
+        <%= f.label    :country_id, "Country" %>
+        <%= f.select   :country_id, countries,
+                      :include_blank => true %>
+      </div>
+    <% end %>
   <div class='clear'></div>
     <div class="inline">
       <div class="field column">
