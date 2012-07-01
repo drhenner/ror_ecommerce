@@ -1,3 +1,6 @@
+* add shipping_zone to countries
+* BUG - Creating Coupons
+
 ###1.1.0 2012-06-26
 * Add Deals (Buy 5 get 6th for 50% off)
 * Change TaxStatus to TaxCategory

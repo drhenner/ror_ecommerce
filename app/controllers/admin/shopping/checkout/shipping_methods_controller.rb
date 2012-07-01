@@ -6,7 +6,7 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
       redirect_to admin_shopping_checkout_shipping_addresses_url
     else
       ##  TODO  refactopr this method... it seems a bit lengthy
-      @shipping_method_ids = session_admin_order.ship_address.state.shipping_zone.shipping_method_ids
+      @shipping_method_ids = session_admin_order.ship_address.shipping_method_ids
       session_admin_order.find_sub_total
       @order_items = OrderItem.includes({:variant => {:product => :shipping_category}}).order_items_in_cart(session_admin_order.id)
       #session_order.order_

@@ -25,6 +25,9 @@ development: &non_production_settings
     login:      someLOGIN
     password:   somePASSWORD
   vat: false
+  require_state_in_address: true
+  available_country_ids_to_ship:
+    67
 
 test:
   <<: *non_production_settings

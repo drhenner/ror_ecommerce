@@ -1,0 +1,28 @@
+<%= render :partial => '/admin/config/sub_header'%>
+
+<h1> Countries </h1>
+
+<div id="admin_country_grid_wrapper" class='pretty_table'>
+  <table>
+    <tr class='odd'>
+
+        <th  class='column1_header'><%= sortable 'name', 'Name' %></th>
+        <th>Abbreviation</th>
+        <th>Shipping Zone</th>
+        <th></th>
+    </tr>
+    <tbody>
+    <% for country in @countries %>
+      <tr  class='<%= cycle("odd", "")%>'>
+          <td><%= country.name %></td>
+          <td><%= country.abbreviation %></td>
+          <td><%= country.shipping_zone_name %></td>
+        <td><%= link_to "", edit_admin_config_country_path(country), :class => 'ss_sprite ss_application_edit' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @countries %>
+

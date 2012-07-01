@@ -110,6 +110,7 @@ Hadean::Application.routes.draw do # |map|
     end
     namespace :config do
       resources :accounts
+      resources :countries
       resources :overviews
       resources :shipping_categories
       resources :shipping_rates

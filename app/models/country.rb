@@ -1,6 +1,8 @@
 class Country < ActiveRecord::Base
 
-  has_many :states
+  has_many  :states
+  has_many  :countries
+  belongs_to :shipping_zone
 
   validates :name,  :presence => true,       :length => { :maximum => 200 }
   validates :abbreviation,  :presence => true,       :length => { :maximum => 10 }
@@ -38,5 +40,11 @@ class Country < ActiveRecord::Base
   # @return [Array] an array of arrays with [string, country.id]
   def self.form_selector
     find(ACTIVE_COUNTRY_IDS, :order => 'abbreviation ASC').collect { |c| [c.abbrev_and_name, c.id] }
+  end
+
+  def shipping_zone_name
+    Rails.cache.fetch("Country-shipping_zone_name-#{shipping_zone_id}", :expires_in => 1.days) do
+      shipping_zone_id ? shipping_zone.name : '---'
+    end
   end
 end
