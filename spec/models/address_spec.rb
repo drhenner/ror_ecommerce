@@ -140,6 +140,7 @@ describe Address, "methods" do
 
   context ".shipping_method_ids" do
     it 'should be the state\'s shipping methods' do
+      GlobalConstants.send(:remove_const, 'REQUIRE_STATE_IN_ADDRESS')
       GlobalConstants.const_set("REQUIRE_STATE_IN_ADDRESS", true)
       shipping_zone = ShippingZone.find(1)
       shipping_zone.stubs(:shipping_method_ids).returns([2,4])
@@ -152,12 +153,14 @@ describe Address, "methods" do
       @finland = Country.find(67)
       @finland.shipping_zone_id = 2
       @finland.save
+      GlobalConstants.send(:remove_const, 'REQUIRE_STATE_IN_ADDRESS')
       GlobalConstants.const_set("REQUIRE_STATE_IN_ADDRESS", false)
       shipping_zone = ShippingZone.find(1)
       shipping_zone.stubs(:shipping_method_ids).returns([2,3])
       @finland.stubs(:shipping_zone).returns(shipping_zone)
       address = FactoryGirl.create(:address, :country => @finland)
       address.shipping_method_ids.should == [2,3]
+      GlobalConstants.send(:remove_const, 'REQUIRE_STATE_IN_ADDRESS')
       GlobalConstants.const_set("REQUIRE_STATE_IN_ADDRESS", true)
     end
   end
