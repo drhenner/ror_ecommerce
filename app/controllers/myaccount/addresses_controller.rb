@@ -11,7 +11,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
   def new
     form_info
     @address = Address.new
-    if !HADEAN_CONFIG['require_state_in_address'] && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
+    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
       @address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
     end
     @address.default = true          if current_user.default_shipping_address.nil?

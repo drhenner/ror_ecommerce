@@ -7,6 +7,7 @@ begin
   HADEAN_CONFIG = YAML.load(raw_config)[Rails.env]
   module GlobalConstants
     VAT_TAX_SYSTEM = HADEAN_CONFIG['vat']
+    REQUIRE_STATE_IN_ADDRESS = HADEAN_CONFIG['require_state_in_address'].nil? ? true : HADEAN_CONFIG['require_state_in_address']
   end
 rescue  Exception => e
   if Rails.env == 'test'
@@ -15,6 +16,7 @@ rescue  Exception => e
     HADEAN_CONFIG = YAML.load(raw_config)[Rails.env]
     module GlobalConstants
       VAT_TAX_SYSTEM = HADEAN_CONFIG['vat']
+      REQUIRE_STATE_IN_ADDRESS = HADEAN_CONFIG['require_state_in_address'].nil? ? true : HADEAN_CONFIG['require_state_in_address']
     end
   else
     puts "#{ e } (#{ e.class })!"

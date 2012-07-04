@@ -2,7 +2,7 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
   helper_method :countries
   def index
     @shipping_address = Address.new
-    if !HADEAN_CONFIG['require_state_in_address'] && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
+    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
       @shipping_address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
     end
     form_info
@@ -20,7 +20,7 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     old_address       = Address.find_by_id(params[:old_address_id])
     attributes        = old_address.try(:address_attributes)
     @shipping_address  = session_admin_cart.customer.addresses.new(attributes)
-    if !HADEAN_CONFIG['require_state_in_address'] && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
+    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
       @shipping_address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
     end
     form_info

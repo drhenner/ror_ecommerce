@@ -4,7 +4,7 @@ class Shopping::AddressesController < Shopping::BaseController
   # GET /shopping/addresses.xml
   def index
     @shopping_address = Address.new
-    if !HADEAN_CONFIG['require_state_in_address'] && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
+    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
       @shopping_address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
     end
     form_info
