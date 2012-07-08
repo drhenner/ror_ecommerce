@@ -9,22 +9,28 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
 
   def new
     form_info
+    @new_coupon = Coupon.new
     @coupon = Coupon.new
   end
 
   def create
       if params[:coupon][:c_type] == 'coupon_value'
-        @coupon = CouponValue.new(params[:coupon])
+        @new_coupon = CouponValue.new(params[:coupon])
       elsif params[:coupon][:c_type] == 'coupon_percent'
-        @coupon = CouponPercent.new(params[:coupon])
+        @new_coupon = CouponPercent.new(params[:coupon])
+      elsif params[:coupon][:c_type] == 'coupon_first_purchase_value'
+        @new_coupon = CouponFirstPurchaseValue.new(params[:coupon])
+      elsif params[:coupon][:c_type] == 'coupon_first_purchase_percent'
+        @new_coupon = CouponFirstPurchasePercent.new(params[:coupon])
       else
-        @coupon = Coupon.new(params[:coupon])
-        @coupon.errors.add(:base, 'please select coupon type')
+        @new_coupon = Coupon.new(params[:coupon])
+        @new_coupon.errors.add(:base, 'please select coupon type')
       end
-    if @coupon.errors.size == 0 && @coupon.save
+    if @new_coupon.errors.size == 0 && @new_coupon.save
       flash[:notice] = "Successfully created coupon."
-      redirect_to admin_generic_coupon_url(@coupon)
+      redirect_to admin_generic_coupon_url(@new_coupon)
     else
+      @coupon = Coupon.new(params[:coupon])
       form_info
       render :action => 'new'
     end
@@ -32,15 +38,17 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
 
   def edit
     form_info
+    @new_coupon = Coupon.find(params[:id])
     @coupon = Coupon.find(params[:id])
   end
 
   def update
-      @coupon = Coupon.find(params[:id])
-    if @coupon.update_attributes(params[:coupon])
+      @new_coupon = Coupon.find(params[:id])
+    if @new_coupon.update_attributes(params[:coupon])
       flash[:notice] = "Successfully updated coupon."
-      redirect_to admin_generic_coupon_url(@coupon)
+      redirect_to admin_generic_coupon_url(@new_coupon)
     else
+      @coupon = Coupon.find(params[:id])
       form_info
       render :action => 'edit'
     end
