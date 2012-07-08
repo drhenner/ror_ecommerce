@@ -1,4 +1,4 @@
-<h1> Make a Comment on Order (<%= order.number %>)</h1>
+<h3>Make a Comment on Order (<%= order.number %>)</h3>
 
 <%= form_for(@comment, :url => admin_fulfillment_order_comments_path(order, @comment)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>

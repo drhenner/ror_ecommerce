@@ -1,9 +1,4 @@
-<%= render :partial => '/admin/fulfillment/sub_header'%>
-
-<h1>Change address</h1>
-<%#= form_for(address) do |f| %>
-<%#= render 'form' %>
-<%# end %>
+<h3>Change address</h3>
 
 <% @addresses.each_with_index do |address, i| %>
   <% selected = @address.id == address.id %>

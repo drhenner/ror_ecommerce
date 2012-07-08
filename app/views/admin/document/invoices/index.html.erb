@@ -1,7 +1,6 @@
-<%= render :partial => '/admin/fulfillment/sub_header'%>
-<h1> Invoices </h1>
+<h3>Invoices</h3>
 
-<div class=' pretty_table'>
+<div class='admin_invoices'>
   <table>
     <thead>
     <tr class='odd'>
@@ -29,6 +28,4 @@
     <% end %>
   </table>
 </div>
-<p>
 <%= will_paginate @invoices %>
-<%#= link_to "New Invoice", new_admin_document_invoice_path, :class => 'button' %></p>
