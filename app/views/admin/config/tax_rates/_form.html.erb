@@ -24,13 +24,13 @@
   <div class="field">
     <%= label_tag :country %><br />
     <%= select_tag :select_country,
-                    options_from_collection_for_select(@countries, "second", "first"),
+                    options_from_collection_for_select(@countries, "second", "first", @country_id),
                     {:include_blank => true} %>
   </div>
 
   <div class="field">
     <%= f.label :state_id %><br />
-    <%= f.select :state_id, @states, {:include_blank => true} %>
+    <%= f.collection_select :state_id, @states, :id, :abbrev_and_name, {:include_blank => true} %>
   </div>
   <div class="field">
     <%= f.label :start_date %><br />
