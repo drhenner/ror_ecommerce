@@ -29,6 +29,7 @@ class Product < ActiveRecord::Base
   translates :name, :description, :product_keywords, :meta_keywords, :meta_description, :description_markup
 
   serialize :product_keywords, Array
+  translation_class.send :serialize, :product_keywords
 
   attr_accessor :available_shipping_rates # these the the shipping rates per the shipping address on the order
 
