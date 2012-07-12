@@ -16,7 +16,7 @@
     <tr class='<%= cycle("odd", "")%>'>
       <td><%= link_to tax_category.name, admin_config_tax_category_path(tax_category) %></td>
       <td><%= link_to 'Edit', edit_admin_config_tax_category_path(tax_category) %></td>
-      <td><%= link_to 'Delete', admin_config_tax_category_path(tax_category), :data => { :confirm => 'Text' }, :method => :delete %></td>
+      <td><%= link_to 'Delete', admin_config_tax_category_path(tax_category), :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>
     </tr>
   <% end %>
   </table>
