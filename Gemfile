@@ -21,6 +21,7 @@ gem 'compass-rails'
 gem "friendly_id", "~> 3.3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
+gem "globalize3"
 
 #gem 'memcache-client', '~> 1.8.5'
 group :production do
@@ -50,7 +51,7 @@ group :development do
   gem "autotest-rails-pure"
 
   gem "rails-erd"
-  gem "ruby-debug19"
+  gem "debugger"
   # YARD AND REDCLOTH are for generating yardocs
   # gem 'yard'
   # gem 'RedCloth'
