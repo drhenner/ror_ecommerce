@@ -26,6 +26,7 @@
 
 class Product < ActiveRecord::Base
   has_friendly_id :permalink, :use_slug => false
+  translates :name, :description, :product_keywords, :meta_keywords, :meta_description, :description_markup
 
   serialize :product_keywords, Array
 
