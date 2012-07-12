@@ -1,6 +1,6 @@
 <h1>Pick a Shipping Method</h1>
 
-
+<% all_shipping_methods_allowed  =  true %>
   <%= form_tag(shopping_shipping_method_path(session_order.id), :method => :put) do -%>
     <% @order_items.group_by(&:shipping_category_id).each do |shipping_category_id, items| %>
       <div class='column float-left span-19 line_items_blue last'>
@@ -15,17 +15,26 @@
                 </div>
             </div>
           <% end %>
-          <ul>
-          <% items.first.shipping_rate_options(session_order.sub_total).each do |rate| %>
-            <li><%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_rate_min %></li>
+          <% shipping_rate_options = items.first.shipping_rate_options(session_order.sub_total) %>
+          <% if shipping_rate_options.empty? %>
+            <% all_shipping_methods_allowed  =  false %>
+            We currently do not ship this item to your location.<br/>
+            Try a different shipping address <%= link_to 'Go Back', shopping_addresses_path, :class => 'button small-dark-orange-button' %>
+          <% else %>
+            <ul>
+              <% shipping_rate_options.each do |rate| %>
+                <li><%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_rate_min %></li>
+              <% end %>
+            </ul>
           <% end %>
-          </ul>
       </div>
     <% end %>
     <div class='float-left '>
 
     </div>
-    <%= submit_tag 'continue'%>
+    <% if all_shipping_methods_allowed %>
+      <%= submit_tag 'continue'%>
+    <% end %>
   <% end %>
 </div>
 
