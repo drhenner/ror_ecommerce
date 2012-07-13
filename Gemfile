@@ -50,7 +50,7 @@ group :development do
   gem "autotest-rails-pure"
 
   gem "rails-erd"
-  gem "ruby-debug19"
+  gem "debugger"
   # YARD AND REDCLOTH are for generating yardocs
   # gem 'yard'
   # gem 'RedCloth'
