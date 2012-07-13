@@ -4,6 +4,7 @@
   <% end %>
 </ul>
 
+<%=raw languages_links %>
 <ul id='main-myaccount-tabs'>
-    <li class='shopping_tab'>       <%= link_to_unless_current 'My Account', myaccount_overview_path if most_likely_user %> </li>
+    <li class='shopping_tab'> <%= link_to_unless_current 'My Account', myaccount_overview_path if most_likely_user %> </li>
 </ul>

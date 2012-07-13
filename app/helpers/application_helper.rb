@@ -43,4 +43,14 @@ EXAMPLE USAGE!!
       end
     end
   end
+
+  def languages_links
+    result = "<ul id='main-language-tabs'>"
+    GlobalConstants::LANGUAGES.each do |lang| 
+      result += "<li> #{link_to lang, :locale => lang.to_sym}</li>"
+    end
+    result += "</ul>"
+    return result
+  end
 end
+
