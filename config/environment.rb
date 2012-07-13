@@ -8,6 +8,8 @@ begin
   module GlobalConstants
     VAT_TAX_SYSTEM = HADEAN_CONFIG['vat']
     REQUIRE_STATE_IN_ADDRESS = HADEAN_CONFIG['require_state_in_address'].nil? ? true : HADEAN_CONFIG['require_state_in_address']
+    LANGUAGES = HADEAN_CONFIG['available_languages']
+    LANGUAGES ||= ["en"]
   end
 rescue  Exception => e
   if Rails.env == 'test'

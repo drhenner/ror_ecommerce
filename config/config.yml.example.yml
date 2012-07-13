@@ -29,6 +29,9 @@ development: &non_production_settings
   available_country_ids_to_ship:
     - 67
     - 214
+  available_languages:
+    - "en"
+    - "pl"
 
 test:
   <<: *non_production_settings

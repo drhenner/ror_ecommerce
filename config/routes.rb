@@ -1,6 +1,6 @@
 Hadean::Application.routes.draw do # |map|
 
-  scope "(:locale)" do
+  scope "(:locale)", :locale => /#{GlobalConstants::LANGUAGES.join('|')}/ do
     resources :user_sessions, :only => [:new, :create, :destroy]
 
     match 'admin'   => 'admin/overviews#index'
