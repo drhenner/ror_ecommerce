@@ -37,7 +37,7 @@
   <div id='login' class='hadean-login span-8 '>
 
     <%= form_for  @user_session, :as => :user_session,
-                  :url => user_sessions_path(@user_session),
+      :url => user_sessions_path,
                   :html => {:class => 'span-12'} do |form| %>
       <h3>Log in.</h3>
       <fieldset>
