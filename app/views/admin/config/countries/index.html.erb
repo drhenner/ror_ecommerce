@@ -9,6 +9,7 @@
         <th  class='column1_header'><%= sortable 'name', 'Name' %></th>
         <th>Abbreviation</th>
         <th>Shipping Zone</th>
+        <th>Active</th>
         <th></th>
     </tr>
     <tbody>
@@ -17,6 +18,7 @@
           <td><%= country.name %></td>
           <td><%= country.abbreviation %></td>
           <td><%= country.shipping_zone_name %></td>
+          <td><%= country.active %></td>
         <td><%= link_to "", edit_admin_config_country_path(country), :class => 'ss_sprite ss_application_edit' %></td>
       </tr>
     <% end %>
