@@ -1,5 +1,4 @@
-#main-product-type-tabs, #main-myaccount-tabs {
-
+#main-product-type-tabs, #main-myaccount-tabs, #main-language-tabs {
   font-variant: small-caps;
   font-weight:bold;
   font-size:106%;
@@ -34,6 +33,11 @@
   #main-myaccount-tabs {
     float:right;
     width:220px;
+    text-align:right !important;
+  }
+  #main-language-tabs {
+    float:right;
+    width:90px;
     text-align:right !important;
   }
 }

@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
 
+  include Hadean::I18n
+
   helper_method :current_user,
                 :current_user_id,
                 :most_likely_user,
@@ -10,9 +12,10 @@ class ApplicationController < ActionController::Base
                 :is_production_simulation,
                 :search_product,
                 :product_types,
-                :myaccount_tab
+                :myaccount_tab,
+                :current_language
 
-  before_filter :secure_session
+  before_filter :secure_session, :set_locale
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
@@ -134,4 +137,9 @@ class ApplicationController < ActionController::Base
     redirect_to(session['return_to'] || default)
     session['return_to'] = nil
   end
+
+  def default_url_options(options = nil)
+    { :locale => current_language }
+  end 
+
 end

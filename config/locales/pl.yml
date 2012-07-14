@@ -1,0 +1,40 @@
+pl:
+  company:              'RoR Ecommerce'
+  hello:                'Witaj'
+  out_of_stock_notice:  'Dany produkt Sorry this item is out of stock.'
+  item_saved_for_later: 'Ten produkt zostanie zapisany na poźniej.'
+  reset_password_title: 'Potwierdź swoją tożsamość w celu zresetowania hasła'
+  reset_password_text:  'Wprowadź poniżej swój email a następnie kliknij przycisk.'
+  something_went_wrong: 'Ups coś poszło nie tak'
+  item_failed_update:   'Produkt nie został zaktualizowany.'
+  item_passed_update:   'Produkt został zaktualizowany.'
+  could_not_process:    "Nie można kontynuować"
+  the_credit_card:      "Karta Płatnicza."
+  credit_card:          "Karta Płatnicza"
+  the_order:            "zamówienie."
+  the_order_purchased:  "Zamówienie zostało przekazane do realizacji."
+  is_not_valid:         'jest nie prawidłowy.'
+  login_successful:     "Logowanie przebiegło pomyślnie!"
+  login_failure:        "Błędny login lub hasło."
+  logout_successful:    "Wylogowałeś się poprawnie!"
+
+  select_address_before_shipping_method:  'Wybierz adres zanim wybeirzeż metodę doręczenia paczki.'
+  shipping_method_created:                'Rodzaj wysyłki została poprawnie stworzona.'
+  shipping_method_updated:                'Rodzaj wysyłki została zaktualizowana.'
+  all_shipping_methods_must_be_selected:  'Wszystkie rodzaje wysyłki muszą zostać zaznaczone'
+  do_not_have_anything_in_your_cart:      "Nie ma jeszcze nic w swoim koszyku"
+
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%m/%d/%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+      us_date: "%m/%d/%Y"
+  time:
+    formats:
+      us_date: "%m/%d/%Y"
+      us_time: "%m/%d/%Y @ %I:%M %p"
+      long_date: "%B %d, %Y"

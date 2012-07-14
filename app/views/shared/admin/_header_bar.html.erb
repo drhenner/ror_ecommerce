@@ -6,6 +6,11 @@
         <span><%= current_user.name %></span><br/>
         <%= link_to 'Logout', logout_path, :id => 'admin-logout-button' %>
       </div>
+      <div id="lang-bar">
+        <% GlobalConstants::LANGUAGES.each do |lang| %>
+          <%= link_to lang, :locale => lang.to_sym %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
