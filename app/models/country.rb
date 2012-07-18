@@ -8,6 +8,9 @@ class Country < ActiveRecord::Base
   validates :abbreviation,  :presence => true,       :length => { :maximum => 10 }
 
   scope :active, where(:active => true)
+  
+  USA_ID = 214
+  CANADA_ID = 35
 
   # Call this method to display the country_abbreviation - country with and appending name
   #
