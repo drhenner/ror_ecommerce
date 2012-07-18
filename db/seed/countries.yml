@@ -172,6 +172,7 @@ countries_034:
 countries_035: 
   name: Canada
   abbreviation: CAN
+  active: true
   id: 35
  
 countries_036: 
@@ -1067,6 +1068,7 @@ countries_213:
 countries_214: 
   name: United States
   abbreviation: USA
+  active: true
   id: 214
  
 countries_215: 

@@ -13,7 +13,7 @@ end
 
 describe Country do
   before(:each) do
-    @country ||= Country.new( :abbreviation => 'US', :name => 'United States')
+    @country ||= Country.new( :abbreviation => 'US', :name => 'United States', :active => true)
   end
 
   context ".abbreviation_name(append_name = )" do
