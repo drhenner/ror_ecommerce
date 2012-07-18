@@ -1,11 +1,11 @@
 class Shopping::AddressesController < Shopping::BaseController
-  helper_method :countries
+  helper_method :countries, :select_countries
   # GET /shopping/addresses
   # GET /shopping/addresses.xml
   def index
     @shopping_address = Address.new
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
-      @shopping_address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
+    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && countries.size == 1
+      @shopping_address.country = countries.first
     end
     form_info
     respond_to do |format|
@@ -93,7 +93,10 @@ class Shopping::AddressesController < Shopping::BaseController
   end
 
   def countries
-    @countries ||= Country.where(['id IN (?)', HADEAN_CONFIG['available_country_ids_to_ship']]).map{|sz| [sz.name, sz.id]}
+    @countries ||= Country.active.all
+  end
+  def select_countries
+    countries.map{|sz| [sz.name, sz.id]}
   end
 
   def update_order_address_id(id)

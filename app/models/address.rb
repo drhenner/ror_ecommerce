@@ -86,7 +86,7 @@ class Address < ActiveRecord::Base
       :address2 => address2,
       :city     => city,
       :state    => state.abbreviation,
-      :country  => state.country_id == Country::USA_ID ? 'US' : 'CAN',
+      :country  => state.country.try(:abbreviation),
       :zip      => zip_code#,
       #:phone    => phone
     }

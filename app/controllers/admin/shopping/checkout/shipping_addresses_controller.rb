@@ -1,9 +1,9 @@
 class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::Checkout::BaseController
-  helper_method :countries
+  helper_method :countries, :select_countries
   def index
     @shipping_address = Address.new
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
-      @shipping_address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
+    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && countries.size == 1
+      @shipping_address.country = countries.first
     end
     form_info
     respond_to do |format|
@@ -20,8 +20,8 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     old_address       = Address.find_by_id(params[:old_address_id])
     attributes        = old_address.try(:address_attributes)
     @shipping_address  = session_admin_cart.customer.addresses.new(attributes)
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
-      @shipping_address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
+    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && countries.size == 1
+      @shipping_address.country = countries.first
     end
     form_info
     respond_to do |format|
@@ -89,7 +89,10 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     @states     = State.form_selector
   end
   def countries
-    @countries ||= Country.where(['id IN (?)', HADEAN_CONFIG['available_country_ids_to_ship']]).map{|sz| [sz.name, sz.id]}
+    @countries ||= Country.active.all
+  end
+  def select_countries
+    countries.map{|sz| [sz.name, sz.id]}
   end
   def update_order_address_id(id)
     session_admin_order.update_attributes( :ship_address_id => id )

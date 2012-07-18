@@ -1,5 +1,5 @@
 class Myaccount::AddressesController < Myaccount::BaseController
-  helper_method :countries
+  helper_method :countries, :select_countries
   def index
     @addresses = current_user.shipping_addresses
   end
@@ -11,8 +11,8 @@ class Myaccount::AddressesController < Myaccount::BaseController
   def new
     form_info
     @address = Address.new
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && HADEAN_CONFIG['available_country_ids_to_ship'].size == 1
-      @address.country_id = HADEAN_CONFIG['available_country_ids_to_ship'].first
+    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && countries.size == 1
+      @address.country = countries.first
     end
     @address.default = true          if current_user.default_shipping_address.nil?
   end
@@ -62,7 +62,10 @@ class Myaccount::AddressesController < Myaccount::BaseController
   end
 
   def countries
-    @countries ||= Country.where(['id IN (?)', HADEAN_CONFIG['available_country_ids_to_ship']]).map{|sz| [sz.name, sz.id]}
+    @countries ||= Country.active.all
+  end
+  def select_countries
+    countries.map{|sz| [sz.name, sz.id]}
   end
 
   def selected_myaccount_tab(tab)
