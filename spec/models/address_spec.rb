@@ -66,7 +66,7 @@ describe Address, "methods" do
       cc_params[:city].should    == 'Fredville'
       cc_params[:state].should   == 'CA'
       cc_params[:zip].should     == '13156'
-      cc_params[:country].should == 'US'
+      cc_params[:country].should == 'USA'
 
 
     end
