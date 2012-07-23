@@ -111,7 +111,7 @@ class ApplicationController < ActionController::Base
   ## TODO cookie[:hadean_user_id] value needs to be encrypted ### Authlogic persistence_token might work here
   def random_user
     return @random_user if defined?(@random_user)
-    @random_user = cookies[:hadean_uid] ? User.find_by_persistence_token(cookies[:hadean_uid]) : nil
+    @random_user = cookies[:hadean_uid] ? User.find_by_access_token(cookies[:hadean_uid]) : nil
   end
 
   ###  Authlogic helper methods
