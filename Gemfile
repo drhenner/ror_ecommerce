@@ -28,7 +28,7 @@ group :production do
 end
 
 gem 'nested_set', '~> 1.6.3'
-gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
+#gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
 gem 'paperclip', '~> 2.4.5'
 gem 'prawn', '~> 0.12.0'
