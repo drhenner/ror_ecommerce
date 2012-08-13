@@ -30,7 +30,7 @@ We have a google group.  Ask question and help answer questions.
 
 Install rvm with ruby 1.9.2 or if you have 1.9.2 on your system you're good to go. Please refer to the [rvm](http://beginrescueend.com/rvm/basics/) and [bundler](http://gembundler.com) home pages for more details.
 
-Configure your database.yml file (add the development and test database)
+Copy the `database.yml` for your setup. For SQLite3, `cp config/database.yml.sqlite3 config.database.yml` and for MySQL `cp config/database.yml.mysql config.database.yml` and update for your username/password.
 
 Run `rake secret` and copy what it gives you and paste it under `encryption_key` in `config/config.yml`
 
