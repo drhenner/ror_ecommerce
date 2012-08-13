@@ -32,14 +32,7 @@ Install rvm with ruby 1.9.2 or if you have 1.9.2 on your system you're good to g
 
 Configure your database.yml file (add the development and test database)
 
-* Go into config/config.yml and change the encryption_key
-
-    $ dd if=/dev/urandom bs=1 count=75 2> /dev/null | xxd -p -c75
-
-  will display some random characters like this: Copy what it gives you and paste it under `encryption_key`
-
-`f5317296f3420d698de775dc5675b193f35fdbac576540888a0ae2628fcfb59646d7ef83da76afbb1f8ea7fb70acea887549e475aa7c869b1f82353f12dbad8bd517c941b981bf936772f0`
-
+Run `rake secret` and copy what it gives you and paste it under `encryption_key` in `config/config.yml`
 
 * gem install bundler
 * bundle install
