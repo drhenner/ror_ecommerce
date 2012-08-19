@@ -1,7 +1,6 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
 <% content_for :sidemenu do %>
-  <%= link_to "New Property", new_admin_merchandise_property_path, :class => "button", :id => "new_property_button" %>
   <div class='admin_filters'>
     <%= form_tag admin_merchandise_properties_path, :method => 'get', :id => "products_search" do %>
       <%= hidden_field_tag :direction, params[:direction] %>
@@ -13,14 +12,19 @@
       <label>Display Name</label>
       <%= text_field_tag :display_name, params[:display_name] %>
       <div style='text-align:center'>
-        <%= submit_tag "Search", :name => nil, :class => "button" %>
+        <%= submit_tag "Search", :name => nil, :class => "button red-button" %>
       </div>
     <% end %>
   </div>
 <% end %>
 
 
-<h3>Properties</h3>
+<div class='admin_h3_index_header'>
+    <h3 style='width:220px;float:left;display:block;'>Properties</h3>
+    <span class='admin_h3_index_header_buttons'>
+      <%= link_to "New Property", new_admin_merchandise_property_path, :class => "button", :id => "new_property_button" %>
+    </span>
+</div>
 
 <div class="admin_properties">
   <table>
