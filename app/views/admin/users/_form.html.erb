@@ -23,6 +23,21 @@
   </div>
 </fieldset>
 
+<% if current_user.super_admin? %>
+  <fieldset id="admin-password" class='span-12'>
+    <p>Leave blank if you don't want to change the password.</p>
+    <ul>
+      <li>
+        <%= form.label :password %>
+        <%= form.password_field :password %>
+      </li>
+      <li>
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation %>
+      </li>
+    </ul>
+  </fieldset>
+<% end %>
 <fieldset>
   <legend>User Roles</legend>
   <% @all_roles.each do |role| %>
