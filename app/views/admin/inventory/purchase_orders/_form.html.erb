@@ -27,10 +27,14 @@
     <%= form.text_field :notes %>
 
     <label>Ordered At</label>
-    <%= form.datetime_select :ordered_at %>
+    <div class='date-select'>
+      <%= form.datetime_select :ordered_at %>
+    </div>
 
     <label>Estimated Arrival on</label>
-    <%= form.date_select :estimated_arrival_on %>
+    <div class='date-select'>
+      <%= form.date_select :estimated_arrival_on %>
+    </div>
   </div>
 
   <div class="six columns" style="background-color:#EEE;border: solid 1px #666;">
