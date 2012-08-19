@@ -1,7 +1,7 @@
 <%= form.fields_for :variants, Variant.new(:product_id => @product.id), :child_index => "new_variants" do |ff| %>
   <div id='variants_fields_template' style='display:none;'>
-    <div class='span-6 column new_variant_container'  style='width:240px;' >
-      <table class='span-6 ar-sidebar' style='width:240px;' >
+    <div class='span-6 three columns new_variant_container'  style='float: left;' >
+      <table class='span-6 ar-sidebar' style='width:270px;' >
         <tr>
           <td></td>
           <td style='float:right;'> <%= link_to '', '#remove', :class => 'ss_sprite ss_cross remove_variant_child' %> </td>
