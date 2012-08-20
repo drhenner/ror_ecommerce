@@ -33,7 +33,7 @@ gem 'nokogiri', '~> 1.5.0'
 gem 'paperclip', '~> 2.4.5'
 gem 'prawn', '~> 0.12.0'
 
-gem 'rails3-generators', '~> 0.17.0'
+gem "rails3-generators", :git => "https://github.com/neocoin/rails3-generators.git"
 gem 'rmagick',    :require => 'RMagick'
 
 gem 'rake', '~> 0.9.2'
