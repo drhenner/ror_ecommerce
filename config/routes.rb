@@ -55,6 +55,7 @@ Hadean::Application.routes.draw do # |map|
     resources :users
     resources :overviews, :only => [:index]
 
+    match "help" => "help#index"
 
     namespace :rma do
       resources  :orders do
