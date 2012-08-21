@@ -2,114 +2,55 @@
   <%= javascript_include_tag 'admin/merchandise_product' %>
 <% end %>
 
-
 <% content_for :below_body do -%>
   <script>
     Hadean.AdminMerchandiseProductForm.initialize(<%= @product.id %>);
   </script>
 <% end %>
 
-  <%= error_messages_for 'product' %>
+<%= error_messages_for 'product' %>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :name %>
-  </div>
-  <div class='span-6 last'>
-    <%= form.text_field :name %>
-  </div>
+<label>Name</label>
+<%= form.text_field :name %>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :permalink %>
-  </div>
-  <div class='span-6 last'>
-    <%= form.text_field :permalink %>
-  </div>
+<label>Permalink</label>
+<%= form.text_field :permalink %>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :set_keywords, 'Search keywords' %><br/> (separate with a comma)
-  </div>
-  <div class='span-6 last'>
-    <%= form.text_field :set_keywords %>
-  </div>
+<label>Search Keywords</label>
+<%= form.text_field :set_keywords, :placeholder => "separate keywords with a comma" %>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :meta_keywords %>
-  </div>
-  <div class='span-6 last'>
-    <%= form.text_field :meta_keywords %>
-  </div>
+<label>Meta Keywords</label>
+<%= form.text_field :meta_keywords %>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :meta_description %>
-  </div>
-  <div class='span-6 last'>
-    <%= form.text_field :meta_description %>
-  </div>
+<label>Meta Description</label>
+<%= form.text_field :meta_description %>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :product_type %>
-  </div>
-  <div class='span-6 last'>
-    <%= form.select :product_type_id, @select_product_types %>
-  </div>
+<label>Product Type</label>
+<%= form.select :product_type_id, @select_product_types %>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :shipping_category %>
-  </div>
+<label>Shipping Category</label>
+<%= form.select :shipping_category_id, @select_shipping_category %>
 
-  <div class='span-6 last'>
-    <%= form.select :shipping_category_id, @select_shipping_category %>
-  </div>
+<label>Tax Category</label>
+<%= form.select :tax_category_id, @select_tax_category %>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :tax_category %>
-  </div>
+<label>Brand</label>
+<%= form.select :brand_id, @brands %>
 
-  <div class='span-6 last'>
-    <%= form.select :tax_category_id, @select_tax_category %>
-  </div>
-
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :brand %>
-  </div>
-
-  <div class='span-6 last'>
-    <%= form.select :brand_id, @brands %>
-  </div>
-  <%#= render :partial => 'admin/merchandise/products/shipping_rates_form'  %>
-</fieldset>
-
-
-
-<fieldset id="admin-product-properties" class='span-12'>
+<fieldset>
   <legend>Properties</legend>
-
-    <%#= form.hidden_field :prototype_id, @prototype.try(:id) %>
 
   <div id="product_properties" class='span-11 '>
     <% @all_properties.each do |property| %>
-      <div  id='property_<%= property.id %>'
+      <div id='property_<%= property.id %>'
             class="property_form left span-12 last"
             <%= "style='display:none;'" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
-        <%= form.fields_for :product_properties,
-                            property.product_properties.find_or_initialize_by_product_id(@product.id) do |product_property_form|%>
-          <div class='span-4 left'>
-            <%= property.full_name %>:
-          </div>
-          <%= product_property_form.hidden_field  :property_id %>
-          Description: <%= product_property_form.text_field    :description %><br/>
+        <%= form.fields_for :product_properties, property.product_properties.find_or_initialize_by_product_id(@product.id) do |product_property_form|%>
+          <label><%= property.full_name %></label>
+          <%= product_property_form.hidden_field :property_id %>
+          <label>Description:</label> <%= product_property_form.text_field :description %>
         <% end %>
       </div>
     <% end %>
   </div>
-
 </fieldset>

@@ -1,9 +1,8 @@
-
 <%= render :partial => '/admin/merchandise/wizards/sub_header'%>
 <% if  @brands.empty? %>
-  <h2>New Brand</h2>
+  <h3>New Brand</h3>
 <% else %>
-  <h2>Pick a Brand</h2>
+  <h3>Pick a Brand</h3>
 <% end %>
 
 <div id='shopping_addresses_selections' class='span-18 last'>
@@ -12,14 +11,13 @@
       <label><%= brand.name %></label><br/>
       <%= button_to 'Use', admin_merchandise_wizards_brand_path(brand), :class => "button spade inline-block", :method => :put %>
     </div>
-
   <% end %>
-
 </div>
-<hr style='color:#aac'/>
-<br />
+
+<hr/>
+
 <% unless  @brands.empty? %>
-  <h2>Create a New Brand</h2>
+  <h3>Create a New Brand</h3>
 <% end %>
 <%= form_for @brand, :url => admin_merchandise_wizards_brands_path do |brand_form| %>
   <%= render :partial =>  'form', :locals => {:f => brand_form}  %>
