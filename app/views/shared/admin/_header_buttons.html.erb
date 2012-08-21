@@ -46,6 +46,11 @@
     <li><%= link_to 'Deals', admin_generic_deals_path %></li>
   </ul>
 </li>
-
 <li><%= link_to "Fulfillment", admin_fulfillment_orders_path %></li>
-<li><%= link_to "Help", admin_help_path %></li>
+<li class="has-flyout">
+  <%= link_to "Help", admin_help_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Help', admin_help_path %></li>
+  </ul>
+</li>
