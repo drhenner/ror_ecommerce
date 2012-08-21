@@ -14,7 +14,8 @@
 
   <%= javascript_include_tag 'application' %>
 
-  <%= javascript_include_tag "admin/jquery.min" %>
+  <%#= javascript_include_tag "admin/jquery.min" %>
+  <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag "admin/app" %>
   <%= javascript_include_tag "admin/jquery.customforms" %>
   <%= javascript_include_tag "admin/jquery.placeholder.min" %>
@@ -39,10 +40,10 @@
       <%= render :partial => '/admin/shopping/sub_header' %>
     </div>
 <% end %>
-    <div class='span-14'>
+    <div class='admin_main_content eight columns'>
       <%= yield %>
     </div>
-    <div id='cart-right-side-panel' class='span-10 last float-right'>
+    <div id='cart-right-side-panel' class='four columns last float-right'>
       <%= render :partial => '/admin/shopping/right_panel_summary'%>
       <%= yield :right_side_bar %>
     </div>

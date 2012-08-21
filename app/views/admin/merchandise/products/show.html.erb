@@ -79,33 +79,37 @@
 <fieldset id="admin-product-properties" class='span-12'>
   <legend>Variants</legend>
   <%= link_to 'Edit Variants', edit_admin_merchandise_multi_product_variant_path(@product) %>
-  <table>
-      <tr>
-        <th>SKU   </th>
-        <th>Price </th>
-        <th>Cost  </th>
-        <th>Brand </th>
-        <% @product.properties.each do |property| %>
-          <th><%= property.display_name %>  </th>
-        <% end %>
+  <% if @product.variants.size == 0 %>
+    No Variants created yet.
+  <% else %>
+    <table>
+        <tr>
+          <th>SKU   </th>
+          <th>Price </th>
+          <th>Cost  </th>
+          <th>Brand </th>
+          <% @product.properties.each do |property| %>
+            <th><%= property.display_name %>  </th>
+          <% end %>
 
-        <th> </th>
-      </tr>
-    </thead>
-    <% @product.variants.each do |variant|  %>
-      <tr style='<%= 'color:#FFAEB9;' unless variant.active? %>'>
-        <td> <%= variant.sku %> </td>
-        <td> <%= variant.price %> </td>
-        <td> <%= variant.cost %> </td>
-        <td> <%= variant.brand.try(:name) %> </td>
-        <% @product.properties.each do |property| %>
-            <% variant_property = property.variant_properties.find_by_variant_id(variant.id) %>
-            <td style='<%= "color:#4A4;" if variant_property && variant_property.primary %>'><%= variant_property.description if variant_property %> </td >
-        <% end %>
-        <td> <%= link_to '', admin_merchandise_product_variant_path(@product, variant), :class => 'ss_sprite ss_application' %> </td>
-      </tr >
-    <% end %>
-  </table>
+          <th> </th>
+        </tr>
+      </thead>
+      <% @product.variants.each do |variant|  %>
+        <tr style='<%= 'color:#FFAEB9;' unless variant.active? %>'>
+          <td> <%= variant.sku %> </td>
+          <td> <%= variant.price %> </td>
+          <td> <%= variant.cost %> </td>
+          <td> <%= variant.brand.try(:name) %> </td>
+          <% @product.properties.each do |property| %>
+              <% variant_property = property.variant_properties.find_by_variant_id(variant.id) %>
+              <td style='<%= "color:#4A4;" if variant_property && variant_property.primary %>'><%= variant_property.description if variant_property %> </td >
+          <% end %>
+          <td> <%= link_to '', admin_merchandise_product_variant_path(@product, variant), :class => 'ss_sprite ss_application' %> </td>
+        </tr >
+      <% end %>
+    </table>
+  <% end %>
 </fieldset>
 
 <% @product.images.each do |image| %>

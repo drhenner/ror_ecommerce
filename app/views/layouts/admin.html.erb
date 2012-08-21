@@ -10,7 +10,8 @@
   <![endif]-->
   <%= csrf_meta_tag %>
 
-  <%= javascript_include_tag "admin/jquery.min" %>
+  <%#= javascript_include_tag "admin/jquery.min" %>
+  <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag "admin/app" %>
   <%= javascript_include_tag "admin/jquery.customforms" %>
   <%= javascript_include_tag "admin/jquery.placeholder.min" %>
@@ -37,14 +38,16 @@
       <% end %>
 
       <% if content_for?(:sidemenu) %>
-        <div class="nine columns">
+        <div class="admin_main_content nine columns">
           <%= yield %>
         </div>
         <div class="three columns sidebar" >
           <%= yield :sidemenu %>
         </div>
       <% else %>
-        <%= yield %>
+        <div class='admin_main_content'>
+          <%= yield %>
+        </div>
       <% end %>
     </div>
   </div>

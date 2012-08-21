@@ -24,10 +24,14 @@
   <%= f.select :state_id, @states, {:include_blank => true} %>
 
   <label>Start Date</label>
-  <%= f.date_select :start_date %>
+  <div class='date-select'>
+    <%= f.date_select :start_date %>
+  </div>
 
   <label>End Date</label>
-  <%= f.date_select :end_date %>
+  <div class='date-select'>
+    <%= f.date_select :end_date %>
+  </div>
 
   <label>Active</label>
   <%= f.check_box :active %>

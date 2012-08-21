@@ -35,10 +35,14 @@
   <%= f.check_box :combine %>
 
   <label>Starts at</label>
-  <%= f.date_select :starts_at %>
+  <div class='date-select'>
+    <%= f.date_select :starts_at %>
+  </div>
 
   <label>Expires at</label>
-  <%= f.date_select :expires_at %>
+  <div class='date-select'>
+    <%= f.date_select :expires_at %>
+  </div>
 </fieldset>
 
 <%= f.submit "Create", :class => "button" %>

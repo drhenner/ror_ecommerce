@@ -1,10 +1,7 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
 <% content_for :sidemenu do %>
-  <div style="text-align:right">
-    <%= link_to "New Product", new_admin_merchandise_product_path, :class => "button", :id => "new_product_button" %>
-    <%= link_to "New Product Wizard", admin_merchandise_wizards_brands_path, :class => "button", :id => "new_product_wizard_button" %>
-  </div>
+
   <div class='admin_filters'>
     <%= form_tag admin_merchandise_products_path, :method => 'get', :id => "products_search" do %>
       <label>Name</label>
@@ -26,8 +23,13 @@
   </div>
 <% end %>
 
-<h3>Products</h3>
-
+<div class='admin_h3_index_header'>
+    <h3 style='width:220px;float:left;display:block;'>Products</h3>
+    <span class='admin_h3_index_header_buttons'>
+      <%= link_to "New Product", new_admin_merchandise_product_path, :class => "button", :id => "new_product_button" %>
+      <%= link_to "New Product Wizard", admin_merchandise_wizards_brands_path, :class => "button", :id => "new_product_wizard_button" %>
+    </span>
+</div>
 <div class="admin_products">
   <table>
     <thead>
