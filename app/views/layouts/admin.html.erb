@@ -49,9 +49,10 @@
           <%= yield %>
         </div>
       <% end %>
-      <div class="footer">
-        Powered by <%= link_to "RoR eCommerce", "http://ror-e.com" %>. v<%= RoReCommerce::Version %>
-      </div>
+    </div>
+    <div class="footer">
+      <p class="left"><%= site_name %></p>
+      <p class="right">Powered by <%= link_to "RoR eCommerce", "http://ror-e.com" %>. v<%= RoReCommerce::Version %></p>
     </div>
   </div>
 
