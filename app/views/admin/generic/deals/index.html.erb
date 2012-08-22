@@ -1,4 +1,7 @@
-<h3>Deals</h3>
+<div class="admin_title_header">
+  <h3>Deals</h3>
+  <%= link_to "New Deal", new_admin_generic_deal_path, :class => "button" %>
+</div>
 
 <div class="admin_deals">
   <table>
@@ -33,5 +36,3 @@
 </div>
 
 <%= will_paginate @deals %>
-
-<%= link_to "New Deal", new_admin_generic_deal_path, :class => "button" %>

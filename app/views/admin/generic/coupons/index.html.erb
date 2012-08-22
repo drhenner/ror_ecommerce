@@ -1,4 +1,7 @@
-<h3>Coupons</h3>
+<div class="admin_title_header">
+  <h3>Coupons</h3>
+  <%= link_to "New Coupon", new_admin_generic_coupon_path, :class => 'button' %>
+</div>
 
 <div class="admin_coupons">
   <table>
@@ -24,5 +27,3 @@
     <% end %>
   </table>
 </div>
-
-<p><%= link_to "New Coupon", new_admin_generic_coupon_path, :class => 'button' %></p>
