@@ -15,19 +15,17 @@
   </div>
 <% end %>
 
-<div class='admin_h3_index_header'>
-    <h3 style='width:220px;float:left;display:block;'>Prototypes</h3>
-    <span class='admin_h3_index_header_buttons'>
-      <%= link_to "New Prototype", new_admin_merchandise_prototype_path, :class  => "button"%>
-    </span>
+<div class='admin_title_header'>
+  <h3>Prototypes</h3>
+  <%= link_to "New Prototype", new_admin_merchandise_prototype_path, :class  => "button"%>
 </div>
 
 <div class="admin_prototypes">
   <table>
     <thead>
     <tr class='odd'>
-        <th class='column1_header'><%= sortable "name" %></th>
-        <th>Active</th>
+      <th class='column1_header'><%= sortable "name" %></th>
+      <th>Active</th>
     </tr>
     </thead>
     <% @prototypes.each do |prototype| %>
