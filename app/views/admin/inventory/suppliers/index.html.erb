@@ -1,5 +1,4 @@
 <% content_for :sidemenu do %>
-  <%= link_to "New Supplier", new_admin_inventory_supplier_path, :class => "button", :id => "new_supplier_button" %>
   <div class='admin_filters'>
     <%= form_tag admin_inventory_suppliers_path, :method => 'get', :id => "suppliers_search" do %>
       <%= hidden_field_tag :direction, params[:direction] %>
@@ -18,7 +17,10 @@
   </div>
 <% end %>
 
-<h3>Suppliers</h3>
+<div class="admin_title_header">
+  <h3>Suppliers</h3>
+  <%= link_to "New Supplier", new_admin_inventory_supplier_path, :class => "button" %>
+</div>
 
 <div class="admin_suppliers">
   <table>

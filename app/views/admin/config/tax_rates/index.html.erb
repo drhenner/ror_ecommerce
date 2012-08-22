@@ -1,4 +1,7 @@
-<h3>Tax Rates</h3>
+<div class="admin_title_header">
+  <h3>Tax Rates</h3>
+  <%= link_to 'New Tax rate', new_admin_config_tax_rate_path, :class => 'button' %>
+</div>
 
 <div class="admin_tax_rates">
   <table>
@@ -31,5 +34,3 @@
   <% end %>
   </table>
 </div>
-
-<%= link_to 'New Tax rate', new_admin_config_tax_rate_path, :class => 'button' %>

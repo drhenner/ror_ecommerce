@@ -1,4 +1,7 @@
-<h3>Listing Accounts</h3>
+<div class="admin_title_header">
+  <h3>Listing Accounts</h3>
+  <%= link_to 'New Account', new_admin_config_account_path, :class => 'button' %>
+</div>
 
 <div class="admin_accounts">
   <table>
@@ -23,5 +26,3 @@
   <% end %>
   </table>
 </div>
-
-<%= link_to 'New Account', new_admin_config_account_path, :class => 'button' %>

@@ -1,4 +1,7 @@
-<h3>Shipping Methods</h3>
+<div class="admin_title_header">
+  <h3>Shipping Methods</h3>
+  <%= link_to "New Shipping Method", new_admin_config_shipping_method_path, :class => 'button' %>
+</div>
 
 <div class="admin_shipping_methods">
   <table>
@@ -18,5 +21,3 @@
   <% end %>
   </table>
 </div>
-
-<%= link_to "New Shipping Method", new_admin_config_shipping_method_path, :class => 'button' %>

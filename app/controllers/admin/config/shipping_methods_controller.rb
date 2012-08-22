@@ -4,11 +4,6 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
     @shipping_methods = ShippingMethod.all
   end
 
-  # GET /admin/config/shipping_methods/1
-  def show
-    @shipping_method = ShippingMethod.find(params[:id])
-  end
-
   # GET /admin/config/shipping_methods/new
   def new
 
@@ -36,7 +31,7 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
 
     respond_to do |format|
       if @shipping_method.save
-        format.html { redirect_to(admin_config_shipping_method_url(@shipping_method), :notice => 'Shipping method was successfully created.') }
+        format.html { redirect_to(admin_config_shipping_methods_url, :notice => 'Shipping method was successfully created.') }
       else
         form_info
         format.html { render :action => "new" }
@@ -50,7 +45,7 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
 
     respond_to do |format|
       if @shipping_method.update_attributes(params[:shipping_method])
-        format.html { redirect_to(admin_config_shipping_method_url(@shipping_method), :notice => 'Shipping method was successfully updated.') }
+        format.html { redirect_to(admin_config_shipping_methods_url, :notice => 'Shipping method was successfully updated.') }
       else
         form_info
         format.html { render :action => "edit" }
