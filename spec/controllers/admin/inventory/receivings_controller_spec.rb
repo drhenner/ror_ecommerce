@@ -11,10 +11,10 @@ describe Admin::Inventory::ReceivingsController do
     @purchase_order = create(:purchase_order)
   end
 
-  it "show action should render show template" do
-    get :show, :id => @purchase_order.id
-    response.should render_template(:show)
-  end
+  #it "show action should render show template" do
+  #  get :show, :id => @purchase_order.id
+  #  response.should render_template(:show)
+  #end
 
   it "index action should render index template" do
     get :index

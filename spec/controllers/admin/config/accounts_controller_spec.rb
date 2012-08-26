@@ -15,11 +15,11 @@ describe Admin::Config::AccountsController do
     response.should render_template(:index)
   end
 
-  it "show action should render show template" do
-    @account = create(:account)
-    get :show, :id => @account.id
-    response.should render_template(:show)
-  end
+  #it "show action should render show template" do
+  #  @account = create(:account)
+  #  get :show, :id => @account.id
+  #  response.should render_template(:show)
+  #end
 
   it "new action should render new template" do
     get :new
@@ -36,7 +36,7 @@ describe Admin::Config::AccountsController do
     @account = build(:account)
     Account.any_instance.stubs(:valid?).returns(true)
     post :create, :account => @account.attributes
-    response.should redirect_to(admin_config_account_url(assigns[:account]))
+    response.should redirect_to(admin_config_accounts_url())
   end
 
   it "edit action should render edit template" do
@@ -56,7 +56,7 @@ describe Admin::Config::AccountsController do
     @account = create(:account)
     Account.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @account.id
-    response.should redirect_to(admin_config_account_url(assigns[:account]))
+    response.should redirect_to(admin_config_accounts_url())
   end
 
   it "destroy action should destroy model and redirect to index action" do
