@@ -2,7 +2,7 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
   helper_method :countries, :select_countries
   def index
     @billing_address = Address.new
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && countries.size == 1
+    if !Settings.require_state_in_address  && countries.size == 1
       @billing_address.country = countries.first
     end
     form_info
@@ -15,7 +15,7 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
     old_address       = Address.find_by_id(params[:old_address_id])
     attributes        = old_address.try(:address_attributes)
     @billing_address = session_admin_cart.customer.addresses.new(attributes)
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && countries.size == 1
+    if !Settings.require_state_in_address && countries.size == 1
       @billing_address.country = countries.first
     end
     form_info

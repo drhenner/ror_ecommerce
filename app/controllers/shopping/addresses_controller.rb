@@ -4,7 +4,7 @@ class Shopping::AddressesController < Shopping::BaseController
   # GET /shopping/addresses.xml
   def index
     @shopping_address = Address.new
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && countries.size == 1
+    if !Settings.require_state_in_address && countries.size == 1
       @shopping_address.country = countries.first
     end
     form_info

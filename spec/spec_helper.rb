@@ -22,9 +22,7 @@ include Authlogic::TestCase
 include ActiveMerchant::Billing
 
 Rails.logger.level = 4
-HADEAN_CONFIG ||= {}
-#HADEAN_CONFIG['require_state_in_address'] = true
-GlobalConstants.const_set("REQUIRE_STATE_IN_ADDRESS", true)
+Settings.require_state_in_address = true
 
 RSpec.configure do |config|
   # == Mock Framework

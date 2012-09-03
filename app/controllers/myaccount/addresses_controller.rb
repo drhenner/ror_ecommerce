@@ -11,7 +11,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
   def new
     form_info
     @address = Address.new
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && countries.size == 1
+    if !Settings.require_state_in_address && countries.size == 1
       @address.country = countries.first
     end
     @address.default = true          if current_user.default_shipping_address.nil?

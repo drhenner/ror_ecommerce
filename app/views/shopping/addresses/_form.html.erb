@@ -32,7 +32,7 @@
     </div>
   <div class='clear'></div>
 
-    <% if GlobalConstants::REQUIRE_STATE_IN_ADDRESS  %>
+    <% if Settings.require_state_in_address %>
       <div class="field column">
         <%= f.label    :state_id, "State/Province" %>
         <%= f.select   :state_id, @states,
