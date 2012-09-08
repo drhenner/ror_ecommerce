@@ -9,7 +9,7 @@
         <ul class=' search_boxes'>
           <li><%= label_tag 'Name' %> <%= text_field_tag :name, params[:name] %></li>
           <li><%= label_tag 'Product Type' %>
-              <%= select_tag "product_type_id", options_from_collection_for_select(product_types, "id", "name"), :include_blank => true %>
+              <%= select_tag "product_type_id", options_from_collection_for_select(product_types, "id", "name"), {:include_blank => true, :class => 'auto_width'} %>
           </li>
         </ul>
         <div style='text-align:center'>

@@ -25,7 +25,7 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
 
     respond_to do |format|
       if @shipping_zone.save
-        format.html { redirect_to(admin_config_shipping_zone_url(@shipping_zone), :notice => 'Shipping zone was successfully created.') }
+        format.html { redirect_to(admin_config_shipping_zones_url(), :notice => 'Shipping zone was successfully created.') }
       else
         format.html { render :action => "new" }
       end
@@ -38,7 +38,7 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
 
     respond_to do |format|
       if @shipping_zone.update_attributes(params[:shipping_zone])
-        format.html { redirect_to(admin_config_shipping_zone_url(@shipping_zone), :notice => 'Shipping zone was successfully updated.') }
+        format.html { redirect_to(admin_config_shipping_zones_url(), :notice => 'Shipping zone was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end

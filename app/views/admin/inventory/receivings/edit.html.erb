@@ -1,6 +1,4 @@
-<%= render :partial => '/admin/inventory/sub_header'%>
-
-<h1>Receive Purchase Order</h1>
+<h3>Receive Purchase Order</h3>
 
 <%= form_for @purchase_order, :url  => admin_inventory_receiving_path(@purchase_order),
                               :html => {:class => 'prepend-4'}  do |form| %>
@@ -36,7 +34,7 @@
 <% end %>
 
 
-<%= link_to 'Show', admin_inventory_purchase_order_path(@purchase_order) %> |
+<%#= link_to 'Show', admin_inventory_purchase_order_path(@purchase_order) %> |
 <%= link_to 'Back', admin_inventory_receivings_path %>
 
 

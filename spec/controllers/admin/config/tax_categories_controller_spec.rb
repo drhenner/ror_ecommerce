@@ -15,11 +15,11 @@ describe Admin::Config::TaxCategoriesController do
     response.should render_template(:index)
   end
 
-  it "show action should render show template" do
-    @tax_category = TaxCategory.first
-    get :show, :id => @tax_category.id
-    response.should render_template(:show)
-  end
+  #it "show action should render show template" do
+  #  @tax_category = TaxCategory.first
+  #  get :show, :id => @tax_category.id
+  #  response.should render_template(:show)
+  #end
 
   it "new action should render new template" do
     get :new

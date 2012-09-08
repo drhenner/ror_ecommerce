@@ -15,11 +15,11 @@ describe Admin::Config::ShippingMethodsController do
     response.should render_template(:index)
   end
 
-  it "show action should render show template" do
-    @shipping_method = create(:shipping_method)
-    get :show, :id => @shipping_method.id
-    response.should render_template(:show)
-  end
+  #it "show action should render show template" do
+  #  @shipping_method = create(:shipping_method)
+  #  get :show, :id => @shipping_method.id
+  #  response.should render_template(:show)
+  #end
 
   it "new action should render new template" do
     get :new
@@ -35,7 +35,7 @@ describe Admin::Config::ShippingMethodsController do
   it "create action should redirect when model is valid" do
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
     post :create, :shipping_method => {:name => 'UPS 3-5 day', :shipping_zone_id => 1}
-    response.should redirect_to(admin_config_shipping_method_url(assigns[:shipping_method]))
+    response.should redirect_to(admin_config_shipping_methods_url())
   end
 
   it "edit action should render edit template" do
@@ -55,7 +55,7 @@ describe Admin::Config::ShippingMethodsController do
     @shipping_method = create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_method.id
-    response.should redirect_to(admin_config_shipping_method_url(assigns[:shipping_method]))
+    response.should redirect_to(admin_config_shipping_methods_url())
   end
 
 end

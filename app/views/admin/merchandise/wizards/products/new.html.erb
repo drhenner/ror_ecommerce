@@ -1,12 +1,8 @@
 <%= render :partial => '/admin/merchandise/wizards/sub_header'%>
-<h1> New Product </h1>
+<h3>New Product</h3>
 
 <%= form_for(@product, :url => admin_merchandise_wizards_products_path()) do |f| %>
   <%= render :partial => 'form', :locals => {:form => f} %>
-  <div class=" generic_submit_button">
-    <%= submit_tag "Create",
-                    :class  => "button",
-                    :id     => "create_product_button" %>
-  </div>
+  <%= submit_tag "Create", :class  => "button" %>
 <% end %>
 

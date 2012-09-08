@@ -1,4 +1,3 @@
-<%= render :partial => '/admin/fulfillment/sub_header'%>
 
 <h1>Change address</h1>
 <%#= form_for(address) do |f| %>
@@ -7,9 +6,9 @@
 
 <% @addresses.each_with_index do |address, i| %>
   <% selected = @address.id == address.id %>
-  <div  id='select-address-<%= i %>' 
+  <div  id='select-address-<%= i %>'
         class='span-5 rounded-4
-              <%= cycle("line_item_yellow", "line_item_gray") %> 
+              <%= cycle("line_item_yellow", "line_item_gray") %>
               <%= 'address_selected' if selected %>'>
     <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => address} %>
     <% if selected %>

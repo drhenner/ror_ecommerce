@@ -1,35 +1,35 @@
-<%= render :partial => '/admin/inventory/sub_header'%>
+<h3>Product Overview</h3>
 
-<h2>Product Overview</h2>
-
-<% @products.each do |product| %>
-  <table>
-    <thead>
-      <tr  class='odd'>
-        <th colspan='3' class='column1_header' >
-          <%= product.name %></th>
-        <th><%= link_to 'edit', edit_admin_merchandise_product_path(product) %></th>
-      </tr>
-      <tr>
-        <th>SKU</th><th>price</th><th>Qty</th><th>description</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% product.variants.each do |variant|%>
-        <tr class='<%= cycle("odd", "")%>'>
-          <td><%= variant.sku %></td>
-          <td><%= variant.price %></td>
-          <td><%= variant.count_on_hand %></td>
-          <td>
-            <% variant.variant_properties.each do |vp| %>
-              <%= vp.property_name %>: <%= vp.description %> <br/>
-            <% end %>
-          </td>
+<div class="admin_inventory_overviews">
+  <% @products.each do |product| %>
+    <table>
+      <thead>
+        <tr  class='odd'>
+          <th colspan='3' class='column1_header' >
+            <%= product.name %></th>
+          <th><%= link_to 'edit', edit_admin_merchandise_product_path(product) %></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+        <tr>
+          <th>SKU</th><th>price</th><th>Qty</th><th>description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% product.variants.each do |variant|%>
+          <tr class='<%= cycle("odd", "")%>'>
+            <td><%= variant.sku %></td>
+            <td><%= variant.price %></td>
+            <td><%= variant.count_on_hand %></td>
+            <td>
+              <% variant.variant_properties.each do |vp| %>
+                <%= vp.property_name %>: <%= vp.description %> <br/>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
 
 <%= will_paginate @products %>

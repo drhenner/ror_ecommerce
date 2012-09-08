@@ -1,8 +1,7 @@
-<%= render :partial => '/admin/generic/sub_header'%>
-<h1> New Coupon </h1>
+<h3>New Coupon</h3>
 
 <%= form_for(@coupon, :url => admin_generic_coupons_path(@coupon)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 
-  <%= link_to 'Back to List', admin_generic_coupons_path, :class => 'button' %>
+<%= link_to "Back to List", admin_generic_coupons_path, :class => "button" %>

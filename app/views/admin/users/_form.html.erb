@@ -1,31 +1,31 @@
-<div id='registration_name_form'>
-  <fieldset id="admin-user_info" class='span-12'>
-     <ul>
-       <li>
-         <%= form.label :first_name %>
-         <%= form.text_field :first_name %>
-        </li>
-        <li>
-          <%= form.label :last_name %>
-          <%= form.text_field :last_name %>
-        </li>
-        <li>
-          <%= form.label :email %>
-          <%= form.text_field :email %>
-        </li>
-        <li>
-          <%= form.label :form_birth_date, "Birthday" %>
-          <%= form.text_field :form_birth_date, :class => 'ui-yearpicker' %>
-        </li>
-        <li>
-          <%= form.label :state %>
-          <%= form.select :state, @states %>
-        </li>
-     </ul>
-  </fieldset>
-</div>
-<div id='registration_form'>
+<fieldset>
+  <legend>New User</legend>
+
+  <div class="row">
+    <div class="six columns">
+      <label>First Name</label>
+      <%= form.text_field :first_name %>
+
+      <label>Email Address</label>
+      <%= form.text_field :email %>
+
+      <label>State</label>
+      <%= form.select :state, @states %>
+    </div>
+
+    <div class="six columns">
+      <label>Last Name</label>
+      <%= form.text_field :last_name %>
+
+      <label>Birthday</label>
+      <%= form.text_field :form_birth_date, :class => "eleven columns ui-yearpicker" %>
+    </div>
+  </div>
+</fieldset>
+
+<% if current_user.super_admin? %>
   <fieldset id="admin-password" class='span-12'>
+    <p>Leave blank if you don't want to change the password.</p>
     <ul>
       <li>
         <%= form.label :password %>
@@ -37,17 +37,14 @@
       </li>
     </ul>
   </fieldset>
-</div>
-
-<fieldset id="admin-product-properties" class='span-12'>
-  <legend>Roles</legend>
+<% end %>
+<fieldset>
+  <legend>User Roles</legend>
   <% @all_roles.each do |role| %>
-
-      <div class="property_form left span-9 last">
-        <% checked = @user.id && @user.roles.include?(role)%>
-        <%= check_box_tag "user[role_ids][]", role.id, checked %>
-        <%= role.name %>
-      </div>
+    <div class="property_form left span-9 last">
+      <% checked = @user.id && @user.roles.include?(role)%>
+      <%= check_box_tag "user[role_ids][]", role.id, checked %>
+      <%= role.name %>
+    </div>
   <% end %>
-
 </fieldset>

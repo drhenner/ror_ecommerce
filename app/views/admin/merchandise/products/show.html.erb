@@ -1,120 +1,88 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
-<h2> Product: <%= @product.name %></h2>
-<fieldset id="admin-product-names" class='span-12' style='text-align:left;'>
-  <div class='span-3'>
-    <%= label :product, :name %>
-  </div>
-  <div class='span-6 last'>
-    <%= @product.name %>
-    <% if @product.description? %>
-      <span style='color:<%= @product.active ? "#3A3" : "#C33" %>;'>
-        <% if @product.available? %>
-          <%= link_to 'Active', admin_merchandise_product_path(@product),
-                                :method => :delete,
-                                :data => {:confirm => "This will inactivate the product,  Are you sure?"},
-                                :class => 'button green-button' %>
-        <% else %>
-          <%= link_to 'Not Active', activate_admin_merchandise_product_path(@product),
-                                    :method => 'PUT',
-                                    :data => {:confirm => "This will activate the product,  Are you sure?"},
-                                    :class => 'button red-button' %>
-        <% end %>
-      </span>
-    <% end %>
-  </div>
-  <div class='clear'></div>
-  <div class='span-3'>
-    <%= label :product, :description %>
-  </div>
-  <div class='span-6 last'>
-    <%= @product.description %>
-    <% unless @product.description? %>
-      <%= link_to 'Add Description', edit_admin_merchandise_products_description_path(@product),
-                                :class => 'button red-button' %>
-    <% end %>
-  </div>
+<h3>Product: <%= @product.name %></h3>
 
-  <div class='clear'></div>
-  <div class='span-3'>
-    <%= label :product, :meta_keywords %>
-  </div>
-  <div class='span-6 last'>
-    <%= @product.meta_keywords %>
-  </div>
-  <div class='clear'></div>
-  <div class='span-3'>
-    <%= label :product, :meta_description %>
-  </div>
-  <div class='span-6 last'>
-    <%= @product.meta_description %>
-  </div>
+<span style='color:<%= @product.active ? "#3A3" : "#C33" %>; float:right; margin-top: -45px'>
+  <% if @product.available? %>
+    <%= link_to 'Active', admin_merchandise_product_path(@product),
+                          :method => :delete,
+                          :data => {:confirm => "This will inactivate the product,  Are you sure?"},
+                          :class => 'button green-button' %>
+  <% else %>
+    <%= link_to 'Not Active', activate_admin_merchandise_product_path(@product),
+                              :method => 'PUT',
+                              :data => {:confirm => "This will activate the product,  Are you sure?"},
+                              :class => 'button red-button' %>
+  <% end %>
+</span>
 
-  <div class='clear'></div>
-  <div class='span-3'>
-    <%= label :product, :product_type %>
-  </div>
-  <div class='span-6 last'>
-    <%= @product.product_type.name %>
-  </div>
+<fieldset>
+  <label>Name</label>
+  <p><%= @product.name %></p>
 
-  <div class='clear'></div>
-  <div class='span-3'>
-    <%= label :product, :shipping_category %>
-  </div>
-  <div class='span-6 last'>
-    <%= @product.shipping_category.name %>
-  </div>
+  <label>Description (<%= link_to 'edit', edit_admin_merchandise_products_description_path(@product) %>)</label>
+  <p><%= raw @product.description %></p>
+
+  <label>Meta Keywords</label>
+  <p><%= @product.meta_keywords %></p>
+
+  <label>Meta Description</label>
+  <p><%= @product.meta_description %></p>
+
+  <label>Product Type</label>
+  <p><%= @product.product_type.name %></p>
+
+  <label>Shipping Category</label>
+  <p><%= @product.shipping_category.name %></p>
 </fieldset>
 
-<fieldset id="admin-product-properties" class='span-12'>
+<fieldset>
   <legend>Properties</legend>
-  <ul style='text-align:left;'>
   <% @product.product_properties.each do |product_prop|  %>
-    <li><label><%= product_prop.property.identifing_name %>:</label> <%= product_prop.description %></li>
+    <label><%= product_prop.property.identifing_name %>:</label>
+    <p><%= product_prop.description %></p>
   <% end %>
-  </ul>
 </fieldset>
 
 <fieldset id="admin-product-properties" class='span-12'>
   <legend>Variants</legend>
-  <%= link_to 'Edit Variants', edit_admin_merchandise_multi_product_variant_path(@product) %>
-  <% if @product.variants.size == 0 %>
-    No Variants created yet.
-  <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>SKU   </th>
-          <th>Price </th>
-          <th>Cost  </th>
-          <th>Brand </th>
-          <% @product.properties.each do |property| %>
-            <th><%= property.display_name %>  </th>
-          <% end %>
 
-          <th> </th>
+  <% if @product.variants.size == 0 %>
+    <p>No variants created yet. <%= link_to 'Create some variants?', edit_admin_merchandise_multi_product_variant_path(@product) %></p>
+  <% else %>
+    <p><%= link_to 'Edit Variants', edit_admin_merchandise_multi_product_variant_path(@product) %></p>
+    <table>
+        <tr>
+          <th>SKU</th>
+          <th>Price</th>
+          <th>Cost</th>
+          <th>Brand</th>
+          <th></th>
         </tr>
       </thead>
       <% @product.variants.each do |variant|  %>
         <tr style='<%= 'color:#FFAEB9;' unless variant.active? %>'>
-          <td> <%= variant.sku %> </td>
-          <td> <%= variant.price %> </td>
-          <td> <%= variant.cost %> </td>
-          <td> <%= variant.brand.try(:name) %> </td>
-          <% @product.properties.each do |property| %>
-              <% variant_property = property.variant_properties.find_by_variant_id(variant.id) %>
-              <td style='<%= "color:#4A4;" if variant_property && variant_property.primary %>'><%= variant_property.description if variant_property %> </td >
-          <% end %>
-          <td> <%= link_to '', admin_merchandise_product_variant_path(@product, variant), :class => 'ss_sprite ss_application' %> </td>
+          <td><%= variant.sku %></td>
+          <td><%= variant.price %></td>
+          <td><%= variant.cost %></td>
+          <td><%= variant.brand.try(:name) %></td>
+          <td><%= link_to '2', admin_merchandise_product_variant_path(@product, variant) %></td>
         </tr >
       <% end %>
     </table>
   <% end %>
 </fieldset>
 
-<% @product.images.each do |image| %>
-  <%= image.photo_file_name %><%= image_tag image.photo.url(:small) %><br/>
-<% end %>
-<%= link_to 'Edit Images', edit_admin_merchandise_images_product_path(@product), :class => 'button'%>
-<%= link_to 'All Products', admin_merchandise_products_path(), :class => 'button'%>
+<fieldset>
+  <legend>Images (<%= link_to 'edit', edit_admin_merchandise_images_product_path(@product) %>)</legend>
+
+  <% @product.images.each do |image| %>
+    <label><%= image.photo_file_name %></label>
+    <%= image_tag image.photo.url(:small) %>
+  <% end %>
+  <p></p>
+</fieldset>
+
+<p style="margin-top: 30px">
+  <%= link_to 'All Products', admin_merchandise_products_path(), :class => 'button yellow'%>
+</p>
