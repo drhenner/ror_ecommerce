@@ -136,7 +136,7 @@ If you get the error, `Errno::ECONNREFUSED (Connection refused - connect(2)):` w
 
 ##Author
 
-RoR Ecommerce was written by David Henner. [Contributors](https://github.com/drhenner/ror_ecommerce/blob/master/Contributors.md).
+RoR Ecommerce was created by David Henner. [Contributors](https://github.com/drhenner/ror_ecommerce/blob/master/Contributors.md).
 
 ##FYI:
 
