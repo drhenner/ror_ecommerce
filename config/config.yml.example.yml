@@ -25,7 +25,6 @@ development: &non_production_settings
     login:      someLOGIN
     password:   somePASSWORD
   vat: false
-  require_state_in_address: true
 
 test:
   <<: *non_production_settings

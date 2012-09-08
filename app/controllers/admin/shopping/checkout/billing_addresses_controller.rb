@@ -1,10 +1,6 @@
 class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::Checkout::BaseController
-  helper_method :countries, :select_countries
   def index
     @billing_address = Address.new
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && countries.size == 1
-      @billing_address.country = countries.first
-    end
     form_info
     respond_to do |format|
       format.html # index.html.erb
@@ -15,9 +11,6 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
     old_address       = Address.find_by_id(params[:old_address_id])
     attributes        = old_address.try(:address_attributes)
     @billing_address = session_admin_cart.customer.addresses.new(attributes)
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS  && countries.size == 1
-      @billing_address.country = countries.first
-    end
     form_info
     respond_to do |format|
       format.html # new.html.erb
@@ -83,12 +76,6 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
   def form_info
     @billing_addresses = session_admin_cart.customer.billing_addresses
     @states     = State.form_selector
-  end
-  def countries
-    @countries ||= Country.active.all
-  end
-  def select_countries
-    countries.map{|sz| [sz.name, sz.id]}
   end
   def update_order_address_id(id)
     session_admin_order.update_attributes( :bill_address_id => id )

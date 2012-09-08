@@ -1,14 +1,8 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
-<h2>New Prototype</h2>
+<h3>New Prototype</h3>
 
-<%= form_for @prototype, :url  => admin_merchandise_prototypes_path,
-                        :html => {:class => 'prepend-6'}  do |form| %>
-  <%= render :partial => '/admin/merchandise/prototypes/form', :locals => {:form => form}%>
-
-  <div class=" generic_submit_button">
-    <%= submit_tag "Create",
-                    :class  => "button",
-                    :id     => "create_prototype_button" %>
-  </div>
+<%= form_for @prototype, :url  => admin_merchandise_prototypes_path do |form| %>
+  <%= render :partial => 'form', :locals => {:form => form}%>
+  <%= submit_tag "Create", :class  => "button" %>
 <% end %>

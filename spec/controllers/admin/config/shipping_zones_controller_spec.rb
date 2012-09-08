@@ -15,11 +15,11 @@ describe Admin::Config::ShippingZonesController do
     response.should render_template(:index)
   end
 
-  it "show action should render show template" do
-    @shipping_zone = ShippingZone.first
-    get :show, :id => @shipping_zone.id
-    response.should render_template(:show)
-  end
+  #it "show action should render show template" do
+  #  @shipping_zone = ShippingZone.first
+  #  get :show, :id => @shipping_zone.id
+  #  response.should render_template(:show)
+  #end
 
   it "new action should render new template" do
     get :new
@@ -35,7 +35,7 @@ describe Admin::Config::ShippingZonesController do
   it "create action should redirect when model is valid" do
     ShippingZone.any_instance.stubs(:valid?).returns(true)
     post :create, :shipping_zone => {:name => 'Alaska'}
-    response.should redirect_to(admin_config_shipping_zone_url(assigns[:shipping_zone]))
+    response.should redirect_to(admin_config_shipping_zones_url())
   end
 
   it "edit action should render edit template" do
@@ -55,7 +55,7 @@ describe Admin::Config::ShippingZonesController do
     @shipping_zone = ShippingZone.first
     ShippingZone.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_zone.id
-    response.should redirect_to(admin_config_shipping_zone_url(assigns[:shipping_zone]))
+    response.should redirect_to(admin_config_shipping_zones_url())
   end
 
 end

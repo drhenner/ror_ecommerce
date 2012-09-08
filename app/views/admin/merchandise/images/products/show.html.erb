@@ -1,11 +1,13 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
-<h1><%= @product.name %> Images</h1>
-<div class='span-18 '>
-  <% @product.images.each do |image| %>
-    <%= image.photo_file_name %><%= image_tag image.photo.url(:small) %><br/>
-  <% end %>
+<h3>Images for '<%= @product.name %>'</h3>
 
-  <%= link_to 'Edit Images', edit_admin_merchandise_images_product_path(@product), :class  => "button"%>
-  <%= link_to 'Product Details', admin_merchandise_product_path(@product), :class  => "button"%>
-</div>
+<% @product.images.each do |image| %>
+	<label><%= image.photo_file_name %></label>
+  <%= image_tag image.photo.url(:small) %>
+<% end %>
+
+<p style="margin-top: 30px">
+	<%= link_to 'Edit Images', edit_admin_merchandise_images_product_path(@product), :class  => "button"%>
+	<%= link_to 'Product Details', admin_merchandise_product_path(@product), :class  => "button"%>
+</p>

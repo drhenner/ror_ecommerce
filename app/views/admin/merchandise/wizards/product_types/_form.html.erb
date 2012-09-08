@@ -10,23 +10,10 @@
   </div>
 <% end %>
 
+<label>Name</label>
+<%= form.text_field :name %>
 
+<label>Parent</label>
+<%= form.select :parent_id, nested_set_options(ProductType, ProductType.new) {|i, level| "#{'-' * level} #{i.name}" }, { :include_blank => true } %>
 
-<fieldset id="admin-product_type-names">
-  <div class='span-10 clear'>
-    <div class='span-3'>
-      <%= form.label :name %>
-    </div>
-    <div class='span-6 last'>
-      <%= form.text_field :name %>
-    </div>
-    <div class='span-6 last'>
-      Parent: <%= form.select :parent_id,
-                      nested_set_options(ProductType, ProductType.new) {|i, level| "#{'-' * level} #{i.name}" },
-                      { :include_blank => true } %>
-    </div>
-  </div>
-</fieldset>
-<div class=" generic_submit_button">
-  <%= submit_tag "Create", :class => "button", :id => "create_product_type_button" %>
-</div>
+<%= form.submit 'Create', :class => 'button', :style => "margin-top: 10px" %>

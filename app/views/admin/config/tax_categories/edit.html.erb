@@ -1,10 +1,7 @@
-<%= render :partial => '/admin/config/sub_header'%>
-<h1>Editing Tax Category</h1>
-
+<h3>Editing Tax Category</h3>
 
 <%= form_for(@tax_category, :url => admin_config_tax_category_path(@tax_category)) do |f| %>
   <%= render :partial =>  'form', :locals => {:f => f} %>
 <% end %>
 
-<%= link_to 'Show', admin_config_tax_category_path(@tax_category), :class => 'button' %>
-<%= link_to 'Back', admin_config_tax_categories_path, :class => 'button' %>
+<%= link_to 'Back', admin_config_tax_categories_path, :class => "button" %>

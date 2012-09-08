@@ -1,63 +1,54 @@
 <%= render :partial => '/admin/merchandise/wizards/sub_header'%>
 
-<div class='span-18'>
-  <div class='span-9 column'>
-    <% if  @properties.empty? %>
-      <h2>New Property</h2>
-    <% else %>
-      <h2>Pick a Property</h2>
-    <% end %>
+<% if  @properties.empty? %>
+  <h3>New Property</h3>
+<% else %>
+  <h3>Pick a Property</h3>
+<% end %>
 
-    <%= form_for @property, :url => admin_merchandise_wizards_property_path(:id => 0), :method => 'PUT' do |product_form| %>
-      <div id='properties_selections' class='span-9 last'>
-        <% if nil # @properties.each do |property| %>
-          <div class='span-8 box <%= cycle( '', 'last') %>'>
-            <label><%= property.display_name %> (<%= property.identifing_name %>)</label><br/>
-            <%= check_box_tag 'property[ids][]', property.id %>
-          </div>
-
-        <%#= select_tag 'property[ids][]',
-                        @properties.map{|p| [p.id, p.full_name] },
-                        :class => 'chzn-select', :multiple => 'true', 'data-placeholder' => 'Choose Properties' %>
-        <% end %>
-        <%= select_tag 'property[ids][]',
-                        options_from_collection_for_select(@properties, "id", "full_name", @selected),
-                        :class => 'chzn-select span-6',
-                        :multiple => 'true',
-                        :style    => 'overflow:scroll;',
-                        'data-placeholder' => 'Choose Properties' %>
+<%= form_for @property, :url => admin_merchandise_wizards_property_path(:id => 0), :method => 'PUT' do |product_form| %>
+  <div id='properties_selections' class='span-9 last'>
+    <% if nil # @properties.each do |property| %>
+      <div class='span-8 box <%= cycle( '', 'last') %>'>
+        <label><%= property.display_name %> (<%= property.identifing_name %>)</label>
+        <%= check_box_tag 'property[ids][]', property.id %>
       </div>
-      <%= product_form.submit 'Use Properties', :class => 'button' %>
     <% end %>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-  </div>
-  <div class='span-9 last column'>
-    <% unless  @properties.empty? %>
-      <h2>New Property</h2>
-      <p>If all the you want properties don't exist, create it now.</p>
-    <% end %>
-    <%= form_for @property, :url => admin_merchandise_wizards_properties_path do |property_form| %>
-      <%= render :partial =>  'form', :locals => {:form => property_form}  %>
-    <% end %>
-  </div>
-  <hr style='color:#aac'/>
-  <% unless  @prototypes.empty? %>
-    <div class='span-18 last column'>
-      <h2>New Prototype</h2>
-      <p>If you have a prototype created, select it here.</p>
-      <% @prototypes.each do |prototype|%>
-        <div class='span-6 <%= cycle '', '', 'last' %>'>
-          <label><%= prototype.name %></label><br/>
-          <%= button_to 'Use', admin_merchandise_wizards_prototype_path(prototype),
-                        :class => 'button spade inline-block',
-                        :method => :put %>
-        </div>
 
-      <% end %>
-    </div>
-  <% end %>
+    <%= select_tag 'property[ids][]',
+                    options_from_collection_for_select(@properties, "id", "full_name", @selected),
+                    :class => 'chzn-select span-6',
+                    :multiple => 'true',
+                    :style    => 'overflow:scroll; width: 350px',
+                    'data-placeholder' => 'Choose Properties' %>
+  </div>
+  <%= product_form.submit 'Use Properties', :class => 'button' %>
+<% end %>
 
-</div>
+<% unless  @properties.empty? %>
+  <h2>New Property</h2>
+  <p>If all the you want properties don't exist, create it now.</p>
+<% end %>
+<%= form_for @property, :url => admin_merchandise_wizards_properties_path do |property_form| %>
+  <%= render :partial =>  'form', :locals => {:form => property_form}  %>
+<% end %>
+
+<% unless  @prototypes.empty? %>
+  <div class='span-18 last column'>
+    <h3>New Prototype</h3>
+    <p>If you have a prototype created, select it here.</p>
+    <% @prototypes.each do |prototype|%>
+      <div class='span-6 <%= cycle '', '', 'last' %>'>
+        <label><%= prototype.name %></label>
+        <%= button_to 'Use', admin_merchandise_wizards_prototype_path(prototype),
+                      :class => 'button spade inline-block',
+                      :method => :put %>
+      </div>
+
+    <% end %>
+  </div>
+<% end %>
+
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'chosen.css' %>
 <% end %>

@@ -70,9 +70,7 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
 
   def form_info
     @countries    = Country.form_selector
-    @country_id   = @tax_rate.state.try(:country_id) 
-    @country_id ||= params["select_country"] 
-    @states       = State.all_with_country_id(@country_id)
+    @states       = State.all_with_country_id(@tax_rate.state.country_id) if  @tax_rate.state_id
     @states       ||= []
     @tax_categories = TaxCategory.all.collect{|pt| [ pt.name, pt.id] }
   end

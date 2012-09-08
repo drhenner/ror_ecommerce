@@ -1,6 +1,3 @@
-
-<%= render :partial => '/admin/fulfillment/sub_header'%>
-
 <% content_for :sidemenu do %>
   <div class='admin_filters'>
     <%= form_tag admin_fulfillment_orders_path, :method => 'get', :id => "orders_search" do %>
@@ -23,7 +20,7 @@
   </div>
 <% end %>
 
-<h2> Shipping Orders</h2>
+<h3>Shipping Orders</h3>
 
 <div id="admin_fulfillment_orders_page_wrapper">
   <div id="admin_fulfillment_orders_grid_wrapper" class='column pretty_table'>

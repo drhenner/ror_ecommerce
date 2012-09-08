@@ -4,33 +4,46 @@
   <title><%= site_name %></title>
   <%#= stylesheet_link_tag :all %>
   <%= stylesheet_link_tag 'sprite.css' %>
-  <%= stylesheet_link_tag 'admin' %>
+  <%#= stylesheet_link_tag 'admin' %>
+  <%= stylesheet_link_tag "admin/foundation" %>
+  <%= stylesheet_link_tag "admin/app" %>
     <!--[if lt IE 8]
   <%#= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
   <![endif]-->
   <%= csrf_meta_tag %>
 
   <%= javascript_include_tag 'application' %>
+
+  <%#= javascript_include_tag "admin/jquery.min" %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag "admin/app" %>
+  <%= javascript_include_tag "admin/jquery.customforms" %>
+  <%= javascript_include_tag "admin/jquery.placeholder.min" %>
+  <%= javascript_include_tag "admin/jquery.reveal" %>
+  <%= javascript_include_tag "admin/jquery.tooltips" %>
+  <%= javascript_include_tag "admin/modernizr.foundation" %>
+
   <%= yield :head %>
 </head>
 <body class="bp">
-  <div class="bp">
-    <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
-    <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
-  </div>
+  <div class="container row">
+    <div class="bp">
+      <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
+      <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
+    </div>
 
-  <%= render :partial => 'shared/admin/header_bar' %>
+    <%= render :partial => 'shared/admin/header_bar' %>
 
-  <div class="container bp">
 
+<% if nil %>
     <div id='header_sub_bar'>
       <%= render :partial => '/admin/shopping/sub_header' %>
     </div>
-
-    <div class='span-14'>
+<% end %>
+    <div class='admin_main_content eight columns'>
       <%= yield %>
     </div>
-    <div id='cart-right-side-panel' class='span-10 last float-right'>
+    <div id='cart-right-side-panel' class='four columns last float-right'>
       <%= render :partial => '/admin/shopping/right_panel_summary'%>
       <%= yield :right_side_bar %>
     </div>

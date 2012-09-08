@@ -5,9 +5,9 @@
   <%= javascript_include_tag 'jquery.datePicker-2.1.2', 'datePickerInitialize' %>
 <% end %>
 
-<h1>User</h1>
+<h3>New User</h3>
 
 <%= form_for  @user, :url => admin_users_path(@user)  do |form| %>
-      <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
-      <%= form.submit "Create", :class => 'button' %>
+  <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
+  <%= form.submit "Create", :class => 'button' %>
 <% end %>

@@ -1,4 +1,3 @@
-<%= render :partial => '/admin/fulfillment/sub_header'%>
 
 <h2>New shipment for Order # <%= @order.number %>  </h2>
 <div class='' >
@@ -8,9 +7,9 @@
 <div id='order-shipment-items' class='span-7 last float-left'>
 <h4>Order Items</h4>
   <% @order.order_items.each_with_index do |item,i| %>
-    <div  id='order-shipment-item<%= i %>' 
+    <div  id='order-shipment-item<%= i %>'
           class='span-6 rounded-4 line_item_yellow'>
-          
+
         <%= item.variant.product_name %> <%= item.variant.sku %> <%= number_to_currency item.variant.price %> <br/>
         <% if item.shipped? %>
           Shipped: <%= item.shipment.display_shipped_at %> => Shipping #: <%= item.shipment.number %>
@@ -18,7 +17,7 @@
           Not Shipped Yet.
           <%= item.shipping_rate.shipping_method.name %>
         <% end %>
-      
+
     </div>
   <% end %>
 </div>
@@ -35,7 +34,7 @@
     No Shipments have been made on this order.
   <% end %>
   <% @order.shipments.each do |shipment| %>
-      <div  id='order-shipment-items' 
+      <div  id='order-shipment-items'
             class='span-6 rounded-4 <%= cycle("line_item_yellow", "line_item_gray") %>'>
           Shipping Method: <%= shipment.shipping_method.name %> <br/>
           Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %> State:<%= shipment.state %>
@@ -46,10 +45,10 @@
 Ask if you want to authorize full amount of partial with reason<br/>
 <div class='span-12 last'>
   <% @order.invoices.each do |invoice| %>
-    <div style='display:inline-block;' class='line_item_gray'> <%= invoice.state %> Invoice:</div>  
-    <%=  invoice.number %> => <%= number_to_currency invoice.amount %> 
+    <div style='display:inline-block;' class='line_item_gray'> <%= invoice.state %> Invoice:</div>
+    <%=  invoice.number %> => <%= number_to_currency invoice.amount %>
     <% if invoice.authorized? %>
-      <a id='capture-invoice-button' style='display:inline-block;' class='line_item_blue'> 
+      <a id='capture-invoice-button' style='display:inline-block;' class='line_item_blue'>
         Collect
       </a>
     <% end %>
