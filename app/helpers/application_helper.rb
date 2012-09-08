@@ -30,6 +30,10 @@ EXAMPLE USAGE!!
   def add_child_link(name, association)
     link_to(name, "javascript:void(0);", :class => "add_child", :"data-association" => association)
   end
+  
+  def add_child_button(name, association)
+    link_to(name, "javascript:void(0);", :class => "add_child button", :"data-association" => association)
+  end
 
   def new_child_fields_template(form_builder, association, options = {})
     options[:object] ||= form_builder.object.class.reflect_on_association(association).klass.new

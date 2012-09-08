@@ -7,5 +7,6 @@
   <%= render :partial => '/admin/merchandise/properties/form', :locals => {:form => form } %>
   <div class=" generic_submit_button">
     <%= submit_tag "Update", :class => "button", :id => "update_property_button" %>
+    <%= link_to "Back to Product", admin_merchandise_product_path(@product), :class => 'button' %>
   </div>
 <% end %>
