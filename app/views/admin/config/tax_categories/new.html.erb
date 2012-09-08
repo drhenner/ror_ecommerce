@@ -1,5 +1,4 @@
-<%= render :partial => '/admin/config/sub_header'%>
-<h1>New Tax Category</h1>
+<h3>New Tax Category</h3>
 
 <%= form_for(@tax_category, :url => admin_config_tax_categories_path) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>

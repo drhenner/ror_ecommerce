@@ -1,5 +1,4 @@
 class Myaccount::AddressesController < Myaccount::BaseController
-  helper_method :countries, :select_countries
   def index
     @addresses = current_user.shipping_addresses
   end
@@ -11,9 +10,6 @@ class Myaccount::AddressesController < Myaccount::BaseController
   def new
     form_info
     @address = Address.new
-    if !GlobalConstants::REQUIRE_STATE_IN_ADDRESS && countries.size == 1
-      @address.country = countries.first
-    end
     @address.default = true          if current_user.default_shipping_address.nil?
   end
 
@@ -59,13 +55,6 @@ class Myaccount::AddressesController < Myaccount::BaseController
 
   def form_info
     @states = State.form_selector
-  end
-
-  def countries
-    @countries ||= Country.active.all
-  end
-  def select_countries
-    countries.map{|sz| [sz.name, sz.id]}
   end
 
   def selected_myaccount_tab(tab)

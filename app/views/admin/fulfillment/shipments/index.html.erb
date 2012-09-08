@@ -1,12 +1,9 @@
-<%= render :partial => '/admin/fulfillment/sub_header'%>
-
 <% if @order %>
-  <h2>Shipments for Order # <%= @order.number %> </h2>
+  <h3>Shipments for Order # <%= @order.number %></h3>
 <% else %>
-  <h2>Shipments </h2>
+  <h3>Shipments</h3>
 <% end %>
 
-<div class=' pretty_table'>
 <table>
   <thead>
   <tr class='odd'>
@@ -48,4 +45,3 @@
   <% end %>
 <% end %>
 </table>
-</div>

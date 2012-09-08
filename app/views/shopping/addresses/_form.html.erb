@@ -32,23 +32,12 @@
     </div>
   <div class='clear'></div>
 
-    <% if GlobalConstants::REQUIRE_STATE_IN_ADDRESS  %>
-      <div class="field column">
-        <%= f.label    :state_id, "State/Province" %>
-        <%= f.select   :state_id, @states,
-                      :include_blank => true %>
-      </div>
-    <% elsif countries.size == 1 %>
-      <div class="field column">
-        <%= f.hidden_field   :country_id %>
-      </div>
-    <% else %>
-      <div class="field column">
-        <%= f.label    :country_id, "Country" %>
-        <%= f.select   :country_id, select_countries,
-                      :include_blank => true %>
-      </div>
-    <% end %>
+    <div class="field column">
+
+      <%= f.label :state_id, "State/Province" %>
+      <%= f.select  :state_id, @states,
+                    :include_blank => true %>
+    </div>
   <div class='clear'></div>
     <div class="inline">
       <div class="field column">

@@ -1,84 +1,47 @@
-<% content_for :head do -%>
-  <%= javascript_include_tag 'application' %>
+<% if @purchase_order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@purchase_order.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+
+    <ul>
+    <% @purchase_order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>
+<fieldset>
+  <div class="six columns">
+    <label>Supplier</label>
+    <%= form.select :supplier_id, @select_suppliers, { :include_blank => true }, :class => "chzn-select ten columns" %>
 
-  <% if @purchase_order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@purchase_order.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+    <label>Invoice Number</label>
+    <%= form.text_field :invoice_number %>
 
-      <ul>
-      <% @purchase_order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class='span-24'>
-  <div class='span-12 last' style='float:left;'>
-    <div class='span-3'>
-      <%= form.label :supplier_id %>
-    </div>
-    <div class='span-6 last'>
-      <%= form.select :supplier_id, @select_suppliers, { :include_blank => true }, :class => 'chzn-select' %>
-    </div>
-  <div class='clear'></div>
+    <label>Total Cost</label>
+    <%= form.text_field :total_cost %>
 
-    <div class='span-3'>
-      <%= form.label :invoice_number %>
-    </div>
-    <div class='span-6 last'>
-      <%= form.text_field :invoice_number %>
-    </div>
-  <div class='clear'></div>
+    <label>Tracking Number</label>
+    <%= form.text_field :tracking_number %>
 
-    <div class='span-3'>
-      <%= form.label :total_cost %>
-    </div>
-    <div class='span-6 last'>
-      <%= form.text_field :total_cost %>
-    </div>
-  <div class='clear'></div>
+    <label>Notes</label>
+    <%= form.text_field :notes %>
 
-    <div class='span-3'>
-      <%= form.label :tracking_number %>
-    </div>
-    <div class='span-6 last'>
-      <%= form.text_field :tracking_number %>
-    </div>
-  <div class='clear'></div>
-
-    <div class='span-3'>
-      <%= form.label :notes %>
-    </div>
-    <div class='span-6 last'>
-      <%= form.text_field :notes %>
-    </div>
-  <div class='clear'></div>
-
-    <div class='span-3'>
-      <%= form.label :ordered_at %>
-    </div>
-    <div class='span-9 last'>
+    <label>Ordered At</label>
+    <div class='date-select'>
       <%= form.datetime_select :ordered_at %>
     </div>
-  <div class='clear'></div>
 
-    <div class='span-3'>
-      <%= form.label :estimated_arrival_on %>
-    </div>
-    <div class='span-6 last'>
+    <label>Estimated Arrival on</label>
+    <div class='date-select'>
       <%= form.date_select :estimated_arrival_on %>
     </div>
-  <div class='clear'></div>
-
   </div>
-  <div class='span-12 last' style='background-color:#EEE;border: solid 1px #666;float:left;'>
+
+  <div class="six columns" style="background-color:#EEE;border: solid 1px #666;">
     <%= form.fields_for :purchase_order_variants,  @purchase_order.purchase_order_variants do |po_variant_form| %>
       <%= render :partial => 'purchase_order_variant', :locals => { :po_form => po_variant_form } %>
     <% end %>
-    <p><%#= link_to "New Variant", '#add_variant', :class => 'add_variant' :purchase_order_variants %>
-      <%= link_to "New Variant", '#add_variant', :class => 'add_variant', 'data-association' => "purchase_order_variants" %>
-    </p>
+    <p><%= link_to "New Variant", '#add_variant', :class => 'add_variant', 'data-association' => "purchase_order_variants" %></p>
     <%= new_child_fields_template form, :purchase_order_variants, :form_builder_local => :po_form %>
-  </div>
-</div>
+    </div>
+</fieldset>

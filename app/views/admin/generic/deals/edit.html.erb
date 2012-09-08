@@ -1,5 +1,4 @@
-<%= render :partial => '/admin/generic/sub_header'%>
-<h1> Edit Deal </h1>
+<h3>Edit Deal</h3>
 
 <%= form_for @deal, :url => [:admin, :generic, @deal] do |f| %>
   <%=  render :partial => 'form', :locals => {:f => f} %>

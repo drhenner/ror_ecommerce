@@ -1,28 +1,23 @@
+<%= f.error_messages %>
 
-  <%= f.error_messages %>
-<ul>
-  <li class="field">
-    <%= f.label :buy_quantity %>
-    <%= f.number_field :buy_quantity %>
-  </li>
-  <li class="field">
-    <%= f.label :get_percentage %>
-    <%= f.number_field :get_percentage %>
-  </li>
-  <li class="field">
-    <%= f.label :deal_type_id %>
-    <%= f.number_field :deal_type_id %>
-  </li>
-  <li class="field">
-    <%= f.label :product_type_id %>
-    <%= f.number_field :product_type_id %>
-  </li>
-  <li class="field">
-    <%= f.label :get_amount %>
-    <%= f.number_field :get_amount %>
-  </li>
-  <li class="field">
-    <%= f.label :deleted_at %>
+<fieldset>
+  <label>Buy Quantity</label>
+  <%= f.number_field :buy_quantity %>
+
+  <label>Get Percentage</label>
+  <%= f.number_field :get_percentage %>
+
+  <label>Deal Type</label>
+  <%= f.number_field :deal_type_id %>
+
+  <label>Product Type</label>
+  <%= f.number_field :product_type_id %>
+
+  <label>Get Amount</label>
+  <%= f.number_field :get_amount %>
+
+  <label>Deleted at</label>
+  <div class='date-select'>
     <%= f.datetime_select :deleted_at %>
-  </li>
-</ul>
+  </div>
+</fieldset>

@@ -1,30 +1,64 @@
-<span style='padding-right:10px;'><%=  link_to site_name, :root %></span>
+<li class="active"><%#=  link_to site_name, :root %></li>
 
-<%= link_to 'History', admin_history_orders_path,
-                       :class => '',
-                       :id    => 'admin_history_button' %> |
-<%= link_to 'Orders', admin_shopping_carts_path,
-                      :class  => '',
-                      :id     => 'admin_orders_button' %> |
-<%= link_to 'Merchandise', admin_merchandise_path,
-                      :class  => '',
-                      :id     => 'merchandise_button' %>  |
-
-<%= link_to "Inventory", admin_inventory_overviews_path,
-                    :class  => "",
-                    :id     => "admin_inventory_button" %> |
-<%= link_to "Users", admin_users_path,
-                    :class  => "",
-                    :id     => "admin_users_button" %> |
-
-<%= link_to "Config", admin_config_overviews_path,
-                    :class  => "",
-                    :id     => "admin_config_accounts_path" %> |
-
-<%= link_to "Manage", admin_generic_coupons_path,
-                    :class  => "",
-                    :id     => "admin_manage_button" %> |
-
-<%= link_to "Fulfillment", admin_fulfillment_orders_path,
-                    :class  => "",
-                    :id     => "admin_fulfillment_button" %>
+<li><%= link_to 'History', admin_history_orders_path %></li>
+<li><%= link_to 'Orders', admin_shopping_carts_path %></li>
+<li class="has-flyout">
+  <%= link_to 'Merchandise', admin_merchandise_products_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Products', admin_merchandise_products_path %></li>
+    <li><%= link_to 'Properties', admin_merchandise_properties_path %></li>
+    <li><%= link_to 'Product Types', admin_merchandise_product_types_path %></li>
+    <li><%= link_to 'Prototypes', admin_merchandise_prototypes_path %></li>
+    <li><%= link_to 'Brands', admin_merchandise_brands_path %></li>
+  </ul>
+</li>
+<li class="has-flyout">
+  <%= link_to "Inventory", admin_inventory_overviews_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Overviews', admin_inventory_overviews_path %></li>
+    <li><%= link_to 'Suppliers', admin_inventory_suppliers_path %></li>
+    <li><%= link_to 'Receive', admin_inventory_receivings_path %></li>
+    <li><%= link_to 'Purchase Orders', admin_inventory_purchase_orders_path %></li>
+    <li><%= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
+  </ul>
+</li>
+<li><%= link_to "Users", admin_users_path %></li>
+<li class="has-flyout">
+  <%= link_to "Config", admin_config_accounts_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Accounts',           admin_config_accounts_path %></li>
+    <li><%= link_to 'Shipping Zones',     admin_config_shipping_zones_path %></li>
+    <li><%= link_to 'Shipping Methods',   admin_config_shipping_methods_path %></li>
+    <li><%= link_to 'Shipping Rates',     admin_config_shipping_rates_path %></li>
+    <li><%= link_to 'Tax Rates',          admin_config_tax_rates_path %></li>
+    <li><%= link_to 'Tax Categories',       admin_config_tax_categories_path %></li>
+    <li><%= link_to 'Shipping Categories',  admin_config_shipping_categories_path %></li>
+  </ul>
+</li>
+<li class="has-flyout">
+  <%= link_to "Coupons/Deals", admin_generic_coupons_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Coupons', admin_generic_coupons_path %></li>
+    <li><%= link_to 'Deals', admin_generic_deals_path %></li>
+  </ul>
+</li>
+<li class="has-flyout">
+  <%= link_to "Fulfillment", admin_fulfillment_orders_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Invoices', admin_document_invoices_path %></li>
+    <li><%= link_to 'Orders', admin_fulfillment_orders_path %></li>
+    <li><%= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
+  </ul>
+</li>
+<li class="has-flyout">
+  <%= link_to "Help", admin_help_path %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Help', admin_help_path %></li>
+  </ul>
+</li>

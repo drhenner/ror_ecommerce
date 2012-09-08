@@ -8,7 +8,7 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
     else
       session_order.find_sub_total
       ##  TODO  refactopr this method... it seems a bit lengthy
-      @shipping_method_ids = session_order.ship_address.shipping_method_ids
+      @shipping_method_ids = session_order.ship_address.state.shipping_zone.shipping_method_ids
 
       @order_items = OrderItem.includes({:variant => {:product => :shipping_category}}).order_items_in_cart(session_order.id)
       #session_order.order_

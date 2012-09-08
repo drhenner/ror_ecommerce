@@ -1,18 +1,11 @@
 <%= render :partial => '/admin/merchandise/sub_header'%>
 
-<h2>Add Product Images</h2>
-<div class='span-18 '>
-  <%= form_for @product, :url  => admin_merchandise_images_product_path(@product),
-                          :html => {:class => '', :multipart => true}  do |form| %>
-    <%= render :partial => '/admin/merchandise/images/products/form', :locals => {:form => form}%>
+<h3>Add Product Images</h3>
 
-    <div class=" generic_submit_button">
-      <%= submit_tag "Create",
-                      :class  => "button",
-                      :id     => "create_product_button" %>
-    </div>
-  <% end %>
+<%= form_for @product, :url  => admin_merchandise_images_product_path(@product), :multipart => true do |form| %>
+  <%= render :partial => '/admin/merchandise/images/products/form', :locals => {:form => form} %>
+  <%= submit_tag "Create", :class  => "button" %>
+<% end %>
 
-  <%= link_to 'View Images', admin_merchandise_images_product_path(@product), :class  => "button"%>
-  <%= link_to 'Product Details', admin_merchandise_product_path(@product), :class  => "button" %>
-</div>
+<%= link_to 'View Images', admin_merchandise_images_product_path(@product), :class  => "button"%>
+<%= link_to 'Product Details', admin_merchandise_product_path(@product), :class  => "button" %>

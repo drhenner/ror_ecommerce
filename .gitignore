@@ -3,7 +3,6 @@ nbproject/*
 nbproject
 .idea
 .vimrc
-.rvmrc
 .powrc
 .vim
 .sass-cache/
@@ -32,6 +31,4 @@ config/config.yml
 config/database.yml
 db/*.db
 /db/*.sqlite3
-db/schema.rb
-
-doc/*
+doc

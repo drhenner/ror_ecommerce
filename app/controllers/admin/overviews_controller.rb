@@ -1,7 +1,6 @@
 class Admin::OverviewsController < ApplicationController
-  # GET /admin/overviews
-  # GET /admin/overviews.xml
-  layout false
+
+  layout "admin"
 
   def index
     #  The index action should

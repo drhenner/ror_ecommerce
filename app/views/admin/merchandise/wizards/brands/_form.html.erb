@@ -10,14 +10,9 @@
   </div>
 <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</div>
 
-  <div class=" generic_submit_button">
-    <%= submit_tag "Create", :class => "button", :id => "create_brand_button" %>
-  </div>
+<%= submit_tag "Create Brand", :class => "button" %>

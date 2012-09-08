@@ -16,11 +16,11 @@ describe Admin::Inventory::PurchaseOrdersController do
     response.should render_template(:index)
   end
 
-  it "show action should render show template" do
-    @purchase_order = create(:purchase_order)
-    get :show, :id => @purchase_order.id
-    response.should render_template(:show)
-  end
+  #it "show action should render show template" do
+  #  @purchase_order = create(:purchase_order)
+  #  get :show, :id => @purchase_order.id
+  #  response.should render_template(:show)
+  #end
 
   it "new action should render new template" do
     create(:supplier)

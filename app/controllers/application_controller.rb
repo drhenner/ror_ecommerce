@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
     disallowed_urls = [ login_url, logout_url ]
     disallowed_urls.map!{|url| url[/\/\w+$/]}
     unless disallowed_urls.include?(request.url)
-      session['return_to'] = request.url
+      session[:return_to] = request.url
     end
   end
 
@@ -111,7 +111,7 @@ class ApplicationController < ActionController::Base
   ## TODO cookie[:hadean_user_id] value needs to be encrypted ### Authlogic persistence_token might work here
   def random_user
     return @random_user if defined?(@random_user)
-    @random_user = cookies[:hadean_uid] ? User.find_by_access_token(cookies[:hadean_uid]) : nil
+    @random_user = cookies[:hadean_uid] ? User.find_by_persistence_token(cookies[:hadean_uid]) : nil
   end
 
   ###  Authlogic helper methods
@@ -131,7 +131,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_back_or_default(default)
-    redirect_to(session['return_to'] || default)
-    session['return_to'] = nil
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
   end
 end

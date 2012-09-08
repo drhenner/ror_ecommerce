@@ -1,20 +1,17 @@
-<%= render :partial => '/admin/inventory/sub_header'%>
+<h3>Inventory Adjustments</h3>
 
-<h1> Inventory Adjustments </h1>
-
-<div  class='span-8 pretty_table'>
-<table>
-  <thead>
-  <tr class='odd'>
-    <th class='column1_header'>Name</th>
-  </tr>
-  </thead>
-  <% for product in @products %>
-    <tr class='<%= cycle("odd", "")%>'>
-      <td><%= link_to product.name, admin_inventory_adjustment_path(product) %></td>
+<div class="admin_adjustments">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'>Name</th>
     </tr>
-  <% end %>
-</table>
+    </thead>
+    <% for product in @products %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to product.name, admin_inventory_adjustment_path(product) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @products %>
 </div>
-<%= will_paginate @products %>
-
