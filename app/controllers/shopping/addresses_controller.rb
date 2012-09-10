@@ -1,5 +1,4 @@
 class Shopping::AddressesController < Shopping::BaseController
-  helper_method :countries, :select_countries
   # GET /shopping/addresses
   # GET /shopping/addresses.xml
   def index
@@ -90,13 +89,6 @@ class Shopping::AddressesController < Shopping::BaseController
   def form_info
     @shopping_addresses = current_user.shipping_addresses
     @states     = State.form_selector
-  end
-
-  def countries
-    @countries ||= Country.active.all
-  end
-  def select_countries
-    countries.map{|sz| [sz.name, sz.id]}
   end
 
   def update_order_address_id(id)

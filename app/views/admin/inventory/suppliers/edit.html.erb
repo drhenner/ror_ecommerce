@@ -1,14 +1,6 @@
-<%= render :partial => '/admin/inventory/sub_header'%>
+<h3>Editing Supplier - <%= @supplier.name %></h3>
 
-<h2>Edit Supplier</h2>
-
-<%= form_for @supplier, :url  => admin_inventory_supplier_path(@supplier),
-                        :html => {:class => 'prepend-6'}  do |form| %>
-  <%= render :partial => '/admin/inventory/suppliers/form', :locals => {:form => form}%>
-
-  <div class=" generic_submit_button">
-    <%= submit_tag "Update",
-                    :class  => "button",
-                    :id     => "create_supplier_button" %>
-  </div>
+<%= form_for @supplier, :url  => admin_inventory_supplier_path(@supplier) do |form| %>
+  <%= render :partial => '/admin/inventory/suppliers/form', :locals => {:form => form} %>
+  <%= submit_tag "Update", :class  => "button" %>
 <% end %>

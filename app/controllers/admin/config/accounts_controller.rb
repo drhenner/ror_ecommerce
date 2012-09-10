@@ -25,7 +25,7 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to(admin_config_account_url(@account), :notice => 'Account was successfully created.') }
+        format.html { redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully created.') }
       else
         format.html { render :action => "new" }
       end
@@ -38,7 +38,7 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
 
     respond_to do |format|
       if @account.update_attributes(params[:account])
-        format.html { redirect_to(admin_config_account_url(@account), :notice => 'Account was successfully updated.') }
+        format.html { redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end

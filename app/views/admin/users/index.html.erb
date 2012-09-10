@@ -1,57 +1,51 @@
-
-<h2> Users </h2>
+<h3>Users</h3>
 
 <% content_for :sidemenu do %>
-  <div class='admin_filters'>
+  <div style="text-align:right">
+    <%= link_to "New User", new_admin_user_path, :class => "button", :id => "new_user_button" %>
+  </div>
+  <div class="admin_filters">
     <%= form_tag admin_users_path, :method => 'get', :id => "users_search" do %>
-      <p>
-        <ul class=' search_boxes'>
-          <li><%= label_tag 'first_name' %> <%= text_field_tag :first_name, params[:first_name] %></li>
-          <li><%= label_tag 'last_name' %>  <%= text_field_tag :last_name, params[:last_name] %></li>
-          <li><%= label_tag 'email' %> <%= text_field_tag :email, params[:email] %></li>
-        </ul>
-        <div style='text-align:center'>
-        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
-        </div>
-      </p>
+      <label>First Name</label>
+      <%= text_field_tag :first_name, params[:first_name] %>
+
+      <label>Last Name</label>
+      <%= text_field_tag :last_name, params[:last_name] %>
+
+      <label>Email</label>
+      <%= text_field_tag :email, params[:email] %>
+
+      <div style='text-align:center'>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
+      </div>
       <div id="users">
         <%= render 'users' %>
       </div>
     <% end %>
-    <div class='clearfix'></div>
   </div>
 <% end %>
 
 
-
-<div id="admin_users_page_wrapper">
-  <div id="admin_users_grid_wrapper" class='column pretty_table'>
-
-    <table>
-      <thead>
-      <tr class='odd'>
-        <th  class='column1_header'><%= sortable "first_name" %></th>
-        <th><%= sortable "last_name" %></th>
-        <th><%= sortable "email" %></th>
-        <th>Status</th>
+<div class="admin_users">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th  class='column1_header'><%= sortable "first_name" %></th>
+      <th><%= sortable "last_name" %></th>
+      <th><%= sortable "email" %></th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <% @users.each do |user| %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to user.first_name, edit_admin_user_path(user) %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.state %></td>
       </tr>
-      </thead>
-      <% @users.each do |user| %>
-        <tr class='<%= cycle("odd", "")%>'>
-          <td><%= link_to user.first_name, edit_admin_user_path(user) %></td>
-          <td><%= user.last_name %></td>
-          <td><%= user.email %></td>
-          <td><%= user.state %></td>
-        </tr>
-      <% end %>
-    </table>
-
+    <% end %>
+  </table>
 
   <%= will_paginate @users %>
-  </div>
-
-  <div id="admin_new_user_button" class="admin_new_button last">
-    <%= link_to "New User", new_admin_user_path, :class => "button", :id => "new_user_button" %>
-  </div>
 </div>
 

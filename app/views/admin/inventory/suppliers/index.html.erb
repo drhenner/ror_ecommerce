@@ -1,54 +1,42 @@
-<% content_for :head do -%>
-<% end %>
-<%= render :partial => '/admin/inventory/sub_header'%>
-
 <% content_for :sidemenu do %>
   <div class='admin_filters'>
     <%= form_tag admin_inventory_suppliers_path, :method => 'get', :id => "suppliers_search" do %>
-      <p>
-        <ul class=' search_boxes'>
-          <li><%= label_tag 'Name' %> <%= text_field_tag :name, params[:name] %></li>
-          <li><%= label_tag 'Email' %> <%= text_field_tag :email, params[:email] %></li>
-        </ul>
-        <div style='text-align:center'>
-          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
-        </div>
-      </p>
-      <div id="order_hidden">
-        <%= hidden_field_tag :direction, params[:direction] %>
-        <%= hidden_field_tag :sort, params[:sort] %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+
+      <label>Name</label>
+      <%= text_field_tag :name, params[:name] %>
+
+      <label>Email</label>
+      <%= text_field_tag :email, params[:email] %>
+
+      <div style='text-align:center'>
+        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
       </div>
     <% end %>
-    <div class='clearfix'></div>
   </div>
 <% end %>
 
-<h2> Suppliers </h2>
-
-<div id="admin_suppliers_page_wrapper">
-  <div id="admin_suppliers_grid_wrapper" class='column pretty_table'>
-
-      <table>
-        <thead>
-        <tr class='odd'>
-          <th class='column1_header'><%= sortable "name", "Name" %></th>
-          <th><%= sortable "email" %></th>
-        </tr>
-        </thead>
-        <% @suppliers.each do |supplier| %>
-          <tr class='<%= cycle("odd", "")%>'>
-            <td><%= link_to supplier.name, edit_admin_inventory_supplier_path(supplier) %></td>
-            <td><%= supplier.email %></td>
-          </tr>
-        <% end %>
-      </table>
-
-    <%= will_paginate @suppliers %>
-
-  </div>
-
-  <div id="admin_new_supplier_button" class="admin_new_button last">
-    <%= link_to "New Supplier", new_admin_inventory_supplier_path, :class => "button", :id => "new_supplier_button" %>
-  </div>
+<div class="admin_title_header">
+  <h3>Suppliers</h3>
+  <%= link_to "New Supplier", new_admin_inventory_supplier_path, :class => "button" %>
 </div>
 
+<div class="admin_suppliers">
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'><%= sortable "name", "Name" %></th>
+      <th><%= sortable "email" %></th>
+    </tr>
+    </thead>
+    <% @suppliers.each do |supplier| %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to supplier.name, edit_admin_inventory_supplier_path(supplier) %></td>
+        <td><%= supplier.email %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @suppliers %>
+</div>

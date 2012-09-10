@@ -1,8 +1,0 @@
-<%= render :partial => '/admin/config/sub_header'%>
-<h1> Edit Country </h1>
-
-<%= form_for @country, :url => [:admin, :config, @country] do |f| %>
-  <%=  render :partial => 'form', :locals => {:f => f} %>
-  <div class="actions"><%= f.submit 'Update' , :class => 'button' %></div>
-<% end %>
-

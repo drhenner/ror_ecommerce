@@ -1,5 +1,4 @@
 class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::Checkout::BaseController
-  helper_method :countries, :select_countries
   def index
     @shipping_address = Address.new
     if !Settings.require_state_in_address  && countries.size == 1
@@ -46,7 +45,7 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
         format.html { redirect_to(admin_shopping_checkout_order_url, :notice => 'Address was successfully created.') }
       else
         form_info
-        format.html { render :action => "new" }
+        format.html { render :action => "index" }
       end
     end
   end
@@ -87,12 +86,6 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
   def form_info
     @shipping_addresses = session_admin_cart.customer.shipping_addresses
     @states     = State.form_selector
-  end
-  def countries
-    @countries ||= Country.active.all
-  end
-  def select_countries
-    countries.map{|sz| [sz.name, sz.id]}
   end
   def update_order_address_id(id)
     session_admin_order.update_attributes( :ship_address_id => id )

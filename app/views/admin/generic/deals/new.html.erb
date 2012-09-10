@@ -1,9 +1,8 @@
-<%= render :partial => '/admin/generic/sub_header'%>
-<h1> New Deal </h1>
+<h3>New Deal</h3>
 
 <%= form_for @deal, :url => admin_generic_deals_path(@deal) do |f| %>
   <%=  render :partial => 'form', :locals => {:f => f} %>
-  <div class="actions"><%= f.submit 'Create' , :class => 'button' %></div>
+  <div class="actions"><%= f.submit 'Create' , :class => "button" %></div>
 <% end %>
 
-<p><%= link_to "Back to List", admin_generic_deals_path, :class => 'button' %></p>
+<p><%= link_to "Back to List", admin_generic_deals_path, :class => "button" %></p>

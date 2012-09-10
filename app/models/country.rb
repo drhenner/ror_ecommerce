@@ -1,16 +1,14 @@
 class Country < ActiveRecord::Base
 
-  has_many  :states
-  has_many  :countries
-  belongs_to :shipping_zone
+  has_many :states
 
   validates :name,  :presence => true,       :length => { :maximum => 200 }
   validates :abbreviation,  :presence => true,       :length => { :maximum => 10 }
 
-  scope :active, where(:active => true)
-  
-  USA_ID = 214
+  USA_ID    = 214
   CANADA_ID = 35
+
+  ACTIVE_COUNTRY_IDS = [CANADA_ID, USA_ID]
 
   # Call this method to display the country_abbreviation - country with and appending name
   #
@@ -39,12 +37,6 @@ class Country < ActiveRecord::Base
   # @param none
   # @return [Array] an array of arrays with [string, country.id]
   def self.form_selector
-    active.order('abbreviation ASC').collect { |c| [c.abbrev_and_name, c.id] }
-  end
-
-  def shipping_zone_name
-    Rails.cache.fetch("Country-shipping_zone_name-#{shipping_zone_id}", :expires_in => 1.days) do
-      shipping_zone_id ? shipping_zone.name : '---'
-    end
+    find(ACTIVE_COUNTRY_IDS, :order => 'abbreviation ASC').collect { |c| [c.abbrev_and_name, c.id] }
   end
 end

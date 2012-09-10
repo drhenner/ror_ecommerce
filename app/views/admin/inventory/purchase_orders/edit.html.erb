@@ -1,18 +1,9 @@
-<%= render :partial => '/admin/inventory/sub_header'%>
+<h3>Edit Purchase Order</h3>
 
-<h1>Edit Purchase Order</h1>
-
-<%= form_for @purchase_order, :url  => admin_inventory_purchase_order_path(@purchase_order),
-                        :html => {:class => ''}  do |form| %>
-  <%= render :partial => '/admin/inventory/purchase_orders/form', :locals => {:form => form}%>
-
-  <div class=" generic_submit_button">
-    <%= submit_tag "Update",
-                    :class  => "button",
-                    :id     => "create_purchase_order_button" %>
-  </div>
+<%= form_for @purchase_order, :url  => admin_inventory_purchase_order_path(@purchase_order) do |form| %>
+  <%= render :partial => '/admin/inventory/purchase_orders/form', :locals => {:form => form} %>
+  <%= submit_tag "Update", :class  => "button" %>
 <% end %>
-
 
 <%= link_to 'Show', admin_inventory_purchase_order_path(@purchase_order) %> |
 <%= link_to 'Back', admin_inventory_purchase_orders_path %>

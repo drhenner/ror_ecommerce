@@ -1,34 +1,30 @@
-<%= render :partial => '/admin/fulfillment/sub_header'%>
-<h1> Invoices </h1>
+<h3>Invoices</h3>
 
-<div class=' pretty_table'>
-  <table>
-    <thead>
-    <tr class='odd'>
-      <th class='column1_header'>Amount</th>
-      <th>State</th>
-      <th>Order</th>
-      <th>Type</th>
-      <th></th>
-      <th></th>
+<table>
+  <thead>
+  <tr class='odd'>
+    <th class='column1_header'>Amount</th>
+    <th>State</th>
+    <th>Order</th>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <% for invoice in @invoices %>
+    <tr class='<%= cycle("odd", "")%>'>
+      <td><%= invoice.amount %></td>
+      <td><%= invoice.state %></td>
+      <td><%= invoice.order.number %></td>
+      <td><%= invoice.invoice_type %></td>
+      <td><%= link_to "Show", admin_document_invoice_path(invoice) %></td>
+      <td>
+        <% if invoice.authorized? %>
+          <%= link_to "Cancel", admin_document_invoice_path(invoice), :confirm => 'Are you sure?', :method => :delete %>
+        <% end %>
+      </td>
     </tr>
-    </thead>
-    <% for invoice in @invoices %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= invoice.amount %></td>
-        <td><%= invoice.state %></td>
-        <td><%= invoice.order.number %></td>
-        <td><%= invoice.invoice_type %></td>
-        <td><%= link_to "Show", admin_document_invoice_path(invoice) %></td>
-        <td>
-          <% if invoice.authorized? %>
-            <%= link_to "Cancel", admin_document_invoice_path(invoice), :confirm => 'Are you sure?', :method => :delete %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-</div>
-<p>
+  <% end %>
+</table>
+
 <%= will_paginate @invoices %>
-<%#= link_to "New Invoice", new_admin_document_invoice_path, :class => 'button' %></p>

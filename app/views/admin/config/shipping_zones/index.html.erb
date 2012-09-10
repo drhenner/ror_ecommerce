@@ -1,9 +1,10 @@
-<%= render :partial => '/admin/config/sub_header'%>
+<div class="admin_title_header">
+  <h3>Shipping Zones</h3>
+  <%= link_to 'New Shipping Zone', new_admin_config_shipping_zone_path, :class => 'button' %>
+</div
 
-<h1> Shipping Zones</h1>
-
-<div class=' pretty_table'>
-  <table class='span-12'>
+<div class="admin_shipping_zones">
+  <table>
     <thead>
     <tr class='odd'>
       <th class='column1_header'>Name</th>
@@ -13,12 +14,9 @@
 
   <% @shipping_zones.each do |shipping_zone| %>
     <tr class='<%= cycle("odd", "")%>'>
-      <td><%= link_to shipping_zone.name, admin_config_shipping_zone_path(shipping_zone) %></td>
-      <td><%= link_to 'Edit', edit_admin_config_shipping_zone_path(shipping_zone) %></td>
+      <td><%= link_to shipping_zone.name, edit_admin_config_shipping_zone_path(shipping_zone) %></td>
+      <td><%= link_to "Edit", edit_admin_config_shipping_zone_path(shipping_zone) %></td>
     </tr>
   <% end %>
   </table>
 </div>
-<br />
-
-<%= link_to 'New Shipping zone', new_admin_config_shipping_zone_path, :class => 'button' %>

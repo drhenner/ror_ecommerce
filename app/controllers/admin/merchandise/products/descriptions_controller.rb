@@ -1,9 +1,5 @@
-class Admin::Merchandise::Products::DescriptionsController < ApplicationController
-  #layout 'mercury'
-  layout 'admin_markup'
-
+class Admin::Merchandise::Products::DescriptionsController < Admin::BaseController
   def edit
-    form_info
     @product = Product.find(params[:id])
   end
 
@@ -12,14 +8,7 @@ class Admin::Merchandise::Products::DescriptionsController < ApplicationControll
     if @product.update_attributes(params[:product])
       redirect_to admin_merchandise_product_url(@product)
     else
-      form_info
-      render :action => :edit, :layout => 'admin_markup'
+      render :action => :edit
     end
-  end
-
-  private
-
-  def form_info
-
   end
 end

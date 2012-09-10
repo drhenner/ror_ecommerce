@@ -19,14 +19,12 @@
 #  default           :boolean(1)      default(FALSE)
 #  billing_default   :boolean(1)      default(FALSE)
 #  active            :boolean(1)      default(TRUE)
-#  country_id
 #  created_at        :datetime
 #  updated_at        :datetime
 #
 
 class Address < ActiveRecord::Base
   belongs_to  :state
-  belongs_to  :country
   belongs_to  :address_type
   belongs_to  :addressable, :polymorphic => true
   has_many     :phones, :as => :phoneable
@@ -86,7 +84,7 @@ class Address < ActiveRecord::Base
       :address2 => address2,
       :city     => city,
       :state    => state.abbreviation,
-      :country  => state.country.try(:abbreviation),
+      :country  => state.country_id == Country::USA_ID ? 'US' : 'CAN',
       :zip      => zip_code#,
       #:phone    => phone
     }

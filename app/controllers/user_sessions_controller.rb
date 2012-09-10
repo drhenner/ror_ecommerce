@@ -5,9 +5,6 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    temp = session.clone.except("session_id").except('user_credentials').except('_csrf_token')
-    reset_session
-    session.reverse_merge!(temp)
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       cookies[:hadean_uid] = @user_session.record.access_token

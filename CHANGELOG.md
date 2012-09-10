@@ -1,5 +1,11 @@
-* add shipping_zone to countries
-* BUG - Creating Coupons
+###1.2.1 2012-09-08
+* bug in admin properties
+
+###1.2.0 2012-09-08
+* HUGE Admin redesign (DEAN PERRY)  Thank you!
+* Deals
+* Support for future rails 4.0 deprecations
+* BUG fixes
 
 ###1.1.0 2012-06-26
 * Add Deals (Buy 5 get 6th for 50% off)

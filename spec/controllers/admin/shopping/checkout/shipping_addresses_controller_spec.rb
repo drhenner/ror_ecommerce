@@ -44,7 +44,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
     @shipping_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
     Address.any_instance.stubs(:valid?).returns(false)
     post :create, :address => @shipping_address.attributes
-    response.should render_template(:new)
+    response.should render_template(:index)
   end
 
   it "create action should redirect when model is valid" do

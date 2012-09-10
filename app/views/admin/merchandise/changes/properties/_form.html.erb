@@ -12,13 +12,13 @@
 <% end %>
 
 
-<fieldset id="admin-product-properties" class='span-14'>
+<fieldset id="admin-product-properties" class='span-14' style='padding-bottom:10px;'>
   <legend>Properties</legend>
 
   <div id="product_properties" class='span-14'>
     <% @product.product_properties.each do |product_property| %>
       <div  id='product_property_<%= product_property.id %>'
-            class="variant_form left span-14 last">
+            class="variant_form left six last">
         <%= f.fields_for :product_properties, product_property do |product_property_form|%>
           <%= render :partial => 'product_property', :locals => {:product_property_form => product_property_form } %>
         <% end %>
@@ -28,7 +28,7 @@
 
 </fieldset>
 
-<div class='span-14' style='background-color:#EEE;border: solid 1px #666;float:left;'>
-  <p><%= add_child_link "New Property", :product_properties %> </p>
+<div class='span-14' style='margin-top:20px;'>
+  <%= add_child_button "New Property", :product_properties %>
   <%= new_child_fields_template f, :product_properties, :form_builder_local => :product_property_form %>
 </div>
