@@ -98,26 +98,26 @@ Hadean::Application.configure do
 
     ActiveMerchant::Billing::Base.mode = :test
     #::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-    #  :login      => HADEAN_CONFIG['paypal']['login'],
-    #  :password   => HADEAN_CONFIG['paypal']['password'],
-    #  :signature  => HADEAN_CONFIG['paypal']['signature']
+    #  :login      => Settings.paypal.login
+    #  :password   => Settings.paypal.password
+    #  :signature  => Settings.paypal.signature
     #)
 
     ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-      :login    => HADEAN_CONFIG['authnet']['login'],
-      :password => HADEAN_CONFIG['authnet']['password'],
+      :login    => Settings.authnet.login
+      :password => Settings.authnet.login
       :test     => true
     )
 
     ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
-      :login    => HADEAN_CONFIG['authnet']['login'],
-      :password => HADEAN_CONFIG['authnet']['password'],
+      :login    => Settings.authnet.login
+      :password => Settings.authnet.password
       :test     => true
     )
 
     #::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
-    #  :login     => HADEAN_CONFIG['braintree']['login'],
-    #  :password  => HADEAN_CONFIG['braintree']['password']
+    #  :login     => Settings.braintree.login
+    #  :password  => Settings.braintree.password
     #)
   end
   PAPERCLIP_STORAGE_OPTS = {  :styles => {:mini => '48x48>',
