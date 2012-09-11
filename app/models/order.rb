@@ -164,6 +164,19 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def add_cart_item( item, state_id = nil)
+    self.save! if self.new_record?
+    tax_rate_id = state_id ? item.variant.product.tax_rate(state_id) : nil
+    item.quantity.times do
+      oi =  OrderItem.create(
+          :order        => self,
+          :variant_id   => item.variant.id,
+          :price        => item.variant.price,
+          :tax_rate_id  => tax_rate_id)
+      self.order_items.push(oi)
+    end
+  end
+
   # captures the payment of the invoice by the payment processor
   #
   # @param [Invoice]
