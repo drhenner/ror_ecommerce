@@ -33,11 +33,13 @@
       </div>
     <div class='clear'></div>
 
+    <% if Settings.require_state_in_address %>
       <div class="field column">
         <%= f.label    :state_id, "State/Province" %>
         <%= f.select   :state_id, @states,
                       :include_blank => true %>
       </div>
+    <% end %>
     <div class='clear'></div>
       <div class="inline span-12">
         <div class="field column">

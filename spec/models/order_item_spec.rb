@@ -77,8 +77,7 @@ end
 describe OrderItem, "Without VAT" do
 
   before(:all) do
-    GlobalConstants.send(:remove_const, 'VAT_TAX_SYSTEM') #if mod.const_defined?(const)
-    GlobalConstants::VAT_TAX_SYSTEM = false
+    Settings.vat = false
   end
   context ".calculate_total(coupon = nil)" do
     it 'should calculate_total' do
@@ -115,8 +114,7 @@ describe OrderItem, "Without VAT" do
 end
 describe OrderItem, "With VAT" do
   before(:all) do
-    GlobalConstants.send(:remove_const, 'VAT_TAX_SYSTEM') #if mod.const_defined?(const)
-    GlobalConstants::VAT_TAX_SYSTEM = true
+    Settings.vat = true
   end
   context ".calculate_total(coupon = nil)" do
     it 'should calculate_total' do

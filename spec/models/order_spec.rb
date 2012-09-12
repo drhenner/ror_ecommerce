@@ -405,8 +405,7 @@ describe Order, "Without VAT" do
   end
 
   before(:all) do
-    GlobalConstants.send(:remove_const, 'VAT_TAX_SYSTEM') #if mod.const_defined?(const)
-    GlobalConstants::VAT_TAX_SYSTEM = false
+    Settings.vat = false
   end
 
   context ".tax_charges" do
@@ -439,8 +438,7 @@ describe Order, "With VAT" do
     @order = create(:order)
   end
   before(:all) do
-    GlobalConstants.send(:remove_const, 'VAT_TAX_SYSTEM') #if mod.const_defined?(const)
-    GlobalConstants::VAT_TAX_SYSTEM = true
+    Settings.vat = true
   end
 
   context ".tax_charges" do
