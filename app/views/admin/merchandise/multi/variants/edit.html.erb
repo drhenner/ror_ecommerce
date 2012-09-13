@@ -1,9 +1,8 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
-
 <h2> <%= @product.name %> </h2>
 
 <%= form_for @product, :url  => admin_merchandise_multi_product_variant_path(@product),
                         :html => {:class => ''}  do |form| %>
+  <%= error_msgs_for(@product) %>
   <div id='variants_container' >
     <%= render :partial => '/admin/merchandise/multi/variants/form', :locals => {:form => form}%>
   </div>

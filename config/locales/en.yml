@@ -27,6 +27,8 @@ en:
   button_edit: "Edit"
   button_destroy: "Delete"
 
+  label_error: "Error"
+
   alert_are_you_sure_to_delete: "Are you sure to delete it?"
 
   select_address_before_shipping_method:  'Select an address before you select a shipping method.'
