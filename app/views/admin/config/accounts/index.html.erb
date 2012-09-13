@@ -11,7 +11,6 @@
       <th>Monthly charge</th>
       <th>Active</th>
       <th></th>
-      <th></th>
     </tr>
     </thead>
 
@@ -20,7 +19,7 @@
       <td><%= link_to account.account_type, edit_admin_config_account_path(account) %></td>
       <td><%= account.monthly_charge %></td>
       <td><%= account.active %></td>
-      <td><%= link_to "Delete", admin_config_account_path(account), :method => :delete %></td>
+      <td><%= link_to "Delete", admin_config_account_path(account), :method => :delete, :data => {:confirm => t("alert_are_you_sure_to_delete")}  %></td>
     </tr>
   <% end %>
   </table>
