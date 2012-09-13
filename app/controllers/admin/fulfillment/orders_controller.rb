@@ -25,8 +25,10 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
 
   def create_shipment
     @order = Order.find_by_id(params[:id])
-    Shipment.create_shipments_with_items(@order) if @order
-    @order.reload
+    if @order
+      Shipment.create_shipments_with_items(@order)
+      @order.reload
+    end
   end
 
   # PUT /admin/fulfillment/orders/1
@@ -49,10 +51,7 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
 
     respond_to do |format|
       if payment && payment.success?
-        @shipments = Shipment.create_shipments_with_items(@order)
-        # reload order
         format.html { render :partial => 'success_message' }
-        #format.html { redirect_to(admin_fulfillment_order_path(@order), :notice => 'Shipment was successfully updated.') }
       else
         format.html { render :partial => 'failure_message' }
       end
