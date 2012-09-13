@@ -8,15 +8,6 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
     end
   end
 
-  # GET /admin/merchandise/shipping_categories/1
-  def show
-    @shipping_category = ShippingCategory.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
-  end
-
   # GET /admin/merchandise/shipping_categories/new
   def new
     form_info

@@ -4,11 +4,6 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
     @shipping_zones = ShippingZone.all
   end
 
-  # GET /admin/config/shipping_zones/1
-  def show
-    @shipping_zone = ShippingZone.find(params[:id])
-  end
-
   # GET /admin/config/shipping_zones/new
   def new
     @shipping_zone = ShippingZone.new

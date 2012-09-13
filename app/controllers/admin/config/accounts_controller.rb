@@ -4,11 +4,6 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
     @accounts = Account.all
   end
 
-  # GET /accounts/1
-  def show
-    @account = Account.find(params[:id])
-  end
-
   # GET /accounts/new
   def new
     @account = Account.new
