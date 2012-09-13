@@ -8,15 +8,6 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
     end
   end
 
-  # GET /tax_rates/1
-  def show
-    @tax_rate = TaxRate.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
-  end
-
   # GET /tax_rates/new
   def new
     @tax_rate = TaxRate.new

@@ -24,8 +24,10 @@ en:
   button_save: "Save"
   button_create: "Create"
   button_back: "Back"
+  button_edit: "Edit"
+  button_destroy: "Delete"
 
-  alert_are_you_sure_to_delete: "Are you sure to delte it?"
+  alert_are_you_sure_to_delete: "Are you sure to delete it?"
 
   select_address_before_shipping_method:  'Select an address before you select a shipping method.'
   shipping_method_created:                'Shipping method was successfully created.'

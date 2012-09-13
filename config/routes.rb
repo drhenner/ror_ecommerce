@@ -116,7 +116,7 @@ Hadean::Application.routes.draw do
       resources :shipping_rates, :except => [:show]
       resources :shipping_methods, :except => [:show]
       resources :shipping_zones, :except => [:show]
-      resources :tax_rates
+      resources :tax_rates, :except => [:show]
       resources :tax_categories
     end
 
