@@ -22,9 +22,16 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
     @order = Order.includes([:shipments, {:order_items => [:shipment, :variant]}]).find(params[:id])
   end
 
+
+  def create_shipment
+    @order = Order.find_by_id(params[:id])
+    Shipment.create_shipments_with_items(@order) if @order
+    @order.reload
+  end
+
   # PUT /admin/fulfillment/orders/1
   def update
-    @order    = Order.find(params[:id])
+    @order    = Order.find_by_id(params[:id])
     @invoice  = @order.invoices.find(params[:invoice_id])
 
     payment = @order.capture_invoice(@invoice)

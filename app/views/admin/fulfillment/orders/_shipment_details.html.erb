@@ -1,0 +1,18 @@
+<h4>Shipment Details</h4>
+<% if order.shipments.empty? %>
+    <div class='well'>
+      No Shipments have been made on this order.<br />
+      <a id='create-shipment-button' data-url='<%= create_shipment_admin_fulfillment_order_path(order.id) %>' class='tiny button'> <%= t("label_create_shipment_button") %> </a>
+    </div>
+<% else %>
+  <% order.shipments.each do |shipment| %>
+    <div class='well'>
+          Shipping Method: <%= shipment.shipping_method.name %> <br/>
+          Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %> State:<%= shipment.state %>
+      </div>
+  <% end %>
+  <div class='span-7 rounded-10 line_item_blue'>
+    <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(:order_id => order.number) %>
+  </div>
+
+<% end %>
