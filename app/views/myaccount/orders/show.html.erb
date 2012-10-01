@@ -17,7 +17,7 @@
     <tr>
       <td class='left-align'> Shipping Address: </td>
       <td>
-        <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} if @order.bill_address_id%>
+        <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} if @order.ship_address_id%>
       </td>
     </tr>
     <tr>
