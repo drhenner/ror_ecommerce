@@ -15,7 +15,7 @@
   <% @tax_categories.each do |tax_category| %>
     <tr class='<%= cycle("odd", "")%>'>
       <td><%= link_to tax_category.name, edit_admin_config_tax_category_path(tax_category) %></td>
-      <td><%= link_to "Delete", admin_config_tax_category_path(tax_category), :data => { :confirm => 'Text' }, :method => :delete %></td>
+      <td><%= link_to t("button_destroy"), admin_config_tax_category_path(tax_category), :data => { :confirm => t("alert_are_you_sure_to_delete") }, :method => :delete %></td>
     </tr>
   <% end %>
   </table>

@@ -21,6 +21,16 @@ en:
   login_failure:        "Invalid email or password."
   logout_successful:    "Logout successful!"
 
+  button_save: "Save"
+  button_create: "Create"
+  button_back: "Back"
+  button_edit: "Edit"
+  button_destroy: "Delete"
+
+  label_error: "Error"
+
+  alert_are_you_sure_to_delete: "Are you sure to delete it?"
+
   select_address_before_shipping_method:  'Select an address before you select a shipping method.'
   shipping_method_created:                'Shipping method was successfully created.'
   shipping_method_updated:                'Shipping method was successfully updated.'

@@ -1,0 +1,14 @@
+<div class="alert-box alert">
+  <p>
+    <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 .3em 0 0.5em;"></span>
+    <% if @message %>
+      <strong><%=t(:label_error)%> <%=@status%></strong><br/>
+      <%= @message %>
+    <% else %>
+      <strong><%=t :label_error%>:</strong>
+      <%= msg %>
+    <% end %>
+  </p>
+  <a href="" class="close">&times;</a>
+</div>
+

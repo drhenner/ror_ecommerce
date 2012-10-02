@@ -1,67 +1,57 @@
 
-<h2>New shipment for Order # <%= @order.number %>  </h2>
-<div class='' >
-  Shipment for <%= @order.user.name %>
-</div>
-<div class='clear'></div>
-<div id='order-shipment-items' class='span-8 last float-left'>
-<h4>Order Items</h4>
-  <% @order.order_items.each_with_index do |item,i| %>
-    <div  id='order-shipment-item<%= i %>'
-          class='span-7 rounded-4 line_item_yellow'>
-
-        <%= item.variant.product_name %> <%= item.variant.sku %> <%= number_to_currency item.variant.price %> <br/>
-        <% if item.shipped? %>
-          Shipped: <%= item.shipment.display_shipped_at %> => Shipping #: <%= item.shipment.number %>
-        <% else %>
-          Not Shipped Yet.
-          <%= item.shipping_rate.shipping_method.name %>
-        <% end %>
-
+<h3>New shipment for Order # <%= @order.number %>  </h3>
+<p> Shipment for <%= @order.user.name %> </p>
+<div class="row">
+    <div class="five columns panel">
+      <h4>Order Items</h4>
+      <% @order.order_items.each_with_index do |item,i| %>
+        <div  id='order-shipment-item<%= i %>'
+              class='span-7 rounded-4 line_item_yellow'>
+    
+            <%= item.variant.product_name %> <%= item.variant.sku %> <%= number_to_currency item.variant.price %> <br/>
+            <% if item.shipped? %>
+              Shipped: <%= item.shipment.display_shipped_at %> => Shipping #: <%= item.shipment.number %>
+            <% else %>
+              Not Shipped Yet.
+              <%= item.shipping_rate.shipping_method.name %>
+            <% end %>
+    
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class="six columns panel">
+      <h4>Shipping address</h4>
+      <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+    </div>
 </div>
-<div class='span-7 last float-left' >
-<h4>Shipping address</h4>
-  <div  id='order-ship-address'
-        class='span-6 rounded-10 line_item_yellow'>
-    <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+<div class="row">
+  <div class="five columns panel">
+      Ask if you want to authorize full amount of partial with reason<br/>
+      <% @order.invoices.each do |invoice| %>
+        <div id='invoice-line-<%= invoice.id %>'>
+          <% if @order.invoices.last.id == invoice.id %>
+              <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last } %>
+          <% end %>
+        </div>
+      <% end %>
   </div>
-</div>
-<div class='span-7 last float-left'>
-<h4>Shipment Details</h4>
-  <% if @order.shipments.empty? %>
-      <div  id='order-ship-address'
-            class='span-7 rounded-10 line_item_yellow'>
-        No Shipments have been made on this order.
-      </div>
-  <% else %>
-
-    <% @order.shipments.each do |shipment| %>
-        <div  id='order-shipment-items'
-              class='span-7 rounded-10 <%= cycle("line_item_yellow", "line_item_gray") %>'>
+  <div class="six columns panel">
+    <h4>Shipment Details</h4>
+    <% if @order.shipments.empty? %>
+      <p> No Shipments have been made on this order.</p>
+    <% else %>
+      <% @order.shipments.each do |shipment| %>
+        <div id='order-shipment-items'>
             Shipping Method: <%= shipment.shipping_method.name %> <br/>
             Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %> State:<%= shipment.state %>
         </div>
-    <% end %>
-    <div class='span-7 rounded-10 line_item_blue'>
-      <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(:order_id => @order.number) %>
-    </div>
-
-  <% end %>
-</div>
-<div class='clear'></div>
-Ask if you want to authorize full amount of partial with reason<br/>
-<div class='span-16 last' style='text-align:left;'>
-  <% @order.invoices.each do |invoice| %>
-    <div id='invoice-line-<%= invoice.id %>'>
-      <% if @order.invoices.last.id == invoice.id %>
-          <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last } %>
-      <% else %>
       <% end %>
-    </div>
-  <% end %>
+      <br />
+      <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(:order_id => @order.number), :class => "tiny button" %>
+    <% end %>
+  </div>
 </div>
+
 
 <div id="dialog" title="Cancel Invoice">
   <div id='dialog-message'>

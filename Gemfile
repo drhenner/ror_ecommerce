@@ -4,23 +4,20 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.2.6'
 
 group :assets do
-  #gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier', '>= 1.0.3'
-end
   gem 'sass-rails', "  ~> 3.2.3"
+  gem 'compass-rails', '~> 1.0.3'
+end
+  gem 'zurb-foundation', '~> 3.0.9' # for development use must be outside assets group otherwise it does not work with js
 
 gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
 gem 'authlogic', "3.0.3"
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
-gem 'compass', '~> 0.12.rc.0'
-gem 'compass-rails'
-# gem 'compass_twitter_bootstrap'
-#  gem 'dalli', '~> 1.0.2'
 
 gem "friendly_id", "~> 3.3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
+gem "rails_config"
 
 #gem 'memcache-client', '~> 1.8.5'
 group :production do

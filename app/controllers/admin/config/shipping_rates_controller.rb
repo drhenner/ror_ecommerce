@@ -10,11 +10,6 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
     end
   end
 
-  # GET /shipping_rates/1
-  def show
-    @shipping_rate = ShippingRate.find(params[:id])
-  end
-
   # GET /shipping_rates/new
   def new
     form_info
@@ -41,7 +36,7 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
 
     respond_to do |format|
       if @shipping_rate.save
-        format.html { redirect_to(admin_config_shipping_rate_url(@shipping_rate), :notice => 'Shipping rate was successfully created.') }
+        format.html { redirect_to(admin_config_shipping_rates_url, :notice => 'Shipping rate was successfully created.') }
       else
         form_info
         format.html { render :action => "new" }
@@ -55,7 +50,7 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
 
     respond_to do |format|
       if @shipping_rate.update_attributes(params[:shipping_rate])
-        format.html { redirect_to(admin_config_shipping_rate_url(@shipping_rate), :notice => 'Shipping rate was successfully updated.') }
+        format.html { redirect_to(admin_config_shipping_rates_url, :notice => 'Shipping rate was successfully updated.') }
       else
         form_info
         format.html { render :action => "edit" }

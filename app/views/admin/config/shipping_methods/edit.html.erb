@@ -2,6 +2,6 @@
 
 <%= form_for(@shipping_method, :url => admin_config_shipping_method_path(@shipping_method)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.submit t("button_save"), :class => "button" %>
+  <%= link_to  t("button_back"), admin_config_shipping_methods_path, :class => "secondary button" %>
 <% end %>
-
-<%= link_to "Back", admin_config_shipping_methods_path, :class => 'button' %>

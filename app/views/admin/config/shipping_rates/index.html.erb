@@ -12,7 +12,6 @@
       <th>Shipping rate type</th>
       <th>Minimum Charge</th>
       <th></th>
-      <th></th>
     </tr>
     </thead>
 
@@ -23,7 +22,6 @@
       <td><%= shipping_rate.shipping_rate_type.name %></td>
       <td><%= shipping_rate.minimum_charge %></td>
 
-      <td><%= link_to 'Show', admin_config_shipping_rate_path(shipping_rate) %></td>
       <td><%= link_to 'Edit', edit_admin_config_shipping_rate_path(shipping_rate) %></td>
     </tr>
   <% end %>

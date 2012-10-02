@@ -7,8 +7,9 @@
   </ul>
 </div>
 
+<br />
 <% if invoice.authorized? %>
-  <a id='capture-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_green'>
+  <a id='capture-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='tiny button'>
     Collect
   </a>
   <!--
@@ -16,7 +17,7 @@
     Collect Partial
   </a>
   -->
-  <a id='cancel-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_red'>
+  <a id='cancel-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='tiny button'>
     CANCEL
   </a>
 <% end %>

@@ -22,6 +22,7 @@ include Authlogic::TestCase
 include ActiveMerchant::Billing
 
 Rails.logger.level = 4
+Settings.require_state_in_address = true
 
 RSpec.configure do |config|
   # == Mock Framework

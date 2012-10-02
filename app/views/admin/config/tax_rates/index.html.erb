@@ -15,7 +15,6 @@
       <th>Active</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
     </thead>
 
@@ -27,9 +26,8 @@
       <td><%= tax_rate.start_date %></td>
       <td><%= tax_rate.end_date %></td>
       <td><%= tax_rate.active.to_s %></td>
-      <td><%= link_to 'Show', admin_config_tax_rate_path(tax_rate) %></td>
-      <td><%= link_to 'Edit', edit_admin_config_tax_rate_path(tax_rate) %></td>
-      <td><%= link_to 'Destroy', admin_config_tax_rate_path(tax_rate), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to t("button_edit"), edit_admin_config_tax_rate_path(tax_rate) %></td>
+      <td><%= link_to t("button_destroy"), admin_config_tax_rate_path(tax_rate), :confirm => t("alert_are_you_sure_to_delete"), :method => :delete %></td>
     </tr>
   <% end %>
   </table>
