@@ -148,11 +148,11 @@ describe Address, "methods" do
       address = FactoryGirl.create(:address, :state => state)
       address.shipping_method_ids.should == [2,4]
     end
-    it 'should be the state\'s shipping methods' do
+    it 'should be the countries\'s shipping methods' do
       @finland = Country.find(67)
       @finland.shipping_zone_id = 2
       @finland.save
-      Settings.require_state_in_address = true
+      Settings.stubs(:require_state_in_address).returns(false)# = true
       shipping_zone = ShippingZone.find(1)
       shipping_zone.stubs(:shipping_method_ids).returns([2,3])
       @finland.stubs(:shipping_zone).returns(shipping_zone)
