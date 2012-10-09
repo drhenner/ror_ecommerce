@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627000122) do
+ActiveRecord::Schema.define(:version => 20120701174050) do
 
   create_table "accounting_adjustments", :force => true do |t|
     t.integer  "adjustable_id",                                 :null => false
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20120627000122) do
     t.boolean  "active",            :default => true
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.integer  "country_id"
   end
 
   add_index "addresses", ["addressable_id"], :name => "index_addresses_on_addressable_id"
