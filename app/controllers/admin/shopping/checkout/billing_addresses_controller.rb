@@ -1,6 +1,9 @@
 class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::Checkout::BaseController
   def index
     @billing_address = Address.new
+    if !Settings.require_state_in_address  && countries.size == 1
+      @billing_address.country = countries.first
+    end
     form_info
     respond_to do |format|
       format.html # index.html.erb
@@ -11,6 +14,9 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
     old_address       = Address.find_by_id(params[:old_address_id])
     attributes        = old_address.try(:address_attributes)
     @billing_address = session_admin_cart.customer.addresses.new(attributes)
+    if !Settings.require_state_in_address && countries.size == 1
+      @billing_address.country = countries.first
+    end
     form_info
     respond_to do |format|
       format.html # new.html.erb

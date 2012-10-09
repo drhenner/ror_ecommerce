@@ -52,25 +52,25 @@ Hadean::Application.configure do
 
     ActiveMerchant::Billing::Base.mode = :test
     #::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-    #  :login      => HADEAN_CONFIG['paypal']['login'],
-    #  :password   => HADEAN_CONFIG['paypal']['password'],
-    #  :signature  => HADEAN_CONFIG['paypal']['signature']
+    #  :login      => Settings.paypal.login
+    #  :password   => Settings.paypal.password
+    #  :signature  => Settings.paypal.signature
     #)
 
-    ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-      :login    => HADEAN_CONFIG['authnet']['login'],
-      :password => HADEAN_CONFIG['authnet']['password'],
-      :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
-    )
-
-    ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
-      :login    => HADEAN_CONFIG['authnet']['login'],
-      :password => HADEAN_CONFIG['authnet']['password'],
-      :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
-    )
+#    ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+#      :login    => Settings.authnet.login
+#      :password => Settings.authnet.password
+#      :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
+#    )
+#
+#    ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
+#      :login    => Settings.authnet.login
+#      :password => Settings.authnet.password
+#      :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
+#    )
     #::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
-    #  :login     => HADEAN_CONFIG['braintree']['login'],
-    #  :password  => HADEAN_CONFIG['braintree']['password']
+    #  :login     => Settings.braintree.login
+    #  :password  => Settings.braintree.password
     #)
   end
 
