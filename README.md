@@ -72,8 +72,8 @@ If you would like to read the docs, you can generate them with the following com
 
 ####Compass Install
 
-First, create `config/config.yml` and change the encryption key and paypal/auth.net information.
-You can also change `config/config.yml.example` to `config/config.yml` until you get your real info.
+First, create `config/settings.yml` and change the encryption key and paypal/auth.net information.
+You can also change `config/settings.yml.example` to `config/settings.yml` until you get your real info.
 
 Paperclip will throw errors if not configured correctly.
 You will need to find out where Imagemagick is installed.

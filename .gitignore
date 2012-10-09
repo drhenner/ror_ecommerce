@@ -28,6 +28,7 @@ coverage/*
 ERD.pdf
 Gemfile.lock
 config/config.yml
+config/settings.yml
 config/database.yml
 db/*.db
 /db/*.sqlite3
