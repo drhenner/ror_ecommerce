@@ -22,10 +22,10 @@ class TaxRate < ActiveRecord::Base
   validates :start_date,    :presence => true
 
   def tax_percentage
-    GlobalConstants::VAT_TAX_SYSTEM ? 0.0 : percentage
+    Settings.vat ? 0.0 : percentage
   end
 
   def vat_percentage
-    GlobalConstants::VAT_TAX_SYSTEM ? percentage : 0.0
+    Settings.vat ? percentage : 0.0
   end
 end

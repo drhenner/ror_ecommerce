@@ -45,11 +45,11 @@ Hadean::Application.configure do
     ActiveMerchant::Billing::Base.mode = :test
     ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
 
-    ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
-      :login    => HADEAN_CONFIG['authnet']['login'],
-      :password => HADEAN_CONFIG['authnet']['password'],
-      :test     => true
-    )
+    #::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
+    #  :login    => Settings.authnet.login
+    #  :password => Settings.authnet.password
+    #  :test     => true
+    #)
   end
   PAPERCLIP_STORAGE_OPTS = {  :styles => {:mini => '48x48>',
                                           :small => '100x100>',
