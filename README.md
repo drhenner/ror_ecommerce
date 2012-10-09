@@ -172,7 +172,6 @@ You need to run `rake sunspot:solr:start`, or remove Solr completely.
 
 * product sales (eg. 20% off)
 * more documentation / videos for creating products/variants
-* easy setup of fake data for getting started
 
 ##Author
 
