@@ -3,6 +3,7 @@ class CreateCountries < ActiveRecord::Migration
     create_table :countries do |t|
       t.string :name
       t.string :abbreviation, :limit => 5
+      t.integer :shipping_zone_id
     end
     add_index :countries, :name
     if SETTINGS[:use_foreign_keys]
