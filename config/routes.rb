@@ -76,6 +76,9 @@ Hadean::Application.routes.draw do
 
     namespace :fulfillment do
       resources  :orders do
+        member do
+          put :create_shipment
+        end
         resources  :comments
       end
       resources  :shipments do

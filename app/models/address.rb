@@ -25,6 +25,7 @@
 
 class Address < ActiveRecord::Base
   belongs_to  :state
+  belongs_to  :country
   belongs_to  :address_type
   belongs_to  :addressable, :polymorphic => true
   has_many     :phones, :as => :phoneable
@@ -37,7 +38,9 @@ class Address < ActiveRecord::Base
   validates :address1,    :presence => true,       :length => { :maximum => 255 }
   validates :city,        :presence => true,
                           :format   => { :with => CustomValidators::Names.name_validator },       :length => { :maximum => 75 }
-  validates :state_id,       :presence => true#,  :if => Proc.new { |address| address.state_name.blank?  }
+  #validates :state_id,       :presence => true,  :if => Proc.new { |address| Settings.have_state_in_address || address.country_id.blank?  }
+  validates :state_id,      :presence => true,  :if => Proc.new { |address| Settings.require_state_in_address}
+  validates :country_id,    :presence => true,  :if => Proc.new { |address| !Settings.require_state_in_address}
   #validates :state_name,  :presence => true,  :if => Proc.new { |address| address.state_id.blank?   }
   validates :zip_code,    :presence => true,       :length => { :maximum => 12 }
   #validates :phone_id,    :presence => true
@@ -86,6 +89,25 @@ class Address < ActiveRecord::Base
       :zip      => zip_code#,
       #:phone    => phone
     }
+  end
+
+  # Method used to determine the shipping methods ids available for this address
+  def shipping_method_ids
+    if Settings.require_state_in_address
+      state.shipping_zone.shipping_method_ids
+    else
+      country.shipping_zone_id ? country.shipping_zone.shipping_method_ids : []
+    end
+  end
+  # Method used to determine the shipping_zone_id for this address
+  #
+  #  Specifically used to determine the order_item.shipping_rate_options
+  def shipping_zone_id
+    if Settings.require_state_in_address
+      state.shipping_zone_id
+    else
+      country.shipping_zone_id
+    end
   end
 
   # Use this method to update an address

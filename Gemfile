@@ -21,6 +21,7 @@ gem 'compass-rails'
 gem "friendly_id", "~> 3.3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
+gem "rails_config"
 
 #gem 'memcache-client', '~> 1.8.5'
 group :production do
@@ -58,7 +59,7 @@ group :development do
 end
 group :test, :development do
   gem "rspec-rails", "~> 2.8.0"
-  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'capybara', "~> 1.1"#, :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner'
 end

@@ -3,6 +3,9 @@ class Shopping::AddressesController < Shopping::BaseController
   # GET /shopping/addresses.xml
   def index
     @shopping_address = Address.new
+    if !Settings.require_state_in_address && countries.size == 1
+      @shopping_address.country = countries.first
+    end
     form_info
     respond_to do |format|
       format.html # index.html.erb
