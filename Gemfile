@@ -31,7 +31,7 @@ end
 gem 'nested_set', '~> 1.7.0'
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
-gem 'paperclip', '~> 2.4.5'
+gem 'paperclip', '~> 2.8.0'
 gem 'prawn', '~> 0.12.0'
 
 gem "rails3-generators", :git => "https://github.com/neocoin/rails3-generators.git"

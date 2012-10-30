@@ -83,7 +83,7 @@ Type: `which identify` in the terminal and set
 Paperclip.options[:command_path]
 ```
 
-equal to that path in `environment.rb`.
+equal to that path in `config/paperclip.rb`.
 
 Example:
 
