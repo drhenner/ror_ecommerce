@@ -61,7 +61,7 @@ If you just want to see what ror_ecommerce looks like, before you enter any prod
     rake db:seed_fake
 
 You should now have a minimal dataset, and be able to see a demo of the various parts of the app.
-Note: make sure you have `config/config.yml` set up correctly before you try to checkout.
+Note: make sure you have `config/settings.yml` set up correctly before you try to checkout.
 Also, please take a look at [The 15 minute e-commerce video](http://www.ror-e.com/info/videos/7).
 
 ##YARDOCS
