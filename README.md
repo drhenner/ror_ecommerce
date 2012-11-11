@@ -9,9 +9,7 @@ Please look at the [homepage](http://www.ror-e.com) for more details.
 
 ![RoR Ecommerce](http://ror-e.com/images/logo.png "ROR Ecommerce").
 
-This is a Rails e-commerce platform. Other e-commerce projects that use rails don't use rails in a standard way.
-They use engines or are a separate framework altogether.
-
+This is a Rails e-commerce platform.
 ROR Ecommerce is a *Rails 3 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
 There is a minimal customer facing shopping cart understanding that this will be customized.
