@@ -212,10 +212,10 @@ class Address < ActiveRecord::Base
     def sanitize_data
       self.first_name  = self.first_name.strip  unless self.first_name.blank?
       self.last_name   = self.last_name.strip   unless self.last_name.blank?
-      self.city       = self.city.strip       unless self.city.blank?
+      self.city        = self.city.strip        unless self.city.blank?
       self.zip_code    = self.zip_code.strip    unless self.zip_code.blank?
-      #self.phone      = self.phone.strip      unless self.phone.blank?
-      self.address1   = self.address1.strip   unless self.address1.blank?
-      self.address2   = self.address2.strip   unless self.address2.blank?
+      #self.phone      = self.phone.strip       unless self.phone.blank?
+      self.address1    = self.address1.strip    unless self.address1.blank?
+      self.address2    = self.address2.strip    unless self.address2.blank?
     end
 end

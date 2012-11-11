@@ -10,7 +10,7 @@
       <% @products.each_with_index do |product, i| %>
         <li id='interesting_product_<%= i %>' class='left-text padding-5'>
           <div class='interesting_items-image'>
-            <%= link_to  image_tag(product.featured_image(:small)), product_path(product) %>
+            <%= link_to image_tag(product.featured_image(:small)), product_path(product), title: product.name %>
           </div>
 
           <div class='interesting_items-details'><%= product.name %><br/>

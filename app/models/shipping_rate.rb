@@ -30,8 +30,8 @@ class ShippingRate < ActiveRecord::Base
   validates  :shipping_category_id,   :presence => true
 
   scope :with_these_shipping_methods, lambda { |shipping_rate_ids, shipping_method_ids|
-          {:conditions => ['shipping_rates.id IN (?) AND
-                            shipping_rates.shipping_method_id IN (?)',shipping_rate_ids, shipping_method_ids]}
+          where("shipping_rates.id IN (?)", shipping_rate_ids).
+          where("shipping_rates.shipping_method_id IN (?)", shipping_method_ids)
         }
 
   MONTHLY_BILLING_RATE_ID = 1
