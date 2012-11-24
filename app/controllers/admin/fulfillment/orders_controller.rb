@@ -22,9 +22,18 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
     @order = Order.includes([:shipments, {:order_items => [:shipment, :variant]}]).find(params[:id])
   end
 
+
+  def create_shipment
+    @order = Order.find_by_id(params[:id])
+    if @order
+      Shipment.create_shipments_with_items(@order)
+      @order.reload
+    end
+  end
+
   # PUT /admin/fulfillment/orders/1
   def update
-    @order    = Order.find(params[:id])
+    @order    = Order.find_by_id(params[:id])
     @invoice  = @order.invoices.find(params[:invoice_id])
 
     payment = @order.capture_invoice(@invoice)
@@ -42,10 +51,7 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
 
     respond_to do |format|
       if payment && payment.success?
-        @shipments = Shipment.create_shipments_with_items(@order)
-        # reload order
         format.html { render :partial => 'success_message' }
-        #format.html { redirect_to(admin_fulfillment_order_path(@order), :notice => 'Shipment was successfully updated.') }
       else
         format.html { render :partial => 'failure_message' }
       end

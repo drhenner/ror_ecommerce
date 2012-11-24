@@ -63,6 +63,8 @@ class User < ActiveRecord::Base
 
   has_one     :store_credit
   has_many    :orders
+  has_many    :finished_orders,          :class_name => 'Order',
+                                          :conditions => {:orders => { :state => ['complete', 'paid']}}
   has_many    :completed_orders,          :class_name => 'Order',
                                           :conditions => {:orders => { :state => 'complete'}}
   has_many    :phones,                    :dependent => :destroy,
@@ -354,7 +356,7 @@ class User < ActiveRecord::Base
   end
 
   def deliver_password_reset_instructions!
-    reset_perishable_token!
+    self.reset_perishable_token!
     Notifier.password_reset_instructions(self).deliver
   end
 

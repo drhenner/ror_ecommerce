@@ -23,11 +23,11 @@
 
         <li class="" id="menu-main-user">
           <div>
-            <% unless most_likely_user %>
+            <% unless current_user %>
               <strong><%= link_to 'Login',  login_path %></strong> or
               <span><%= link_to 'Sign up', signup_path %></span>
             <% else %>
-              <strong>Hi <%= most_likely_user.first_name %></strong>
+              <strong>Hi <%= current_user.first_name %></strong>
               <span>(<%= link_to 'not you?', logout_path %>)</span>
             <% end %>
           </div>

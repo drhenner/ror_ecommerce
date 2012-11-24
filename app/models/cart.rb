@@ -49,11 +49,11 @@ class Cart < ActiveRecord::Base
   # @return [order]  return order because teh order returned has a diffent quantity
   def add_items_to_checkout(order)
     if order.in_progress?
-      items = shopping_cart_items.inject({}) do |h, item|
-        h[item.variant_id] = item.quantity
-        h
+      order.order_items.size.times do
+        item = order.order_items.pop
+        item.destroy
       end
-      order = items_to_add_or_destroy(items, order)
+      items_to_add(order, shopping_cart_items)
     end
     order
   end
@@ -134,6 +134,12 @@ class Cart < ActiveRecord::Base
       update_shopping_cart(cart_item,customer, qty)
     end
     cart_item
+  end
+
+  def items_to_add(order, items)
+    items.each do |item|
+      order.add_cart_item( item, nil)
+    end
   end
 
   def items_to_add_or_destroy(items_in_cart, order)

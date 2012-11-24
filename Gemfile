@@ -21,19 +21,20 @@ gem 'compass-rails'
 gem "friendly_id", "~> 3.3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
+gem "rails_config"
 
 #gem 'memcache-client', '~> 1.8.5'
 group :production do
   gem 'mysql2', '~> 0.3.10'
 end
 
-gem 'nested_set', '~> 1.6.3'
-gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
+gem 'nested_set', '~> 1.7.0'
+#gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
-gem 'paperclip', '~> 2.4.5'
+gem 'paperclip', '~> 2.8.0'
 gem 'prawn', '~> 0.12.0'
 
-gem 'rails3-generators', '~> 0.17.0'
+gem "rails3-generators", :git => "https://github.com/neocoin/rails3-generators.git"
 gem 'rmagick',    :require => 'RMagick'
 
 gem 'rake', '~> 0.9.2'
@@ -50,15 +51,15 @@ group :development do
   gem "autotest-rails-pure"
 
   gem "rails-erd"
-  gem "ruby-debug19"
-  
+  gem "debugger"
+
   # YARD AND REDCLOTH are for generating yardocs
   gem 'yard'
   gem 'RedCloth'
 end
 group :test, :development do
   gem "rspec-rails", "~> 2.8.0"
-  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'capybara', "~> 1.1"#, :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner'
 end
