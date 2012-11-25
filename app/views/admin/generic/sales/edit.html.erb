@@ -1,0 +1,11 @@
+<h1> Edit Sale </h1>
+
+<%= form_for @sale, :url => [:admin, :generic, @sale] do |f| %>
+  <%=  render :partial => 'form', :locals => {:f => f} %>
+  <div class="actions"><%= f.submit 'Update' , :class => 'button' %></div>
+<% end %>
+
+<p>
+  <%= link_to "Show", [:admin, :generic, @sale], :class => 'button' %> |
+  <%= link_to "View All", admin_generic_sales_path, :class => 'button' %>
+</p>
