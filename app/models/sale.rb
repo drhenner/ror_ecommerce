@@ -1,6 +1,8 @@
 class Sale < ActiveRecord::Base
   attr_accessible :ends_at, :percent_off, :product_id, :starts_at
 
+  belongs_to :product
+
   validates :product_id,    :presence => true
   validates :ends_at,       :presence => true
   validates :starts_at,     :presence => true
