@@ -91,6 +91,10 @@ class Order < ActiveRecord::Base
     self.user.name
   end
 
+  def transaction_time
+    calculated_at || Time.zone.now
+  end
+
   # formated date of the complete_at datetime on the order
   #
   # @param [none]
