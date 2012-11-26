@@ -21,13 +21,6 @@
 #
 
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :lockable and :timeoutable
-#  devise :database_authenticatable, :registerable, :confirmable,
-#         :recoverable, :rememberable, :trackable, :validatable
-
-  # Setup accessible (or protected) attributes for your model
-  #include ActiveMerchant::Utils
   include UserCim
 
   acts_as_authentic do |config|
@@ -148,11 +141,9 @@ class User < ActiveRecord::Base
 
     event :activate do
       transition all => :active, :unless => :active?
-      #transition :from => :inactive,    :to => :active
     end
 
     event :register do
-      #transition :to => 'registered', :from => :all
       transition :from => :active,                 :to => :registered
       transition :from => :inactive,               :to => :registered
       transition :from => :unregistered,           :to => :registered
