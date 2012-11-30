@@ -2,6 +2,17 @@
 #  This requires the SQL to be very fast in order to ensure the table is not locked.
 #  Please keep the table free from extra data that might cause locking to become an issue.
 
+
+# == Schema Information
+#
+# Table name: inventories
+#
+#  id                          :integer          not null, primary key
+#  count_on_hand               :integer          default(0)
+#  count_pending_to_customer   :integer          default(0)
+#  count_pending_from_supplier :integer          default(0)
+#
+
 class Inventory < ActiveRecord::Base
   has_one :variant
   has_many :accounting_adjustments, :as => :adjustable

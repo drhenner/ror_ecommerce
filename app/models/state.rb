@@ -1,3 +1,11 @@
+# States are "states, territories and provinces" of a country. This table is seeded from
+#   the db/seeds.rb file.  The seed data is supplied by db/seed/international_states/*.yml files.
+#
+#  If you need to seed a state other than a state in the United states You should watch the following video:
+#
+#  http://www.ror-e.com/info/videos/2
+#
+
 class State < ActiveRecord::Base
   belongs_to :country
   has_many   :addresses

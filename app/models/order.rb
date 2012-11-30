@@ -1,3 +1,18 @@
+#  The checkout process starts on the http://www.yoursite.com/shopping/cart_items page.
+#
+#  Clicking the "checkout button" Starts the process.  This action takes all the active cart\_items in the "shopping\_cart" state and saves them as order\_items.  Each order item represents one AND ONLY ONE, I repeat ONLY ONE, item.  There is no quantity field.  It is IMPOSSIBLE to have a quantity field and do returns correctly.  DO NOT CHANGE THIS!
+#
+#  At this point the Order is in an "in\_progress" state.  Immediately the user is asked to enter their credentials for security reasons (unless they logged in with 20 minutes).  Now the user is in the checkout workflow.  The basic workflow is determined by the Shopping::BaseController.next\_form(order) method.  During the checkout the user is directed to the Shopping::OrdersController.index method.  The Shopping::BaseController.next\_form(order) method is called and the next form to show is redirected to unless they are on the last step.
+#
+#  The last step in the process you are now dealing with the billing information which trumaker uses STRIPE for.  Unfortunately using the javascript implementation of stripe can be hacked on the browser.  To prevent this the purchase button actually does a few things.
+#
+#  *  First it makes sure the Creditcard number passes luhn validation/date validation.
+#  *  Second there is a call to the trumaker app to verify the price is correct.  (BTW: this could change because the user has multiple tabs open in the browser)
+#  *  Then a call is made to the Stripe API to get a token to charge.  If all goes well the transaction will go through and the card is charged.
+#
+#  The order will now be in the 'paid' state.  Each order item will also be marked as "paid".
+
+
 # == Schema Information
 #
 # Table name: orders

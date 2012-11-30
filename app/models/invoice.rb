@@ -1,3 +1,6 @@
+# Every monetary charge creates an invoice.  Thus when you charge a customer XYZ, you are actually using an invoice for the charge and not the order.  This allows flexibility within accounting and returns and even some new charge that will be made in the future.  If the system was only doing Cash-Based account the Invoices table would be the only table needed.  NOTE: DO NOT THINK FOR A SECOND CASH BASED ACCOUNT IS GOOD ENOUGH!
+
+
 # == Schema Information
 #
 # Table name: invoices
