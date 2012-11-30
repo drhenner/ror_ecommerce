@@ -100,11 +100,20 @@ class OrderItem < ActiveRecord::Base
   def self.order_items_in_cart(order_id)
     find(:all, :joins => {:variant => :product },
                :conditions => { :order_items => { :order_id => order_id}},
-               :select => "order_items.*, count(*) as quantity,
+               :select => "order_items.id, order_items.order_id, order_items.shipping_rate_id, order_items.state, order_items.tax_rate_id, order_items.price, order_items.total, order_items.variant_id,
+                           products.shipping_category_id,
+                                          count(*) as quantity,
                                           products.shipping_category_id as shipping_category_id,
                                           SUM(order_items.price) as sum_price,
                                           SUM(order_items.total) as sum_total",
-               :group => "order_items.variant_id")
+               :group => "order_items.id,
+                          products.shipping_category_id,
+                          order_items.order_id,
+                          order_items.shipping_rate_id,
+                          order_items.state,
+                          order_items.tax_rate_id,
+                          order_items.price,
+                          order_items.total, order_items.variant_id")
   end
 
   # forces the order to be re-calculated.  If the order item has changed then the order totals need to be adjusted
