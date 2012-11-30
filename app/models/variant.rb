@@ -1,3 +1,9 @@
+# Variant can be thought of as specific types of product.
+#
+# A product could be considered Levis 501 Blues
+#   => Then a variant would specify the color and size of a specific pair of Jeans
+#
+
 # == Schema Information
 #
 # Table name: variants

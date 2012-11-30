@@ -1,3 +1,5 @@
+# This is how cancan controls authorization.  For more details look at https://github.com/ryanb/cancan
+
 class AdminAbility
   include CanCan::Ability
 
