@@ -270,7 +270,7 @@ class Order < ActiveRecord::Base
        end
        hash
      end#.sort_by{|v| v.values.first.size }.reverse
-     return_hash.delete_if{|k,v| k == 1}
+     return_hash#.delete_if{|k,v| k == 1}
   end
   # looks at all the order items and determines if the order has all the required elements to complete a checkout
   #
