@@ -30,9 +30,18 @@ describe Admin::Shopping::Checkout::ShippingMethodsController do
   it "index action should render index template" do
     @order = create(:order, :user => @user, :ship_address => @shipping_address)
     controller.stubs(:session_admin_order).returns(@order)
+    Address.any_instance.stubs(:shipping_method_ids).returns([1])
     controller.session[:order_admin_id] = @order.id
     get :index
     response.should render_template(:index)
+  end
+  it "index action should render index template" do
+     @order = create(:order, :user => @user, :ship_address => @shipping_address)
+     controller.stubs(:session_admin_order).returns(@order)
+     Address.any_instance.stubs(:shipping_method_ids).returns([])
+     controller.session[:order_admin_id] = @order.id
+     get :index
+     response.should redirect_to(admin_config_shipping_zones_url)
   end
 
   it "update action should render edit template when model is invalid" do
