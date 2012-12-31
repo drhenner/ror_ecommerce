@@ -101,7 +101,7 @@ class Address < ActiveRecord::Base
 
   # Method used to determine the shipping methods ids available for this address
   def shipping_method_ids
-    if Settings.require_state_in_address
+    if state && state.shipping_zone
       state.shipping_zone.shipping_method_ids
     else
       country.shipping_zone_id ? country.shipping_zone.shipping_method_ids : []
@@ -205,6 +205,14 @@ class Address < ActiveRecord::Base
   # @return [String] "city, state.abbreviation"
   def city_state_name
     [city, state_abbr_name].join(', ')
+  end
+
+  # Use this method to represent the "city, state.abbreviation"
+  #
+  # @param [none]
+  # @return [String] "city, state.abbreviation"
+  def state_country_name
+    [state_abbr_name, country.try(:name)].compact.join(', ')
   end
 
   # Use this method to represent the "city, state.abbreviation zip_code"
