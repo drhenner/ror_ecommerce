@@ -1,3 +1,9 @@
+###1.3.0 2013-01-01
+* better css in admin
+* Sales
+* Refactored Coupon admin page
+* Fix Deal bug
+
 ###1.2.1 2012-09-08
 * bug in admin properties
 
