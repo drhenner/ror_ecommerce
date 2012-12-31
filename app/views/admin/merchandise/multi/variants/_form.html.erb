@@ -68,6 +68,7 @@
             <% variant_id = variant.id rescue nil %>
             <% variant_property = property.variant_properties.find_or_initialize_by_variant_id(variant_id) if variant_id %>
             <% variant_property ||= VariantProperty.new(:property_id => property.id) %>
+            <% variant_property.errors.add(:description, "can't be blank.") unless variant_id %>
               <%= ff.fields_for :variant_properties,
                                variant_property  do |variant_property_form|%>
                 <tr>
