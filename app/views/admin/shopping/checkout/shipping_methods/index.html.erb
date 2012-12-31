@@ -5,7 +5,7 @@
     <% session_admin_order.order_items.group_by(&:ship_category_id).each do |shipping_category_id, items| %>
       <div class='column float-left span-14 line_items_blue last'>
           <% items.each do |item| %>
-            <div class='span-14 <%= cycle("line_item_yellow", "line_item_gray") -%>'  style='width:535px;'>
+            <div class='span-14 panel'  style='width:535px;'>
                 <div class='span-8 '>
                   <%= image_tag(item.variant.product.featured_image(:mini)) %>
                   <%= item.variant.product.name %> Quantity: <%#= item.quantity %>
