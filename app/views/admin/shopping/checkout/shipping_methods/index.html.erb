@@ -2,16 +2,18 @@
 
 
   <%= form_tag(admin_shopping_checkout_shipping_method_path(session_admin_order.id), :method => :put) do -%>
-    <% session_admin_order.order_items.group_by(&:ship_category_id).each do |shipping_category_id, items| %>
-      <div class='column float-left span-14 line_items_blue last'>
+    <% @order_items.group_by(&:ship_category_id).each do |shipping_category_id, items| %>
+      <div class='column float-left last'>
           <% items.each do |item| %>
-            <div class='span-14 panel'  style='width:535px;'>
-                <div class='span-8 '>
+            <div class=' panel shipping_methods_admin_panel clearfix'  style='width:535px;'>
+                <div class='seven columns'>
                   <%= image_tag(item.variant.product.featured_image(:mini)) %>
-                  <%= item.variant.product.name %> Quantity: <%#= item.quantity %>
+                  <%= item.variant.product.name %> Quantity: <%= item.quantity %>
                 </div>
-                <div class='span-5  last' style='text-align:left;'>
-                  <%= raw item.variant.display_property_details %>
+                <div class='five columns' style='text-align:left;'>
+                  <% item.variant.variant_properties.each do |vp| %>
+                    <label><%= vp.property.display_name %></label> <%= vp.description %><br/>
+                  <% end %>
                 </div>
             </div>
           <% end %>
