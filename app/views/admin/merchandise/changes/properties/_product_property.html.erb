@@ -1,5 +1,5 @@
 <div id="admin-product-properties"
-          class='span-14 <%= product_property_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
+          class=' <%= product_property_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
   <div class='field six '>
     <div style='float:right;'>
       <%= remove_child_link('remove', product_property_form) %>
