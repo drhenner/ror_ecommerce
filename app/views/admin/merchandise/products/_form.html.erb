@@ -109,7 +109,7 @@
     <% @all_properties.each do |property| %>
       <div  id='property_<%= property.id %>'
             class="property_form "
-            <%= "style='display:none;'" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
+            <%= "style=display:none;" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
         <%= form.fields_for :product_properties,
                             property.product_properties.find_or_initialize_by_product_id(@product.id) do |product_property_form|%>
           <div class='six'>

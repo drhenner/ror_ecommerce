@@ -4,9 +4,9 @@
     <div style='float:right;'>
       <%= remove_child_link('remove', product_property_form) %>
     </div>
-    Property:     <%= product_property_form.select       :property_id, all_properties %><br/>
-    Description:  <%= product_property_form.text_field   :description %><br/>
-    Position:     <%= product_property_form.number_field  :position, {:step => 1} %><br/>
+    <label> Property:</label>     <%= product_property_form.select       :property_id, all_properties %><br/>
+    Description:  <%= product_property_form.text_field   :description %>
+    Position:     <%= product_property_form.number_field  :position, {:step => 1} %>
   </div>
   <% if product_property_form.object.new_record? %>
     <hr/>
