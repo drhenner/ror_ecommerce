@@ -6,16 +6,20 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
       redirect_to admin_shopping_checkout_shipping_addresses_url
     else
       ##  TODO  refactopr this method... it seems a bit lengthy
-      @shipping_method_ids = session_admin_order.ship_address.state.shipping_zone.shipping_method_ids
-      session_admin_order.find_sub_total
-      @order_items = OrderItem.includes({:variant => {:product => :shipping_category}}).order_items_in_cart(session_admin_order.id)
-      #session_order.order_
-      @order_items.each do |item|
-        item.variant.product.available_shipping_rates = ShippingRate.with_these_shipping_methods(item.variant.product.shipping_category.shipping_rate_ids, @shipping_method_ids)
-      end
-
-      respond_to do |format|
-        format.html # index.html.erb
+      if @shipping_method_ids = session_admin_order.ship_address.shipping_method_ids.empty?
+        flash[:alert] = "The Admin has not set up Shipping Zones / Shipping Methods correctly for #{session_admin_order.ship_address.state_country_name }."
+        redirect_to admin_config_shipping_zones_url
+      else
+        @shipping_method_ids = session_admin_order.ship_address.shipping_method_ids
+        session_admin_order.find_sub_total
+        @order_items = OrderItem.includes({:variant => {:product => :shipping_category}}).order_items_in_cart(session_admin_order.id)
+        #session_order.order_
+        @order_items.each do |item|
+          item.variant.product.available_shipping_rates = ShippingRate.with_these_shipping_methods(item.variant.product.shipping_category.shipping_rate_ids, @shipping_method_ids)
+        end
+        respond_to do |format|
+          format.html # index.html.erb
+        end
       end
     end
   end
