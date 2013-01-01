@@ -101,7 +101,7 @@ class Address < ActiveRecord::Base
 
   # Method used to determine the shipping methods ids available for this address
   def shipping_method_ids
-    if state && state.shipping_zone
+    if state_id && state.shipping_zone
       state.shipping_zone.shipping_method_ids
     else
       country.shipping_zone_id ? country.shipping_zone.shipping_method_ids : []
@@ -111,9 +111,9 @@ class Address < ActiveRecord::Base
   #
   #  Specifically used to determine the order_item.shipping_rate_options
   def shipping_zone_id
-    if Settings.require_state_in_address
+    if state_id
       state.shipping_zone_id
-    else
+    elsif country_id
       country.shipping_zone_id
     end
   end
