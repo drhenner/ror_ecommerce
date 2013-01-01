@@ -104,7 +104,7 @@ describe OrderItem, "Without VAT" do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
       order_item.calculate_total
-      order_item.total.should == 22.00
+      order_item.total.should == 20.00
     end
   end
 
