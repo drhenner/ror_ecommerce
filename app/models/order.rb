@@ -303,7 +303,11 @@ class Order < ActiveRecord::Base
   end
 
   def taxed_amount
-    (taxed_total - total).round_at( 2 )
+    (get_taxed_total - total).round_at( 2 )
+  end
+
+  def get_taxed_total
+    taxed_total || find_total
   end
 
   # Turns out in order to determine the order.total_price correctly (to include coupons and deals and all the items)
@@ -340,7 +344,7 @@ class Order < ActiveRecord::Base
   # @param [none]
   # @return [Float] amount to remove from store credit
   def amount_to_credit
-    [find_total, user.store_credit.amount].min
+    [find_total, user.store_credit.amount].min.to_f.round_at( 2 )
   end
 
   def remove_user_store_credits
