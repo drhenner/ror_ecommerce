@@ -60,7 +60,7 @@ class Order < ActiveRecord::Base
 
   # after_find :set_beginning_values
 
-  attr_accessor :total, :sub_total, :deal_amount
+  attr_accessor :total, :sub_total, :deal_amount, :taxed_total
 
   #validates :number,     :presence => true
   validates :user_id,     :presence => true
@@ -244,7 +244,7 @@ class Order < ActiveRecord::Base
         tax_time = completed_at? ? completed_at : Time.zone.now
         order_items.each do |item|
           if (calculated_at.nil? || item.updated_at > self.calculated_at)
-            item.tax_rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)## This needs to change to completed_at
+            item.tax_rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
             item.calculate_total
             item.save
           end
@@ -289,7 +289,9 @@ class Order < ActiveRecord::Base
     calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
     self.deal_amount = Deal.best_qualifing_deal(self)
     self.find_sub_total
-    self.total = (self.total + shipping_charges - deal_amount - coupon_amount ).round_at( 2 )
+    taxable_money     = (self.sub_total - deal_amount - coupon_amount) * ((100.0 + order_tax_percentage) / 100.0)
+    self.total        = (self.sub_total + shipping_charges - deal_amount - coupon_amount ).round_at( 2 )
+    self.taxed_total  = (taxable_money + shipping_charges).round_at( 2 )
   end
 
   def find_sub_total
@@ -298,6 +300,23 @@ class Order < ActiveRecord::Base
       self.total = self.total + item.item_total
     end
     self.sub_total = self.total
+  end
+
+  def taxed_amount
+    (taxed_total - total).round_at( 2 )
+  end
+
+  # Turns out in order to determine the order.total_price correctly (to include coupons and deals and all the items)
+  #     it is much easier to multiply the tax times to whole order's price.  This should work for most use cases.  It
+  #     is rare that an order going to one location would ever need 2 tax rates
+  #
+  # For now this method will just look at the first item's tax rate.  In the future tax_rate_id will move to the order object also
+  #    tax categories will be removed
+  #
+  # @param none
+  # @return [Float] tax rate  10.5% === 10.5
+  def order_tax_percentage
+    (!order_items.blank? && order_items.first.tax_rate.try(:percentage)) ? order_items.first.tax_rate.try(:percentage) : 0.0
   end
 
   # amount the coupon reduces the value of the order
