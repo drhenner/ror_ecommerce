@@ -21,6 +21,7 @@ Hadean::Application.configure do
   config.assets.precompile += %w( *.js )
   config.assets.precompile += [ 'admin.css',
                                 'admin/app.css',
+                                'admin/cart.css',
                                 'admin/foundation.css',
                                 'admin/help.css',
                                 'admin/ie.css',
