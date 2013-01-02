@@ -4,6 +4,13 @@ describe Admin::Config::CountriesController do
   # fixtures :all
   render_views
 
+  before(:each) do
+    activate_authlogic
+
+    @user = create(:admin_user)
+    login_as(@user)
+  end
+
   it "index action should render index template" do
     get :index
     response.should render_template(:index)
