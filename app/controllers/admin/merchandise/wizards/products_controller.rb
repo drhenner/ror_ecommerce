@@ -8,8 +8,6 @@ class Admin::Merchandise::Wizards::ProductsController < Admin::Merchandise::Wiza
       @product.brand_id         = session[:product_wizard][:brand_id]
       @product.product_type_id  = session[:product_wizard][:product_type_id]
 
-      #@product.tax_category_id = session[:product_wizard][:tax_category_id]
-      @product.tax_category_id = session[:product_wizard][:tax_category_id]
       @product.shipping_category_id = session[:product_wizard][:shipping_category_id]
     end
   end
@@ -36,7 +34,6 @@ class Admin::Merchandise::Wizards::ProductsController < Admin::Merchandise::Wiza
     end
     @select_product_types     = ProductType.all.collect{|pt| [pt.name, pt.id]}
     @select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
-    @select_tax_category        = TaxCategory.all.collect {|ts| [ts.name, ts.id]}
     @brands        = Brand.order(:name).all.collect {|ts| [ts.name, ts.id]}
   end
 end

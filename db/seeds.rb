@@ -60,10 +60,6 @@ ShippingZone::LOCATIONS.each do |loc|
   ShippingZone.find_or_create_by_name(loc)
 end
 
-TaxCategory::STATUSES.each do |status|
-  TaxCategory.find_or_create_by_name(status)
-end
-
 TransactionAccount::ACCOUNT_TYPES.each do |acc_type|
   TransactionAccount.find_or_create_by_name(acc_type)
 end

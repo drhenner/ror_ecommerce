@@ -265,26 +265,16 @@ suppliers:
       name: RL Warehouse
       email: test@test-rl.com
 
-tax_categories:
-  1:
-    attributes:
-      name: Clothes
-  2:
-    attributes:
-      name: Luxury
-
 tax_rates:
   1: #Clothes New York
     attributes:
       percentage: 7.0
-      tax_category_id: 1
       state_id: 1
       start_date: '2011-11-05 14:30:29'
       active: true
   2: #Luxury New York
     attributes:
       percentage: 8.0
-      tax_category_id: 2
       state_id: 38
       start_date: '2011-11-05 14:30:29'
       active: true
@@ -297,12 +287,10 @@ products:
       product_keywords:
         - polo
         - shirt
-      tax_category_id:
       brand_id: 1
       product_type_id: 2
       prototype_id: 1
       shipping_category_id: 1
-      tax_category_id: 1
       active: true
       permalink: cute-polo-shirt
       available_at: '2011-11-05 14:30:29'
@@ -319,12 +307,10 @@ products:
       product_keywords:
         - polo
         - shirt
-      tax_category_id:
       brand_id: 1
       product_type_id: 3
       prototype_id: 2
       shipping_category_id: 1
-      tax_category_id: 1
       active: true
       permalink: cute-polo-pants
       available_at: '2011-11-05 14:30:29'

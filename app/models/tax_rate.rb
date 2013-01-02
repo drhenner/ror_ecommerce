@@ -4,7 +4,6 @@
 #
 #  id            :integer(4)      not null, primary key
 #  percentage    :decimal(8, 2)   default(0.0), not null
-#  tax_category_id :integer(4)      not null
 #  state_id      :integer(4)      not null
 #  start_date    :date            not null
 #  end_date      :date
@@ -13,11 +12,9 @@
 
 class TaxRate < ActiveRecord::Base
   belongs_to :state
-  belongs_to :tax_category
 
   validates :percentage,    :numericality => true,
                             :presence => true
-  validates :tax_category_id, :presence => true
   validates :state_id,      :presence => true
   validates :start_date,    :presence => true
 

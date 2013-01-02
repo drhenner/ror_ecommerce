@@ -6,11 +6,9 @@
 #  name                 :string(255)     not null
 #  description          :text
 #  product_keywords     :text
-#  tax_category_id      :integer(4)
 #  product_type_id      :integer(4)      not null
 #  prototype_id         :integer(4)
 #  shipping_category_id :integer(4)      not null
-#  tax_category_id        :integer(4)      not null
 #  permalink            :string(255)     not null
 #  available_at         :datetime
 #  deleted_at           :datetime
@@ -35,7 +33,6 @@ class Product < ActiveRecord::Base
   belongs_to :product_type
   belongs_to :prototype
   belongs_to :shipping_category
-  belongs_to :tax_category #tax_status
 
   has_many :product_properties
   has_many :properties,          :through => :product_properties
@@ -66,9 +63,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :images, :reject_if => lambda { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, :allow_destroy => true
 
   validates :shipping_category_id,  :presence => true
-  validates :tax_category_id,         :presence => true
   validates :product_type_id,       :presence => true
-  #validates :prototype_id,          :presence => true
   validates :permalink, :uniqueness => true, :length => { :maximum => 150 }
   validates :name,                  :presence => true, :length => { :maximum => 165 }
   validates :description_markup,    :presence => true, :length => { :maximum => 2255 },     :if => :active
@@ -82,13 +77,14 @@ class Product < ActiveRecord::Base
   # @param [Optional Time] Time now if no value is passed in
   # @return [TaxRate] TaxRate for the state at a given time
   def tax_rate(state_id, time = Time.zone.now)
-    self.tax_category.tax_rates.where(["state_id = ? AND
-                           start_date <= ? AND
-                           (end_date > ? OR end_date IS NULL) AND
-                           active = ?", state_id,
-                                        time.to_date.to_s(:db),
-                                        time.to_date.to_s(:db),
-                                        true]).order('start_date DESC').first
+    Settings.require_state_in_address
+    TaxRate.where(["state_id = ? AND
+                   start_date <= ? AND
+                   (end_date > ? OR end_date IS NULL) AND
+                   active = ?", state_id,
+                                time.to_date.to_s(:db),
+                                time.to_date.to_s(:db),
+                                true]).order('start_date DESC').first
   end
 
   # Image that is featured for your product

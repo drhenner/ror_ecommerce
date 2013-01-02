@@ -46,7 +46,6 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   def edit
     @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
     form_info
-    #render :layout => 'admin_markup'
   end
 
   def update
@@ -104,10 +103,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     def form_info
       @prototypes               = Prototype.all.collect{|pt| [pt.name, pt.id]}
       @all_properties           = Property.all
-      #@select_product_types     = ProductType.all#.collect{|pt| [pt.name, pt.id]}
-      #@all_shipping_rates = ShippingRate.all#.collect {|sr| [sr.name, sr.id]}
       @select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
-      @select_tax_category        = TaxCategory.all.collect {|ts| [ts.name, ts.id]}
       @brands        = Brand.order(:name).all.collect {|ts| [ts.name, ts.id]}
     end
 

@@ -14,9 +14,6 @@
   <label>Percentage</label>
   <%= f.text_field :percentage %>
 
-  <label>Tax Category</label>
-  <%= f.select :tax_category_id, @tax_categories, {:include_blank => true} %>
-
   <label>Country</label>
   <%= select_tag :select_country, options_from_collection_for_select(@countries, "second", "first"), {:include_blank => true} %>
 

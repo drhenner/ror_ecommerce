@@ -62,10 +62,8 @@ ActiveRecord::Schema.define(:version => 20121123184227) do
     t.integer  "country_id"
   end
 
-  add_index "addresses", ["active"], :name => "index_addresses_on_active"
   add_index "addresses", ["addressable_id"], :name => "index_addresses_on_addressable_id"
   add_index "addresses", ["addressable_type"], :name => "index_addresses_on_addressable_type"
-  add_index "addresses", ["country_id"], :name => "index_addresses_on_country_id"
   add_index "addresses", ["state_id"], :name => "index_addresses_on_state_id"
 
   create_table "batches", :force => true do |t|
@@ -128,10 +126,12 @@ ActiveRecord::Schema.define(:version => 20121123184227) do
     t.string  "name"
     t.string  "abbreviation",     :limit => 5
     t.integer "shipping_zone_id"
-    t.boolean "active",                        :default => false, :null => false
+    t.boolean "active"
   end
 
+  add_index "countries", ["active"], :name => "index_countries_on_active"
   add_index "countries", ["name"], :name => "index_countries_on_name"
+  add_index "countries", ["shipping_zone_id", "active"], :name => "index_countries_on_shipping_zone_id_and_active"
   add_index "countries", ["shipping_zone_id"], :name => "index_countries_on_shipping_zone_id"
 
   create_table "coupons", :force => true do |t|
@@ -339,11 +339,10 @@ ActiveRecord::Schema.define(:version => 20121123184227) do
   create_table "products", :force => true do |t|
     t.string   "name",                                    :null => false
     t.text     "description"
-    t.string   "product_keywords"
+    t.text     "product_keywords"
     t.integer  "product_type_id",                         :null => false
     t.integer  "prototype_id"
     t.integer  "shipping_category_id",                    :null => false
-    t.integer  "tax_category_id",                         :null => false
     t.string   "permalink",                               :null => false
     t.datetime "available_at"
     t.datetime "deleted_at"
@@ -569,21 +568,19 @@ ActiveRecord::Schema.define(:version => 20121123184227) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tax_categories", :force => true do |t|
-    t.string "name", :null => false
-  end
-
   create_table "tax_rates", :force => true do |t|
-    t.decimal "percentage",      :precision => 8, :scale => 2, :default => 0.0,  :null => false
-    t.integer "tax_category_id",                                                 :null => false
-    t.integer "state_id",                                                        :null => false
-    t.date    "start_date",                                                      :null => false
+    t.decimal "percentage", :precision => 8, :scale => 2, :default => 0.0,  :null => false
+    t.integer "state_id",                                                   :null => false
+    t.date    "start_date",                                                 :null => false
     t.date    "end_date"
-    t.boolean "active",                                        :default => true
+    t.boolean "active",                                   :default => true
   end
 
   add_index "tax_rates", ["state_id"], :name => "index_tax_rates_on_state_id"
-  add_index "tax_rates", ["tax_category_id"], :name => "index_tax_rates_on_tax_status_id"
+
+  create_table "tax_statuses", :force => true do |t|
+    t.string "name", :null => false
+  end
 
   create_table "transaction_accounts", :force => true do |t|
     t.string   "name"

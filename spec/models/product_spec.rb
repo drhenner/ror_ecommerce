@@ -19,7 +19,7 @@ end
 
 
 #def tax_rate(state_id, time = Time.zone.now)
-#  self.tax_category.tax_rates.where(["state_id = ? AND
+#  TaxRate.where(["state_id = ? AND
 #                         start_date <= ? AND
 #                         (end_date > ? OR end_date IS NULL) AND
 #                         active = ?", state_id,

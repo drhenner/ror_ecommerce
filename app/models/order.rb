@@ -314,8 +314,7 @@ class Order < ActiveRecord::Base
   #     it is much easier to multiply the tax times to whole order's price.  This should work for most use cases.  It
   #     is rare that an order going to one location would ever need 2 tax rates
   #
-  # For now this method will just look at the first item's tax rate.  In the future tax_rate_id will move to the order object also
-  #    tax categories will be removed
+  # For now this method will just look at the first item's tax rate.  In the future tax_rate_id will move to the order object
   #
   # @param none
   # @return [Float] tax rate  10.5% === 10.5
