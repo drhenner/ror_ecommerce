@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20121123184227) do
     t.string  "name"
     t.string  "abbreviation",     :limit => 5
     t.integer "shipping_zone_id"
-    t.boolean "active"
+    t.boolean "active",                        :default => false
   end
 
   add_index "countries", ["active"], :name => "index_countries_on_active"

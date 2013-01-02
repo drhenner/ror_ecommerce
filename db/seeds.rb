@@ -11,7 +11,10 @@ countries_list   = YAML::load( File.open( file_to_load ) )
 
 countries_list.each_pair do |key,country|
   s = Country.find_by_abbreviation(country['abbreviation'])
-  Country.create(country) unless s
+  unless s
+    c = Country.create(country) unless s
+    c.update_attribute(:active, true) if Country::ACTIVE_COUNTRY_IDS.include?(c.id)
+  end
 end
 
 

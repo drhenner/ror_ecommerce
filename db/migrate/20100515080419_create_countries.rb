@@ -4,7 +4,7 @@ class CreateCountries < ActiveRecord::Migration
       t.string :name
       t.string :abbreviation, :limit => 5
       t.integer :shipping_zone_id
-      t.boolean :active
+      t.boolean :active,       :default => false
     end
     add_index :countries, :name
     add_index :countries, :shipping_zone_id

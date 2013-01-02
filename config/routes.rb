@@ -114,6 +114,7 @@ Hadean::Application.routes.draw do
     end
     namespace :config do
       resources :accounts
+      resources :countries, :only => [:index, :update, :destroy]
       resources :overviews
       resources :shipping_categories
       resources :shipping_rates
