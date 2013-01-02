@@ -1,4 +1,6 @@
 class Admin::Config::TaxRatesController < Admin::Config::BaseController
+  helper_method :countries
+
   # GET /tax_rates
   def index
     @tax_rates = TaxRate.all
@@ -68,8 +70,11 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
   end
   private
 
+  def countries
+    @countries    ||= Country.form_selector
+  end
+
   def form_info
-    @countries    = Country.form_selector
     @states       = State.all_with_country_id(@tax_rate.state.country_id) if  @tax_rate.state_id
     @states       ||= []
   end
