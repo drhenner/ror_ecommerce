@@ -41,8 +41,8 @@ class Admin::Shopping::Checkout::BaseController < Admin::Shopping::BaseControlle
                                                       {:bill_address => :state},
                                                       {:order_items =>
                                                         {:variant =>
-                                                          {:product => :images }}}]).find(session[:order_admin_id])
-      create_order if !@session_admin_order.in_progress?
+                                                          {:product => :images }}}]).find_by_id(session[:order_admin_id])
+      create_order if !@session_admin_order || !@session_admin_order.in_progress?
     else
       create_order
     end
