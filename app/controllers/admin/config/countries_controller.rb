@@ -1,4 +1,4 @@
-class Admin::Config::CountriesController < Admin::Config::BaseController < Admin::BaseController
+class Admin::Config::CountriesController < Admin::Config::BaseController
   helper_method :sort_column, :sort_direction
   def index
     params[:page] ||= 1
