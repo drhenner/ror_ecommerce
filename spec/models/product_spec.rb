@@ -87,6 +87,18 @@ describe Product, ".tax_rate" do
     product.tax_rate(1).should == tax_rate
   end
 
+  it 'should tax the countries tax rate' do
+    Settings.tax_per_state_id = false
+    tax_rate    = create(:tax_rate,
+                          :percentage => 5.0,
+                          :country_id   => 1,
+                          :start_date => (Time.zone.now - 1.year),
+                          :end_date   => (Time.zone.now + 1.month))
+    product  = create(:product)
+    product.tax_rate(1).should == tax_rate
+    Settings.tax_per_state_id = true
+  end
+
 end
 
 describe Product, ".instance methods" do

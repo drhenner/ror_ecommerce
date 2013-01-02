@@ -77,8 +77,7 @@ class Product < ActiveRecord::Base
   # @param [Optional Time] Time now if no value is passed in
   # @return [TaxRate] TaxRate for the state at a given time
   def tax_rate(state_id, time = Time.zone.now)
-    Settings.require_state_in_address
-    TaxRate.where(["state_id = ? AND
+    TaxRate.where(["#{ Settings.tax_per_state_id ? 'state_id' : 'country_id'} = ? AND
                    start_date <= ? AND
                    (end_date > ? OR end_date IS NULL) AND
                    active = ?", state_id,

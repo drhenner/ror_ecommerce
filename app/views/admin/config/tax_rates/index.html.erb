@@ -8,7 +8,13 @@
     <thead>
     <tr class='odd'>
       <th class='column1_header'>Percentage</th>
-      <th>State</th>
+      <th>
+        <% if Settings.tax_per_state_id %>
+          State
+        <% else %>
+          Country
+        <% end %>
+      </th>
       <th>Start date</th>
       <th>End date</th>
       <th>Active</th>
@@ -21,7 +27,11 @@
   <% @tax_rates.each do |tax_rate| %>
     <tr class='<%= cycle("odd", "")%>'>
       <td><%= tax_rate.percentage %></td>
-      <td><%= tax_rate.state.name %></td>
+      <% if Settings.tax_per_state_id %>
+        <td><%= tax_rate.state.name %></td>
+      <% else %>
+        <td><%= tax_rate.country.name %></td>
+      <% end %>
       <td><%= tax_rate.start_date %></td>
       <td><%= tax_rate.end_date %></td>
       <td><%= tax_rate.active.to_s %></td>

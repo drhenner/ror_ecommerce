@@ -570,7 +570,8 @@ ActiveRecord::Schema.define(:version => 20121123184227) do
 
   create_table "tax_rates", :force => true do |t|
     t.decimal "percentage", :precision => 8, :scale => 2, :default => 0.0,  :null => false
-    t.integer "state_id",                                                   :null => false
+    t.integer "state_id"
+    t.integer "country_id"
     t.date    "start_date",                                                 :null => false
     t.date    "end_date"
     t.boolean "active",                                   :default => true
