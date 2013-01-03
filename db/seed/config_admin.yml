@@ -291,7 +291,6 @@ products:
       product_type_id: 2
       prototype_id: 1
       shipping_category_id: 1
-      active: true
       permalink: cute-polo-shirt
       available_at: '2011-11-05 14:30:29'
       deleted_at:
@@ -311,7 +310,6 @@ products:
       product_type_id: 3
       prototype_id: 2
       shipping_category_id: 1
-      active: true
       permalink: cute-polo-pants
       available_at: '2011-11-05 14:30:29'
       deleted_at:

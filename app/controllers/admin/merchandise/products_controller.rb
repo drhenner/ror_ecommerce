@@ -80,7 +80,6 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
 
   def activate
     @product = Product.find(params[:id])
-    @product.active = true
     @product.deleted_at = nil
     if @product.save
       redirect_to admin_merchandise_product_url(@product)
@@ -92,7 +91,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
 
   def destroy
     @product = Product.find(params[:id])
-    @product.active = false
+    @product.deleted_at ||= Time.zone.now
     @product.save
 
     redirect_to admin_merchandise_product_url(@product)

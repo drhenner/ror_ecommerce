@@ -11,7 +11,7 @@ describe Admin::Merchandise::Products::DescriptionsController do
   end
 
   it "edit action should render edit template" do
-    @product = create(:product, :active => false, :description_markup => nil, :description => nil)
+    @product = create(:product, :deleted_at => (Time.zone.now - 1.day), :description_markup => nil, :description => nil)
     get :edit, :id => @product.id
     response.should render_template(:edit)
   end
@@ -24,7 +24,7 @@ describe Admin::Merchandise::Products::DescriptionsController do
   end
 
   it "update action should redirect when model is valid" do
-    @product = create(:product, :active => false, :description_markup => nil, :description => nil)
+    @product = create(:product, :deleted_at => (Time.zone.now - 1.day), :description_markup => nil, :description => nil)
     Product.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @product.id, :product => {:description_markup => '**Hi Everybody**'}
     @product.reload

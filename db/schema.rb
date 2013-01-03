@@ -352,11 +352,11 @@ ActiveRecord::Schema.define(:version => 20121123184227) do
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.text     "description_markup"
-    t.boolean  "active",               :default => false
     t.integer  "brand_id"
   end
 
   add_index "products", ["brand_id"], :name => "index_products_on_brand_id"
+  add_index "products", ["deleted_at"], :name => "index_products_on_deleted_at"
   add_index "products", ["name"], :name => "index_products_on_name"
   add_index "products", ["permalink"], :name => "index_products_on_permalink", :unique => true
   add_index "products", ["product_type_id"], :name => "index_products_on_product_type_id"

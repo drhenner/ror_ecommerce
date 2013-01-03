@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ProductsController do
 
   before(:each) do
-    @product = create(:product, :active => true)
+    @product = create(:product)
     @variant = create(:variant, :product => @product)
     @variant.stubs(:primary_property).returns(nil)
     @variant.stubs(:properties).returns(nil)

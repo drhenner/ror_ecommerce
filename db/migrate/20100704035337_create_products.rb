@@ -19,6 +19,7 @@ class CreateProducts < ActiveRecord::Migration
       add_index :products, :product_type_id
       add_index :products, :shipping_category_id
       add_index :products, :prototype_id
+      add_index :products, :deleted_at
       add_index :products, :permalink,   :unique => true
   end
 
