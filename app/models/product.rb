@@ -182,7 +182,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.active
-    where("products.deleted_at IS NULL OR products.deleted_at < ?", Time.zone.now)
+    where("products.deleted_at IS NULL OR products.deleted_at > ?", Time.zone.now)
     #  Add this line if you want the available_at to function
     #where("products.available_at IS NULL OR products.available_at >= ?", Time.zone.now)
   end
