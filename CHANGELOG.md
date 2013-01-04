@@ -1,8 +1,13 @@
-###1.3.0 2013-01-01
+###1.3.0 2013-01-04
 * better css in admin
 * Sales
 * Refactored Coupon admin page
 * Fix Deal bug
+* Taxes work at the order level.
+* Added Tests for inventory
+* Bug Fixes.
+* Use Setting instead of config.yml
+* documented the models better
 
 ###1.2.1 2012-09-08
 * bug in admin properties
