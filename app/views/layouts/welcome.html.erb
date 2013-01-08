@@ -4,9 +4,11 @@
   <title>
     <%= site_name %>: <%= yield :title %>
   </title>
-  <%#= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag 'sprite.css' %>
-  <%= stylesheet_link_tag 'application' %>
+  <link rel="shortcut icon" href="assets/favicon.ico" />
+  <%#= stylesheet_link_tag 'sprite.css' %>
+  <%#= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag "foundation" %>
+  <%= stylesheet_link_tag 'site/app.css' %>
     <!--[if lt IE 8]
   <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
   <![endif]-->
@@ -16,23 +18,26 @@
   <%= csrf_meta_tag %>
   <%#= javascript_include_tag :defaults %>
   <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag "foundation" %>
   <%#, :cache => 'all_1' %>
   <%= yield :head %>
 
 </head>
 <body >
 <div id='body_wrapper'>
-  <div class="bp">
-    <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
-    <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
-  </div>
+  <% if notice || alert %>
+    <div class="row">
+      <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
+      <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
+    </div>
+  <% end %>
 
     <%= render :partial => '/shared/welcome_header'%>
 
-    <div id='content_wrapper' class='container'>
+    <div id='content_wrapper' class='row'>
       <%= yield %>
     </div>
-
+    <div id='prefooter_wrapper'></div>
 </div>
   <%= render 'shared/main_footer' %>
   <%= yield :bottom %>
