@@ -59,7 +59,7 @@
       <tr>
         <td></td><td>Tax:</td><td><%= number_to_currency @order.taxed_amount %></td>
       </tr>
-      <% if @order.amount_to_credit && amount_to_credit > 0.0 %>
+      <% if @order.amount_to_credit && @order.amount_to_credit > 0.0 %>
         <tr class='odd'>
           <td></td>
           <td>Credits:</td><td></td>
