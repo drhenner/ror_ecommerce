@@ -1,0 +1,47 @@
+//= require  /site/app_mixins
+@import "compass/layout/sticky-footer";
+@import "compass/utilities/general/clearfix";
+
+// RoR eCommerce Customer-Facing Styles
+
+@include sticky-footer(54px, "#body_wrapper", "#prefooter_wrapper", "#footer_wrapper");
+
+.clearfix {
+  @include clearfix();
+}
+
+.flash_messages {
+  margin-top: 20px;
+}
+
+.field_with_errors {
+  input {
+    border: 1px #C66 solid;
+  }
+}
+
+#footer_wrapper {
+  color:#333;
+  #main-footer-tabs {margin-top:18px;}
+}
+
+.fade {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.fade:hover {
+  opacity: 0.5;
+}
+.unfade {
+  opacity: 0;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.unfade:hover {
+  opacity: 0.8;
+}
