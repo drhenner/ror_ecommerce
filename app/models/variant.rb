@@ -116,6 +116,12 @@ class Variant < ActiveRecord::Base
     ''
   end
 
+  def stock_status
+    return "sold_out"  if sold_out?
+    return "low_stock" if low_stock?
+    "available"
+  end
+
   # price times the tax %
   #
   # @param [TaxRate]
