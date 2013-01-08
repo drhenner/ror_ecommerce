@@ -53,6 +53,7 @@ Hadean::Application.configure do
   end
   PAPERCLIP_STORAGE_OPTS = {  :styles => {:mini => '48x48>',
                                           :small => '100x100>',
+                                          :medium   => '200x200>',
                                           :product => '320x320>',
                                           :large => '600x600>' },
                               :default_style => :product,
