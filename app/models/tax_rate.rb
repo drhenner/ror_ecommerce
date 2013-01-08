@@ -13,6 +13,7 @@
 
 class TaxRate < ActiveRecord::Base
   belongs_to :state
+  belongs_to :country
 
   validates :percentage,    :numericality => true,
                             :presence => true
