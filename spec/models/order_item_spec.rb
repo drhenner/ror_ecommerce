@@ -20,6 +20,26 @@ describe OrderItem, "instance methods" do
     end
   end
 
+  context ".sale_price(at)" do
+    it 'should return the price - % discount ' do
+      product = FactoryGirl.create(:product)
+      variant = FactoryGirl.create(:variant, :product => product)
+      new_sale = FactoryGirl.create(:sale,
+                                    :product_id   => product.id,
+                                    :starts_at    => (Time.zone.now - 1.days),
+                                    :ends_at      => (Time.zone.now + 1.days),
+                                    :percent_off  => 0.20
+                                    )
+
+      sale = Sale.for(product.id, Time.zone.now)
+      sale.id.should == new_sale.id
+
+      @order_item.stubs(:price).returns(100.0)
+      @order_item.stubs(:variant).returns(variant)
+      @order_item.sale_price(Time.zone.now).should == 80.0
+    end
+  end
+
   context ".shipping_method" do
     #shipping_rate.shipping_method
     it 'should return the shipping method' do
@@ -84,7 +104,7 @@ describe OrderItem, "Without VAT" do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
       order_item.calculate_total
-      order_item.total.should == 22.00
+      order_item.total.should == 20.00
     end
   end
 

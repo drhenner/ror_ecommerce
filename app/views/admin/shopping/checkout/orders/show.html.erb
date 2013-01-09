@@ -17,29 +17,29 @@
     <div class="field column">
       <%= label_tag  :name %>
     </div>
-  <div class='clear'></div>
+  <div class='clearfix'></div>
     <div class="field column">
       <%= label_tag 'First' %>
-       <%= text_field_tag(:first_name, @credit_card.first_name ,:class => 'span-3') %>
+       <%= text_field_tag(:first_name, @credit_card.first_name ,:class => '') %>
     </div>
 
     <div class="field column">
       <%= label_tag :last_name, 'Last' %>
-       <%= text_field_tag(:last_name, @credit_card.last_name,:class => 'span-3') %>
+       <%= text_field_tag(:last_name, @credit_card.last_name,:class => '') %>
     </div>
 
-  <div class='clear'></div>
-    <div class="field column float-left clear-fix">
+  <div class='clearfix'></div>
+    <div class="five columns">
       <%= label_tag 'Number'%>
-       <%= text_field_tag(:number, @credit_card.number ,:class => 'span-4 disableAutoComplete', :autocomplete => "off") %>
+       <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "off") %>
     </div>
 
-    <div class="field column float-left">
+    <div class="five columns">
       <%= label_tag :verification_value, 'VCC'%>
-       <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'span-1 disableAutoComplete', :autocomplete => "off") %>
+       <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'four disableAutoComplete', :autocomplete => "off") %>
     </div>
 
-  <div class='clear'></div>
+  <div class='clearfix'></div>
     <div class="field column float-left ">
       <%= label_tag :type, 'Type'%>
        <%= select_tag(:type, options_for_select(['visa', 'mastercard'])) %>
@@ -57,7 +57,7 @@
   <div class='clear'></div>
 
 
-    <%= submit_tag 'Complete Order', :class => 'button light' %>
+    <%= submit_tag 'Complete Order', :class => 'button ' %>
   <% end %>
 
 
@@ -67,13 +67,15 @@
 
 <% content_for :right_side_bar do -%>
 
-  <div class='span-5 float-left' >
+  <div class='twelve panel' >
     <h5>Shipping Address</h5>
     <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => session_admin_order.ship_address} %>
+    <%= link_to 'Change', admin_shopping_checkout_shipping_addresses_path %>
   </div>
-  <div class='span-5 float-left last'>
+  <div class='twelve panel'>
     <h5>Billing Address</h5>
     <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => session_admin_order.bill_address} %>
+    <%= link_to 'Change', admin_shopping_checkout_billing_addresses_path %>
   </div>
   <div class='clear' style='margin-bottom:8px;'></div>
   <%#= link_to 'Complete Order', admin_shopping_checkout_carts_path(), :class => 'button light' %>

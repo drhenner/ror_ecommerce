@@ -4,10 +4,10 @@ describe Country do
 
   context "#form_selector" do
     @countries = Country.form_selector
-    @countries.class.should              == Array
-    @countries.first.class.should        == Array
-    @countries.first.first.class.should  == String
-    @countries.first.last.class.should   == Fixnum
+    @countries.class.to_s.should              == 'Array'
+    @countries.first.class.to_s.should        == 'Array'
+    @countries.first.first.class.to_s.should  == 'String'
+    @countries.first.last.class.to_s.should   == 'Fixnum'
   end
 end
 

@@ -156,7 +156,7 @@ describe Address, "methods" do
       shipping_zone = ShippingZone.find(1)
       shipping_zone.stubs(:shipping_method_ids).returns([2,3])
       @finland.stubs(:shipping_zone).returns(shipping_zone)
-      address = FactoryGirl.create(:address, :country => @finland)
+      address = FactoryGirl.create(:address, :country => @finland, :state => nil)
       address.shipping_method_ids.should == [2,3]
       Settings.require_state_in_address = true
     end

@@ -1,0 +1,20 @@
+
+  <%= f.error_messages %>
+<ul>
+  <li class="field three">
+    <%= f.label :product_id %>
+    <%= f.select :product_id, products, :include_blank => true %>
+  </li>
+  <li class="field three">
+    <%= f.label :percent_off %>
+    <%= f.text_field :percent_off %>
+  </li>
+  <li class="field date-select">
+    <%= f.label :starts_at %>
+    <%= f.datetime_select :starts_at %>
+  </li>
+  <li class="field date-select">
+    <%= f.label :ends_at %>
+    <%= f.datetime_select :ends_at %>
+  </li>
+</ul>

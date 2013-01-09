@@ -1,0 +1,25 @@
+<h1> Sale </h1>
+
+<ul>
+  <li>
+    <label>Product:</label>
+    <%= @sale.product_id %>
+  </li>
+  <li>
+    <label>Percent Off:</label>
+    <%= @sale.percent_off %>
+  </li>
+  <li>
+    <label>Starts At:</label>
+    <%= @sale.starts_at %>
+  </li>
+  <li>
+    <label>Ends At:</label>
+    <%= @sale.ends_at %>
+  </li>
+</ul>
+<p>
+  <%= link_to "Edit", edit_admin_generic_sale_path(@sale), :class => 'button' %> |
+  <%= link_to "Destroy", [:admin, :generic, @sale], :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'button' %> |
+  <%= link_to "View All", admin_generic_sales_path, :class => 'button' %>
+</p>

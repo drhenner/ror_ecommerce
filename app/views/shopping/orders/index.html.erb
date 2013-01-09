@@ -56,9 +56,20 @@
           <td></td><td>Promotion:</td><td><%= number_to_currency @order.deal_amount %></td><td></td>
         </tr>
       <% end %>
+      <tr>
+        <td></td><td>Tax:</td><td><%= number_to_currency @order.taxed_amount %></td>
+      </tr>
+      <% if @order.amount_to_credit && @order.amount_to_credit > 0.0 %>
+        <tr class='odd'>
+          <td></td>
+          <td>Credits:</td><td></td>
+          <td><%= number_to_currency @order.amount_to_credit %></td>
+        </tr>
+      <% end %>
+
       <tfoot>
         <tr class='even'>
-          <td></td><td>Total:</td><td><em><%= number_to_currency @order.total %></em></td>
+          <td></td><td>Total:</td><td><em><%= number_to_currency @order.credited_total %></em></td>
         </tr>
       </tfoot>
     </table>

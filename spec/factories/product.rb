@@ -6,7 +6,6 @@ FactoryGirl.define do
     product_type         { |c| c.association(:product_type) }
     prototype            { |c| c.association(:prototype) }
     shipping_category    { |c| c.association(:shipping_category) }
-    tax_category          { TaxCategory.first }
     sequence(:permalink) { |i| "permalink  #{i}" }
     available_at         Time.now
     deleted_at           nil

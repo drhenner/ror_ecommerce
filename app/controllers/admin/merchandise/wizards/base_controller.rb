@@ -20,10 +20,6 @@ private
       admin_merchandise_wizards_product_types_url
     elsif !session[:product_wizard][:property_ids]
       admin_merchandise_wizards_properties_url
-    #elsif !session[:product_wizard][:tax_category_id]
-    #  admin_merchandise_wizards_tax_categories_url
-    elsif !session[:product_wizard][:tax_category_id]
-      admin_merchandise_wizards_tax_categories_url
     elsif !session[:product_wizard][:shipping_category_id]
       admin_merchandise_wizards_shipping_categories_url
     else

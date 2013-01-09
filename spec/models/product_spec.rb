@@ -19,7 +19,7 @@ end
 
 
 #def tax_rate(state_id, time = Time.zone.now)
-#  self.tax_category.tax_rates.where(["state_id = ? AND
+#  TaxRate.where(["state_id = ? AND
 #                         start_date <= ? AND
 #                         (end_date > ? OR end_date IS NULL) AND
 #                         active = ?", state_id,
@@ -85,6 +85,18 @@ describe Product, ".tax_rate" do
                           :end_date   => (Time.zone.now + 1.year))
     product  = create(:product)
     product.tax_rate(1).should == tax_rate
+  end
+
+  it 'should tax the countries tax rate' do
+    Settings.tax_per_state_id = false
+    tax_rate    = create(:tax_rate,
+                          :percentage => 5.0,
+                          :country_id   => 1,
+                          :start_date => (Time.zone.now - 1.year),
+                          :end_date   => (Time.zone.now + 1.month))
+    product  = create(:product)
+    product.tax_rate(1).should == tax_rate
+    Settings.tax_per_state_id = true
   end
 
 end

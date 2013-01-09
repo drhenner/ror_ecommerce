@@ -14,14 +14,16 @@
   <label>Percentage</label>
   <%= f.text_field :percentage %>
 
-  <label>Tax Category</label>
-  <%= f.select :tax_category_id, @tax_categories, {:include_blank => true} %>
-
   <label>Country</label>
-  <%= select_tag :select_country, options_from_collection_for_select(@countries, "second", "first"), {:include_blank => true} %>
 
-  <label>State</label>
-  <%= f.select :state_id, @states, {:include_blank => true} %>
+  <% if Settings.tax_per_state_id %>
+    <%= select_tag :select_country, options_from_collection_for_select(countries, "second", "first"), {:include_blank => true} %>
+    <label>State</label>
+    <%= f.select :state_id, @states, {:include_blank => true} %>
+  <% else %>
+    <label>Country</label>
+    <%= f.select :country_id, countries, {:include_blank => true} %>
+  <% end %>
 
   <label>Start Date</label>
   <div class='date-select'>

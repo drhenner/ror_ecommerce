@@ -36,12 +36,42 @@
           <td> N/A </td>
       <% end %>
     </tr>
+    <% if session_admin_order.coupon_amount > 0.0 %>
+      <tr>
+        <td></td>
+        <td>Coupon:</td><td></td>
+        <td><%= number_to_currency session_admin_order.coupon_amount %></td>
+      </tr>
+    <% end %>
+    <% if session_admin_order.deal_amount && session_admin_order.deal_amount > 0.0 %>
+      <tr>
+        <td></td>
+        <td>Promotion:</td><td></td>
+        <td><%= number_to_currency session_admin_order.deal_amount %></td>
+      </tr>
+    <% end %>
+    <tr class='odd'>
+      <td></td>
+      <td>Tax:</td><td></td>
+      <td>
+        <% if session_admin_order.ready_to_checkout? %>
+          <%= number_to_currency session_admin_order.taxed_amount %>
+        <% end %>
+      </td>
+    </tr>
+    <% if session_admin_order.ready_to_checkout? && session_admin_order.amount_to_credit && session_admin_order.amount_to_credit > 0.0 %>
+      <tr class='odd'>
+        <td></td>
+        <td>Credits:</td><td></td>
+        <td><%= number_to_currency session_admin_order.amount_to_credit %></td>
+      </tr>
+    <% end %>
     <tfoot>
       <tr class='even'>
         <td></td><td>Total:</td><td></td>
         <td><em>
           <% if session_admin_order.ready_to_checkout? %>
-            <%= session_admin_order.credited_total %>
+            <%= number_to_currency session_admin_order.credited_total %>
           <% end %>
         </em></td>
       </tr>

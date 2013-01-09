@@ -1,3 +1,5 @@
+# To understand this model more please look at the documentation in the CART.rb model
+
 # == Schema Information
 #
 # Table name: cart_items

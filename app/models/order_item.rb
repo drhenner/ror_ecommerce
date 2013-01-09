@@ -100,11 +100,20 @@ class OrderItem < ActiveRecord::Base
   def self.order_items_in_cart(order_id)
     find(:all, :joins => {:variant => :product },
                :conditions => { :order_items => { :order_id => order_id}},
-               :select => "order_items.*, count(*) as quantity,
+               :select => "order_items.id, order_items.order_id, order_items.shipping_rate_id, order_items.state, order_items.tax_rate_id, order_items.price, order_items.total, order_items.variant_id,
+                           products.shipping_category_id,
+                                          count(*) as quantity,
                                           products.shipping_category_id as shipping_category_id,
                                           SUM(order_items.price) as sum_price,
                                           SUM(order_items.total) as sum_total",
-               :group => "order_items.variant_id")
+               :group => "order_items.id,
+                          products.shipping_category_id,
+                          order_items.order_id,
+                          order_items.shipping_rate_id,
+                          order_items.state,
+                          order_items.tax_rate_id,
+                          order_items.price,
+                          order_items.total, order_items.variant_id")
   end
 
   # forces the order to be re-calculated.  If the order item has changed then the order totals need to be adjusted
@@ -143,12 +152,21 @@ class OrderItem < ActiveRecord::Base
   #
   # @param [none]
   # @return [Float] this is the price that the tax will be applied to.
+
   def adjusted_price(coupon = nil)
     ## coupon credit is calculated at the order level but because taxes we need to apply it now
-    # => this calculation will be complete in the version of Hadean
-    coupon_credit = coupon ? coupon.value([self.price], order) : 0.0
+    coupon_credit = coupon ? coupon.value([sale_price(order.transaction_time)], order) : 0.0
 
     self.price - coupon_credit
+  end
+
+  def sale_price(at)
+    sale = sale_at(at)
+    sale ? ( (1.0 - sale.percent_off) * self.price ).round_at(2) : self.price
+  end
+
+  def sale_at(at = Time.zone.now)
+    Sale.for(variant.product_id, at)
   end
 
   # this is the price after coupons and taxes
@@ -162,16 +180,16 @@ class OrderItem < ActiveRecord::Base
     self.total ||= calculate_total(coupon)
   end
 
-  # this is the price after coupons and taxes
+  # this is the price after coupons, deals and sales
   #   * this method does not save it just sets the value of total.
   #   * Thus allowing you to save the whole order with one opperation
   #
   # @param [none]
-  # @return [Float] this is the total of the item after taxes and coupons...
+  # @return [Float] this is the total of the item after coupons/deals/sales...
   def calculate_total(coupon = nil)
     # shipping charges are calculated in order.rb
 
-    self.total = (adjusted_price(coupon) + tax_charge).round_at(2)
+    self.total = (adjusted_price(coupon)).round_at(2)
   end
 
   # the tax charge on an item

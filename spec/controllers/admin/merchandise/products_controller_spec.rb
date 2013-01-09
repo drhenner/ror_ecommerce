@@ -43,7 +43,7 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "create action should redirect when model is valid" do
-    @product = build(:product, :description_markup => nil, :active => false)
+    @product = build(:product, :description_markup => nil, :deleted_at => (Time.zone.now - 1.day))
     Product.any_instance.stubs(:valid?).returns(true)
     post :create, :product => @product.attributes
     response.should redirect_to(edit_admin_merchandise_products_description_url(assigns[:product]))
@@ -70,14 +70,14 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "activate action should redirect when model is valid" do
-    @product = create(:product, :active => false)
+    @product = create(:product, :deleted_at => (Time.zone.now - 1.day))
     put :activate, :id => @product.id
     @product.reload
     @product.active.should be_true
     response.should redirect_to(admin_merchandise_product_url(assigns[:product]))
   end
   it "activate action should redirect to create description when model is valid" do
-    @product = create(:product, :active => false, :description_markup => nil)
+    @product = create(:product, :description_markup => nil, :deleted_at => (Time.zone.now - 1.day))
     put :activate, :id => @product.id
     @product.reload
     @product.active.should be_false

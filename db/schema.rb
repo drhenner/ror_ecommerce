@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701174050) do
+ActiveRecord::Schema.define(:version => 20121123184227) do
 
   create_table "accounting_adjustments", :force => true do |t|
     t.integer  "adjustable_id",                                 :null => false
@@ -126,9 +126,13 @@ ActiveRecord::Schema.define(:version => 20120701174050) do
     t.string  "name"
     t.string  "abbreviation",     :limit => 5
     t.integer "shipping_zone_id"
+    t.boolean "active",                        :default => false
   end
 
+  add_index "countries", ["active"], :name => "index_countries_on_active"
   add_index "countries", ["name"], :name => "index_countries_on_name"
+  add_index "countries", ["shipping_zone_id", "active"], :name => "index_countries_on_shipping_zone_id_and_active"
+  add_index "countries", ["shipping_zone_id"], :name => "index_countries_on_shipping_zone_id"
 
   create_table "coupons", :force => true do |t|
     t.string   "type",                                                           :null => false
@@ -339,7 +343,6 @@ ActiveRecord::Schema.define(:version => 20120701174050) do
     t.integer  "product_type_id",                         :null => false
     t.integer  "prototype_id"
     t.integer  "shipping_category_id",                    :null => false
-    t.integer  "tax_category_id",                         :null => false
     t.string   "permalink",                               :null => false
     t.datetime "available_at"
     t.datetime "deleted_at"
@@ -349,11 +352,11 @@ ActiveRecord::Schema.define(:version => 20120701174050) do
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.text     "description_markup"
-    t.boolean  "active",               :default => false
     t.integer  "brand_id"
   end
 
   add_index "products", ["brand_id"], :name => "index_products_on_brand_id"
+  add_index "products", ["deleted_at"], :name => "index_products_on_deleted_at"
   add_index "products", ["name"], :name => "index_products_on_name"
   add_index "products", ["permalink"], :name => "index_products_on_permalink", :unique => true
   add_index "products", ["product_type_id"], :name => "index_products_on_product_type_id"
@@ -459,6 +462,17 @@ ActiveRecord::Schema.define(:version => 20120701174050) do
 
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
+  create_table "sales", :force => true do |t|
+    t.integer  "product_id"
+    t.decimal  "percent_off", :precision => 8, :scale => 2, :default => 0.0
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+  end
+
+  add_index "sales", ["product_id"], :name => "index_sales_on_product_id"
+
   create_table "shipments", :force => true do |t|
     t.integer  "order_id"
     t.integer  "shipping_method_id",                   :null => false
@@ -554,21 +568,20 @@ ActiveRecord::Schema.define(:version => 20120701174050) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tax_categories", :force => true do |t|
-    t.string "name", :null => false
-  end
-
   create_table "tax_rates", :force => true do |t|
-    t.decimal "percentage",      :precision => 8, :scale => 2, :default => 0.0,  :null => false
-    t.integer "tax_category_id",                                                 :null => false
-    t.integer "state_id",                                                        :null => false
-    t.date    "start_date",                                                      :null => false
+    t.decimal "percentage", :precision => 8, :scale => 2, :default => 0.0,  :null => false
+    t.integer "state_id"
+    t.integer "country_id"
+    t.date    "start_date",                                                 :null => false
     t.date    "end_date"
-    t.boolean "active",                                        :default => true
+    t.boolean "active",                                   :default => true
   end
 
   add_index "tax_rates", ["state_id"], :name => "index_tax_rates_on_state_id"
-  add_index "tax_rates", ["tax_category_id"], :name => "index_tax_rates_on_tax_status_id"
+
+  create_table "tax_statuses", :force => true do |t|
+    t.string "name", :null => false
+  end
 
   create_table "transaction_accounts", :force => true do |t|
     t.string   "name"

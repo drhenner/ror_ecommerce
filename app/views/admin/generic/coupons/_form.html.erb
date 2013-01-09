@@ -16,7 +16,7 @@
 
   <% unless @coupon.id %>
     <label>Type</label>
-    <%= f.select :type, @coupon_types, { :include_blank => true } %>
+    <%= select_tag :c_type, @coupon_types.map{|ct| "<option>#{ct}</option>"}.join().html_safe , { :include_blank => true } %>
   <% end %>
 
   <label>Amount</label>

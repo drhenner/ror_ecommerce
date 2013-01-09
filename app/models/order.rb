@@ -1,3 +1,18 @@
+#  The checkout process starts on the http://www.yoursite.com/shopping/cart_items page.
+#
+#  Clicking the "checkout button" Starts the process.  This action takes all the active cart\_items in the "shopping\_cart" state and saves them as order\_items.  Each order item represents one AND ONLY ONE, I repeat ONLY ONE, item.  There is no quantity field.  It is IMPOSSIBLE to have a quantity field and do returns correctly.  DO NOT CHANGE THIS!
+#
+#  At this point the Order is in an "in\_progress" state.  Immediately the user is asked to enter their credentials for security reasons (unless they logged in with 20 minutes).  Now the user is in the checkout workflow.  The basic workflow is determined by the Shopping::BaseController.next\_form(order) method.  During the checkout the user is directed to the Shopping::OrdersController.index method.  The Shopping::BaseController.next\_form(order) method is called and the next form to show is redirected to unless they are on the last step.
+#
+#  The last step in the process you are now dealing with the billing information which trumaker uses STRIPE for.  Unfortunately using the javascript implementation of stripe can be hacked on the browser.  To prevent this the purchase button actually does a few things.
+#
+#  *  First it makes sure the Creditcard number passes luhn validation/date validation.
+#  *  Second there is a call to the trumaker app to verify the price is correct.  (BTW: this could change because the user has multiple tabs open in the browser)
+#  *  Then a call is made to the Stripe API to get a token to charge.  If all goes well the transaction will go through and the card is charged.
+#
+#  The order will now be in the 'paid' state.  Each order item will also be marked as "paid".
+
+
 # == Schema Information
 #
 # Table name: orders
@@ -45,7 +60,7 @@ class Order < ActiveRecord::Base
 
   # after_find :set_beginning_values
 
-  attr_accessor :total, :sub_total, :deal_amount
+  attr_accessor :total, :sub_total, :deal_amount, :taxed_total
 
   #validates :number,     :presence => true
   validates :user_id,     :presence => true
@@ -89,6 +104,10 @@ class Order < ActiveRecord::Base
   # @return [String] user name on the order
   def name
     self.user.name
+  end
+
+  def transaction_time
+    calculated_at || Time.zone.now
   end
 
   # formated date of the complete_at datetime on the order
@@ -225,7 +244,7 @@ class Order < ActiveRecord::Base
         tax_time = completed_at? ? completed_at : Time.zone.now
         order_items.each do |item|
           if (calculated_at.nil? || item.updated_at > self.calculated_at)
-            item.tax_rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)## This needs to change to completed_at
+            item.tax_rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
             item.calculate_total
             item.save
           end
@@ -251,7 +270,7 @@ class Order < ActiveRecord::Base
        end
        hash
      end#.sort_by{|v| v.values.first.size }.reverse
-     return_hash.delete_if{|k,v| k == 1}
+     return_hash#.delete_if{|k,v| k == 1}
   end
   # looks at all the order items and determines if the order has all the required elements to complete a checkout
   #
@@ -270,7 +289,9 @@ class Order < ActiveRecord::Base
     calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
     self.deal_amount = Deal.best_qualifing_deal(self)
     self.find_sub_total
-    self.total = (self.total + shipping_charges - deal_amount - coupon_amount ).round_at( 2 )
+    taxable_money     = (self.sub_total - deal_amount - coupon_amount) * ((100.0 + order_tax_percentage) / 100.0)
+    self.total        = (self.sub_total + shipping_charges - deal_amount - coupon_amount ).round_at( 2 )
+    self.taxed_total  = (taxable_money + shipping_charges).round_at( 2 )
   end
 
   def find_sub_total
@@ -279,6 +300,26 @@ class Order < ActiveRecord::Base
       self.total = self.total + item.item_total
     end
     self.sub_total = self.total
+  end
+
+  def taxed_amount
+    (get_taxed_total - total).round_at( 2 )
+  end
+
+  def get_taxed_total
+    taxed_total || find_total
+  end
+
+  # Turns out in order to determine the order.total_price correctly (to include coupons and deals and all the items)
+  #     it is much easier to multiply the tax times to whole order's price.  This should work for most use cases.  It
+  #     is rare that an order going to one location would ever need 2 tax rates
+  #
+  # For now this method will just look at the first item's tax rate.  In the future tax_rate_id will move to the order object
+  #
+  # @param none
+  # @return [Float] tax rate  10.5% === 10.5
+  def order_tax_percentage
+    (!order_items.blank? && order_items.first.tax_rate.try(:percentage)) ? order_items.first.tax_rate.try(:percentage) : 0.0
   end
 
   # amount the coupon reduces the value of the order
@@ -302,7 +343,7 @@ class Order < ActiveRecord::Base
   # @param [none]
   # @return [Float] amount to remove from store credit
   def amount_to_credit
-    [find_total, user.store_credit.amount].min
+    [find_total, user.store_credit.amount].min.to_f.round_at( 2 )
   end
 
   def remove_user_store_credits

@@ -18,7 +18,7 @@
   <div id="product_properties" class='span-14'>
     <% @product.product_properties.each do |product_property| %>
       <div  id='product_property_<%= product_property.id %>'
-            class="variant_form left six last">
+            class="variant_form left six last" style='margin-bottom:20px;'>
         <%= f.fields_for :product_properties, product_property do |product_property_form|%>
           <%= render :partial => 'product_property', :locals => {:product_property_form => product_property_form } %>
         <% end %>

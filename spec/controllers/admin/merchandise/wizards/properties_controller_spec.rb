@@ -40,6 +40,6 @@ describe Admin::Merchandise::Wizards::PropertiesController do
     @property = create(:property)
     put :update, :id => @property.id, :property => {:ids => [ @property.id ]}
     controller.session[:product_wizard][:property_ids].should == [@property.id]
-    response.should redirect_to(admin_merchandise_wizards_tax_categories_url)
+    response.should redirect_to(admin_merchandise_wizards_shipping_categories_url)
   end
 end

@@ -34,7 +34,7 @@ describe Admin::Config::TaxRatesController do
 
   it "create action should redirect when model is valid" do
     TaxRate.any_instance.stubs(:valid?).returns(true)
-    post :create, :tax_rate => { :start_date => Time.now.to_s(:db), :state_id => 1, :tax_category_id => 1}
+    post :create, :tax_rate => { :start_date => Time.now.to_s(:db), :state_id => 1}
     response.should redirect_to(admin_config_tax_rate_url(assigns[:tax_rate]))
   end
 

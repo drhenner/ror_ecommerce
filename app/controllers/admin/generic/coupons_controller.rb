@@ -13,14 +13,9 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
   end
 
   def create
-      if params[:coupon][:c_type] == 'coupon_value'
-        @coupon = CouponValue.new(params[:coupon])
-      elsif params[:coupon][:c_type] == 'coupon_percent'
-        @coupon = CouponPercent.new(params[:coupon])
-      else
-        @coupon = Coupon.new(params[:coupon])
-        @coupon.errors.add(:base, 'please select coupon type')
-      end
+    @coupon = Coupon.new(params[:coupon])
+    @coupon.type = params[:c_type]
+    @coupon.errors.add(:base, 'please select coupon type') if params[:c_type].blank?
     if @coupon.errors.size == 0 && @coupon.save
       flash[:notice] = "Successfully created coupon."
       redirect_to admin_generic_coupon_url(@coupon)

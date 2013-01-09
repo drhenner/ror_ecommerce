@@ -64,15 +64,21 @@ describe Order, "instance methods" do
     it 'should calculate credited_total' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
-      order_item = create(:order_item, :total => 5.52 )
+      tax_rate = create(:tax_rate, :percentage => 10.0 )
+      order_item = create(:order_item, :total => 5.52, :tax_rate => tax_rate )
+
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(100.00)
 
-
+      # shippping == 100
+      # items     == 11.04
+      # taxes     == 11.04 * .10 == 1.10
+      # credits   == 10.02
+      # total     == 112.14 - 10.02 = 102.12
       @order.user.store_credit.amount = 10.02
       @order.user.store_credit.save
 
-      @order.credited_total.should == 101.02
+      @order.credited_total.should == 102.12
     end
 
     it 'should calculate credited_total' do
@@ -110,17 +116,22 @@ describe Order, "instance methods" do
     it 'should remove store_credits.amount' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
-      order_item = create(:order_item, :total => 5.52 )
+      tax_rate = create(:tax_rate, :percentage => 10.0 )
+      order_item = create(:order_item, :total => 5.52, :tax_rate => tax_rate )
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(5.00)
-      #@order.find_total.should == 16.04
+      # shippping ==                5.00
+      # items     ==               11.04
+      # taxes     == 11.04 * .10 == 1.10
+      # total     ==               17.14
+      # @order.find_total.should == 17.14
 
 
       @order.user.store_credit.amount = 116.05
       @order.user.store_credit.save
       @order.remove_user_store_credits
       store_credit = StoreCredit.find(@order.user.store_credit.id)
-      store_credit.amount.should == 100.01
+      store_credit.amount.should == 98.91
     end
   end
 
@@ -223,10 +234,16 @@ describe Order, "instance methods" do
     it 'should calculate the order totals with shipping charges' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
-      order_item = create(:order_item, :total => 5.52 )
+      tax_rate = create(:tax_rate, :percentage => 10.0 )
+      order_item = create(:order_item, :total => 5.52, :tax_rate => tax_rate )
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(100.00)
-      @order.find_total.should == 111.04
+      # shippping == 100
+      # items     == 11.04
+      # taxes     == 11.04 * .10 == 1.10
+      # credits   == 0.0
+      # total     == 112.14  =  111.84
+      @order.find_total.should == 112.14
     end
   end
 
