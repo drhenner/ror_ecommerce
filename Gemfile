@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '~> 3.2.6'
+gem 'rails', '3.2.11'
 
 group :assets do
   #gem 'coffee-rails', "~> 3.1.0"
