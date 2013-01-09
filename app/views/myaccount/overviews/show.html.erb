@@ -1,10 +1,10 @@
-<div class='four column'>
-  <h3> <%= current_user.name %> Profile </h3>
+<div class='five column'>
+  <h4> <%= current_user.name %> Profile </h4>
 
   <ul id='profile_details' >
     <li>
       <label>Birth Date:</label>
-      <%= current_user.birth_date %>
+      <%= current_user.display_birth_date %>
     </li>
     <li>
       <label>Email:</label>
@@ -17,9 +17,9 @@
   </ul>
 </div>
 
-<div class='three column'>
+<div class='four column'>
   <div>
-    <h3> Address: </h3>
+    <h4> Address </h4>
     <% if current_user.shipping_address %>
       <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => current_user.shipping_address } %>
       <%= link_to "Edit", edit_myaccount_address_path(current_user.shipping_address) %>
@@ -28,12 +28,8 @@
       <%= link_to "New", new_myaccount_address_path() %>
     <% end %>
   </div>
-
-</div>
-
-<div class='three last column'>
   <div>
-    <h3> Store Credits: </h3>
+    <h4> Store Credits </h4>
     <%= number_to_currency current_user.store_credit.amount %>
   </div>
 </div>

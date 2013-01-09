@@ -11,23 +11,26 @@
         <li id='interesting_product_<%= i %>' class=''>
           <div class='interesting_items-image'>
 
-            <div class='no-hover-show'>
-              <% if product.hero_variant.try(:low_stock?) %>
-                <%= image_tag("ribbons/#{product.hero_variant.stock_status}.png",
-                              :width => 63, :height => 62,
-                              :class => 'upper_left_overlay' ) %>
-              <% end %>
-            <div class='hover-details unfade'>
-              <p class='bottom-hover-details'>
-                <%= number_to_currency product.price_range.first %>
-                <% if product.price_range? %>
-                    to
-                    <%= number_to_currency product.price_range.last %>
+            <%= link_to product_path(product), title: product.name do %>
+
+              <div class='no-hover-show'>
+                <% if product.hero_variant.try(:low_stock?) %>
+                  <%= image_tag("ribbons/#{product.hero_variant.stock_status}.png",
+                                :width => 63, :height => 62,
+                                :class => 'upper_left_overlay' ) %>
                 <% end %>
-              </p>
-            </div>
-            </div>
-            <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
+                <div class='hover-details unfade'>
+                  <p class='bottom-hover-details'>
+                    <%= number_to_currency product.price_range.first %>
+                    <% if product.price_range? %>
+                        to
+                        <%= number_to_currency product.price_range.last %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
+            <% end %>
           </div>
 
           <div class='interesting_items-details'><%= product.name %><br/>

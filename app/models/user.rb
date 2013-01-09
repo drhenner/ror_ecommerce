@@ -223,6 +223,10 @@ class User < ActiveRecord::Base
     self.birth_date = Date.strptime(b_date, "%m/%d/%Y").to_s(:db) if b_date.present?
   end
 
+  def display_birth_date
+    birth_date ? I18n.localize(birth_date, :format => :us_time) : 'N/A'
+  end
+
   # formats the String
   #
   # @param [String] formatted in Euro-time

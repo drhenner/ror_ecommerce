@@ -1,9 +1,9 @@
-<div id='myaccount-profile_name_form'>
-  <fieldset id="myaccount-profile" class='span-12'>
+<div id='myaccount-profile_name_form' class='clearfix'>
+  <fieldset id="myaccount-profile" class='five columns'>
      <ul>
        <li>
          <%= f.label :first_name %>
-         <%= f.text_field :first_name %>
+         <%= f.text_field :first_name, :placeholder => "First Name" %>
         </li>
         <li>
           <%= f.label :last_name %>
@@ -15,13 +15,13 @@
         </li>
         <li>
           <%= f.label :form_birth_date, "Birthday" %>
-          <%= f.text_field :form_birth_date, :class => 'ui-yearpicker' %>
+          <%= f.text_field :form_birth_date, :class => 'ui-yearpicker', :placeholder => "Birthday mm/dd/yyyy" %>
         </li>
      </ul>
   </fieldset>
 </div>
-<div id='myaccount-profile_form'>
-  <fieldset id="myaccount-profile-password" class='span-12'>
+<div id='myaccount-profile_form' class='clearfix' >
+  <fieldset id="myaccount-profile-password" class='five '>
     <ul>
       <li>
         <%= f.label :password %>
@@ -33,4 +33,5 @@
       </li>
     </ul>
   </fieldset>
+  <div class="actions"><%= f.submit 'Update' , :class => 'button' %></div>
 </div>

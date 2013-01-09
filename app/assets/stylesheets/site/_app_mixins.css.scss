@@ -9,6 +9,11 @@
   src: url("SketchetikLight.ttf") format('opentype');
 }
 
+@font-face {
+  font-family: "MyriadPro";
+  src: url("myriad-web-pro.ttf") format('opentype'), url("myriadpro-regular.otf") format('opentype');
+}
+
 @mixin rounded($radius: 4px) {
   @include border-radius($radius);
 }

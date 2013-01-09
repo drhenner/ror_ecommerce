@@ -26,6 +26,8 @@ en:
   shipping_method_updated:                'Shipping method was successfully updated.'
   all_shipping_methods_must_be_selected:  'All the Shipping Methods must be selected'
   do_not_have_anything_in_your_cart:      "You don't have anything in your cart"
+  
+  no_addresses_saved:                     'Currently no addresses saved.'
 
   date:
     formats:

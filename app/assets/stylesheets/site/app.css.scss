@@ -1,4 +1,5 @@
 //= require  /site/app_mixins
+@import "site/my_account";
 @import "compass/layout/sticky-footer";
 @import "compass/utilities/general/clearfix";
 
@@ -44,4 +45,11 @@
 
 .unfade:hover {
   opacity: 0.8;
+}
+
+.first_double_hr {
+  border-top:1px solid #444;border-botton:1px solid #DDD;color:#444;margin:0;
+}
+.second_double_hr {
+  border-top:1px solid #DDD;margin: 1px 0;margin-bottom: 20px;
 }

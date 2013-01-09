@@ -26,15 +26,19 @@
 
 <body >
 <div id='body_wrapper'>
-  <div class="bp">
+  <div class="row">
     <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
     <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
   </div>
 
     <%= render :partial => '/shared/welcome_header'%>
 
-    <div id='content_wrapper' class='row'>
-      <%= render :partial => '/shared/myaccount_subheader' if myaccount_tab %>
+    <div id='content_wrapper' class='row <%= "myaccount" if myaccount_tab %> '>
+      <%  if myaccount_tab %>
+        <hr class="first_double_hr">
+        <hr class="second_double_hr">
+        <%= render :partial => '/shared/myaccount_subheader' %>
+      <% end %>
       <%= yield %>
     </div>
     <div id='prefooter_wrapper'></div>

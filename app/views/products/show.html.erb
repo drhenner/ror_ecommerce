@@ -1,75 +1,97 @@
 
 <% content_for :head do -%>
+  <%#= stylesheet_link_tag 'smoothness/jquery-ui-1.8.15.custom.css' %>
   <%= stylesheet_link_tag 'product_page.css' %>
-<% end %>
-<% content_for :bottom do -%>
-  <%= javascript_include_tag "shopping/cart" %>
+  <%= stylesheet_link_tag 'pikachoose_product.css' %>
 <% end %>
 
 <div id='product'>
 
-  <div class='span-1<%=@product.variants.empty? ? '9' : '8' %> float-left last'>
-    <div class='span-9 float-left'>
-      <%= image_tag(@product.featured_image(:product)) %><br/>
-
-      <div class='product-details'><%= @product.name %>
-      ( <%= number_to_currency @product.price_range.first %>
-        <% if @product.price_range? %>
-            to <%= number_to_currency @product.price_range.last %>
-        <% end %>)
-      </div>
-    </div>
-    <% if @product.variants.empty? %>
-      <h2><%= @product.name %> </h2>
-      <div id='no-variant-available' class=' span-8  last'>
+  <div class=' float-left last'>
+    <% if @product.active_variants.empty? %>
+      <div id='no-variant-available' class=' four  last'>
         Sorry this product is not currently available.
       </div>
     <% else %>
-      <h2><%= @product.name %> </h2>
-      <div id='all-variants' class='dkBlueBox span-8'>
-        <div  class='innerBox'>
-          <% @product.variants.each_with_index do |variant, i| %>
-            <ul  id='variant_border_<%= i %>'
-                  class='variant_border last <%= 'selected_variant' if i == 0 %>  '
-                  data-variant='<%= variant.id %>' >
-                <div  id='variant_<%= i %>'
-                      class='variant_select' >
-                  <%= raw variant.primary_property.try(:property_name)  %>: <%= raw variant.sub_name %>
-                </div>
-              <%= number_to_currency variant.price %>
-              <%= variant.display_stock_status %>
-            </ul>
-          <% end %>
-        </div>
-      </div>
-      <hr/>
-      <div id='product_description' class='left-text-4'>
-        <%= raw @product.description %>
-      </div>
-    <% end %>
-  </div>
-  <div id='add-to-cart_form-wrapper' class='span-6 float-left last'>
-    <%= form_for  @cart_item, :as => :cart_item,
-                  :url  => shopping_cart_items_path(@cart_item),
-                  :html => { :id => 'new_cart_item' } do |f| %>
-        <%= f.hidden_field :variant_id, :value => @product.variants.first.try(:id) %>
-      <% unless @product.variants.empty? %>
-          <%= f.label :quantity, 'Quantity:' %>
-          <%= f.select :quantity, CartItem::QUANTITIES %>
 
-        <div id='submit_add_to_cart' class="gradientbuttons redtheme ready-to-add-to-cart">
-          <ul>
-            <li><a>Add to Cart</a></li>
+
+      <div id='left_product_wrapper' class='columns five'>
+         <!-- <ul class='horizontal-list'>
+            <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
+          </ul> -->
+          <% if @product.hero_variant.low_stock? %>
+            <%= image_tag("ribbons/#{@product.hero_variant.stock_status}.png",
+                          :width => 63, :height => 62,
+                          :style => 'border:none;',
+                          :class => 'upper_left_overlay'
+                           ) %>
+          <% end %>
+          <ul id="pikame" class="jcarousel-skin-pika">
+            <% @product.images.each do |image|%>
+              <li>
+                <a><%= image_tag(image.photo.url(:large)) %></a>
+              </li>
+            <% end %>
+            <% if @product.images.empty? %>
+              <li>
+                <a><%= image_tag(@product.featured_image(:large)) %></a>
+              </li>
+            <% end %>
           </ul>
-        </div>
-      <% end %>
+
+      </div>
+      <div id='right_2_product_wrapper' class='six columns last'>
+          <div id='right_product_wrapper' class=''>
+            <div class='product_title_name'><%= @product.name %></div>
+            <% if @product.active_variants.count > 0 %>
+              <div class='product_content'>
+                <div class='product_content_price'>
+                  <%= number_to_currency @product.active_variants.first.price %>
+                </div>
+                <div class='product_content_description'>
+                  <%= raw @product.description %>
+                </div>
+
+              </div>
+              <div id='product_your_fit'>
+                <div  id='product_your_fit_selections'>
+                  <div  class='selections_inner_wrapper'>
+                    <%= form_for  @cart_item,
+                                  :url  => shopping_cart_items_path(@cart_item),
+                                  :html => { :id => 'new_cart_item' } do |f| %>
+
+                        <div class='add_to_cart_wrapper'>
+                          <% unless @product.active_variants.empty? %>
+                            <%= f.submit 'Add to Cart', :class => 'button' %>
+                          <% end %>
+                        </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div id='product_your_properties'>
+                &nbsp;
+                <%= render :partial => 'properties' %>
+              </div>
+            <% end %>
+            </div>
+          </div>
+      </div>
     <% end %>
   </div>
+
+</div>
+<div id='generic-dialog'>
 </div>
 
-
 <% content_for :below_body do -%>
+  <%= javascript_include_tag 'jquery.jcarousel.js' %>
+  <%= javascript_include_tag 'jquery.pikachoose.full.js' %>
+
   <script>
-    Hadean.Utility.registerOnLoadHandler(Hadean.Cart.NewForm.initialize());
+    $(document).ready(function (){
+        $("#pikame").PikaChoose({autoPlay:true, carousel:false, carouselVertical:false});
+        $('#pikame').data('pikachoose').Pause();
+    });
   </script>
 <% end %>

@@ -1,0 +1,42 @@
+
+.myaccount {
+  font-family: MyriadPro, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  h1, h2, h3, h4 {
+    font-family: minion-pro-1,minion-pro-2,HighTower,Georgia,serif;
+  }
+  #profile_details {
+    li {
+      text-align:left;
+      display:block;
+      label {
+        cursor: auto;
+        display:inline-block;
+        width:80px;
+      }
+    }
+  }
+  fieldset {
+    border: solid 0px #F6F6F6;
+  }
+  ul {
+    list-style-type: none;
+  }
+
+  // form for profile
+  #myaccount-profile {
+    margin-bottom:0px;
+  }
+
+  // myaccount orders page
+  .order-list-item {
+    li {
+      text-align:left;
+      display:block;
+      label {
+        cursor: auto;
+        display:inline-block;
+        width:80px;
+      }
+    }
+  }
+}

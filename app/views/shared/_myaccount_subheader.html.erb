@@ -1,11 +1,11 @@
-  <div class='twelve column'>
+<div class='three columns'>
     <% if content_for? :account_title %>
-      <h2><%= yield :account_title %></h2>
+      <h3><%= yield :account_title %></h3>
     <% else %>
-      <h2>Your Account</h2>
+      <h3>Your Account</h3>
     <% end %>
-  </div>
-  <div id='myaccount-header-menu' class="two columns">
+
+  <div id='myaccount-header-menu'>
     <ul  class=" side-nav">
       <li <%= selected_myaccount_tab('address') ? 'class=active' : '' %>>
         <%= link_to 'Addresses', myaccount_addresses_path() %></li>
@@ -19,3 +19,4 @@
       </li>
     </ul>
   </div>
+</div>
