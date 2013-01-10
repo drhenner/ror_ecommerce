@@ -1,3 +1,5 @@
+@import "site/app_mixins";
+
 body {
   background:#F4F4F4;
 }
@@ -11,6 +13,8 @@ div #signup {
   background: none repeat scroll 0 0 #FFFFFF;
   border: 3px solid #E6E6E6;
 }
+
+//= require  /site/app_mixins
 
 div #signup, div #login {
   text-align:left;
@@ -46,10 +50,10 @@ label {
   display: block;
 }
 
-input.text, input.title, input[type="text"], input[type="password"] {
-  margin-bottom: 10px;
-  width: 208px;
-  background: -moz-linear-gradient(center top , #E6E6E6 0%, #FFFFFF 100%) repeat-x scroll center top #FFFFFF;
+input.text, input.title, input[type="text"], input[type="password"], input[type="email"] {
+  @include rounded(4px);
+  @include gradient();
+  margin: 0.15em 0;
   border: 1px solid #CCCCCC;
   height: 16px;
   font-size: 13px;
