@@ -1,4 +1,6 @@
 class Myaccount::AddressesController < Myaccount::BaseController
+  helper_method :countries
+
   def index
     @addresses = current_user.shipping_addresses
   end
@@ -62,5 +64,8 @@ class Myaccount::AddressesController < Myaccount::BaseController
 
   def selected_myaccount_tab(tab)
     tab == 'address'
+  end
+  def countries
+    @countries ||= Country.active
   end
 end

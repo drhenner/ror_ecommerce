@@ -1,31 +1,30 @@
 <h1>Pick a Shipping Method</h1>
 
-
+<div class='clearfix'>
   <%= form_tag(shopping_shipping_method_path(session_order.id), :method => :put) do -%>
     <% @order_items.group_by(&:shipping_category_id).each do |shipping_category_id, items| %>
-      <div class='column float-left span-19 line_items_blue last'>
+      <div class='column float-left ten line_items_blue last'>
           <% items.each do |item| %>
-            <div class='span-11 <%= cycle("line_item_yellow", "line_item_gray") -%>'>
-                <div class='span-6 '>
+            <div class='nine clearfix panel'>
+                <div class='six columns'>
                   <%= image_tag(item.variant.product.featured_image(:mini)) %>
                   <%= item.variant.product.name %> Quantity: <%= item.quantity %>
                 </div>
-                <div class='span-5  last' style='text-align:left;'>
+                <div class='five columns last' style='text-align:left;'>
                   <%= raw item.variant.display_property_details %>
                 </div>
             </div>
           <% end %>
-          <ul>
+          <ul class='ten side-nav'>
           <% items.first.shipping_rate_options(session_order.sub_total).each do |rate| %>
             <li><%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_rate_min %></li>
           <% end %>
           </ul>
       </div>
     <% end %>
-    <div class='float-left '>
-
+    <div class='ten clearfix offset-by-two'>
+      <%= submit_tag 'continue', :class => 'button' %>
     </div>
-    <%= submit_tag 'continue'%>
+
   <% end %>
 </div>
-

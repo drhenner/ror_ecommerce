@@ -1,4 +1,6 @@
 class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::Checkout::BaseController
+  helper_method :countries
+
   def index
     @shipping_address = Address.new
     if !Settings.require_state_in_address  && countries.size == 1

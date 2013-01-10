@@ -34,7 +34,7 @@
   </div>
 <% end %>
 <div id='login-wrapper' class='hadean-login'>
-  <div id='login' class='hadean-login four '>
+  <div id='login' class='hadean-login four offset-by-one'>
 
     <%= form_for  @user_session, :as => :user_session,
                   :url => user_sessions_path(@user_session),
@@ -55,14 +55,14 @@
 
          </ol>
 
-        <%= form.submit "Log In" %>
+        <%= form.submit "Log In", :class => 'button' %>
 
       </fieldset>
     <% end %>
     <%= link_to 'forgot password?', new_customer_password_reset_path() %>
   </div>
 
-  <div id='signup'>
+  <div id='signup' class='offset-by-one'>
     <%= form_for @user, :url => customer_registrations_path(@user)  do |form| %>
       <h3>New to <%= site_name %>?</h3>
       <p>A <%= site_name %> account is required to checkout. </p>
@@ -90,7 +90,7 @@
               </li>
          </ol>
       <%#= form.buttons do %>
-        <%= form.submit "Register" %>
+        <%= form.submit "Register", :class => 'button' %>
       <%# end %>
       </fieldset>
     <% end %>

@@ -1,4 +1,6 @@
 class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::Checkout::BaseController
+  helper_method :countries
+
   def index
     @billing_address = Address.new
     if !Settings.require_state_in_address  && countries.size == 1

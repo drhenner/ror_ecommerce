@@ -36,6 +36,9 @@ class Country < ActiveRecord::Base
     abbreviation_name
   end
 
+  def self.active
+    where(:active => true)
+  end
   # Finds all the countries for a form select .
   #
   # @param none

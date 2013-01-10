@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
                 :is_production_simulation,
                 :search_product,
                 :product_types,
-                :myaccount_tab
+                :myaccount_tab,
+                :select_countries
 
   before_filter :secure_session
 
@@ -133,5 +134,9 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+
+  def select_countries
+    @select_countries ||= Country.form_selector
   end
 end

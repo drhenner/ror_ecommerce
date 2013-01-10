@@ -1,4 +1,5 @@
 class Shopping::AddressesController < Shopping::BaseController
+  helper_method :countries
   # GET /shopping/addresses
   # GET /shopping/addresses.xml
   def index
@@ -97,4 +98,9 @@ class Shopping::AddressesController < Shopping::BaseController
                           :bill_address_id => (session_order.bill_address_id ? session_order.bill_address_id : id)
                                     )
   end
+
+  def countries
+    @countries ||= Country.active
+  end
+
 end
