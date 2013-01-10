@@ -1,31 +1,31 @@
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'tables.css' %>
 <% end %>
-<div id='order-wrapper' class='span-24'>
-  <div class='span-14'>
+<div id='order-wrapper' class='twelve'>
+  <div class='seven columns'>
     <h1>Order Summary</h1>
 
     <div id='order-items-summary'>
       <% i = 1 %>
       <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
-        <div id='order-item-<%= i %>'>
+        <div id='order-item-<%= i %>' class='panel'>
           <%= render :partial => 'order_item', :locals => {:items => items } %>
         </div>
         <% i += 1 %>
       <% end %>
     </div>
 
-    <div id='final-order-shipping-address' class='box span-6 rounded-10' style='text-align:left;'>
+    <div id='final-order-shipping-address' class='panel four columns radius' >
       <h5>Shipping Address</h5>
       <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
-      <%= link_to 'Change address', shopping_addresses_path, :class => 'button green' %>
+      <%= link_to 'Change address', shopping_addresses_path, :class => 'button tiny green' %>
     </div>
-    <div id='final-order-shipping-address' class='box span-6 rounded-8 last' style='text-align:left;'>
+    <div id='final-order-shipping-address' class='panel four  columns radius last' >
       <h5>Billing Address</h5>
       <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} %>
     </div>
   </div>
-  <div class='pretty_table span-10 last'>
+  <div class='pretty_table five columns last'>
     <table>
       <thead>
         <tr class='odd'>
@@ -85,50 +85,49 @@
 
 
 
-      <div class="field column">
+      <div class="field ">
         <%= label_tag  :name %>
       </div>
 <div class='clear'></div>
-      <div class="field column">
+      <div class="field six column">
         <%= label_tag 'First' %>
-         <%= text_field_tag(:first_name, @credit_card.first_name ,:class => 'span-3') %>
+         <%= text_field_tag(:first_name, @credit_card.first_name) %>
       </div>
 
-      <div class="field column">
+      <div class="field six column">
         <%= label_tag :last_name, 'Last' %>
-         <%= text_field_tag(:last_name, @credit_card.last_name,:class => 'span-3') %>
+         <%= text_field_tag(:last_name, @credit_card.last_name) %>
       </div>
 
       <div class='clear'></div>
-      <div class="field column float-left clear-fix">
+      <div class="field twelve column">
         <%= label_tag 'Number'%>
-         <%= text_field_tag(:number, @credit_card.number ,:class => 'span-4 disableAutoComplete', :autocomplete => "off") %>
+         <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "off") %>
+      </div>
+      <div class='twelve clearfix'>
+        <div class="field three column">
+          <%= label_tag :verification_value, 'VCC'%>
+           <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "off") %>
+        </div>
+
+        <div class="field column float-left ">
+          <%= label_tag :type, 'Type'%>
+           <%= select_tag(:type, options_for_select(['visa', 'mastercard'])) %>
+        </div>
+
+        <div class="field column float-left">
+          <%= label_tag :month %>
+          <%= select_tag(:month, options_for_select(['01', '02',  '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ])) %>
+        </div>
+
+        <div class="field column float-left">
+          <%= label_tag :year %>
+           <%= select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10)))) %>
+        </div>
       </div>
 
-      <div class="field column float-left">
-        <%= label_tag :verification_value, 'VCC'%>
-         <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'span-1 disableAutoComplete', :autocomplete => "off") %>
-      </div>
 
-      <div class='clear'></div>
-      <div class="field column float-left ">
-        <%= label_tag :type, 'Type'%>
-         <%= select_tag(:type, options_for_select(['visa', 'mastercard'])) %>
-      </div>
-
-      <div class="field column float-left">
-        <%= label_tag :month %>
-        <%= select_tag(:month, options_for_select(['01', '02',  '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ])) %>
-      </div>
-
-      <div class="field column float-left">
-        <%= label_tag :year %>
-         <%= select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10)))) %>
-      </div>
-      <div class='clear'></div>
-
-
-      <%= submit_tag 'Complete Order', :class => 'button light' %>
+      <%= submit_tag 'Complete Order', :class => 'button success' %>
     <% end %>
   </div>
 </div>

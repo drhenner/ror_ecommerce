@@ -1,9 +1,9 @@
-<div class='span-14 <%= cycle("line_item_blue", "line_item_light_gray") -%>'>
-    <div class='span-8 '>
+<div class='seven clearfix <%= cycle("line_item_blue", "line_item_light_gray") -%>'>
+    <div class='seven columns '>
       <%= image_tag(items.first.variant.product.featured_image(:mini)) %>
       <%= items.first.variant.product.name %> Quantity: <%= items.size %>
     </div>
-    <div class='span-5  last' style='text-align:left;'>
+    <div class='five columns last'>
       <%= raw items.first.variant.display_property_details %>
     </div>
 </div>
