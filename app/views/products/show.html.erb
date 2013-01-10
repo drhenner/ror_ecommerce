@@ -1,6 +1,5 @@
 
 <% content_for :head do -%>
-  <%#= stylesheet_link_tag 'smoothness/jquery-ui-1.8.15.custom.css' %>
   <%= stylesheet_link_tag 'product_page.css' %>
   <%= stylesheet_link_tag 'pikachoose_product.css' %>
 <% end %>
@@ -53,21 +52,38 @@
                 </div>
 
               </div>
-              <div id='product_your_fit'>
-                <div  id='product_your_fit_selections'>
-                  <div  class='selections_inner_wrapper'>
+              <div id='your_product'>
+                <% @product.active_variants.each_with_index do |variant, i| %>
+                  <div id='variant_<%= variant.id %>'
+                       class='button variant_select secondary <%= 'selected_variant' if i == 0 %>'
+                       data-variant_id='<%= variant.id %>'>
+                    <%#= raw variant.primary_property.try(:property_name)  %> <%= raw variant.product_name %>
+                  </div>
+                <% end %>
+                  <div  class='properties_inner_wrapper clearfix' >
+                    <% @product.active_variants.each_with_index do |var, i| %>
+                      <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
+                        <ul>
+                          <% var.variant_properties.each do |prop| %>
+                            <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+                    <hr/>
                     <%= form_for  @cart_item,
                                   :url  => shopping_cart_items_path(@cart_item),
                                   :html => { :id => 'new_cart_item' } do |f| %>
-
-                        <div class='add_to_cart_wrapper'>
+                        <%= f.hidden_field :variant_id %>
+                        Quantity:
+                        <%= f.select :quantity, [1,2,3,4,5,6], :include_blank => true %>
+                        <div class='add_to_cart_wrapper '>
                           <% unless @product.active_variants.empty? %>
-                            <%= f.submit 'Add to Cart', :class => 'button' %>
+                            <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'button' %>
                           <% end %>
                         </div>
                     <% end %>
                   </div>
-                </div>
               </div>
               <div id='product_your_properties'>
                 &nbsp;
@@ -85,6 +101,7 @@
 </div>
 
 <% content_for :below_body do -%>
+  <%= javascript_include_tag 'shopping/cart.js' %>
   <%= javascript_include_tag 'jquery.jcarousel.js' %>
   <%= javascript_include_tag 'jquery.pikachoose.full.js' %>
 

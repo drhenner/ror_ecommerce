@@ -3,33 +3,33 @@
   <%= stylesheet_link_tag 'shopping_cart_page.css' %>
 <% end %>
 
-<div id='cart-items-wrapper' class='items-wrapper span-18 last'>
+<div id='cart-items-wrapper' class='items-wrapper nine coloumns last'>
 
   <%= form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>
 
     <% unless @cart_items.blank? %>
-      <div id='update-cart-wrapper' class='span-15'>
+      <div id='update-cart-wrapper' class='ten columns'>
 
-          <div id='update_all_cart' class="small-gradientbuttons small-redtheme update-all-cart">
-            <ul class=' span-7'>
+          <div id='update_all_cart' class="small-gradientbuttons ">
+            <ul class=' seven '>
               <li>
-                <span class="tiny ">Make any changes below?</span>
+                <span style='margin-top:3px;' class=" ">Make any changes below?</span>
               </li>
               <li>
-                <%= cart_form.submit 'update' %>
+                <%= cart_form.submit 'update', :class => 'tiny button alert' %>
               </li>
             </ul>
 
           </div>
 
       </div>
-      <div class=''>
-        <%= cart_form.submit 'checkout', {:checkout => 1} %>
+      <div  class='two columns' style='margin-top: 3px;text-align: right;'>
+        <%= cart_form.submit 'checkout', {:checkout => 1, :class => 'small button success'} %>
       </div>
 
       <div class="clear"></div>
     <% end %>
-    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" style='border: 0px solid #FFF;'>
       <tbody>
         <% unless @cart_items.blank? %>
         <tr>

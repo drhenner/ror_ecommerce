@@ -34,7 +34,7 @@
   </div>
 <% end %>
 <div id='login-wrapper' class='hadean-login'>
-  <div id='login' class='hadean-login span-8 '>
+  <div id='login' class='hadean-login four '>
 
     <%= form_for  @user_session, :as => :user_session,
                   :url => user_sessions_path(@user_session),
@@ -79,10 +79,6 @@
               <li>
                   <%=form.label :email, 'Email' %>
                   <%= form.email_field :email, :autocomplete => 'off', :autocapitalize => 'off'  %>
-              </li>
-              <li>
-                  <%=form.label :birth_date %>
-                  <%= form.text_field :birth_date, :class => 'ui-yearpicker' %>
               </li>
               <li>
                   <%=form.label :password, 'Password' %>

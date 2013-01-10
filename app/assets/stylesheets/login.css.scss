@@ -17,6 +17,7 @@ div #signup, div #login {
   display: inline;
   float: left;
   width: 280px;
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
   fieldset {
     border: none;
@@ -30,9 +31,12 @@ div #signup, div #login {
     font-size:13px;
   }
   h3 {
+    font-size: 18px;
     margin-bottom: 5px;
   }
 }
+
+ol {list-style-type: none;margin-left:0px;}
 
 label {
   font-size: 11px;

@@ -180,7 +180,7 @@ class Variant < ActiveRecord::Base
   # @param [none]
   # @return [String]
   def product_name
-    name? ? name : product.name + sub_name
+    name? ? name : [product.name, sub_name].join(' - ')
   end
 
   # returns the primary_property's description or a blank string
@@ -189,7 +189,7 @@ class Variant < ActiveRecord::Base
   # @param [none]
   # @return [String]
   def sub_name
-    primary_property ? "(#{primary_property.description})" : ''
+    primary_property ? "#{primary_property.description}" : ''
   end
 
   # returns the brand's name or a blank string
