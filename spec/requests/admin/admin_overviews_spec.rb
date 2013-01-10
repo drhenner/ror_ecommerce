@@ -48,8 +48,8 @@ describe "Admin::Overviews" do
       user = create(:admin_user)
       visit admin_overviews_path
       #response.should redirect_to( root_url)
-      page.should have_content('Login or')
-      page.should have_content('Sign up')
+      page.should have_content('Log in')
+      page.should have_content('account is required')
     end
   end
 
@@ -58,8 +58,8 @@ describe "Admin::Overviews" do
       cookied_login
       visit admin_overviews_path
       #response.should redirect_to( root_url)
-      page.should have_content('Dave')
-      page.should have_content('not you')
+      page.should have_content('account is required to checkout')
+      page.should have_content('forgot password')
     end
   end
 end
