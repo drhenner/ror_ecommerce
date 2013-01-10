@@ -1,3 +1,7 @@
+###1.4.0 TBD
+* Added ZURB to customer facing site
+* remove blueprint CSS
+
 ###1.3.0 2013-01-04
 * better css in admin
 * Sales
