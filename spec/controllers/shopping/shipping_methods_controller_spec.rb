@@ -44,7 +44,7 @@ describe Shopping::ShippingMethodsController do
   it "update action should render edit template when model is invalid" do
     @variant2  = create(:variant)
     @address      = create(:address)
-    @order        = create(:order, :ship_address_id => @address)
+    @order        = create(:order, :ship_address => @address)
     @order_item   = create(:order_item, :order => @order, :variant => @variant)
     @order_item2   = create(:order_item, :order => @order, :variant => @variant2)
     @order.stubs(:order_items).returns([@order_item, @order_item2])
@@ -66,7 +66,7 @@ describe Shopping::ShippingMethodsController do
   it "update action should redirect when model is valid" do
 
     @address      = create(:address)
-    @order        = create(:order, :ship_address_id => @address)
+    @order        = create(:order, :ship_address => @address)
     @order_item   = create(:order_item, :order => @order, :variant => @variant)
     @order.stubs(:order_items).returns([@order_item])
     @controller.stubs(:find_or_create_order).returns(@order)

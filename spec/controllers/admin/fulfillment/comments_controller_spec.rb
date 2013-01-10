@@ -6,7 +6,7 @@ describe Admin::Fulfillment::CommentsController do
   before(:each) do
     @order = create(:order)
     activate_authlogic
-    @user = create(:admin_user)
+    @user = create_admin_user
     login_as(@user)
   end
 

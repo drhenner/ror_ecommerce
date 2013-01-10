@@ -5,7 +5,7 @@ describe Admin::Generic::SalesController do
   render_views
   before(:each) do
     activate_authlogic
-    @user = create(:admin_user)
+    @user = create_admin_user
     login_as(@user)
   end
 

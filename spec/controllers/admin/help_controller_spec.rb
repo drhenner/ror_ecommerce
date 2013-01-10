@@ -4,7 +4,7 @@ describe Admin::HelpController do
 
   before(:each) do
     activate_authlogic
-    @user = create(:admin_user)
+    @user = create_admin_user
     login_as(@user)
     @order = create(:order)
   end

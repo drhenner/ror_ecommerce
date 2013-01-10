@@ -6,7 +6,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
   before(:each) do
     activate_authlogic
 
-    @admin_user = create(:admin_user)
+    @admin_user = create_admin_user
     login_as(@user)
     #Admin::BaseController.stubs(:verify_admin).returns(@admin_user)
     controller.stubs(:verify_admin).returns(@admin_user)

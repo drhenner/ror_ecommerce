@@ -6,7 +6,7 @@ describe Admin::Merchandise::Wizards::ShippingCategoriesController do
   before(:each) do
     activate_authlogic
 
-    @user = create(:admin_user)
+    @user = create_admin_user
     login_as(@user)
     controller.session[:product_wizard] = {}
     controller.session[:product_wizard][:brand_id] = 7# @brand.id

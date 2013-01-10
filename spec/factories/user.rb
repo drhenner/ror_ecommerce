@@ -17,15 +17,17 @@ FactoryGirl.define do
   end
 
   factory :admin_user, :parent => :user do
-    roles     {
-      [Role.find_by_name(Role::ADMIN)]
-    }
+    before(:create) do |u|
+      u.roles = [Role.find_by_name(Role::ADMIN)]
+    end
   end
 
   factory :super_admin_user, :parent => :user do
-    roles     {
-      [Role.find_by_name(Role::SUPER_ADMIN)]
-    }
+    #roles     {
+    #  [Role.find_by_name(Role::SUPER_ADMIN)]
+    #}
+    before(:create) do |u|
+      u.roles = [Role.find_by_name(Role::SUPER_ADMIN)]
+    end
   end
 end
-

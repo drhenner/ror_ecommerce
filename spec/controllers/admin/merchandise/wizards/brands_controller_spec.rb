@@ -6,7 +6,7 @@ describe Admin::Merchandise::Wizards::BrandsController do
   before(:each) do
     activate_authlogic
 
-    @user = create(:admin_user)
+    @user = create_admin_user
     login_as(@user)
     controller.session[:product_wizard] = {}
   end

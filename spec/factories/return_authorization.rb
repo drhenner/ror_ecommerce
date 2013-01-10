@@ -6,7 +6,7 @@ FactoryGirl.define do
     order           { |c| c.association(:order) }
     state           "authorized"
     user            { |c| c.association(:user) }
-    created_by      { |c| c.association(:user) }
+    created_by      { |c| c.association(:user).id }
 
     after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
   end

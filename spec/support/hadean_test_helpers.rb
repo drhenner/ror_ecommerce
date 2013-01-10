@@ -1,6 +1,21 @@
 module Hadean
   module TestHelpers
 
+    def create_admin_user(args = {})
+      @uusseerr = FactoryGirl.create(:user, args)
+      #@uusseerr.stubs(:admin?).returns(true)
+      #@uusseerr.stubs(:super_admin?).returns(false)
+      @uusseerr.stubs(:roles).returns([Role.find_by_name(Role::ADMIN)])
+      @uusseerr
+    end
+    def create_super_admin_user(args = {})
+      @uusseerr = FactoryGirl.create(:user, args)
+      #@uusseerr.stubs(:admin?).returns(true)
+      #@uusseerr.stubs(:super_admin?).returns(false)
+      @uusseerr.stubs(:roles).returns([Role.find_by_name(Role::SUPER_ADMIN)])
+      @uusseerr
+    end
+
     def login_as(user)
       #activate_authlogic
       user_session_for user
