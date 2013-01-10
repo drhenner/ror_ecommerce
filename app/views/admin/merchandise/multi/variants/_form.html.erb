@@ -13,6 +13,8 @@
         </tr><tr>
           <td>Cost  </td><td> <%= ff.text_field :cost, :class => 'span-3' %> </td>
         </tr><tr>
+          <td>Name  </td><td> <%= ff.text_field :name, :class => 'span-3' %> </td>
+        </tr><tr>
           <td>Brand </td><td> <%= ff.select :brand_id, @brands, { :include_blank => true }, :class => 'span-3' %> </td>
         </tr><tr>
 
@@ -57,6 +59,8 @@
           <td>Price </td><td> <%= ff.text_field :price, :class => 'span-3' %> </td>
         </tr><tr>
           <td>Cost  </td><td> <%= ff.text_field :cost, :class => 'span-3' %> </td>
+        </tr><tr>
+          <td>Name  </td><td> <%= ff.text_field :name, :class => 'span-3' %> </td>
         </tr><tr>
           <td>Brand </td><td> <%= ff.select :brand_id, @brands, { :include_blank => true }, :class => 'span-3' %> </td>
         </tr>
