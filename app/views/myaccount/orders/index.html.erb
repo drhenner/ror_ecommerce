@@ -1,4 +1,4 @@
-<div class='eight columns'>
+<div class='nine columns'>
   <h3>Orders</h3>
 
   <% unless @orders.length > 0 %>
@@ -6,13 +6,14 @@
   <% end %>
 
   <% @orders.each do |order| %>
-    <div class='order-list-item eight'>
+    <div class='order-list-item ten'>
       <ul>
         <li><label>Number:</label>        <%= link_to order.number, myaccount_order_path(order) %></li>
         <li><label>Amount:</label>        <%= number_to_currency( order.first_invoice_amount ) %></li>
         <li><label>Status:</label>        <%= order.status %></li>
-        <li><label>Completed at:</label>  <%= order.completed_at %></li>
+        <li><label>Completed at:</label>  <%= order.display_completed_at %></li>
       </ul>
     </div>
+    <hr/>
   <% end %>
 </div>

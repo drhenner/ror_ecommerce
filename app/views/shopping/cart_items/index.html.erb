@@ -3,7 +3,12 @@
   <%= stylesheet_link_tag 'shopping_cart_page.css' %>
 <% end %>
 
+
+
 <div id='cart-items-wrapper' class='items-wrapper nine coloumns last'>
+  <% if  @cart_items.blank? && @saved_cart_items.empty? %>
+    <h2> <%= I18n.t(:nothing_in_cart) %></h2>
+  <% end %>
 
   <%= form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>
 
@@ -56,12 +61,13 @@
           </tr>
         <% end %>
 
-        <tr>
-          <td align="center" colspan="1">
 
-          </td>
-        </tr>
         <% unless @saved_cart_items.empty? %>
+          <tr>
+            <td align="center" colspan="1">
+
+            </td>
+          </tr>
           <tr>
             <td>
               <table width="100%" cellspacing="0" cellpadding="10">

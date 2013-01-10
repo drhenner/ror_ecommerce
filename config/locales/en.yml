@@ -20,6 +20,8 @@ en:
   login_successful:     "Login successful!"
   login_failure:        "Invalid email or password."
   logout_successful:    "Logout successful!"
+  
+  nothing_in_cart:       "You don't have anything in your cart."
 
   select_address_before_shipping_method:  'Select an address before you select a shipping method.'
   shipping_method_created:                'Shipping method was successfully created.'
