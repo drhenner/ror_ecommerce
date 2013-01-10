@@ -6,7 +6,7 @@ describe Admin::Config::ShippingRatesController do
   before(:each) do
     activate_authlogic
 
-    @user = create(:admin_user)
+    @user = FactoryGirl.create(:admin_user)
     login_as(@user)
   end
 
@@ -17,14 +17,14 @@ describe Admin::Config::ShippingRatesController do
   end
 
   it "index action should render index template" do
-    shipping_method = create(:shipping_method)
+    shipping_method = FactoryGirl.create(:shipping_method)
     ShippingMethod.stubs(:all).returns([shipping_method])
     get :index
     response.should render_template(:index)
   end
 
   it "show action should render show template" do
-    @shipping_rate = create(:shipping_rate)
+    @shipping_rate = FactoryGirl.create(:shipping_rate)
     get :show, :id => @shipping_rate.id
     response.should render_template(:show)
   end
@@ -36,7 +36,7 @@ describe Admin::Config::ShippingRatesController do
   end
 
   it "new action should render new template" do
-    shipping_category = create(:shipping_category)
+    shipping_category = FactoryGirl.create(:shipping_category)
     ShippingCategory.stubs(:all).returns([shipping_category])
     ShippingMethod.stubs(:all).returns([])
     get :new

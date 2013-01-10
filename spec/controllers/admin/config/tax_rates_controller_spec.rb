@@ -6,7 +6,7 @@ describe Admin::Config::TaxRatesController do
   before(:each) do
     activate_authlogic
 
-    @user = create(:admin_user)
+    @user = FactoryGirl.create(:admin_user)
     login_as(@user)
   end
 
@@ -16,7 +16,7 @@ describe Admin::Config::TaxRatesController do
   end
 
   it "show action should render show template" do
-    @tax_rate = create(:tax_rate)
+    @tax_rate = FactoryGirl.create(:tax_rate)
     get :show, :id => @tax_rate.id
     response.should render_template(:show)
   end

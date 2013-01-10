@@ -6,7 +6,7 @@ describe Admin::Config::ShippingMethodsController do
   before(:each) do
     activate_authlogic
 
-    @user = create(:admin_user)
+    @user = FactoryGirl.create(:admin_user)
     login_as(@user)
   end
 
