@@ -1,6 +1,7 @@
-###1.4.0 TBD
+###1.4.0 2013-01-11
 * Added ZURB to customer facing site
 * remove blueprint CSS
+* Rails 3.2.11 security fix all good
 
 ###1.3.0 2013-01-04
 * better css in admin
