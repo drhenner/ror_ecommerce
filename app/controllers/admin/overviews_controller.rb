@@ -5,7 +5,8 @@ class Admin::OverviewsController < ApplicationController
   def index
     #  The index action should
     if u = User.first
-      redirect_to root_url if !current_user || !current_user.admin?
+      redirect_to root_url and return if !current_user
+      redirect_to root_url unless current_user.admin?
 
     elsif Role.first
       ##  This means we don't have any users
@@ -21,6 +22,7 @@ class Admin::OverviewsController < ApplicationController
       @user.role_ids = Role.all.collect{|r| r.id }
       if @user.active? || @user.activate!
         @user.save
+        @current_user = @user
         @user_session = UserSession.new(:email => @user.email, :password => @password)
         @user_session.save
       end
