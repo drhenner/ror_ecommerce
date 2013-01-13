@@ -26,27 +26,27 @@ Hadean::Application.configure do
                                 'admin/help.css',
                                 'admin/ie.css',
                                 'autocomplete.css',
+                                'application.css',
                                 'chosen.css',
-                                'generic_dialog.css',
+                                'foundation.css',
                                 'home_page.css',
                                 'ie.css',
                                 'ie6.css',
                                 'login.css',
                                 'markdown.css',
-                                'outfits.css',
+                                'myaccount.css',
                                 'pikachoose_product.css',
                                 'product_page.css',
                                 'products_page.css',
                                 'shopping_cart_page.css',
                                 'signup.css',
+                                'site/app.css',
                                 'sprite.css',
-                                'store_credits.css',
-                                'stylist_admin.css',
-                                'stylist_cart.css',
                                 'tables.css',
-                                'cupertino/jquery-ui-1.8.12.custom.css',
-                                'modstyles.css',
-                                'scaffold.css']
+                                'cupertino/jquery-ui-1.8.12.custom.css',# in vendor
+                                'modstyles.css', # in vendor
+                                'scaffold.css' # in vendor
+                                ]
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
