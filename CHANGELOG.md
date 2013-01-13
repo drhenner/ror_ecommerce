@@ -1,3 +1,6 @@
+###1.4.1 2013-01-13
+* Remove the remaining Blueprint CSS
+
 ###1.4.0 2013-01-11
 * Added ZURB to customer facing site
 * remove blueprint CSS
