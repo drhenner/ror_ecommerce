@@ -3,10 +3,7 @@
 <head>
   <title><%= site_name %></title>
 
-  <%#= stylesheet_link_tag :all %>
   <%= stylesheet_link_tag 'sprite.css' %>
-  <%#= stylesheet_link_tag 'admin.css' %>
-
   <%= stylesheet_link_tag "admin/foundation" %>
   <%= stylesheet_link_tag "admin/app" %>
     <!--[if lt IE 8]
@@ -14,9 +11,6 @@
   <![endif]-->
   <%= csrf_meta_tag %>
 
-  <%= javascript_include_tag 'application' %>
-
-  <%#= javascript_include_tag "admin/jquery.min" %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag "admin/app" %>
   <%= javascript_include_tag "admin/jquery.customforms" %>
