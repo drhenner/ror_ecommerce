@@ -7,7 +7,10 @@
 
 <div id='cart-items-wrapper' class='items-wrapper nine coloumns last'>
   <% if  @cart_items.blank? && @saved_cart_items.empty? %>
-    <h2> <%= I18n.t(:nothing_in_cart) %></h2>
+    <h2 style='text-align:center;'> <%= I18n.t(:nothing_in_cart) %></h2>
+  <% elsif  @cart_items.blank? %>
+    <h2 style='text-align:center;'> <%= I18n.t(:only_items_saved_for_later) %></h2>
+    <div class='panel graceful'> <h3 style='text-align:center;'> <%= I18n.t(:add_items_saved_for_later) %> </h3> </div>
   <% end %>
 
   <%= form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>

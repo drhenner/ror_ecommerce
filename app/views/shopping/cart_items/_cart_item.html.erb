@@ -4,19 +4,18 @@
       <b name="<%= i %>">Item added on <br/><%= item.created_at.strftime(I18n.translate('time.formats.long_date')) %>  </b>
     </div>
 
-    <div id='remove_<%= i %>_from_cart' class="small-gradientbuttons small-redtheme ready-to-add-to-cart">
+    <div id='remove_<%= i %>_from_cart'>
       <ul>
         <li>
           <%= link_to 'Save for Later',
                         move_to_shopping_cart_item_path(item, :variant_id => item.variant_id,
                                                         :item_type_id     => ItemType::SAVE_FOR_LATER_ID),
-                                                        :method           => 'put' %>
+                                                        :method           => 'put',
+                                                        :class            => 'button tiny secondary' %>
         </li>
-      </ul>
-      <ul>
         <li>
           <%= link_to 'Delete', shopping_cart_item_path(item, :variant_id => item.variant_id),
-                              :method => :delete %>
+                              :method => :delete, :class            => 'button tiny alert' %>
         </li>
       </ul>
     </div>

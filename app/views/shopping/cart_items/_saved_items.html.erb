@@ -12,13 +12,12 @@
             <%= link_to 'Move to Cart',
                           move_to_shopping_cart_item_path(item, :variant_id => item.variant_id,
                                                           :item_type_id     => ItemType::SHOPPING_CART_ID),
-                                                          :method           => 'put' %>
+                                                          :method           => 'put',
+                                                          :class            => 'button tiny success' %>
           </li>
-        </ul>
-        <ul>
           <li>
             <%= link_to 'Delete', shopping_cart_item_path(item, :variant_id => item.variant_id),
-                                :method => :delete %>
+                                :method => :delete, :class            => 'button tiny alert' %>
           </li>
         </ul>
       </div>

@@ -20,15 +20,17 @@ en:
   login_successful:     "Login successful!"
   login_failure:        "Invalid email or password."
   logout_successful:    "Logout successful!"
-  
+
   nothing_in_cart:       "You don't have anything in your cart."
+  only_items_saved_for_later: "You only have items Saved for Later."
+  add_items_saved_for_later: "Move items to the cart to checkout."
 
   select_address_before_shipping_method:  'Select an address before you select a shipping method.'
   shipping_method_created:                'Shipping method was successfully created.'
   shipping_method_updated:                'Shipping method was successfully updated.'
   all_shipping_methods_must_be_selected:  'All the Shipping Methods must be selected'
   do_not_have_anything_in_your_cart:      "You don't have anything in your cart"
-  
+
   no_addresses_saved:                     'Currently no addresses saved.'
 
   date:

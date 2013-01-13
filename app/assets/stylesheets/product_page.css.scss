@@ -1,5 +1,4 @@
-@import "css3_buttons";
-@import "app_mixins";
+@import "site/app_mixins";
 
 $hadean_black            : #242729;
 $hadean_gray_background  : #e8e8e8;
@@ -53,7 +52,6 @@ $error_background         : #FBE3E4;
       display: block;
       label { display: inline-block; width:100px; }
       .select_your_fitting_wrapper {
-        //width:180px;
         vertical-align: top;
       }
       .add_to_cart_wrapper {margin-top:10px;float:right;}
