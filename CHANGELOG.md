@@ -1,3 +1,5 @@
+* Change implementation of updating addresses to inactivate old addresses
+
 ###1.4.1 2013-01-13
 * Remove the remaining Blueprint CSS
 
