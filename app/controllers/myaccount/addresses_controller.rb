@@ -16,6 +16,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
       @address.country = countries.first
     end
     @address.default = true          if current_user.default_shipping_address.nil?
+    @form_address = @address
   end
 
   def create
@@ -27,6 +28,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
       if @address.save_default_address(current_user, params[:address])
         format.html { redirect_to(myaccount_address_url(@address), :notice => 'Address was successfully created.') }
       else
+        @form_address = @address
         form_info
         format.html { render :action => "new" }
       end
@@ -35,17 +37,30 @@ class Myaccount::AddressesController < Myaccount::BaseController
 
   def edit
     form_info
-    @address = current_user.addresses.find(params[:id])
+    @form_address = @address = current_user.addresses.find(params[:id])
   end
 
+  # This is not normal because you should never Update an address.
+  #   THE ADDRESS could point to an existing order which needs to keep the same address
   def update
-    @address = current_user.addresses.find(params[:id])
-    if @address.save_default_address(current_user, params[:address])
-      flash[:notice] = "Successfully updated address."
-      redirect_to myaccount_address_url(@address)
-    else
-      form_info
-      render :action => 'edit'
+    @address = current_user.addresses.new(params[:address])
+    @address.replace_address_id = params[:id] # This makes the address we are updating inactive if we save successfully
+
+    # if we are editing the current default address then this is the default address
+    @address.default         = true if params[:id].to_i == current_user.default_shipping_address.try(:id)
+    @address.billing_default = true if params[:id].to_i == current_user.default_billing_address.try(:id)
+
+    respond_to do |format|
+      if @address.save
+        format.html { redirect_to(myaccount_address_url(@address), :notice => 'Address was successfully updated.') }
+      else
+        # the form needs to have an id
+        @form_address = current_user.addresses.find(params[:id])
+        # the form needs to reflect the attributes to customer entered
+        @form_address.attributes = params[:address]
+        form_info
+        format.html { render :action => "edit" }
+      end
     end
   end
 

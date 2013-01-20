@@ -1,11 +1,11 @@
 <div class='nine columns'>
   <h3> Edit Address </h3>
 
-  <%= form_for(@address, :url => myaccount_address_path(@address)) do |f| %>
+  <%= form_for(@form_address, :url => myaccount_address_path(@form_address)) do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
   <% end %>
   <div class=''>
-    <%= link_to 'Show', myaccount_address_path( @address ), :class => 'secondary small ' %>
+    <%= link_to 'Show', myaccount_address_path( @form_address ), :class => 'secondary small ' %>
     <%= link_to 'Back to List', myaccount_addresses_path, :class => 'secondary small button  ' %>
   </div>
 </div>

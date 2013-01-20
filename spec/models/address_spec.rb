@@ -17,7 +17,7 @@ describe Address, "methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     state = State.find_by_abbreviation('CA')
-    @user = create(:user)
+    @user = FactoryGirl.create(:user)
     @address = @user.addresses.new(:first_name => 'Perez',
                           :last_name  => 'Hilton',
                           :address1   => '7th street',
@@ -69,49 +69,6 @@ describe Address, "methods" do
       cc_params[:country].should == 'US'
 
 
-    end
-  end
-=begin
-  def self.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )
-    new_address = Address.new(params.merge( :address_type_id  => address_type_id,
-                              :addressable_type => old_address.addressable_type,
-                              :addressable_id   => old_address.addressable_id ))
-
-    new_address.default = true if old_address.default
-    if new_address.valid? && new_address.save_default_address
-      old_address.update_attributes(:active => false)
-      new_address  ## return the new address without errors
-    else
-      old_address.update_attributes(params) ##  This should always fail
-      old_address  ## return the old address with errors
-    end
-  end
-=end
-  context "#update_address" do
-
-    context 'valid new address' do
-      it 'should inactivate the old address' do
-        @address.save
-        params = @address.address_attributes
-        params['last_name'] = 'new last name'
-        new_address = Address.update_address(@address, params)
-        @address.reload
-        @address.active.should be_false
-        new_address.id.should_not == @address.id
-      end
-    end
-
-    context 'invalid new address' do
-      it 'should not inactivate the old address when it isnt saved' do
-        @address.save
-        params = @address.address_attributes
-        params['last_name'] = 'new last name'
-        params['address1'] = nil
-        new_address = Address.update_address(@address, params)
-        @address.reload
-        @address.active.should be_true
-        new_address.id.should == @address.id
-      end
     end
   end
 
@@ -203,8 +160,8 @@ end
 describe Address, "#save_default_address(object, params)" do
 
   before(:each) do
-    @user     = create(:user)
-    @address  = create(:address)
+    @user     = FactoryGirl.create(:user)
+    @address  = FactoryGirl.create(:address)
     @params   = @address.attributes
     @params[:default] = '1'
   end
@@ -216,13 +173,38 @@ describe Address, "#save_default_address(object, params)" do
 
   it "should only the last default address should be the default address" do
 
-    @address2   = create(:address)
-    @params2    = create(:address).attributes
+    @address2   = FactoryGirl.create(:address)
+    @params2    = FactoryGirl.create(:address).attributes
     #puts @address2.address_type_id.to_s
     @params2[:default] = '1'
     @address2.save_default_address(@user, @params2)
     @address.save_default_address(@user, @params)
     @address.default.should       be_true
     @address2.reload.default.should_not  be_true
+  end
+end
+
+describe Address do
+  describe "before save" do
+    it "#invalidates_old_defaults" do
+      old_address = FactoryGirl.create(:address, default: true, billing_default: true)
+      new_address = old_address.dup
+      new_address.save
+      old_address.reload
+      old_address.should_not be_default
+      old_address.should_not be_billing_default
+    end
+
+    context "when #replace_address_id is set" do
+      it "replaces the address" do
+        old_address = FactoryGirl.create(:address)
+        old_address.should be_active
+        new_address = old_address.dup
+        new_address.replace_address_id = old_address.id
+        new_address.save
+        old_address.reload
+        old_address.should_not be_active
+      end
+    end
   end
 end

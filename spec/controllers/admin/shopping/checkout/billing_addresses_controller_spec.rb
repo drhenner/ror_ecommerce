@@ -45,7 +45,7 @@ describe Admin::Shopping::Checkout::BillingAddressesController do
     @billing_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
     Address.any_instance.stubs(:valid?).returns(false)
     post :create, :address => @billing_address.attributes
-    response.should render_template(:index)
+    response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
@@ -64,18 +64,6 @@ describe Admin::Shopping::Checkout::BillingAddressesController do
     response.should redirect_to(admin_shopping_checkout_order_url)
   end
 
-  it "update action should render edit template when model is invalid" do
-    @billing_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
-    Address.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @billing_address.id
-    response.should render_template(:edit)
-  end
 
-  it "update action should redirect when model is valid" do
-    @billing_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
-    Address.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @billing_address.id, :address => @billing_address.attributes
-    response.should redirect_to(admin_shopping_checkout_order_url)
-  end
 
 end

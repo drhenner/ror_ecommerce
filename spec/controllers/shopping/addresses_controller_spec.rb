@@ -28,7 +28,7 @@ describe Shopping::AddressesController do
   it "create action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
     post :create, :address => @shipping_address.attributes
-    response.should redirect_to(shopping_orders_url)
+    response.should redirect_to(shopping_shipping_methods_url)
   end
 
   it "edit action should render edit template" do
@@ -45,13 +45,13 @@ describe Shopping::AddressesController do
   it "update action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_address.id, :address => @shipping_address.attributes
-    response.should redirect_to(shopping_orders_url)
+    response.should redirect_to(shopping_shipping_methods_url)
   end
 
   it "update action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
     put :select_address, :id => @shipping_address.id
-    response.should redirect_to(shopping_orders_url)
+    response.should redirect_to(shopping_shipping_methods_url)
   end
 
 end

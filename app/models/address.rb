@@ -54,6 +54,10 @@ class Address < ActiveRecord::Base
   #validates :phone_id,    :presence => true
   before_validation :sanitize_data
 
+  attr_accessor :replace_address_id # if you are updating an address set this field.
+  before_save :replace_address, if: :replace_address_id
+  after_save  :invalidate_old_defaults
+
   #accepts_nested_attributes_for :phones
 
   # First and last name of the person on the address
@@ -117,30 +121,6 @@ class Address < ActiveRecord::Base
       country.shipping_zone_id
     end
   end
-
-  # Use this method to update an address
-  # => This method will create a new address object and make the address you are updating inactive
-  # => If you always use this method for updating addresses you don't need to worry about old order
-  # => referencing the wrong address
-  #
-  # @param none
-  # @ return [Address] address of new address or of the old address with errors
-  def self.update_address(old_address, params, address_type_id = AddressType::SHIPPING_ID )
-    new_address = Address.new(params.merge( :address_type_id  => address_type_id,
-                              :addressable_type => old_address.addressable_type,
-                              :addressable_id   => old_address.addressable_id ))
-
-    new_address.default = true if old_address.default
-    if new_address.valid? && new_address.save_default_address(old_address.addressable, params)
-      old_address.update_attributes(:active => false)
-      new_address  ## return the new address without errors
-    else
-      old_address.update_attributes(params) ##  This should always fail
-      old_address  ## return the old address with errors
-    end
-  end
-
-
 
   # Use this method to create an address
   # => This method will create a new address object and if the address is a default address it
@@ -233,5 +213,18 @@ class Address < ActiveRecord::Base
       #self.phone      = self.phone.strip       unless self.phone.blank?
       self.address1    = self.address1.strip    unless self.address1.blank?
       self.address2    = self.address2.strip    unless self.address2.blank?
+    end
+
+    def replace_address
+      Address.where(id: replace_address_id).update_all(active: false)
+    end
+
+    def invalidate_old_defaults
+      [:default, :billing_default].each do |attr|
+        Address.where({
+          addressable_type: addressable_type,
+          addressable_id: addressable_id
+        }).where("id <> ?", self.id).update_all(attr => false) if self[attr]
+      end
     end
 end

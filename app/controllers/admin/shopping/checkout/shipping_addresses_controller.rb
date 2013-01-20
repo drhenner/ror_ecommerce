@@ -6,15 +6,11 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     if !Settings.require_state_in_address  && countries.size == 1
       @shipping_address.country = countries.first
     end
+    @form_address = @shipping_address
     form_info
     respond_to do |format|
       format.html # index.html.erb
     end
-  end
-
-  # GET /shopping/addresses/1/edit
-  def edit
-    @shipping_address = Address.find(params[:id])
   end
 
   def new
@@ -24,13 +20,13 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     if !Settings.require_state_in_address && countries.size == 1
       @shipping_address.country = countries.first
     end
+    @form_address = @shipping_address
     form_info
     respond_to do |format|
       format.html # new.html.erb
     end
   end
-  # POST /shopping/addresses
-  # POST /shopping/addresses.xml
+
   def create
     if params[:address].present?
       @shipping_address = checkout_user.addresses.new(params[:address])
@@ -44,33 +40,11 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
 
       if @shipping_address.id
         update_order_address_id(@shipping_address.id)
-        format.html { redirect_to(admin_shopping_checkout_order_url, :notice => 'Address was successfully created.') }
+        format.html { redirect_to(admin_shopping_checkout_shipping_methods_url, :notice => 'Address was successfully created.') }
       else
+        @form_address = @shipping_address
         form_info
-        format.html { render :action => "index" }
-      end
-    end
-  end
-
-  # PUT /shopping/addresses/1
-  # PUT /shopping/addresses/1.xml
-  def update
-    @shipping_address = checkout_user.addresses.new(params[:address])
-
-    # if we are editing the current default address then this is the default address
-    @shipping_address.default = true if params[:id] == checkout_user.default_shipping_address.try(:id)
-
-    respond_to do |format|
-      if @shipping_address.valid? && @shipping_address.save_default_address(checkout_user, params[:address])
-        old_shipping_address = checkout_user.addresses.find(params[:id])
-        old_shipping_address.update_attributes(:active => false)
-        update_order_address_id(@shipping_address.id)
-        format.html { redirect_to(admin_shopping_checkout_order_url, :notice => 'Address was successfully updated.') }
-      else
-        @shipping_address = checkout_user.addresses.find(params[:id])
-        @shipping_address.update_attributes(params[:address])
-        form_info
-        format.html { render :action => "index" }
+        format.html { render :action => "new" }
       end
     end
   end
@@ -79,7 +53,7 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     address = checkout_user.addresses.find(params[:id])
     update_order_address_id(address.id)
     respond_to do |format|
-      format.html { redirect_to admin_shopping_checkout_order_url }
+      format.html { redirect_to admin_shopping_checkout_shipping_methods_url }
     end
   end
 

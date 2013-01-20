@@ -43,30 +43,7 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
         format.html { redirect_to(admin_shopping_checkout_order_url, :notice => 'Address was successfully created.') }
       else
         form_info
-        format.html { render :action => "index" }
-      end
-    end
-  end
-
-  # PUT /shopping/addresses/1
-  # PUT /shopping/addresses/1.xml
-  def update
-    @billing_address = checkout_user.addresses.new(params[:address])
-
-    # if we are editing the current default address then this is the default address
-    @billing_address.default = true if params[:id] == checkout_user.default_billing_address.try(:id)
-
-    respond_to do |format|
-      if @billing_address.valid? && @billing_address.save_default_address(checkout_user, params[:address])
-        old_billing_address = checkout_user.addresses.find(params[:id])
-        old_billing_address.update_attributes(:active => false)
-        update_order_address_id(@billing_address.id)
-        format.html { redirect_to(admin_shopping_checkout_order_url, :notice => 'Address was successfully updated.') }
-      else
-        @billing_address = checkout_user.addresses.find(params[:id])
-        @billing_address.update_attributes(params[:address])
-        @states     = State.form_selector
-        format.html { render :action => "edit" }
+        format.html { render :action => "new" }
       end
     end
   end

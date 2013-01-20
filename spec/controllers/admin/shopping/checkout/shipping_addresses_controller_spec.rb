@@ -44,7 +44,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
     @shipping_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
     Address.any_instance.stubs(:valid?).returns(false)
     post :create, :address => @shipping_address.attributes
-    response.should render_template(:index)
+    response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
@@ -52,7 +52,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
 
     Address.any_instance.stubs(:valid?).returns(true)
     post :create, :shipping_address_id => @shipping_address.id
-    response.should redirect_to(admin_shopping_checkout_order_url)
+    response.should redirect_to(admin_shopping_checkout_shipping_methods_url)
   end
 
   it "create action should redirect when model is valid" do
@@ -60,20 +60,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
 
     Address.any_instance.stubs(:valid?).returns(true)
     post :create, :address => @shipping_address.attributes
-    response.should redirect_to(admin_shopping_checkout_order_url)
+    response.should redirect_to(admin_shopping_checkout_shipping_methods_url)
   end
 
-  it "update action should render edit template when model is invalid" do
-    @shipping_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
-    Address.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_address.id
-    response.should render_template(:index)
-  end
-
-  it "update action should redirect when model is valid" do
-    @shipping_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
-    Address.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_address.id, :address => @shipping_address.attributes
-    response.should redirect_to(admin_shopping_checkout_order_url)
-  end
 end

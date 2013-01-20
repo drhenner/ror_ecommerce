@@ -6,6 +6,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
+puts "START SEEDING"
+
 file_to_load  = Rails.root + 'db/seed/countries.yml'
 countries_list   = YAML::load( File.open( file_to_load ) )
 
