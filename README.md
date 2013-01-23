@@ -52,6 +52,33 @@ Run `rake secret` and copy/paste the output as `encryption_key` in `config/confi
 Once everything is set up, start the server with `rails server` and direct your web browser to [localhost:3000/admin/overviews](http://localhost:3000/admin/overviews).
 Write down the username/password (these are only shown once) and follow the directions.
 
+## Environmental Variables
+
+Most users are using Amazon S3 or Heroku.  Thus we have decided to have a setup easy to get your site up and running as quickly as possible in this production environment.  Hence you should add the following ENV variables:
+
+    FOG_DIRECTORY     => your bucket on AWS
+    AWS_ACCESS_KEY_ID => your access key on AWS
+    AWS_ACCESS_KEY_ID => your secret key on AWS
+    AUTHNET_LOGIN     => if you use authorize.net otherwise change config/settings.yml && config/environments/*.rb
+    AUTHNET_PASSWORD  => if you use authorize.net otherwise change config/settings.yml && config/environments/*.rb
+
+On linux:
+
+    export FOG_DIRECTORY=xxxxxxxxxxx
+    export AWS_ACCESS_KEY_ID=xxxxxxxxxxx
+    export AWS_ACCESS_KEY_ID=xxxxxxxxxxx
+    export AUTHNET_LOGIN=xxxxxxxxxxx
+    export AUTHNET_PASSWORD=xxxxxxxxxxx
+
+On Heroku:
+
+    heroku config:add FOG_DIRECTORY=xxxxxxxxxxx
+    heroku config:add AWS_ACCESS_KEY_ID=xxxxxxxxxxx
+    heroku config:add AWS_ACCESS_KEY_ID=xxxxxxxxxxx
+    heroku config:add AUTHNET_LOGIN=xxxxxxxxxxx
+    heroku config:add AUTHNET_PASSWORD=xxxxxxxxxxx
+
+
 ##Quick Evaluation
 
 If you just want to see what ror_ecommerce looks like, before you enter any products into the database, run the following command:
@@ -61,6 +88,18 @@ If you just want to see what ror_ecommerce looks like, before you enter any prod
 You should now have a minimal dataset, and be able to see a demo of the various parts of the app.
 Note: make sure you have `config/settings.yml` set up correctly before you try to checkout.
 Also, please take a look at [The 15 minute e-commerce video](http://www.ror-e.com/info/videos/7).
+
+##ImageMagick and rMagick on OS X 10.8
+------------------------------------
+
+If installing rMagick on OS X 10.8 and using Homebrew to install ImageMagick, you will need to symlink across some files or rMagick will not be able to build.
+
+Do the following in the case of a Homewbrew installed ImageMagick:
+
+    * cd /usr/local/Cellar/imagemagick/6.8.0-10/lib
+    * ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
+    * ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
+    * ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
 
 ##YARDOCS
 

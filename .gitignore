@@ -26,7 +26,7 @@ public/assets/**/*
 public/assets/*
 coverage/*
 ERD.pdf
-Gemfile.lock
+# Gemfile.lock
 config/config.yml
 config/settings.yml
 config/database.yml

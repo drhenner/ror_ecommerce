@@ -11,6 +11,7 @@ end
 
 gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
 gem 'authlogic'#, "3.2.0"
+gem "asset_sync"
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
 gem 'compass', '~> 0.12.rc.0'
@@ -41,6 +42,7 @@ gem 'will_paginate', '~> 3.0.0'
 #gem 'memcache-client', '~> 1.8.5'
 group :production do
   gem 'mysql2', '~> 0.3.10'
+  gem 'pg'
 end
 
 group :development do
