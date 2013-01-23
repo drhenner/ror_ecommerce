@@ -54,7 +54,9 @@ Write down the username/password (these are only shown once) and follow the dire
 
 ## Environmental Variables
 
-Most users are using Amazon S3 or Heroku.  Thus we have decided to have a setup easy to get your site up and running as quickly as possible in this production environment.  Hence you should add the following ENV variables:
+Most users are using Amazon S3 or Heroku.
+Thus we have decided to have a setup easy to get your site up and running as quickly as possible
+in this production environment.  Hence you should add the following ENV variables:
 
     FOG_DIRECTORY     => your bucket on AWS
     AWS_ACCESS_KEY_ID => your access key on AWS
@@ -94,7 +96,7 @@ Also, please take a look at [The 15 minute e-commerce video](http://www.ror-e.co
 
 If installing rMagick on OS X 10.8 and using Homebrew to install ImageMagick, you will need to symlink across some files or rMagick will not be able to build.
 
-Do the following in the case of a Homewbrew installed ImageMagick:
+Do the following in the case of a Homebrew installed ImageMagick(and homebrew had issues):
 
     * cd /usr/local/Cellar/imagemagick/6.8.0-10/lib
     * ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
