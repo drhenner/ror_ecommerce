@@ -80,6 +80,7 @@ On Heroku:
     heroku config:add AUTHNET_LOGIN=xxxxxxxxxxx
     heroku config:add AUTHNET_PASSWORD=xxxxxxxxxxxxxxx
 
+    heroku labs:enable user-env-compile -a myapp
 
 ##Quick Evaluation
 
