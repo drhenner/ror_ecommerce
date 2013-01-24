@@ -1,3 +1,4 @@
+* Make it dead simple to move to AWS/Heroku
 * Change implementation of updating addresses to inactivate old addresses
 
 ###1.4.1 2013-01-13
