@@ -69,7 +69,7 @@
             <% end %>
             <% if current_user %>
               <% if current_user.admin? %>
-                <%= link_to 'Admin', admin_users_path %>
+                <li><%= link_to 'Admin', admin_users_path %></li>
               <% end %>
               <li class="divider"></li>
               <li>
