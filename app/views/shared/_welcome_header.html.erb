@@ -68,6 +68,9 @@
               <li><%= link_to 'Login',  login_path %></li>
             <% end %>
             <% if current_user %>
+              <% if current_user.admin? %>
+                <%= link_to 'Admin', admin_users_path %>
+              <% end %>
               <li class="divider"></li>
               <li>
                 <%= link_to myaccount_overview_path do %>
