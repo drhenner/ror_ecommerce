@@ -111,14 +111,14 @@ Hadean::Application.configure do
     #)
 
     ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-      :login    => Settings.authnet.login
-      :password => Settings.authnet.login
+      :login    => Settings.authnet.login,
+      :password => Settings.authnet.login,
       :test     => true
     )
 
     ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
-      :login    => Settings.authnet.login
-      :password => Settings.authnet.password
+      :login    => Settings.authnet.login,
+      :password => Settings.authnet.password,
       :test     => true
     )
 
