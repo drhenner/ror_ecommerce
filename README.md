@@ -29,6 +29,11 @@ Contributors are welcome!
 We will always need help with UI, documentation, and code, so feel free to pitch in.
 To get started, simply fork this repo, make *any* changes (big or small), and create a pull request.
 
+##DEMO
+
+Take a look at [The Demo](https://ror-e.herokuapp.com).
+The login name is test@ror-e.com with a password => test123
+
 ##Getting Started
 
 Please feel free to ask/answer questions in our [Google Group](http://groups.google.com/group/ror_ecommerce).
