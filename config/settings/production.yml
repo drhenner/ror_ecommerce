@@ -1,0 +1,24 @@
+# You can use this to store API keys, mail server settings,
+# or any other kind of configuration data that your application needs.
+# In order to keep your production settings secret, store the production
+# copy of this file on your server under shared/config/config.yml and copy
+# it on deployment with this Capistrano task:#
+
+encryption_key: someRandomBINARYKEY
+mailer:
+  server: mail.example.com
+  username: someLOGIN
+  password: s0meth1ngs3cr3t
+paypal:
+  ip:         192.168.0.1
+  login:      someLOGIN.yahoo.com
+  password:   somePASSWORD
+  signature:  someSIGNATURE
+authnet:
+  login:      <%= ENV['AUTHNET_LOGIN'] %>
+  password:   <%= ENV['AUTHNET_PASSWORD'] %>
+vat: false
+require_state_in_address: true
+
+# tax_per_state_id is a field for tax being applied at the state level or country wide level in "TaxRate model"
+tax_per_state_id: true
