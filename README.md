@@ -82,6 +82,12 @@ On Heroku:
 
     heroku labs:enable user-env-compile -a myapp
 
+This is needed for using sendgrid on heroku(config/initializers/mail.rb):
+
+    heroku config:add SENDGRID_USERNAME=xxxxxxxxxxx
+    heroku config:add SENDGRID_PASSWORD=xxxxxxxxxxxxxxx
+
+
 ##Quick Evaluation
 
 If you just want to see what ror_ecommerce looks like, before you enter any products into the database, run the following command:
