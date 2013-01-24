@@ -70,6 +70,12 @@ module Hadean
       Paperclip::Attachment.default_options[:bucket]          = Settings.paperclip.bucket
       Paperclip::Attachment.default_options[:hash_secret]     = Settings.paperclip.hash_secret
 
+      require 'aws'
+      AWS.config(
+        :logger => Rails.logger,
+        :access_key_id => Settings.paperclip.s3_credentials.access_key_id,
+        :secret_access_key => Settings.paperclip.s3_credentials.secret_access_key
+      )
     end
   end
 end
