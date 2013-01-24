@@ -66,19 +66,19 @@ in this production environment.  Hence you should add the following ENV variable
 
 On linux:
 
-    export FOG_DIRECTORY=xxxxxxxxxxx
-    export AWS_ACCESS_KEY_ID=xxxxxxxxxxx
-    export AWS_ACCESS_KEY_ID=xxxxxxxxxxx
+    export FOG_DIRECTORY=xxxxxxxxxxxxxxx
+    export AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxx
+    export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     export AUTHNET_LOGIN=xxxxxxxxxxx
-    export AUTHNET_PASSWORD=xxxxxxxxxxx
+    export AUTHNET_PASSWORD=xxxxxxxxxxxxxxx
 
 On Heroku:
 
-    heroku config:add FOG_DIRECTORY=xxxxxxxxxxx
-    heroku config:add AWS_ACCESS_KEY_ID=xxxxxxxxxxx
-    heroku config:add AWS_ACCESS_KEY_ID=xxxxxxxxxxx
+    heroku config:add FOG_DIRECTORY=xxxxxxxxxxxxxxx
+    heroku config:add AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxx
+    heroku config:add AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     heroku config:add AUTHNET_LOGIN=xxxxxxxxxxx
-    heroku config:add AUTHNET_PASSWORD=xxxxxxxxxxx
+    heroku config:add AUTHNET_PASSWORD=xxxxxxxxxxxxxxx
 
 
 ##Quick Evaluation
