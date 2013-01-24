@@ -12,6 +12,7 @@ end
 gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
 gem 'authlogic'#, "3.2.0"
 gem "asset_sync"
+gem 'aws-sdk'
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
 gem 'compass', '~> 0.12.rc.0'
