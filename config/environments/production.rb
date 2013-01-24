@@ -121,7 +121,7 @@ Hadean::Application.configure do
       :password => Settings.authnet.password,
       :test     => true
     )
-
+    Paperclip::Attachment.default_options[:storage] = :s3
     #::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
     #  :login     => Settings.braintree.login
     #  :password  => Settings.braintree.password
