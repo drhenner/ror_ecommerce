@@ -112,7 +112,7 @@ Hadean::Application.configure do
 
     ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
       :login    => Settings.authnet.login,
-      :password => Settings.authnet.login,
+      :password => Settings.authnet.password,
       :test     => true
     )
 
