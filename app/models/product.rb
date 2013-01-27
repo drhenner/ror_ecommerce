@@ -212,11 +212,7 @@ class Product < ActiveRecord::Base
   # @param [Optional Boolean] the state of the product you are searching (active == true)
   # @return [ Array[Product] ]
   def self.admin_grid(params = {}, active_state = nil)
-
-    params[:page] ||= 1
-    params[:rows] ||= SETTINGS[:admin_grid_rows]
-
-    grid = includes(:variants)#paginate({:page => params[:page]})
+    grid = includes(:variants)
     grid = grid.where(['products.deleted_at IS NOT NULL AND products.deleted_at > ?', Time.now.to_s(:db)])  if active_state == false##  note nil != false
     grid = grid.where(['products.deleted_at IS NULL     OR  products.deleted_at < ?', Time.now.to_s(:db)])  if active_state == true
     grid = grid.where("products.name LIKE ?",                 "#{params[:name]}%")                  if params[:name].present?
