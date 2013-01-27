@@ -157,30 +157,27 @@ describe Address, "methods" do
   end
 end
 
-describe Address, "#save_default_address(object, params)" do
+# Save method should save to default address attribute and make all other default addresses "not default" for that user
+describe Address, "#save" do
 
   before(:each) do
     @user     = FactoryGirl.create(:user)
-    @address  = FactoryGirl.create(:address)
-    @params   = @address.attributes
-    @params[:default] = '1'
-  end
-
-  it "should save the address" do
-    @address.save_default_address(@user, @params)
-    @address.id.should_not be_nil
+    @address  = FactoryGirl.create(:address, :addressable => @user)
   end
 
   it "should only the last default address should be the default address" do
-
-    @address2   = FactoryGirl.create(:address)
-    @params2    = FactoryGirl.create(:address).attributes
-    #puts @address2.address_type_id.to_s
-    @params2[:default] = '1'
-    @address2.save_default_address(@user, @params2)
-    @address.save_default_address(@user, @params)
+    @address3   = FactoryGirl.create(:address)
+    @address3.default = true
+    @address3.save
+    @address2   = FactoryGirl.create(:address, :addressable => @user)
+    @address2.default = true
+    @address2.save
+    @address.default = true
+    @address.save
     @address.default.should       be_true
     @address2.reload.default.should_not  be_true
+    @address2.reload.default.should_not  be_true
+    @address3.reload.default.should  be_true # should only update the addresses that belong to that user
   end
 end
 

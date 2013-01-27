@@ -46,12 +46,10 @@ class Address < ActiveRecord::Base
   validates :address1,    :presence => true,       :length => { :maximum => 255 }
   validates :city,        :presence => true,
                           :format   => { :with => CustomValidators::Names.name_validator },       :length => { :maximum => 75 }
-  #validates :state_id,       :presence => true,  :if => Proc.new { |address| Settings.have_state_in_address || address.country_id.blank?  }
   validates :state_id,      :presence => true,  :if => Proc.new { |address| Settings.require_state_in_address}
   validates :country_id,    :presence => true,  :if => Proc.new { |address| !Settings.require_state_in_address}
   #validates :state_name,  :presence => true,  :if => Proc.new { |address| address.state_id.blank?   }
   validates :zip_code,    :presence => true,       :length => { :maximum => 12 }
-  #validates :phone_id,    :presence => true
   before_validation :sanitize_data
 
   attr_accessor :replace_address_id # if you are updating an address set this field.
@@ -119,37 +117,6 @@ class Address < ActiveRecord::Base
       state.shipping_zone_id
     elsif country_id
       country.shipping_zone_id
-    end
-  end
-
-  # Use this method to create an address
-  # => This method will create a new address object and if the address is a default address it
-  # => will make all other addresses that belong to the user non-default
-  #
-  # @param [object] object associated to the address (user or possibly a company in the future)
-  # @param [Hash] hash of attributes for the new address
-  # @ return [Boolean] true or nil
-  def save_default_address(object, params)
-    Address.transaction do
-      if params[:default] && params[:default] != '0'
-        Address.update_all( { :default  => false},
-                            { :addresses => {
-                                  :addressable_id => object.id,
-                                  :addressable_type => object.class.to_s
-                                            } }) if object
-        self.default = true
-      end
-      if params[:billing_default] && params[:billing_default] != '0'
-        Address.update_all( { :billing_default => false},
-                            { :addresses => {
-                                  :addressable_id => object.id,
-                                  :addressable_type => object.class.to_s
-                                            } }) if object
-        self.billing_default = true
-      end
-      self.addressable = object
-      self.save
-
     end
   end
 

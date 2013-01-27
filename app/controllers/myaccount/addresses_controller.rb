@@ -25,7 +25,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
     @address.billing_default = true  if current_user.default_billing_address.nil?
 
     respond_to do |format|
-      if @address.save_default_address(current_user, params[:address])
+      if @address.save
         format.html { redirect_to(myaccount_address_url(@address), :notice => 'Address was successfully created.') }
       else
         @form_address = @address
