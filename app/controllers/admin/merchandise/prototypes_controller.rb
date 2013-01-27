@@ -3,10 +3,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   respond_to :html, :json
   def index
     @prototypes = Prototype.admin_grid(params).order(sort_column + " " + sort_direction).
-                                              paginate(:per_page => 20, :page => params[:page].to_i)
-    respond_to do |format|
-      format.html
-    end
+                                              paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   def new

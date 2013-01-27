@@ -4,10 +4,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   def index
     params[:page] ||= 1
     @properties = Property.admin_grid(params).order(sort_column + " " + sort_direction).
-                                              paginate(:per_page => 20, :page => params[:page].to_i)
-    respond_to do |format|
-      format.html
-    end
+                                              paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   def new

@@ -1,7 +1,6 @@
 class Shopping::OrdersController < Shopping::BaseController
   before_filter :require_login
   # GET /shopping/orders
-  # GET /shopping/orders.xml
   ### The intent of this action is two fold
   #
   # A)  if there is a current order redirect to the process that
@@ -33,7 +32,6 @@ class Shopping::OrdersController < Shopping::BaseController
   end
 
   # POST /shopping/orders
-  # POST /shopping/orders.xml
   def update
     @order = find_or_create_order
     @order.ip_address = request.remote_ip

@@ -2,12 +2,8 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   def index
     # by default find all POs that are not received
-    params[:page] ||= 1
     @purchase_orders = PurchaseOrder.receiving_admin_grid(params).order(sort_column + " " + sort_direction).
-                                                        paginate(:per_page => 25, :page => params[:page].to_i)
-    respond_to do |format|
-      format.html
-    end
+                                                        paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   #def new
@@ -42,6 +38,10 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
 private
   def form_info
 
+  end
+  def pagination_rows
+    params[:rows] ||= 25
+    params[:rows].to_i
   end
 
   def sort_column

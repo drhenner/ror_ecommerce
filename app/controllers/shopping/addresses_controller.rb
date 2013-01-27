@@ -1,7 +1,6 @@
 class Shopping::AddressesController < Shopping::BaseController
   helper_method :countries
   # GET /shopping/addresses
-  # GET /shopping/addresses.xml
   def index
     @form_address = @shopping_address = Address.new
     if !Settings.require_state_in_address && countries.size == 1
@@ -20,7 +19,6 @@ class Shopping::AddressesController < Shopping::BaseController
   end
 
   # POST /shopping/addresses
-  # POST /shopping/addresses.xml
   def create
     if params[:address].present?
       @shopping_address = current_user.addresses.new(params[:address])
@@ -43,8 +41,6 @@ class Shopping::AddressesController < Shopping::BaseController
     end
   end
 
-  # PUT /shopping/addresses/1
-  # PUT /shopping/addresses/1.xml
   def update
     @shopping_address = current_user.addresses.new(params[:address])
     @shopping_address.replace_address_id = params[:id] # This makes the address we are updating inactive if we save successfully
@@ -75,8 +71,7 @@ class Shopping::AddressesController < Shopping::BaseController
       format.html { redirect_to shopping_shipping_methods_url }
     end
   end
-  # DELETE /shopping/addresses/1
-  # DELETE /shopping/addresses/1.xml
+
   def destroy
     @shopping_address = Address.find(params[:id])
     @shopping_address.update_attributes(:active => false)

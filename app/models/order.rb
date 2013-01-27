@@ -71,6 +71,11 @@ class Order < ActiveRecord::Base
   CHARACTERS_SEED = 21
 
   state_machine :initial => 'in_progress' do
+    state 'in_progress'
+    state 'complete'
+    state 'paid'
+    state 'canceled'
+
     after_transition :to => 'paid', :do => [:mark_items_paid]
 
     event :complete do

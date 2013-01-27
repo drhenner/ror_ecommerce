@@ -1,14 +1,12 @@
 class Shopping::CartItemsController < Shopping::BaseController
 
   # GET /shopping/cart_items
-  # GET /shopping/cart_items.xml
   def index
     @cart_items       = session_cart.shopping_cart_items
     @saved_cart_items = session_cart.saved_cart_items
   end
 
   # POST /shopping/cart_items
-  # POST /shopping/cart_items.xml
   def create
     @cart_item = get_new_cart_item
     session_cart.save if session_cart.new_record?
@@ -29,9 +27,7 @@ class Shopping::CartItemsController < Shopping::BaseController
   end
 
   # PUT /carts/1
-  # PUT /carts/1.xml
   def update
-    #@cart_item = session_cart.shopping_cart_items.find(params[:id])
 
     respond_to do |format|
       if session_cart.update_attributes(params[:cart])

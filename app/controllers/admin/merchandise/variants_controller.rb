@@ -2,13 +2,9 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
-    params[:page] ||= 1
     @product = Product.find(params[:product_id])
     @variants = @product.variants.admin_grid(@product, params).order(sort_column + " " + sort_direction).
-                                              paginate(:per_page => 20, :page => params[:page].to_i)
-    respond_to do |format|
-      format.html
-    end
+                                              paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   def show

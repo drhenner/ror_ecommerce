@@ -1,10 +1,8 @@
 class Admin::Generic::DealsController < Admin::Generic::BaseController
   helper_method :sort_column, :sort_direction, :product_types,:deal_types
   def index
-    params[:page] ||= 1
-    params[:rows] ||= 20
     @deals = Deal.order(sort_column + " " + sort_direction).
-                                              paginate(:page => params[:page].to_i, :per_page => params[:rows].to_i)
+                                              paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   def show

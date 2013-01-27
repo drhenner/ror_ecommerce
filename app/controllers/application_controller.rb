@@ -39,6 +39,16 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  
+  def pagination_page
+    params[:page] ||= 1
+    params[:page].to_i
+  end
+  
+  def pagination_rows
+    params[:rows] ||= 20
+    params[:rows].to_i
+  end
 
   def myaccount_tab
     false

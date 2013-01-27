@@ -2,12 +2,8 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   respond_to :html, :json
   def index
-    params[:page] ||= 1
     @product_types = ProductType.admin_grid(params).order(sort_column + " " + sort_direction).
-                                              paginate(:per_page => 25, :page => params[:page].to_i)
-    respond_to do |format|
-      format.html
-    end
+                                              paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   def show

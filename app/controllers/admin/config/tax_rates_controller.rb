@@ -4,28 +4,17 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
   # GET /tax_rates
   def index
     @tax_rates = TaxRate.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   # GET /tax_rates/1
   def show
     @tax_rate = TaxRate.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
   end
 
   # GET /tax_rates/new
   def new
     @tax_rate = TaxRate.new
     form_info
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
   # GET /tax_rates/1/edit

@@ -1,6 +1,5 @@
 class Shopping::ShippingMethodsController < Shopping::BaseController
   # GET /shopping/shipping_methods
-  # GET /shopping/shipping_methods.xml
   def index
     unless find_or_create_order.ship_address_id
       flash[:notice] = I18n.t('select_address_before_shipping_method')
@@ -22,7 +21,6 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
   end
 
   # PUT /shopping/shipping_methods/1
-  # PUT /shopping/shipping_methods/1.xml
   def update
     all_selected = true
     params[:shipping_category].each_pair do |category_id, rate_id|#[rate]
