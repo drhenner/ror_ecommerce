@@ -138,11 +138,7 @@ class Product < ActiveRecord::Base
   def price_range
     return @price_range if @price_range
     return @price_range = ['N/A', 'N/A'] if active_variants.empty?
-    @price_range = active_variants.inject([active_variants.first.price, active_variants.first.price]) do |a, variant|
-      a[0] = variant.price if variant.price < a[0]
-      a[1] = variant.price if variant.price > a[1]
-      a
-    end
+    @price_range = active_price_range
   end
 
   # Answers if the product has a price range or just one price.
@@ -234,6 +230,15 @@ class Product < ActiveRecord::Base
   private
     def create_content
       self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
+    end
+
+    # only call if active_variants exist
+    def active_price_range
+      active_variants.inject([active_variants.first.price, active_variants.first.price]) do |a, variant|
+        a[0] = variant.price if variant.price < a[0]
+        a[1] = variant.price if variant.price > a[1]
+        a
+      end
     end
 
     # if the permalink is not filled in set it equal to the name
