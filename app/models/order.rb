@@ -504,9 +504,6 @@ class Order < ActiveRecord::Base
   # @return [ Array[Order] ]
   def self.find_finished_order_grid(params = {})
 
-    params[:page] ||= 1
-    params[:rows] ||= 25
-
     grid = Order
     grid = grid.includes([:user])
     grid = grid.where({:active => true })                     unless  params[:show_all].present? &&
@@ -516,7 +513,7 @@ class Order < ActiveRecord::Base
     grid = grid.where("orders.completed_at IS NOT NULL")
     grid = grid.where("orders.number LIKE ?", "#{params[:number]}%")  if params[:number].present?
     grid = grid.where("orders.email LIKE ?", "#{params[:email]}%")    if params[:email].present?
-    grid = grid.order("#{params[:sidx]} #{params[:sord]}").paginate(:page => params[:page].to_i, :per_page => params[:rows].to_i)
+    grid = grid.order("#{params[:sidx]} #{params[:sord]}")
 
   end
 
