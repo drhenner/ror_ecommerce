@@ -2,11 +2,17 @@ module Hadean
   module TestHelpers
 
     def create_admin_user(args = {})
-      @auusseerr = FactoryGirl.create(:user, args)
-      #@auusseerr.stubs(:admin?).returns(true)
+      @uusseerr = FactoryGirl.create(:user, args)
       #@uusseerr.stubs(:super_admin?).returns(false)
-      @auusseerr.stubs(:roles).returns([Role.find_by_name(Role::ADMIN)])
-      @auusseerr
+      @uusseerr.stubs(:roles).returns([Role.find_by_name(Role::ADMIN)])
+      @uusseerr
+    end
+
+    def create_real_admin_user(args = {})
+      @uusseerr = FactoryGirl.create(:user, args)
+      @uusseerr.role_ids = [Role.find_by_name(Role::ADMIN).id]
+      @uusseerr.save
+      @uusseerr
     end
     def create_super_admin_user(args = {})
       @uusseerr = FactoryGirl.create(:user, args)
