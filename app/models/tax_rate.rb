@@ -29,6 +29,20 @@ class TaxRate < ActiveRecord::Base
     Settings.vat ? percentage : 0.0
   end
 
+  def self.active
+    where(["tax_rates.active = ?", true])
+  end
+
+  def self.at(time = Time.zone.now)
+    where(["tax_rates.start_date <= ? AND
+           (end_date > ? OR end_date IS NULL)", time.to_date.to_s(:db), time.to_date.to_s(:db)])
+  end
+
+  # region_id can be state or country depending on the setup in config/settings.yml
+  def self.for_region(region_id)
+    where(["#{ Settings.tax_per_state_id ? 'state_id' : 'country_id'} = ?", region_id ])
+  end
+
   private
 
     def tax_per_state?
