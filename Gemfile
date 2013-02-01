@@ -9,13 +9,13 @@ group :assets do
 end
   gem 'sass-rails', "  ~> 3.2.3"
 
-gem "activemerchant", '~> 1.17.0'#, :lib => 'active_merchant'
+gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem 'authlogic'#, "3.2.0"
 gem "asset_sync"
 gem 'aws-sdk'
 gem 'bluecloth',     '~> 2.1.0'
-gem 'cancan', '~> 1.6.7'
-gem 'compass', '~> 0.12.rc.0'
+gem 'cancan', '~> 1.6.8'
+gem 'compass', '~> 0.12.0'
 gem 'compass-rails'
 #  gem 'dalli', '~> 1.0.2'
 
@@ -38,7 +38,7 @@ gem 'rake', '~> 0.9.2'
 gem 'state_machine', '~> 1.1.2'
 #gem 'sunspot_solr'
 #gem 'sunspot_rails', '~> 1.3.0rc'
-gem 'will_paginate', '~> 3.0.0'
+gem 'will_paginate', '~> 3.0.4'
 
 #gem 'memcache-client', '~> 1.8.5'
 group :production do
