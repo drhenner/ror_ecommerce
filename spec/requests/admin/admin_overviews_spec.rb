@@ -1,8 +1,9 @@
 require 'spec_helper'
 def cookied_admin_login
    User.acts_as_authentic_config[:maintain_sessions] = false
-   create_admin_user({:email => 'test@admin.com', :password => 'secret1', :password_confirmation => 'secret1'})
-   User.any_instance.stubs(:admin?).returns(true)
+   u = create_real_admin_user({:email => 'test@admin.com', :password => 'secret1', :password_confirmation => 'secret1'})
+
+   u.id.should_not be_nil
    visit login_path
    within("#login") do
      fill_in 'Email',    :with => 'test@admin.com'
@@ -38,8 +39,6 @@ describe "Admin::Overviews" do
     it "If a user has already been created this page will show without password info for admin users" do
       cookied_admin_login
 
-   #puts '@current_user.admin'
-   #puts page.current_user.admin?
       visit admin_overviews_path
       page.should have_content('It would be best to go')
     end
@@ -51,7 +50,6 @@ describe "Admin::Overviews" do
     it "If a user has already been created this page will redirect to root_url for non-admins" do
       cookied_login
       visit admin_overviews_path
-      #response.should redirect_to( root_url)
       page.should have_content('account is required')
       page.should have_content('forgot password')
     end
