@@ -22,6 +22,8 @@
 #  brand_id             :integer(4)
 #
 
+class VariantRequiredError < StandardError; end
+
 class Product < ActiveRecord::Base
   has_friendly_id :permalink, :use_slug => false
 
@@ -42,10 +44,6 @@ class Product < ActiveRecord::Base
                     :order      => :position,
                     :dependent  => :destroy
 
-  has_one :master_variant,
-    :class_name => 'Variant',
-    :conditions => ["variants.master = ? AND variants.deleted_at IS NULL", true]
-
   has_many :active_variants,
     :class_name => 'Variant',
     :conditions => ["variants.deleted_at IS NULL", true]
@@ -57,18 +55,17 @@ class Product < ActiveRecord::Base
   before_validation :sanitize_data
   before_save :create_content
 
-  accepts_nested_attributes_for :variants, :reject_if => proc { |attributes| attributes['sku'].blank? }
-  accepts_nested_attributes_for :product_properties, :reject_if => proc { |attributes| attributes['description'].blank? }, :allow_destroy => true
-
-  accepts_nested_attributes_for :images, :reject_if => lambda { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, :allow_destroy => true
+  accepts_nested_attributes_for :variants,            :reject_if => proc { |attributes| attributes['sku'].blank? }
+  accepts_nested_attributes_for :product_properties,  :reject_if => proc { |attributes| attributes['description'].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :images,              :reject_if => lambda { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, :allow_destroy => true
 
   validates :shipping_category_id,  :presence => true
   validates :product_type_id,       :presence => true
-  validates :permalink, :uniqueness => true, :length => { :maximum => 150 }
-  validates :name,                  :presence => true, :length => { :maximum => 165 }
-  validates :description_markup,    :presence => true, :length => { :maximum => 2255 },     :if => :active
-  validates :meta_keywords,         :presence => true,       :length => { :maximum => 255 }, :if => :active
-  validates :meta_description,      :presence => true,       :length => { :maximum => 255 }, :if => :active
+  validates :name,                  :presence => true,   :length => { :maximum => 165 }
+  validates :description_markup,    :presence => true,   :length => { :maximum => 2255 },     :if => :active
+  validates :meta_keywords,         :presence => true,        :length => { :maximum => 255 }, :if => :active
+  validates :meta_description,      :presence => true,        :length => { :maximum => 255 }, :if => :active
+  validates :permalink,             :uniqueness => true,      :length => { :maximum => 150 }
 
   def hero_variant
     master_variant ? master_variant : variants.limit(1).first
@@ -80,14 +77,8 @@ class Product < ActiveRecord::Base
   # @param [Integer] state.id
   # @param [Optional Time] Time now if no value is passed in
   # @return [TaxRate] TaxRate for the state at a given time
-  def tax_rate(state_id, time = Time.zone.now)
-    TaxRate.where(["#{ Settings.tax_per_state_id ? 'state_id' : 'country_id'} = ? AND
-                   start_date <= ? AND
-                   (end_date > ? OR end_date IS NULL) AND
-                   active = ?", state_id,
-                                time.to_date.to_s(:db),
-                                time.to_date.to_s(:db),
-                                true]).order('start_date DESC').first
+  def tax_rate(region_id, time = Time.zone.now)
+    TaxRate.for_region(region_id).at(time).active.order('start_date DESC').first
   end
 
   # Image that is featured for your product
@@ -98,12 +89,12 @@ class Product < ActiveRecord::Base
     images.first ? images.first.photo.url(image_size) : "no_image_#{image_size.to_s}.jpg"
   end
 
-  # Price of master variant or last_master_variant if all the variants are inactive
+  # Price of cheapest variant
   #
   # @param [none] the size of the image expected back
   # @return [Decimal] price
   def price
-    master_variant ? master_variant.price : last_master_variant.price
+    active_variants.present? ? price_range.first : raise( VariantRequiredError )
   end
 
   # in the admin form this is the method called when the form is submitted, The method sets
@@ -138,7 +129,7 @@ class Product < ActiveRecord::Base
   def price_range
     return @price_range if @price_range
     return @price_range = ['N/A', 'N/A'] if active_variants.empty?
-    @price_range = active_price_range
+    @price_range = active_variants.minmax {|a,b| a.price <=> b.price }.map(&:price)
   end
 
   # Answers if the product has a price range or just one price.
@@ -149,15 +140,6 @@ class Product < ActiveRecord::Base
   def price_range?
     !(price_range.first == price_range.last)
   end
-
-  # find the last master variant that was inactivated
-  #
-  # @param [none]
-  # @return [Variant or nil] variant of the last master variant that was inactivated
-  def last_master_variant
-    inactive_master_variants.try(:last)
-  end
-
 
   # Solr searching for products
   #
@@ -226,15 +208,6 @@ class Product < ActiveRecord::Base
   private
     def create_content
       self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
-    end
-
-    # only call if active_variants exist
-    def active_price_range
-      active_variants.inject([active_variants.first.price, active_variants.first.price]) do |a, variant|
-        a[0] = variant.price if variant.price < a[0]
-        a[1] = variant.price if variant.price > a[1]
-        a
-      end
     end
 
     # if the permalink is not filled in set it equal to the name
