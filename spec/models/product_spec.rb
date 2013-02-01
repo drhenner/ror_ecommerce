@@ -120,8 +120,8 @@ describe Product, ".instance methods" do
   end
 
   context ".price" do
-    it 'should return the master price' do
-      @product.price.should == 15.01
+    it 'should return the lowest price' do
+      @product.price.should == 10.00
     end
   end
 
@@ -148,12 +148,6 @@ describe Product, ".instance methods" do
   context ".price_range?" do
     it 'should return the price range' do
       @product.price_range?.should be_true
-    end
-  end
-
-  context ".last_master_variant" do
-    it 'should return the previous master variant' do
-      @product.last_master_variant.id.should == @previous_master.id
     end
   end
 end
