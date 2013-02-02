@@ -6,3 +6,4 @@ module FloatModule
 
 end
 Float.send :include, FloatModule
+BigDecimal.send :include, FloatModule
