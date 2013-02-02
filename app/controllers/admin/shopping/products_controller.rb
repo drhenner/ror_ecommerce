@@ -4,7 +4,7 @@ class Admin::Shopping::ProductsController < Admin::Shopping::BaseController
   # GET /admin/order/products
   def index
     @products = Product.admin_grid(params, true).order(sort_column + " " + sort_direction).
-                                              paginate(:per_page => 20, :page => params[:page].to_i)
+                                              paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   # GET /admin/order/products/1
