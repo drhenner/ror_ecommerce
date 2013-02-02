@@ -53,7 +53,7 @@
               <% session_cart.shopping_cart_items.each do |item| %>
                 <li> <%= item.name %> </li>
               <% end %>
-            <% elsif current_user %>
+            <% else %>
               <li class="divider"></li>
               <li>
                 <%= link_to( 'Your cart is Empty!', shopping_cart_items_path) %>
@@ -66,8 +66,7 @@
           <ul class="dropdown">
             <% unless current_user %>
               <li><%= link_to 'Login',  login_path %></li>
-            <% end %>
-            <% if current_user %>
+            <% else %>
               <% if current_user.admin? %>
                 <li><%= link_to 'Admin', admin_users_path %></li>
               <% end %>
