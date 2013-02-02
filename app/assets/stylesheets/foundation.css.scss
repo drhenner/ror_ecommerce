@@ -4,6 +4,8 @@
 
 $nav-bar-color:       #6B1412;
 $nav-sub-bar-color:   #222;
+$top-bar-js-breakpoint-width:   1090px;
+$top-bar-js-breakpoint_media-width:   550px;
 
 *, *:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
@@ -221,7 +223,7 @@ form.custom .custom.disabled { background-color: #dddddd; }
 .lt-ie9 form.custom div.custom.dropdown a.selector { height: 30px; }
 
 /* The Grid ---------------------- */
-.row { width: 1090px; max-width: 100%; min-width: 768px; margin: 0 auto; }
+.row { width: $top-bar-js-breakpoint-width; max-width: 100%; min-width: 768px; margin: 0 auto; }
 .row .row { width: auto; max-width: none; min-width: 0; margin: 0 -15px; }
 .row.collapse .column, .row.collapse .columns { padding: 0; }
 .row .row { width: auto; max-width: none; min-width: 0; margin: 0 -15px; }
@@ -829,7 +831,7 @@ div.progress.round .meter { -webkit-border-radius: 1000px; -moz-border-radius: 1
  Notes: - <nav class="top-bar"> can have .fixed added to make it stick to the top of viewport. Can add .contain-to-grid to top-bar to make it full width but content on grid. - <li class="name"> creates a branding area that can be linked to homepage - Can include text, image or both inside this <li>. - <li class="divider"> creates a divider between nav items, add margins for space - <li class="search"> Needs to hold a <form> which can use .row.collapse and pre/postfix buttons or default type="search"
 */
 /* Element that controls breakpoint, no need to change this ever */
-.top-bar-js-breakpoint { width: 1090px !important; visibility: hidden; }
+.top-bar-js-breakpoint { width: $top-bar-js-breakpoint-width !important; visibility: hidden; }
 
 /* Wrapped around .top-bar to contain to grid width */
 .contain-to-grid { width: 100%; background: #222222; }
@@ -839,7 +841,7 @@ div.progress.round .meter { -webkit-border-radius: 1000px; -moz-border-radius: 1
 
 /* <nav> */
 .top-bar { background: $nav-bar-color; height: 45px; line-height: 45px; margin: 0 0 30px; padding: 0; width: 100%; position: relative; /* Contain width to .row width */ /* First <ul> for branding, title, name, etc */ /* topbar global <ul> styles */ }
-.contain-to-grid .top-bar { max-width: 1090px; margin: 0 auto; }
+.contain-to-grid .top-bar { max-width: $top-bar-js-breakpoint-width; margin: 0 auto; }
 .top-bar > ul .name h1 { line-height: 45px; margin: 0; }
 .top-bar > ul .name h1 a { font-weight: bold; padding: 0 22.5px; font-size: 17px !important; }
 .top-bar > ul .name img { margin-top: -5px; vertical-align: middle; }
@@ -1179,7 +1181,7 @@ table.show-for-xlarge, table.show-for-large, table.hide-for-small, table.hide-fo
   .tooltip { font-size: 14; line-height: 1.4; padding: 7px 10px 9px 10px; left: 50% !important; max-width: 80% !important; margin-left: -40%; font-size: 110%; }
   .tooltip > .nub, .tooltip.top > .nub, .tooltip.left > .nub, .tooltip.right > .nub { border-color: transparent transparent black transparent; border-color: transparent transparent rgba(0, 0, 0, 0.85) transparent; top: -12px; left: 10px; } }
 /* Topbar Specific Breakpoint that you can customize */
-@media only screen and (max-width: 1090px) { .top-bar { margin-bottom: 0; overflow: hidden; height: 45px; background: #222222; /* Override contain to grid stuff for breakpoint */ /* Setting up the sliding area */ /* When the Small Nav is Showing */ }
+@media only screen and (max-width: $top-bar-js-breakpoint_media-width) { .top-bar { margin-bottom: 0; overflow: hidden; height: 45px; background: #222222; /* Override contain to grid stuff for breakpoint */ /* Setting up the sliding area */ /* When the Small Nav is Showing */ }
   .top-bar .js-generated { display: block; }
   .contain-to-grid .top-bar { width: auto; }
   .top-bar section { left: 0; position: relative; width: auto; -webkit-transition: left 300ms; -moz-transition: left 300ms; -o-transition: left 300ms; transition: left 300ms; }
