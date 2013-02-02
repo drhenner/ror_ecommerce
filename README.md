@@ -46,6 +46,10 @@ Copy the `database.yml` for your setup.
 For SQLite3, `cp config/database.yml.sqlite3 config/database.yml`.
 For MySQL, `cp config/database.yml.mysql config/database.yml` and update your username/password.
 
+If you are using the mysql dmg file to install mysql you will need to edit your ~/.bash_profile and include this:
+
+	export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+
 Run `rake secret` and copy/paste the output as `encryption_key` in `config/config.yml`.
 
     gem install bundler
