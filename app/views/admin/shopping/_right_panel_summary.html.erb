@@ -1,7 +1,10 @@
 <% if @session_admin_order %>
   <%= render :partial => '/admin/shopping/checkout/right_panel_summary'%>
 <% else %>
-<h3> <%= session_admin_cart.customer_id ? session_admin_cart.customer.name : 'No Customer' %> </h3>
+<h3>
+  <%= session_admin_cart.customer_id ? session_admin_cart.customer.name : 'No Customer' %>
+</h3>
+<%= link_to 'change customer', admin_shopping_users_path %>
   <table>
     <thead>
       <tr class='odd'>
