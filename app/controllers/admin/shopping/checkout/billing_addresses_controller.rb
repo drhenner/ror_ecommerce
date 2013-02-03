@@ -7,9 +7,6 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
       @billing_address.country = countries.first
     end
     form_info
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   def new
@@ -20,9 +17,6 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
       @billing_address.country = countries.first
     end
     form_info
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
   # POST /shopping/addresses
@@ -51,9 +45,7 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
   def select_address
     address = checkout_user.addresses.find(params[:id])
     update_order_address_id(address.id)
-    respond_to do |format|
-      format.html { redirect_to admin_shopping_checkout_order_url }
-    end
+    redirect_to admin_shopping_checkout_order_url
   end
 
   private

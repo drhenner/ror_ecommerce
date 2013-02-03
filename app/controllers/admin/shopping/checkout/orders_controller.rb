@@ -19,9 +19,6 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
       end
       form_info
       @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
-      respond_to do |format|
-        format.html # index.html.erb
-      end
     end
   end
 

@@ -17,9 +17,6 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
         @order_items.each do |item|
           item.variant.product.available_shipping_rates = ShippingRate.with_these_shipping_methods(item.variant.product.shipping_category.shipping_rate_ids, @shipping_method_ids)
         end
-        respond_to do |format|
-          format.html # index.html.erb
-        end
       end
     end
   end

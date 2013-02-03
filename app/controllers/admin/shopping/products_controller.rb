@@ -11,10 +11,6 @@ class Admin::Shopping::ProductsController < Admin::Shopping::BaseController
   # GET /admin/order/products/1.xml
   def show
     @product = Product.includes({:variants => {:variant_properties => :property} }).find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
   end
 
   def edit
