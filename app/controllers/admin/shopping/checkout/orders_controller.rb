@@ -47,7 +47,7 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
     if @order.complete?
       #CartItem.mark_items_purchased(session_cart, @order)
       session_admin_cart.mark_items_purchased(@order)
-      flash[:error] = I18n.t('the_order_purchased')
+      flash[:alert] = I18n.t('the_order_purchased')
       redirect_to admin_history_order_url(@order)
     elsif @credit_card.valid?
       if response = @order.create_invoice(@credit_card,
@@ -64,17 +64,17 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
           redirect_to admin_history_order_url(@order)
         else
           form_info
-          flash[:error] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
+          flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
           render :action => "show"
         end
       else
         form_info
-        flash[:error] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
+        flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
         render :action => 'show'
       end
     else
       form_info
-      flash[:error] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
+      flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
       render :action => 'show'
     end
   end

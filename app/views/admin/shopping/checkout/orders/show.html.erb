@@ -8,7 +8,6 @@
   <% end %>
 
 
-
 <h3>Credit Card Info<h3>
   <%= form_tag( admin_shopping_checkout_order_path(),
                                 :method => :put,
@@ -40,19 +39,19 @@
     </div>
 
   <div class='clearfix'></div>
-    <div class="field column float-left ">
+    <div class="field column float-left <%= 'form-field error' if @credit_card.errors['brand'].present? %>">
       <%= label_tag :type, 'Type'%>
-       <%= select_tag(:type, options_for_select(['visa', 'mastercard'])) %>
+       <%= select_tag(:type, options_for_select(['visa', 'mastercard']), :class => " #{'form-field error' if @credit_card.errors['year'].present?}" ) %>
     </div>
 
-    <div class="field column float-left">
-      <%= label_tag :month %>
+    <div class="field column float-left <%= 'form-field error' if @credit_card.errors['month'].present? %>">
+      <%= label_tag :month, 'Month', :class => " #{'form-field error' if @credit_card.errors['month'].present?}" %>
       <%= select_tag(:month, options_for_select(['01', '02',  '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'])) %>
     </div>
 
-    <div class="field column float-left">
-      <%= label_tag :year %>
-       <%= select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10)))) %>
+    <div class="field column float-left <%= 'form-field error' if @credit_card.errors['year'].present? %>">
+      <%= label_tag :year, 'Year', :class => " #{'form-field error' if @credit_card.errors['year'].present?}" %>
+       <%= select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10))), :class => " #{'form-field error' if @credit_card.errors['year'].present?}") %>
     </div>
   <div class='clear'></div>
 
