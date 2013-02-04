@@ -7,3 +7,6 @@ In no specific order the following have contributed to RoR ecommerce.
 * Dean Perry
 * Denis Peplin
 * Daniel Konishi
+* Robert Mitwicki
+* Jason Kim
+* Kori Roys
