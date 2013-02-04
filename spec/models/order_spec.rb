@@ -154,6 +154,9 @@ describe Order, "instance methods" do
   #end
   context ".create_invoice(credit_card, charge_amount, args)" do
     it 'should return an create_invoice on success' do
+      notifier_mock = mock()
+      notifier_mock.stubs(:deliver)
+      Notifier.stubs(:order_confirmation).returns(notifier_mock)
       cc_params = {
         :brand               => 'visa',
         :number             => '1',

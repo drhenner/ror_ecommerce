@@ -53,11 +53,8 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
                                           @order.amount_to_credit)
         if response.succeeded?
           ##  MARK items as purchased
-          #CartItem.mark_items_purchased(session_cart, @order)
-          @order.remove_user_store_credits
           session_admin_cart.mark_items_purchased(@order)
           order_completed!
-          Notifier.order_confirmation(@order, invoice).deliver rescue puts( 'do nothing...  dont blow up over an email')
           redirect_to admin_history_order_url(@order)
         else
           form_info

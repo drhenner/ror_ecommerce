@@ -54,10 +54,7 @@ class Shopping::OrdersController < Shopping::BaseController
                                           @order.amount_to_credit)
         if response.succeeded?
           ##  MARK items as purchased
-          #CartItem.mark_items_purchased(session_cart, @order)
-          @order.remove_user_store_credits
           session_cart.mark_items_purchased(@order)
-          Notifier.order_confirmation(@order, invoice).deliver rescue puts( 'do nothing...  dont blow up over an email')
           redirect_to myaccount_order_path(@order)
         else
           form_info
