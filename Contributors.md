@@ -10,3 +10,4 @@ In no specific order the following have contributed to RoR ecommerce.
 * Robert Mitwicki
 * Jason Kim
 * Kori Roys
+* TopperH
