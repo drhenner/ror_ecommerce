@@ -147,11 +147,10 @@ class Product < ActiveRecord::Base
   # @param [args]
   # @param [params]  :rows, :page
   # @return [ Product ]
-  def self.standard_search(args, params)
+  def self.standard_search(args)
       Product.includes( [:properties, :images]).
               where(['products.name LIKE ? OR products.meta_keywords LIKE ?', "%#{args}%", "%#{args}%"]).
-              where(['products.deleted_at IS NULL OR products.deleted_at > ?', Time.zone.now]).
-              paginate :page => params[:page].to_i, :per_page => params[:rows].to_i
+              where(['products.deleted_at IS NULL OR products.deleted_at > ?', Time.zone.now])
   end
 
   # This returns the first featured product in the database,

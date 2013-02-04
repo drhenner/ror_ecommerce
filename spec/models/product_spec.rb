@@ -155,8 +155,17 @@ end
 
 describe Product, "class methods" do
 
-  context "#standard_search(args, params)" do
-    pending "test for standard_search(args, params)"
+  context "#standard_search(args)" do
+    it "should search products" do
+      product1  = create(:product, :meta_keywords => 'no blah', :name => 'blah')
+      product2  = create(:product, :meta_keywords => 'tester blah')
+      product1.activate!
+      product2.activate!
+      args = 'tester'
+      products = Product.standard_search(args)
+      products.include?(product1).should be_false
+      products.include?(product2).should be_true
+    end
   end
 
   context "#featured" do

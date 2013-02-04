@@ -4,10 +4,9 @@ class Admin::UsersController < Admin::BaseController
   def index
    # @users = User.find( :all)
     authorize! :view_users, current_user
-    params[:page] ||= 1
     # @users = User.admin_grid(params)
     @users = User.admin_grid(params).order(sort_column + " " + sort_direction).
-                                    paginate(:per_page => 25, :page => params[:page].to_i)
+                                    paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   def new
