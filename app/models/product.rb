@@ -53,6 +53,7 @@ class Product < ActiveRecord::Base
     :conditions => ["variants.deleted_at IS NOT NULL AND variants.master = ? ", true]
 
   before_validation :sanitize_data
+  before_validation :not_active_on_create!, :on => :create
   before_save :create_content
 
   accepts_nested_attributes_for :variants,            :reject_if => proc { |attributes| attributes['sku'].blank? }
@@ -170,7 +171,7 @@ class Product < ActiveRecord::Base
   end
 
   def active(at = Time.zone.now)
-    deleted_at.nil? || deleted_at > at
+    deleted_at.nil? || deleted_at >= at
   end
   def active?(at = Time.zone.now)
     active(at)
@@ -208,6 +209,10 @@ class Product < ActiveRecord::Base
   private
     def create_content
       self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
+    end
+
+    def not_active_on_create!
+      self.deleted_at = Time.zone.now
     end
 
     # if the permalink is not filled in set it equal to the name
