@@ -8,7 +8,6 @@ class Shopping::CartItemsController < Shopping::BaseController
 
   # POST /shopping/cart_items
   def create
-    @cart_item = get_new_cart_item
     session_cart.save if session_cart.new_record?
     qty = params[:cart_item][:quantity].to_i
     if cart_item = session_cart.add_variant(params[:cart_item][:variant_id], most_likely_user, qty)
@@ -67,13 +66,5 @@ class Shopping::CartItemsController < Shopping::BaseController
 
   private
 
-  def get_new_cart_item
-    if current_user
-      session_cart.cart_items.new(params[:cart_item].merge({:user_id => current_user.id}))
-    else
-      ###  ADD to session cart
-      session_cart.cart_items.new(params[:cart_item])
-    end
-  end
 
 end
