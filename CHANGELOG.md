@@ -1,3 +1,6 @@
+###1.4.3 2013-02-04
+* bug fixes creating product
+
 ###1.4.2 2013-02-03
 * pagination has less duplication
 * make UI look better in the admin and Customer facing site
