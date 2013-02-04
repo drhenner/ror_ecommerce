@@ -16,6 +16,8 @@
 #
 
 class PurchaseOrder < ActiveRecord::Base
+  include TransactionAccountable
+
   belongs_to :supplier
 
   has_many  :purchase_order_variants
@@ -62,7 +64,7 @@ class PurchaseOrder < ActiveRecord::Base
   def receive_po=(answer)
 
     if (answer == 'true' || answer == '1') && (state != RECEIVED)
-      complete!
+      self.complete!
     end
   end
 
@@ -114,38 +116,22 @@ class PurchaseOrder < ActiveRecord::Base
   end
 
   def receive_order_from_credit
-
-        batch = self.batches.create()
-        transaction = ReceivePurchaseOrder.new()##  This is a type of transaction
-        credit = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,     :debit => 0,      :credit => total_cost, :period => "#{now.month}-#{now.year}")
-        debit  = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_PAYABLE_ID, :debit => total_cost, :credit => 0,      :period => "#{now.month}-#{now.year}")
-        transaction.transaction_ledgers.push(credit)
-        transaction.transaction_ledgers.push(debit)
-        batch.transactions.push(transaction)
-        batch.save
+      batch = self.batches.create()
+      transaction = ReceivePurchaseOrder.new_expensed(self, total_cost)
+      batch.transactions.push(transaction)
+      batch.save
   end
 
   def pay_for_order
     now = Time.zone.now
     if self.batches.empty?
         batch = self.batches.create()
-        transaction = ReceivePurchaseOrder.new()##  This is a type of transaction
-        credit = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,     :debit => 0,      :credit => total_cost, :period => "#{now.month}-#{now.year}")
-        debit  = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::EXPENSE_ID, :debit => total_cost, :credit => 0,      :period => "#{now.month}-#{now.year}")
-        transaction.transaction_ledgers.push(credit)
-        transaction.transaction_ledgers.push(debit)
+        transaction = ReceivePurchaseOrder.new_direct_payment(self, total_cost, now)
         batch.transactions.push(transaction)
         batch.save
     else # thus we are paying after having received the item from credit
       batch       = batches.first
-      transaction = ReceivePurchaseOrder.new()
-
-      debit   = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::EXPENSE_ID, :debit => total_cost, :credit => 0,       :period => "#{now.month}-#{now.year}")
-      credit  = self.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_PAYABLE_ID,    :debit => 0,      :credit => total_cost,  :period => "#{now.month}-#{now.year}")
-
-      transaction.transaction_ledgers.push(credit)
-      transaction.transaction_ledgers.push(debit)
-
+      transaction = ReceivePurchaseOrder.new_expensed_payment(self, total_cost, now)
       batch.transactions.push(transaction)
       batch.save
     end
