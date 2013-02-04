@@ -68,7 +68,7 @@ class Product < ActiveRecord::Base
   validates :permalink,             :uniqueness => true,      :length => { :maximum => 150 }
 
   def hero_variant
-    master_variant ? master_variant : variants.limit(1).first
+    active_variants.detect{|v| v.master } || active_variants.first
   end
 
   # gives you the tax rate for the give state_id and the time.
