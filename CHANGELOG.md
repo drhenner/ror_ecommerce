@@ -1,3 +1,6 @@
+* better css on product page
+* refactor product search
+
 ###1.4.3 2013-02-04
 * bug fixes creating product
 
