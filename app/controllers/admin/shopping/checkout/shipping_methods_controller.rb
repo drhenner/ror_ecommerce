@@ -36,12 +36,10 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
     else
       all_selected = false
     end
-    respond_to do |format|
-      if all_selected
-        format.html { redirect_to(admin_shopping_checkout_order_url, :notice => I18n.t('shipping_method_updated')) }
-      else
-        format.html { redirect_to( admin_shopping_checkout_shipping_methods_url, :notice => I18n.t('all_shipping_methods_must_be_selected')) }
-      end
+    if all_selected
+      redirect_to(admin_shopping_checkout_order_url, :notice => I18n.t('shipping_method_updated'))
+    else
+      redirect_to( admin_shopping_checkout_shipping_methods_url, :notice => I18n.t('all_shipping_methods_must_be_selected'))
     end
   end
   private

@@ -8,9 +8,6 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     end
     @form_address = @shipping_address
     form_info
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   def new
@@ -22,9 +19,6 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     end
     @form_address = @shipping_address
     form_info
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
   def create
@@ -36,25 +30,20 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     elsif params[:shipping_address_id].present?
       @shipping_address = checkout_user.addresses.find(params[:shipping_address_id])
     end
-    respond_to do |format|
-
-      if @shipping_address.id
-        update_order_address_id(@shipping_address.id)
-        format.html { redirect_to(admin_shopping_checkout_shipping_methods_url, :notice => 'Address was successfully created.') }
-      else
-        @form_address = @shipping_address
-        form_info
-        format.html { render :action => "new" }
-      end
+    if @shipping_address.id
+      update_order_address_id(@shipping_address.id)
+      redirect_to(admin_shopping_checkout_shipping_methods_url, :notice => 'Address was successfully created.')
+    else
+      @form_address = @shipping_address
+      form_info
+      render :action => "new"
     end
   end
 
   def select_address
     address = checkout_user.addresses.find(params[:id])
     update_order_address_id(address.id)
-    respond_to do |format|
-      format.html { redirect_to admin_shopping_checkout_shipping_methods_url }
-    end
+    redirect_to admin_shopping_checkout_shipping_methods_url
   end
 
   private
