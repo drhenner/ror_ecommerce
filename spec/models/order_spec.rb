@@ -491,39 +491,6 @@ describe Order, "#find_myaccount_details" do
   end
 end
 
-describe Order, "#new_admin_cart(admin_cart, args = {})" do
-  before(:each) do
-    @variant = create(:variant)
-    @shipping_rate = create(:shipping_rate)
-    @tax_rate = create(:tax_rate)
-
-
-    @admin_cart = {}
-    @admin_cart[:shipping_address] = create(:address)
-    @admin_cart[:billing_address]  = create(:address)
-    @admin_cart[:user]             = create(:user)
-    @admin_cart[:order_items]      = {
-      @variant.id => {
-        :quantity => 2,
-        :variant  => @variant,
-        :tax_rate       => @tax_rate,
-        :price          => @variant.price,
-        :total          => @variant.total_price(@tax_rate),
-        :shipping_rate  => @shipping_rate
-      }
-    }
-  end
-
-  it 'should return an order object' do
-    ##  Create fake admin_cart object in memcached
-    args = {}
-    args[:ip_address] = '123.09.09.133'
-    order = Order.new_admin_cart(@admin_cart, args)
-    order.class.to_s.should == 'Order'
-    order.order_items.size.should == 2#quantity == 2 thus 2 order_items
-  end
-end
-
 describe Order, "#id_from_number(num)" do
   it 'should return the order id' do
     order     = create(:order)
