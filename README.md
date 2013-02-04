@@ -230,6 +230,7 @@ You need to run `rake sunspot:solr:start`, or remove Solr completely.
 ##TODO:
 
 * more documentation / videos for creating products/variants
+* create referral programs so users can earn store credits
 
 ##Author
 
