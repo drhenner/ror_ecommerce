@@ -14,9 +14,6 @@ class Prototype < ActiveRecord::Base
   # @return [ Array[Prototype] ]
   def self.admin_grid(params = {})
 
-    params[:page] ||= 1
-    params[:rows] ||= 25
-
     grid = Prototype
     grid = grid.where("active = ?",true)                    unless  params[:show_all].present? &&
                                                               params[:show_all] == 'true'
