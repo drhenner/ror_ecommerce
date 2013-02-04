@@ -19,7 +19,7 @@ The project has *Solr searching*, *Compass* and *Blueprint for CSS* and uses *jQ
 The gem list is quite large and the project still has a large wish list.
 In spite of that, it is currently the most complete Rails solution, and it will only get better.
 
-Please use *Ruby 1.9.2* and enjoy *Rails 3.2*.
+Please use *Ruby 1.9.3* and enjoy *Rails 3.2*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
@@ -38,8 +38,8 @@ The login name is test@ror-e.com with a password => test123
 
 Please feel free to ask/answer questions in our [Google Group](http://groups.google.com/group/ror_ecommerce).
 
-Install RVM with Ruby 1.9.2 or Ruby 1.9.3.
-If you have 1.9.2 or 1.9.3 on your system you're good to go.
+Install RVM with Ruby 1.9.3.
+If you have 1.9.3 on your system you're good to go.
 Please refer to the [RVM](http://beginrescueend.com/rvm/basics/) site for more details.
 
 Copy the `database.yml` for your setup.
@@ -48,7 +48,7 @@ For MySQL, `cp config/database.yml.mysql config/database.yml` and update your us
 
 If you are using the mysql dmg file to install mysql you will need to edit your ~/.bash_profile and include this:
 
-	export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+  export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 
 Run `rake secret` and copy/paste the output as `encryption_key` in `config/config.yml`.
 
@@ -125,10 +125,14 @@ If you would like to read the docs, you can generate them with the following com
 
     yardoc --no-private --protected app/models/*.rb
 
-####Compass Install
+####Payment Gateways
 
 First, create `config/settings.yml` and change the encryption key and paypal/auth.net information.
 You can also change `config/settings.yml.example` to `config/settings.yml` until you get your real info.
+
+To change from authlogic to any other gateway go to
+
+## Paperclip
 
 Paperclip will throw errors if not configured correctly.
 You will need to find out where Imagemagick is installed.
