@@ -217,8 +217,6 @@ class Order < ActiveRecord::Base
     # if calculated at is nil then this order hasn't been calculated yet
     # also if any single item in the order has been updated, the order needs to be re-calculated
     if any_order_item_needs_to_be_calculated? && all_order_items_are_ready_to_calculate?
-      total = 0.0
-      tax_time = completed_at? ? completed_at : Time.zone.now
       calculate_each_order_items_total
       sub_total = total
       self.total = total + shipping_charges
@@ -251,6 +249,14 @@ class Order < ActiveRecord::Base
   # @return [Boolean]
   def ready_to_checkout?
     order_items.all? {|item| item.ready_to_calculate? }
+  end
+
+  def self.include_checkout_objects
+    includes([{:ship_address => :state},
+              {:bill_address => :state},
+              {:order_items =>
+                {:variant =>
+                  {:product => :images }}}])
   end
 
   # calculates the total price of the order
@@ -513,13 +519,15 @@ class Order < ActiveRecord::Base
   end
 
   def calculate_each_order_items_total(force = false)
+    self.total = 0.0
+    tax_time = completed_at? ? completed_at : Time.zone.now
     order_items.each do |item|
       if (calculated_at.nil? || item.updated_at > self.calculated_at)
         item.tax_rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
         item.calculate_total
         item.save
       end
-      total = total + item.total
+      self.total = total + item.total
     end
   end
 

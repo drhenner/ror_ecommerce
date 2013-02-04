@@ -41,11 +41,7 @@ class Admin::Shopping::Checkout::BaseController < Admin::Shopping::BaseControlle
   def find_or_create_order
     return @session_admin_order if @session_admin_order
     if session[:order_admin_id]
-      @session_admin_order = checkout_user.orders.includes([ {:ship_address => :state},
-                                                      {:bill_address => :state},
-                                                      {:order_items =>
-                                                        {:variant =>
-                                                          {:product => :images }}}]).find_by_id(session[:order_admin_id])
+      @session_admin_order = checkout_user.orders.include_checkout_objects.find_by_id(session[:order_admin_id])
       create_order if !@session_admin_order || !@session_admin_order.in_progress?
     else
       create_order
