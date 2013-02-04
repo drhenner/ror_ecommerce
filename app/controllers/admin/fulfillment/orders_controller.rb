@@ -48,12 +48,10 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
 # => Allow partial payments
 # => mark only order_items that will be shipped
 
-    respond_to do |format|
-      if payment && payment.success?
-        format.html { render :partial => 'success_message' }
-      else
-        format.html { render :partial => 'failure_message' }
-      end
+    if payment && payment.success?
+      render :partial => 'success_message'
+    else
+      render :partial => 'failure_message'
     end
   end
 

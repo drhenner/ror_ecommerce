@@ -23,12 +23,10 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   def create
     @account = Account.new(params[:account])
 
-    respond_to do |format|
-      if @account.save
-        format.html { redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully created.') }
-      else
-        format.html { render :action => "new" }
-      end
+    if @account.save
+      redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully created.')
+    else
+      render :action => "new"
     end
   end
 
@@ -36,13 +34,11 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   def update
     @account = Account.find(params[:id])
 
-    respond_to do |format|
       if @account.update_attributes(params[:account])
-        format.html { redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully updated.') }
+        redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully updated.')
       else
-        format.html { render :action => "edit" }
+        render :action => "edit"
       end
-    end
   end
 
   # DELETE /accounts/1

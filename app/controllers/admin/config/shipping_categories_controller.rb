@@ -37,13 +37,11 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   def create
     @shipping_category = ShippingCategory.new(params[:shipping_category])
 
-    respond_to do |format|
-      if @shipping_category.save
-        format.html { redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully created.') }
-      else
-        form_info
-        format.html { render :action => "new" }
-      end
+    if @shipping_category.save
+      redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully created.')
+    else
+      form_info
+      render :action => "new"
     end
   end
 
@@ -51,13 +49,11 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   def update
     @shipping_category = ShippingCategory.find(params[:id])
 
-    respond_to do |format|
-      if @shipping_category.update_attributes(params[:shipping_category])
-        format.html { redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully updated.') }
-      else
-        form_info
-        format.html { render :action => "edit" }
-      end
+    if @shipping_category.update_attributes(params[:shipping_category])
+      redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully updated.')
+    else
+      form_info
+      render :action => "edit"
     end
   end
 
