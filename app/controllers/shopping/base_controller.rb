@@ -12,27 +12,32 @@ class Shopping::BaseController < ApplicationController
 
   def next_form(order)
 
-       # if cart is empty
+    # if cart is empty
     if session_cart.cart_items.empty?
       flash[:notice] = I18n.t('do_not_have_anything_in_your_cart')
       return root_url
-
-       ## If we are insecure
+    ## If we are insecure
     elsif not_secure?
       session[:return_to] = shopping_orders_url
       return login_url()
     elsif session_order.ship_address_id.nil?
       return shopping_addresses_url()
-    elsif session_order.order_items.any?{ |item| item.shipping_rate_id.nil? }
+    elsif session_order.all_order_items_have_a_shipping_rate?
       return shopping_shipping_methods_url()
     end
   end
 
   def not_secure?
-    !current_user ||
-    session[:authenticated_at].nil? ||
-    (Time.now - session[:authenticated_at] > (60 * 20) ) || ## 20 minutes
-    (cookies[:insecure].nil? || cookies[:insecure] == true)## this should happen every time the user goes to a non-SSL page
+    !current_user || has_not_logged_in_recently? || user_visited_a_non_ssl_page_since_login?
+  end
+
+  def has_not_logged_in_recently?(minutes = 20)
+    session[:authenticated_at].nil? || Time.now - session[:authenticated_at] > (60 * minutes)
+  end
+
+  ## this should happen every time the user goes to a non-SSL page
+  def user_visited_a_non_ssl_page_since_login?
+    cookies[:insecure].nil? || cookies[:insecure] == true
   end
 
   def session_order
