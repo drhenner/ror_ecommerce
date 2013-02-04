@@ -157,37 +157,6 @@ class Order < ActiveRecord::Base
     includes([:completed_invoices, :invoices])
   end
 
-  # The admin cart is stored in memcached.  At checkout the order is stored in the DB.  This method will store the checkout.
-  #
-  # @param [Hash] memcached hash of the cart
-  # @param [Hash] arguments with ip_address
-  # @return [Order] order created
-  def self.new_admin_cart(admin_cart, args = {})
-    transaction do
-      admin_order = Order.new(  :ship_address     => admin_cart[:shipping_address],
-                                :bill_address     => admin_cart[:billing_address],
-                                #:coupon           => admin_cart[:coupon],
-                                :email            => admin_cart[:user].email,
-                                :user             => admin_cart[:user],
-                                :ip_address       => args[:ip_address]
-                            )
-      admin_order.save
-      admin_cart[:order_items].each_pair do |variant_id, hash|
-          hash[:quantity].times do
-              item = OrderItem.new( :variant        => hash[:variant],
-                                    :tax_rate       => hash[:tax_rate],
-                                    :price          => hash[:variant].price,
-                                    :total          => hash[:total],
-                                    :shipping_rate  => hash[:shipping_rate]
-                                )
-              admin_order.order_items.push(item)
-          end
-      end
-      admin_order.save
-      admin_order
-    end
-  end
-
   def add_cart_item( item, state_id = nil)
     self.save! if self.new_record?
     tax_rate_id = state_id ? item.variant.product.tax_rate(state_id) : nil
