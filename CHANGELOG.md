@@ -1,3 +1,10 @@
+###1.4.2 2013-02-03
+* pagination has less duplication
+* make UI look better in the admin and Customer facing site
+* random bugs
+* move removing credits and other code to the models
+* clean up code (remove lines on code that aren't doing anything)
+* upgrade gems (authlogic)
 * Make it dead simple to move to AWS/Heroku
 * Change implementation of updating addresses to inactivate old addresses
 
