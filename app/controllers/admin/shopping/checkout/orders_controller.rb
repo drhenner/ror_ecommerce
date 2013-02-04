@@ -30,7 +30,7 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
     if session_admin_cart.shopping_cart_items.inject(0) {|sum, item| sum + item.quantity } != @order.order_items.size
       flash[:alert] = "Some items could not be added to the cart.  Out of Stock."
     end
-    redirect_to next_admin_order_form || admin_shopping_checkout_order_url
+    redirect_to next_admin_order_form_url
   end
 
   def update
@@ -42,7 +42,6 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
     address = @order.bill_address.cc_params
 
     if @order.complete?
-      #CartItem.mark_items_purchased(session_cart, @order)
       session_admin_cart.mark_items_purchased(@order)
       flash[:alert] = I18n.t('the_order_purchased')
       redirect_to admin_history_order_url(@order)
