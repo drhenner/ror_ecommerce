@@ -51,6 +51,16 @@
           <%= f.select   :state_id, @states,
                         :include_blank => true %>
         </div>
+      <% elsif countries.size == 1 %>
+        <div class="field column">
+          <%= f.hidden_field   :country_id %>
+        </div>
+      <% else %>
+        <div class="field column">
+          <%= f.label    :country_id, "Country" %>
+          <%= f.select   :country_id, select_countries,
+                        :include_blank => true %>
+        </div>
       <% end %>
 
         <div class="field two columns">
