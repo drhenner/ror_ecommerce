@@ -216,25 +216,19 @@ class Order < ActiveRecord::Base
   def calculate_totals
     # if calculated at is nil then this order hasn't been calculated yet
     # also if any single item in the order has been updated, the order needs to be re-calculated
-    if calculated_at.nil? || (order_items.any? {|item| (item.updated_at > self.calculated_at) })
-      # if any item is not ready to calculate then dont calculate
-      unless order_items.any? {|item| !item.ready_to_calculate? }
-        total = 0.0
-        tax_time = completed_at? ? completed_at : Time.zone.now
-        order_items.each do |item|
-          if (calculated_at.nil? || item.updated_at > self.calculated_at)
-            item.tax_rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
-            item.calculate_total
-            item.save
-          end
-          total = total + item.total
-        end
-        sub_total = total
-        self.total = total + shipping_charges
-        self.calculated_at = Time.now
-        save
-      end
+    if any_order_item_needs_to_be_calculated? && all_order_items_are_ready_to_calculate?
+      total = 0.0
+      tax_time = completed_at? ? completed_at : Time.zone.now
+      calculate_each_order_items_total
+      sub_total = total
+      self.total = total + shipping_charges
+      self.calculated_at = Time.zone.now
+      save
     end
+  end
+
+  def all_order_items_have_a_shipping_rate?
+    !order_items.any?{ |item| item.shipping_rate_id.nil? }
   end
 
   # This returns a hash where product_type_id is the key and an Array of prices are the values.
@@ -509,6 +503,25 @@ class Order < ActiveRecord::Base
   end
 
   private
+
+  def any_order_item_needs_to_be_calculated?
+    calculated_at.nil? || (order_items.any? {|item| (item.updated_at > self.calculated_at) })
+  end
+
+  def all_order_items_are_ready_to_calculate?
+    order_items.all? {|item| item.ready_to_calculate? }
+  end
+
+  def calculate_each_order_items_total(force = false)
+    order_items.each do |item|
+      if (calculated_at.nil? || item.updated_at > self.calculated_at)
+        item.tax_rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
+        item.calculate_total
+        item.save
+      end
+      total = total + item.total
+    end
+  end
 
   # prices to charge of all items before taxes and coupons and shipping
   #
