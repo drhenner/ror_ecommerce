@@ -4,7 +4,7 @@
   <%= stylesheet_link_tag 'pikachoose_product.css' %>
 <% end %>
 
-<div id='product'>
+<div id='product' class='clearfix'>
 
   <div class=' float-left last'>
     <% if @product.active_variants.empty? %>
@@ -93,12 +93,12 @@
             </div>
           </div>
       </div>
+
     <% end %>
   </div>
-
+<div class='clearfix' style='height:50px;'>&nbsp</div>
 </div>
-<div id='generic-dialog'>
-</div>
+<div id='generic-dialog'></div>
 
 <% content_for :below_body do -%>
   <%= javascript_include_tag 'shopping/cart.js' %>
