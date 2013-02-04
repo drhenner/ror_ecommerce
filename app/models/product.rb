@@ -177,6 +177,11 @@ class Product < ActiveRecord::Base
     active(at)
   end
 
+  def activate!
+    self.deleted_at = nil
+    save
+  end
+
   def available?
     active
   end

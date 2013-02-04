@@ -7,6 +7,7 @@ describe ProductsController do
     @variant = create(:variant, :product => @product)
     @variant.stubs(:primary_property).returns(nil)
     @variant.stubs(:properties).returns(nil)
+    @product.activate!
   end
 
   it "index action should render index template" do
