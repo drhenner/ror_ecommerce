@@ -7,6 +7,10 @@ class Admin::Shopping::Checkout::BaseController < Admin::Shopping::BaseControlle
     session_admin_cart.customer
   end
 
+  def next_admin_order_form_url
+    next_admin_order_form || admin_shopping_checkout_order_url
+  end
+
   def next_admin_order_form()
      # if cart is empty
     if !session_admin_cart.customer_id
