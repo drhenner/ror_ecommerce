@@ -60,6 +60,8 @@ module Hadean
                                   :password_confirmation,
                                   :number,
                                   :cc_number,
+                                  :cc_type,
+                                  :brand,
                                   :card_number,
                                   :verification_value]
     # access any Settings here
