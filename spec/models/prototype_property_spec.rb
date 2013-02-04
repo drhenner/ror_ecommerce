@@ -19,10 +19,6 @@ describe PrototypeProperty do
       @prototype_property.property_id = nil
       @prototype_property.should_not be_valid
     end
-    it "should not be valid without property_id" do
-      @prototype_property.prototype_id = nil
-      @prototype_property.should_not be_valid
-    end
 
   end
 end
