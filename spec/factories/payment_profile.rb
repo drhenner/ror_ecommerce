@@ -17,7 +17,7 @@ FactoryGirl.define do
         :year         => '2013',
         :first_name   => 'David',
         :last_name    => 'Bowe',
-        :type         => 'visa'
+        :brand        => 'visa'
       }
     end
   end

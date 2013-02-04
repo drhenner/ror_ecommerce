@@ -22,7 +22,7 @@ class Admin::Shopping::CartsController < Admin::Shopping::BaseController
 
   def cc_params
     {
-          :type               => params[:type],
+          :brand              => params[:type],
           :number             => params[:number],
           :verification_value => params[:verification_value],
           :month              => params[:month],

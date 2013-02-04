@@ -103,7 +103,7 @@ class PaymentProfile < ActiveRecord::Base
       :first_name  => user.first_name,
       :last_name   => user.last_name,
       # :address etc too if we have it
-      :type        => cc_type
+      :brand        => cc_type
     )
   end
 

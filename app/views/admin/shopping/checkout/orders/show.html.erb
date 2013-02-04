@@ -40,8 +40,8 @@
 
   <div class='clearfix'></div>
     <div class="field column float-left <%= 'form-field error' if @credit_card.errors['brand'].present? %>">
-      <%= label_tag :type, 'Type'%>
-       <%= select_tag(:type, options_for_select(['visa', 'mastercard']), :class => " #{'form-field error' if @credit_card.errors['year'].present?}" ) %>
+      <%= label_tag :brand, 'Type'%>
+       <%= select_tag(:brand, options_for_select(['visa', 'mastercard']), :class => " #{'form-field error' if @credit_card.errors['brand'].present?}" ) %>
     </div>
 
     <div class="field column float-left <%= 'form-field error' if @credit_card.errors['month'].present? %>">

@@ -102,7 +102,7 @@ end
       :month      => '8',
       :year       => "#{ Time.now.year + 1 }",
       :verification_value => '323',
-      :type       => 'visa'
+      :brand       => 'visa'
     }.update(options)
   end
 
@@ -115,7 +115,7 @@ end
     default = {
       :first_name         => 'First Name',
       :last_name          => 'Last Name',
-      :type               => 'visa',
+      :brand               => 'visa',
       :number             => '4111111111111111',
       :month              => '10',
       :year               => '2012',
@@ -125,7 +125,7 @@ end
     specific = case gateway_name #SubscriptionConfig.gateway_name
       when 'authorize_net_cim'
         {
-          :type               => 'visa',
+          :brand               => 'visa',
           :number             => '4007000000027',
         }
         # 370000000000002 American Express Test Card
@@ -137,7 +137,7 @@ end
 
       when 'bogus'
         {
-          :type               => 'bogus',
+          :brand               => 'bogus',
           :number             => '1',
         }
 

@@ -155,7 +155,7 @@ describe Order, "instance methods" do
   context ".create_invoice(credit_card, charge_amount, args)" do
     it 'should return an create_invoice on success' do
       cc_params = {
-        :type               => 'visa',
+        :brand               => 'visa',
         :number             => '1',
         :verification_value => '322',
         :month              => '4',
@@ -173,7 +173,7 @@ describe Order, "instance methods" do
     end
     it 'should return an create_invoice on failure' do
       cc_params = {
-        :type               => 'visa',
+        :brand               => 'visa',
         :number             => '2',
         :verification_value => '322',
         :month              => '4',
