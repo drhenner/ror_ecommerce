@@ -30,22 +30,19 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
     elsif params[:billing_address_id].present?
       @billing_address = checkout_user.addresses.find(params[:billing_address_id])
     end
-    respond_to do |format|
-
-      if @billing_address.id
-        update_order_address_id(@billing_address.id)
-        format.html { redirect_to(admin_shopping_checkout_order_url, :notice => 'Address was successfully created.') }
-      else
-        form_info
-        format.html { render :action => "new" }
-      end
+    if @billing_address.id
+      update_order_address_id(@billing_address.id)
+      redirect_to(next_admin_order_form_url, :notice => 'Address was successfully created.')
+    else
+      form_info
+      render :action => "new"
     end
   end
 
   def select_address
     address = checkout_user.addresses.find(params[:id])
     update_order_address_id(address.id)
-    redirect_to admin_shopping_checkout_order_url
+    redirect_to next_admin_order_form_url
   end
 
   private
