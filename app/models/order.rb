@@ -220,16 +220,28 @@ class Order < ActiveRecord::Base
   # This returns a hash where product_type_id is the key and an Array of prices are the values.
   #   This method is specifically used for Deal.rb
   #
-  # @return [Hash] This returns a hash of { product_type_id => [price, price]}
+  #   So for example you have a shirt that has product_type of "shirt" which is a child of product_type "clothing"
+  #     "shirt" product_type_id    == 1
+  #     "clothing" product_type_id == 2
+  #
+  #   So the order_items are a shirt ($40.00) and two other order_items that are just clothing product_type_id ($50.00 & $60.00)
+  #
+  #      order.number_of_a_given_product_type => {1 => [40.00], 2 => [40.00, 50.00, 60.00]}
+  #
+  #   Hence a deal is given out for a given product_type.
+  #      buy 2 pieces of clothing get one free would work and the free item would be $40.00
+  #      buy 2 shirts get one free would Not work and hence NO DEAL
+  #
+  # @return [Hash] This returns a hash of { product_type_id => [price, price], product_type2_id => [price, price, price]}
   def number_of_a_given_product_type
      return_hash = order_items.inject({}) do |hash, oi|
        oi.product_type_ids.each do |product_type_id|
          hash[product_type_id] ||= []
-         hash[product_type_id] << oi.price#.to_s
+         hash[product_type_id] << oi.price
        end
        hash
-     end#.sort_by{|v| v.values.first.size }.reverse
-     return_hash#.delete_if{|k,v| k == 1}
+     end
+     return_hash
   end
   # looks at all the order items and determines if the order has all the required elements to complete a checkout
   #
@@ -350,7 +362,7 @@ class Order < ActiveRecord::Base
   # @param [none]
   # @return [Array] array of tax charges that will be charged
   def tax_charges
-    charges = order_items.map {|item| item.tax_charge }
+    order_items.map {|item| item.tax_charge }
   end
 
   # sum of all the tax charges to apply to the order
