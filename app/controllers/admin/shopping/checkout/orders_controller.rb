@@ -78,17 +78,4 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
 
   end
 
-  def cc_params
-    {
-          :brand              => params[:type],
-          :number             => params[:number],
-          :verification_value => params[:verification_value],
-          :month              => params[:month],
-          :year               => params[:year],
-          :first_name         => params[:first_name],
-          :last_name          => params[:last_name]
-    }
-  end
 end
-# next_admin_order_form
-#

@@ -39,12 +39,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  
+
   def pagination_page
     params[:page] ||= 1
     params[:page].to_i
   end
-  
+
   def pagination_rows
     params[:rows] ||= 20
     params[:rows].to_i
@@ -148,5 +148,16 @@ class ApplicationController < ActionController::Base
 
   def select_countries
     @select_countries ||= Country.form_selector
+  end
+  def cc_params
+    {
+          :brand              => params[:type],
+          :number             => params[:number],
+          :verification_value => params[:verification_value],
+          :month              => params[:month],
+          :year               => params[:year],
+          :first_name         => params[:first_name],
+          :last_name          => params[:last_name]
+    }
   end
 end
