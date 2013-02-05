@@ -39,6 +39,8 @@
     </div>
   <% elsif countries.size == 1 %>
     <div class="field column">
+      <%= f.label :country_id, "Country" %>
+      <%= countries.first.name %>
       <%= f.hidden_field   :country_id %>
     </div>
   <% else %>
