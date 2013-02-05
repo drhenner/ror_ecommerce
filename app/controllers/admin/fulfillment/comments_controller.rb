@@ -11,7 +11,6 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
 
   def show
     @comment = order.comments.find(params[:id])
-
     respond_to do |format|
         format.json { render :json => @comment.to_json}
         format.html { render :action => 'show' }
@@ -27,17 +26,14 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
     @comment              = order.comments.new(params[:comment])
     @comment.created_by   = current_user.id
     @comment.user_id      = order.user_id
-    if @comment.save
-      flash[:notice] = "Successfully created comment."
-      respond_to do |format|
-          format.json { render :json => @comment.to_json}
-          format.html { render :action => 'show' }
-      end
-    else
-      form_info
-      respond_to do |format|
-          format.json { render :json => @comment.errors.to_json }
-          format.html { render :action => 'new' }
+    respond_to do |format|
+      if @comment.save
+        flash[:notice] = "Successfully created comment."
+        format.json { render :json => @comment.to_json}
+        format.html { render :action => 'show' }
+      else
+        format.json { render :json => @comment.errors.to_json }
+        format.html { render :action => 'new' }
       end
     end
   end
@@ -49,17 +45,14 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
 
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update_attributes(params[:comment])
-      flash[:notice] = "Successfully updated comment."
-      respond_to do |format|
-          format.json { render :json => @comment.to_json}
-          format.html { redirect_to admin_fulfillment_order_comment_url(order, @comment) }
-      end
-    else
-      form_info
-      respond_to do |format|
-          format.json { render :json => @comment.errors.to_json }
-          format.html { render :action => 'edit' }
+    respond_to do |format|
+      if @comment.update_attributes(params[:comment])
+        flash[:notice] = "Successfully updated comment."
+        format.json { render :json => @comment.to_json}
+        format.html { redirect_to admin_fulfillment_order_comment_url(order, @comment) }
+      else
+        format.json { render :json => @comment.errors.to_json }
+        format.html { render :action => 'edit' }
       end
     end
   end
