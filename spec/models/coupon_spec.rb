@@ -92,7 +92,7 @@ describe Coupon do
         if RUBY_VERSION == '1.9.2'
           @coupon_value.starts_at = Time.zone.parse('1/13/2011')
         else # 1.9.3 or greater
-          @coupon_value.starts_at = Time.zone.parse('13/1/2011')
+          @coupon_value.starts_at = Time.zone.parse('1/13/2011')
         end
         @coupon_value.display_start_time.should == '01/13/2011'
       end
@@ -108,7 +108,7 @@ describe Coupon do
         if RUBY_VERSION == '1.9.2'
           @coupon_value.expires_at = Time.zone.parse('1/13/2011')
         else # 1.9.3 or greater
-          @coupon_value.expires_at = Time.zone.parse('13/1/2011')
+          @coupon_value.expires_at = Time.zone.parse('1/13/2011')
         end
         @coupon_value.display_expires_time.should == '01/13/2011'
       end

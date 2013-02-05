@@ -51,6 +51,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.2)
     afm (0.2.0)
+    american_date (1.0.0)
     arel (3.0.2)
     asset_sync (0.5.4)
       activemodel
@@ -269,6 +270,7 @@ DEPENDENCIES
   RedCloth
   ZenTest (= 4.6.2)
   activemerchant (~> 1.29.3)
+  american_date
   asset_sync
   authlogic
   autotest (~> 4.4.6)

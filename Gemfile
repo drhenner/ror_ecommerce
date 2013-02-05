@@ -10,6 +10,7 @@ end
   gem 'sass-rails', "  ~> 3.2.3"
 
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
+gem "american_date"
 gem 'authlogic'#, "3.2.0"
 gem "asset_sync"
 gem 'aws-sdk'
