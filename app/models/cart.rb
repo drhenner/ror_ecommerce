@@ -116,7 +116,15 @@ class Cart < ActiveRecord::Base
   # @param [none]
   # @return [Float] This is a float in decimal form and represents the price of all the items in the cart
   def sub_total
-    shopping_cart_items.inject(0) {|sum, item| item.total + sum} #.includes(:variant)
+    shopping_cart_items.map(&:total).sum
+  end
+
+  # Adds the quantity of items that are currently in the shopping cart
+  #
+  # @param [none]
+  # @return [Integer] Quantity all the items in the cart
+  def number_of_shopping_cart_items
+    shopping_cart_items.map(&:quantity).sum
   end
 
   # Call this method when you are checking out with the current cart items

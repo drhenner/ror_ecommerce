@@ -26,7 +26,7 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
 
     order = session_admin_order
     @order = session_admin_cart.add_items_to_checkout(order) # need here because items can also be removed
-    if session_admin_cart.shopping_cart_items.inject(0) {|sum, item| sum + item.quantity } != @order.order_items.size
+    if session_admin_cart.number_of_shopping_cart_items != @order.order_items.size
       flash[:alert] = "Some items could not be added to the cart.  Out of Stock."
     end
     redirect_to next_admin_order_form_url
@@ -50,9 +50,7 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
                                           {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
                                           @order.amount_to_credit)
         if response.succeeded?
-          ##  MARK items as purchased
-          session_admin_cart.mark_items_purchased(@order)
-          order_completed!
+          order_completed!(@order)
           redirect_to admin_history_order_url(@order)
         else
           flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')

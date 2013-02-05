@@ -10,6 +10,16 @@ describe Cart, ".sub_total" do
   it "should calculate subtotal correctly" do
     @cart.sub_total.should == 10.00
   end
+
+  it "should give the number of cart items" do
+    @cart.number_of_shopping_cart_items.should == 2
+  end
+
+  it "should give the number of cart items" do
+    variant = FactoryGirl.create(:variant)
+    @cart.add_variant(variant.id, @cart.user, 2)
+    @cart.number_of_shopping_cart_items.should == 4
+  end
 end
 
 describe Cart, " instance methods" do

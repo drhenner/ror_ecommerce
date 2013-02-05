@@ -64,7 +64,8 @@ class Admin::Shopping::Checkout::BaseController < Admin::Shopping::BaseControlle
     end
   end
 
-  def order_completed!
+  def order_completed!(order)
+    session_admin_cart.mark_items_purchased(order)
     session[:admin_cart_id] = nil
     session[:order_admin_id] = nil
   end
