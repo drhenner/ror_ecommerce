@@ -6,29 +6,19 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
                                                         paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
-  #def new
-  #end
-
-  #def create
-  #end
-
   def edit
     @purchase_order = PurchaseOrder.includes([:variants ,
                                               :supplier,
                                               {:purchase_order_variants => {:variant => :product }}]).find(params[:id])
-    form_info
   end
 
   def update
     @purchase_order = PurchaseOrder.find(params[:id])
 
-    respond_to do |format|
-      if @purchase_order.update_attributes(params[:purchase_order])
-        format.html { redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.') }
-      else
-        form_info
-        format.html { render :action => "edit" }
-      end
+    if @purchase_order.update_attributes(params[:purchase_order])
+      redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
 
@@ -36,9 +26,7 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
   end
 
 private
-  def form_info
 
-  end
   def pagination_rows
     params[:rows] ||= 25
     params[:rows].to_i

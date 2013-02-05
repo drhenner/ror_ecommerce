@@ -13,18 +13,12 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   end
 
   # GET /purchase_orders/new
-  # GET /purchase_orders/new.xml
   def new
     @purchase_order = PurchaseOrder.new
-    #@purchase_order.purchase_order_variants << PurchaseOrderVariant.new
     form_info
     if @select_suppliers.empty?
       flash[:notice] = 'You need to have a supplier before you can create a purchase order.'
       redirect_to new_admin_inventory_supplier_url
-    else
-      respond_to do |format|
-        format.html # new.html.erb
-      end
     end
   end
 
@@ -36,29 +30,24 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
 
   # POST /purchase_orders
   def create
-    #args = params[:purchase_order].reject{|key,val| key == :new_purchase_order_variants}
     @purchase_order = PurchaseOrder.new(params[:purchase_order])
 
-    respond_to do |format|
-      if @purchase_order.save
-        format.html { redirect_to(:action => :index, :notice => 'Purchase order was successfully created.') }
-      else
-        form_info
-        format.html { render :action => "new" }
-      end
+    if @purchase_order.save
+      redirect_to(:action => :index, :notice => 'Purchase order was successfully created.')
+    else
+      form_info
+      render :action => "new"
     end
   end
 
   # PUT /purchase_orders/1
   def update
     @purchase_order = PurchaseOrder.find(params[:id])
-    respond_to do |format|
-      if @purchase_order.update_attributes(params[:purchase_order])
-        format.html { redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.') }
-      else
-        form_info
-        format.html { render :action => "edit" }
-      end
+    if @purchase_order.update_attributes(params[:purchase_order])
+      redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.')
+    else
+      form_info
+      render :action => "edit"
     end
   end
 
