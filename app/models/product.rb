@@ -48,17 +48,13 @@ class Product < ActiveRecord::Base
     :class_name => 'Variant',
     :conditions => ["variants.deleted_at IS NULL", true]
 
-  has_many :inactive_master_variants,
-    :class_name => 'Variant',
-    :conditions => ["variants.deleted_at IS NOT NULL AND variants.master = ? ", true]
-
   before_validation :sanitize_data
   before_validation :not_active_on_create!, :on => :create
   before_save :create_content
 
   accepts_nested_attributes_for :variants,            :reject_if => proc { |attributes| attributes['sku'].blank? }
   accepts_nested_attributes_for :product_properties,  :reject_if => proc { |attributes| attributes['description'].blank? }, :allow_destroy => true
-  accepts_nested_attributes_for :images,              :reject_if => lambda { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, :allow_destroy => true
+  accepts_nested_attributes_for :images,              :reject_if => proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, :allow_destroy => true
 
   validates :shipping_category_id,  :presence => true
   validates :product_type_id,       :presence => true
@@ -148,9 +144,8 @@ class Product < ActiveRecord::Base
   # @param [params]  :rows, :page
   # @return [ Product ]
   def self.standard_search(args)
-      Product.includes( [:properties, :images]).
-              where(['products.name LIKE ? OR products.meta_keywords LIKE ?', "%#{args}%", "%#{args}%"]).
-              where(['products.deleted_at IS NULL OR products.deleted_at > ?', Time.zone.now])
+      Product.includes( [:properties, :images]).active.
+              where(['products.name LIKE ? OR products.meta_keywords LIKE ?', "%#{args}%", "%#{args}%"])
   end
 
   # This returns the first featured product in the database,
