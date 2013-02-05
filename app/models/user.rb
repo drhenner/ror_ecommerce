@@ -394,8 +394,7 @@ class User < ActiveRecord::Base
   end
 
   def age
-    now = Time.now.utc.to_date
-    now.year - birth_date.year - ((now.month > birth_date.month || (now.month == birth_date.month && now.day >= birth_date.day)) ? 0 : 1)
+    birth_date.age
   end
 
   def start_store_credits
