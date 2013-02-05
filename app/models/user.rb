@@ -1,8 +1,9 @@
-# USERS DOCUMENTATION
+# == USERS DOCUMENTATION
 #
 # The users table represents...  USERS!!!
 #
-# When a user signs up to the application they can be put into several states and have different requirements depending on how they signed up.
+# When a user signs up to the application they can be put into several states and have
+# different requirements depending on how they signed up.
 #
 
 ##

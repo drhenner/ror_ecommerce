@@ -4,7 +4,9 @@
 #
 # OK Now that doesn't appear to make any sence...  It is actually not very easy to understand without context.
 
-# A BATCH entry reflects the more physical aspects of accounting data entry. It is used to group together transactions entries into handy ‘chunks’, for example, a collection of cheques to be entered into the system...  OR in this app's case all the transactions grouped for one order.
+# A BATCH entry reflects the more physical aspects of accounting data entry. It is used to group
+# together transactions entries into handy ‘chunks’, for example, a collection of cheques to be
+# entered into the system...  OR in this app's case all the transactions grouped for one order.
 
 # == Schema Information
 #

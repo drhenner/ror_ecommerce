@@ -2,8 +2,12 @@
 #
 # The users table represents...  ADDRESSES!!!
 #
-# There really isn't anything special about addresses themselves.  However PLEASE PLEASE PLEASE never ever implement @address.delete or @address.destroy or even @address.update_attributes.  You should only create and inactivate addresses.   This means EDIT == create and inactivate the old address.  Please read the following blog to understand the logic.  THIS IS EXTREMELY IMPORTANT!
-
+# There really isn't anything special about addresses themselves.
+# However PLEASE PLEASE PLEASE never ever implement @address.delete or @address.destroy or
+#   even @address.update_attributes.  You should only create and inactivate addresses.
+#   This means EDIT == create and inactivate the old address.
+#
+#  Please read the following blog to understand the logic.  THIS IS EXTREMELY IMPORTANT!
 #  http://www.ror-e.com/posts/27-e-commerce-tips-1-0
 
 # == Schema Information

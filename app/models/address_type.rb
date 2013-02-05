@@ -2,7 +2,11 @@
 #
 # The users table represents...  ADDRESS_TYPES!!!
 #
-# Address types are like Shipping and billing address.  This can be used to have forms that only show one type of address.  Following suit with amazon and many other e-commerce sites this field is currently not being used for addresses.  Mainly because many times it forces the end user to re-enter the same address twice (double the chance of an error) Plus in most cases is no big deal if you show an extra address to choose from in a form.
+# Address types are like Shipping and billing address.  This can be used to have forms
+# that only show one type of address.  Following suit with amazon and many other e-commerce
+# sites this field is currently not being used for addresses.  Mainly because many times it
+# forces the end user to re-enter the same address twice (double the chance of an error)
+# Plus in most cases is no big deal if you show an extra address to choose from in a form.
 
 # We can take advantage of this from a data standpoint but removing this is an option.
 

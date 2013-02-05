@@ -5,9 +5,11 @@
 # The purpose is for a subscription based service.
 #
 # Example 1:
-#    One example that was spoke about by the Senior staff at Trumaker was allowing Outfitters to buy their "kits" with a monthly fee as opposed to one lump some.  The fee for a kit and all the extras might be as high as $500 possibly.  An outfitter might choose to be charged $25 per month thus not feeling the pain of the $500 charge.
+#    Someone signs up for a service with a monthly fee as opposed to one lump some.  The fee for the service
+#    to be charged $25 per month.
 
-#  NOTE: This has not been implemented and it is an option to delete this model if that is the desire of the more senior developers on this project.
+#  NOTE: This has not been implemented and it is an option to delete this model if that is the desire
+#
 
 # == Schema Information
 #

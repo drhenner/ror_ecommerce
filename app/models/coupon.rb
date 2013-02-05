@@ -1,4 +1,6 @@
-# Coupons are straight forward.  Picture a coupon you have in a grocery store.  The only big difference in the grocery store you can have 30 coupon for different items you buy.  For Trumaker you can only have one couple for an entire order.  This is pretty standard in the ecommerce world.
+# Coupons are straight forward.  Picture a coupon you have in a grocery store.
+# The only big difference in the grocery store you can have 30 coupon for different items you buy.
+# For ror-e you can only have one Coupon for an entire order.  This is pretty standard in the ecommerce world.
 
 # The method that is most important:
 #
@@ -12,7 +14,8 @@
 #  The eligible? method changes functionality depending on what type of coupon is created.
 #    => at the most basic level it determine if the date of the order is greater than starts_at and less than expires_at
 #
-#  For first_purchase_xxxxx  coupons eligible? also ensures the order that this is being applied to is the first item you have ever purchased.
+#  For first_purchase_xxxxx  coupons eligible? also ensures the order that this is being applied
+#   to is the first item you have ever purchased.
 #
 ####################################################################################
 ###  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!

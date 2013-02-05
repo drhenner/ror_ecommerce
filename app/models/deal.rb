@@ -1,10 +1,17 @@
-# The deal model is basically a "buy X get y percent free" or "buy X get y dollars off"
+# == Class Deal
 #
-# In the scenario "buy X get y percent free", X is buy_quantity and y is get_percentage.  The way it works get_percentage is multiplied by the lowest costing item that "qualifies" for the deal.
+#  The deal model is basically a "buy X get y percent free" or "buy X get y dollars off"
 #
-### NOTE: "qualifies" =>  a product qualifies if is of the correct product_type_id.  If the product_type_id doesn't match it will not qualify.  so you might have three pants but also one belt.  the belt and the pants will not be the same product_type_id.
+#  In the scenario "buy X get y percent free", X is buy_quantity and y is get_percentage.
+#  The way it works get_percentage is multiplied by the lowest costing item that "qualifies" for the deal.
+#
+#  NOTE: "qualifies" =>  a product qualifies if is of the correct product_type_id.  If
+#        the product_type_id doesn't match it will not qualify.  so you might have three pants
+#        but also one belt.  the belt and the pants will not be the same product_type_id.
 
-# In the scenario "buy X get y dollars off", X is buy_quantity and y is get_amount.  The way it works get_amount is the number of cents reduced from the order total.   Again the NOTE above about "qualifies" still is in effect
+#  In the scenario "buy X get y dollars off", X is buy_quantity and y is get_amount.
+#  The way it works get_amount is the number of cents reduced from the order total.
+#  Again the NOTE above about "qualifies" still is in effect
 
 # == Schema Information
 #

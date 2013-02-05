@@ -2,9 +2,14 @@
 #
 # The users table represents...  ACCOUNTING ADJUSTMENTS!!!
 #
-#  In accounting you might need to account for missing stock or for some reason an extra item pops up in stock.  So a warehouse person would need to go into the app and add the inventory to stock (or subtract).  This adjustment also adjusts account.  It is WAY beyond the scope of this documentation to explain Double entry accounting... (Please look here: http://www.dwmbeancounter.com/tutorial/Tutorial.html)
+#  In accounting you might need to account for missing stock or for some reason an
+#  extra item pops up in stock.  So a warehouse person would need to go into the app
+#  and add the inventory to stock (or subtract).  This adjustment also adjusts account.
+#  It is WAY beyond the scope of this documentation to explain Double entry accounting...
+#  (Please look here: http://www.dwmbeancounter.com/tutorial/Tutorial.html)
 
-# This model adds an extra log to view the notes and amount associated with this specific type of "accounting adjustment".  This table could be used in a report for your accountant.
+# This model adds an extra log to view the notes and amount associated with this specific
+# type of "accounting adjustment".  This table could be used in a report for your accountant.
 
 # == Schema Information
 #
