@@ -87,18 +87,6 @@ class Order < ActiveRecord::Base
     end
   end
 
-  #  This method is used when the session in admin orders is ready to authorize the credit card
-  #   The cart has the following format
-  #
-  #  session[:admin_cart] = {
-  #    :user             => nil,
-  #    :shipping_address => nil,
-  #    :billing_address  => nil,
-  #    :coupon           => nil,
-  #    :shipping_method  => nil,
-  #    :order_items => {}# the key is variant_id , a hash of {variant, shipping_rate, quantity, tax_rate, total, shipping_category_id}
-  #  }
-
   def mark_items_paid
     order_items.map(&:pay!)
   end
@@ -455,40 +443,18 @@ class Order < ActiveRecord::Base
     shipments_count > 0
   end
 
-  def self.create_subscription_order(user)
-    order = Order.new(
-              :user   => user,
-              :email  => user.email,
-              :bill_address => user.billing_address,
-              :ship_address => user.shipping_address
-                      )
-    oi = OrderItem.new( :total            => user.account.monthly_charge,
-                        :price            => user.account.monthly_charge,
-                        :variant_id       => Variant::MONTHLY_BILLING_ID,
-                        :shipping_rate_id => ShippingRate::MONTHLY_BILLING_RATE_ID
-                      )
-    order.push(oi)
-    order.save
-    order
-  end
-
   # paginated results from the admin orders that are completed grid
   #
   # @param [Optional params]
   # @return [ Array[Order] ]
   def self.find_finished_order_grid(params = {})
-
-    grid = Order
-    grid = grid.includes([:user])
-    grid = grid.where({:active => true })                     unless  params[:show_all].present? &&
-                                                                      params[:show_all] == 'true'
-    grid = grid.where("orders.shipment_counter = ?", 0)             if params[:shipped].present? && params[:shipped] == 'true'
-    grid = grid.where("orders.shipment_counter > ?", 0)            if params[:shipped].present? && params[:shipped] == 'false'
-    grid = grid.where("orders.completed_at IS NOT NULL")
+    grid = Order.includes([:user]).where("orders.completed_at IS NOT NULL")
+    grid = grid.where({:active => true })                     unless  params[:show_all].present?   && params[:show_all] == 'true'
+    grid = grid.where("orders.shipment_counter = ?", 0)               if params[:shipped].present? && params[:shipped] == 'true'
+    grid = grid.where("orders.shipment_counter > ?", 0)               if params[:shipped].present? && params[:shipped] == 'false'
     grid = grid.where("orders.number LIKE ?", "#{params[:number]}%")  if params[:number].present?
     grid = grid.where("orders.email LIKE ?", "#{params[:email]}%")    if params[:email].present?
     grid = grid.order("#{params[:sidx]} #{params[:sord]}")
-
   end
 
   # paginated results from the admin order fulfillment grid
@@ -496,14 +462,10 @@ class Order < ActiveRecord::Base
   # @param [Optional params]
   # @return [ Array[Order] ]
   def self.fulfillment_grid(params = {})
-    grid = self
-    grid = grid.includes([:user])
-    grid = grid.where({:active => true })                     unless  params[:show_all].present? &&
-                                                                      params[:show_all] == 'true'
-    grid = grid.where({ :orders => {:shipped => false }} )
-    grid = grid.where("orders.completed_at IS NOT NULL")
+    grid = Order.includes([:user]).where({ :orders => {:shipped => false }} ).where("orders.completed_at IS NOT NULL")
+    grid = grid.where({:active => true })                     unless  params[:show_all].present? && params[:show_all] == 'true'
     grid = grid.where("orders.number LIKE ?", "#{params[:number]}%")  if params[:number].present?
-    grid = grid.where("orders.shipped = ?", true)               if (params[:shipped].present? && params[:shipped] == 'true')
+    grid = grid.where("orders.shipped = ?", true)                     if (params[:shipped].present? && params[:shipped] == 'true')
     grid = grid.where("orders.email LIKE ?", "#{params[:email]}%")    if params[:email].present?
     grid
   end
