@@ -17,6 +17,7 @@
 #
 
 class Invoice < ActiveRecord::Base
+
   has_many :payments
   has_many :batches, :as => :batchable#, :polymorphic => true
   belongs_to :order
@@ -139,24 +140,11 @@ class Invoice < ActiveRecord::Base
     if batches.empty?
       # this means we never authorized just captured payment
         batch = self.batches.create()
-        transaction = CreditCardCapture.new()##  This is a type of transaction
-        credit = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::REVENUE_ID, :debit => 0,     :credit => amount, :period => "#{now.month}-#{now.year}")
-        debit   = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,   :debit => amount, :credit => 0,      :period => "#{now.month}-#{now.year}")
-        transaction.transaction_ledgers.push(credit)
-        transaction.transaction_ledgers.push(debit)
-        batch.transactions.push(transaction)
+        batch.transactions.push(CreditCardCapture.new_capture_payment_directly(order.user, amount))
         batch.save
     else
       batch       = batches.first
-      transaction = CreditCardReceivePayment.new()
-
-      debit   = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID,                :debit => amount, :credit => 0,       :period => "#{now.month}-#{now.year}")
-      credit  = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_RECEIVABLE_ID, :debit => 0,      :credit => amount,  :period => "#{now.month}-#{now.year}")
-
-      transaction.transaction_ledgers.push(credit)
-      transaction.transaction_ledgers.push(debit)
-
-      batch.transactions.push(transaction)
+      batch.transactions.push(CreditCardReceivePayment.new_capture_authorized_payment(order.user, amount))
       batch.save
     end
   end
@@ -166,14 +154,8 @@ class Invoice < ActiveRecord::Base
     now = Time.zone.now
     if batches.empty?
       batch = self.batches.create()
-      transaction = CreditCardPayment.new()##  This is a type of transaction
-      credit = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::REVENUE_ID, :debit => 0, :credit => amount, :period => "#{now.month}-#{now.year}")
-      debit  = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_RECEIVABLE_ID, :debit => amount, :credit => 0, :period => "#{now.month}-#{now.year}")
-      transaction.transaction_ledgers.push(credit)
-      transaction.transaction_ledgers.push(debit)
-      batch.transactions.push(transaction)
+      batch.transactions.push(CreditCardPayment.new_authorized_payment(order.user, amount))
       batch.save
-      #puts batch.errors
     else
       raise error ###  something messed up I think
     end
@@ -184,12 +166,7 @@ class Invoice < ActiveRecord::Base
     now = Time.zone.now
     if batch# if not we never authorized the payment
       self.cancel!
-      transaction = CreditCardCancel.new()##  This is a type of transaction
-      debit   = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::REVENUE_ID, :debit => amount, :credit => 0, :period => "#{now.month}-#{now.year}")
-      credit  = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::ACCOUNTS_RECEIVABLE_ID, :debit => 0, :credit => amount, :period => "#{now.month}-#{now.year}")
-      transaction.transaction_ledgers.push(credit)
-      transaction.transaction_ledgers.push(debit)
-      batch.transactions.push(transaction)
+      batch.transactions.push(CreditCardCancel.new_cancel_authorized_payment(order.user, amount))
       batch.save
     end
   end
@@ -206,13 +183,7 @@ class Invoice < ActiveRecord::Base
 
   def complete_rma_return
     batch       = batches.first || self.batches.create()
-    now = Time.zone.now
-    transaction = ReturnMerchandiseComplete.new()##  This is a type of transaction
-    debit   = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::REVENUE_ID, :debit => amount, :credit => 0, :period => "#{now.month}-#{now.year}")
-    credit  = order.user.transaction_ledgers.new(:transaction_account_id => TransactionAccount::CASH_ID, :debit => 0, :credit => amount, :period => "#{now.month}-#{now.year}")
-    transaction.transaction_ledgers.push(credit)
-    transaction.transaction_ledgers.push(debit)
-    batch.transactions.push(transaction)
+    batch.transactions.push(ReturnMerchandiseComplete.new_complete_rma(order.user, amount))
     batch.save
   end
 
