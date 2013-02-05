@@ -17,7 +17,6 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
       if @order.order_items.empty?
         redirect_to admin_shopping_products_url() and return
       end
-      form_info
       @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
     end
   end
@@ -56,17 +55,14 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
           order_completed!
           redirect_to admin_history_order_url(@order)
         else
-          form_info
           flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
           render :action => "show"
         end
       else
-        form_info
         flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
         render :action => 'show'
       end
     else
-      form_info
       flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
       render :action => 'show'
     end
