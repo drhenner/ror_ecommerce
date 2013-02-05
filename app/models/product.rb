@@ -223,18 +223,20 @@ class Product < ActiveRecord::Base
     def sanitize_data
       self.permalink = name if permalink.blank? && name
       self.permalink = permalink.squeeze(" ").strip.gsub(' ', '-') if permalink
-      if meta_keywords.blank? && description
-        self.meta_keywords =  [name[0..55],
-                              description.
-                              gsub(/\d/, "").                 # remove non-alpha numeric
-                              squeeze(" ").                   # remove extra whitespace
-                              gsub(/<\/?[^>]*>/, "").         # remove hyper text
-                              split(' ').                     # split into an array
-                              map{|w| w.length > 2 ? w : ''}. # remove words less than 2 characters
-                              join(' ').strip[0..198]         # join and limit to 198 characters
-                              ].join(': ')
-      end
+      assign_meta_keywords  if meta_keywords.blank? && description
       self.meta_description = [name[0..55], description.gsub(/<\/?[^>]*>/, "").squeeze(" ").strip[0..198]].join(': ') if name.present? && description.present? && meta_description.blank?
+    end
+
+    def assign_meta_keywords
+      self.meta_keywords =  [name[0..55],
+                            description.
+                            gsub(/\d/, "").                 # remove non-alpha numeric
+                            squeeze(" ").                   # remove extra whitespace
+                            gsub(/<\/?[^>]*>/, "").         # remove hyper text
+                            split(' ').                     # split into an array
+                            map{|w| w.length > 2 ? w : ''}. # remove words less than 2 characters
+                            join(' ').strip[0..198]         # join and limit to 198 characters
+                            ].join(': ')
     end
 end
 
