@@ -350,10 +350,7 @@ class Order < ActiveRecord::Base
   # @param [none]
   # @return [Array] array of tax charges that will be charged
   def tax_charges
-    charges = order_items.inject([]) do |charges, item|
-      charges << item.tax_charge
-      charges
-    end
+    charges = order_items.map {|item| item.tax_charge }
   end
 
   # sum of all the tax charges to apply to the order
