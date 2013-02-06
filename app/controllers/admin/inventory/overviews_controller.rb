@@ -10,7 +10,6 @@ class Admin::Inventory::OverviewsController < Admin::BaseController
 
   def edit
     @product = Product.includes(:variants).find(params[:id])
-    form_info
   end
 
   def update
@@ -19,14 +18,8 @@ class Admin::Inventory::OverviewsController < Admin::BaseController
     if @product.update_attributes(params[:product])
       redirect_to :action => :index
     else
-      form_info
       render :action => :edit
     end
   end
 
-  private
-
-  def form_info
-
-  end
 end
