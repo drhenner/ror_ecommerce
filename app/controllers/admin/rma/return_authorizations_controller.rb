@@ -2,10 +2,9 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
   helper_method :sort_column, :sort_direction
   # GET /return_authorizations
   def index
-    params[:page] ||= 1
     load_info
     @return_authorizations = ReturnAuthorization.admin_grid(params).order(sort_column + " " + sort_direction).
-                                              paginate(:per_page => 20, :page => params[:page].to_i)
+                                              paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
   # GET /return_authorizations/1
@@ -37,14 +36,12 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
     @return_authorization.created_by = current_user.id
     @return_authorization.user_id    = @order.user_id
 
-    respond_to do |format|
       if @return_authorization.save
-        format.html { redirect_to(admin_rma_order_return_authorization_url(@order, @return_authorization), :notice => 'Return authorization was successfully created.') }
+        redirect_to(admin_rma_order_return_authorization_url(@order, @return_authorization), :notice => 'Return authorization was successfully created.')
       else
         form_info
-        format.html { render :action => "new" }
+        render :action => "new"
       end
-    end
   end
 
   # PUT /return_authorizations/1
@@ -52,14 +49,12 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
     load_info
     @return_authorization = ReturnAuthorization.find(params[:id])
 
-    respond_to do |format|
       if @return_authorization.update_attributes(params[:return_authorization])
-        format.html { redirect_to(admin_rma_order_return_authorization_url(@order, @return_authorization), :notice => 'Return authorization was successfully updated.') }
+        redirect_to(admin_rma_order_return_authorization_url(@order, @return_authorization), :notice => 'Return authorization was successfully updated.')
       else
         form_info
-        format.html { render :action => "edit" }
+        render :action => "edit"
       end
-    end
   end
 
   def complete
@@ -78,15 +73,13 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
     load_info
     @return_authorization = ReturnAuthorization.find(params[:id])
 
-    respond_to do |format|
       if @return_authorization.cancel!
-        format.html { redirect_to(admin_rma_order_return_authorization_url(@order, @return_authorization), :notice => 'Return authorization was successfully updated.') }
+        redirect_to(admin_rma_order_return_authorization_url(@order, @return_authorization), :notice => 'Return authorization was successfully updated.')
       else
         flash[:notice] = 'Return authorization had an error.'
         form_info
-        format.html { render :action => "edit" }
+        render :action => "edit"
       end
-    end
   end
 private
   def form_info

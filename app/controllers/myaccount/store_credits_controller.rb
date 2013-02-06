@@ -6,10 +6,6 @@ class Myaccount::StoreCreditsController < Myaccount::BaseController
 
   private
 
-  def form_info
-
-  end
-
     def selected_myaccount_tab(tab)
       tab == 'store_credit'
     end

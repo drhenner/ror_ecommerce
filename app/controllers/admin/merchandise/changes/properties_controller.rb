@@ -2,7 +2,6 @@ class Admin::Merchandise::Changes::PropertiesController < Admin::BaseController
   helper_method :all_properties
   before_filter :get_product
   def edit
-    form_info
   end
 
   def update
@@ -10,7 +9,6 @@ class Admin::Merchandise::Changes::PropertiesController < Admin::BaseController
       flash[:notice] = "Successfully updated properties."
       redirect_to admin_merchandise_product_url(@product.id)
     else
-      form_info
       render :action => 'edit'
     end
   end
@@ -24,7 +22,4 @@ class Admin::Merchandise::Changes::PropertiesController < Admin::BaseController
     @product = Product.find_by_id(params[:product_id])
   end
 
-  def form_info
-
-  end
 end
