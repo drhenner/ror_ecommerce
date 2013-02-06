@@ -17,7 +17,6 @@ class Admin::Inventory::SuppliersController < Admin::BaseController
     if @supplier.save
       redirect_to :action => :index
     else
-      form_info
       flash[:error] = "The supplier could not be saved"
       render :action => :new
     end
@@ -29,11 +28,9 @@ class Admin::Inventory::SuppliersController < Admin::BaseController
 
   def update
     @supplier = Supplier.find(params[:id])
-
     if @supplier.update_attributes(params[:supplier])
       redirect_to :action => :index
     else
-      form_info
       render :action => :edit
     end
   end
@@ -44,9 +41,6 @@ class Admin::Inventory::SuppliersController < Admin::BaseController
   end
 
 private
-  def form_info
-
-  end
 
   def sort_column
     Supplier.column_names.include?(params[:sort]) ? params[:sort] : "id"

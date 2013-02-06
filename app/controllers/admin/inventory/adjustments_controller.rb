@@ -8,7 +8,6 @@ class Admin::Inventory::AdjustmentsController < Admin::BaseController
   end
 
   def edit
-    form_info
     @variant = Variant.includes(:product).find(params[:id])
   end
 
@@ -25,20 +24,15 @@ class Admin::Inventory::AdjustmentsController < Admin::BaseController
         flash[:notice] = "Successfully updated the inventory."
         redirect_to admin_inventory_adjustment_url(@variant.product)
       else
-        form_info
         render :action => 'edit', :id => params[:id]
       end
     else
       flash[:alert] = "Refund must be entered (fill in 0 for no refund)." unless params[:refund].present?
-      form_info
       render :action => 'edit', :id => params[:id]
     end
   end
 
   private
 
-  def form_info
-
-  end
 end
 

@@ -8,7 +8,6 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
   end
 
   def new
-    form_info
     @brand = Brand.new
   end
 
@@ -18,13 +17,11 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
       flash[:notice] = "Successfully created brand."
       redirect_to admin_merchandise_brand_url(@brand)
     else
-      form_info
       render :action => 'new'
     end
   end
 
   def edit
-    form_info
     @brand = Brand.find(params[:id])
   end
 
@@ -34,7 +31,6 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
       flash[:notice] = "Successfully updated brand."
       redirect_to admin_merchandise_brand_url(@brand)
     else
-      form_info
       render :action => 'edit'
     end
   end
@@ -51,9 +47,4 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
     redirect_to admin_merchandise_brands_url
   end
 
-  private
-
-  def form_info
-
-  end
 end
