@@ -27,17 +27,14 @@ class Shopping::CartItemsController < Shopping::BaseController
 
   # PUT /carts/1
   def update
-
-    respond_to do |format|
-      if session_cart.update_attributes(params[:cart])
-        if params[:commit] && params[:commit] == "checkout"
-          format.html { redirect_to( checkout_shopping_order_url('checkout')) }
-        else
-          format.html { redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_passed_update') ) }
-        end
+    if session_cart.update_attributes(params[:cart])
+      if params[:commit] && params[:commit] == "checkout"
+        redirect_to( checkout_shopping_order_url('checkout'))
       else
-        format.html { redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') ) }
+        redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_passed_update') )
       end
+    else
+      redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') )
     end
   end
 ## TODO
@@ -46,15 +43,12 @@ class Shopping::CartItemsController < Shopping::BaseController
   #   otherwise false is returned if there is an error
   #   method => PUT
   def move_to
-      @cart_item = session_cart.cart_items.find(params[:id])
-
-      respond_to do |format|
-        if @cart_item.update_attributes(:item_type_id => params[:item_type_id])
-          format.html { redirect_to(shopping_cart_items_url() ) }
-        else
-          format.html { redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') ) }
-        end
-      end
+    @cart_item = session_cart.cart_items.find(params[:id])
+    if @cart_item.update_attributes(:item_type_id => params[:item_type_id])
+      redirect_to(shopping_cart_items_url() )
+    else
+      redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') )
+    end
   end
 
   # DELETE /carts/1

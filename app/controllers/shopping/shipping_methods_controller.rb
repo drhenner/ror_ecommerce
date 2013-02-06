@@ -14,9 +14,6 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
       @order_items.each do |item|
         item.variant.product.available_shipping_rates = ShippingRate.with_these_shipping_methods(item.variant.product.shipping_category.shipping_rate_ids, @shipping_method_ids)
       end
-      respond_to do |format|
-        format.html # index.html.erb
-      end
     end
   end
 
@@ -34,13 +31,10 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
         all_selected = false
       end
     end
-    respond_to do |format|
-      if all_selected
-        format.html { redirect_to(shopping_orders_url, :notice => I18n.t('shipping_method_updated')) }
-        format.xml  { head :ok }
-      else
-        format.html { redirect_to( shopping_shipping_methods_url, :notice => I18n.t('all_shipping_methods_must_be_selected')) }
-      end
+    if all_selected
+      redirect_to(shopping_orders_url, :notice => I18n.t('shipping_method_updated'))
+    else
+      redirect_to( shopping_shipping_methods_url, :notice => I18n.t('all_shipping_methods_must_be_selected'))
     end
   end
 
