@@ -9,16 +9,11 @@ class Shopping::OrdersController < Shopping::BaseController
   #
   ##### THIS METHOD IS BASICALLY A CHECKOUT ENGINE
   def index
-    #current or in-progress otherwise cart (unless cart is empty)
     @order = find_or_create_order
-    #@order = session_cart.add_items_to_checkout(order) # need here because items can also be removed
     if f = next_form(@order)
       redirect_to f
     else
       form_info
-      respond_to do |format|
-        format.html # index.html.erb
-      end
     end
   end
 
@@ -37,13 +32,10 @@ class Shopping::OrdersController < Shopping::BaseController
     @order.ip_address = request.remote_ip
 
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
-    #gateway = ActiveMerchant::Billing::PaypalGateway.new(:login=>$PAYPAL_LOGIN, :password=>$PAYPAL_PASSWORD)
 
-    #res = gateway.authorize(amount, credit_card, :ip=>request.remote_ip, :billing_address=>billing_address)
     address = @order.bill_address.cc_params
 
     if @order.complete?
-      #CartItem.mark_items_purchased(session_cart, @order)
       session_cart.mark_items_purchased(@order)
       flash[:error] = I18n.t('the_order_purchased')
       redirect_to myaccount_order_url(@order)
@@ -55,17 +47,15 @@ class Shopping::OrdersController < Shopping::BaseController
         if response.succeeded?
           ##  MARK items as purchased
           session_cart.mark_items_purchased(@order)
-          redirect_to myaccount_order_path(@order)
+          redirect_to( myaccount_order_path(@order) ) and return
         else
-          form_info
           flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
-          render :action => "index"
         end
       else
-        form_info
         flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
-        render :action => 'index'
       end
+      form_info
+      render :action => 'index'
     else
       form_info
       flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
