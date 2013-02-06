@@ -177,11 +177,26 @@ class Address < ActiveRecord::Base
   private
     # This method is called to ensure data is formated without extra white space before_validation
     def sanitize_data
+      sanitize_name
+      sanitize_city
+      sanitize_zip_code
+      sanitize_address
+    end
+
+    def sanitize_zip_code
+      self.zip_code    = self.zip_code.strip    unless self.zip_code.blank?
+    end
+
+    def sanitize_city
+      self.city        = self.city.strip        unless self.city.blank?
+    end
+
+    def sanitize_name
       self.first_name  = self.first_name.strip  unless self.first_name.blank?
       self.last_name   = self.last_name.strip   unless self.last_name.blank?
-      self.city        = self.city.strip        unless self.city.blank?
-      self.zip_code    = self.zip_code.strip    unless self.zip_code.blank?
-      #self.phone      = self.phone.strip       unless self.phone.blank?
+    end
+
+    def sanitize_address
       self.address1    = self.address1.strip    unless self.address1.blank?
       self.address2    = self.address2.strip    unless self.address2.blank?
     end
