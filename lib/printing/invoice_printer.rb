@@ -48,15 +48,12 @@ module InvoicePrinter
       pdf.draw_text shipping_rate.rate,      {:at => [470, 270 - (i * 15) ]}
     end
     pdf.draw_text invoice.order.total_tax_charges,      {:at => [480, 175], :size => 10 }
-
-
   end
 
   def new_page(pdf, invoice, start_new_page = true)
     pdf.start_new_page() if start_new_page
     pdf.font "#{Rails.root}/lib/printing/fonts/DejaVuSans.ttf"
     print_invoice_background(pdf)
-
     new_page_bounding_box(pdf, invoice)
   end
 
@@ -70,7 +67,6 @@ module InvoicePrinter
                                 :width => info.last['arguements']['bounded_by'][0].to_i,
                                 :height => info.last['arguements']['bounded_by'][1].to_i
                               ) do
-
             print_lines(pdf, invoice.send(info.last['method'].to_sym) )
           end
         else
