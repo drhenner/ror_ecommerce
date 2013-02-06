@@ -15,14 +15,16 @@ module InvoicePrinter
     pdf.bounding_box([10,730], :width => 530) do
       pdf.image png_background, :width => 519 if png_background
     end
-    begin
-      pdf.bounding_box([20,720], :width => 120) do
-        pdf.image "#{Rails.root}/public/images/logos/#{Image::MAIN_LOGO}"
-      end
-    rescue
-      pdf.bounding_box([20,720], :width => 120) do
-        pdf.draw_text "LOGO", {:size => 32, :at => [100, 100]}
-      end
+    print_logo(pdf)
+  end
+
+  def print_logo(pdf)
+    pdf.bounding_box([20,720], :width => 120) do
+      pdf.image "#{Rails.root}/public/images/logos/#{Image::MAIN_LOGO}"
+    end
+  rescue
+    pdf.bounding_box([20,720], :width => 120) do
+      pdf.draw_text "LOGO", {:size => 32, :at => [100, 100]}
     end
   end
 
@@ -55,6 +57,10 @@ module InvoicePrinter
     pdf.font "#{Rails.root}/lib/printing/fonts/DejaVuSans.ttf"
     print_invoice_background(pdf)
 
+    new_page_bounding_box(pdf, invoice)
+  end
+
+  def new_page_bounding_box(pdf, invoice)
     pdf.bounding_box([0,400], :width => 612) do
       @invoice_yml.each do |info|
         if info.last['multiple_lines']
