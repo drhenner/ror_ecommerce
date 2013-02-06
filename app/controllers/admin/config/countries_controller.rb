@@ -11,7 +11,6 @@ class Admin::Config::CountriesController < Admin::Config::BaseController
     if @country.save
       redirect_to admin_config_countries_url, :notice  => "Successfully activated country."
     else
-      form_info
       render :edit
     end
   end
@@ -24,9 +23,6 @@ class Admin::Config::CountriesController < Admin::Config::BaseController
   end
 
   private
-    def form_info
-
-    end
 
     def sort_column
       Country.column_names.include?(params[:sort]) ? params[:sort] : "name"

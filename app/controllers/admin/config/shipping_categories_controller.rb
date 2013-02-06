@@ -2,34 +2,20 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   # GET /admin/merchandise/shipping_categories
   def index
     @shipping_categories = ShippingCategory.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   # GET /admin/merchandise/shipping_categories/1
   def show
     @shipping_category = ShippingCategory.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
   end
 
   # GET /admin/merchandise/shipping_categories/new
   def new
-    form_info
     @shipping_category = ShippingCategory.new
-
-      respond_to do |format|
-        format.html # new.html.erb
-      end
   end
 
   # GET /admin/merchandise/shipping_categories/1/edit
   def edit
-    form_info
     @shipping_category = ShippingCategory.find(params[:id])
   end
 
@@ -40,7 +26,6 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
     if @shipping_category.save
       redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully created.')
     else
-      form_info
       render :action => "new"
     end
   end
@@ -52,7 +37,6 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
     if @shipping_category.update_attributes(params[:shipping_category])
       redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully updated.')
     else
-      form_info
       render :action => "edit"
     end
   end
@@ -69,7 +53,4 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
 
   private
 
-  def form_info
-
-  end
 end

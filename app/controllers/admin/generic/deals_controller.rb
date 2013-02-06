@@ -11,7 +11,6 @@ class Admin::Generic::DealsController < Admin::Generic::BaseController
 
   def new
     @deal = Deal.new
-    form_info
   end
 
   def create
@@ -19,14 +18,12 @@ class Admin::Generic::DealsController < Admin::Generic::BaseController
     if @deal.save
       redirect_to [:admin, :generic, @deal], :notice => "Successfully created deal."
     else
-      form_info
       render :new
     end
   end
 
   def edit
     @deal = Deal.find(params[:id])
-    form_info
   end
 
   def update
@@ -34,7 +31,6 @@ class Admin::Generic::DealsController < Admin::Generic::BaseController
     if @deal.update_attributes(params[:deal])
       redirect_to [:admin, :generic, @deal], :notice  => "Successfully updated deal."
     else
-      form_info
       render :edit
     end
   end
@@ -47,9 +43,6 @@ class Admin::Generic::DealsController < Admin::Generic::BaseController
   end
 
   private
-    def form_info
-
-    end
 
     def product_types
       @select_product_types     ||= ProductType.all.collect{|pt| [pt.name, pt.id]}

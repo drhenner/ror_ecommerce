@@ -13,7 +13,6 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
 
   def new
     @sale = Sale.new
-    form_info
   end
 
   def create
@@ -21,14 +20,12 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
     if @sale.save
       redirect_to [:admin, :generic, @sale], :notice => "Successfully created sale."
     else
-      form_info
       render :new
     end
   end
 
   def edit
     @sale = Sale.find(params[:id])
-    form_info
   end
 
   def update
@@ -36,7 +33,6 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
     if @sale.update_attributes(params[:sale])
       redirect_to [:admin, :generic, @sale], :notice  => "Successfully updated sale."
     else
-      form_info
       render :edit
     end
   end
@@ -48,9 +44,6 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
   end
 
   private
-    def form_info
-
-    end
 
     def products
       @products ||= Product.select([:id, :name]).all.map{|p| [p.name, p.id]}

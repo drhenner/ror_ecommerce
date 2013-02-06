@@ -18,7 +18,6 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
   end
 
   def new
-    form_info
     @comment = order.comments.new
   end
 
@@ -39,7 +38,6 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
   end
 
   def edit
-    form_info
     @comment = order.comments.find(params[:id])
   end
 
@@ -65,10 +63,6 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
   end
 
   private
-
-  def form_info
-
-  end
 
   def order
     return @order if @order

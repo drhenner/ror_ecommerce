@@ -29,7 +29,4 @@ class Admin::Document::InvoicesController < Admin::BaseController
 
   private
 
-  def form_info
-
-  end
 end
