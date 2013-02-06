@@ -192,12 +192,28 @@ class Address < ActiveRecord::Base
     end
 
     def sanitize_name
+      sanitize_first_name
+      sanitize_last_name
+    end
+
+    def sanitize_first_name
       self.first_name  = self.first_name.strip  unless self.first_name.blank?
+    end
+
+    def sanitize_last_name
       self.last_name   = self.last_name.strip   unless self.last_name.blank?
     end
 
     def sanitize_address
+      sanitize_address1
+      sanitize_address2
+    end
+
+    def sanitize_address1
       self.address1    = self.address1.strip    unless self.address1.blank?
+    end
+
+    def sanitize_address2
       self.address2    = self.address2.strip    unless self.address2.blank?
     end
 
