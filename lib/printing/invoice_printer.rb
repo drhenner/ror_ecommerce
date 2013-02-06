@@ -60,29 +60,30 @@ module InvoicePrinter
   def new_page_bounding_box(pdf, invoice)
     pdf.bounding_box([0,400], :width => 612) do
       @invoice_yml.each do |info|
+        display_string = invoice.send(info.last['method'].to_sym)
         if info.last['multiple_lines']
-          pdf.bounding_box(   [  info.last['arguements']['bounded_at'][0].to_i,
-                                info.last['arguements']['bounded_at'][1].to_i
-                              ],
-                                :width => info.last['arguements']['bounded_by'][0].to_i,
-                                :height => info.last['arguements']['bounded_by'][1].to_i
-                              ) do
-            print_lines(pdf, invoice.send(info.last['method'].to_sym) )
+          pdf.bounding_box( bounded_at(info.last), bounded_by(info.last) ) do
+            print_lines(pdf, display_string )
           end
         else
-          print_line(pdf, invoice.send(info.last['method'].to_sym), info.last )
+          print_line(pdf, display_string, info.last )
         end
       end
     end
   end
 
+
+  # [Array]  [X-location, Y-location]
+  def bounded_at(pdf_info)
+    [pdf_info['arguements']['bounded_at'][0].to_i, pdf_info['arguements']['bounded_at'][1].to_i]
+  end
+  # [Hash]  {:width => 1, :height => 2 }
+  def bounded_by(pdf_info)
+    {:width => pdf_info['arguements']['bounded_by'][0].to_i, :height => pdf_info['arguements']['bounded_by'][1].to_i}
+  end
+
   def print_bounding_box(pdf, invoice, pdf_info)
-    pdf.bounding_box( [ pdf_info['arguements']['bounded_at'][0].to_i,
-                        pdf_info['arguements']['bounded_at'][1].to_i
-                      ],
-                      :width  => pdf_info['arguements']['bounded_by'][0].to_i,
-                      :height => pdf_info['arguements']['bounded_by'][1].to_i
-                    ) do
+    pdf.bounding_box( bounded_at(pdf_info),bounded_by(pdf_info) ) do
         pdf.text invoice.send( pdf_info['arguements']['method'].to_sym )
     end
   end
