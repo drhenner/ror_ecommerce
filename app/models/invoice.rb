@@ -142,22 +142,28 @@ class Invoice < ActiveRecord::Base
   end
 
   def capture_complete_order
-    now = Time.zone.now
     if batches.empty?
       # this means we never authorized just captured payment
-        batch = self.batches.create()
-        batch.transactions.push(CreditCardCapture.new_capture_payment_directly(order.user, amount))
-        batch.save
+      capture_complete_order_without_authorization
     else
-      batch       = batches.first
-      batch.transactions.push(CreditCardReceivePayment.new_capture_authorized_payment(order.user, amount))
-      batch.save
+      capture_authorized_order
     end
   end
 
+  def capture_authorized_order
+    batch       = batches.first
+    batch.transactions.push(CreditCardReceivePayment.new_capture_authorized_payment(order.user, amount))
+    batch.save
+  end
+
+  def capture_complete_order_without_authorization
+    batch = self.batches.create()
+    batch.transactions.push(CreditCardCapture.new_capture_payment_directly(order.user, amount))
+    batch.save
+  end
+
   def authorize_complete_order#(amount)
-    x = order.complete!
-    now = Time.zone.now
+    order.complete!
     if batches.empty?
       batch = self.batches.create()
       batch.transactions.push(CreditCardPayment.new_authorized_payment(order.user, amount))
@@ -169,7 +175,6 @@ class Invoice < ActiveRecord::Base
 
   def cancel_authorized_payment
     batch       = batches.first
-    now = Time.zone.now
     if batch# if not we never authorized the payment
       self.cancel!
       batch.transactions.push(CreditCardCancel.new_cancel_authorized_payment(order.user, amount))
