@@ -216,10 +216,20 @@ class Product < ActiveRecord::Base
 
     # if the permalink is not filled in set it equal to the name
     def sanitize_data
+      sanitize_permalink
+      assign_meta_keywords  if meta_keywords.blank? && description
+      sanitize_meta_description
+    end
+
+    def sanitize_permalink
       self.permalink = name if permalink.blank? && name
       self.permalink = permalink.squeeze(" ").strip.gsub(' ', '-') if permalink
-      assign_meta_keywords  if meta_keywords.blank? && description
-      self.meta_description = [name.first(55), description.remove_hyper_text.first(197)].join(': ') if name.present? && description.present? && meta_description.blank?
+    end
+
+    def sanitize_meta_description
+      if name && description.present? && meta_description.blank?
+        self.meta_description = [name.first(55), description.remove_hyper_text.first(197)].join(': ')
+      end
     end
 
     def assign_meta_keywords
