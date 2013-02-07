@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ror ecommerce by drhenner</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ror ecommerce</h1>
+        <p>Complete Ruby on Rails Ecommerce platform</p>
+
+        <p class="view"><a href="https://github.com/drhenner/ror_ecommerce">View the Project on GitHub <small>drhenner/ror_ecommerce</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/drhenner/ror_ecommerce/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/drhenner/ror_ecommerce/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/drhenner/ror_ecommerce">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>ROR Ecommerce</h1>
+
+<h2>Project Overview</h2>
+
+<p>Please create a ticket on github if you have issues.
+They will be addressed ASAP.</p>
+
+<p>Please look at the <a href="http://www.ror-e.com">homepage</a> for more details.</p>
+
+<p><img src="http://ror-e.com/images/logo.png" alt="RoR Ecommerce" title="ROR Ecommerce">.</p>
+
+<p>This is a Rails e-commerce platform.
+ROR Ecommerce is a <em>Rails 3 application</em> with the intent to allow developers to create an ecommerce solution easily.
+This solution includes an Admin for <em>Purchase Orders</em>, <em>Product creation</em>, <em>Shipments</em>, <em>Fulfillment</em> and <em>creating Orders</em>.
+There is a minimal customer facing shopping cart understanding that this will be customized.
+The cart allows you to track your customers' <em>cart history</em> and includes a <em>double entry accounting system</em>.</p>
+
+<p>The project has <em>Solr searching</em>, <em>Compass</em> and <em>Blueprint for CSS</em> and uses <em>jQuery</em>.
+The gem list is quite large and the project still has a large wish list.
+In spite of that, it is currently the most complete Rails solution, and it will only get better.</p>
+
+<p>Please use <em>Ruby 1.9.3</em> and enjoy <em>Rails 3.2</em>.</p>
+
+<p>ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
+There is nothing in this project besides what you might see in a normal Rails application.
+If you don't like something, you are free to just change it like you would in any other Rails app.</p>
+
+<p>Contributors are welcome!
+We will always need help with UI, documentation, and code, so feel free to pitch in.
+To get started, simply fork this repo, make <em>any</em> changes (big or small), and create a pull request.</p>
+
+<h2>DEMO</h2>
+
+<p>Take a look at <a href="https://ror-e.herokuapp.com">The Demo</a>.
+The login name is <a href="mailto:test@ror-e.com">test@ror-e.com</a> with a password =&gt; test123</p>
+
+<h2>Getting Started</h2>
+
+<p>Please feel free to ask/answer questions in our <a href="http://groups.google.com/group/ror_ecommerce">Google Group</a>.</p>
+
+<p>Install RVM with Ruby 1.9.3.
+If you have 1.9.3 on your system you're good to go.
+Please refer to the <a href="http://beginrescueend.com/rvm/basics/">RVM</a> site for more details.</p>
+
+<p>Copy the <code>database.yml</code> for your setup.
+For SQLite3, <code>cp config/database.yml.sqlite3 config/database.yml</code>.
+For MySQL, <code>cp config/database.yml.mysql config/database.yml</code> and update your username/password.</p>
+
+<p>If you are using the mysql dmg file to install mysql you will need to edit your ~/.bash_profile and include this:</p>
+
+<p>export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH</p>
+
+<p>Run <code>rake secret</code> and copy/paste the output as <code>encryption_key</code> in <code>config/config.yml</code>.</p>
+
+<pre><code>gem install bundler
+bundle install
+rake db:create:all
+rake db:migrate db:seed
+rake db:test:prepare
+</code></pre>
+
+<p>Once everything is set up, start the server with <code>rails server</code> and direct your web browser to <a href="http://localhost:3000/admin/overviews">localhost:3000/admin/overviews</a>.
+Write down the username/password (these are only shown once) and follow the directions.</p>
+
+<h2>Environmental Variables</h2>
+
+<p>Most users are using Amazon S3 or Heroku.
+Thus we have decided to have a setup easy to get your site up and running as quickly as possible
+in this production environment.  Hence you should add the following ENV variables:</p>
+
+<pre><code>FOG_DIRECTORY     =&gt; your bucket on AWS
+AWS_ACCESS_KEY_ID =&gt; your access key on AWS
+AWS_ACCESS_KEY_ID =&gt; your secret key on AWS
+AUTHNET_LOGIN     =&gt; if you use authorize.net otherwise change config/settings.yml &amp;&amp; config/environments/*.rb
+AUTHNET_PASSWORD  =&gt; if you use authorize.net otherwise change config/settings.yml &amp;&amp; config/environments/*.rb
+</code></pre>
+
+<p>On linux:</p>
+
+<pre><code>export FOG_DIRECTORY=xxxxxxxxxxxxxxx
+export AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxx
+export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+export AUTHNET_LOGIN=xxxxxxxxxxx
+export AUTHNET_PASSWORD=xxxxxxxxxxxxxxx
+</code></pre>
+
+<p>On Heroku:</p>
+
+<pre><code>heroku config:add FOG_DIRECTORY=xxxxxxxxxxxxxxx
+heroku config:add AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxx
+heroku config:add AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+heroku config:add AUTHNET_LOGIN=xxxxxxxxxxx
+heroku config:add AUTHNET_PASSWORD=xxxxxxxxxxxxxxx
+
+heroku labs:enable user-env-compile -a myapp
+</code></pre>
+
+<p>This is needed for using sendgrid on heroku(config/initializers/mail.rb):</p>
+
+<pre><code>heroku config:add SENDGRID_USERNAME=xxxxxxxxxxx
+heroku config:add SENDGRID_PASSWORD=xxxxxxxxxxxxxxx
+</code></pre>
+
+<h2>Quick Evaluation</h2>
+
+<p>If you just want to see what ror_ecommerce looks like, before you enter any products into the database, run the following command:</p>
+
+<pre><code>rake db:seed_fake
+</code></pre>
+
+<p>You should now have a minimal dataset, and be able to see a demo of the various parts of the app.
+Note: make sure you have <code>config/settings.yml</code> set up correctly before you try to checkout.
+Also, please take a look at <a href="http://www.ror-e.com/info/videos/7">The 15 minute e-commerce video</a>.</p>
+
+<h2>ImageMagick and rMagick on OS X 10.8</h2>
+
+<hr><p>If installing rMagick on OS X 10.8 and using Homebrew to install ImageMagick, you will need to symlink across some files or rMagick will not be able to build.</p>
+
+<p>Do the following in the case of a Homebrew installed ImageMagick(and homebrew had issues):</p>
+
+<pre><code>* cd /usr/local/Cellar/imagemagick/6.8.0-10/lib
+* ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
+* ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
+* ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
+</code></pre>
+
+<h2>YARDOCS</h2>
+
+<p>If you would like to read the docs, you can generate them with the following command:</p>
+
+<pre><code>yardoc --no-private --protected app/models/*.rb
+</code></pre>
+
+<h4>Payment Gateways</h4>
+
+<p>First, create <code>config/settings.yml</code> and change the encryption key and paypal/auth.net information.
+You can also change <code>config/settings.yml.example</code> to <code>config/settings.yml</code> until you get your real info.</p>
+
+<p>To change from authlogic to any other gateway go to</p>
+
+<h2>Paperclip</h2>
+
+<p>Paperclip will throw errors if not configured correctly.
+You will need to find out where Imagemagick is installed.
+Type: <code>which identify</code> in the terminal and set</p>
+
+<div class="highlight"><pre><span class="no">Paperclip</span><span class="o">.</span><span class="n">options</span><span class="o">[</span><span class="ss">:command_path</span><span class="o">]</span>
+</pre></div>
+
+<p>equal to that path in <code>config/paperclip.rb</code>.</p>
+
+<p>Example:</p>
+
+<p>Change:</p>
+
+<div class="highlight"><pre><span class="no">Paperclip</span><span class="o">.</span><span class="n">options</span><span class="o">[</span><span class="ss">:command_path</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"/usr/local/bin"</span>
+</pre></div>
+
+<p>Into:</p>
+
+<div class="highlight"><pre><span class="no">Paperclip</span><span class="o">.</span><span class="n">options</span><span class="o">[</span><span class="ss">:command_path</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"/usr/bin"</span>
+</pre></div>
+
+<h2>Adding Dalli For Cache and the Session Store</h2>
+
+<p>While optional, for a speedy site, using memcached is a good idea.</p>
+
+<p>Install memcached.
+If you're on a Mac, the easiest way to install Memcached is to use <a href="http://mxcl.github.com/homebrew/">homebrew</a>:</p>
+
+<pre><code>brew install memcached
+
+memcached -vv
+</code></pre>
+
+<h4>To Turn On the Dalli Cookie Store</h4>
+
+<p>Remove the cookie store on line one of <code>config/initializers/session_store.rb</code>.
+In your Gemfile add:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'dalli'</span>
+</pre></div>
+
+<p>then:</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>Finally uncomment the next two lines in <code>config/initializers/session_store.rb</code></p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'action_dispatch/middleware/session/dalli_store'</span>
+<span class="no">Hadean</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">session_store</span> <span class="ss">:dalli_store</span><span class="p">,</span> <span class="ss">:key</span> <span class="o">=&gt;</span> <span class="s1">'_hadean_session_ugrdr6765745ce4vy'</span>
+</pre></div>
+
+<h4>To Turn On the Dalli Cache Store</h4>
+
+<p>It is also recommended to change the cache store in config/environments/*.rb</p>
+
+<div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">cache_store</span> <span class="o">=</span> <span class="ss">:dalli_store</span>
+</pre></div>
+
+<h2>Adding Solr Search</h2>
+
+<pre><code>brew install solr
+</code></pre>
+
+<p>Uncomment the following in your gemfile:</p>
+
+<div class="highlight"><pre><span class="c1">#gem 'sunspot_solr'</span>
+<span class="c1">#gem 'sunspot_rails', '~&gt; 1.3'</span>
+</pre></div>
+
+<p>then:</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>Start Solr before starting your server:</p>
+
+<pre><code>rake sunspot:solr:start
+</code></pre>
+
+<p>Go to the bottom of <code>product.rb</code> and uncomment:</p>
+
+<div class="highlight"><pre><span class="no">Product</span><span class="o">.</span><span class="n">class_eval</span>
+</pre></div>
+
+<p>Take a look at setting up Solr - <a href="http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less">Solr in 5 minutes</a></p>
+
+<p>If you get the error, <code>Errno::ECONNREFUSED (Connection refused - connect(2)):</code> when you try to create a product or upload an image, you have not started Solr search.
+You need to run <code>rake sunspot:solr:start</code>, or remove Solr completely.</p>
+
+<h2>TODO:</h2>
+
+<ul>
+<li>more documentation / videos for creating products/variants</li>
+<li>create referral programs so users can earn store credits</li>
+</ul><h2>Author</h2>
+
+<p>RoR Ecommerce was created by David Henner. <a href="https://github.com/drhenner/ror_ecommerce/blob/master/Contributors.md">Contributors</a>.</p>
+
+<h2>FYI:</h2>
+
+<p>Shipping categories are categories based off price:</p>
+
+<p>you might have two shipping categories (light items) &amp; (heavy items)</p>
+
+<p>Have fun!!!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/drhenner">drhenner</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
