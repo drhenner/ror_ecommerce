@@ -52,7 +52,7 @@
                 </div>
 
               </div>
-              <div id='your_product'>
+              <div id='your_product' class='panel'>
                 <% @product.active_variants.each_with_index do |variant, i| %>
                   <div id='variant_<%= variant.id %>'
                        class='button variant_select secondary <%= 'selected_variant' if i == 0 %>'
@@ -76,7 +76,7 @@
                                   :html => { :id => 'new_cart_item' } do |f| %>
                         <%= f.hidden_field :variant_id %>
                         Quantity:
-                        <%= f.select :quantity, [1,2,3,4,5,6], :include_blank => true %>
+                        <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
                         <div class='add_to_cart_wrapper '>
                           <% unless @product.active_variants.empty? %>
                             <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'button' %>
