@@ -1,0 +1,8 @@
+doc/*/**
+doc/*
+.yardoc/*/**
+.yardoc/*
+
+config/database.yml
+
+
