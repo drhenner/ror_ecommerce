@@ -5,7 +5,7 @@
 Please create a ticket on github if you have issues.
 They will be addressed ASAP.
 
-Please look at the [homepage](http://www.ror-e.com) for more details.
+Please look at the [homepage](http://www.ror-e.com) for more details.  Or take a look at the [github page](http://drhenner.github.com/ror_ecommerce/index.html)
 
 ![RoR Ecommerce](http://ror-e.com/images/logo.png "ROR Ecommerce").
 
