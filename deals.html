@@ -36,37 +36,24 @@
       <section>
         <h1>ROR Ecommerce</h1>
 
-<h2>Coupons</h2>
+<h2>Deals</h2>
+
+
 <p>
- Coupons are straight forward.  Picture a coupon you have in a grocery store.
- The only big difference in the grocery store you can have 30 coupon for different items you buy.
- For ror-e you can only have one Coupon for an entire order.  This is pretty standard in the ecommerce world.
+The deal model is basically a "buy X get y percent free" or "buy X get y dollars off"
 </p><p>
- The method that is most important:
-</p><p>
- qualified?
-</p><p>
- This method does 2 things:
-</p><p>
-  <ol>
-    <li>it determines if the items in your cart cost enough to reach the minimum qualifing amount needed for the coupon to work.</li>
-    <li>it determines if the coupon is "eligible?"  (eligible? is a method)</li>
-  </ol>
-</p><p>
-  The eligible? method changes functionality depending on what type of coupon is created.<br/>
-    => at the most basic level it determine if the date of the order is greater than starts_at and less than expires_at
-</p><p>
-  For <strong>first_purchase_xxxxx_coupons</strong> eligible? also ensures the order that this is being applied
-   to is the first item you have ever purchased.
+In the scenario "buy X get y percent free", X is buy_quantity and y is get_percentage.
+The way it works get_percentage is multiplied by the lowest costing item that "qualifies" for the deal.
 </p><p>
 
+<pre><code>NOTE: "qualifies" =>  a product qualifies if is of the correct product_type_id.  If
+      the product_type_id doesn't match it will not qualify.  so you might have three pants
+      but also one belt.  the belt and the pants will not be the same product_type_id.</code></pre>
+</p><p>
+In the scenario "buy X get y dollars off", X is buy_quantity and y is get_amount.
+The way it works get_amount is the number of cents reduced from the order total.
+Again the NOTE above about "qualifies" still is in effect
 
-<pre><code>###################################################################
-##  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!
-##  eligible? uses (order.completed_at || Time.zone.now)
-##  thus being accurate for returned items and items being purchased right now.
-###################################################################
-</code></pre>
 </p>
 
       </section>
