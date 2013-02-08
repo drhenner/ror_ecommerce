@@ -48,14 +48,14 @@
  This method does 2 things:
 </p><p>
   <ol>
-    <li>it determines if the items in your cart cost enough to reach the minimum qualifing amount needed for teh coupon to work.</li>
+    <li>it determines if the items in your cart cost enough to reach the minimum qualifing amount needed for the coupon to work.</li>
     <li>it determines if the coupon is "eligible?"  (eligible? is a method)</li>
   </ol>
 </p><p>
   The eligible? method changes functionality depending on what type of coupon is created.<br/>
     => at the most basic level it determine if the date of the order is greater than starts_at and less than expires_at
 </p><p>
-  For first_purchase_xxxxx  coupons eligible? also ensures the order that this is being applied
+  For <strong>first_purchase_xxxxx_coupons</strong> eligible? also ensures the order that this is being applied
    to is the first item you have ever purchased.
 </p><p>
 
