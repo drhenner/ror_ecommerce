@@ -15,10 +15,10 @@
 #  method is called and the next form to show is redirected to unless they are on the last step.
 #
 #  *  First it makes sure the Creditcard number passes luhn validation/date validation.
-#  *  Second there is a call to the trumaker app to verify the price is correct.
+#  *  Second there is a call to the app to verify the price is correct.
 #     (BTW: this could change because the user has multiple tabs open in the browser)
-#  *  Then a call is made to the Stripe API to get a token to charge.  If all goes well the
-#     transaction will go through and the card is charged.
+#  *  Then a call is made with Active Merchant to authorize the creditcard.  If all goes well the
+#     transaction will go through and the card is charged when the item is shipped.
 #
 #  The order will now be in the 'paid' state.  Each order item will also be marked as "paid".
 
