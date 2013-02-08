@@ -19,7 +19,7 @@
         <p>Complete Ruby on Rails Ecommerce platform</p>
 
 
-        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/index.html">Getting Started</a></p>
+<p class="view"><a href="http://drhenner.github.com/ror_ecommerce/index.html">Getting Started</a></p>
         <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/the_cart.html">The Cart</a></p>
         <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/addresses.html">Addresses</a></p>
         <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/coupons.html">Coupons</a></p>
@@ -35,21 +35,39 @@
       <section>
         <h1>ROR Ecommerce</h1>
 
-<h2>Addresses</h2>
-
+<h2>Coupons</h2>
 <p>
- There really isn't anything special about addresses themselves.
- However <strong>PLEASE PLEASE PLEASE</strong> never ever implement @address.delete or @address.destroy or
-   even @address.update_attributes.  You should only create and inactivate addresses.
+ Coupons are straight forward.  Picture a coupon you have in a grocery store.
+ The only big difference in the grocery store you can have 30 coupon for different items you buy.
+ For ror-e you can only have one Coupon for an entire order.  This is pretty standard in the ecommerce world.
 </p><p>
-   This means EDIT == create and inactivate the old address.  Otherwise Orders could mistakenly change addresses after the order is complete.
+ The method that is most important:
+</p><p>
+ qualified?
+</p><p>
+ This method does 2 things:
+</p><p>
+  <ol>
+    <li>it determines if the items in your cart cost enough to reach the minimum qualifing amount needed for teh coupon to work.</li>
+    <li>it determines if the coupon is "eligible?"  (eligible? is a method)</li>
+  </ol>
+</p><p>
+  The eligible? method changes functionality depending on what type of coupon is created.<br/>
+    => at the most basic level it determine if the date of the order is greater than starts_at and less than expires_at
+</p><p>
+  For first_purchase_xxxxx  coupons eligible? also ensures the order that this is being applied
+   to is the first item you have ever purchased.
+</p><p>
+
+  <pre><code>
+###################################################################
+##  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!
+##  eligible? uses (order.completed_at || Time.zone.now)
+##  thus being accurate for returned items and items being purchased right now.
+###################################################################
+</code></pre>
 </p>
 
-<p>
-  Please read the following blog to understand the logic.  THIS IS EXTREMELY IMPORTANT!
-
-  <a href="http://www.ror-e.com/posts/27-e-commerce-tips-1-0"> <strong>http://www.ror-e.com/posts/27-e-commerce-tips-1-0</strong></a>
-</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/drhenner">drhenner</a></p>
@@ -60,3 +78,5 @@
 
   </body>
 </html>
+
+
