@@ -40,39 +40,54 @@
       <section>
         <h1>ROR Ecommerce</h1>
 
-<h2>Product Creation</h2>
+<h2>Config</h2>
+<p>
+One of the first things you will need to do is setup your gateway to accept credit card payments. You need to open config/settings.yml. REMEMBER this file should never contain sensitive data that you couldn't share with a hacker down the street.  All secure data should be store in environmental variables. It is a bit dated but I also I recommend purchasing the Peepcode PDF about active merchant.
+</p><p>
 
-<p>
-  Creating a product is not straight forward for the first product. If you plan on creating a large amount of products and product types you will find that this process will help you a lot. It might be easiest to create populate script to do this automatically. You might want to add a custom script.
+<pre><code>  encryption_key: someRandomBINARYKEY
+  mailer:
+    server: mail.example.com
+    username: someLOGIN
+    password: s0meth1ngs3cr3t
+  paypal:
+    ip:         192.168.0.1
+    login:      someLOGIN.yahoo.com
+    password:   somePASSWORD
+    signature:  someSIGNATURE
+  authnet:
+    login:      <%= ENV['AUTHNET_LOGIN'] %>
+    password:   <%= ENV['AUTHNET_PASSWORD'] %>
+  vat: false
+  require_state_in_address: true
+
+  # tax_per_state_id is a field for tax being applied at the state level or country wide level in "TaxRate model"
+  tax_per_state_id: true
+
+  paperclip:
+    s3_protocol: https
+    s3_credentials:
+      access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+      secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+    path: ':class/:attachment/:style/:hash.:extension'
+    bucket: <%= ENV['FOG_DIRECTORY'] %>
+    hash_secret: f8c07cf79094ec06f77b6024b5d7936c79b5227274fb8e82c00blaha
+</code></pre>
 </p>
-  <h3>Properties</h3>
 <p>
-  A property is something like Color, Size, Weight, Flavor. You will be able to add specifics to the properties when you create the product variants. Don't create a property of red or 16oz, just do Color and Weight and add specifics when you create the variants.
+  <h3>Mail</h3>
+  If you need help setting mail up I suggest watching the <a href='http://railscasts.com/episodes/206-action-mailer-in-rails-3'>Railscast on Mail </a>
+  I suggest keeping the secure passwords in this yml using enviromental variables and out of your GIT repo but this railscast gives a great tutorial.
 </p>
-  <h3>Prototypes</h3>
 <p>
-  A prototype is something like Shoe or Clothes. Again try not to be very specific at this point.  This can easy to creation of product properties if you choose not to use the wizard setup when you create a product.
+  <h3>Gateways</h3>
+  There are many payment gateways you can use to collect credit card information. Three of the most popular are paypal, authorize.net and braintree. Judging from my experience all work well. My advise is to look at each gateway and make your own choice. Railscasts has a series of <a href='http://railscasts.com/episodes/144-active-merchant-basics'>good tutorials working with paypal</a>.
 </p>
-  <h3>Product Types</h3>
-<p>
-  Product Types intent is to allow categorizing products. The intent will be have breadcrumbs and sub categories. So you might have a product type of Shoes => Sport Shoes => running shoes. You would give a running shoe the running shoe type but searching under sports shoes or just 'Shoes' will have the running shoe. So now you have a product type categorization.
-</p>
-  <h3>Products</h3>
-<p>
-  When you create the product you will see that this is where you will add 16oz to weight and Red to the color property. Also once you select a prototype the property list will reduce. When you have a lot of properties for many types of products this will help you a lot.
-</p><p>
-  A preferred approach to creating prototypes is to use the product wizard.  Thus you will have a multi-step form that you enter information into.  This reduces the complexity of creating a prototype.
-</p>
-  <h3>Variants</h3>
-<p>
-  A variant is a specific type of product. If you have a "shoe" prototype, the product might be Air Jordan's, then variant could be size 9.5. Thus you can sell each variant(size) of the shoe.
-</p><p>
-  To add a variant you must first add a product. Then click on the product in the admin grid to edit it. You will see the Add Variant button here.
-</p>
-  <h3>Images</h3>
-<p>
-  To add an image you must first add a product. Then click on the product in the admin grid to edit it. You will see the Add Variant button here.
-</p>
+<p>Remember NEVER ADD CREDIT CARD INFORMATION in your database. Even encrypted Credit Card information can get you in a lot of trouble. These payments gateways have great ways to store Credit Card information for recurring billing and reusing the credit cards.</p>
+
+<p>If you are in the United States or Canada refactoring the checkout code to use spree takes very little time and Spree offers great advantages for PCI compliance and has an excellent developer sandbox.</p>
+
+
 
 
       </section>
@@ -85,3 +100,4 @@
 
   </body>
 </html>
+
