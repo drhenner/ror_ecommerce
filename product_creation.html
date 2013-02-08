@@ -39,38 +39,40 @@
       <section>
         <h1>ROR Ecommerce</h1>
 
-<h2>Coupons</h2>
+<h2>Product Creation</h2>
+
 <p>
- Coupons are straight forward.  Picture a coupon you have in a grocery store.
- The only big difference in the grocery store you can have 30 coupon for different items you buy.
- For ror-e you can only have one Coupon for an entire order.  This is pretty standard in the ecommerce world.
-</p><p>
- The method that is most important:
-</p><p>
- qualified?
-</p><p>
- This method does 2 things:
-</p><p>
-  <ol>
-    <li>it determines if the items in your cart cost enough to reach the minimum qualifing amount needed for the coupon to work.</li>
-    <li>it determines if the coupon is "eligible?"  (eligible? is a method)</li>
-  </ol>
-</p><p>
-  The eligible? method changes functionality depending on what type of coupon is created.<br/>
-    => at the most basic level it determine if the date of the order is greater than starts_at and less than expires_at
-</p><p>
-  For <strong>first_purchase_xxxxx_coupons</strong> eligible? also ensures the order that this is being applied
-   to is the first item you have ever purchased.
-</p><p>
-
-
-<pre><code>###################################################################
-##  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!  NOTE!!!
-##  eligible? uses (order.completed_at || Time.zone.now)
-##  thus being accurate for returned items and items being purchased right now.
-###################################################################
-</code></pre>
+  Creating a product is not straight forward for the first product. If you plan on creating a large amount of products and product types you will find that this process will help you a lot. It might be easiest to create populate script to do this automatically. You might want to add a custom script.
 </p>
+  <h3>Properties</h3>
+<p>
+  A property is something like Color, Size, Weight, Flavor. You will be able to add specifics to the properties when you create the product variants. Don't create a property of red or 16oz, just do Color and Weight and add specifics when you create the variants.
+</p>
+  <h3>Prototypes</h3>
+<p>
+  A prototype is something like Shoe or Clothes. Again try not to be very specific at this point.  This can easy to creation of product properties if you choose not to use the wizard setup when you create a product.
+</p>
+  <h3>Product Types</h3>
+<p>
+  Product Types intent is to allow categorizing products. The intent will be have breadcrumbs and sub categories. So you might have a product type of Shoes => Sport Shoes => running shoes. You would give a running shoe the running shoe type but searching under sports shoes or just 'Shoes' will have the running shoe. So now you have a product type categorization.
+</p>
+  <h3>Products</h3>
+<p>
+  When you create the product you will see that this is where you will add 16oz to weight and Red to the color property. Also once you select a prototype the property list will reduce. When you have a lot of properties for many types of products this will help you a lot.
+</p><p>
+  A preferred approach to creating prototypes is to use the product wizard.  Thus you will have a multi-step form that you enter information into.  This reduces the complexity of creating a prototype.
+</p>
+  <h3>Variants</h3>
+<p>
+  A variant is a specific type of product. If you have a "shoe" prototype, the product might be Air Jordan's, then variant could be size 9.5. Thus you can sell each variant(size) of the shoe.
+</p><p>
+  To add a variant you must first add a product. Then click on the product in the admin grid to edit it. You will see the Add Variant button here.
+</p>
+  <h3>Images</h3>
+<p>
+  To add an image you must first add a product. Then click on the product in the admin grid to edit it. You will see the Add Variant button here.
+</p>
+
 
       </section>
       <footer>
@@ -82,5 +84,3 @@
 
   </body>
 </html>
-
-
