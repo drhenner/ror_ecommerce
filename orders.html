@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -38,30 +39,38 @@
       <section>
         <h1>ROR Ecommerce</h1>
 
-<h2>Deals</h2>
-
-
+<h2>Orders</h2>
 <p>
-The deal model is basically a "buy X get y percent free" or "buy X get y dollars off"
-</p><p>
-In the scenario "buy X get y percent free", X is buy_quantity and y is get_percentage.
-The way it works get_percentage is multiplied by the lowest costing item that "qualifies" for the deal.
-</p><p>
 
-<pre><code>NOTE: "qualifies" =>  a product qualifies if is of the correct
-      product_type_id.  If the product_type_id doesn't match it will not
-      qualify.  so you might have three pants but also one belt.  The belt
-      and the pants will not be the same product_type_id.</code></pre>
+  The checkout process starts on the http://www.yoursite.com/shopping/cart_items page.
 </p><p>
-In the scenario "buy X get y dollars off", X is buy_quantity and y is get_amount.
-The way it works get_amount is the number of cents reduced from the order total.
-Again the NOTE above about "qualifies" still is in effect
-
+  Clicking the <strong>"checkout button"</strong> Starts the order process.  This action takes all the active
+  cart_items in the "shopping_cart" state and saves them as order_items.  Each order
+  item represents one AND ONLY ONE, I repeat ONLY ONE, item.  There is no quantity field.
+  It is IMPOSSIBLE to have a quantity field and do returns correctly.  DO NOT CHANGE THIS!
+</p><p>
+  At this point the Order is in an "in_progress" state.  Immediately the user is asked to
+  enter their credentials for security reasons (unless they logged in with 20 minutes).
+  Now the user is in the checkout workflow.  The basic workflow is determined by the
+  Shopping::BaseController.next_form(order) method.  During the checkout the user is directed
+  to the Shopping::OrdersController.index method.  The Shopping::BaseController.next_form(order)
+  method is called and the next form to show is redirected to unless they are on the last step.
+</p><p>
+  <ul>
+    <li> First it makes sure the Creditcard number passes luhn validation/date validation.</li>
+    <li> Second there is a call to the app to verify the price is correct.
+     <small>(BTW: this could change because the user has multiple tabs open in the browser)</small></li>
+    <li> Then a call is made to with Active Merchant to get a token to authorize the charge.  If all goes well the
+     transaction will go through and the card is charged.</li>
+  </ul>
+</p><p>
+  The order will now be in the 'paid' state.  Each order item will also be marked as "paid".
 </p>
 
       </section>
       <footer>
-        <p>This project is maintained by <a href="https://github.com/drhenner">drhenner</a> and many <a href="https://github.com/drhenner/ror_ecommerce/blob/master/Contributors.md">contributors</a>.</p>
+        <p>This project is maintained by <a href="https://github.com/drhenner">drhenner</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
