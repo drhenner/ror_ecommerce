@@ -47,9 +47,10 @@ In the scenario "buy X get y percent free", X is buy_quantity and y is get_perce
 The way it works get_percentage is multiplied by the lowest costing item that "qualifies" for the deal.
 </p><p>
 
-<pre><code>NOTE: "qualifies" =>  a product qualifies if is of the correct product_type_id.  If
-      the product_type_id doesn't match it will not qualify.  so you might have three pants
-      but also one belt.  the belt and the pants will not be the same product_type_id.</code></pre>
+<pre><code>NOTE: "qualifies" =>  a product qualifies if is of the correct
+      product_type_id.  If the product_type_id doesn't match it will not
+      qualify.  so you might have three pants but also one belt.  The belt
+      and the pants will not be the same product_type_id.</code></pre>
 </p><p>
 In the scenario "buy X get y dollars off", X is buy_quantity and y is get_amount.
 The way it works get_amount is the number of cents reduced from the order total.
