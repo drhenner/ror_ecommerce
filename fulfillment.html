@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ror ecommerce by drhenner</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ror ecommerce</h1>
+        <p>Complete Ruby on Rails Ecommerce platform</p>
+
+
+<p class="view"><a href="http://drhenner.github.com/ror_ecommerce/index.html">Getting Started</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/the_cart.html">The Cart</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/addresses.html">Addresses</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/coupons.html">Coupons</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/deals.html">Deals</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/fulfillment.html">Fulfillment</a></p>
+        <p class="view"><a href="https://github.com/drhenner/ror_ecommerce">View the Project on GitHub <small>drhenner/ror_ecommerce</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/drhenner/ror_ecommerce/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/drhenner/ror_ecommerce/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/drhenner/ror_ecommerce">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>ROR Ecommerce</h1>
+
+<h2>Fulfillment</h2>
+
+
+<p>
+
+  Several things happen when you fulfill an order.
+</p><p>
+  <ul>
+  <li>Payment is captured</li>
+  <li>Invoice is updated to log ledger transactions</li>
+  <li>Shipment is marked as ready to send and associated to the order_items</li>
+  <li>If everything works the request sends the user to the shipment page</li>
+  </ul>
+</p><p>
+  Also many times a user will make an order then call customer service to change their address. Fulfillments allow a CS user to change the address before the item ships.
+
+</p>
+
+<h3>Inventory</h3>
+
+<p>
+ Inventory is a table that needs to have pestimistic locking.
+  This requires the SQL to be very fast in order to ensure the table is not locked.
+  Please keep the table free from extra data that might cause locking to become an issue.
+</p>
+
+<p>
+
+<pre><code>  # Table name: inventories
+  #
+  #  id                          :integer          not null, primary key
+  #  count_on_hand               :integer          default(0)
+  #  count_pending_to_customer   :integer          default(0)
+  #  count_pending_from_supplier :integer          default(0)</code></pre>
+</p>
+
+<p>The inventories table has three key fields.</p>
+<p><strong>count_on_hand</strong>
+  Is just the number of items in the warehouse.  This value would indicate the quantity of items as if you would to count the items in the warehouse.  So of these items might be purchased by the customers already but they have not been shipped.  This is the number a person in the warehouse would use to determine if the stock numbers are correct.
+</p>
+<p><strong>count_pending_to_customer</strong>
+  Is just the number of items on the shelf in the warehouse that have been purchased but not shipped.  Thus the <strong>quantity_available</strong> for sale is:
+
+  <pre><code>quantity_available = count_on_hand - count_pending_to_customer</code></pre>
+
+  Many shops also have an out of stock quantity larger than zero.  This can be helpful for returns or quality purposes.  ence the quantity_purchaseable is:
+
+  <pre><code>quantity_purchaseable = quantity_available - OUT_OF_STOCK_QTY</code></pre>
+
+</p>
+<p><strong>count_pending_from_supplier</strong>
+  is the amount of items you are expecting to receive from a supplier.  It does not effect stock.  If the supply of product arrives and the quality is too low you would not want to reverse all the orders.  That said ror_ecommerce should be changed by you to fit your exact business model.
+</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/drhenner">drhenner</a> and many <a href="https://github.com/drhenner/ror_ecommerce/blob/master/Contributors.md">contributors</a>.</p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+
+  </body>
+</html>
