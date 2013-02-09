@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ror ecommerce by drhenner</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ror ecommerce</h1>
+        <p>Complete Ruby on Rails Ecommerce platform</p>
+
+
+<p class="view"><a href="http://drhenner.github.com/ror_ecommerce/index.html">Getting Started</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/config.html">Config</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/the_cart.html">The Cart</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/accounting.html">Accounting</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/addresses.html">Addresses</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/coupons.html">Coupons</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/deals.html">Deals</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/fulfillment.html">Fulfillment</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/orders.html">Orders</a></p>
+        <p class="view"><a href="http://drhenner.github.com/ror_ecommerce/product_creation.html">Product Creation</a></p>
+        <p class="view"><a href="https://github.com/drhenner/ror_ecommerce">View the Project on GitHub <small>drhenner/ror_ecommerce</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/drhenner/ror_ecommerce/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/drhenner/ror_ecommerce/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/drhenner/ror_ecommerce">View On <strong>GitHub</strong></a></li>
+        </ul>
+        <p>This project is maintained by <a href="https://github.com/drhenner">drhenner</a> and many <a href="https://github.com/drhenner/ror_ecommerce/blob/master/Contributors.md">contributors</a>.</p>
+      </header>
+      <section>
+        <h1>ROR Ecommerce</h1>
+
+<h2>Accounting</h2>
+
+<p>
+  <strong>Tables in Database</strong>
+  <ul>
+    <li>Batches</li>
+    <li>Transactions</li>
+    <li>transaction_accounts</li>
+    <li>transaction_ledgers</li>
+    <li>Accountable (not a specific table)</li>
+  </ul>
+</p>
+<p>
+  <h3>Batch</h3>
+  A BATCH entry reflects the more physical aspects of accounting data entry. It is used to group
+  together transactions entries into handy ‘chunks’, for example, a collection of cheques to be
+  entered into the system...  OR in this app's case all the transactions grouped for one order.
+</p><p>
+  <h3>Transactions</h3>
+  Transactions are simply a place holder for one action within a batch.  For example:
+</p><p>
+  Lets say a customer pays their order with a credit card.  First a new batch is created.  The first transaction in this batch is Authorizing the credit card.  The first transaction class is CreditCardPayment and the creation of the object would look like this:
+
+<pre><code>CreditCardPayment.new_authorized_payment(user, total_cost)
+</code></pre>
+
+This method will debit ACCOUNTS_RECEIVABLE and credit REVENUE.
+  </p><p>
+  Later when the item is marked as shipped the payment is captured from the creditcard.  Then this method is executed:
+
+  <pre><code>CreditCardReceivePayment.new_capture_authorized_payment(user, total_cost)</code></pre>
+
+  This method will debit CASH and credit ACCOUNTS_RECEIVABLE.
+  </p><p>
+  The great news.  All this just happens so you don't need to understand accounting.  If you choose not to use the account data that is just fine.  However if you eventually what to take your business to the next level you have all the data for the SEC or IRS.
+  </p><p>
+    <h3>Transaction Accounts</h3>
+    This is simply a reference table to what type of "account" is being credited or debited... (like ACCOUNTS RECEIVABLE or ACCOUNTS PAYABLE)
+  </p><p>
+  <h3>Transaction Ledgers</h3>
+  </p><p>
+    The Transaction Ledgers table is simple the ledger table where the credits and debits are recorded.  All transactions have two or more entries.  The first entry logs credits and the other logs debits.  In complex situations you could have more than 2 transactions but that is not the case for e-commerce.
+</p><p>
+  Again, Luckily all this complexity is hidden from you and you can choose not to use this data when you get started.
+</p>
+
+      </section>
+      <footer>
+
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+
+  </body>
+</html>
