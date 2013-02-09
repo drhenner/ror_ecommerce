@@ -1,6 +1,6 @@
 # ACCOUNT DOCUMENTATION
 #
-# The users table represents... drum role please...  ACCOUNTS!!!
+# The Accounts table represents... drum role please...  ACCOUNTS!!!
 #
 # The purpose is for a subscription based service.
 #
