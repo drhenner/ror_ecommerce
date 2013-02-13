@@ -24,6 +24,7 @@ gem 'dynamic_form'
 gem "friendly_id", "~> 3.3"
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
+gem 'json', '~>1.7.7'
 
 gem 'nested_set', '~> 1.7.0'
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'

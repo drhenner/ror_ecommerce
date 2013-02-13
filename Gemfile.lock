@@ -137,7 +137,7 @@ GEM
     jquery-rails (2.2.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.7.6)
+    json (1.7.7)
     launchy (2.1.2)
       addressable (~> 2.3)
     mail (2.4.4)
@@ -292,6 +292,7 @@ DEPENDENCIES
   friendly_id (~> 3.3)
   haml (>= 3.0.13)
   jquery-rails
+  json (~> 1.7.7)
   launchy
   mocha (~> 0.10.0)
   mysql2 (~> 0.3.10)
