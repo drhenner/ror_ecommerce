@@ -33,6 +33,10 @@ class TaxRate < ActiveRecord::Base
     where(["tax_rates.active = ?", true])
   end
 
+  def inactivate!
+    self.update_attributes(:active => false)
+  end
+
   def self.at(time = Time.zone.now)
     where(["tax_rates.start_date <= ? AND
            (end_date > ? OR end_date IS NULL)", time.to_date.to_s(:db), time.to_date.to_s(:db)])

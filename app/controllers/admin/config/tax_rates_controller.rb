@@ -1,29 +1,29 @@
 class Admin::Config::TaxRatesController < Admin::Config::BaseController
   helper_method :countries
 
-  # GET /tax_rates
+  # GET /admin/config/tax_rates
   def index
     @tax_rates = TaxRate.all
   end
 
-  # GET /tax_rates/1
+  # GET /admin/config/tax_rates/1
   def show
     @tax_rate = TaxRate.find(params[:id])
   end
 
-  # GET /tax_rates/new
+  # GET /admin/config/tax_rates/new
   def new
     @tax_rate = TaxRate.new
     form_info
   end
 
-  # GET /tax_rates/1/edit
+  # GET /admin/config/tax_rates/1/edit
   def edit
     @tax_rate = TaxRate.find(params[:id])
     form_info
   end
 
-  # POST /tax_rates
+  # POST /admin/config/tax_rates
   def create
     @tax_rate = TaxRate.new(params[:tax_rate])
 
@@ -35,7 +35,7 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
     end
   end
 
-  # PUT /tax_rates/1
+  # PUT /admin/config/tax_rates/1
   def update
     @tax_rate = TaxRate.find(params[:id])
 
@@ -47,12 +47,13 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
     end
   end
 
-  # DELETE /tax_rates/1
+  # DELETE /admin/config/tax_rates/1
   def destroy
     @tax_rate = TaxRate.find(params[:id])
-    @tax_rate.update_attributes(:active => false)
+    @tax_rate.inactivate!
     redirect_to(admin_config_tax_rates_url)
   end
+
   private
 
   def countries
