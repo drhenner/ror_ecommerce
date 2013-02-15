@@ -246,7 +246,6 @@ class Product < ActiveRecord::Base
 
     def self.deleted_at_filter(active_state)
       if active_state
-        puts 'BLALLS'
         active
       elsif active_state == false##  note nil != false
         where(['products.deleted_at IS NOT NULL AND products.deleted_at < ?', Time.now.to_s(:db)])
