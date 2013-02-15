@@ -194,18 +194,66 @@ class Product < ActiveRecord::Base
   # @param [Optional Boolean] the state of the product you are searching (active == true)
   # @return [ Array[Product] ]
   def self.admin_grid(params = {}, active_state = nil)
-    grid = includes(:variants)
-    grid = grid.where(['products.deleted_at IS NOT NULL AND products.deleted_at > ?', Time.now.to_s(:db)])  if active_state == false##  note nil != false
-    grid = grid.where(['products.deleted_at IS NULL     OR  products.deleted_at < ?', Time.now.to_s(:db)])  if active_state == true
-    grid = grid.where("products.name LIKE ?",                 "#{params[:name]}%")                  if params[:name].present?
-    grid = grid.where("products.product_type_id = ?",      params[:product_type_id])       if params[:product_type_id].present?
-    grid = grid.where("products.shipping_category_id = ?", params[:shipping_category_id])  if params[:shipping_category_id].present?
-    grid = grid.where("products.available_at > ?",         params[:available_at_gt])       if params[:available_at_gt].present?
-    grid = grid.where("products.available_at < ?",         params[:available_at_lt])       if params[:available_at_lt].present?
-    grid
+    grid = includes(:variants).
+                deleted_at_filter(active_state).
+                name_filter(params[:name]).
+                product_type_filter( params[:product_type_id] ).
+                shipping_category_filter(params[:shipping_category_id]).
+                available_at_gt_filter(params[:available_at_gt]).
+                available_at_lt_filter(params[:available_at_lt])
   end
 
   private
+
+    def self.available_at_lt_filter(available_at_lt)
+      if available_at_lt.present?
+        where("products.available_at < ?", available_at_lt)
+      else
+        scoped
+      end
+    end
+
+    def self.available_at_gt_filter(available_at_gt)
+      if available_at_gt.present?
+        where("products.available_at > ?", available_at_gt)
+      else
+        scoped
+      end
+    end
+    def self.shipping_category_filter(shipping_category_id)
+      if shipping_category_id.present?
+        where("products.shipping_category_id = ?", shipping_category_id)
+      else
+        scoped
+      end
+    end
+
+    def self.product_type_filter(product_type_id)
+      if product_type_id.present?
+        where("products.product_type_id = ?", product_type_id)
+      else
+        scoped
+      end
+    end
+
+    def self.name_filter(name)
+      if name.present?
+        where("products.name LIKE ?", "#{name}%")
+      else
+        scoped
+      end
+    end
+
+    def self.deleted_at_filter(active_state)
+      if active_state
+        puts 'BLALLS'
+        active
+      elsif active_state == false##  note nil != false
+        where(['products.deleted_at IS NOT NULL AND products.deleted_at < ?', Time.now.to_s(:db)])
+      else
+        scoped
+      end
+    end
     def create_content
       self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
     end

@@ -177,7 +177,9 @@ describe Product, "class methods" do
     it "should return Products " do
       product1 = create(:product)
       product2 = create(:product)
-      admin_grid = Product.admin_grid
+      product1.activate!
+      product2.activate!
+      admin_grid = Product.admin_grid({}, true)
       admin_grid.size.should == 2
       admin_grid.include?(product1).should be_true
       admin_grid.include?(product2).should be_true
