@@ -184,5 +184,15 @@ describe Product, "class methods" do
       admin_grid.include?(product1).should be_true
       admin_grid.include?(product2).should be_true
     end
+    it "should return deleted Products " do
+      product1 = create(:product)
+      product2 = create(:product)
+      puts product2.inspect
+      puts Time.zone.now
+      admin_grid = Product.admin_grid({}, false)
+      admin_grid.size.should == 2
+      admin_grid.include?(product1).should be_true
+      admin_grid.include?(product2).should be_true
+    end
   end
 end
