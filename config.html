@@ -90,10 +90,39 @@ One of the first things you will need to do is setup your gateway to accept cred
 </p>
 <p>Remember NEVER ADD CREDIT CARD INFORMATION in your database. Even encrypted Credit Card information can get you in a lot of trouble. These payments gateways have great ways to store Credit Card information for recurring billing and reusing the credit cards.</p>
 
-<p>If you are in the United States or Canada refactoring the checkout code to use spree takes very little time and Spree offers great advantages for PCI compliance and has an excellent developer sandbox.</p>
+<p>If you are in the United States or Canada refactoring the checkout code to use Stripe takes very little time and Stripe offers great advantages for PCI compliance and has an excellent developer sandbox.</p>
 
+<h3>Change Gateways</h3>
+<p>To change from authorize.net to paypal for example you can follow these steps:</p>
 
+<p>
+  First, fill in details into config/settings.yml for paypal:
+  <pre><code>paypal:
+    ip:         192.168.0.1
+    login:      someLOGIN.yahoo.com
+    password:   somePASSWORD
+    signature:  someSIGNATURE
+  </code></pre>
+</p>
 
+<p>
+  Second, change config/environments/*.rb from:
+  <pre><code>::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+  :login    => Settings.authnet.login,
+  :password => Settings.authnet.password,
+  :test     => true
+)
+  </code></pre>
+
+  to:
+  <pre><code>::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+  :login      => Settings.paypal.login,
+  :password   => Settings.paypal.password,
+  :signature  => Settings.paypal.signature,
+  :test       => true
+)
+  </code></pre>
+</p>
 
       </section>
       <footer>
