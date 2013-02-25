@@ -130,7 +130,7 @@ If you would like to read the docs, you can generate them with the following com
 First, create `config/settings.yml` and change the encryption key and paypal/auth.net information.
 You can also change `config/settings.yml.example` to `config/settings.yml` until you get your real info.
 
-To change from authlogic to any other gateway go to
+To change from authlogic to any other gateway look at the documentation [HERE](http://drhenner.github.com/ror_ecommerce/config.html)
 
 ## Paperclip
 
