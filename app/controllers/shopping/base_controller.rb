@@ -13,9 +13,9 @@ class Shopping::BaseController < ApplicationController
   def next_form(order)
 
     # if cart is empty
-    if session_cart.cart_items.empty?
+    if session_cart.shopping_cart_items.empty?
       flash[:notice] = I18n.t('do_not_have_anything_in_your_cart')
-      return root_url
+      return products_url
     ## If we are insecure
     elsif not_secure?
       session[:return_to] = shopping_orders_url
