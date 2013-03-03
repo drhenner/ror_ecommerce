@@ -39,12 +39,6 @@
           <%= f.text_field :city %>
         </div>
 
-      <% if nil %>
-        <div class="field four">
-          <%= f.label :state_name %>
-          <%= f.text_field :state_name %>
-        </div>
-      <% end %>
       <% if Settings.require_state_in_address %>
         <div class="field four columns">
           <%= f.label    :state_id, "State/Province" %>
