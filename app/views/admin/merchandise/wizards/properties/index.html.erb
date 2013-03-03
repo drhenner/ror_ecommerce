@@ -8,13 +8,6 @@
 
 <%= form_for @property, :url => admin_merchandise_wizards_property_path(:id => 0), :method => 'PUT' do |product_form| %>
   <div id='properties_selections' class='span-9 last'>
-    <% if nil # @properties.each do |property| %>
-      <div class='span-8 box <%= cycle( '', 'last') %>'>
-        <label><%= property.display_name %> (<%= property.identifing_name %>)</label>
-        <%= check_box_tag 'property[ids][]', property.id %>
-      </div>
-    <% end %>
-
     <%= select_tag 'property[ids][]',
                     options_from_collection_for_select(@properties, "id", "full_name", @selected),
                     :class => 'chzn-select span-6',
