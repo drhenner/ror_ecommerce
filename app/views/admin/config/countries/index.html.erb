@@ -6,7 +6,7 @@
 <p>
   Select other countries below to activate them:
   <%= select_tag "countries_select", options_from_collection_for_select(@countries, "id", "name") %>
-  <%= link_to "Ativar", [:admin, :config, @countries.first], method: :put, id: "activate-link", style: "display:none;" %>
+  <%= link_to "Activate", [:admin, :config, @countries.first], method: :put, id: "activate-link", style: "display:none;" %>
 </p>
 <div id="admin_country_grid_wrapper" class='pretty_table'>
   <table>
