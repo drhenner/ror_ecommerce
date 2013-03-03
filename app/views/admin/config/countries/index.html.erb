@@ -1,9 +1,13 @@
 <% content_for :head do -%>
-
+  <%= javascript_include_tag 'admin/countries' %>
 <% end %>
 
 <h1> Countries </h1>
-
+<p>
+  Select other countries below to activate them:
+  <%= select_tag "countries_select", options_from_collection_for_select(@countries, "id", "name") %>
+  <%= link_to "Ativar", [:admin, :config, @countries.first], method: :put, id: "activate-link", style: "display:none;" %>
+</p>
 <div id="admin_country_grid_wrapper" class='pretty_table'>
   <table>
     <tr class='odd'>
@@ -14,22 +18,17 @@
         <th></th>
     </tr>
     <tbody>
-    <% for country in @countries %>
+    <% for country in @active_countries %>
       <tr  class='<%= cycle("odd", "")%>'>
           <td><%= country.name %></td>
           <td><%= country.abbreviation %></td>
           <td><%= country.shipping_zone.try(:name) %></td>
-          <td><%= country.active %></td>
-        <% if country.active? %>
           <td><%= link_to "InActivate", [:admin, :config, country], :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>
-        <% else %>
-          <td><%= link_to "Activate", [:admin, :config, country], :data => { :confirm => 'Are you sure?' }, :method => :put %></td>
-        <% end %>
       </tr>
     <% end %>
     </tbody>
   </table>
 </div>
 
-<%= will_paginate @countries %>
+<%= will_paginate @active_countries %>
 
