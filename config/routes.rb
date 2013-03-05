@@ -1,5 +1,7 @@
 Hadean::Application.routes.draw do
 
+
+
   resources :user_sessions, :only => [:new, :create, :destroy]
 
   match 'admin'   => 'admin/overviews#index'
@@ -57,6 +59,9 @@ Hadean::Application.routes.draw do
 
     match "help" => "help#index"
 
+    namespace :reports do
+      resource :overview, :only => [:show]
+    end
     namespace :rma do
       resources  :orders do
         resources  :return_authorizations do
