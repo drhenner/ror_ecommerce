@@ -5,7 +5,7 @@ class ReturnReason < ActiveRecord::Base
   POOR_QUALITY  = 'Poor Quality'
   WRONG_ITEM    = 'Wrong Item'
   WRONG_SIZE    = 'Wrong Size/Color'
-  ARRIVED_LATE  = 'Arrived to late'
+  ARRIVED_LATE  = 'Arrived too late'
   OTHER         = 'Other'
 
   REASONS = [DEFECTIVE, POOR_QUALITY, WRONG_ITEM, WRONG_SIZE, ARRIVED_LATE, OTHER]
