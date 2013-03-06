@@ -1,2 +1,92 @@
-<h1> Reports </h1>
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'cupertino/jquery-ui-1.8.12.custom.css' %>
+<% end %>
+<% content_for :below_body do -%>
+  <%= javascript_include_tag 'datePickerInitialize' %>
+<% end %>
 
+<h2> Reports </h2>
+
+<div class='row'>
+  <div class=' three column'>
+    <div class='panel'>
+    <h4>Accounting </h4>
+    <p>
+      <%= I18n.localize(@accounting_report.start_time,  :format => :us_time)  %><br/>
+      <%= I18n.localize(@accounting_report.end_time,    :format => :us_time) %>
+    </p>
+    <ul>
+      <li><label>Revenue              </label><%= number_to_currency @accounting_report.revenue             %></li>
+      <li><label>Cash                 </label><%= number_to_currency @accounting_report.cash                %></li>
+      <li><label>Accounts Receivable  </label><%= number_to_currency @accounting_report.accounts_receivable %></li>
+      <li><label>Accounts Payable     </label><%= number_to_currency @accounting_report.accounts_payable    %></li>
+    </ul>
+    </div>
+  </div>
+  <div class='three column'>
+    <div class='panel'>
+    <h4>Orders </h4>
+    <p>
+      <%= I18n.localize(@orders_report.start_time,  :format => :us_time)  %><br/>
+      <%= I18n.localize(@orders_report.end_time,    :format => :us_time) %>
+    </p>
+    <ul>
+      <li><label># of Orders      </label><%= @orders_report.quantity        %></li>
+      <li><label>Amount           </label><%= number_to_currency @orders_report.total_amount    %></li>
+      <li><label>Amount Returned  </label><%= number_to_currency @orders_report.amount_returned %></li>
+    </ul>
+    </div>
+  </div>
+  <div class=' three column'>
+    <div class='panel'>
+    <h4>Customers </h4>
+    <p>
+      <%= I18n.localize(@customers_report.start_time,  :format => :us_time)  %><br/>
+      <%= I18n.localize(@customers_report.end_time,    :format => :us_time) %>
+    </p>
+    <ul>
+      <li>
+        <label># of Users at (<%= I18n.localize(@customers_report.end_time, :format => :us_time) %>) </label>
+        <%= @customers_report.total_users %>
+      </li>
+      <li><label>New Users in TimeFrame  </label><%= @customers_report.users_in_timeframe     %></li>
+      <li>
+        <label># of Customers at (<%= I18n.localize(@customers_report.end_time, :format => :us_time) %>) </label>
+        <%= @customers_report.total_customers        %>
+      </li>
+      <li><label> Customers in TimeFrame </label><%= @customers_report.customers_in_timeframe %></li>
+    </ul>
+    </div>
+  </div>
+  <div id='' class=' three column'>
+    <div class='panel graceful'>
+      <h4>Filter </h4>
+      <%= form_tag(  admin_reports_overview_path(),
+                                    :method => :get,
+                                    :id   => 'request_report_form') do  %>
+        <%= hidden_field_tag('schedule', nil) %>
+        <ul id='report-filters'>
+          <li>
+            <label>Start Date       </label>
+            <%= text_field_tag 'start_date', nil, :placeholder => 'dd/mm/yyyy', :class => 'ui-datepicker' %>
+          </li>
+          <li>
+            <%= submit_tag 'Daily',
+                                    :disable_with => "Please wait...",
+                                    :class => 'button small report-submit-button' %>
+          </li>
+          <li>
+            <%= submit_tag 'Weekly',
+                                      :disable_with => "Please wait...",
+                                      :class => 'button small report-submit-button' %>
+          </li>
+          <li>
+            <%= submit_tag 'Monthly',
+                                      :disable_with => "Please wait...",
+                                      :class => 'button small report-submit-button' %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

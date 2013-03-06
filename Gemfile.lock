@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/drhenner/nifty-generators.git
+  revision: ae4d05fd4f2b1f09b6d9546ef72122ba1bc433ff
+  specs:
+    nifty-generators (0.4.6)
+
+GIT
   remote: https://github.com/neocoin/rails3-generators.git
   revision: 6bdea11693e69917849dabc6bd38cf752e8ff194
   specs:
@@ -81,6 +87,7 @@ GEM
     childprocess (0.3.7)
       ffi (~> 1.0, >= 1.0.6)
     choice (0.1.6)
+    chronic (0.9.1)
     chunky_png (1.2.7)
     cocaine (0.4.2)
     columnize (0.3.6)
@@ -278,6 +285,7 @@ DEPENDENCIES
   bluecloth (~> 2.1.0)
   cancan (~> 1.6.8)
   capybara (~> 1.1)
+  chronic
   compass (~> 0.12.0)
   compass-rails
   database_cleaner
@@ -295,6 +303,7 @@ DEPENDENCIES
   mocha (~> 0.10.0)
   mysql2 (~> 0.3.10)
   nested_set (~> 1.7.0)
+  nifty-generators!
   nokogiri (~> 1.5.0)
   paperclip (~> 3.0)
   pg

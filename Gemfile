@@ -16,6 +16,7 @@ gem "asset_sync"
 gem 'aws-sdk'
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.6.8'
+gem 'chronic'
 gem 'compass', '~> 0.12.0'
 gem 'compass-rails'
 #  gem 'dalli', '~> 1.0.2'
@@ -27,7 +28,7 @@ gem "jquery-rails"
 gem 'json', '~>1.7.7'
 
 gem 'nested_set', '~> 1.7.0'
-#gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
+gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
 gem 'paperclip', '~> 3.0'
 gem 'prawn', '~> 0.12.0'
