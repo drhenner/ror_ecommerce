@@ -7,7 +7,10 @@
         <tr  class='odd'>
           <th colspan='3' class='column1_header' >
             <%= product.name %></th>
-          <th><%= link_to 'edit', edit_admin_merchandise_product_path(product) %></th>
+          <th>
+          <%= link_to 'edit product', edit_admin_merchandise_product_path(product), :class => 'button small', :style => 'margin:0;' %>
+          <%= link_to 'change inventory', admin_inventory_adjustment_path(product), :class => 'button small', :style => 'margin:0;' %>
+          </th>
         </tr>
         <tr>
           <th>SKU</th><th>price</th><th>Qty</th><th>description</th>
@@ -21,9 +24,11 @@
             <td><%= variant.price %></td>
             <td><%= variant.count_on_hand %></td>
             <td>
+              <ul class='vertical-list'>
               <% variant.variant_properties.each do |vp| %>
-                <%= vp.property_name %>: <%= vp.description %> <br/>
+                <li><label><%= vp.property_name %>:</label> <%= vp.description %> </li>
               <% end %>
+              </ul>
             </td>
           </tr>
         <% end %>
