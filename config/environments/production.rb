@@ -23,6 +23,7 @@ Hadean::Application.configure do
                                 'admin/app.css',
                                 'admin/cart.css',
                                 'admin/foundation.css',
+                                'admin/normalize.css',
                                 'admin/help.css',
                                 'admin/ie.css',
                                 'autocomplete.css',
