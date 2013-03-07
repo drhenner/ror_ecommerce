@@ -4,12 +4,12 @@
   <div class='four large-4 column'>
     <div class='panel'>
       <h4>Orders</h4>
-      <ul class='vertical-list'>
       <% @user.finished_orders.sort_by{|o| o.completed_at}.reverse!.each do |order| %>
         <ul class='vertical-list'>
           <li><label>Order #</label><%= link_to order.number, edit_admin_fulfillment_order_path(order) %></li>
           <li><label>Price</label><%= order.first_invoice_amount.present? ? number_to_currency( order.first_invoice_amount ) : 'Not Charged yet.' %></li>
           <li><label>Completed at:</label><%= order.display_completed_at %></li>
+          <li><label>Status:</label><%= order.state %></li>
         </ul>
       <% end %>
     </div>
