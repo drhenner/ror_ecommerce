@@ -1,5 +1,5 @@
 // THIS CODE WILL HAVE A LINK OPEN IN A NEW POPUP
-$('a[data-popup]').live('click', function(e) {
+$(document).on('click','a[data-popup]', function(e) {
   window.open($(this)[0].href);
      e.preventDefault();
   });
@@ -26,7 +26,7 @@ $(function() {
     return false;
   });
 
-  $('form a.remove_child').live('click', function() {
+  $('form a').on('click', '.remove_child', function() {
     var hidden_field = $(this).prev('input[type=hidden]')[0];
     if(hidden_field) {
       hidden_field.value = '1';
