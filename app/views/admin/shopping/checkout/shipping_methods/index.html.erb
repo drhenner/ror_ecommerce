@@ -6,11 +6,11 @@
       <div class='column float-left last'>
           <% items.each do |item| %>
             <div class=' panel shipping_methods_admin_panel clearfix'  style='width:535px;'>
-                <div class='seven columns'>
+                <div class='seven large-7 columns'>
                   <%= image_tag(item.variant.product.featured_image(:mini)) %>
                   <%= item.variant.product.name %> Quantity: <%= item.quantity %>
                 </div>
-                <div class='five columns' style='text-align:left;'>
+                <div class='five large-5 columns' style='text-align:left;'>
                   <% item.variant.variant_properties.each do |vp| %>
                     <label><%= vp.property.display_name %></label> <%= vp.description %><br/>
                   <% end %>

@@ -28,12 +28,12 @@
     </div>
 
   <div class='clearfix'></div>
-    <div class="five columns">
+    <div class="five large-5 columns">
       <%= label_tag 'Number'%>
        <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "off") %>
     </div>
 
-    <div class="five columns">
+    <div class="five large-5 columns">
       <%= label_tag :verification_value, 'VCC'%>
        <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'four disableAutoComplete', :autocomplete => "off") %>
     </div>
@@ -66,12 +66,12 @@
 
 <% content_for :right_side_bar do -%>
 
-  <div class='twelve panel' >
+  <div class='twelve large-12 panel' >
     <h5>Shipping Address</h5>
     <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => session_admin_order.ship_address} %>
     <%= link_to 'Change', admin_shopping_checkout_shipping_addresses_path %>
   </div>
-  <div class='twelve panel'>
+  <div class='twelve large-12 panel'>
     <h5>Billing Address</h5>
     <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => session_admin_order.bill_address} %>
     <%= link_to 'Change', admin_shopping_checkout_billing_addresses_path %>

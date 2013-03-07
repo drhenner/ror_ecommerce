@@ -10,19 +10,19 @@
     </div>
   <% end %>
 <div class='main-address'>
-    <div class="inline twelve ">
-      <div class="field six columns">
+    <div class="inline twelve large-12 ">
+      <div class="field six large-6 columns">
          <%= f.label :first_name %>
          <%= f.text_field :first_name, :class => '' %>
       </div>
 
-      <div class="field six columns">
+      <div class="field six large-6 columns">
         <%= f.label :last_name %>
         <%= f.text_field :last_name, :class => '' %>
       </div>
     </div>
     <div class='clear'></div>
-      <div class="twelve columns">
+      <div class="twelve large-12 columns">
         <div class="field">
           <%= f.label :address1 %>
           <%= f.text_field :address1 %><br/>
@@ -33,14 +33,14 @@
       </div>
 
     <div class='clearfix'></div>
-      <div class=" twelve clearfix">
+      <div class=" twelve large-12 clearfix">
         <div class="field five columns">
           <%= f.label :city %>
           <%= f.text_field :city %>
         </div>
 
       <% if Settings.require_state_in_address %>
-        <div class="field four columns">
+        <div class="field four large-4 columns">
           <%= f.label    :state_id, "State/Province" %>
           <%= f.select   :state_id, @states,
                         :include_blank => true %>
@@ -59,14 +59,14 @@
         </div>
       <% end %>
 
-        <div class="field two columns">
+        <div class="field two large-2 columns">
           <%= f.label :zip_code %>
           <%= f.text_field :zip_code %>
         </div>
       </div>
 
 </div>
-  <div class="field twelve column" style='margin-bottom:10px;'>
+  <div class="field twelve large-12 column" style='margin-bottom:10px;'>
     <%= f.check_box :default, :class => 'columns' %>
     <%= f.label :default, "Make this my default shipping method", :class => 'ten ', :style => 'margin-top:3px;' %>
   </div>

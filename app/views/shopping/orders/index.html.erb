@@ -2,7 +2,7 @@
   <%= stylesheet_link_tag 'tables.css' %>
 <% end %>
 <div id='order-wrapper' class='twelve'>
-  <div class='seven columns'>
+  <div class='seven large-7 columns'>
     <h1>Order Summary</h1>
 
     <div id='order-items-summary'>
@@ -25,7 +25,7 @@
       <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} %>
     </div>
   </div>
-  <div class='pretty_table five columns last'>
+  <div class='pretty_table five large-5 columns last'>
     <table>
       <thead>
         <tr class='odd'>
@@ -88,23 +88,23 @@
         <%= label_tag  :name %>
       </div>
 <div class='clear'></div>
-      <div class="field six column">
+      <div class="field six large-6 column">
         <%= label_tag 'First' %>
          <%= text_field_tag(:first_name, @credit_card.first_name) %>
       </div>
 
-      <div class="field six column">
+      <div class="field six large-6 column">
         <%= label_tag :last_name, 'Last' %>
          <%= text_field_tag(:last_name, @credit_card.last_name) %>
       </div>
 
       <div class='clear'></div>
-      <div class="field twelve column">
+      <div class="field twelve large-12 column">
         <%= label_tag 'Number'%>
          <%= text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "off") %>
       </div>
-      <div class='twelve clearfix'>
-        <div class="field three column">
+      <div class='twelve large-12 clearfix'>
+        <div class="field three large-3 column">
           <%= label_tag :verification_value, 'VCC'%>
            <%= text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "off") %>
         </div>

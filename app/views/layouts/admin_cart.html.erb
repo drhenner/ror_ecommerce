@@ -34,10 +34,10 @@
 
     <%= render :partial => 'shared/admin/header_bar' %>
 
-    <div class='admin_main_content eight columns'>
+    <div class='admin_main_content eight large-8 columns'>
       <%= yield %>
     </div>
-    <div id='cart-right-side-panel' class='four columns last float-right'>
+    <div id='cart-right-side-panel' class='four large-4 columns last float-right'>
       <%= render :partial => '/admin/shopping/right_panel_summary'%>
       <%= yield :right_side_bar %>
     </div>

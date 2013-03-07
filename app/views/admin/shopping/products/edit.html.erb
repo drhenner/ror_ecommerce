@@ -9,17 +9,17 @@
       <div class='panel product_admin_panel'>
         <ul  id='variant-<%= i %>'
               class='<%= cycle("odd", "even") %> clear  clearfix panel radius' style='margin-bottom:20px;'>
-          <li id='' class='six columns'>
+          <li id='' class='six large-6 columns'>
             <%#= raw variant.display_property_details %>
             <% variant.variant_properties.each do |vp| %>
               <label><%= vp.property.display_name %></label> <%= vp.description %><br/>
             <% end %>
             <b><%= number_to_currency( variant.price ) %></b>
           </li>
-          <li class='four columns'>
+          <li class='four large-4 columns'>
             Qty in Stock: <%= variant.display_stock_status %>(<%= variant.quantity_available %>)
           </li>
-          <li id='variant-qty-<%= i %>' class='two columns' style='diplay:inline-block;'>
+          <li id='variant-qty-<%= i %>' class='two large-2 columns' style='diplay:inline-block;'>
             Quantity: <%= text_field_tag("variant[#{ variant.id }]", nil, :class => 'one', :style => 'width:50px;') %>
           </li>
 

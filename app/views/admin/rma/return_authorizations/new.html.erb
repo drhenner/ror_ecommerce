@@ -1,20 +1,20 @@
 
-<div class=' span-24'>
-  <div class=' span-7 float-left'>
+<div class=' row'>
+  <div class=' large-4 four float-left'>
     <b>Invoices:</b>
     <% @order.invoices.each do |invoice| %>
         <div  id='order-invoices'
-              class='span-7 rounded-10 line_item_gray'>
+              class='span-7 rounded-10 panel'>
             Number: <%= invoice.number %> <br/>
             State: <%= invoice.state %> at: <%= I18n.localize(invoice.updated_at, :format => :us_time)%><br/>
             Amount: <%= number_to_currency invoice.amount %>
         </div>
     <% end %>
   </div>
-  <div class=' span-8 float-left'>
+  <div class=' large-4 four float-left'>
   <b>Items</b>
     <div  id='order-items'
-          class='span-8 rounded-10 line_item_blue float-left'>
+          class=' rounded-10 panel float-left'>
 
             <% @order.order_items.each do |item| %>
               <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>

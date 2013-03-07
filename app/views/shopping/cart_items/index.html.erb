@@ -16,10 +16,10 @@
   <%= form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>
 
     <% unless @cart_items.blank? %>
-      <div id='update-cart-wrapper' class='ten columns'>
+      <div id='update-cart-wrapper' class='ten large-10 columns'>
 
           <div id='update_all_cart' class="small-gradientbuttons ">
-            <ul class=' seven '>
+            <ul class=' seven large-7 '>
               <li>
                 <span style='margin-top:3px;' class=" ">Make any changes below?</span>
               </li>
@@ -31,7 +31,7 @@
           </div>
 
       </div>
-      <div  class='two columns' style='margin-top: 3px;text-align: right;'>
+      <div  class='two large-2 columns' style='margin-top: 3px;text-align: right;'>
         <%= cart_form.submit 'checkout', {:checkout => 1, :class => 'small button success'} %>
       </div>
 

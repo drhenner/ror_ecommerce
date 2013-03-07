@@ -8,13 +8,13 @@
 
   <div class=' float-left last'>
     <% if @product.active_variants.empty? %>
-      <div id='no-variant-available' class=' four  last'>
+      <div id='no-variant-available' class=' four large-4  last'>
         Sorry this product is not currently available.
       </div>
     <% else %>
 
 
-      <div id='left_product_wrapper' class='columns five'>
+      <div id='left_product_wrapper' class='columns five large-5'>
          <!-- <ul class='horizontal-list'>
             <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
           </ul> -->
@@ -39,7 +39,7 @@
           </ul>
 
       </div>
-      <div id='right_2_product_wrapper' class='six columns last'>
+      <div id='right_2_product_wrapper' class='six large-6 columns last'>
           <div id='right_product_wrapper' class=''>
             <div class='product_title_name'><%= @product.name %></div>
             <% if @product.active_variants.count > 0 %>
