@@ -1,0 +1,8 @@
+<h2> Ship Order (<%= @order.number %>)</h2>
+
+<%= form_for(@order, :url => admin_fulfillment_partial_order_shipment_path( @order, 0 )) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<%= link_to "Order's Shipments", admin_fulfillment_shipments_path(:order_id => @order.number), :class => 'button' %>
+<%= link_to "Back to Order", edit_admin_fulfillment_order_path(@order), :class => 'button' %>

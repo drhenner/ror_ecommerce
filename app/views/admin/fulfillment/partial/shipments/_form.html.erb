@@ -1,0 +1,18 @@
+<div class='six'>
+  <% @order.order_items.each do |item| %><%# .select(&:paid?).select(&:unshipped?)%>
+    <% if item.paid? && item.unshipped? %>
+      <div class="property_form left last">
+        <% checked = false %>
+        <%= check_box_tag "order[order_item_ids][]", item.id, checked %>
+        <%= item.variant.product_name %>
+      </div>
+    <% else %>
+      <%= item.variant.product_name %><br/>
+    <% end %>
+  <% end %>
+  <div class='clearfix'> </div>
+  <p>&nbsp;</p>
+  <div class="actions">
+    <%= f.submit 'Ship checked items.' %>
+  </div>
+</div>

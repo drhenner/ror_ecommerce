@@ -33,6 +33,8 @@ en:
 
   no_addresses_saved:                     'Currently no addresses saved.'
 
+  label_create_shipment_button: 'Create Shipment'
+
   date:
     formats:
       # Use the strftime parameters for formats.
