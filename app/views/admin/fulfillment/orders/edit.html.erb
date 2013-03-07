@@ -3,7 +3,7 @@
   <b>Shipment for <%= link_to @order.user.name, admin_user_path(@order.user) %></b>
 </div>
 <div class='clear'></div>
-<div id='order-shipment-items' class='four column'>
+<div id='order-shipment-items' class='four large-4 column'>
   <div class='panel'>
     <h4>Order Items</h4>
     <% @order.order_items.each_with_index do |item,i| %>
@@ -34,7 +34,7 @@
     <% end %>
   </div>
 </div>
-<div class=' four column' >
+<div class=' four large-4 column' >
   <div class='panel'>
     <h4>Shipping address</h4>
     <div class='well'>
@@ -42,16 +42,16 @@
     </div>
   </div>
 </div>
-<div id="shipment-details-box" class=' four column'>
+<div id="shipment-details-box" class=' four large-4 column'>
     <%= render :partial => 'admin/fulfillment/orders/shipment_details', :locals => {:order => @order} %>
 </div>
 <div class='clearfix'></div>
 
-<div class=' eight ' style='text-align:left;'>
+<div class=' eight large-8 ' style='text-align:left;'>
   <div class='panel'>
     <h4>Invoice</h4>
     <% @order.invoices.each do |invoice| %>
-      <div id='invoice-line-<%= invoice.id %>'>
+      <div id='invoice-line-<%= invoice.id %>' class='order-invoice' data-invoice_id='<%= invoice.id %>' data-order_id='<%= @order.id %>'>
         <% if @order.invoices.last.id == invoice.id %>
             <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last } %>
         <% end %>
@@ -74,7 +74,7 @@
   <%= javascript_include_tag "admin/fulfillment" %>
   <script>
     <% @order.invoices.each do |invoice| %>
-      Hadean.Utility.registerOnLoadHandler(Hadean.Fulfillment.initialize(<%= invoice.id %>, <%= @order.id %> ));
+     // Hadean.Utility.registerOnLoadHandler(Hadean.Fulfillment.initialize(<%= invoice.id %>, <%= @order.id %> ));
     <% end %>
   </script>
 <% end %>
