@@ -47,16 +47,31 @@
 </div>
 <div class='clearfix'></div>
 
-<div class=' eight large-8 ' style='text-align:left;'>
-  <div class='panel'>
-    <h4>Invoice</h4>
-    <% @order.invoices.each do |invoice| %>
-      <div id='invoice-line-<%= invoice.id %>' class='order-invoice' data-invoice_id='<%= invoice.id %>' data-order_id='<%= @order.id %>'>
-        <% if @order.invoices.last.id == invoice.id %>
-            <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last } %>
-        <% end %>
-      </div>
-    <% end %>
+<div class='row'>
+  <div class=' six large-6 ' style='text-align:left;'>
+    <div class='panel'>
+      <h4>Invoice</h4>
+      <% @order.invoices.each do |invoice| %>
+        <div id='invoice-line-<%= invoice.id %>' class='order-invoice' data-invoice_id='<%= invoice.id %>' data-order_id='<%= @order.id %>'>
+          <% if @order.invoices.last.id == invoice.id %>
+              <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class=' six large-6 column'>
+    <b>Return Merchandise Authorization:</b>
+    <div class=' panel'>
+      <% if @order.return_authorizations.size > 0 %>
+         <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order),
+                                  :class => 'button ' %>
+         <br/><br/>
+      <% else %>
+        <%= link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order),
+                                  :class => 'button ' %>
+      <% end %>
+    </div>
   </div>
 </div>
 
