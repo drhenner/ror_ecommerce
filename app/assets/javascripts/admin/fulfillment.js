@@ -12,13 +12,6 @@ jQuery(document).ready(function($) {
 
 var Hadean = window.Hadean || {};
 
-
-Hadean.Utility = {
-  registerOnLoadHandler : function(callback) {
-    jQuery(window).ready(callback);
-  }
-}
-
 Hadean.Fulfillment = {
   captureInvoiceButton      : '#capture-invoice-button-',
   capturePartInvoiceButton  : '#capture-partial-invoice-button-',
@@ -141,3 +134,10 @@ Hadean.Fulfillment = {
     return false;
   }// cancelInvoice
 };
+
+jQuery(function() {
+  jQuery.each(jQuery('.order-invoice'), function(index, obj){
+    Hadean.Fulfillment.initialize(jQuery(obj).data('invoice_id'), jQuery(obj).data('order_id'));
+  })
+
+});
