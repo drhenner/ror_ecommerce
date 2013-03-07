@@ -271,6 +271,13 @@ class Invoice < ActiveRecord::Base
     order.user
   end
 
+  def self.admin_grid(args)
+    if args[:order_number].present?
+      where("orders.number = ?", args[:order_number])
+    else
+      scoped
+    end
+  end
   private
 
   def unique_order_number

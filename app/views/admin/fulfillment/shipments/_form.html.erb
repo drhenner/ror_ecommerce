@@ -11,23 +11,23 @@
   </div>
 <% end %>
 
-<div id='shipment-details' class='span-10 last rounded-10 line_item_yellow'>
-  <ul  class='span-10 width-list space-list-40'>
+<div id='shipment-details' class=' last  line_item_yellow'>
+  <ul  class='vertical-list width-list space-list-40'>
     <li>
-      <label class='span-3 column'>Shipped at:</label>
-      <span class='span-6 column'><%=l @shipment.shipped_at, :format => :us_time if @shipment.shipped_at %></span>
+      <label >Shipped at:</label>
+      <span ><%=l @shipment.shipped_at, :format => :us_time if @shipment.shipped_at %></span>
     </li>
     <li style='clear:both;'>
-      <label class='span-3 column'>Tracking #:</label>
-      <span class='span-6 column'><%= f.text_field :tracking %></span>
+      <label >Tracking #:</label>
+      <span ><%= f.text_field :tracking %></span>
     </li>
     <li>
-      <label class='span-3 column'>Shipment #:</label>
-      <span class='span-6 column'><%= @shipment.number %></span>
+      <label >Shipment #:</label>
+      <span ><%= @shipment.number %></span>
     </li>
     <li>
-      <label class='span-3 column'>Status:</label>
-      <span class='span-6'><%= @shipment.state %></span>
+      <label >Status:</label>
+      <span ><%= @shipment.state %></span>
     </li>
   </ul>
 

@@ -1,82 +1,82 @@
-<div style='text-align: left;'>
+<div class='row' style='text-align: left;'>
   <p id="notice"><%= notice %></p>
 
-  <div class='span-7'>
+  <div class='four column'>
     <h3>Shipment details</h3>
 
-    <ul  class='span-7 width-list'>
+    <ul  class='vertical-list width-list'>
       <li>
-        <label class='span-3 column'>Shipped at:</label>
-        <span class='span-3 column'><%=l @shipment.shipped_at, :format => :us_time if @shipment.shipped_at %></span>
+        <label class=''>Shipped at:</label>
+        <span class=''><%=l @shipment.shipped_at, :format => :us_time if @shipment.shipped_at %></span>
       </li>
       <li style='clear:both;'>
-        <label class='span-3 column'>Tracking #:</label>
-        <span class='span-3 column'><%= @shipment.tracking %></span>
+        <label class=''>Tracking #:</label>
+        <span class=''><%= @shipment.tracking %></span>
       </li>
       <li>
-        <label class='span-3 column'>Shipment #:</label>
-        <span class='span-3 column'><%= @shipment.number %></span>
+        <label class=''>Shipment #:</label>
+        <span class=''><%= @shipment.number %></span>
       </li>
       <li>
-        <label class='span-3 column'>Status:</label>
-        <span class='span-3'><%= @shipment.state %></span>
+        <label class=''>Status:</label>
+        <span class=''><%= @shipment.state %></span>
       </li>
       <li></li>
     </ul>
   </div>
 
-  <div class='span-10'>
+  <div class='five  column'>
     <h3>Order Items</h3>
 
-    <ul  class='span-10 width-list'>
+    <ul  class='vertical-list width-list'>
       <% @shipment.order_items.each do |item| %>
         <li>
-          <label class='span-5 column'>Product:</label>
-          <span class='span-5  last column'><%= item.variant.product_name %></span>
+          <label >Product:</label>
+          <span ><%= item.variant.product_name %></span>
         </li>
         <li>
-          <label class='span-5 column'>SKU:</label>
-          <span class='span-5 last column'><%= item.variant.sku %></span>
+          <label >SKU:</label>
+          <span ><%= item.variant.sku %></span>
         </li>
         <li>
-          <label class='span-5 column'>Price:</label>
-          <span class='span-5 last column'><%= item.price %></span>
+          <label >Price:</label>
+          <span ><%= number_to_currency item.price %></span>
         </li>
         <li>
-          <label class='span-5 column'>Rate:</label>
-          <span class='span-5 last column'><%= number_to_currency( item.shipping_rate.rate ) %></span>
+          <label>Shipping Rate:</label>
+          <span ><%= number_to_currency( item.shipping_rate.rate ) %></span>
         </li>
         <li>
-          <label class='span-5 column'>Shipping Method:</label>
-          <span class='span-5 last column'><%= item.shipping_rate.shipping_method.name  %></span>
+          <label >Shipping Method:</label>
+          <span><%= item.shipping_rate.shipping_method.name  %></span>
         </li>
         <hr/>
       <% end %>
     </ul>
   </div>
 
-  <div class='span-7'>
+  <div class='three column'>
     <h3>Order Details</h3>
 
-    <ul  class='span-7 width-list'>
+    <ul  class='vertical-list width-list'>
         <li>
-          <label class='span-3 column'>Order #:</label>
-          <span class='span-4  last column'><%= @shipment.order.number %></span>
+          <label >Order #:</label>
+          <span><%= @shipment.order.number %></span>
         </li>
         <li>
-          <label class='span-3 column'>Customer:</label>
-          <span class='span-4  last column'><%= @shipment.order.user.name %></span>
+          <label>Customer:</label>
+          <span><%= @shipment.order.user.name %></span>
         </li>
         <li>
-          <label class='span-3 column'>Shipping Address:</label>
-          <span class='span-4  last column'>
+          <label style='width:200px;'>Shipping Address:</label>
+          <div>
             <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @shipment.address} %>
-          </span>
+          </div>
         </li>
         <hr/>
     </ul>
   </div>
 
-  <%= link_to 'Edit', edit_admin_fulfillment_shipment_path(@shipment) %> |
-  <%= link_to 'View Shipments for this Order', admin_fulfillment_shipments_path(:order_id => @shipment.order.number) %>
+  <%= link_to 'Edit', edit_admin_fulfillment_shipment_path(@shipment), :class => 'button small' %> |
+  <%= link_to 'View Shipments for this Order', admin_fulfillment_shipments_path(:order_id => @shipment.order.number), :class => 'button small' %>
 </div>

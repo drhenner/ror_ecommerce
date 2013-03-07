@@ -371,6 +371,25 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def create_shipments_with_order_item_ids(order_item_ids)
+    created_shipments = false
+    self.order_items.find(order_item_ids).group_by(&:shipping_method_id).each do |shipping_method_id, order_items|
+      shipment = Shipment.new(:shipping_method_id => shipping_method_id,
+                              :address_id         => self.ship_address_id,
+                              :order_id           => self.id
+                              )
+      shipment_has_items = false
+      order_items.each do |item|
+        if item.paid?
+          shipment.order_items.push(item)
+          shipment_has_items = true
+        end
+      end
+      created_shipments = shipment.prepare! if shipment_has_items # just because there might not be any order items that are paid? within order_item_ids
+    end
+    created_shipments
+  end
+
   # all the tax charges to apply to the order
   #
   # @param [none]

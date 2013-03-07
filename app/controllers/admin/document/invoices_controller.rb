@@ -1,8 +1,9 @@
 class Admin::Document::InvoicesController < Admin::BaseController
+  helper_method :sort_column, :sort_direction
   include InvoicePrinter
 
   def index
-    @invoices = Invoice.includes([:order]).
+    @invoices = Invoice.includes([:order]).admin_grid(params).order(sort_column + " " + sort_direction).
                         paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
@@ -28,5 +29,11 @@ class Admin::Document::InvoicesController < Admin::BaseController
   end
 
   private
+    def sort_column
+      Invoice.column_names.include?(params[:sort]) ? params[:sort] : "invoices.id"
+    end
 
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
 end

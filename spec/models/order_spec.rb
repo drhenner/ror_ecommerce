@@ -388,6 +388,23 @@ describe Order, "instance methods" do
     end
   end
 
+  context ".create_shipments_with_order_item_ids(order_item_ids)" do
+    it "should return false if there aren't any ids" do
+      @order_item = FactoryGirl.create(:order_item, :order => @order)
+      @order.create_shipments_with_order_item_ids([]).should be_false
+    end
+    it "should return false if the ids cant be shipped" do
+      @order_item = FactoryGirl.create(:order_item, :order => @order, :state => 'unpaid')
+      @order.create_shipments_with_order_item_ids([@order_item.id]).should be_false
+    end
+    it "should return true if the ids can be shipped" do
+      @order_item = FactoryGirl.build(:order_item, :order => @order)
+      @order_item.state = 'paid'
+      @order_item.save
+      @order.create_shipments_with_order_item_ids([@order_item.id]).should be_true
+    end
+  end
+
   context '.item_prices' do
 
     it 'should return an Array of prices' do

@@ -86,6 +86,13 @@ Hadean::Application.routes.draw do
         end
         resources  :comments
       end
+
+      namespace :partial do
+        resources  :orders do
+          resources :shipments, :only => [ :create, :new, :update ]
+        end
+      end
+
       resources  :shipments do
         member do
           put :ship

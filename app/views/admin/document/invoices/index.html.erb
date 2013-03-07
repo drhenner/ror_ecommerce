@@ -1,3 +1,23 @@
+<% content_for :sidemenu do %>
+
+  <div class='admin_filters'>
+    <%= form_tag admin_document_invoices_path, :method => 'get', :id => "invoices_search" do %>
+      <label>Order #</label>
+      <%= text_field_tag :order_number, params[:order_number] %>
+
+      <div style="text-align:center; margin-top: 15px">
+        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+      </div>
+      </p>
+      <div id="order_hidden">
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+      </div>
+    <% end %>
+    <div class='clearfix'></div>
+  </div>
+<% end %>
+
 <h3>Invoices</h3>
 
 <table>

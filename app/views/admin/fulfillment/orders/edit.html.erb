@@ -1,42 +1,62 @@
-
 <h2>New shipment for Order # <%= @order.number %>  </h2>
 <div class='' >
   Shipment for <%= @order.user.name %>
 </div>
 <div class='clear'></div>
-<div id='order-shipment-items' class='span-8 last float-left'>
-<h4>Order Items</h4>
-  <% @order.order_items.each_with_index do |item,i| %>
-    <div class='well'>
-      <%= item.variant.product_name %> <%= item.variant.sku %> <%= number_to_currency item.variant.price %> <br/>
-      <% if item.shipped? %>
-        Shipped: <%= item.shipment.display_shipped_at %> => Shipping #: <%= item.shipment.number %>
-      <% else %>
-        Not Shipped Yet.
-        <%= item.shipping_rate.shipping_method.name %>
+<div id='order-shipment-items' class='four column'>
+  <div class='panel'>
+    <h4>Order Items</h4>
+    <% @order.order_items.each_with_index do |item,i| %>
+      <ul class='vertical-list'>
+        <li> <b><%= item.variant.product_name %></b> </li>
+        <li> <label>SKU:</label> <%= item.variant.sku %> </li>
+        <li> <label>Price:</label> <%= number_to_currency item.variant.price %> </li>
+        <% if item.shipped? %>
+          <li> <label>Shipped:</label> <%= item.shipment.display_shipped_at %> </li>
+          <li> <label>Shipping #:</label> <%= item.shipment.number %> </li>
+        <% else %>
+          <li>Not Shipped Yet,  <%= item.shipping_rate.shipping_method.name %></li>
+        <% end %>
+      </ul>
+
+      <b><%= item.state.upcase %></b>
+      <% if item.paid? && !item.shipped? %>
+        <%= link_to 'Ship Individually!',
+                    admin_fulfillment_partial_order_shipments_path( @order, :order_item_ids => [item.id]),
+                    :method => 'POST', :class => 'button' %>
       <% end %>
-    </div>
-  <% end %>
-</div>
-<div class='span-7 last float-left' >
-<h4>Shipping address</h4>
-  <div class='well'>
-    <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+    <% end %>
+
+    <% if @order.order_items.any?(&:unshipped?) %>
+      <%= link_to 'New Shipment',
+                    new_admin_fulfillment_partial_order_shipment_path( @order ),
+                    :class => 'button' %>
+    <% end %>
   </div>
 </div>
-<div id="shipment-details-box" class='span-7 last float-left'>
-  <%= render :partial => 'admin/fulfillment/orders/shipment_details', :locals => {:order => @order} %>
-</div>
-<div class='clear'></div>
-<p> Ask if you want to authorize full amount of partial with reason </p>
-<div class='span-16 last' style='text-align:left;'>
-  <% @order.invoices.each do |invoice| %>
-    <div id='invoice-line-<%= invoice.id %>'>
-      <% if @order.invoices.last.id == invoice.id %>
-          <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last } %>
-      <% end %>
+<div class=' four column' >
+  <div class='panel'>
+    <h4>Shipping address</h4>
+    <div class='well'>
+      <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
     </div>
-  <% end %>
+  </div>
+</div>
+<div id="shipment-details-box" class=' four column'>
+    <%= render :partial => 'admin/fulfillment/orders/shipment_details', :locals => {:order => @order} %>
+</div>
+<div class='clearfix'></div>
+
+<div class=' eight ' style='text-align:left;'>
+  <div class='panel'>
+    <% @order.invoices.each do |invoice| %>
+      <div id='invoice-line-<%= invoice.id %>'>
+        <% if @order.invoices.last.id == invoice.id %>
+            <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <div id="dialog" title="Cancel Invoice">
@@ -57,4 +77,3 @@
     <% end %>
   </script>
 <% end %>
-
