@@ -1,6 +1,6 @@
 <h2>New shipment for Order # <%= @order.number %>  </h2>
 <div class='' >
-  Shipment for <%= @order.user.name %>
+  <b>Shipment for <%= link_to @order.user.name, admin_user_path(@order.user) %></b>
 </div>
 <div class='clear'></div>
 <div id='order-shipment-items' class='four column'>
@@ -27,7 +27,7 @@
       <% end %>
     <% end %>
 
-    <% if @order.order_items.any?(&:unshipped?) %>
+    <% if @order.paid? && @order.order_items.any?(&:unshipped?) %>
       <%= link_to 'New Shipment',
                     new_admin_fulfillment_partial_order_shipment_path( @order ),
                     :class => 'button' %>
@@ -49,6 +49,7 @@
 
 <div class=' eight ' style='text-align:left;'>
   <div class='panel'>
+    <h4>Invoice</h4>
     <% @order.invoices.each do |invoice| %>
       <div id='invoice-line-<%= invoice.id %>'>
         <% if @order.invoices.last.id == invoice.id %>

@@ -38,7 +38,7 @@
     </thead>
     <% @users.each do |user| %>
       <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to user.first_name, edit_admin_user_path(user) %></td>
+        <td><%= link_to user.first_name, admin_user_path(user) %></td>
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= user.state %></td>

@@ -3,7 +3,9 @@
   <% if order.shipments.empty? %>
       <div class='well'>
         No Shipments have been made on this order.<br />
+        <% if order.paid? %>
         <a id='create-shipment-button' data-url='<%= create_shipment_admin_fulfillment_order_path(order.id) %>' class='tiny button'> <%= t("label_create_shipment_button") %> </a>
+        <% end %>
       </div>
   <% else %>
     <% order.shipments.each do |shipment| %>

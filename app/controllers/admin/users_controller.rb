@@ -9,6 +9,10 @@ class Admin::UsersController < Admin::BaseController
                                     paginate(:page => pagination_page, :per_page => pagination_rows)
   end
 
+  def show
+    @user = User.includes([:shipments, :finished_orders, :return_authorizations]).find(params[:id])
+  end
+
   def new
     @user = User.new
     authorize! :create_users, current_user
