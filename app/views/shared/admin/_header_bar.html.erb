@@ -3,8 +3,10 @@
   <%= link_to 'Logout', logout_path, :id => 'admin-logout-button' %>
 </div>
 
-
-
-<ul class="nav-bar">
-  <%= render :partial => "/shared/admin/header_buttons" %>
-</ul>
+<nav class="nav-bar top-bar">
+  <section class="top-bar-section">
+  <ul class="left">
+    <%= render :partial => "/shared/admin/header_buttons" %>
+  </ul>
+  </section>
+</nav>
