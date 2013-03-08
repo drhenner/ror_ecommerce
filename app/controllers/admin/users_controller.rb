@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     attribs =  params[:user]
-    role_ids    = params[:user][:role_ids]
+    role_ids    = params[:user][:role_ids] if params[:user][:role_ids]
     state       = params[:user][:state]
     birth_date  = params[:user][:birth_date]
 
@@ -54,7 +54,7 @@ class Admin::UsersController < Admin::BaseController
     params[:user][:role_ids] ||= []
     @user = User.includes(:roles).find(params[:id])
     authorize! :create_users, current_user
-    @user.role_ids = params[:user][:role_ids]
+    @user.role_ids = params[:user][:role_ids] if params[:user][:role_ids]
     @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
     @user.state = params[:user][:state]                 if params[:user][:state].present? #&& !@user.admin?
     attribs =  params[:user]
