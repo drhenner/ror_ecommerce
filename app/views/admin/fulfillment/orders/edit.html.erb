@@ -7,7 +7,7 @@
   <div class='panel'>
     <h4>Order Items</h4>
     <% @order.order_items.each_with_index do |item,i| %>
-      <ul class='vertical-list'>
+      <ul class='vertical-list compact'>
         <li> <b><%= item.variant.product_name %></b> </li>
         <li> <label>SKU:</label> <%= item.variant.sku %> </li>
         <li> <label>Price:</label> <%= number_to_currency item.variant.price %> </li>
