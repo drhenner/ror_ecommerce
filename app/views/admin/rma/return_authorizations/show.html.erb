@@ -19,12 +19,15 @@
 
   <div class=' large-4 four'>
     <h3>Order Details</h3>
+    <div class=''>
+      Order Number: <%= @order.number %>
+    </div>
+    <hr/>
 
-
-    <div class=' span-8 float-left'>
+    <div class=''>
     <b>Items</b>
       <div  id='order-items'
-            class='span-8 rounded-10 line_item_blue float-left'>
+            class=''>
 
               <% @order.order_items.each do |item| %>
                 <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>

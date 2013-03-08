@@ -64,7 +64,8 @@
             class=' panel'>
           <ul class='vertical-list'>
             <li><label>Number:</label> <%= invoice.number %> </li>
-            <li><label>State: </label><%= invoice.state %> at: <%= I18n.localize(invoice.updated_at, :format => :us_time)%></li>
+            <li><label>State: </label><%= invoice.state %></li>
+            <li><label>at:</label> <%= I18n.localize(invoice.updated_at, :format => :us_time)%></li>
             <li><label>Amount:</label> <%= number_to_currency invoice.amount %></li>
           </ul>
       </div>
