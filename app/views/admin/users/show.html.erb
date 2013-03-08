@@ -33,7 +33,7 @@
           <li><label>Number:</label><%= rma.number %></li>
           <li><label>Order #:</label><%= rma.order.number %></li>
           <li><label>Amount:</label><%= number_to_currency rma.amount %></li>
-          <li><label>CS Rep:</label><%= number_to_currency rma.created_by.try(:name) %></li>
+          <li><label>CS Rep:</label><%= rma.author.try(:name) %></li>
         </ul>
       <% end %>
     </div>
