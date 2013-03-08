@@ -55,6 +55,7 @@ class Order < ActiveRecord::Base
   has_many   :completed_invoices,  :class_name => 'Invoice', :conditions => ['state = ? OR state = ?', 'authorized', 'paid']
   has_many   :authorized_invoices, :class_name => 'Invoice', :conditions => ['state = ?', 'authorized']
   has_many   :paid_invoices      , :class_name => 'Invoice', :conditions => ['state = ?', 'paid']
+  has_many   :canceled_invoices      , :class_name => 'Invoice', :conditions => ['state = ?', 'canceled']
   has_many   :return_authorizations
   has_many   :comments, :as => :commentable
 
@@ -126,8 +127,8 @@ class Order < ActiveRecord::Base
   # @param [none]
   # @return [String] amount in dollars as decimal or a blank string
   def first_invoice_amount
-    return '' if completed_invoices.empty?
-    completed_invoices.first.amount
+    return '' if completed_invoices.empty? && canceled_invoices.empty?
+    completed_invoices.last ? completed_invoices.last.amount : canceled_invoices.last.amount
   end
 
   # cancel the order and payment
