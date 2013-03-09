@@ -48,6 +48,7 @@
           <%= I18n.localize(comment.created_at, :format => :us_time) %>
         </div>
       <% end %>
+      <%= link_to "New Comment", new_admin_customer_service_user_comment_path(@user), :class => 'small button' %>
     </div>
   </div>
 </div>

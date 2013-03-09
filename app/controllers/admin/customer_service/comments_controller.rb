@@ -15,6 +15,8 @@ class Admin::CustomerService::CommentsController < Admin::CustomerService::BaseC
 
   def create
     @comment = current_user.customer_service_comments.new(params[:comment])
+    @comment.user_id = customer.id
+    @comment.created_by = current_user.id
     if @comment.save
       redirect_to [:admin, :customer_service, customer, @comment], :notice => "Successfully created comment."
     else

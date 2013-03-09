@@ -31,4 +31,7 @@
 
 <%= will_paginate @comments %>
 
-<p><%= link_to "New Comment", new_admin_customer_service_user_comment_path(customer), :class => 'button' %></p>
+<p>
+  <%= link_to "New Comment", new_admin_customer_service_user_comment_path(customer), :class => 'button' %>
+  <%= link_to "Back to #{customer.name}", admin_user_path(customer), :class => 'small button'  %>
+</p>
