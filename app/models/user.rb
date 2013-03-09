@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
 
   has_one     :store_credit
   has_many    :orders
+  has_many    :comments
   has_many    :finished_orders,          :class_name => 'Order',
                                           :conditions => {:orders => { :state => ['complete', 'paid']}}
   has_many    :completed_orders,          :class_name => 'Order',

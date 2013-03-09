@@ -24,8 +24,6 @@
         </ul>
       <% end %>
     </div>
-  </div>
-  <div class='four large-4 column'>
     <div class='panel'>
       <h4>Returns</h4>
       <% @user.return_authorizations.each do |rma| %>
@@ -35,6 +33,20 @@
           <li><label>Amount:</label><%= number_to_currency rma.amount %></li>
           <li><label>CS Rep:</label><%= rma.author.try(:name) %></li>
         </ul>
+      <% end %>
+    </div>
+  </div>
+  <div class='four large-4 column'>
+    <div class='panel'>
+      <h4>Notes</h4>
+      <% @user.comments.each do |comment| %>
+        <hr/>
+        <div>
+          <h5><%= comment.author.try(:name) %></h5>
+          <p><b>Note:</b> <%= comment.note %></p>
+          <%= comment.commentable_type %><br/>
+          <%= I18n.localize(comment.created_at, :format => :us_time) %>
+        </div>
       <% end %>
     </div>
   </div>
