@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
   has_many    :comments
   has_many    :customer_service_comments, :as         => :commentable,
                                           :class_name => 'Comment'
+  has_many    :shipments, :through => :orders
   has_many    :finished_orders,          :class_name => 'Order',
                                           :conditions => {:orders => { :state => ['complete', 'paid']}}
   has_many    :completed_orders,          :class_name => 'Order',
