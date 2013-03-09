@@ -1,0 +1,11 @@
+<h1> New Comment </h1>
+
+<p>
+  <%= customer.name %>
+</p>
+<%= form_for @comment, :url => admin_customer_service_user_comments_path(customer, @comment) do |f| %>
+  <%=  render :partial => 'form', :locals => {:f => f} %>
+  <div class="actions"><%= f.submit 'Create' , :class => 'button' %></div>
+<% end %>
+
+<p><%= link_to "Back to List", admin_customer_service_user_comments_path(customer), :class => 'button' %></p>

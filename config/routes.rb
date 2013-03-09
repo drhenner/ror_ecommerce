@@ -2,6 +2,8 @@ Hadean::Application.routes.draw do
 
 
 
+  namespace(:admin){ namespace(:customer_service){ resources :comments } }
+
   resources :user_sessions, :only => [:new, :create, :destroy]
 
   match 'admin'   => 'admin/overviews#index'
@@ -54,6 +56,11 @@ Hadean::Application.routes.draw do
   end
 
   namespace :admin do
+    namespace :customer_service do
+      resources :users do
+        resources :comments
+      end
+    end
     resources :users
     resources :overviews, :only => [:index]
 

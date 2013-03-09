@@ -1,0 +1,34 @@
+<% content_for :head do -%>
+
+<% end %>
+
+<h1> Comments </h1>
+
+<div id="comment_grid_wrapper" class='pretty_table'>
+  <table>
+    <thead>
+      <tr class='odd'>
+
+          <th  class='column1_header'><%= sortable 'note', 'Note' %></th>
+          <th>Commentable Type</th>
+          <th>Created By</th>
+          <th>User</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for comment in @comments %>
+      <tr  class='<%= cycle("odd", "")%>'>
+
+          <td><%= link_to comment.note[0..100], [:admin, :customer_service, customer, comment] %></td>
+          <td><%= comment.commentable_type %></td>
+          <td><%= comment.author.try(:name) %></td>
+          <td><%= comment.user.try(:name) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @comments %>
+
+<p><%= link_to "New Comment", new_admin_customer_service_user_comment_path(customer), :class => 'button' %></p>

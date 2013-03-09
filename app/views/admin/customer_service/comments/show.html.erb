@@ -1,0 +1,23 @@
+<h1> Comment </h1>
+
+<ul>
+  <li>
+    <label>Note:</label>
+    <%= @comment.note %>
+  </li>
+  <li>
+    <label>Commentable Type:</label>
+    <%= @comment.commentable_type %>
+  </li>
+  <li>
+    <label>Created By:</label>
+    <%= @comment.author.try(:name) %>
+  </li>
+  <li>
+    <label>User:</label>
+    <%= @comment.user.try(:name) %>
+  </li>
+</ul>
+<p>
+  <%= link_to "View All", admin_customer_service_user_comments_path(customer), :class => 'button' %>
+</p>

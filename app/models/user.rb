@@ -61,13 +61,16 @@ class User < ActiveRecord::Base
                   :birth_date,
                   :form_birth_date,
                   :address_attributes,
-                  :phones_attributes
+                  :phones_attributes,
+                  :customer_service_comments_attributes
 
   belongs_to :account
 
   has_one     :store_credit
   has_many    :orders
   has_many    :comments
+  has_many    :customer_service_comments, :as         => :commentable,
+                                          :class_name => 'Comment'
   has_many    :finished_orders,          :class_name => 'Order',
                                           :conditions => {:orders => { :state => ['complete', 'paid']}}
   has_many    :completed_orders,          :class_name => 'Order',
@@ -142,6 +145,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :addresses, :user_roles
   accepts_nested_attributes_for :phones, :reject_if => lambda { |t| ( t['display_number'].gsub(/\D+/, '').blank?) }
+  accepts_nested_attributes_for :customer_service_comments, :reject_if => proc { |attributes| attributes['note'].strip.blank? }
 
   state_machine :state, :initial => :active do
     state :inactive
