@@ -9,9 +9,8 @@ puts '
 #   Remove the cookie store on line one of this file
 #   go to the Gemfile and add "gem 'dalli'"
 #   bundle install
-##  Last UNCOMMENT the next 2 lines
-# require 'action_dispatch/middleware/session/dalli_store'
-# Hadean::Application.config.session_store :dalli_store, :key => '_hadean_session_ugrdr6765745ce4vy'
+##  Last UNCOMMENT the next line
+# Rails.application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 30.minutes
 #
 #  it is also recommended to change the cache store in config/environments/*.rb
 #   config.cache_store = :dalli_store
