@@ -67,7 +67,7 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
 
   def form_info
     @shipping_rate_types  = ShippingRateType.all.map{|srt| [srt.name, srt.id]}
-    @shipping_methods     = ShippingMethod.all.map{|sm| [sm.name, sm.id]}
+    @shipping_methods     = ShippingMethod.all.map{|sm| [sm.descriptive_name, sm.id]}
     @shipping_categories  = ShippingCategory.all.map{|sc| [sc.name, sc.id]}
   end
 end

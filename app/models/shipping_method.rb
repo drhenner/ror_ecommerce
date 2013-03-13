@@ -16,4 +16,7 @@ class ShippingMethod < ActiveRecord::Base
   validates  :name,  :presence => true,       :length => { :maximum => 255 }
   validates  :shipping_zone_id,  :presence => true
 
+  def descriptive_name
+    "#{name} (#{shipping_zone.name})"
+  end
 end
