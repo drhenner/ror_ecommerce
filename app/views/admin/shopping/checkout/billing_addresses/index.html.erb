@@ -5,8 +5,7 @@
   <% @billing_addresses.each_with_index do |billing_address, i| %>
     <% selected = session_admin_order.bill_address_id == billing_address.id %>
     <div  id='select-address-<%= i %>'
-          class='span-5 rounded-4
-                <%= cycle("line_item_yellow", "line_item_gray") %>
+          class='panel five large-5 columns
                 <%= 'address_selected' if selected %>'>
       <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => billing_address} %>
       <%= link_to 'Use', select_address_admin_shopping_checkout_billing_address_path(billing_address), :method => 'put' %> |
