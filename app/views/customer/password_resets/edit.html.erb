@@ -1,8 +1,6 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'signup.css' %>
-<% end %>
-<div style='margin-bottom:20px;'>
-  <h1> Password Reset </h1>
+
+<div class='bottom20 seven columns'>
+  <h1> <%= site_name %> Password Reset </h1>
 
   <%= form_for(@user, :url => customer_password_reset_path(:id => @user.perishable_token)) do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
