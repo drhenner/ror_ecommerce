@@ -26,7 +26,7 @@ $(function() {
     return false;
   });
 
-  $('form a').on('click', '.remove_child', function() {
+  $('form').on('click', 'a.remove_child', function() {
     var hidden_field = $(this).prev('input[type=hidden]')[0];
     if(hidden_field) {
       hidden_field.value = '1';

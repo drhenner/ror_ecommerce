@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset class='<%=  image_form.object.new_record? ? "new_fields" : "fields" %>'>
   <% if !image_form.object.new_record? %>
     <%= image_tag image_form.object.photo.url(:small) %>
   <% end %>
