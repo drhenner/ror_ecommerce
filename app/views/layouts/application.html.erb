@@ -24,8 +24,12 @@
 <body >
 <div id='body_wrapper'>
   <div class="row">
-    <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
-    <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
+    <% if notice || alert %>
+      <div class="flash_messages">
+        <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a></div>"  if notice %>
+        <%= raw "<div data-alert class='alert-box alert'>#{alert} <a href='' class='close'>&times;</a></div>"     if alert %>
+      </div>
+    <% end %>
   </div>
 
     <%= render :partial => '/shared/welcome_header'%>

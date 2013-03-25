@@ -26,8 +26,8 @@
     <div class="row">
       <% if notice || alert %>
         <div class="flash_messages">
-          <%= raw "<div class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice %>
-          <%= raw "<div class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
+          <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice %>
+          <%= raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
         </div>
       <% end %>
 
