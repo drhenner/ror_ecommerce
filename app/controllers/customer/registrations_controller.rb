@@ -1,4 +1,9 @@
 class Customer::RegistrationsController < ApplicationController
+
+  def index
+    redirect_to :action => :new
+  end
+
   def new
     @registration = true
     @user         = User.new
