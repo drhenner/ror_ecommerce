@@ -2,11 +2,9 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-#require 'shoulda/integrations/rspec2' # Add this line
 require "authlogic/test_case"
-#require 'shoulda'
-require 'mocha'
 require "email_spec"
+require "mocha/setup"
 #require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -31,9 +29,6 @@ RSpec.configure do |config|
   #
   config.mock_with :mocha
   config.include FactoryGirl::Syntax::Methods
-  # config.mock_with :flexmock
-  # config.mock_with :rr
-  # config.mock_with :rspec
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
 

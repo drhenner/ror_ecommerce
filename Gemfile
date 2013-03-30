@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 
 group :assets do
   #gem 'coffee-rails', "~> 3.1.0"
@@ -71,7 +71,7 @@ end
 group :test do
   gem 'factory_girl', "~> 3.3.0"
   gem 'factory_girl_rails', "~> 3.3.0"
-  gem 'mocha', '~> 0.10.0', :require => false
+  gem 'mocha', '~> 0.13.3', :require => false
   gem 'rspec-rails-mocha'
   gem 'rspec-rails', '~> 2.12.2'
 
