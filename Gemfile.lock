@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/drhenner/nifty-generators.git
-  revision: ae4d05fd4f2b1f09b6d9546ef72122ba1bc433ff
-  specs:
-    nifty-generators (0.4.6)
-
-GIT
   remote: https://github.com/neocoin/rails3-generators.git
   revision: 6bdea11693e69917849dabc6bd38cf752e8ff194
   specs:
@@ -155,7 +149,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     metaclass (0.0.1)
-    mime-types (1.21)
+    mime-types (1.22)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     money (5.1.1)
@@ -215,7 +209,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rake (0.9.6)
+    rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
     rmagick (2.13.2)
@@ -306,7 +300,6 @@ DEPENDENCIES
   mocha (~> 0.13.3)
   mysql2 (~> 0.3.10)
   nested_set (~> 1.7.0)
-  nifty-generators!
   nokogiri (~> 1.5.0)
   paperclip (~> 3.0)
   pg
@@ -315,7 +308,7 @@ DEPENDENCIES
   rails-erd
   rails3-generators!
   rails_config
-  rake (~> 0.9.2)
+  rake (~> 10.0.3)
   rmagick
   rspec-rails (~> 2.12.2)
   rspec-rails-mocha

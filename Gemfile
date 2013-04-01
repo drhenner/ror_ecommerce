@@ -28,7 +28,7 @@ gem "jquery-rails"
 gem 'json', '~>1.7.7'
 
 gem 'nested_set', '~> 1.7.0'
-gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
+#gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
 gem 'paperclip', '~> 3.0'
 gem 'prawn', '~> 0.12.0'
@@ -37,7 +37,7 @@ gem "rails3-generators", :git => "https://github.com/neocoin/rails3-generators.g
 gem "rails_config"
 gem 'rmagick',    :require => 'RMagick'
 
-gem 'rake', '~> 0.9.2'
+gem 'rake', '~> 10.0.3'
 gem 'state_machine', '~> 1.1.2'
 #gem 'sunspot_solr'
 #gem 'sunspot_rails', '~> 1.3.0rc'
