@@ -113,6 +113,35 @@ describe Order, "instance methods" do
       store_credit.amount.should == 0.0
     end
 
+    it 'should calculate credited_total with a coupon' do
+      user = create(:user)
+      coupon = create(:coupon, :amount => 15.00, :expires_at => (Time.zone.now + 1.days), :starts_at => (Time.zone.now - 1.days) )
+      order = create(:order, :user => user, :coupon => coupon)
+
+      order.stubs(:calculate_totals).returns( true )
+      order.stubs(:calculated_at).returns(nil)
+
+      tax_rate = create(:tax_rate, :percentage => 10.0 )
+      order_item1 = create(:order_item, :price => 20.00, :total => 20.00, :tax_rate => tax_rate, :order => order )
+      order_item2 = create(:order_item, :price => 20.00, :total => 20.00, :tax_rate => tax_rate, :order => order )
+
+      #@order.stubs(:order_items).returns([order_item1, order_item2])
+      order.stubs(:coupon).returns(coupon)
+      order.stubs(:shipping_charges).returns(100.00)
+
+
+      # shippping == 100
+      # items     == 40.00
+      # taxes     == (40.00 - 15.00) * .10 == 2.50
+      # credits   == 10.02
+      # total     == 142.50 - 10.02 = 131.48
+      # total - coupon     == 133.98 - 15.00 = 117.48
+      order.user.store_credit.amount = 10.02
+      order.user.store_credit.save
+      order.reload
+      order.credited_total.should == 117.48
+    end
+
     it 'should remove store_credits.amount' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
