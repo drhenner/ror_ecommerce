@@ -1,6 +1,6 @@
 <h3>New Coupon</h3>
 
-<%= form_for(@coupon, :url => admin_generic_coupons_path(@coupon)) do |f| %>
+<%= form_for(@coupon, :as => :coupon, :url => admin_generic_coupons_path(@coupon)) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 
