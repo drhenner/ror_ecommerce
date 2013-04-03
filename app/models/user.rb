@@ -232,7 +232,7 @@ class User < ActiveRecord::Base
   end
 
   def display_birth_date
-    birth_date ? I18n.localize(birth_date, :format => :us_time) : 'N/A'
+    birth_date ? I18n.localize(birth_date, :format => :us_date) : 'N/A'
   end
 
   # formats the String
