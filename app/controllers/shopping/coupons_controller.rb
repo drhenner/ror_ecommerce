@@ -8,7 +8,7 @@ class Shopping::CouponsController < Shopping::BaseController
 
     if @coupon && @coupon.eligible?(session_order) && update_order_coupon_id(@coupon.id)
       flash[:notice] = "Successfully added coupon code #{@coupon.code}."
-      redirect_to shopping_orders_url
+      redirect_to next_form_url(session_order)
     else
       form_info
       flash[:notice] = "Sorry coupon code: #{params[:coupon][:code]} is not valid."

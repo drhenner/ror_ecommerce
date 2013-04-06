@@ -52,14 +52,11 @@ describe Shopping::ShippingMethodsController do
 
     @shipping_rate = create(:shipping_rate)
     @shipping_method = create(:shipping_method)
-    #ShippingMethod.any_instance.stubs(:valid?).returns(false)
-    #ShippingMethod.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_method.id,
                  :shipping_category => {
                     @variant.product.shipping_category_id => @shipping_rate.id,
                     @variant2.product.shipping_category_id => nil
                   }
-    #response.should render_template(:edit)
     response.should redirect_to(shopping_shipping_methods_url)
   end
 
@@ -73,6 +70,8 @@ describe Shopping::ShippingMethodsController do
 
     @shipping_rate = create(:shipping_rate)
     @shipping_method = create(:shipping_method)
+    @controller.stubs(:not_secure?).returns(false)
+    @controller.stubs(:next_form_url).returns(shopping_orders_url)
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_method.id, :shipping_category => {@variant.product.shipping_category_id => @shipping_rate.id }
     response.should redirect_to(shopping_orders_url)
