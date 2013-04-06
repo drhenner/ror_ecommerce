@@ -23,7 +23,7 @@ class Shopping::OrdersController < Shopping::BaseController
     #current or in-progress otherwise cart (unless cart is empty)
     order = find_or_create_order
     @order = session_cart.add_items_to_checkout(order) # need here because items can also be removed
-    redirect_to shopping_orders_url
+    redirect_to next_form_url(order)
   end
 
   # POST /shopping/orders
@@ -47,7 +47,7 @@ class Shopping::OrdersController < Shopping::BaseController
         if response.succeeded?
           ##  MARK items as purchased
           session_cart.mark_items_purchased(@order)
-          redirect_to( myaccount_order_path(@order) ) and return
+          redirect_to( myaccount_order_url(@order) ) and return
         else
           flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
         end

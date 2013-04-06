@@ -10,6 +10,10 @@ class Shopping::BaseController < ApplicationController
 
   private
 
+  def next_form_url(order)
+    next_form(order) || shopping_orders_url
+  end
+
   def next_form(order)
 
     # if cart is empty
