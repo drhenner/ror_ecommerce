@@ -1,4 +1,4 @@
-<h2>RMA`s</h2>
+<h2>RMAs</h2>
 
 <% content_for :head do -%>
   <%#= javascript_include_tag "admin/index_grid" %>
@@ -10,7 +10,7 @@
     <%= form_tag admin_rma_order_return_authorizations_path(@order), :method => 'get', :id => "products_search" do %>
       <p>
         <ul class=' search_boxes'>
-          <li><%= label_tag 'Number' %> <%= text_field_tag :number, params[:number] %></li>
+          <li><%= label_tag 'RMA #' %> <%= text_field_tag :number, params[:number] %></li>
           <li><%= label_tag 'Status' %> <%= text_field_tag :state, params[:state] %></li>
         </ul>
         <div style='text-align:center'>

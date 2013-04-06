@@ -17,7 +17,7 @@
       <td><%= link_to order.number, admin_history_order_path(order) %></td>
       <td><%= order.name %></td>
       <td><%= order.email %></td>
-      <td><%= order.completed_at %></td>
+      <td><%= order.display_completed_at(:us_time) %></td>
       <td><%= order.has_shipment?.to_s %></td>
     </tr>
   <% end %>
