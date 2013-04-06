@@ -27,12 +27,12 @@
 
   <label>Start Date</label>
   <div class='date-select'>
-    <%= f.date_select :start_date %>
+    <%= f.date_select :start_date, {:start_year => Time.zone.now.year, :end_year => Time.zone.now.year + 12} %>
   </div>
 
   <label>End Date</label>
   <div class='date-select'>
-    <%= f.date_select :end_date %>
+    <%= f.date_select :end_date, {:include_blank => true, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year + 12} %>
   </div>
 
   <label>Active</label>
