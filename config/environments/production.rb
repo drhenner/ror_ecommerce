@@ -18,6 +18,11 @@ Hadean::Application.configure do
 
   # config.assets.precompile += %w( *.css *.js )
 
+  # Add the fonts path
+  config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+  # Precompile additional assets
+  config.assets.precompile += %w( .svg .eot .woff .ttf )
   config.assets.precompile += %w( *.js )
   config.assets.precompile += [ 'admin.css',
                                 'admin/app.css',
