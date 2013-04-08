@@ -11,6 +11,7 @@ class Admin::UsersController < Admin::BaseController
 
   def show
     @user = User.includes([:shipments, :finished_orders, :return_authorizations]).find(params[:id])
+    add_to_recent_user(@user)
   end
 
   def new
@@ -36,6 +37,7 @@ class Admin::UsersController < Admin::BaseController
     authorize! :create_users, current_user
     if @user.save
       @user.deliver_activation_instructions!
+      add_to_recent_user(@user)
       flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
       redirect_to admin_users_url
     else

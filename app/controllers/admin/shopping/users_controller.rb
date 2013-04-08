@@ -12,6 +12,7 @@ class Admin::Shopping::UsersController < Admin::Shopping::BaseController
   def create
     @customer = User.find_by_id(params[:user_id])
     session_admin_cart.customer = @customer
+    add_to_recent_user(@customer)
     if session_admin_cart.save
       redirect_to(admin_shopping_carts_url, :notice => "#{@customer.name} was added.")
     else

@@ -59,4 +59,13 @@
     <li><%= link_to 'Help', admin_help_path %></li>
   </ul>
 </li>
-
+<% unless recent_admin_users.empty? %>
+  <li class="has-dropdown">
+    <%= link_to "Recent", '#' %>
+    <ul class="dropdown">
+      <% recent_admin_users.each do |recent_user_email, recent_user_id| %>
+      <li><%= link_to recent_user_email, admin_user_path(recent_user_id) %></li>
+      <% end %>
+    </ul>
+  </li>
+<% end %>
