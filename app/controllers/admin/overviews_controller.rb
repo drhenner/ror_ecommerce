@@ -1,5 +1,5 @@
 class Admin::OverviewsController < ApplicationController
-
+  helper_method :recent_admin_users
   layout "admin"
 
   def index
@@ -30,6 +30,11 @@ class Admin::OverviewsController < ApplicationController
       ###  If you dont have roles you need to run rake db:seed
       @no_roles = true
     end
+  end
+  private
+
+  def recent_admin_users
+    []
   end
 
 end
