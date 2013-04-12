@@ -71,7 +71,7 @@ class Order < ActiveRecord::Base
 
   # after_find :set_beginning_values
 
-  attr_accessor :total, :sub_total, :deal_amount, :taxed_total
+  attr_accessor :total, :sub_total, :deal_amount, :taxed_total, :deal_time
 
   #validates :number,     :presence => true
   validates :user_id,     :presence => true
@@ -281,6 +281,7 @@ class Order < ActiveRecord::Base
   # @return [none]  Sets sub_total and total for the object
   def find_total(force = false)
     calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
+    self.deal_time ||= Time.zone.now
     self.deal_amount = Deal.best_qualifing_deal(self)
     self.find_sub_total
     taxable_money     = (self.sub_total - deal_amount - coupon_amount) * ((100.0 + order_tax_percentage) / 100.0)

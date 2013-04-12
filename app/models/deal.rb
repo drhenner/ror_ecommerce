@@ -41,7 +41,7 @@ class Deal < ActiveRecord::Base
 
   def self.best_qualifing_deal(order)
     product_type_and_amount_hash = order.number_of_a_given_product_type.sort_by{|v| v.last.size }.reverse # sort the hashes by the number of items for that product type
-    deal_time = order.completed_at || Time.zone.now # Deal.best_qualifing_deal(ooo)
+    deal_time = order.completed_at || order.deal_time || Time.zone.now # Deal.best_qualifing_deal(ooo)
     Hash[product_type_and_amount_hash].each_pair do |product_type_id, product_type_prices|
       deal_amount = qualifing_deal(product_type_id, product_type_prices, deal_time)
       return deal_amount.round_at(2) if deal_amount
