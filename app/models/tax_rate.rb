@@ -21,6 +21,8 @@ class TaxRate < ActiveRecord::Base
   validates :country_id,    :presence => true, :if => :tax_per_country?
   validates :start_date,    :presence => true
 
+  after_save :expire_cache
+
   def tax_percentage
     Settings.vat ? 0.0 : percentage
   end
@@ -38,8 +40,7 @@ class TaxRate < ActiveRecord::Base
   end
 
   def self.at(time = Time.zone.now)
-    where(["tax_rates.start_date <= ? AND
-           (end_date > ? OR end_date IS NULL)", time.to_date.to_s(:db), time.to_date.to_s(:db)])
+    where(:tax_rates => {:id => TaxRate.active_at_ids(time.to_date)})
   end
 
   # region_id can be state or country depending on the setup in config/settings.yml
@@ -47,7 +48,20 @@ class TaxRate < ActiveRecord::Base
     where(["#{ Settings.tax_per_state_id ? 'state_id' : 'country_id'} = ?", region_id ])
   end
 
+  def self.active_at_ids(date = Time.zone.now.to_date)
+    Rails.cache.fetch("TaxRate-active_at_ids-#{date}", :expires_in => 23.hours) do
+      TaxRate.where(["tax_rates.start_date <= ? AND
+             (end_date > ? OR end_date IS NULL)", date.to_s(:db), date.to_s(:db)]).pluck(:id)
+    end
+  end
+
   private
+
+    def expire_cache
+      Rails.cache.delete("TaxRate-active_at_ids-#{Date.yesterday}")
+      Rails.cache.delete("TaxRate-active_at_ids-#{Date.today}")
+      Rails.cache.delete("TaxRate-active_at_ids-#{Date.tomorrow}")
+    end
 
     def tax_per_state?
       Settings.tax_per_state_id
