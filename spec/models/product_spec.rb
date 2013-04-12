@@ -53,6 +53,7 @@ describe Product, ".tax_rate" do
                           :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => (Time.zone.now - 1.month))
+    Rails.cache.delete("TaxRate-active_at_ids-#{(Time.zone.now - 2.month).to_date}")
     product  = create(:product)
     product.tax_rate(1, (Time.zone.now - 2.month)).should == tax_rate
   end
