@@ -137,7 +137,12 @@ class Address < ActiveRecord::Base
   # @param [Optional String] default is ', '
   # @return [String] address1 and address2 joined together with the string you pass in
   def address_lines(join_chars = ', ')
-    [address1, address2].delete_if{|add| add.blank?}.join(join_chars)
+    address_lines_array.join(join_chars)
+  end
+
+
+  def address_lines_array
+    [address1, address2].delete_if{|add| add.blank?}
   end
 
   # Use this method to represent the state abbreviation
