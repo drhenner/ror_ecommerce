@@ -17,6 +17,7 @@ Hadean::Application.routes.draw do
   resources :states,      :only => [:index]
   resource :about,        :only => [:show]
   resources :terms,       :only => [:index]
+  resource  :unsubscribe,       :only => :show
 
   root :to => "welcome#index"
 
