@@ -38,6 +38,9 @@ gem "rails_config"
 gem 'rmagick',    :require => 'RMagick'
 
 gem 'rake', '~> 10.0.3'
+
+# gem 'resque', require: 'resque/server'
+
 gem 'state_machine', '~> 1.1.2'
 #gem 'sunspot_solr'
 #gem 'sunspot_rails', '~> 1.3.0rc'
