@@ -1,14 +1,3 @@
-# You can use this to store API keys, mail server settings,
-# or any other kind of configuration data that your application needs.
-# In order to keep your production settings secret, store the production
-# copy of this file on your server under shared/config/config.yml and copy
-# it on deployment with this Capistrano task:#
-
-# task :copy_config_files do
-#   filename = "config/config.yml"
-#   run "cp #{shared_path}/#{filename} #{release_path}/#{filename}"
-# end
-# after "deploy:update_code", :copy_config_files
 
 encryption_key: someRandomBINARYKEY
 mailer:
