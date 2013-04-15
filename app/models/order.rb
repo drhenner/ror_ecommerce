@@ -192,9 +192,9 @@ class Order < ActiveRecord::Base
         remove_user_store_credits
 
         if Settings.uses_resque_for_background_emails
-          Resque.enqueue(Jobs::SendOrderConfirmation, @order.id, new_invoice.id)
+          Resque.enqueue(Jobs::SendOrderConfirmation, self.id, new_invoice.id)
         else
-          Notifier.order_confirmation(@order.id, new_invoice.id).deliver rescue puts( 'do nothing...  dont blow up over an email')
+          Notifier.order_confirmation(self.id, new_invoice.id).deliver rescue puts( 'do nothing...  dont blow up over an order conf email')
         end
       end
       new_invoice
