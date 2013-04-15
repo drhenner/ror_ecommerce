@@ -5,16 +5,31 @@
   <%= javascript_include_tag 'datePickerInitialize' %>
 <% end %>
 
-<h2> Reports </h2>
+<h1> Reports </h1>
 
+<div class='row'>
+  <div class=' twelve large-12 '>
+    <div class='panel'>
+      <div class='row'>
+        <div class=' six large-6 column'>
+          <h4 > Start <%= I18n.localize(start_time,  :format => :us_time) %> </h4>
+        </div>
+        <div class=' six large-6 column'>
+          <h4 > End <%= I18n.localize(end_time,  :format => :us_time) %> </h4>
+        </div>
+      </div>
+      <ul class='vertical-list long'>
+        <li><label># of cart items added</label><%= @final_number_of_cart_items - @beginning_number_of_cart_items %></li>
+        <li><label>Total # of cart items</label><%= @final_number_of_cart_items %></li>
+        <li><label># of Orders      </label><%= @orders_report.quantity        %></li>
+      </ul>
+    </div>
+  </div>
+</div>
 <div class='row'>
   <div class=' three large-3 column'>
     <div class='panel'>
     <h4>Accounting </h4>
-    <p>
-      <%= I18n.localize(@accounting_report.start_time,  :format => :us_time)  %><br/>
-      <%= I18n.localize(@accounting_report.end_time,    :format => :us_time) %>
-    </p>
     <ul>
       <li><label>Revenue              </label><%= number_to_currency @accounting_report.revenue             %></li>
       <li><label>Cash                 </label><%= number_to_currency @accounting_report.cash                %></li>
@@ -26,32 +41,25 @@
   <div class='three large-3 column'>
     <div class='panel'>
     <h4>Orders </h4>
-    <p>
-      <%= I18n.localize(@orders_report.start_time,  :format => :us_time)  %><br/>
-      <%= I18n.localize(@orders_report.end_time,    :format => :us_time) %>
-    </p>
     <ul>
-      <li><label># of Orders      </label><%= @orders_report.quantity        %></li>
       <li><label>Amount           </label><%= number_to_currency @orders_report.total_amount    %></li>
       <li><label>Amount Returned  </label><%= number_to_currency @orders_report.amount_returned %></li>
+      <li><label>Taxes Collected  </label><%= number_to_currency @orders_report.taxes_collected %></li>
+      <li><label>Taxes Returned   </label><%= number_to_currency @orders_report.taxes_returned  %></li>
     </ul>
     </div>
   </div>
   <div class=' three large-3 column'>
     <div class='panel'>
     <h4>Customers </h4>
-    <p>
-      <%= I18n.localize(@customers_report.start_time,  :format => :us_time)  %><br/>
-      <%= I18n.localize(@customers_report.end_time,    :format => :us_time) %>
-    </p>
     <ul>
       <li>
-        <label># of Users at (<%= I18n.localize(@customers_report.end_time, :format => :us_time) %>) </label>
+        <label>Final # of Users </label>
         <%= @customers_report.total_users %>
       </li>
       <li><label>New Users in TimeFrame  </label><%= @customers_report.users_in_timeframe     %></li>
       <li>
-        <label># of Customers at (<%= I18n.localize(@customers_report.end_time, :format => :us_time) %>) </label>
+        <label>Final # of Customers </label>
         <%= @customers_report.total_customers        %>
       </li>
       <li><label> Customers in TimeFrame </label><%= @customers_report.customers_in_timeframe %></li>
@@ -61,7 +69,7 @@
   <div id='' class=' three large-3 column'>
     <div class='panel graceful'>
       <h4>Filter </h4>
-      <%= form_tag(  admin_reports_overview_path(),
+      <%= form_tag(  admin_reporting_overview_path(),
                                     :method => :get,
                                     :id   => 'request_report_form') do  %>
         <%= hidden_field_tag('schedule', nil) %>
