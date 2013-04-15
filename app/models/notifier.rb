@@ -21,7 +21,7 @@ class Notifier < ActionMailer::Base
   end
 
   def password_reset_instructions(user_id)
-    @user = @user.find(user_id)
+    @user = User.find(user_id)
     @url  = edit_customer_password_reset_url(:id => @user.perishable_token)
     @key  = UsersNewsletter.unsubscribe_key(@user.email)
     mail(:to => @user.email,
