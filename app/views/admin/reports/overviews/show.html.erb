@@ -44,8 +44,6 @@
     <ul>
       <li><label>Amount           </label><%= number_to_currency @orders_report.total_amount    %></li>
       <li><label>Amount Returned  </label><%= number_to_currency @orders_report.amount_returned %></li>
-      <li><label>Taxes Collected  </label><%= number_to_currency @orders_report.taxes_collected %></li>
-      <li><label>Taxes Returned   </label><%= number_to_currency @orders_report.taxes_returned  %></li>
     </ul>
     </div>
   </div>
@@ -69,7 +67,7 @@
   <div id='' class=' three large-3 column'>
     <div class='panel graceful'>
       <h4>Filter </h4>
-      <%= form_tag(  admin_reporting_overview_path(),
+      <%= form_tag(  admin_reports_overview_path(),
                                     :method => :get,
                                     :id   => 'request_report_form') do  %>
         <%= hidden_field_tag('schedule', nil) %>
