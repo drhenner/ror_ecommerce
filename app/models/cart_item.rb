@@ -65,6 +65,10 @@ class CartItem < ActiveRecord::Base
     variant.product.shipping_rate
   end
 
+  def self.before(at)
+    where( "cart_items.created_at <= ?", at )
+  end
+
   #def self.mark_items_purchased(cart, order)
   #  CartItem.update_all("item_type_id = #{ItemType::PURCHASED_ID}", "id IN (#{cart.shopping_cart_item_ids.join(',')}) AND variant_id IN (#{order.variant_ids.join(',')})")
   #end
