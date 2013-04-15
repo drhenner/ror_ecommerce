@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
 
   before_validation :sanitize_data, :before_validation_on_create
   before_create :start_store_credits
+  after_create  :subscribe_to_newsletters
   attr_accessible :email,
                   :password,
                   :password_confirmation,
@@ -440,6 +441,12 @@ class User < ActiveRecord::Base
   #  end
   #  return false
   #end
+
+  def subscribe_to_newsletters
+    newsletter_ids = Newsletter.where(:autosubscribe => true).pluck(:id)
+    self.newsletter_ids = newsletter_ids
+    self.save(:validate => false)
+  end
 
   def user_profile
     return {:merchant_customer_id => id, :email => email, :description => merchant_description}
