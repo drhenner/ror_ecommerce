@@ -31,15 +31,29 @@ describe Notifier, "Signup Email" do
 
 end
 
+describe Notifier, "#new_referral_credits" do
+  include Rails.application.routes.url_helpers
+
+  before(:each) do
+    @referring_user = create(:user,     :email => 'referring_user@email.com', :first_name => 'Dave', :last_name => 'Commerce')
+    @referral       = create(:referral, :email => 'referral_user@email.com', :referring_user => @referring_user )
+    @referral_user  = create(:user,     :email => 'referral_user@email.com', :first_name => 'Dave', :last_name => 'referral')
+
+    #@referral_user.stubs(:referree).returns(@referral)
+    @email = Notifier.new_referral_credits(@referring_user.id, @referral_user.id)
+  end
+  it "should be set to be delivered to the email passed in" do
+    @email.should deliver_to("referring_user@email.com")
+  end
+
+  it "should have the correct subject" do
+    @email.should have_subject(/Referral Credits have been Applied/)
+  end
+end
 describe Notifier, "#order_confirmation" do
-    #include EmailSpec::Helpers
-    #include EmailSpec::Matchers
-    #include ActionController::UrlWriter
     include Rails.application.routes.url_helpers
 
     before(:each) do
-      #"jojo@yahoo.com", "Jojo Binks"
-      #[first_name.capitalize, last_name.capitalize ]
       @user         = create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
       @order_item   = create(:order_item)
       @order        = create(:order, :email => 'myfake@email.com', :user => @user)

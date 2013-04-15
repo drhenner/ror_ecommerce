@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 
   before_validation :sanitize_data, :before_validation_on_create
   before_create :start_store_credits
-  after_create  :subscribe_to_newsletters
+  after_create  :subscribe_to_newsletters, :set_referral_registered_at
   attr_accessible :email,
                   :password,
                   :password_confirmation,
@@ -69,6 +69,9 @@ class User < ActiveRecord::Base
 
   has_many    :users_newsletters
   has_many    :newsletters, :through => :users_newsletters
+
+  has_many  :referrals, :class_name => 'Referral', :foreign_key => 'referring_user_id' # people you have tried to referred
+  has_one   :referree,  :class_name => 'Referral', :foreign_key => 'referral_user_id' # person who referred you
 
   has_one     :store_credit
   has_many    :orders
@@ -380,7 +383,7 @@ class User < ActiveRecord::Base
     if Settings.uses_resque_for_background_emails
       Resque.enqueue(Jobs::SendPasswordResetInstructions, self.id)
     else
-      Notifier.password_reset_instructions(self.id).deliver rescue puts( 'do nothing...  dont blow up over an email')
+      Notifier.password_reset_instructions(self.id).deliver rescue puts( 'do nothing...  dont blow up over a password reset email')
     end
   end
 
@@ -392,7 +395,20 @@ class User < ActiveRecord::Base
     finished_orders.select{|o| o.completed_at < at }.size
   end
 
+  def store_credit_amount
+    store_credit.amount
+  end
+
   private
+
+  def set_referral_registered_at
+    if refer_al = Referral.find_by_email(email)
+      refer_al.referral_user_id = id
+      refer_al.registered_at    = Time.zone.now
+      refer_al.skip_validate_has_not_signed_up_yet = true
+      refer_al.save
+    end
+  end
 
   def validate_age
     if birth_date && birth_date_changed?

@@ -28,6 +28,17 @@ class Notifier < ActionMailer::Base
          :subject => "Reset Password Instructions")
   end
 
+  def new_referral_credits(referring_user_id, referral_user_id)
+    @user = User.find(referring_user_id)
+    @key  = UsersNewsletter.unsubscribe_key(@user.email)
+    @referral_user = User.find(referral_user_id)
+    @url      = root_url
+    @phone_number   = phone_number
+    @company_name   = company_name
+
+    mail(:to => @user.email,
+         :subject => "Referral Credits have been Applied")
+  end
 
   def order_confirmation(order_id, invoice_id)
     @invoice  = Invoice.find(invoice_id)
@@ -39,5 +50,13 @@ class Notifier < ActionMailer::Base
     mail(:to => @order.email,
          :subject => "Order Confirmation")
   end
+
+  private
+    def phone_number
+      @phone_number   = I18n.t(:company_phone)
+    end
+    def company_name
+      @company_name   = I18n.t(:company)
+    end
 
 end
