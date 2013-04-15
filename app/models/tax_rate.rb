@@ -49,7 +49,7 @@ class TaxRate < ActiveRecord::Base
   end
 
   def self.active_at_ids(date = Time.zone.now.to_date)
-    Rails.cache.fetch("TaxRate-active_at_ids-#{date}", :expires_in => 23.hours) do
+    Rails.cache.fetch("TaxRate-#{I18n.t(:company)}-active_at_ids-#{date}", :expires_in => 23.hours) do
       TaxRate.where(["tax_rates.start_date <= ? AND
              (end_date > ? OR end_date IS NULL)", date.to_s(:db), date.to_s(:db)]).pluck(:id)
     end
@@ -58,9 +58,9 @@ class TaxRate < ActiveRecord::Base
   private
 
     def expire_cache
-      Rails.cache.delete("TaxRate-active_at_ids-#{Date.yesterday}")
-      Rails.cache.delete("TaxRate-active_at_ids-#{Date.today}")
-      Rails.cache.delete("TaxRate-active_at_ids-#{Date.tomorrow}")
+      Rails.cache.delete("TaxRate-#{I18n.t(:company)}-active_at_ids-#{Date.yesterday}")
+      Rails.cache.delete("TaxRate-#{I18n.t(:company)}-active_at_ids-#{Date.today}")
+      Rails.cache.delete("TaxRate-#{I18n.t(:company)}-active_at_ids-#{Date.tomorrow}")
     end
 
     def tax_per_state?
