@@ -10,7 +10,7 @@ describe Notifier, "Signup Email" do
       #"jojo@yahoo.com", "Jojo Binks"
       #[first_name.capitalize, last_name.capitalize ]
       @user  = create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
-      @email = Notifier.signup_notification(@user)
+      @email = Notifier.signup_notification(@user.id)
     end
 
     it "should be set to be delivered to the email passed in" do
@@ -45,7 +45,7 @@ describe Notifier, "#order_confirmation" do
       @order        = create(:order, :email => 'myfake@email.com', :user => @user)
       @invoice        = create(:invoice, :order => @order)
       @order.stubs(:order_items).returns([@order_item])
-      @email = Notifier.order_confirmation(@order, @invoice)
+      @email = Notifier.order_confirmation(@order.id, @invoice.id)
     end
 
     it "should be set to be delivered to the email passed in" do

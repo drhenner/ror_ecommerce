@@ -6,35 +6,37 @@ class Notifier < ActionMailer::Base
   #
   # @param [user] user that signed up
   # => user must respond to email_address_with_name and name
-  def signup_notification(recipient)
-    @account = recipient
+  def signup_notification(recipient_id)
+    @recipient = User.find(recipient_id)
 
     #attachments['an-image.jp'] = File.read("an-image.jpg")
     #attachments['terms.pdf'] = {:content => generate_your_pdf_here() }
 
-    mail(:to => recipient.email_address_with_name,
+    mail(:to => @recipient.email_address_with_name,
          :subject => "New account information") do |format|
-      format.text { render :text => "Welcome!  #{recipient.name} go to #{customer_activation_url(:a => recipient.perishable_token )}" }
-      format.html { render :text => "<h1>Welcome</h1> #{recipient.name} <a href='#{customer_activation_url(:a => recipient.perishable_token )}'>Click to Activate</a>" }
+      format.text { render :text => "Welcome!  #{@recipient.name} go to #{customer_activation_url(:a => @recipient.perishable_token )}" }
+      format.html { render :text => "<h1>Welcome</h1> #{@recipient.name} <a href='#{customer_activation_url(:a => @recipient.perishable_token )}'>Click to Activate</a>" }
     end
 
   end
 
-  def password_reset_instructions(user)
-    @user = user
-    @url  = edit_customer_password_reset_url(:id => user.perishable_token)
-    mail(:to => user.email,
+  def password_reset_instructions(user_id)
+    @user = @user.find(user_id)
+    @url  = edit_customer_password_reset_url(:id => @user.perishable_token)
+    @key  = UsersNewsletter.unsubscribe_key(@user.email)
+    mail(:to => @user.email,
          :subject => "Reset Password Instructions")
   end
 
 
-  def order_confirmation(order,invoice)
-    @invoice = invoice
-    @order  = order
-    @user   = order.user
-    @url    = root_url
+  def order_confirmation(order_id, invoice_id)
+    @invoice  = Invoice.find(invoice_id)
+    @order    = Order.includes(:user).find(order_id)
+    @user     = @order.user
+    @key      = UsersNewsletter.unsubscribe_key(@user.email)
+    @url      = root_url
     @site_name = 'site_name'
-    mail(:to => order.email,
+    mail(:to => @order.email,
          :subject => "Order Confirmation")
   end
 

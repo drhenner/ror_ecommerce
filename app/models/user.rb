@@ -66,6 +66,9 @@ class User < ActiveRecord::Base
 
   belongs_to :account
 
+  has_many    :users_newsletters
+  has_many    :newsletters, :through => :users_newsletters
+
   has_one     :store_credit
   has_many    :orders
   has_many    :comments
@@ -308,7 +311,11 @@ class User < ActiveRecord::Base
   # @param  [ none ]
   # @return [ none ]
   def deliver_activation_instructions!
-    Notifier.signup_notification(self).deliver
+    if Settings.uses_resque_for_background_emails
+      Resque.enqueue(Jobs::SendSignUpNotification, self.id)
+    else
+      Notifier.signup_notification(self.id).deliver
+    end
   end
 
   # name and email string for the user
