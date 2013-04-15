@@ -376,7 +376,11 @@ class User < ActiveRecord::Base
 
   def deliver_password_reset_instructions!
     self.reset_perishable_token!
-    Notifier.password_reset_instructions(self).deliver
+    if Settings.uses_resque_for_background_emails
+      Resque.enqueue(Jobs::SendPasswordResetInstructions, self.id)
+    else
+      Notifier.password_reset_instructions(self.id).deliver rescue puts( 'do nothing...  dont blow up over an email')
+    end
   end
 
   def number_of_finished_orders

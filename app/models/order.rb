@@ -190,7 +190,12 @@ class Order < ActiveRecord::Base
       new_invoice = create_invoice_transaction(credit_card, charge_amount, args, credited_amount)
       if new_invoice.succeeded?
         remove_user_store_credits
-        Notifier.order_confirmation(@order.id, new_invoice.id).deliver rescue puts( 'do nothing...  dont blow up over an email')
+
+        if Settings.uses_resque_for_background_emails
+          Resque.enqueue(Jobs::SendOrderConfirmation, @order.id, new_invoice.id)
+        else
+          Notifier.order_confirmation(@order.id, new_invoice.id).deliver rescue puts( 'do nothing...  dont blow up over an email')
+        end
       end
       new_invoice
     end
