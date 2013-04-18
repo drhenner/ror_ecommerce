@@ -19,6 +19,8 @@ class Referral < ActiveRecord::Base
   before_validation :assign_referral_program
   validate :validate_has_not_signed_up_yet
 
+  after_create :invite_referral
+
   delegate :decimal_amount, :to => :referral_program
 
   CHARACTERS_SEED = 20
@@ -119,6 +121,10 @@ class Referral < ActiveRecord::Base
     where(:purchased_at => nil)
   end
   private
+    def invite_referral
+      Notifier.referral_invite(self.id, referring_user_id).deliver
+    end
+
     def validate_has_not_signed_up_yet
       unless skip_validate_has_not_signed_up_yet == true
         self.errors.add(:base, 'This user has already signed up.') if has_signed_up
