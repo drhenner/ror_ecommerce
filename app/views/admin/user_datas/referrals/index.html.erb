@@ -1,0 +1,50 @@
+<h1> Referrals </h1>
+
+<div id="admin_referral_grid_wrapper" class='pretty_table'>
+  <table>
+    <tr class='odd'>
+      <thead>
+        <th class='column1_header'><%= sortable 'name', 'Name' %></th>
+        <th>Email</th>
+        <th>Referring User</th>
+        <th>Referral Program</th>
+        <th>New User</th>
+        <th>Referral Type</th>
+        <th>Sent At</th>
+        <th>Registered At</th>
+        <th>Purchased At</th>
+        <th>Applied</th>
+        <th></th>
+      </thead>
+    </tr>
+    <% for referral in @referrals %>
+      <tr class='<%= cycle("odd", "")%>'>
+
+          <td><%= link_to referral.name, [:admin, :user_datas, referral] %></td>
+          <td><%= referral.email %></td>
+          <td><%= referral.referring_user.name %></td>
+          <td><%= referral.referral_program.name %></td>
+          <td><%= referral.referral_user.try(:name) %></td>
+          <td><%= referral.referral_type.name %></td>
+          <td><%= referral.sent_at %></td>
+          <td><%= referral.registered_at %></td>
+          <td><%= referral.purchased_at %></td>
+          <td><%= referral.applied %></td>
+        <%#= link_to "", edit_admin_user_datas_referral_path(referral), :class => 'ss_sprite ss_application_edit' %>
+        <td><%= link_to "", [:admin, :user_datas, referral], :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'ss_sprite ss_cross' %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= will_paginate @referrals %>
+
+<p><%= link_to "Assign Referral", new_admin_user_datas_referral_path, :class => 'button' %></p>
+<p>
+  <%= link_to "Apply Referrals",
+              apply_admin_user_datas_referral_path(0),
+              :data => { :confirm => 'Are you sure?' },
+              :class => 'button red-button', :method => 'POST' %>
+</p>
+
+
