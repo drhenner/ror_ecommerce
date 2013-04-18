@@ -1,0 +1,44 @@
+<% content_for :content_header do -%>
+  <%#= render :partial => '/shared/main_content_header' %>
+<% end %>
+<div id='referral_content' class='nine large-9 columns'>
+  <%#= image_tag 'header/referral_content_header.png', :class => 'referral_header_image' %>
+  <h3 id='referral_title'> Invite a Friend </h3>
+  <div>
+    <p>
+    Ready to get your friends aboard?  Enter their information below:
+    </p>
+
+    <%= form_for @referral, :url => myaccount_referrals_path(@referral) do |f| %>
+      <%=  render :partial => 'form', :locals => {:f => f} %>
+      <div class="right-actions">
+        <%= f.submit 'Invite', :class => 'button dark-orange-button' %>
+      </div>
+    <% end %>
+
+    <% if @referrals.empty? %>
+
+    <% else %>
+      <div id="admin_referral_grid_wrapper" class='referral_table'>
+        <table>
+          <thead>
+          <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% for referral in @referrals %>
+            <tr>
+                <td><%= referral.name %>        </td>
+                <td><%= referral.email %>       </td>
+                <td><%= referral.display_status %> (<%= referral.display_formatted_status_date %>)</td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>

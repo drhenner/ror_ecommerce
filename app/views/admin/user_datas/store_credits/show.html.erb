@@ -1,0 +1,12 @@
+
+<h3> <%= customer.name.possessive %> Store Credits </h3>
+
+<ul>
+  <li>
+    <label>Amount:</label>
+    <%= number_to_currency customer.store_credit_amount %>
+  </li>
+</ul>
+<p>
+  <%= link_to "Edit", edit_admin_user_datas_user_store_credits_path(customer), :class => 'button' %>
+</p>

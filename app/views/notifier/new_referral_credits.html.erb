@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Referral Email</title>
+</head>
+
+<body>
+<table align='center' width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="padding-left:10px;padding-right:10px;padding-top:0px;color:rgb(132,132,132);font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;padding-bottom:40px">
+      <%= render '/notifier/email_header' %>
+
+        <table width="562" border="0" cellspacing="0" cellpadding="0" align="center" style="margin-top:0px;margin-right:auto;margin-bottom:0px;margin-left:auto">
+          <tbody>
+            <tr><td height="12" style="color:rgb(132,132,132);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px"></td></tr>
+            <tr>
+              <td width="562" align="left" bgcolor="#ffffff" style="color:rgb(132,132,132);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px">
+                <table width="562" cellspacing="0" cellpadding="0">
+                <tbody><tr><td colspan="3" height="4" style="color:rgb(132,132,132);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;line-height:0px;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px">
+                  </td></tr>
+                  <tr>
+                    <td width="1" bgcolor="#cacaca" style="color:rgb(132,132,132);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px"></td>
+                    <td width="560" bgcolor="#f8f8f8" style="color:rgb(132,132,132);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px">
+                      <table width="560" cellspacing="0" cellpadding="20">
+                        <tbody>
+                          <tr><td style="color:rgb(132,132,132);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px">
+                              <p style="color:rgb(57,60,61);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:1.3em;font-weight:bold;line-height:18px;margin-top:0px;margin-right:0px;margin-bottom:12px;margin-left:0px">Hi<%= " #{@user.first_name}" %>,</p>
+                              <p style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:18px;margin-top:0px;margin-right:0px;margin-bottom:12px;margin-left:0px">
+
+                                Your referral <%= @referral_user.name %> just made a purchase with <%= link_to "#{ @company_name }", @url %> and received <%= number_to_currency @referral_user.referree.try(:decimal_amount) %> off because you sent them!  
+</p><p style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:18px;margin-top:0px;margin-right:0px;margin-bottom:12px;margin-left:0px">
+                                We can’t thank you enough.  You've also earned a <%= number_to_currency @referral_user.referree.try(:decimal_amount) %> store credit and will continue earning credits for everyone you send our way that purchases.   Use these credits to shop online at <%= link_to "#{ @company_name }", @url %>.
+</p>
+
+<p style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:18px;margin-top:0px;margin-right:0px;margin-bottom:12px;margin-left:0px">
+                                Thanks again and keep referring!  We have plenty more <%= number_to_currency @referral_user.referree.try(:decimal_amount) %> credits in stock. 
+</p>
+                              </p>
+                              <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:18px;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">
+                              <br>
+                                <%= image_tag 'logos/logo.png', :alt => "#{@company_name}", :style =>'display:block' %>
+                              </div>
+Customer Support:
+                              <a href="tel:%28<%= @phone_number %>" value="+1<%= @phone_number.gsub('-','') %>" target="_blank">
+                                  (<%= @phone_number %></a>)<br></td></tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+
+                </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+
+</table>
+    <%= render '/notifier/main_footer' %>
+</body>
+</html>

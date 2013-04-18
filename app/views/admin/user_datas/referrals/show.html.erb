@@ -1,0 +1,50 @@
+<h1> Referral </h1>
+
+<ul>
+  <li>
+    <label>Name:</label>
+    <%= @referral.name %>
+  </li>
+  <li>
+    <label>Email:</label>
+    <%= @referral.email %>
+  </li>
+  <li>
+    <label>Referring User:</label>
+    <%= @referral.referring_user_id %>
+  </li>
+  <li>
+    <label>Referral Program:</label>
+    <%= @referral.referral_program.name %>
+  </li>
+  <li>
+    <label>Referral User:</label>
+    <%= @referral.referral_user_id %>
+  </li>
+  <li>
+    <label>Referral Type:</label>
+    <%= @referral.referral_type_id %>
+  </li>
+  <li>
+    <label>Sent At:</label>
+    <%= @referral.sent_at %>
+  </li>
+  <li>
+    <label>Registered At:</label>
+    <%= @referral.registered_at %>
+  </li>
+  <li>
+    <label>Purchased At:</label>
+    <%= @referral.purchased_at %>
+  </li>
+  <li>
+    <label>Applied:</label>
+    <%= @referral.applied %>
+  </li>
+
+</ul>
+<p>
+  <%#= link_to "Edit", edit_admin_user_datas_referral_path(@referral), :class => 'button' %> |
+  <%= link_to "Destroy", [:admin, :user_datas, @referral], :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button' %> |
+  <%= link_to "View All", admin_user_datas_referrals_path, :class => 'button' %>
+</p>

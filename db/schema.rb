@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415012849) do
+ActiveRecord::Schema.define(:version => 20130415034400) do
 
   create_table "accounting_adjustments", :force => true do |t|
     t.integer  "adjustable_id",                                 :null => false
@@ -415,6 +415,50 @@ ActiveRecord::Schema.define(:version => 20130415012849) do
 
   add_index "purchase_orders", ["supplier_id"], :name => "index_purchase_orders_on_supplier_id"
   add_index "purchase_orders", ["tracking_number"], :name => "index_purchase_orders_on_tracking_number"
+
+  create_table "referral_bonuses", :force => true do |t|
+    t.integer  "amount",     :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "referral_programs", :force => true do |t|
+    t.boolean  "active",            :null => false
+    t.text     "description"
+    t.string   "name",              :null => false
+    t.integer  "referral_bonus_id", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "referral_programs", ["referral_bonus_id"], :name => "index_referral_programs_on_referral_bonus_id"
+
+  create_table "referral_types", :force => true do |t|
+    t.string "name", :null => false
+  end
+
+  create_table "referrals", :force => true do |t|
+    t.boolean  "applied",             :default => false
+    t.datetime "clicked_at"
+    t.string   "email",                                  :null => false
+    t.string   "name"
+    t.datetime "purchased_at"
+    t.integer  "referral_program_id",                    :null => false
+    t.integer  "referral_type_id",                       :null => false
+    t.integer  "referral_user_id"
+    t.integer  "referring_user_id",                      :null => false
+    t.datetime "registered_at"
+    t.datetime "sent_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "referrals", ["email"], :name => "index_referrals_on_email", :length => {"email"=>6}
+  add_index "referrals", ["referral_program_id"], :name => "index_referrals_on_referral_program_id"
+  add_index "referrals", ["referral_type_id"], :name => "index_referrals_on_referral_type_id"
+  add_index "referrals", ["referral_user_id"], :name => "index_referrals_on_referral_user_id"
+  add_index "referrals", ["referring_user_id"], :name => "index_referrals_on_referring_user_id"
 
   create_table "return_authorizations", :force => true do |t|
     t.string   "number"

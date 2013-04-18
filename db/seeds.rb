@@ -104,3 +104,17 @@ Newsletter::MANUALLY_SUBSCRIBE.each do |name|
     Newsletter.create(:name => name, :autosubscribe => false)
   end
 end
+
+ReferralBonus::BONUSES.each do |referral_bonus_attributes|
+  rb = ReferralBonus.find_by_name(referral_bonus_attributes[:name])
+  unless rb
+    ReferralBonus.create(referral_bonus_attributes)
+  end
+end
+
+ReferralProgram::PROGRAMS.each do |referral_program_attributes|
+  rp = ReferralProgram.find_by_name(referral_program_attributes[:name])
+  unless rp
+    ReferralProgram.create(referral_program_attributes)
+  end
+end
