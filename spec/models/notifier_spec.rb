@@ -50,6 +50,27 @@ describe Notifier, "#new_referral_credits" do
     @email.should have_subject(/Referral Credits have been Applied/)
   end
 end
+
+
+describe Notifier, "#referral_invite(referral_id, inviter_id)" do
+  include Rails.application.routes.url_helpers
+
+  before(:each) do
+    @referring_user = create(:user,     :email => 'referring_user@email.com', :first_name => 'Dave', :last_name => 'Commerce')
+    @referral       = create(:referral, :email => 'referral_user@email.com', :referring_user => @referring_user )
+
+    #@referral_user.stubs(:referree).returns(@referral)
+    @email = Notifier.referral_invite(@referral.id, @referring_user.id)
+  end
+  it "should be set to be delivered to the email passed in" do
+    @email.should deliver_to("referral_user@email.com")
+  end
+
+  it "should have the correct subject" do
+    @email.should have_subject(/Referral from Dave/)
+  end
+end
+
 describe Notifier, "#order_confirmation" do
     include Rails.application.routes.url_helpers
 

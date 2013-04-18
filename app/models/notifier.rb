@@ -51,6 +51,15 @@ class Notifier < ActionMailer::Base
          :subject => "Order Confirmation")
   end
 
+  def referral_invite(referral_id, inviter_id)
+    @user     = User.find(inviter_id)
+    @referral = Referral.find(referral_id)
+    @url      = root_url
+
+    mail(:to => @referral.email,
+         :subject => "Referral from #{@user.name}")
+  end
+
   private
     def phone_number
       @phone_number   = I18n.t(:company_phone)
