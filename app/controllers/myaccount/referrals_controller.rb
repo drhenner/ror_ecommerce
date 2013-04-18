@@ -1,4 +1,4 @@
-class Myaccount::ReferralsController < ApplicationController
+class Myaccount::ReferralsController < Myaccount::BaseController
   helper_method :sort_column, :sort_direction
   def index
     @referral  = Referral.new
@@ -27,6 +27,10 @@ class Myaccount::ReferralsController < ApplicationController
   end
 
   private
+
+    def selected_myaccount_tab(tab)
+      tab == 'referrals'
+    end
 
     def sort_column
       Referral.column_names.include?(params[:sort]) ? params[:sort] : "name"
