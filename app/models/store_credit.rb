@@ -27,6 +27,11 @@ class StoreCredit < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
 
+  def add_credit(amount_to_add)
+    sql = "UPDATE store_credits SET amount = (amount + #{amount_to_add}) WHERE id = #{self.id}"
+    ActiveRecord::Base.connection.execute(sql)
+  end
+
   private
 
   def ensure_sql_math_rounding_issues

@@ -1,6 +1,12 @@
 <li class="active"><%#=  link_to site_name, :root %></li>
-<li><%= link_to 'History', admin_history_orders_path %></li>
-<li><%= link_to 'Orders', admin_shopping_carts_path %></li>
+<li class="has-dropdown">
+  <%= link_to 'Orders', admin_history_orders_path %>
+  <ul class="dropdown">
+    <li><%= link_to 'Create Order', admin_shopping_carts_path %></li>
+    <li><%= link_to 'Old Orders', admin_history_orders_path %></li>
+    <li><%= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
+  </ul>
+</li>
 <li class="has-dropdown">
   <%= link_to 'Merchandise', admin_merchandise_products_path %>
   <ul class="dropdown">
@@ -21,7 +27,13 @@
     <li><%= link_to 'Adjustments', admin_inventory_adjustments_path %></li>
   </ul>
 </li>
-<li><%= link_to "Users", admin_users_path %></li>
+<li class="has-dropdown">
+  <%= link_to "Users", admin_users_path %>
+  <ul class="dropdown">
+    <li><%= link_to 'Users',      admin_users_path %></li>
+    <li><%= link_to 'Referrals',  admin_user_datas_referrals_path %></li>
+  </ul>
+</li>
 <% if current_user.super_admin? %>
   <li class="has-dropdown">
     <%= link_to "Config", admin_config_accounts_path %>

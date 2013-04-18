@@ -29,8 +29,15 @@ end
 #end
 
 describe Product, ".tax_rate" do
+
+  before(:each) do
+    tr = TaxRate.new()
+    tr.send(:expire_cache)
+  end
+
   # use case tax rate end date is nil and the start_date < now
   it 'should return the tax rate' do
+    Settings.tax_per_state_id = true
     tax_rate    = create(:tax_rate,
                           :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
@@ -73,6 +80,7 @@ describe Product, ".tax_rate" do
   end
   # the tax rate changes next month but is 5% now and next month will be 10%
   it 'should return any tax rates of 5%' do
+    Settings.tax_per_state_id = true
     tax_rate    = create(:tax_rate,
                           :percentage => 5.0,
                           :state_id   => 1,

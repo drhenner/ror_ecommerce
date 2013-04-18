@@ -17,6 +17,11 @@
       <li <%= selected_myaccount_tab('profile') ? 'class=active' : '' %>>
         <%= link_to 'Profile', myaccount_overview_path() %>
       </li>
+      <li <%= selected_myaccount_tab('referrals') ? 'class=active' : '' %>>
+        <%= link_to 'Referrals', myaccount_referrals_path() %>
+      </li>
+
+
     </ul>
   </div>
 </div>

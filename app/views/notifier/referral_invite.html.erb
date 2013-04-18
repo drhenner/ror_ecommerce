@@ -1,0 +1,22 @@
+@referral.email
+@referral.name
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Hi <%= @referral.name %></h1>
+    <p>
+      <%= @user.name %> wants you to join the club.
+    </p>
+    <p>
+      Follow this : <%= link_to 'link', @url %> to get in on the fun.
+    </p>
+
+    <p>Thank you and have a great day!</p>
+    <%= render :partial => 'notifier/main_footer' %>
+  </body>
+</html>

@@ -31,6 +31,7 @@ Hadean::Application.routes.draw do
     resources :orders, :only => [:index, :show]
     resources :addresses
     resources :credit_cards
+    resources :referrals, :only => [:index, :create, :update]
     resource  :store_credit, :only => [:show]
     resource  :overview, :only => [:show, :edit, :update]
   end
@@ -63,6 +64,18 @@ Hadean::Application.routes.draw do
       end
     end
     resources :users
+    namespace :user_datas do
+
+      resources :referrals do
+        member do
+          post :apply
+        end
+      end
+
+      resources :users do
+        resource :store_credits, :only => [:show, :edit, :update]
+      end
+    end
     resources :overviews, :only => [:index]
 
     match "help" => "help#index"

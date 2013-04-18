@@ -1,4 +1,6 @@
 <p style='text-align:center;text-transform:uppercase;color:#AAA;'>
+  <% if @key %>
   If you have subscribed in error or wish to unsubscribe at any time, Please <%= link_to 'click here', unsubscribe_url(:email => @user.email, :key => @key)%><br/>
+  <% end %>
   Copyright &#169; <%= Time.zone.now.year %> <%= I18n.t(:company) %>
 </p>
