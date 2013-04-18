@@ -109,6 +109,13 @@ class Referral < ActiveRecord::Base
     end
   end
 
+  def set_referral_user(user_id)
+    self.referral_user_id = user_id
+    self.registered_at    = Time.zone.now
+    self.skip_validate_has_not_signed_up_yet = true
+    self.save
+  end
+
   def self.unapplied
     where(:applied => false)
   end

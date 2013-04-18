@@ -403,10 +403,7 @@ class User < ActiveRecord::Base
 
   def set_referral_registered_at
     if refer_al = Referral.find_by_email(email)
-      refer_al.referral_user_id = id
-      refer_al.registered_at    = Time.zone.now
-      refer_al.skip_validate_has_not_signed_up_yet = true
-      refer_al.save
+      refer_al.set_referral_user(id)
     end
   end
 
