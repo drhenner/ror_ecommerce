@@ -1,13 +1,12 @@
 <% content_for :content_header do -%>
   <%#= render :partial => '/shared/main_content_header' %>
 <% end %>
-
-<div id='referral_content'>
+<div id='referral_content' class='nine large-9 columns'>
   <%#= image_tag 'header/referral_content_header.png', :class => 'referral_header_image' %>
   <h3 id='referral_title'> Invite a Friend </h3>
   <div>
     <p>
-    Ready to help your friend look better?  Enter his information below:
+    Ready to get your friends aboard?  Enter their information below:
     </p>
 
     <%= form_for @referral, :url => myaccount_referrals_path(@referral) do |f| %>
