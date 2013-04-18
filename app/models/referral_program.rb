@@ -12,8 +12,8 @@ class ReferralProgram < ActiveRecord::Base
   delegate :decimal_amount, :to => :referral_bonus
 
   PROGRAMS = [
-      { :name         => '$10 per Referral',
-        :description  => "For every referral that joins #{I18n.t(:company)} and makes a purchase.  $10 will be given to you as store credit.",
+      { :name         => '$5 per Referral',
+        :description  => "For every referral that joins #{I18n.t(:company)} and makes a purchase.  $5 will be given to you as store credit.",
         :referral_bonus_id => 1
       }
     ]

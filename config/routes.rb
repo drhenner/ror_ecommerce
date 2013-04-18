@@ -31,6 +31,7 @@ Hadean::Application.routes.draw do
     resources :orders, :only => [:index, :show]
     resources :addresses
     resources :credit_cards
+    resources :referrals, :only => [:index, :create, :update]
     resource  :store_credit, :only => [:show]
     resource  :overview, :only => [:show, :edit, :update]
   end

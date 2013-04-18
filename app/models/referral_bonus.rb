@@ -15,8 +15,8 @@ class ReferralBonus < ActiveRecord::Base
   validates :amount,            :presence => true
 
   BONUSES = [
-      { :name             => '$10 per Referral',
-        :amount           => 1000
+      { :name             => '$5 per Referral',
+        :amount           => 500
       }
     ]
   def give_credits(user)

@@ -23,8 +23,6 @@ module Hadean
                         'return_authorizations',
                         'return_items',
                         'referrals',
-                        'referral_programs',
-                        'referral_bonuses',
                         'shipments',
                         'shipping_categories',
                         'shipping_methods',
