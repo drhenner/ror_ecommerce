@@ -65,6 +65,7 @@ class Shopping::OrdersController < Shopping::BaseController
   end
 
   def confirmation
+    @tab = 'confirmation'
     if session[:last_order].present? && session[:last_order] == params[:id]
       session[:last_order] = nil
       @order = Order.where(:number => params[:id]).includes({:order_items => :variant}).first
@@ -79,6 +80,10 @@ class Shopping::OrdersController < Shopping::BaseController
     end
   end
   private
+
+  def customer_confirmation_page_view
+    @tab && (@tab == 'confirmation')
+  end
 
   def form_info
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new()

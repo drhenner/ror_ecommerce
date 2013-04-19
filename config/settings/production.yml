@@ -33,3 +33,6 @@ paperclip:
   path: ':class/:attachment/:style/:hash.:extension'
   bucket: <%= ENV['FOG_DIRECTORY'] %>
   hash_secret: f8c07cf79094ec06f77b6024b5d7936c79b5227274fb8e82c00blaha
+# Set this up with your Google Analytics Code for PRODUCTION
+google:
+  analytics_code: false

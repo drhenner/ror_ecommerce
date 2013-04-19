@@ -46,7 +46,7 @@
     </div>
     <div id='prefooter_wrapper'>&nbsp;</div>
 </div>
-
+  <%= render 'shared/google_analytics' unless @disable_ga %>
   <%= render 'shared/main_footer' %>
 
   <%= yield :bottom %>

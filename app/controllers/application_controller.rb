@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
                 :search_product,
                 :product_types,
                 :myaccount_tab,
-                :select_countries
+                :select_countries,
+                :customer_confirmation_page_view
 
   before_filter :secure_session
 
@@ -39,6 +40,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def customer_confirmation_page_view
+    false
+  end
 
   def pagination_page
     params[:page] ||= 1
