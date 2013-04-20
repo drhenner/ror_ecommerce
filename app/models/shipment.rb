@@ -147,7 +147,7 @@ class Shipment < ActiveRecord::Base
   # @return [none]
   def set_number
     return set_shipment_number if self.id
-    self.number = (Time.now.to_i).to_s## fake number for friendly_id validator
+    self.number = (Time.now.to_i).to_s## fake number for validator
   end
 
   # sets the order shipment based off constants and the shipment id

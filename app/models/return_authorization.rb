@@ -99,7 +99,7 @@ class ReturnAuthorization < ActiveRecord::Base
   # @return [none]
   def set_number
     return set_order_number if self.id
-    self.number = (Time.now.to_i).to_s(CHARACTERS_SEED)## fake number for friendly_id validator
+    self.number = (Time.now.to_i).to_s(CHARACTERS_SEED)## fake number for validator
   end
 
   # sets the order ReturnAuthorization based off constants and the ReturnAuthorization id

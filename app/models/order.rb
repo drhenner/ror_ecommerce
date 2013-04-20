@@ -47,7 +47,8 @@
 #
 
 class Order < ActiveRecord::Base
-  has_friendly_id :number, :use_slug => false
+  extend FriendlyId
+  friendly_id :number
 
   has_many   :order_items, :dependent => :destroy
   has_many   :shipments

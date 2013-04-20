@@ -67,7 +67,6 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    babosa (0.3.9)
     bluecloth (2.1.0)
     builder (3.0.4)
     cancan (1.6.9)
@@ -129,8 +128,7 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.4)
-    friendly_id (3.3.3.0)
-      babosa (~> 0.3.0)
+    friendly_id (4.0.9)
     fssm (0.2.10)
     haml (4.0.1)
       tilt
@@ -292,7 +290,7 @@ DEPENDENCIES
   factory_girl (~> 3.3.0)
   factory_girl_rails (~> 3.3.0)
   faker
-  friendly_id (~> 3.3)
+  friendly_id (~> 4.0)
   haml (>= 3.0.13)
   jquery-rails
   json (~> 1.7.7)
