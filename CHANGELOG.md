@@ -1,5 +1,14 @@
-* better css on product page
-* refactor product search
+###1.5.0 2013-04-19
+* confirmation page for GA
+* referrals
+* reporting tab in admin
+* Admin Nav -- see the last 12 users you clicked on
+* Performance and Bug enhancements
+* newsletters and an un-subscribe link
+* Google Analytics funnel
+* Better css on product page
+* Refactor product search
+* Gem upgrades
 
 ###1.4.3 2013-02-04
 * bug fixes creating product
