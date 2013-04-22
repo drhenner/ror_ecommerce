@@ -205,7 +205,7 @@ Uncomment the following in your gemfile:
 
 ```ruby
 #gem 'sunspot_solr'
-#gem 'sunspot_rails', '~> 1.3'
+#gem 'sunspot_rails'
 ```
 
 then:
@@ -226,6 +226,8 @@ Take a look at setting up Solr - [Solr in 5 minutes](http://github.com/outoftime
 
 If you get the error, `Errno::ECONNREFUSED (Connection refused - connect(2)):` when you try to create a product or upload an image, you have not started Solr search.
 You need to run `rake sunspot:solr:start`, or remove Solr completely.
+
+Remember to run `rake sunspot:reindex` before doing your search if you already have data in the DB
 
 ##TODO:
 

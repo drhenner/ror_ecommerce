@@ -42,8 +42,8 @@ gem 'rake', '~> 10.0.3'
 # gem 'resque', require: 'resque/server'
 
 gem 'state_machine', '~> 1.1.2'
-#gem 'sunspot_solr'
-#gem 'sunspot_rails', '~> 1.3.0rc'
+#gem 'sunspot_solr', '~> 2.0.0'
+#gem 'sunspot_rails', '~> 2.0.0'
 gem 'will_paginate', '~> 3.0.4'
 
 #gem 'memcache-client', '~> 1.8.5'

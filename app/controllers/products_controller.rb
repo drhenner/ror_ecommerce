@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
   def create
     if params[:q] && params[:q].present?
-      @products = Product.standard_search(params[:q]).paginate(:page => pagination_page, :per_page => 15).results
+      @products = Product.standard_search(params[:q]).results
     else
       @products = Product.where('deleted_at IS NULL OR deleted_at > ?', Time.zone.now )
     end
