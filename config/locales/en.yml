@@ -33,6 +33,8 @@ en:
   do_not_have_anything_in_your_cart:      "You don't have anything in your cart"
 
   no_addresses_saved:                     'Currently no addresses saved.'
+  meta_description:       'The best e-commerce store in the World!'
+  meta_keywords:          'Ruby on Rails, ecommerce'
 
   label_create_shipment_button: 'Create Shipment'
 

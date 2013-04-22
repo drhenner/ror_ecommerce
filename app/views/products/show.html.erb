@@ -1,3 +1,7 @@
+<% content_for :metadata do -%>
+  <meta name="keywords"     content="<%= @product.meta_keywords %>">
+  <meta name="description"  content="<%= @product.meta_description %>">
+<% end %>
 
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'product_page.css' %>

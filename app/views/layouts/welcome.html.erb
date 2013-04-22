@@ -15,11 +15,11 @@
       <%= stylesheet_link_tag 'ie6.css', :media => 'screen, projection' %>
   <![endif]-->
   <%= csrf_meta_tag %>
-
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag "foundation" %>
-  <%#, :cache => 'all_1' %>
   <%= yield :head %>
+
+  <%= render 'shared/metadata' %>
 
 </head>
 <body >
