@@ -268,10 +268,14 @@ class Invoice < ActiveRecord::Base
 
   def self.admin_grid(args)
     if args[:order_number].present?
-      where("orders.number = ?", args[:order_number])
+      with_order_number(args[:order_number])
     else
       scoped
     end
+  end
+
+  def self.with_order_number(order_number)
+    where("orders.number = ?", order_number])
   end
   private
 
