@@ -8,11 +8,6 @@ FactoryGirl.define do
     after(:build) {|user| user.send(:initialize_state_machines, :dynamic => :force)}
   end
 
-  factory :registered_user, :parent => :user do
-    state    'registered'
-    birth_date  Time.now.to_date
-  end
-
   factory :admin_user, :parent => :user do
     before(:create) do |u|
       u.roles = [Role.find_by_name(Role::ADMIN)]

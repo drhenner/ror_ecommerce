@@ -67,12 +67,6 @@ RSpec.configure do |config|
 
 end
 
-def registered_user_factory
-  u = build(:user)
-  u.state = 'registered'
-  u
-end
-
 def with_solr
   Product.configuration[:if] = 'true'
   yield

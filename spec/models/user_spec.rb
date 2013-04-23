@@ -52,22 +52,11 @@ end
 
 describe User, ".name" do
   it "should return the correct name" do
-    user = build(:registered_user)
+    user = build(:user)
     #should_receive(:authenticate).with("password").and_return(true)
     user.stubs(:first_name).returns("Fred")
     user.stubs(:last_name).returns("Flint")
     user.name.should == "Fred Flint"
-  end
-end
-
-describe User, '.registered_user?' do
-  it "should return false for an active user" do
-    user = build(:user)
-    user.registered_user?.should be_false
-  end
-  it "should return true for a registered user" do
-    user = registered_user_factory
-    user.registered_user?.should be_true
   end
 end
 
@@ -207,14 +196,10 @@ describe User, "instance methods" do
 
   context ".registered_user?" do
     # registered?
-    it 'should be true for a registered user' do
-      @user.register!
-      @user.registered_user?.should be_true
-    end
 
     it 'should not be a registered user' do
       @user.state = 'active'
-      @user.registered_user?.should be_false
+      @user.registered_user?.should be_true
     end
 
     it 'should not be a registered user' do

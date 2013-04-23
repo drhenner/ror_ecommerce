@@ -158,21 +158,14 @@ class User < ActiveRecord::Base
   state_machine :state, :initial => :active do
     state :inactive
     state :active
-    state :registered
     state :canceled
 
     event :activate do
       transition all => :active, :unless => :active?
     end
 
-    event :register do
-      transition :from => :active,                 :to => :registered
-      transition :from => :inactive,               :to => :registered
-      transition :from => :canceled,               :to => :registered
-    end
-
     event :cancel do
-      transition :from => [:inactive, :active, :registered, :canceled], :to => :canceled
+      transition :from => [:inactive, :active, :canceled], :to => :canceled
     end
 
   end
@@ -280,7 +273,7 @@ class User < ActiveRecord::Base
   # @param [none]
   # @return [ Boolean ]
   def registered_user?
-    registered?
+    active?
   end
 
   # gives the user's first and last name if available, otherwise returns the users email
