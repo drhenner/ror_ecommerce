@@ -39,13 +39,7 @@ class Invoice < ActiveRecord::Base
   INVOICE_TYPES = [PURCHASE, RMA]
   NUMBER_SEED     = 3002001004005
   CHARACTERS_SEED = 20
-  #cattr_accessor :gateway
 
-  # after_create :create_authorized_transaction
-
-  #def create_authorized_transaction
-  #
-  #end
   state_machine :initial => :pending do
     state :pending
     state :authorized
@@ -65,6 +59,7 @@ class Invoice < ActiveRecord::Base
       transition :from => :payment_declined,
                   :to   => :authorized
     end
+
     event :payment_captured do
       transition :from => :authorized,
                   :to   => :paid
