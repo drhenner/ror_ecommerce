@@ -158,7 +158,6 @@ class User < ActiveRecord::Base
   state_machine :state, :initial => :active do
     state :inactive
     state :active
-    state :unregistered
     state :registered
     state :canceled
 
@@ -169,12 +168,11 @@ class User < ActiveRecord::Base
     event :register do
       transition :from => :active,                 :to => :registered
       transition :from => :inactive,               :to => :registered
-      transition :from => :unregistered,           :to => :registered
       transition :from => :canceled,               :to => :registered
     end
 
     event :cancel do
-      transition :from => [:inactive, :active, :unregistered, :registered, :canceled], :to => :canceled
+      transition :from => [:inactive, :active, :registered, :canceled], :to => :canceled
     end
 
   end

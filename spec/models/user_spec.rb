@@ -61,7 +61,7 @@ describe User, ".name" do
 end
 
 describe User, '.registered_user?' do
-  it "should return false for an unregistered user" do
+  it "should return false for an active user" do
     user = build(:user)
     user.registered_user?.should be_false
   end
@@ -109,21 +109,6 @@ describe User, "instance methods" do
       @user.active?.should be_false
     end
 
-    it 'should be active' do
-      @user.state = 'unregistered'
-      @user.active?.should be_true
-      @user.state = 'registered'
-      @user.active?.should be_true
-    end
-  end
-
-  context ".role?(role_name)" do
-    it 'should be active' do
-      @user.state = 'unregistered'
-      @user.active?.should be_true
-      @user.state = 'registered'
-      @user.active?.should be_true
-    end
   end
 
   context ".display_active" do
@@ -132,8 +117,13 @@ describe User, "instance methods" do
       @user.display_active.should == 'false'
     end
 
+    it 'should not be active' do
+      @user.state = 'inactive'
+      @user.display_active.should == 'false'
+    end
+
     it 'should be active' do
-      @user.state = 'unregistered'
+      @user.state = 'active'
       @user.display_active.should == 'true'
     end
   end
@@ -216,7 +206,7 @@ describe User, "instance methods" do
   end
 
   context ".registered_user?" do
-    # registered? 
+    # registered?
     it 'should be true for a registered user' do
       @user.register!
       @user.registered_user?.should be_true
