@@ -120,18 +120,22 @@ module InvoicePrinter
     pdf.bounding_box([0,400], :width => 612) do
       @invoice_yml.each do |info|
         if info.last['multiple_lines']
-          pdf.bounding_box(   [  info.last['arguements']['bounded_at'][0].to_i,
-                                info.last['arguements']['bounded_at'][1].to_i
-                              ],
-                                :width => info.last['arguements']['bounded_by'][0].to_i,
-                                :height => info.last['arguements']['bounded_by'][1].to_i
-                              ) do
-            print_lines(pdf, invoice.send(info.last['method'].to_sym) )
-          end
+          print_multiple_lines(pdf, invoice, info)
         else
           print_line(pdf, invoice.send(info.last['method'].to_sym), info.last )
         end
       end
+    end
+  end
+
+  def print_multiple_lines(pdf, invoice, info)
+    pdf.bounding_box(   [  info.last['arguements']['bounded_at'][0].to_i,
+                          info.last['arguements']['bounded_at'][1].to_i
+                        ],
+                          :width => info.last['arguements']['bounded_by'][0].to_i,
+                          :height => info.last['arguements']['bounded_by'][1].to_i
+                        ) do
+      print_lines(pdf, invoice.send(info.last['method'].to_sym) )
     end
   end
 end
