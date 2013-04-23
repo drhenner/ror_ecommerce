@@ -275,7 +275,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def self.with_order_number(order_number)
-    where("orders.number = ?", order_number])
+    where("orders.number = ?", order_number)
   end
   private
 
