@@ -12,9 +12,6 @@ FactoryGirl.define do
     state    'registered'
     birth_date  Time.now.to_date
   end
-  factory :registered_user_with_credit, :parent => :registered_user do
-    state    'registered_with_credit'
-  end
 
   factory :admin_user, :parent => :user do
     before(:create) do |u|

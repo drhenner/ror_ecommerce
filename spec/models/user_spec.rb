@@ -69,10 +69,6 @@ describe User, '.registered_user?' do
     user = registered_user_factory
     user.registered_user?.should be_true
   end
-  it "should return true for a user registered_with_credit" do
-    user = registered_with_credit_user_factory
-    user.registered_user?.should be_true
-  end
 end
 
 describe User, "instance methods" do
@@ -220,13 +216,9 @@ describe User, "instance methods" do
   end
 
   context ".registered_user?" do
-    # registered? || registered_with_credit?
+    # registered? 
     it 'should be true for a registered user' do
       @user.register!
-      @user.registered_user?.should be_true
-    end
-    it 'should be true for a registered_with_credit user' do
-      @user.state = 'registered_with_credit'
       @user.registered_user?.should be_true
     end
 
