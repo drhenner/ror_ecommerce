@@ -19,6 +19,7 @@
         <p>Complete Ruby on Rails Ecommerce platform</p>
 
 
+
         <p class="view">
           <a href="http://drhenner.github.com/ror_ecommerce/index.html">Getting Started</a><br/>
           <a href="http://drhenner.github.com/ror_ecommerce/config.html">Config</a><br/>
@@ -45,20 +46,34 @@
       <section>
         <h1>ROR Ecommerce</h1>
 
-<h2>Addresses</h2>
-
+<h2>Referrals</h2>
 <p>
- There really isn't anything special about addresses themselves.
- However <strong>PLEASE PLEASE PLEASE</strong> never ever implement @address.delete or @address.destroy or
-   even @address.update_attributes.  You should only create and inactivate addresses.
-</p><p>
-   This means EDIT == create and inactivate the old address.  Otherwise Orders could mistakenly change addresses after the order is complete.
+  The process of Referrals is simply:
+
+  <ol>
+    <li>User submits and email address of a person</li>
+    <li>Person gets and email</li>
+    <li>Person signs up with the same email address</li>
+    <li>User gets store credit</li>
+  </ol>
+
+  There are 4 primary models used for the referral process.
+
+  <ul>
+    <li>Users </li>
+    <li>Referrals (stores the relationship between the user that gives the referral and the person being referred)</li>
+    <li>Referral Programs (Is the program that the user is credited with is the referral turns into a customer.  This model can be built out so you need X number of referrals to qualify for the bonus)</li>
+    <li>Referral Bonus (This is just the amount the referral will pay out after the referral turns into a paying customer)</li>
+  </ul>
+</p>
+<p>
+  Also if you are using referrals be sure to have a cron job or background job giving store credit where appropriate.  A sample cron job can be found at lib/tasks/referrals.rake.
 </p>
 
-<p>
-  Please read the following blog to understand the logic.  THIS IS EXTREMELY IMPORTANT!
-
-  <a href="http://www.ror-e.com/posts/27-e-commerce-tips-1-0"> <strong>http://www.ror-e.com/posts/27-e-commerce-tips-1-0</strong></a>
+</p><p>
+ After a user signs up for the app there is a after_create event called on the user.  "set_referral_registered_at"
+ <br/>
+ If "set_referral_registered_at" finds a referral associated with the user's email address the referring user will see that the user registered.  This does not trigger any bonus.  Once this User makes a purchase, the "purchased_at" attribute is set and the referring user will get credit the next time the `lib/tasks/referrals.rake` job is run.
 </p>
 
       </section>
@@ -69,3 +84,4 @@
 
   </body>
 </html>
+
