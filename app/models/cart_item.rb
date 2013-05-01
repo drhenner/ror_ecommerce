@@ -21,6 +21,9 @@ class CartItem < ActiveRecord::Base
   belongs_to :cart
   belongs_to :variant
 
+  validates :item_type_id,  :presence => true
+  validates :variant_id,    :presence => true
+
   QUANTITIES = [1,2,3,4]
 
   before_save :inactivate_zero_quantity
