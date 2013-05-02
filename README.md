@@ -15,7 +15,7 @@ This solution includes an Admin for *Purchase Orders*, *Product creation*, *Ship
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
 
-The project has *Solr searching*, *Compass* and *Blueprint for CSS* and uses *jQuery*.
+The project has *Solr searching*, *Compass* and *Zurb Foundation for CSS* and uses *jQuery*.
 The gem list is quite large and the project still has a large wish list.
 In spite of that, it is currently the most complete Rails solution, and it will only get better.
 
