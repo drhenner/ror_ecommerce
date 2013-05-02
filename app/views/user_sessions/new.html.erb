@@ -73,19 +73,19 @@
                   <%= form.text_field :first_name %>
               </li>
               <li>
-                  <%=form.label :last_name %>
+                  <%=form.label :last_name, 'Last name*' %>
                   <%= form.text_field :last_name %>
               </li>
               <li>
-                  <%=form.label :email, 'Email' %>
+                  <%=form.label :email, 'Email*' %>
                   <%= form.email_field :email, :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
               <li>
-                  <%=form.label :password, 'Password' %>
+                  <%=form.label :password, 'Password*' %>
                   <%= form.password_field :password, :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
               <li>
-                  <%=form.label :password_confirmation, 'Confirm' %>
+                  <%=form.label :password_confirmation, 'Confirm*' %>
                   <%= form.password_field :password_confirmation, :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
          </ol>
