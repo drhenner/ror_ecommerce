@@ -41,6 +41,7 @@ Hadean::Application.configure do
                                 'login.css',
                                 'markdown.css',
                                 'myaccount.css',
+                                'normalize.css',
                                 'pikachoose_product.css',
                                 'product_page.css',
                                 'products_page.css',
