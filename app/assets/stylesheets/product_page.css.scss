@@ -17,9 +17,10 @@ $error_background         : #FBE3E4;
     .product_content {
       display:block;
       .product_content_price {
-        text-align:right;
+        text-align:left;
         color:#717171;
         font-size:2.0em;
+        margin-bottom:1em;
       }
     }
     .product_content_description {

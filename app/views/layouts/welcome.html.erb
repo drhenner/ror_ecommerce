@@ -6,6 +6,7 @@
   </title>
   <link rel="shortcut icon" href="/assets/favicon.ico" />
 
+  <%= stylesheet_link_tag "normalize.css" %>
   <%= stylesheet_link_tag "foundation" %>
   <%= stylesheet_link_tag 'site/app.css' %>
     <!--[if lt IE 8]
@@ -54,7 +55,9 @@
     }
   );
   </script>
-
+  <script>
+    $(document).foundation();
+  </script>
 </body>
   <%= render 'shared/google_analytics' unless @disable_ga %>
   <%= yield :below_body %>

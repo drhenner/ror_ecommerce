@@ -51,7 +51,11 @@
               </li>
               <li class="divider"></li>
               <% session_cart.shopping_cart_items.each do |item| %>
-                <li> <%= item.name %> </li>
+                <li>
+                  <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
+                     <%= item.name %>
+                  <% end %>
+                </li>
               <% end %>
             <% else %>
               <li class="divider"></li>

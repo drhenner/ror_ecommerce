@@ -1,24 +1,20 @@
-<% content_for :metadata do -%>
-  <meta name="keywords"     content="<%= @product.meta_keywords %>">
-  <meta name="description"  content="<%= @product.meta_description %>">
-<% end %>
 
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'product_page.css' %>
   <%= stylesheet_link_tag 'pikachoose_product.css' %>
 <% end %>
+<div class=''>
+<div id='product' class=''>
 
-<div id='product' class='clearfix'>
-
-  <div class=' float-left last'>
+  <div class=' clearfix'>
     <% if @product.active_variants.empty? %>
-      <div id='no-variant-available' class=' four large-4  last'>
+      <div id='no-variant-available' class=' four  last'>
         Sorry this product is not currently available.
       </div>
     <% else %>
 
 
-      <div id='left_product_wrapper' class='columns five large-5'>
+      <div id='left_product_wrapper' class='columns five'>
          <!-- <ul class='horizontal-list'>
             <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
           </ul> -->
@@ -29,30 +25,38 @@
                           :class => 'upper_left_overlay'
                            ) %>
           <% end %>
-          <ul id="pikame" class="jcarousel-skin-pika">
-            <% @product.images.each do |image|%>
-              <li>
-                <a><%= image_tag(image.photo.url(:large)) %></a>
-              </li>
-            <% end %>
-            <% if @product.images.empty? %>
+          <% if @product.images.size == 1 %>
+            <ul>
+              <% @product.images.each do |image|%>
+                <li>
+                  <a><%= image_tag(image.photo.url(:large)) %></a>
+                </li>
+              <% end %>
+            </ul>
+          <% elsif @product.images.size == 0 %>
+            <ul>
               <li>
                 <a><%= image_tag(@product.featured_image(:large)) %></a>
               </li>
-            <% end %>
-          </ul>
+            </ul>
+          <% else %>
+            <ul id="pikame" class="jcarousel-skin-pika">
+              <% @product.images.each do |image|%>
+                <li>
+                  <a><%= image_tag(image.photo.url(:large)) %></a>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
 
       </div>
-      <div id='right_2_product_wrapper' class='six large-6 columns last'>
+      <div id='right_2_product_wrapper' class='six columns last'>
           <div id='right_product_wrapper' class=''>
             <div class='product_title_name'><%= @product.name %></div>
             <% if @product.active_variants.count > 0 %>
               <div class='product_content'>
                 <div class='product_content_price'>
                   <%= number_to_currency @product.active_variants.first.price %>
-                </div>
-                <div class='product_content_description'>
-                  <%= raw @product.description %>
                 </div>
 
               </div>
@@ -61,26 +65,19 @@
                   <div id='variant_<%= variant.id %>'
                        class='button variant_select secondary <%= 'selected_variant' if i == 0 %>'
                        data-variant_id='<%= variant.id %>'>
-                    <%#= raw variant.primary_property.try(:property_name)  %> <%= raw variant.product_name %>
+                    <%= raw variant.product_name %>
                   </div>
                 <% end %>
-                  <div  class='properties_inner_wrapper clearfix' >
-                    <% @product.active_variants.each_with_index do |var, i| %>
-                      <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
-                        <ul>
-                          <% var.variant_properties.each do |prop| %>
-                            <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
-                          <% end %>
-                        </ul>
-                      </div>
-                    <% end %>
+                  <div  class='properties_inner_wrapper ' >
                     <hr/>
                     <%= form_for  @cart_item,
                                   :url  => shopping_cart_items_path(@cart_item),
-                                  :html => { :id => 'new_cart_item' } do |f| %>
+                                  :html => { :id => 'new_cart_item', :class => 'custom' } do |f| %>
                         <%= f.hidden_field :variant_id %>
+                        <div class='four'>
                         Quantity:
-                        <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
+                        <%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => ' '} %>
+                        </div>
                         <div class='add_to_cart_wrapper '>
                           <% unless @product.active_variants.empty? %>
                             <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'button' %>
@@ -88,11 +85,36 @@
                         </div>
                     <% end %>
                   </div>
+                  <div  class='clearfix' style='margin-bottom:20px;' >&nbsp;</div>
               </div>
-              <div id='product_your_properties'>
-                &nbsp;
-                <%= render :partial => 'properties' %>
+
+              <div id='product_tabs'  class='' style='padding-bottom:5px;'>
+                <div class="section-container tabs" style='height:100%;' data-section data-options="deep_linking: true; ">
+                  <section class="section">
+                    <p class="title"><a >Product</a></p>
+                    <div class="content">
+                      <div><%= raw @product.description %></div>
+                    </div>
+                  </section>
+                  <section class="section">
+                    <p class="title"><a >Properties</a></p>
+                    <div class="content">
+                      <div class=''>
+                        <% @product.active_variants.each_with_index do |var, i| %>
+                          <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
+                            <ul class='vertical-list'>
+                              <% var.variant_properties.each do |prop| %>
+                                <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </section>
+                </div>
               </div>
+
             <% end %>
             </div>
           </div>
@@ -100,7 +122,9 @@
 
     <% end %>
   </div>
-<div class='clearfix' style='height:50px;'>&nbsp</div>
+
+</div>
+&nbsp;<div class='clearfix' style='height:50px;'>&nbsp</div>
 </div>
 <div id='generic-dialog'></div>
 
@@ -109,10 +133,13 @@
   <%= javascript_include_tag 'jquery.jcarousel.js' %>
   <%= javascript_include_tag 'jquery.pikachoose.full.js' %>
 
+  <% if @product.images.size > 1 %>
   <script>
     $(document).ready(function (){
         $("#pikame").PikaChoose({autoPlay:true, carousel:false, carouselVertical:false});
         $('#pikame').data('pikachoose').Pause();
     });
   </script>
+  <% end %>
+  <%= javascript_include_tag 'product_page.js' %>
 <% end %>

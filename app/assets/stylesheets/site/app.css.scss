@@ -23,6 +23,25 @@
   }
 }
 
+ul {
+  list-style: none;
+  &.vertical-list {
+    display: block;
+    li {float: none;}
+    label {
+      display: inline-block;
+      width: 150px;
+      &.long {
+        width: 250px;
+      }
+    }
+    &.compact {
+      label {
+        width: 70px;
+      }
+    }
+  }
+}
 #footer_wrapper {
   color:#333;
   #main-footer-tabs {margin-top:18px;}
