@@ -1,6 +1,7 @@
 class WishItemsController < ApplicationController
+  before_filter :require_user
+
   def index
-    redirect_to login_url and return unless current_user
   end
 
   # DELETE /wish_items/1
