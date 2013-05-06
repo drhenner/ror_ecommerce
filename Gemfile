@@ -1,13 +1,14 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0.rc1'
 
 group :assets do
   #gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier', '>= 1.0.3'
 end
-  gem 'sass-rails', "  ~> 3.2.3"
+  #gem 'sass-rails'#, "  ~> 3.2.3"
+  gem 'sass-rails',   '~> 4.0.0.beta1'
 
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
@@ -17,12 +18,15 @@ gem 'aws-sdk'
 gem 'bluecloth',     '~> 2.1.0'
 gem 'cancan', '~> 1.6.8'
 gem 'chronic'
-gem 'compass', '~> 0.12.0'
-gem 'compass-rails'
+#gem 'compass'
+#gem 'compass-rails', :git => 'git://github.com/Compass/compass-rails.git', :branch => 'rails4'
+gem 'compass-rails', :git => 'git://github.com/milgner/compass-rails.git', :branch => 'rails4'
+
 #  gem 'dalli', '~> 1.0.2'
 
 gem 'dynamic_form'
-gem "friendly_id", "~> 4.0"
+#gem "friendly_id", "~> 4.0"
+gem "friendly_id", :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 gem 'json', '~>1.7.7'
@@ -32,6 +36,7 @@ gem 'nested_set', '~> 1.7.0'
 gem 'nokogiri', '~> 1.5.0'
 gem 'paperclip', '~> 3.0'
 gem 'prawn', '~> 0.12.0'
+gem 'protected_attributes'
 
 gem "rails3-generators", :git => "https://github.com/neocoin/rails3-generators.git"
 gem "rails_config"
