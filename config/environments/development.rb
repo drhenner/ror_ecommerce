@@ -1,4 +1,7 @@
 Hadean::Application.configure do
+  # Rails 4
+  config.eager_load = false
+
   # Settings specified here will take precedence over those in config/environment.rb
 
   # Raise exception on mass assignment protection for Active Record models

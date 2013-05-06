@@ -1,4 +1,8 @@
 Hadean::Application.configure do
+  # Rails 4
+  config.eager_load = true
+  config.assets.js_compressor = :uglifier
+
   # Settings specified here will take precedence over those in config/environment.rb
 
   config.force_ssl = true
