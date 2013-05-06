@@ -36,6 +36,8 @@
 #
 
 class Address < ActiveRecord::Base
+  attr_accessible :first_name, :last_name, :address1, :address2, :city, :state_name, :zip_code, :address_type_id#, :active
+
   belongs_to  :state
   belongs_to  :country
   belongs_to  :address_type
@@ -57,6 +59,7 @@ class Address < ActiveRecord::Base
   before_validation :sanitize_data
 
   attr_accessor :replace_address_id # if you are updating an address set this field.
+  before_create :default_to_active
   before_save :replace_address, if: :replace_address_id
   after_save  :invalidate_old_defaults
 
@@ -186,6 +189,10 @@ class Address < ActiveRecord::Base
       sanitize_city
       sanitize_zip_code
       sanitize_address
+    end
+
+    def default_to_active
+      self.active ||= true
     end
 
     def sanitize_zip_code
