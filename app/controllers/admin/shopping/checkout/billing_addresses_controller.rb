@@ -23,7 +23,7 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
   # POST /shopping/addresses.xml
   def create
     if params[:address].present?
-      @billing_address = checkout_user.addresses.new(params[:address])
+      @billing_address = checkout_user.addresses.new(allowed_params)
       @billing_address.default = true          if checkout_user.default_billing_address.nil?
       @billing_address.billing_default = true  if checkout_user.default_billing_address.nil?
       @billing_address.save
@@ -46,6 +46,10 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
   end
 
   private
+
+  def allowed_params
+    params.require(:address).permit(:first_name, :last_name, :address1, :address2, :city, :state_id, :state_name, :zip_code, :default, :billing_default, :country_id)
+  end
 
   def form_info
     @billing_addresses = session_admin_cart.customer.billing_addresses

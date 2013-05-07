@@ -18,7 +18,7 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
     load_info
 
     @return_authorization = ReturnAuthorization.new
-    @return_authorization.comments << (Comment.new(:user_id => @order.user_id, :created_by => current_user.id))
+    @return_authorization.comments << (Comment.new({:user_id => @order.user_id, :created_by => current_user.id}.permit(:user_id, :created_by)))
     form_info
   end
 

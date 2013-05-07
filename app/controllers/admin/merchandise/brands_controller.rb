@@ -12,7 +12,7 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
   end
 
   def create
-    @brand = Brand.new(params[:brand])
+    @brand = Brand.new(allowed_params)
     if @brand.save
       flash[:notice] = "Successfully created brand."
       redirect_to admin_merchandise_brand_url(@brand)
@@ -27,7 +27,7 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
 
   def update
     @brand = Brand.find(params[:id])
-    if @brand.update_attributes(params[:brand])
+    if @brand.update_attributes(allowed_params)
       flash[:notice] = "Successfully updated brand."
       redirect_to admin_merchandise_brand_url(@brand)
     else
@@ -45,6 +45,12 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
     end
 
     redirect_to admin_merchandise_brands_url
+  end
+
+  private
+
+  def allowed_params
+    params.require(:brand).permit(:name)
   end
 
 end
