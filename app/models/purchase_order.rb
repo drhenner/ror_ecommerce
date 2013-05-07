@@ -51,8 +51,9 @@ class PurchaseOrder < ActiveRecord::Base
       transition all => :received
     end
 
+    # mark as complete even though variants might not have been receive & payment was not made
     event :mark_as_complete do
-      transition all => :received
+      transition :from => [:pending, :incomplete], :to => :received
     end
   end
 
