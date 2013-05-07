@@ -51,7 +51,7 @@ class Shopping::AddressesController < Shopping::BaseController
         # the form needs to have an id
         @form_address = current_user.addresses.find(params[:id])
         # the form needs to reflect the attributes to customer entered
-        @form_address.attributes = params[:address]
+        @form_address.attributes = allowed_params
         @states     = State.form_selector
         render :action => "edit"
       end
