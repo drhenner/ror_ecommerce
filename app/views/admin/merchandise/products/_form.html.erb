@@ -60,7 +60,7 @@
   <div class='span-6 last'>
     <%#= form.select :product_type_id, @select_product_types %>
     <%= form.select :product_type_id,
-                    nested_set_options(ProductType, ProductType.new) {|i, level| "#{'-' * level} #{i.name}" },
+                    nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
                     { :include_blank => true } %>
   </div>
 
