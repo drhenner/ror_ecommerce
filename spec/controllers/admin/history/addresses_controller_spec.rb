@@ -26,9 +26,12 @@ describe Admin::History::AddressesController do
     response.should render_template(:new)
   end
 
+#  params.require(:admin_history_address).permit(:address_type_id, :first_name, :last_name, :address1, :address2, :city, :state_id, :state_name, :zip_code, :phone_id, :alternative_phone, :default, :billing_default, :active, :country_id)
+
   it "create action should render new template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
-    post :create, :order_id => @order.number
+    address = build(:address)
+    post :create, :order_id => @order.number, :admin_history_address => address.attributes
     response.should render_template(:new)
   end
 

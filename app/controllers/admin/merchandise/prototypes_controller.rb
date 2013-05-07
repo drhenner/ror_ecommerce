@@ -36,7 +36,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def update
     @prototype = Prototype.find(params[:id])
-
+@prototype.property_ids = params[:prototype][:property_ids]
     if @prototype.update_attributes(allowed_params)
       redirect_to :action => :index
     else

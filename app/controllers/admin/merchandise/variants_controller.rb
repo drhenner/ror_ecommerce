@@ -61,7 +61,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:variant).permit(:product_id, :sku, :name, :price, :cost, :deleted_at, :master, :brand_id, :inventory_id )
+    params.require(:variant).permit(:sku, :name, :price, :cost, :deleted_at, :master, :brand_id, :inventory_id )
   end
 
     def form_info

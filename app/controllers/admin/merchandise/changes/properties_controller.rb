@@ -17,7 +17,7 @@ class Admin::Merchandise::Changes::PropertiesController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:product).permit(product_properties_attributes: [:property_id, :description, :position, '_destroy', :id] )
+    params.require(:product).permit!
   end
 
   def all_properties

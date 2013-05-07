@@ -51,15 +51,19 @@ describe Admin::Generic::CouponsController do
 
   it "update action should render edit template when model is invalid" do
     @coupon = create(:coupon)
+    attribs =  @coupon.attributes
+    attribs.delete('type')
     CouponValue.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @coupon.id, :coupon => @coupon.attributes.delete(:type)
+    put :update, :id => @coupon.id, :coupon => attribs
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @coupon = create(:coupon)
+    attribs =  @coupon.attributes
+    attribs.delete('type')
     CouponValue.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @coupon.id, :coupon => @coupon.attributes.delete(:type)
+    put :update, :id => @coupon.id, :coupon => attribs
     response.should redirect_to(admin_generic_coupon_url(assigns[:coupon]))
   end
 

@@ -14,7 +14,7 @@ class Admin::CustomerService::CommentsController < Admin::CustomerService::BaseC
   end
 
   def create
-    @comment = current_user.customer_service_comments.new(params[:comment])
+    @comment = current_user.customer_service_comments.new(allowed_params)
     @comment.user_id = customer.id
     @comment.created_by = current_user.id
     if @comment.save
@@ -25,6 +25,10 @@ class Admin::CustomerService::CommentsController < Admin::CustomerService::BaseC
   end
 
   private
+
+    def allowed_params
+      params.require(:comment).permit(:note)
+    end
 
     def customer
       @customer ||= User.find(params[:user_id])

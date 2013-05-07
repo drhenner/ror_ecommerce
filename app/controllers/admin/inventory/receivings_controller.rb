@@ -28,7 +28,7 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
 private
 
   def allowed_params
-    params.require(:purchase_order).permit(:supplier_id, :invoice_number, :tracking_number, :notes, :receive_po, :ordered_at, :estimated_arrival_on, :created_at, :updated_at, :total_cost)
+    params.require(:purchase_order).permit(:invoice_number, :tracking_number, :notes, :receive_po)
   end
 
   def pagination_rows

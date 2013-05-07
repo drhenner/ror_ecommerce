@@ -97,7 +97,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   private
 
     def allowed_params
-      params.require(:product).permit(:name, :description, :product_keywords, :product_type_id, :prototype_id, :shipping_category_id, :permalink, :available_at, :deleted_at, :meta_keywords, :meta_description, :featured, :description_markup, :brand_id)
+      params.require(:product).permit(:name, :description, :product_keywords, :set_keywords, :product_type_id, :prototype_id, :shipping_category_id, :permalink, :available_at, :deleted_at, :meta_keywords, :meta_description, :featured, :description_markup, :brand_id)
     end
 
     def form_info
