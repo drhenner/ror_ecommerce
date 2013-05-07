@@ -31,12 +31,14 @@ gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 gem 'json', '~>1.7.7'
 
-gem 'nested_set', '~> 1.7.0'
+#gem 'nested_set'#, '~> 1.7.1'
+gem 'awesome_nested_set', :git => "git@github.com:collectiveidea/awesome_nested_set.git", :branch => 'rails4'
+
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
 gem 'paperclip', '~> 3.0'
 gem 'prawn', '~> 0.12.0'
-gem 'protected_attributes'
+#gem 'protected_attributes'
 
 gem "rails3-generators", :git => "https://github.com/neocoin/rails3-generators.git"
 gem "rails_config"
@@ -46,7 +48,7 @@ gem 'rake', '~> 10.0.3'
 
 # gem 'resque', require: 'resque/server'
 
-gem 'state_machine', '~> 1.1.2'
+gem 'state_machine', '~> 1.2.0'
 #gem 'sunspot_solr', '~> 2.0.0'
 #gem 'sunspot_rails', '~> 2.0.0'
 gem 'will_paginate', '~> 3.0.4'
@@ -73,7 +75,7 @@ end
 group :test, :development do
   gem 'capybara', "~> 1.1"#, :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
-  gem 'database_cleaner'
+  gem 'database_cleaner', :git => 'git@github.com:bmabey/database_cleaner.git'
 end
 
 group :test do
