@@ -14,7 +14,7 @@ class Admin::Generic::DealsController < Admin::Generic::BaseController
   end
 
   def create
-    @deal = Deal.new(params[:deal])
+    @deal = Deal.new(allowed_params)
     if @deal.save
       redirect_to [:admin, :generic, @deal], :notice => "Successfully created deal."
     else
@@ -28,7 +28,7 @@ class Admin::Generic::DealsController < Admin::Generic::BaseController
 
   def update
     @deal = Deal.find(params[:id])
-    if @deal.update_attributes(params[:deal])
+    if @deal.update_attributes(allowed_params)
       redirect_to [:admin, :generic, @deal], :notice  => "Successfully updated deal."
     else
       render :edit
@@ -43,6 +43,10 @@ class Admin::Generic::DealsController < Admin::Generic::BaseController
   end
 
   private
+
+    def allowed_params
+      params.require(:deal).permit(:buy_quantity, :get_percentage, :deal_type_id, :product_type_id, :get_amount, :deleted_at)
+    end
 
     def product_types
       @select_product_types     ||= ProductType.all.collect{|pt| [pt.name, pt.id]}

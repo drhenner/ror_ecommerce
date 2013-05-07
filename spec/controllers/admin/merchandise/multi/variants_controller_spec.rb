@@ -17,7 +17,7 @@ describe Admin::Merchandise::Multi::VariantsController do
   it "update action should render edit template when model is invalid" do
     @product = create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
-    put :update, :product_id => @product.id
+    put :update, :product_id => @product.id, :product => {:variants_attributes => {'0'=>[ :product_id => '1', :sku => '432', :name => 'testname', :price => '16.75', :cost => '16.00', :master => true, :brand_id => 1]} }
     response.should render_template(:edit)
   end
 
@@ -25,7 +25,7 @@ describe Admin::Merchandise::Multi::VariantsController do
     @product = create(:product)
     Product.any_instance.stubs(:valid?).returns(true)
     Variant.any_instance.stubs(:valid?).returns(true)
-    put :update, :product_id => @product.id
+    put :update, :product_id => @product.id, :product => {:variants_attributes => {'0'=>[ :product_id => '1', :sku => '432', :name => 'testname', :price => '16.75', :cost => '16.00', :master => true, :brand_id => 1]} }
     response.should redirect_to(admin_merchandise_product_url(@product))
   end
 end

@@ -13,7 +13,7 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
   end
 
   def create
-    @coupon = Coupon.new(params[:coupon])
+    @coupon = Coupon.new(allowed_params)
     @coupon.type = params[:c_type]
     @coupon.errors.add(:base, 'please select coupon type') if params[:c_type].blank?
     if @coupon.errors.size == 0 && @coupon.save
@@ -32,7 +32,7 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
 
   def update
       @coupon = Coupon.find(params[:id])
-    if @coupon.update_attributes(params[:coupon])
+    if @coupon.update_attributes(allowed_params)
       flash[:notice] = "Successfully updated coupon."
       redirect_to admin_generic_coupon_url(@coupon)
     else
@@ -49,6 +49,10 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
   end
 
   private
+
+  def allowed_params
+    params.require(:coupon).permit(:code, :amount, :minimum_value, :percent, :description, :combine, :starts_at, :expires_at)
+  end
 
   def form_info
     @coupon_types = Coupon::COUPON_TYPES

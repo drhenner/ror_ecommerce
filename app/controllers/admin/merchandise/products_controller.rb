@@ -26,7 +26,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = Product.new(params[:product])
+    @product = Product.new(allowed_params)
 
     if @product.save
       flash[:notice] = "Success, You should create a variant for the product."
@@ -48,7 +48,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   def update
     @product = Product.find(params[:id])
 
-    if @product.update_attributes(params[:product])
+    if @product.update_attributes(allowed_params)
       redirect_to admin_merchandise_product_url(@product)
     else
       form_info
@@ -95,6 +95,10 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   private
+
+    def allowed_params
+      params.require(:product).permit(:name, :description, :product_keywords, :product_type_id, :prototype_id, :shipping_category_id, :permalink, :available_at, :deleted_at, :meta_keywords, :meta_description, :featured, :description_markup, :brand_id)
+    end
 
     def form_info
       @prototypes               = Prototype.all.collect{|pt| [pt.name, pt.id]}

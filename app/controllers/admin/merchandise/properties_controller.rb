@@ -11,7 +11,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   end
 
   def create
-    @property = Property.new(params[:property])
+    @property = Property.new(allowed_params)
     if @property.save
       redirect_to :action => :index
     else
@@ -26,7 +26,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
 
   def update
     @property = Property.find(params[:id])
-    if @property.update_attributes(params[:property])
+    if @property.update_attributes(allowed_params)
       redirect_to :action => :index
     else
       render :action => :edit
@@ -42,6 +42,10 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   end
 
   private
+
+  def allowed_params
+    params.require(:property).permit(:identifing_name, :display_name, :active)
+  end
 
   def sort_column
     Property.column_names.include?(params[:sort]) ? params[:sort] : "identifing_name"
