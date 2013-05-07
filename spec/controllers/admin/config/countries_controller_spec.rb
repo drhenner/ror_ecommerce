@@ -7,7 +7,7 @@ describe Admin::Config::CountriesController do
   before(:each) do
     activate_authlogic
 
-    @user = create_admin_user
+    @user = create_super_admin_user
     login_as(@user)
   end
 
