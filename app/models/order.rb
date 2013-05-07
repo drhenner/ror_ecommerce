@@ -53,17 +53,17 @@ class Order < ActiveRecord::Base
   has_many   :order_items, :dependent => :destroy
   has_many   :shipments
   has_many   :invoices
-  has_many   :completed_invoices,  :class_name => 'Invoice', :conditions => ['state = ? OR state = ?', 'authorized', 'paid']
-  has_many   :authorized_invoices, :class_name => 'Invoice', :conditions => ['state = ?', 'authorized']
-  has_many   :paid_invoices      , :class_name => 'Invoice', :conditions => ['state = ?', 'paid']
-  has_many   :canceled_invoices      , :class_name => 'Invoice', :conditions => ['state = ?', 'canceled']
+  has_many   :completed_invoices,   -> { where(state: ['authorized', 'paid']) },  class_name: 'Invoice'
+  has_many   :authorized_invoices,  -> { where(state: 'authorized') },      class_name: 'Invoice'
+  has_many   :paid_invoices      ,  -> { where(state: 'paid') },            class_name: 'Invoice'
+  has_many   :canceled_invoices   , ->  { where(state: 'canceled') }  ,     class_name: 'Invoice'
   has_many   :return_authorizations
-  has_many   :comments, :as => :commentable
+  has_many   :comments, as: :commentable
 
   belongs_to :user
   belongs_to :coupon
-  belongs_to   :ship_address, :class_name => 'Address'
-  belongs_to   :bill_address, :class_name => 'Address'
+  belongs_to   :ship_address, class_name: 'Address'
+  belongs_to   :bill_address, class_name: 'Address'
 
   before_validation :set_email, :set_number
   after_create      :save_order_number
@@ -429,8 +429,6 @@ class Order < ActiveRecord::Base
   end
 
   # remove the variant from the order items in the order
-  #   THIS METHOD IS COMPLEX FOR A REASON!!!
-  #   USING slice! ALLOWS THE ORDER_ITEMS TO BE DESTROYED AND UNASSOCIATED FROM THE ORDER OBJECT
   #
   # @param [Variant] variant to add
   # @param [Integer] final quantity that should be in the order
@@ -442,12 +440,11 @@ class Order < ActiveRecord::Base
     self.order_items.each_with_index do |order_item, i|
       if order_item.variant_id == variant.id
         current_qty = current_qty + 1
-        items_to_remove << i  if (current_qty - final_quantity) > 0
+        items_to_remove << order_item.id  if (current_qty - final_quantity) > 0
       end
     end
-    items_to_remove.reverse.each do |i|
-      self.order_items.slice!(i ,1).first.destroy # remove from order.order_items object and destroy from DB
-    end
+    OrderItem.where(id: items_to_remove).map(&:destroy) unless items_to_remove.empty?
+    self.order_items.reload
   end
 
   ## determines the order id from the order.number

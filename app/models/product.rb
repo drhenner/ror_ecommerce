@@ -38,16 +38,16 @@ class Product < ActiveRecord::Base
   belongs_to :shipping_category
 
   has_many :product_properties
-  has_many :properties,          :through => :product_properties
+  has_many :properties,         through: :product_properties
 
   has_many :variants
-  has_many :images, :as         => :imageable,
-                    :order      => :position,
-                    :dependent  => :destroy
+  has_many :images, -> {order(:position)},
+                    as:        :imageable,
+                    dependent: :destroy
 
-  has_many :active_variants,
-    :class_name => 'Variant',
-    :conditions => ["variants.deleted_at IS NULL", true]
+  has_many :active_variants, -> { where(deleted_at: nil) },
+    class_name: 'Variant'
+
 
   before_validation :sanitize_data
   before_validation :not_active_on_create!, :on => :create
