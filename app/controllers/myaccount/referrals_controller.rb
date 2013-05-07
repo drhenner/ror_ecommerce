@@ -6,7 +6,7 @@ class Myaccount::ReferralsController < Myaccount::BaseController
   end
 
   def create
-    @referral = current_user.referrals.new(params[:referral])
+    @referral = current_user.referrals.new(allowed_params)
     @referral.referral_type_id = ReferralType::DIRECT_WEB_FORM_ID
     if @referral.save
       redirect_to myaccount_referrals_url, :notice => "Successfully created referral."
@@ -18,7 +18,7 @@ class Myaccount::ReferralsController < Myaccount::BaseController
 
   def update
     @referral = current_user.referrals.find(params[:id])
-    if @referral.update_attributes(params[:referral])
+    if @referral.update_attributes(allowed_params)
       redirect_to myaccount_referrals_url, :notice  => "Successfully updated referral."
     else
       @referrals = current_user.referrals.order(sort_column + " " + sort_direction).all
@@ -27,6 +27,10 @@ class Myaccount::ReferralsController < Myaccount::BaseController
   end
 
   private
+
+    def allowed_params
+      params.require(:referral).permit(:email, :name)
+    end
 
     def selected_myaccount_tab(tab)
       tab == 'referrals'

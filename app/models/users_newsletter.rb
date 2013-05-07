@@ -1,6 +1,5 @@
 class UsersNewsletter < ActiveRecord::Base
   require 'digest'
-  attr_accessible :newsletter_id, :user_id
   belongs_to :newsletter
   belongs_to :user
 

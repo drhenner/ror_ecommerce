@@ -1,5 +1,4 @@
 class Country < ActiveRecord::Base
-
   has_many :states
 
   belongs_to :shipping_zone

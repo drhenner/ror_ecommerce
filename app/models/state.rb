@@ -7,6 +7,7 @@
 #
 
 class State < ActiveRecord::Base
+
   belongs_to :country
   has_many   :addresses
   has_many   :tax_rates

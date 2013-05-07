@@ -36,7 +36,6 @@
 #
 
 class Address < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :address1, :address2, :city, :state_name, :zip_code, :address_type_id#, :active
 
   belongs_to  :state
   belongs_to  :country

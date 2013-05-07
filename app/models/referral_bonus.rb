@@ -8,7 +8,6 @@
 
 class ReferralBonus < ActiveRecord::Base
   self.table_name = 'referral_bonuses'
-  attr_accessible :amount, :name
   has_many :referral_programs
 
   validates :name,              :presence => true,       :length => { :maximum => 70 }
