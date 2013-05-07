@@ -20,6 +20,7 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
   # PUT /shopping/shipping_methods/1
   def update
     all_selected = true
+    redirect_to(shopping_orders_url) and return unless params[:shipping_category].present?
     params[:shipping_category].each_pair do |category_id, rate_id|#[rate]
       if rate_id
         items = OrderItem.includes([{:variant => :product}]).
