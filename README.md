@@ -10,7 +10,7 @@ Please look at the [homepage](http://www.ror-e.com) for more details.  Or take a
 ![RoR Ecommerce](http://ror-e.com/images/logo.png "ROR Ecommerce").
 
 This is a Rails e-commerce platform.
-ROR Ecommerce is a *Rails 3 application* with the intent to allow developers to create an ecommerce solution easily.
+ROR Ecommerce is a *Rails 4 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
@@ -19,7 +19,7 @@ The project has *Solr searching*, *Compass* and *Zurb Foundation for CSS* and us
 The gem list is quite large and the project still has a large wish list.
 In spite of that, it is currently the most complete Rails solution, and it will only get better.
 
-Please use *Ruby 1.9.3* and enjoy *Rails 3.2*.
+Please use *Ruby 1.9.3* and enjoy *Rails 4.0*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
