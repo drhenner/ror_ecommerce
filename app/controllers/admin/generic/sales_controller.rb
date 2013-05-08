@@ -50,7 +50,7 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
     end
 
     def products
-      @products ||= Product.select([:id, :name]).all.map{|p| [p.name, p.id]}
+      @products ||= Product.select([:id, :name]).map{|p| [p.name, p.id]}
     end
 
     def sort_column

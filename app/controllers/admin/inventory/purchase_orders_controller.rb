@@ -66,7 +66,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
 
   def form_info
     @select_suppliers = Supplier.all.collect{|s| [s.name, s.id]}
-    @select_variants  = Variant.includes(:product).all.collect {|v| [v.name_with_sku, v.id]}
+    @select_variants  = Variant.includes(:product).collect {|v| [v.name_with_sku, v.id]}
   end
 
   def sort_column

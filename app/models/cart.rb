@@ -144,8 +144,8 @@ class Cart < ActiveRecord::Base
   # @param [Integer, #optional] ItemType id that is being added to the cart
   # @return [CartItem] return the cart item that is added to the cart
   def add_variant(variant_id, customer, qty = 1, cart_item_type_id = ItemType::SHOPPING_CART_ID, admin_purchase = false)
-    items = shopping_cart_items.find_all_by_variant_id(variant_id)
-    variant = Variant.find(variant_id)
+    items = shopping_cart_items.where(variant_id: variant_id).to_a
+    variant = Variant.where(id: variant_id).first
     quantity_to_purchase = (variant.quantity_purchaseable(admin_purchase) < qty.to_i) ? variant.quantity_purchaseable(admin_purchase) : qty.to_i # if we have less than desired instock
 
     if admin_purchase && (quantity_to_purchase > 0)
@@ -188,8 +188,9 @@ class Cart < ActiveRecord::Base
   #
   # @param [Order]
   def mark_items_purchased(order)
-    CartItem.update_all("item_type_id = #{ItemType::PURCHASED_ID}",
-                        "id IN (#{(self.cart_item_ids + self.shopping_cart_item_ids).uniq.join(',')}) AND variant_id IN (#{order.variant_ids.join(',')})") if !order.variant_ids.empty?
+    CartItem.where(id: (self.cart_item_ids + self.shopping_cart_item_ids).uniq).
+             where(variant_id: order.variant_ids).
+             update_all("item_type_id = #{ItemType::PURCHASED_ID}") if !order.variant_ids.empty?
   end
 
   private

@@ -40,7 +40,7 @@ class State < ActiveRecord::Base
   # @param [none]
   # @return [ Array[Array] ]
   def self.form_selector
-    find(:all, :order => 'country_id ASC, abbreviation ASC').collect { |state| [state.abbrev_and_name, state.id] }
+    order('country_id ASC, abbreviation ASC').collect { |state| [state.abbrev_and_name, state.id] }
   end
 
   # filter all the states for a form for a given country_id
@@ -48,6 +48,6 @@ class State < ActiveRecord::Base
   # @param [Integer] country_id
   # @return [ Arel ]
   def self.all_with_country_id(c_id)
-    where(["country_id = ?", c_id])
+    where(country_id: c_id)
   end
 end

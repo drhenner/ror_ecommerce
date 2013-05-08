@@ -238,7 +238,7 @@ class User < ActiveRecord::Base
   ##  This method will one day grow into the products a user most likely likes.
   #   Storing a list of product ids vs cron each night might be the most efficent mode for this method to work.
   def might_be_interested_in_these_products
-    Product.limit(4).all
+    Product.limit(4)
   end
 
   # Returns the default billing address if it exists.   otherwise returns the shipping address

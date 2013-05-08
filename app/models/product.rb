@@ -211,7 +211,7 @@ class Product < ActiveRecord::Base
       if available_at_lt.present?
         where("products.available_at < ?", available_at_lt)
       else
-        scoped
+        all
       end
     end
 
@@ -219,14 +219,14 @@ class Product < ActiveRecord::Base
       if available_at_gt.present?
         where("products.available_at > ?", available_at_gt)
       else
-        scoped
+        all
       end
     end
     def self.shipping_category_filter(shipping_category_id)
       if shipping_category_id.present?
         where("products.shipping_category_id = ?", shipping_category_id)
       else
-        scoped
+        all
       end
     end
 
@@ -234,7 +234,7 @@ class Product < ActiveRecord::Base
       if product_type_id.present?
         where("products.product_type_id = ?", product_type_id)
       else
-        scoped
+        all
       end
     end
 
@@ -242,7 +242,7 @@ class Product < ActiveRecord::Base
       if name.present?
         where("products.name LIKE ?", "#{name}%")
       else
-        scoped
+        all
       end
     end
 
@@ -252,7 +252,7 @@ class Product < ActiveRecord::Base
       elsif active_state == false##  note nil != false
         where(['products.deleted_at IS NOT NULL AND products.deleted_at <= ?', Time.zone.now.to_s(:db)])
       else
-        scoped
+        all
       end
     end
     def create_content

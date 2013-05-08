@@ -6,8 +6,8 @@ class Country < ActiveRecord::Base
   validates :name,  :presence => true,       :length => { :maximum => 200 }
   validates :abbreviation,  :presence => true,       :length => { :maximum => 10 }
 
-  scope :active_countries, where(:active => true)
-  scope :inactive_countries, where(:active => false)
+  scope :active_countries,   -> {where(:active => true)}
+  scope :inactive_countries, -> {where(:active => false)}
 
   USA_ID    = 214
   CANADA_ID = 35

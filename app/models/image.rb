@@ -35,7 +35,8 @@ class Image < ActiveRecord::Base
 
   attr_accessor :photo_link
 
-  default_scope :order => 'position'
+  #default_scope :order => 'position'
+  default_scope -> { order('position') }
 
   # save the w,h of the original image (from which others can be calculated)
   after_post_process :find_dimensions

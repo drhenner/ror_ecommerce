@@ -78,17 +78,17 @@
           </li>
           <li>
             <%= submit_tag 'Daily',
-                                    :disable_with => "Please wait...",
+                                    :data  => { disable_with: 'Please wait...' },
                                     :class => 'button small report-submit-button' %>
           </li>
           <li>
             <%= submit_tag 'Weekly',
-                                      :disable_with => "Please wait...",
+                                      :data  => { disable_with: 'Please wait...' },
                                       :class => 'button small report-submit-button' %>
           </li>
           <li>
             <%= submit_tag 'Monthly',
-                                      :disable_with => "Please wait...",
+                                      :data  => { disable_with: 'Please wait...' },
                                       :class => 'button small report-submit-button' %>
           </li>
         </ul>

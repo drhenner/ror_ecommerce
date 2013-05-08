@@ -2,7 +2,7 @@ class Myaccount::ReferralsController < Myaccount::BaseController
   helper_method :sort_column, :sort_direction
   def index
     @referral  = Referral.new
-    @referrals = current_user.referrals.order(sort_column + " " + sort_direction).all
+    @referrals = current_user.referrals.order(sort_column + " " + sort_direction)
   end
 
   def create
@@ -11,7 +11,7 @@ class Myaccount::ReferralsController < Myaccount::BaseController
     if @referral.save
       redirect_to myaccount_referrals_url, :notice => "Successfully created referral."
     else
-      @referrals = current_user.referrals.order(sort_column + " " + sort_direction).all
+      @referrals = current_user.referrals.order(sort_column + " " + sort_direction)
       render :index
     end
   end
@@ -21,7 +21,7 @@ class Myaccount::ReferralsController < Myaccount::BaseController
     if @referral.update_attributes(allowed_params)
       redirect_to myaccount_referrals_url, :notice  => "Successfully updated referral."
     else
-      @referrals = current_user.referrals.order(sort_column + " " + sort_direction).all
+      @referrals = current_user.referrals.order(sort_column + " " + sort_direction)
       render :index
     end
   end
