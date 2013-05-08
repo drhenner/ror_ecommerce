@@ -96,6 +96,6 @@ group :test do
   end
   gem "autotest-growl"
   #gem "redgreen"
-  gem "ZenTest", '4.6.2'
+  gem "ZenTest", '4.9.1'#, '4.6.2'
 
 end
