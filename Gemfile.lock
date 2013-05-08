@@ -20,8 +20,17 @@ GIT
     database_cleaner (0.9.1)
 
 GIT
-  remote: git@github.com:collectiveidea/awesome_nested_set.git
-  revision: 1a476f3ad4135e5a87b04086f62a5e02f790c041
+  remote: git@github.com:christophemaximin/authlogic.git
+  revision: 4f7e8cf6219fc7c4e92dca02d4f3e3ca934ad25d
+  branch: fix_deprecated_with_scope
+  specs:
+    authlogic (3.2.1)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
+  remote: git@github.com:cschramm/awesome_nested_set.git
+  revision: d48ac57e3e7714d50c44a4ff3fd1a6fde1becafe
   branch: rails4
   specs:
     awesome_nested_set (2.1.6)
@@ -83,9 +92,6 @@ GEM
       activemodel
       fog
     atomic (1.1.9)
-    authlogic (3.3.0)
-      activerecord (>= 3.2)
-      activesupport (>= 3.2)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     autotest-growl (0.2.16)
@@ -291,7 +297,7 @@ DEPENDENCIES
   activemerchant (~> 1.29.3)
   american_date
   asset_sync
-  authlogic
+  authlogic!
   autotest (~> 4.4.6)
   autotest-growl
   autotest-rails-pure

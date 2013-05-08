@@ -12,7 +12,7 @@ end
 
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
-gem 'authlogic'#, "3.2.0"
+gem 'authlogic', :git => 'git@github.com:christophemaximin/authlogic.git', :branch => 'fix_deprecated_with_scope' #, "3.2.0"
 gem "asset_sync"
 gem 'aws-sdk'
 gem 'bluecloth',     '~> 2.1.0'
@@ -32,7 +32,7 @@ gem "jquery-rails"
 gem 'json', '~>1.7.7'
 
 #gem 'nested_set'#, '~> 1.7.1'
-gem 'awesome_nested_set', :git => "git@github.com:collectiveidea/awesome_nested_set.git", :branch => 'rails4'
+gem 'awesome_nested_set', :git => "git@github.com:cschramm/awesome_nested_set.git", :branch => 'rails4'
 
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
