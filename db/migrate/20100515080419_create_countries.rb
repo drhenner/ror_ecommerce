@@ -7,7 +7,6 @@ class CreateCountries < ActiveRecord::Migration
       t.boolean :active,       :default => false
     end
     add_index :countries, :name
-    add_index :countries, :shipping_zone_id
     add_index :countries, :active
     add_index :countries, [:shipping_zone_id, :active]
     if SETTINGS[:use_foreign_keys]
