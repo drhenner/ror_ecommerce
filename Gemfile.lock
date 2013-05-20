@@ -334,9 +334,9 @@ DEPENDENCIES
   rmagick
   rspec-rails (~> 2.12.2)
   rspec-rails-mocha
-  sass-rails (~> 4.0.0.beta1)
+  sass-rails (~> 4.0.0.rc1)
   sqlite3
   state_machine (~> 1.2.0)
-  uglifier (>= 1.0.3)
+  uglifier (>= 1.3.0)
   will_paginate (~> 3.0.4)
   yard
