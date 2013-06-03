@@ -1,5 +1,6 @@
 Hadean::Application.routes.draw do
 
+  resources :image_groups
   # mount Resque::Server.new, at: "/resque"
 
   namespace(:admin){ namespace(:customer_service){ resources :comments } }
@@ -175,6 +176,7 @@ Hadean::Application.routes.draw do
       namespace :images do
         resources :products
       end
+      resources :image_groups
       resources :properties
       resources :prototypes
       resources :brands

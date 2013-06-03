@@ -1,0 +1,19 @@
+<fieldset class='<%=  image_form.object.new_record? ? "new_fields" : "fields" %>' >
+  <% if !image_form.object.new_record? %>
+    <%= image_tag image_form.object.photo.url(:small) %>
+  <% end %>
+  <div style='float:right;'>
+    <%= remove_child_link('remove', image_form) %>
+  </div>
+  <label>Position</label>
+  <%= image_form.select       :position, [1,2,3,4,5,6,7,8] %>
+
+  <label>Caption</label>
+  <%= image_form.text_field   :caption %>
+
+  <label>Photo</label>
+  <%= image_form.file_field   :photo %>
+
+  <label>Link to image</label>
+  <%= image_form.text_field   :photo_from_link %>
+</fieldset>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130415034400) do
+ActiveRecord::Schema.define(version: 20130531184332) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -170,6 +170,15 @@ ActiveRecord::Schema.define(version: 20130415034400) do
   add_index "deals", ["buy_quantity"], name: "index_deals_on_buy_quantity", using: :btree
   add_index "deals", ["deal_type_id"], name: "index_deals_on_deal_type_id", using: :btree
   add_index "deals", ["product_type_id"], name: "index_deals_on_product_type_id", using: :btree
+
+  create_table "image_groups", force: true do |t|
+    t.string   "name",       null: false
+    t.integer  "product_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "image_groups", ["product_id"], name: "index_image_groups_on_product_id", using: :btree
 
   create_table "images", force: true do |t|
     t.integer  "imageable_id"

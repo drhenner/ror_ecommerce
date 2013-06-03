@@ -1,0 +1,31 @@
+<% content_for :head do -%>
+
+<% end %>
+
+<h1> Image Groups </h1>
+
+<div id="image_group_grid_wrapper" class='pretty_table'>
+  <table>
+    <thead>
+      <tr class='odd'>
+
+          <th  class='column1_header'><%= sortable 'name', 'Name' %></th>
+          <th>Product</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for image_group in @image_groups %>
+      <tr  class='<%= cycle("odd", "")%>'>
+          <td><%= link_to image_group.name, [:admin, :merchandise, image_group] %></td>
+          <td><%= image_group.product.name %></td>
+        <td><%= link_to "edit", edit_admin_merchandise_image_group_path(image_group) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @image_groups %>
+
+<p><%= link_to "New Image Group", new_admin_merchandise_image_group_path, :class => 'button' %></p>
