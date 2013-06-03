@@ -1,4 +1,5 @@
 class Admin::Merchandise::Multi::VariantsController < Admin::BaseController
+  helper_method :image_groups
   def edit
     @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:product_id])
     form_info
@@ -24,6 +25,9 @@ class Admin::Merchandise::Multi::VariantsController < Admin::BaseController
     #permit({:variants_attributes => [:id, :product_id, :sku, :name, :price, :cost, :deleted_at, :master, :brand_id, :inventory_id]} )
   end
 
+  def image_groups
+    @image_groups ||= ImageGroup.where(:product_id => @product).all.map{|i| [i.name, i.id]}
+  end
 
   def form_info
     @brands = Brand.all.collect{|b| [b.name, b.id] }

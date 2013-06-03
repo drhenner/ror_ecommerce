@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130531184332) do
+ActiveRecord::Schema.define(version: 20130603053252) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -740,17 +740,18 @@ ActiveRecord::Schema.define(version: 20130531184332) do
   add_index "variant_suppliers", ["variant_id"], name: "index_variant_suppliers_on_variant_id", using: :btree
 
   create_table "variants", force: true do |t|
-    t.integer  "product_id",                                           null: false
-    t.string   "sku",                                                  null: false
+    t.integer  "product_id",                                             null: false
+    t.string   "sku",                                                    null: false
     t.string   "name"
-    t.decimal  "price",        precision: 8, scale: 2, default: 0.0,   null: false
-    t.decimal  "cost",         precision: 8, scale: 2, default: 0.0,   null: false
+    t.decimal  "price",          precision: 8, scale: 2, default: 0.0,   null: false
+    t.decimal  "cost",           precision: 8, scale: 2, default: 0.0,   null: false
     t.datetime "deleted_at"
-    t.boolean  "master",                               default: false, null: false
+    t.boolean  "master",                                 default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "brand_id"
     t.integer  "inventory_id"
+    t.integer  "image_group_id"
   end
 
   add_index "variants", ["brand_id"], name: "index_variants_on_brand_id", using: :btree
