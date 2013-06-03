@@ -25,13 +25,11 @@
     <thead>
     <tr class='odd'>
       <th class='column1_header'><%= sortable "name" %></th>
-      <th>Active</th>
     </tr>
     </thead>
     <% @prototypes.each do |prototype| %>
       <tr class='<%= cycle("odd", "")%>'>
         <td><%= link_to prototype.name, edit_admin_merchandise_prototype_path(prototype) %></td>
-        <td><%= prototype.display_active %></td>
       </tr>
     <% end %>
   </table>
