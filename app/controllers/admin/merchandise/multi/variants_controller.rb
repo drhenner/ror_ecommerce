@@ -26,7 +26,7 @@ class Admin::Merchandise::Multi::VariantsController < Admin::BaseController
   end
 
   def image_groups
-    @image_groups ||= ImageGroup.where(:product_id => @product).all.map{|i| [i.name, i.id]}
+    @image_groups ||= ImageGroup.where(:product_id => @product).map{|i| [i.name, i.id]}
   end
 
   def form_info
