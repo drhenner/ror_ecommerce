@@ -1,5 +1,5 @@
 class AboutsController < ApplicationController
-  caches_page :show
+  #caches_page :show
   def show
 
   end

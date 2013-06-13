@@ -58,6 +58,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    actionpack-page_caching (1.0.0)
+      actionpack (>= 4.0.0.beta, < 5.0)
     active_utils (1.0.5)
       activesupport (>= 2.3.11)
       i18n
@@ -295,6 +297,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   ZenTest (= 4.9.1)
+  actionpack-page_caching
   activemerchant (~> 1.29.3)
   american_date
   asset_sync

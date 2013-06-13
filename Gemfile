@@ -6,6 +6,7 @@ gem 'rails', '4.0.0.rc2'
   gem 'uglifier', '>= 1.3.0'
   gem 'sass-rails',   '~> 4.0.0.rc2'
 
+gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
 gem 'authlogic', :git => 'git@github.com:christophemaximin/authlogic.git', :branch => 'fix_deprecated_with_scope' #, "3.2.0"
