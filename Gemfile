@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
 ## Bundle rails:
-gem 'rails', '4.0.0.rc2'
+gem 'rails', '4.0.0'
 
   gem 'uglifier', '>= 1.3.0'
-  gem 'sass-rails',   '~> 4.0.0.rc2'
+  gem 'sass-rails',   '~> 4.0.0'
 
 gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
@@ -28,7 +28,7 @@ gem "friendly_id", :git => "git@github.com:FriendlyId/friendly_id.git", :branch 
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 gem 'jquery-ui-rails'
-gem 'json', '~>1.7.7'
+gem 'json', '~> 1.8.0'
 
 #gem 'lazy_high_charts'
 
