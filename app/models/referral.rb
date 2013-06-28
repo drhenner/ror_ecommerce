@@ -1,9 +1,4 @@
 class Referral < ActiveRecord::Base
-  attr_accessible :email, :name, :referral_type_id#,
-                  #:referral_program_id,
-                  #:referral_user_id, :referring_user_id
-  attr_accessible :email, :name, :referral_type_id, :referral_program_id, :as => :admin
-
   belongs_to :referring_user, :foreign_key => "referring_user_id", :class_name => "User"
   belongs_to :referral_user,  :foreign_key => "referral_user_id", :class_name => "User"
   belongs_to :referral_program

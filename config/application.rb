@@ -7,7 +7,8 @@ require 'rails/all'
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 # Bundler.require(:default, Rails.env) if defined?(Bundler)
-Bundler.require *Rails.groups(:assets => %w(development test)) if defined?(Bundler)
+# Bundler.require *Rails.groups(:assets => %w(development test)) if defined?(Bundler)
+Bundler.require(:default, Rails.env)
 
 module Hadean
   class Application < Rails::Application

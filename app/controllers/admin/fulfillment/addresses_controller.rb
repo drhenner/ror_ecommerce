@@ -23,7 +23,8 @@ class Admin::Fulfillment::AddressesController < Admin::Fulfillment::BaseControll
     load_info
     @address = Address.find(params[:id])
 
-    @shipment.update_attributes(:address => @address)
+    @shipment.address = @address
+    @shipment.save
     redirect_to(admin_fulfillment_shipments_path(:order_id => @shipment.order_id), :notice => 'Shipping address was successfully selected.')
 
   end

@@ -27,7 +27,7 @@ class Admin::History::AddressesController < Admin::BaseController
   # POST /admin/history/addresses
   def create  ##  This create a new address, sets the orders address & redirects to order_history
     @order    = Order.includes([:ship_address, {:user => :addresses}]).find_by_number(params[:order_id])
-    @address  = Address.new(params[:admin_history_address])
+    @address  = @order.user.addresses.new(allowed_params)
 
     respond_to do |format|
       if @address.save
@@ -58,6 +58,10 @@ class Admin::History::AddressesController < Admin::BaseController
     end
   end
   private
+
+  def allowed_params
+    params.require(:admin_history_address).permit(:address_type_id, :first_name, :last_name, :address1, :address2, :city, :state_id, :state_name, :zip_code, :phone_id, :alternative_phone, :default, :billing_default, :active, :country_id)
+  end
 
   def states
     @states     ||= State.form_selector

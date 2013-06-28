@@ -17,7 +17,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   end
 
   def create
-    @product_type = ProductType.new(params[:product_type])
+    @product_type = ProductType.new(allowed_params)
 
     if @product_type.save
       redirect_to :action => :index
@@ -36,7 +36,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   def update
     @product_type = ProductType.find(params[:id])
 
-    if @product_type.update_attributes(params[:product_type])
+    if @product_type.update_attributes(allowed_params)
       redirect_to :action => :index
     else
       form_info
@@ -53,6 +53,10 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   end
 
   private
+
+  def allowed_params
+    params.require(:product_type).permit( :name, :parent_id )
+  end
 
   def form_info
     @product_types = ProductType.all

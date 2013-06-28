@@ -22,7 +22,7 @@ describe Shipment, 'instance methods' do
     it 'should have items' do
       order_item = create(:order_item)
       @shipment.order_items.push(order_item)
-      @shipment.has_items?.should be_false
+      @shipment.has_items?.should be_true
     end
   end
 

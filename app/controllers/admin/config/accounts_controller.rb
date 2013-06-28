@@ -21,7 +21,7 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
 
   # POST /accounts
   def create
-    @account = Account.new(params[:account])
+    @account = Account.new(allowed_params)
 
     if @account.save
       redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully created.')
@@ -34,7 +34,7 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   def update
     @account = Account.find(params[:id])
 
-      if @account.update_attributes(params[:account])
+      if @account.update_attributes(allowed_params)
         redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully updated.')
       else
         render :action => "edit"
@@ -46,5 +46,11 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
     @account = Account.find(params[:id])
     @account.destroy
     redirect_to(admin_config_accounts_url)
+  end
+
+  private
+
+  def allowed_params
+    params.require(:account).permit(:name, :account_type, :monthly_charge, :active)
   end
 end

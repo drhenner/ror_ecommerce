@@ -22,11 +22,4 @@ class Prototype < ActiveRecord::Base
 
   end
 
-  # 'True' if active 'False' otherwise in plain english
-  #
-  # @param [none]
-  # @return [String] 'True' or 'False'
-  def display_active
-    active? ? 'True' : 'False'
-  end
 end

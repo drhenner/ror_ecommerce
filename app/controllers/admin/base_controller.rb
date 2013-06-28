@@ -34,4 +34,12 @@ class Admin::BaseController < ApplicationController
     redirect_to root_url if !current_user || !current_user.admin?
   end
 
+  def verify_super_admin
+    if current_user && current_user.admin? && !current_user.super_admin?
+      redirect_to admin_users_url
+    elsif !current_user || !current_user.admin?
+      redirect_to root_url
+    end
+  end
+
 end

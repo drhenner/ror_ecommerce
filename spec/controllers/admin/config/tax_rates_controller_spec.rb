@@ -6,7 +6,7 @@ describe Admin::Config::TaxRatesController do
   before(:each) do
     activate_authlogic
 
-    @user = create_admin_user
+    @user = create_super_admin_user
     login_as(@user)
   end
 
@@ -28,7 +28,7 @@ describe Admin::Config::TaxRatesController do
 
   it "create action should render new template when model is invalid" do
     TaxRate.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :tax_rate => { :start_date => Time.now.to_s(:db), :state_id => 1}
     response.should render_template(:new)
   end
 
@@ -47,14 +47,14 @@ describe Admin::Config::TaxRatesController do
   it "update action should render edit template when model is invalid" do
     @tax_rate = create(:tax_rate)
     TaxRate.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @tax_rate.id
+    put :update, :id => @tax_rate.id, :tax_rate => { :start_date => Time.now.to_s(:db), :state_id => 1}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @tax_rate = create(:tax_rate)
     TaxRate.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @tax_rate.id
+    put :update, :id => @tax_rate.id, :tax_rate => { :start_date => Time.now.to_s(:db), :state_id => 1}
     response.should redirect_to(admin_config_tax_rate_url(assigns[:tax_rate]))
   end
 

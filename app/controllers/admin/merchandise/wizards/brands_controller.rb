@@ -6,7 +6,7 @@ class Admin::Merchandise::Wizards::BrandsController < Admin::Merchandise::Wizard
   end
 
   def create
-    @brand = Brand.new(params[:brand])
+    @brand = Brand.new(allowed_params)
     if @brand.save
       session[:product_wizard] ||= {}
       session[:product_wizard][:brand_id] = @brand.id
@@ -32,6 +32,10 @@ class Admin::Merchandise::Wizards::BrandsController < Admin::Merchandise::Wizard
   end
 
   private
+
+  def allowed_params
+    params.require(:brand).permit(:name)
+  end
 
   def form_info
     @brands ||= Brand.all

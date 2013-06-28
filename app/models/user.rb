@@ -50,97 +50,86 @@ class User < ActiveRecord::Base
 
   end
 
-  before_validation :sanitize_data, :before_validation_on_create
-  before_create :start_store_credits
-  after_create  :subscribe_to_newsletters, :set_referral_registered_at
-  attr_accessible :email,
-                  :password,
-                  :password_confirmation,
-                  :first_name,
-                  :last_name,
-                  :openid_identifier,
-                  :birth_date,
-                  :form_birth_date,
-                  :address_attributes,
-                  :phones_attributes,
-                  :customer_service_comments_attributes
+  before_validation :sanitize_data
+  before_validation :before_validation_on_create, :on => :create
+  before_create :start_store_credits, :subscribe_to_newsletters
+  after_create  :set_referral_registered_at
 
   belongs_to :account
 
   has_many    :users_newsletters
-  has_many    :newsletters, :through => :users_newsletters
+  has_many    :newsletters, through: :users_newsletters
 
-  has_many  :referrals, :class_name => 'Referral', :foreign_key => 'referring_user_id' # people you have tried to referred
-  has_one   :referree,  :class_name => 'Referral', :foreign_key => 'referral_user_id' # person who referred you
+  has_many  :referrals, class_name: 'Referral', foreign_key: 'referring_user_id' # people you have tried to referred
+  has_one   :referree,  class_name: 'Referral', foreign_key: 'referral_user_id' # person who referred you
 
   has_one     :store_credit
   has_many    :orders
   has_many    :comments
-  has_many    :customer_service_comments, :as         => :commentable,
-                                          :class_name => 'Comment'
+  has_many    :customer_service_comments, as:         :commentable,
+                                          class_name: 'Comment'
   has_many    :shipments, :through => :orders
-  has_many    :finished_orders,          :class_name => 'Order',
-                                          :conditions => {:orders => { :state => ['complete', 'paid']}}
-  has_many    :completed_orders,          :class_name => 'Order',
-                                          :conditions => {:orders => { :state => 'complete'}}
-  has_many    :phones,                    :dependent => :destroy,
-                                          :as => :phoneable
+  has_many    :finished_orders,           -> { where(state: ['complete', 'paid']) },  class_name: 'Order'
+  has_many    :completed_orders,          -> { where(state: 'complete') },            class_name: 'Order'
 
-  has_one     :primary_phone,             :conditions => {:phones => { :primary => true}},
-                                          :as => :phoneable,
-                                          :class_name => 'Phone'
+  has_many    :phones,                    dependent: :destroy,
+                                          as: :phoneable
 
-  has_many    :addresses,                 :dependent => :destroy,
-                                          :as => :addressable
+  has_one     :primary_phone,             -> { where(primary: true) },
+                                          as: :phoneable,
+                                          class_name: 'Phone'
 
-  has_one     :default_billing_address,   :conditions => {:addresses => { :billing_default => true, :active => true}},
-                                          :as => :addressable,
-                                          :class_name => 'Address'
+  has_many    :addresses,                 dependent: :destroy,
+                                          as: :addressable
 
-  has_many    :billing_addresses,         :conditions => {:addresses => { :active => true}},
-                                          :as => :addressable,
-                                          :class_name => 'Address'
+  has_one     :default_billing_address,   -> { where(billing_default: true, active: true) },
+                                          as:         :addressable,
+                                          class_name: 'Address'
 
-  has_one     :default_shipping_address,  :conditions => {:addresses => { :default => true, :active => true}},
-                                          :as => :addressable,
-                                          :class_name => 'Address'
+  has_many    :billing_addresses,         -> { where(active: true) },
+                                          as:         :addressable,
+                                          class_name: 'Address'
 
-  has_many     :shipping_addresses,       :conditions => {:addresses => { :active => true}},
-                                          :as => :addressable,
-                                          :class_name => 'Address'
+  has_one     :default_shipping_address,  -> { where(default: true, active: true) },
+                                          as:         :addressable,
+                                          class_name: 'Address'
 
-  has_many    :user_roles,                :dependent => :destroy
-  has_many    :roles,                     :through => :user_roles
+  has_many     :shipping_addresses,       -> { where(active: true) },
+                                          as:         :addressable,
+                                          class_name: 'Address'
 
-  has_many    :carts,                     :dependent => :destroy
+  has_many    :user_roles,                dependent: :destroy
+  has_many    :roles,                     through: :user_roles
+
+  has_many    :carts,                     dependent: :destroy
 
   has_many    :cart_items
-  has_many    :shopping_cart_items,       :conditions => {:cart_items => { :active        => true,
-                                                                           :item_type_id  => ItemType::SHOPPING_CART_ID}},
-                                          :class_name => 'CartItem'
+  has_many    :shopping_cart_items,       -> { where(active: true,
+                                                        item_type_id: ItemType::SHOPPING_CART_ID) },
+                                          class_name: 'CartItem'
 
-  has_many    :wish_list_items,           :conditions => {:cart_items => { :active        => true,
-                                                                           :item_type_id  => ItemType::WISH_LIST_ID}},
-                                          :class_name => 'CartItem'
+  has_many    :wish_list_items,           -> { where(active:  true,
+                                                        item_type_id: ItemType::WISH_LIST_ID) },
+                                          class_name: 'CartItem'
 
-  has_many    :saved_cart_items,           :conditions => {:cart_items => { :active        => true,
-                                                                            :item_type_id  => ItemType::SAVE_FOR_LATER}},
-                                          :class_name => 'CartItem'
+  has_many    :saved_cart_items,          -> { where(active:  true,
+                                                        item_type_id: ItemType::SAVE_FOR_LATER) },
+                                          class_name: 'CartItem'
 
-  has_many    :purchased_items,           :conditions => {:cart_items => { :active        => true,
-                                                                           :item_type_id  => ItemType::PURCHASED_ID}},
-                                          :class_name => 'CartItem'
+  has_many    :purchased_items,           -> { where(active:  true,
+                                                        item_type_id: ItemType::PURCHASED_ID) },
+                                          class_name: 'CartItem'
 
-  has_many    :deleted_cart_items,        :conditions => {:cart_items => { :active => false}}, :class_name => 'CartItem'
+  has_many    :deleted_cart_items,        -> { where( active: false) }, class_name: 'CartItem'
   has_many    :payment_profiles
-  has_many    :transaction_ledgers, :as => :accountable
+  has_many    :transaction_ledgers, as: :accountable
 
   has_many    :return_authorizations
-  has_many    :authored_return_authorizations, :class_name => 'ReturnAuthorization', :foreign_key => 'author_id'
+  has_many    :authored_return_authorizations, class_name: 'ReturnAuthorization', foreign_key: 'author_id'
 
-  validates :first_name,  :presence => true, :if => :registered_user?,
-                          :format   => { :with => CustomValidators::Names.name_validator },
-                          :length => { :maximum => 30 }
+  validates :first_name,  presence: true, if: :registered_user?,
+                          format:   { with: CustomValidators::Names.name_validator },
+                          length:   { maximum: 30 }
   validates :last_name,   :presence => true, :if => :registered_user?,
                           :format   => { :with => CustomValidators::Names.name_validator },
                           :length => { :maximum => 35 }
@@ -249,7 +238,7 @@ class User < ActiveRecord::Base
   ##  This method will one day grow into the products a user most likely likes.
   #   Storing a list of product ids vs cron each night might be the most efficent mode for this method to work.
   def might_be_interested_in_these_products
-    Product.limit(4).all
+    Product.limit(4)
   end
 
   # Returns the default billing address if it exists.   otherwise returns the shipping address
@@ -446,7 +435,6 @@ class User < ActiveRecord::Base
   def subscribe_to_newsletters
     newsletter_ids = Newsletter.where(:autosubscribe => true).pluck(:id)
     self.newsletter_ids = newsletter_ids
-    self.save(:validate => false)
   end
 
   def user_profile
@@ -454,6 +442,6 @@ class User < ActiveRecord::Base
   end
 
   def before_validation_on_create
-    self.access_token = SecureRandom::hex(9+rand(6)) if new_record? and access_token.nil?
+    self.access_token = SecureRandom::hex(9+rand(6)) if access_token.nil?
   end
 end

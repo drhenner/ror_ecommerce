@@ -20,7 +20,7 @@ class Admin::Inventory::AdjustmentsController < Admin::BaseController
         AccountingAdjustment.adjust_stock(@variant.inventory, params[:variant][:qty_to_add].to_i, params[:refund].to_f)
         flash[:notice] = "Successfully updated the inventory."
         redirect_to admin_inventory_adjustment_url(@variant.product)
-      elsif @variant.update_attributes(params[:variant])
+      elsif @variant.update_attributes(allowed_params)
         flash[:notice] = "Successfully updated the inventory."
         redirect_to admin_inventory_adjustment_url(@variant.product)
       else
@@ -33,6 +33,10 @@ class Admin::Inventory::AdjustmentsController < Admin::BaseController
   end
 
   private
+
+  def allowed_params
+    params.require(:variant).permit(:qty_to_add)
+  end
 
 end
 

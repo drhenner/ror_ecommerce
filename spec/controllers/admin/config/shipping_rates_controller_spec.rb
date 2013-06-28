@@ -6,7 +6,7 @@ describe Admin::Config::ShippingRatesController do
   before(:each) do
     activate_authlogic
 
-    @user = create_admin_user
+    @user = create_super_admin_user
     login_as(@user)
   end
 
@@ -54,7 +54,7 @@ describe Admin::Config::ShippingRatesController do
 
   it "create action should render new template when model is invalid" do
     ShippingRate.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
     response.should render_template(:new)
   end
 
@@ -73,14 +73,14 @@ describe Admin::Config::ShippingRatesController do
   it "update action should render edit template when model is invalid" do
     @shipping_rate = create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_rate.id
+    put :update, :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @shipping_rate = create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_rate.id
+    put :update, :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
     response.should redirect_to(admin_config_shipping_rate_url(assigns[:shipping_rate]))
   end
 

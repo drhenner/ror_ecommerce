@@ -1,16 +1,17 @@
 Hadean::Application.routes.draw do
 
+  resources :image_groups
   # mount Resque::Server.new, at: "/resque"
 
   namespace(:admin){ namespace(:customer_service){ resources :comments } }
 
   resources :user_sessions, :only => [:new, :create, :destroy]
 
-  match 'admin'   => 'admin/overviews#index'
-  match 'login'   => 'user_sessions#new'
-  match 'logout'  => 'user_sessions#destroy'
-  match 'signup'  => 'customer/registrations#new'
-  match 'admin/merchandise' => 'admin/merchandise/summary#index'
+  get 'admin'   => 'admin/overviews#index'
+  get 'login'   => 'user_sessions#new'
+  delete 'logout'  => 'user_sessions#destroy'
+  get 'signup'  => 'customer/registrations#new'
+  get 'admin/merchandise' => 'admin/merchandise/summary#index'
   resources :products, :only => [:index, :show, :create]
 
   resources :wish_items,  :only => [:index, :destroy]
@@ -79,7 +80,7 @@ Hadean::Application.routes.draw do
     end
     resources :overviews, :only => [:index]
 
-    match "help" => "help#index"
+    get "help" => "help#index"
 
     namespace :reports do
       resource :overview, :only => [:show]
@@ -175,6 +176,7 @@ Hadean::Application.routes.draw do
       namespace :images do
         resources :products
       end
+      resources :image_groups
       resources :properties
       resources :prototypes
       resources :brands

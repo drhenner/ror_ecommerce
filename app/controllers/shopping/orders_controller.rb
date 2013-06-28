@@ -13,6 +13,7 @@ class Shopping::OrdersController < Shopping::BaseController
     if f = next_form(@order)
       redirect_to f
     else
+      expire_all_browser_cache
       form_info
     end
   end
@@ -45,6 +46,7 @@ class Shopping::OrdersController < Shopping::BaseController
                                           {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
                                           @order.amount_to_credit)
         if response.succeeded?
+          expire_all_browser_cache
           ##  MARK items as purchased
           session_cart.mark_items_purchased(@order)
           session[:last_order] = @order.number

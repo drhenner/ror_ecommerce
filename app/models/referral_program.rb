@@ -1,5 +1,5 @@
 class ReferralProgram < ActiveRecord::Base
-  attr_accessible :active, :description, :name, :referral_bonus_id
+  #attr_accessible :active, :description, :name, :referral_bonus_id
   has_many :referrals
   belongs_to :referral_bonus
 

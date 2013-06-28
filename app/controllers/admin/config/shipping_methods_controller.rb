@@ -24,7 +24,7 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
 
   # POST /admin/config/shipping_methods
   def create
-    @shipping_method = ShippingMethod.new(params[:shipping_method])
+    @shipping_method = ShippingMethod.new(allowed_params)
 
     if @shipping_method.save
       redirect_to(admin_config_shipping_methods_url, :notice => 'Shipping method was successfully created.')
@@ -37,7 +37,7 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   # PUT /admin/config/shipping_methods/1
   def update
     @shipping_method = ShippingMethod.find(params[:id])
-    if @shipping_method.update_attributes(params[:shipping_method])
+    if @shipping_method.update_attributes(allowed_params)
       redirect_to(admin_config_shipping_methods_url, :notice => 'Shipping method was successfully updated.')
     else
       form_info
@@ -46,6 +46,10 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   end
 
   private
+
+  def allowed_params
+    params.require(:shipping_method).permit(:name, :shipping_zone_id)
+  end
 
   def form_info
     @shipping_zones = ShippingZone.all.map{|sz| [sz.name, sz.id]}

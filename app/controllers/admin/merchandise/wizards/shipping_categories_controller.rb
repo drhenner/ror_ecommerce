@@ -5,7 +5,7 @@ class Admin::Merchandise::Wizards::ShippingCategoriesController < Admin::Merchan
   end
 
   def create
-    @shipping_category = ShippingCategory.new(params[:shipping_category])
+    @shipping_category = ShippingCategory.new(allowed_params)
     if @shipping_category.save
       session[:product_wizard] ||= {}
       session[:product_wizard][:shipping_category_id] = @shipping_category.id
@@ -31,6 +31,10 @@ class Admin::Merchandise::Wizards::ShippingCategoriesController < Admin::Merchan
   end
 
   private
+
+  def allowed_params
+    params.require(:shipping_category).permit(:name)
+  end
 
   def form_info
     @shipping_categories ||= ShippingCategory.all

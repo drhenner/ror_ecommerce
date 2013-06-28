@@ -25,10 +25,10 @@ describe Address, "methods" do
                           :state   => state,
                           :state_name => 'CA',
                           :zip_code   => '13156',
-                          :address_type_id  => 1,
+                          :address_type_id  => 1#,
                           #:addressable_type => 'User',
                           #:addressable_id   => 1,
-                          :active           => true
+                          #:active           => true
                           )
   end
 
@@ -141,10 +141,10 @@ describe Address, "methods" do
                           :city       => ' Fredville ',
                           :state_name => 'CA',
                           :zip_code   => ' 13156 ',
-                          :address_type_id  => 1,
+                          :address_type_id  => 1#,
                           #:addressable_type => 'User',
                           #:addressable_id   => 1,
-                          :active           => true
+                          #:active           => true
                           )
 
     address.send(:sanitize_data)

@@ -1,4 +1,42 @@
 GIT
+  remote: git://github.com/milgner/compass-rails.git
+  revision: 1749c06f15dc4b058427e7969810457213647fb8
+  branch: rails4
+  specs:
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
+
+GIT
+  remote: git@github.com:FriendlyId/friendly_id.git
+  revision: 78d639d67a17135fe5e3b9731fd4328c315c74b1
+  branch: rails4
+  specs:
+    friendly_id (4.1.0.beta.2)
+
+GIT
+  remote: git@github.com:bmabey/database_cleaner.git
+  revision: 5dc784af6661fd9067953458fbac1b2e0334f0db
+  specs:
+    database_cleaner (1.0.1)
+
+GIT
+  remote: git@github.com:christophemaximin/authlogic.git
+  revision: 4f7e8cf6219fc7c4e92dca02d4f3e3ca934ad25d
+  branch: fix_deprecated_with_scope
+  specs:
+    authlogic (3.2.1)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
+  remote: git@github.com:cschramm/awesome_nested_set.git
+  revision: d48ac57e3e7714d50c44a4ff3fd1a6fde1becafe
+  branch: rails4
+  specs:
+    awesome_nested_set (2.1.6)
+      activerecord (>= 4.0.0.beta)
+
+GIT
   remote: https://github.com/neocoin/rails3-generators.git
   revision: 6bdea11693e69917849dabc6bd38cf752e8ff194
   specs:
@@ -10,20 +48,18 @@ GEM
   specs:
     Ascii85 (1.0.2)
     RedCloth (4.2.9)
-    ZenTest (4.6.2)
-    actionmailer (3.2.13)
-      actionpack (= 3.2.13)
+    ZenTest (4.9.1)
+    actionmailer (4.0.0)
+      actionpack (= 4.0.0)
       mail (~> 2.5.3)
-    actionpack (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
-      builder (~> 3.0.0)
+    actionpack (4.0.0)
+      activesupport (= 4.0.0)
+      builder (~> 3.1.0)
       erubis (~> 2.7.0)
-      journey (~> 1.0.4)
-      rack (~> 1.4.5)
-      rack-cache (~> 1.2)
-      rack-test (~> 0.6.1)
-      sprockets (~> 2.2.1)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    actionpack-page_caching (1.0.0)
+      actionpack (>= 4.0.0.beta, < 5.0)
     active_utils (1.0.5)
       activesupport (>= 2.3.11)
       i18n
@@ -35,41 +71,40 @@ GEM
       json (>= 1.5.1)
       money
       nokogiri
-    activemodel (3.2.13)
-      activesupport (= 3.2.13)
-      builder (~> 3.0.0)
-    activerecord (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
-      arel (~> 3.0.2)
-      tzinfo (~> 0.3.29)
-    activeresource (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
-    activesupport (3.2.13)
-      i18n (= 0.6.1)
-      multi_json (~> 1.0)
-    addressable (2.3.3)
+    activemodel (4.0.0)
+      activesupport (= 4.0.0)
+      builder (~> 3.1.0)
+    activerecord (4.0.0)
+      activemodel (= 4.0.0)
+      activerecord-deprecated_finders (~> 1.0.2)
+      activesupport (= 4.0.0)
+      arel (~> 4.0.0)
+    activerecord-deprecated_finders (1.0.3)
+    activesupport (4.0.0)
+      i18n (~> 0.6, >= 0.6.4)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
+    addressable (2.3.5)
     afm (0.2.0)
     american_date (1.1.0)
-    arel (3.0.2)
+    arel (4.0.0)
     asset_sync (0.5.4)
       activemodel
       fog
-    authlogic (3.2.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
+    atomic (1.1.10)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     autotest-growl (0.2.16)
     autotest-rails-pure (4.1.2)
-    aws-sdk (1.8.5)
+    aws-sdk (1.11.3)
       json (~> 1.4)
-      nokogiri (>= 1.4.4)
+      nokogiri (< 1.6.0)
       uuidtools (~> 2.1)
     bluecloth (2.1.0)
-    builder (3.0.4)
-    cancan (1.6.9)
+    builder (3.1.4)
+    cancan (1.6.10)
     capybara (1.1.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -91,22 +126,19 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    compass-rails (1.0.3)
-      compass (>= 0.12.2, < 0.14)
-    database_cleaner (0.9.1)
-    debugger (1.5.0)
+    debugger (1.6.0)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     diff-lcs (1.1.3)
     dynamic_form (1.1.4)
     email_spec (1.4.0)
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
-    excon (0.20.1)
+    excon (0.23.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (3.3.0)
@@ -116,10 +148,10 @@ GEM
       railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
-    ffi (1.6.0)
-    fog (1.10.0)
+    ffi (1.9.0)
+    fog (1.12.1)
       builder
-      excon (~> 0.14)
+      excon (~> 0.23.0)
       formatador (~> 0.2.0)
       mime-types
       multi_json (~> 1.0)
@@ -128,88 +160,78 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.4)
-    friendly_id (4.0.9)
     fssm (0.2.10)
-    haml (4.0.1)
+    haml (4.0.3)
       tilt
     hashery (2.1.0)
-    hike (1.2.1)
-    i18n (0.6.1)
-    journey (1.0.4)
-    jquery-rails (2.2.1)
+    hike (1.2.3)
+    i18n (0.6.4)
+    jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.7.7)
-    launchy (2.2.0)
+    jquery-ui-rails (4.0.3)
+      jquery-rails
+      railties (>= 3.1.0)
+    json (1.8.0)
+    launchy (2.3.0)
       addressable (~> 2.3)
-    mail (2.5.3)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     metaclass (0.0.1)
-    mime-types (1.22)
+    mime-types (1.23)
+    minitest (4.7.5)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     money (5.1.1)
       i18n (~> 0.6.0)
-    multi_json (1.7.2)
+    multi_json (1.7.7)
     mysql2 (0.3.11)
-    nested_set (1.7.1)
-      activerecord (>= 3.0.0)
-      railties (>= 3.0.0)
-    net-scp (1.1.0)
+    net-scp (1.1.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.6.6)
-    nokogiri (1.5.9)
-    paperclip (3.4.1)
+    net-ssh (2.6.7)
+    nokogiri (1.5.10)
+    paperclip (3.4.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
-    pdf-reader (1.3.2)
+    pdf-reader (1.3.3)
       Ascii85 (~> 1.0.0)
       afm (~> 0.2.0)
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pg (0.15.0)
+    pg (0.15.1)
     polyglot (0.3.3)
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
       ttfunk (~> 1.0.2)
-    rack (1.4.5)
-    rack-cache (1.2)
-      rack (>= 0.4)
-    rack-ssl (1.3.3)
-      rack
+    rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.13)
-      actionmailer (= 3.2.13)
-      actionpack (= 3.2.13)
-      activerecord (= 3.2.13)
-      activeresource (= 3.2.13)
-      activesupport (= 3.2.13)
-      bundler (~> 1.0)
-      railties (= 3.2.13)
+    rails (4.0.0)
+      actionmailer (= 4.0.0)
+      actionpack (= 4.0.0)
+      activerecord (= 4.0.0)
+      activesupport (= 4.0.0)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.0.0)
+      sprockets-rails (~> 2.0.0)
     rails-erd (1.1.0)
       activerecord (>= 3.0)
       activesupport (>= 3.0)
       choice (~> 0.1.6)
       ruby-graphviz (~> 1.0.4)
-    rails_config (0.3.2)
+    rails_config (0.3.3)
       activesupport (>= 3.0)
-    railties (3.2.13)
-      actionpack (= 3.2.13)
-      activesupport (= 3.2.13)
-      rack-ssl (~> 1.3.2)
+    railties (4.0.0)
+      actionpack (= 4.0.0)
+      activesupport (= 4.0.0)
       rake (>= 0.8.7)
-      rdoc (~> 3.4)
-      thor (>= 0.14.6, < 2.0)
+      thor (>= 0.18.1, < 2.0)
     rake (10.0.4)
-    rdoc (3.12.2)
-      json (~> 1.4)
     rmagick (2.13.2)
     rspec-core (2.12.2)
     rspec-expectations (2.12.1)
@@ -225,84 +247,91 @@ GEM
     rspec-rails-mocha (0.3.2)
       mocha (>= 0.9.8)
       rspec-rails (>= 2.0.0)
-    ruby-graphviz (1.0.8)
+    ruby-graphviz (1.0.9)
     ruby-hmac (0.4.0)
     ruby-rc4 (0.1.5)
     rubyzip (0.9.9)
-    sass (3.2.7)
-    sass-rails (3.2.6)
-      railties (~> 3.2.0)
+    sass (3.2.9)
+    sass-rails (4.0.0)
+      railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
-      tilt (~> 1.3)
-    selenium-webdriver (2.31.0)
+      sprockets-rails (~> 2.0.0)
+    selenium-webdriver (2.33.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
-    sprockets (2.2.2)
+    sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.0.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (~> 2.8)
     sqlite3 (1.3.7)
-    state_machine (1.1.2)
+    state_machine (1.2.0)
     thor (0.18.1)
-    tilt (1.3.6)
-    treetop (1.4.12)
+    thread_safe (0.1.0)
+      atomic
+    tilt (1.4.1)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
     tzinfo (0.3.37)
-    uglifier (1.3.0)
+    uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    uuidtools (2.1.3)
+    uuidtools (2.1.4)
     websocket (1.0.7)
     will_paginate (3.0.4)
     xpath (0.1.4)
       nokogiri (~> 1.3)
-    yard (0.8.5.2)
+    yard (0.8.6.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   RedCloth
-  ZenTest (= 4.6.2)
+  ZenTest (= 4.9.1)
+  actionpack-page_caching
   activemerchant (~> 1.29.3)
   american_date
   asset_sync
-  authlogic
+  authlogic!
   autotest (~> 4.4.6)
   autotest-growl
   autotest-rails-pure
+  awesome_nested_set!
   aws-sdk
   bluecloth (~> 2.1.0)
   cancan (~> 1.6.8)
   capybara (~> 1.1)
   chronic
-  compass (~> 0.12.0)
-  compass-rails
-  database_cleaner
+  compass-rails!
+  database_cleaner!
   debugger
   dynamic_form
   email_spec
   factory_girl (~> 3.3.0)
   factory_girl_rails (~> 3.3.0)
   faker
-  friendly_id (~> 4.0)
+  friendly_id!
   haml (>= 3.0.13)
   jquery-rails
-  json (~> 1.7.7)
+  jquery-ui-rails
+  json (~> 1.8.0)
   launchy
   mocha (~> 0.13.3)
   mysql2 (~> 0.3.11)
-  nested_set (~> 1.7.0)
   nokogiri (~> 1.5.0)
   paperclip (~> 3.0)
   pg
   prawn (~> 0.12.0)
-  rails (= 3.2.13)
+  rails (= 4.0.0)
   rails-erd
   rails3-generators!
   rails_config
@@ -310,9 +339,9 @@ DEPENDENCIES
   rmagick
   rspec-rails (~> 2.12.2)
   rspec-rails-mocha
-  sass-rails (~> 3.2.3)
+  sass-rails (~> 4.0.0)
   sqlite3
-  state_machine (~> 1.1.2)
-  uglifier (>= 1.0.3)
+  state_machine (~> 1.2.0)
+  uglifier (>= 1.3.0)
   will_paginate (~> 3.0.4)
   yard

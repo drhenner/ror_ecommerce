@@ -51,8 +51,9 @@ class PurchaseOrder < ActiveRecord::Base
       transition all => :received
     end
 
+    # mark as complete even though variants might not have been receive & payment was not made
     event :mark_as_complete do
-      transition all => :received
+      transition :from => [:pending, :incomplete], :to => :received
     end
   end
 
@@ -81,7 +82,7 @@ class PurchaseOrder < ActiveRecord::Base
   # @param [none]
   # @return [none]
   def receive_variants
-    po_variants = PurchaseOrderVariant.where(:purchase_order_id => self.id).lock("LOCK IN SHARE MODE").all
+    po_variants = PurchaseOrderVariant.where(:purchase_order_id => self.id).lock("LOCK IN SHARE MODE")
     po_variants.each do |po_variant|
       po_variant.receive! unless po_variant.is_received?
     end

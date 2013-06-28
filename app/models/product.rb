@@ -38,16 +38,16 @@ class Product < ActiveRecord::Base
   belongs_to :shipping_category
 
   has_many :product_properties
-  has_many :properties,          :through => :product_properties
+  has_many :properties,         through: :product_properties
 
   has_many :variants
-  has_many :images, :as         => :imageable,
-                    :order      => :position,
-                    :dependent  => :destroy
+  has_many :images, -> {order(:position)},
+                    as:        :imageable,
+                    dependent: :destroy
 
-  has_many :active_variants,
-    :class_name => 'Variant',
-    :conditions => ["variants.deleted_at IS NULL", true]
+  has_many :active_variants, -> { where(deleted_at: nil) },
+    class_name: 'Variant'
+
 
   before_validation :sanitize_data
   before_validation :not_active_on_create!, :on => :create
@@ -84,7 +84,15 @@ class Product < ActiveRecord::Base
   # @param [Optional Symbol] the size of the image expected back
   # @return [String] name of the file to show from the public folder
   def featured_image(image_size = :small)
-    images.first ? images.first.photo.url(image_size) : "no_image_#{image_size.to_s}.jpg"
+    Rails.cache.fetch("Product-featured_image-#{id}-#{image_size}", :expires_in => 3.hours) do
+      images.first ? images.first.photo.url(image_size) : "no_image_#{image_size.to_s}.jpg"
+    end
+  end
+
+  def image_urls(image_size = :small)
+    Rails.cache.fetch("Product-image_urls-#{id}-#{image_size}", :expires_in => 3.hours) do
+      images.empty? ? ["no_image_#{image_size.to_s}.jpg"] : images.map{|i| i.photo.url(image_size) }
+    end
   end
 
   # Price of cheapest variant
@@ -211,7 +219,7 @@ class Product < ActiveRecord::Base
       if available_at_lt.present?
         where("products.available_at < ?", available_at_lt)
       else
-        scoped
+        all
       end
     end
 
@@ -219,14 +227,14 @@ class Product < ActiveRecord::Base
       if available_at_gt.present?
         where("products.available_at > ?", available_at_gt)
       else
-        scoped
+        all
       end
     end
     def self.shipping_category_filter(shipping_category_id)
       if shipping_category_id.present?
         where("products.shipping_category_id = ?", shipping_category_id)
       else
-        scoped
+        all
       end
     end
 
@@ -234,7 +242,7 @@ class Product < ActiveRecord::Base
       if product_type_id.present?
         where("products.product_type_id = ?", product_type_id)
       else
-        scoped
+        all
       end
     end
 
@@ -242,7 +250,7 @@ class Product < ActiveRecord::Base
       if name.present?
         where("products.name LIKE ?", "#{name}%")
       else
-        scoped
+        all
       end
     end
 
@@ -252,7 +260,7 @@ class Product < ActiveRecord::Base
       elsif active_state == false##  note nil != false
         where(['products.deleted_at IS NOT NULL AND products.deleted_at <= ?', Time.zone.now.to_s(:db)])
       else
-        scoped
+        all
       end
     end
     def create_content

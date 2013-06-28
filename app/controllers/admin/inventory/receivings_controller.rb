@@ -15,7 +15,7 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
   def update
     @purchase_order = PurchaseOrder.find(params[:id])
 
-    if @purchase_order.update_attributes(params[:purchase_order])
+    if @purchase_order.update_attributes(allowed_params)
       redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.')
     else
       render :action => "edit"
@@ -26,6 +26,10 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
   end
 
 private
+
+  def allowed_params
+    params.require(:purchase_order).permit(:invoice_number, :tracking_number, :notes, :receive_po)
+  end
 
   def pagination_rows
     params[:rows] ||= 25

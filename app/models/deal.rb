@@ -29,7 +29,6 @@
 #
 
 class Deal < ActiveRecord::Base
-  attr_accessible :buy_quantity, :deal_type_id, :get_percentage, :product_type_id, :get_amount, :deleted_at
 
   validates :buy_quantity,            :presence => true
   validates :get_percentage,          :presence => true, :if => :get_amount_is_blank?

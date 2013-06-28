@@ -12,7 +12,7 @@ class Myaccount::CreditCardsController < Myaccount::BaseController
   end
 
   def create
-    @credit_card = current_user.payment_profiles.new(params[:credit_card])
+    @credit_card = current_user.payment_profiles.new(allowed_params)
     if @credit_card.save
       flash[:notice] = "Successfully created credit card."
       redirect_to myaccount_credit_card_url(@credit_card)
@@ -27,7 +27,7 @@ class Myaccount::CreditCardsController < Myaccount::BaseController
 
   def update
     @credit_card = current_user.payment_profiles.find(params[:id])
-    if @credit_card.update_attributes(params[:credit_card])
+    if @credit_card.update_attributes(allowed_params)
       flash[:notice] = "Successfully updated credit card."
       redirect_to myaccount_credit_card_url(@credit_card)
     else
@@ -43,6 +43,10 @@ class Myaccount::CreditCardsController < Myaccount::BaseController
   end
 
   private
+
+  def allowed_params
+    params.require(:credit_card).permit(:address_id, :month, :year, :cc_type, :first_name, :last_name, :card_name)
+  end
 
   def selected_myaccount_tab(tab)
     tab == 'credit_cards'

@@ -28,13 +28,13 @@ describe Admin::Merchandise::BrandsController do
 
   it "create action should render new template when model is invalid" do
     Brand.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :brand => {:name => 'RoR ecommerce'}
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     Brand.any_instance.stubs(:valid?).returns(true)
-    post :create
+    post :create, :brand => {:name => 'RoR ecommerce'}
     response.should redirect_to(admin_merchandise_brand_url(assigns[:brand]))
   end
 
@@ -47,14 +47,14 @@ describe Admin::Merchandise::BrandsController do
   it "update action should render edit template when model is invalid" do
     @brand = create(:brand)
     Brand.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @brand.id
+    put :update, :id => @brand.id, :brand => {:name => 'RoR ecommerce'}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @brand = create(:brand)
     Brand.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @brand.id
+    put :update, :id => @brand.id, :brand => {:name => 'RoR ecommerce'}
     response.should redirect_to(admin_merchandise_brand_url(assigns[:brand]))
   end
 

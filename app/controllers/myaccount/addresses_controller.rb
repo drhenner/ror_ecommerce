@@ -20,7 +20,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
   end
 
   def create
-    @address = current_user.addresses.new(params[:address])
+    @address = current_user.addresses.new(allowed_params)
     @address.default = true          if current_user.default_shipping_address.nil?
     @address.billing_default = true  if current_user.default_billing_address.nil?
 
@@ -43,7 +43,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
   # This is not normal because you should never Update an address.
   #   THE ADDRESS could point to an existing order which needs to keep the same address
   def update
-    @address = current_user.addresses.new(params[:address])
+    @address = current_user.addresses.new(allowed_params)
     @address.replace_address_id = params[:id] # This makes the address we are updating inactive if we save successfully
 
     # if we are editing the current default address then this is the default address
@@ -57,7 +57,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
         # the form needs to have an id
         @form_address = current_user.addresses.find(params[:id])
         # the form needs to reflect the attributes to customer entered
-        @form_address.attributes = params[:address]
+        @form_address.attributes = allowed_params
         form_info
         format.html { render :action => "edit" }
       end
@@ -72,6 +72,10 @@ class Myaccount::AddressesController < Myaccount::BaseController
   end
 
   private
+
+  def allowed_params
+    params.require(:address).permit(:first_name, :last_name, :address1, :address2, :city, :state_id, :state_name, :zip_code, :default, :billing_default, :country_id)
+  end
 
   def form_info
     @states = State.form_selector

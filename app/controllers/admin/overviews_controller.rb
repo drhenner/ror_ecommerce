@@ -11,21 +11,15 @@ class Admin::OverviewsController < ApplicationController
     elsif Role.first
       ##  This means we don't have any users
       ##  First we need to create a user with all permissions
-      @password = "admin_user_#{rand(1000)}"
 
-      @user = User.new(:first_name => 'Admin',
-                       :last_name => 'User',
-                       :email => 'admin@notarealemail.com',
-                       :password => @password,
-                       :password_confirmation => @password
-                       )
 
+      @user = User.new(args)
       if @user.active? || @user.activate!
         @user.save
         @user.role_ids = Role.all.collect{|r| r.id }
         @user.save
         @current_user = @user
-        @user_session = UserSession.new(:email => @user.email, :password => @password)
+        @user_session = UserSession.new(session_args)
         @user_session.save
       end
     else
@@ -34,6 +28,19 @@ class Admin::OverviewsController < ApplicationController
     end
   end
   private
+  def session_args
+    @session_args ||= { :email => @user.email, :password => @password }
+  end
+
+  def args
+    @password ||= "admin_user_#{rand(1000)}"
+    @args ||= {
+    :first_name => 'Admin',
+    :last_name => 'User',
+    :email => 'admin@notarealemail.com',
+    :password => @password,
+    :password_confirmation => @password }
+  end
 
   def recent_admin_users
     []

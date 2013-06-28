@@ -18,7 +18,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   end
 
   def create
-    @prototype = Prototype.new(params[:prototype])
+    @prototype = Prototype.new(allowed_params)
 
     if @prototype.save
       redirect_to :action => :index
@@ -36,8 +36,8 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def update
     @prototype = Prototype.find(params[:id])
-
-    if @prototype.update_attributes(params[:prototype])
+@prototype.property_ids = params[:prototype][:property_ids]
+    if @prototype.update_attributes(allowed_params)
       redirect_to :action => :index
     else
       @all_properties = Property.all
@@ -53,6 +53,10 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
     redirect_to :action => :index
   end
   private
+
+  def allowed_params
+    params.require(:prototype).permit( :name, :active, :property_ids )
+  end
 
   def sort_column
     Prototype.column_names.include?(params[:sort]) ? params[:sort] : "name"

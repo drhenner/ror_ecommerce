@@ -10,7 +10,7 @@
 #
 
 class StoreCredit < ActiveRecord::Base
-  attr_accessible :amount, :user_id, :user
+  #attr_accessible :amount, :user_id, :user
 
   belongs_to :user
 

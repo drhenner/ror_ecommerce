@@ -31,14 +31,14 @@ describe Admin::CustomerService::CommentsController do
   it "create action should render new template when model is invalid" do
     comment = FactoryGirl.build(:comment, :user_id => @customer.id, :commentable => @customer)
     Comment.any_instance.stubs(:valid?).returns(false)
-    post :create, :user_id => @customer.id, :comment => comment.attributes.reject {|k,v| ['id'].include?(k)}
+    post :create, :user_id => @customer.id, :comment => comment.attributes.reject {|k,v| ['id', 'commentable_type', 'commentable_id', 'created_by', 'user_id'].include?(k)}
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     comment = FactoryGirl.build(:comment, :user_id => @customer.id, :commentable => @customer)
     Comment.any_instance.stubs(:valid?).returns(true)
-    post :create, :user_id => @customer.id, :comment => comment.attributes.reject {|k,v| ['id'].include?(k)}
+    post :create, :user_id => @customer.id, :comment => comment.attributes.reject {|k,v| ['id', 'commentable_type', 'commentable_id', 'created_by', 'user_id'].include?(k)}
     expect(response).to redirect_to(admin_customer_service_user_comment_url(@customer, assigns[:comment]))
   end
 

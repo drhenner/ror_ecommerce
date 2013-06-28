@@ -311,8 +311,9 @@ describe User, 'private methods' do
   context ".before_validation_on_create" do
     #Notifier.expects(:signup_notification).once.returns(sign_up_mock)
     it 'should assign the access_token' do
-      @user.expects(:before_validation_on_create).once
-      @user.save
+      user = build(:user)
+      user.expects(:before_validation_on_create).once
+      user.save
     end
     it 'should assign the access_token' do
       @user.save
