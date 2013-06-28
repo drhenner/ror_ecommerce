@@ -4,7 +4,7 @@
 
 <%= form_for @product, :url  => admin_merchandise_multi_product_variant_path(@product),
                         :html => {:class => ''}  do |form| %>
-  <div id='variants_container' >
+  <div id='variants_container' class='row'>
     <%= render :partial => '/admin/merchandise/multi/variants/form', :locals => {:form => form}%>
   </div>
   <div class='clearfix'></div>

@@ -4,7 +4,7 @@ class Admin::Merchandise::Wizards::PropertiesController < Admin::Merchandise::Wi
   end
 
   def create
-    property = Property.new(params[:property])
+    property = Property.new(allowed_params)
     flash[:notice] = "Successfully created property." if property.save
     form_info
     render :action => 'index'
@@ -24,6 +24,11 @@ class Admin::Merchandise::Wizards::PropertiesController < Admin::Merchandise::Wi
   end
 
   private
+
+
+  def allowed_params
+    params.require(:property).permit(:identifing_name, :display_name, :active)
+  end
 
   def valid_property_ids
     params[:property][:ids] && !params[:property][:ids].empty? && params[:property][:ids].all? {|id| Property.find_by_id(id) }

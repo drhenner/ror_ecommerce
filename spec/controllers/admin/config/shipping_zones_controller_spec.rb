@@ -6,7 +6,7 @@ describe Admin::Config::ShippingZonesController do
   before(:each) do
     activate_authlogic
 
-    @user = create_admin_user
+    @user = create_super_admin_user
     login_as(@user)
   end
 
@@ -28,7 +28,7 @@ describe Admin::Config::ShippingZonesController do
 
   it "create action should render new template when model is invalid" do
     ShippingZone.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :shipping_zone => {:name => 'Alaska'}
     response.should render_template(:new)
   end
 
@@ -47,14 +47,14 @@ describe Admin::Config::ShippingZonesController do
   it "update action should render edit template when model is invalid" do
     @shipping_zone = ShippingZone.first
     ShippingZone.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_zone.id
+    put :update, :id => @shipping_zone.id, :shipping_zone => {:name => 'Alaska'}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @shipping_zone = ShippingZone.first
     ShippingZone.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_zone.id
+    put :update, :id => @shipping_zone.id, :shipping_zone => {:name => 'Alaska'}
     response.should redirect_to(admin_config_shipping_zones_url())
   end
 

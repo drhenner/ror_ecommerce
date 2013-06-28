@@ -20,13 +20,14 @@ class Shopping::ShippingMethodsController < Shopping::BaseController
   # PUT /shopping/shipping_methods/1
   def update
     all_selected = true
+    redirect_to(shopping_orders_url) and return unless params[:shipping_category].present?
     params[:shipping_category].each_pair do |category_id, rate_id|#[rate]
       if rate_id
         items = OrderItem.includes([{:variant => :product}]).
                           where(['order_items.order_id = ? AND
-                                  products.shipping_category_id = ?', session_order_id, category_id])
+                                  products.shipping_category_id = ?', session_order_id, category_id]).references(:products)
 
-        OrderItem.update_all("shipping_rate_id = #{rate_id}","id IN (#{items.map{|i| i.id}.join(',')})")
+        OrderItem.where(id: items.map{|i| i.id}).update_all("shipping_rate_id = #{rate_id}")
       else
         all_selected = false
       end

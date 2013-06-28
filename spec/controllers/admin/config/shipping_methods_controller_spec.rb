@@ -6,7 +6,7 @@ describe Admin::Config::ShippingMethodsController do
   before(:each) do
     activate_authlogic
 
-    @user = create_admin_user
+    @user = create_super_admin_user
     login_as(@user)
   end
 
@@ -28,7 +28,7 @@ describe Admin::Config::ShippingMethodsController do
 
   it "create action should render new template when model is invalid" do
     ShippingMethod.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :shipping_method => {:name => 'UPS 3-5 day', :shipping_zone_id => 1}
     response.should render_template(:new)
   end
 
@@ -47,14 +47,14 @@ describe Admin::Config::ShippingMethodsController do
   it "update action should render edit template when model is invalid" do
     @shipping_method = create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_method.id
+    put :update, :id => @shipping_method.id, :shipping_method => {:name => 'UPS 3-5 day', :shipping_zone_id => 1}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @shipping_method = create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_method.id
+    put :update, :id => @shipping_method.id, :shipping_method => {:name => 'UPS 3-5 day', :shipping_zone_id => 1}
     response.should redirect_to(admin_config_shipping_methods_url())
   end
 

@@ -19,7 +19,7 @@ describe Admin::Merchandise::Products::DescriptionsController do
   it "update action should render edit template when model is invalid" do
     @product = create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @product.id
+    put :update, :id => @product.id, :product => {:name => 'test', :description_markup => 'mark it up'}
     response.should render_template(:edit)
   end
 

@@ -199,7 +199,7 @@ class Invoice < ActiveRecord::Base
   # @param [none]
   # @return [String] id the payment processor sends you after authorization.
   def authorization_reference
-    if authorization = payments.find_by_action_and_success('authorization', true, :order => 'id ASC')
+    if authorization = payments.order('id ASC').find_by(action: 'authorization', success: true )
       authorization.confirmation_id #reference
     end
   end
@@ -270,7 +270,7 @@ class Invoice < ActiveRecord::Base
     if args[:order_number].present?
       with_order_number(args[:order_number])
     else
-      scoped
+      all
     end
   end
 

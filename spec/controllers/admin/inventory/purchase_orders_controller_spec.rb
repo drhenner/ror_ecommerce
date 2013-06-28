@@ -30,7 +30,7 @@ describe Admin::Inventory::PurchaseOrdersController do
 
   it "create action should render new template when model is invalid" do
     PurchaseOrder.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'}
     response.should render_template(:new)
   end
 
@@ -49,14 +49,14 @@ describe Admin::Inventory::PurchaseOrdersController do
   it "update action should render edit template when model is invalid" do
     @purchase_order = create(:purchase_order)
     PurchaseOrder.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @purchase_order.id
+    put :update, :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @purchase_order = create(:purchase_order)
     PurchaseOrder.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @purchase_order.id
+    put :update, :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'}
     response.should redirect_to(admin_inventory_purchase_orders_url(:notice => 'Purchase order was successfully updated.'))
   end
 

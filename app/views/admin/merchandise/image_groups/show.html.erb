@@ -1,0 +1,24 @@
+<h1> Image Group </h1>
+
+<ul>
+  <li>
+    <label>Name:</label>
+    <%= @image_group.name %>
+  </li>
+  <li>
+    <label>Product:</label>
+    <%= @image_group.product_id %>
+  </li>
+</ul>
+<div class='row'>
+  <% @image_group.image_urls.each do |image_url|%>
+    <div class='three columns'>
+      <%= image_tag image_url %>
+    </div>
+  <% end %>
+</div>
+
+<p>
+  <%= link_to "Edit", edit_admin_merchandise_image_group_path(@image_group), :class => 'button' %> |
+  <%= link_to "View All", admin_merchandise_image_groups_path, :class => 'button' %>
+</p>

@@ -22,6 +22,7 @@
   </td>
   <td valign="top" style="padding-right: 20px;">
     <div class="small">
+      <%= image_tag item.variant.featured_image %>
       <b>
           <%= link_to item.variant.product_name, product_path(item.variant.product) %>
       </b>
@@ -35,7 +36,7 @@
     <br/>
   </td>
   <td valign="top">
-    <%= cart_items_form.text_field :quantity, :size=>"2" %>
+    <%= cart_items_form.number_field :quantity, :size=>"2" %>
   </td>
 </tr>
 <tr>

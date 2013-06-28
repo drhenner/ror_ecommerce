@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     if product_types
       @products = products.where('product_type_id IN (?)', product_types)
     else
-      @products = products.all
+      @products = products
     end
   end
 

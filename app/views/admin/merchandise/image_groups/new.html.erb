@@ -1,0 +1,19 @@
+<h1> New Image Group </h1>
+
+<%= form_for @image_group, :url => admin_merchandise_image_groups_path(@image_group) do |f| %>
+  <%= f.error_messages %>
+  <ul>
+    <li class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </li>
+    <li class="field">
+      <%= f.label :product_id %>
+      <%= f.select :product_id, products, :include_blank => true %>
+    </li>
+  </ul>
+
+  <div class="actions"><%= f.submit 'Create' , :class => 'button' %></div>
+<% end %>
+
+<p><%= link_to "Back to List", admin_merchandise_image_groups_path, :class => 'button' %></p>

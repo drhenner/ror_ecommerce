@@ -21,7 +21,7 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
 
   # POST /admin/merchandise/shipping_categories
   def create
-    @shipping_category = ShippingCategory.new(params[:shipping_category])
+    @shipping_category = ShippingCategory.new(allowed_params)
 
     if @shipping_category.save
       redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully created.')
@@ -34,7 +34,7 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   def update
     @shipping_category = ShippingCategory.find(params[:id])
 
-    if @shipping_category.update_attributes(params[:shipping_category])
+    if @shipping_category.update_attributes(allowed_params)
       redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully updated.')
     else
       render :action => "edit"
@@ -53,4 +53,7 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
 
   private
 
+  def allowed_params
+    params.require(:shipping_category).permit(:name)
+  end
 end

@@ -5,7 +5,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    @user_session = UserSession.new(params[:user_session])
+    @user_session = UserSession.new(user_params)
     if @user_session.save
       cookies[:hadean_uid] = @user_session.record.access_token
       session[:authenticated_at] = Time.now
@@ -15,7 +15,7 @@ class UserSessionsController < ApplicationController
       flash[:notice] = I18n.t('login_successful')
       redirect_back_or_default root_url
     else
-      @user = User.new
+      @user = User.new(user_params)
       redirect_to login_url, :alert => I18n.t('login_failure')
     end
   end
@@ -29,12 +29,16 @@ class UserSessionsController < ApplicationController
 
   private
 
+  def user_params
+    params.require(:user_session).permit(:password, :password_confirmation, :first_name, :last_name, :email, :birth_date)
+  end
+
   def set_user_to_cart_items
     if session_cart.user_id != @user_session.record.id
-      session_cart.update_attributes(:user_id => @user_session.record.id )
+      session_cart.update_attribute(:user_id, @user_session.record.id )
     end
     session_cart.cart_items.each do |item|
-      item.update_attributes(:user_id => @user_session.record.id ) if item.user_id != @user_session.record.id
+      item.update_attribute(:user_id, @user_session.record.id ) if item.user_id != @user_session.record.id
     end
   end
 end

@@ -16,7 +16,7 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
   end
 
   def create
-    @sale = Sale.new(params[:sale])
+    @sale = Sale.new(allowed_params)
     if @sale.save
       redirect_to [:admin, :generic, @sale], :notice => "Successfully created sale."
     else
@@ -30,7 +30,7 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
 
   def update
     @sale = Sale.find(params[:id])
-    if @sale.update_attributes(params[:sale])
+    if @sale.update_attributes(allowed_params)
       redirect_to [:admin, :generic, @sale], :notice  => "Successfully updated sale."
     else
       render :edit
@@ -45,8 +45,12 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
 
   private
 
+    def allowed_params
+      params.require(:sale).permit(:product_id, :percent_off, :starts_at, :ends_at)
+    end
+
     def products
-      @products ||= Product.select([:id, :name]).all.map{|p| [p.name, p.id]}
+      @products ||= Product.select([:id, :name]).map{|p| [p.name, p.id]}
     end
 
     def sort_column

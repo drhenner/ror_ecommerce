@@ -13,7 +13,7 @@ class Admin::Merchandise::Wizards::ProductsController < Admin::Merchandise::Wiza
   end
 
   def create
-    @product = Product.new(params[:product])
+    @product = Product.new(allowed_params)
     if @product.save
       reset_product_wizard
       flash[:notice] = "Successfully created product."
@@ -26,6 +26,10 @@ class Admin::Merchandise::Wizards::ProductsController < Admin::Merchandise::Wiza
 
   private
 
+  def allowed_params
+    params.require(:product).permit(:name, :description, :product_keywords, :set_keywords, :product_type_id, :prototype_id, :shipping_category_id, :permalink, :available_at, :deleted_at, :meta_keywords, :meta_description, :featured, :description_markup, :brand_id)
+  end
+
   def form_info
     if session[:product_wizard][:prototype_id]
       @all_properties           = Prototype.find(session[:product_wizard][:prototype_id]).properties
@@ -34,6 +38,6 @@ class Admin::Merchandise::Wizards::ProductsController < Admin::Merchandise::Wiza
     end
     @select_product_types     = ProductType.all.collect{|pt| [pt.name, pt.id]}
     @select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
-    @brands        = Brand.order(:name).all.collect {|ts| [ts.name, ts.id]}
+    @brands        = Brand.order(:name).collect {|ts| [ts.name, ts.id]}
   end
 end

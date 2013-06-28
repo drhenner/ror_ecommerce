@@ -6,7 +6,7 @@ describe Admin::Config::ShippingCategoriesController do
   before(:each) do
     activate_authlogic
 
-    @user = create_admin_user
+    @user = create_super_admin_user
     login_as(@user)
   end
 
@@ -28,7 +28,7 @@ describe Admin::Config::ShippingCategoriesController do
 
   it "create action should render new template when model is invalid" do
     ShippingCategory.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :shipping_category => {:name => 'clothing'}
     response.should render_template(:new)
   end
 
@@ -47,7 +47,7 @@ describe Admin::Config::ShippingCategoriesController do
   it "update action should render edit template when model is invalid" do
     @shipping_category = create(:shipping_category)
     ShippingCategory.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_category.id
+    put :update, :id => @shipping_category.id, :shipping_category => {:name => 'clothing'}
     response.should render_template(:edit)
   end
 

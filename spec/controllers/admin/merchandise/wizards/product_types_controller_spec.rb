@@ -20,7 +20,7 @@ describe Admin::Merchandise::Wizards::ProductTypesController do
 
   it "create action should render new template when model is invalid" do
     ProductType.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :product_type => {:name => 'prod type'}
     response.should render_template(:index)
   end
 

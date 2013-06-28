@@ -29,7 +29,7 @@ describe Admin::Inventory::SuppliersController do
 
   it "create action should render new template when model is invalid" do
     Supplier.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :supplier => {:name => 'John'}
     response.should render_template(:new)
   end
 
@@ -48,14 +48,14 @@ describe Admin::Inventory::SuppliersController do
   it "update action should render edit template when model is invalid" do
     @supplier = create(:supplier)
     Supplier.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @supplier.id
+    put :update, :id => @supplier.id, :supplier => {:name => 'John', :email => 'test@test.com'}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @supplier = create(:supplier)
     Supplier.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @supplier.id
+    put :update, :id => @supplier.id, :supplier => {:name => 'John', :email => 'test@test.com'}
     response.should redirect_to(admin_inventory_suppliers_url())
   end
 

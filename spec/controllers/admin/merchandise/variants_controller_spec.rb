@@ -27,17 +27,16 @@ describe Admin::Merchandise::VariantsController do
     get :new, :product_id => @product.id
     response.should render_template(:new)
   end
-
+#require(:variant).permit(:product_id, :sku, :name, :price, :cost, :deleted_at, :master, :brand_id, :inventory_id )
   it "create action should render new template when model is invalid" do
     Variant.any_instance.stubs(:valid?).returns(false)
-    post :create, :product_id => @product.id
+    post :create, :product_id => @product.id, :variant => {:sku => '1232-abc', :name => 'variant name', :price => '20.00', :cost => '10.00', :deleted_at => nil, :master => false, :brand_id => 1}
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    @variant = build(:variant, :product => @product)
     Variant.any_instance.stubs(:valid?).returns(true)
-    post :create, :product_id => @product.id, :variant => @variant.attributes
+    post :create, :product_id => @product.id, :variant => {:sku => '1232-abc', :name => 'variant name', :price => '20.00', :cost => '10.00', :deleted_at => nil, :master => false, :brand_id => 1}
     response.should redirect_to(admin_merchandise_product_variants_url(@product))
   end
 
@@ -50,14 +49,14 @@ describe Admin::Merchandise::VariantsController do
   it "update action should render edit template when model is invalid" do
     @variant = create(:variant, :product => @product)
     Variant.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @variant.id, :product_id => @product.id
+    put :update, :id => @variant.id, :product_id => @product.id, :variant => {:sku => '1232-abc', :name => 'variant name', :price => '20.00', :cost => '10.00', :deleted_at => nil, :master => false, :brand_id => 1}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @variant = create(:variant, :product => @product)
     Variant.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @variant.id, :product_id => @product.id
+    put :update, :id => @variant.id, :product_id => @product.id, :variant => {:sku => '1232-abc', :name => 'variant name', :price => '20.00', :cost => '10.00', :deleted_at => nil, :master => false, :brand_id => 1}
     response.should redirect_to(admin_merchandise_product_variants_url(@variant.product))
   end
 

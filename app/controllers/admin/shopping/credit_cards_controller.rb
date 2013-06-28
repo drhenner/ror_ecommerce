@@ -1,7 +1,7 @@
 class Admin::Shopping::CreditCardsController < Admin::Shopping::BaseController
   # GET /admin/order/credit_cards
   def index
-    @credit_cards = session_admin_cart[:user].credit_cards.all
+    @credit_cards = session_admin_cart[:user].credit_cards
   end
 
   # GET /admin/order/credit_cards/1

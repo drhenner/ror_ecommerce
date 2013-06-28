@@ -1,3 +1,8 @@
+###2.0.0beta1
+
+* RAILS 4.0.0.rc1 YEAH BABY!
+* RUBY 2.0 WOW!!
+
 ###1.5.0 2013-04-19
 * confirmation page for GA
 * referrals

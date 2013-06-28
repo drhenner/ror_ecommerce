@@ -14,6 +14,8 @@
 <%= form.text_field :name %>
 
 <label>Parent</label>
-<%= form.select :parent_id, nested_set_options(ProductType, ProductType.new) {|i, level| "#{'-' * level} #{i.name}" }, { :include_blank => true } %>
+  <%= form.select :parent_id,
+                  nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
+                  { :include_blank => true } %>
 
 <%= form.submit 'Create', :class => 'button', :style => "margin-top: 10px" %>

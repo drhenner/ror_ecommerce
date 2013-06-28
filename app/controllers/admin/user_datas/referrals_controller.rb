@@ -16,7 +16,8 @@ class Admin::UserDatas::ReferralsController < Admin::BaseController
 
   def create
     @referring_user = User.find_by_email(params[:referring_user_email])
-    @referral = Referral.new(params[:referral], :as => :admin)
+    @referral = Referral.new(allowed_params)
+    @referral.referral_type_id = ReferralType::ADMIN_WEB_FORM_ID
     @referral.skip_validate_has_not_signed_up_yet = true
     if @referring_user
       @referral.referring_user_id = @referring_user.id
@@ -49,7 +50,7 @@ class Admin::UserDatas::ReferralsController < Admin::BaseController
 
   def update
     @referral = Referral.find(params[:id])
-    if @referral.update_attributes(params[:referral], :as => :admin)
+    if @referral.update_attributes(allowed_params)
       redirect_to [:admin, :user_datas, @referral], :notice  => "Successfully updated referral."
     else
       form_info
@@ -71,6 +72,11 @@ class Admin::UserDatas::ReferralsController < Admin::BaseController
   end
 
   private
+
+    def allowed_params
+      params.require(:referral).permit(:email, :name, :referral_program_id)
+    end
+
     def form_info
 
     end

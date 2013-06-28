@@ -10,7 +10,7 @@
     <h2 style='text-align:center;'> <%= I18n.t(:nothing_in_cart) %></h2>
   <% elsif  @cart_items.blank? %>
     <h2 style='text-align:center;'> <%= I18n.t(:only_items_saved_for_later) %></h2>
-    <div class='panel graceful'> <h3 style='text-align:center;'> <%= I18n.t(:add_items_saved_for_later) %> </h3> </div>
+    <div class='panel graceful'> <h3 style='text-align:center;color:#333;'> <%= I18n.t(:add_items_saved_for_later) %> </h3> </div>
   <% end %>
 
   <%= form_for session_cart, :url => shopping_cart_item_path(session_cart), :as => :cart do |cart_form| %>
@@ -42,38 +42,37 @@
         <% unless @cart_items.blank? %>
         <tr>
             <td>
-                      <table width="100%" cellspacing="0" cellpadding="10">
-                        <tbody>
-                          <tr valign="top" bgcolor="#ebebe7" width="100%" >
-                            <td bgcolor="#ebebe7" colspan="2"  >
-                                <b>Shopping Cart Items--To Buy Now</b>
-                            </td>
-                            <td bgcolor="#ebebe7" class="small"><b>Price:</b></td>
+                <table width="100%" cellspacing="0" cellpadding="10">
+                  <tbody>
+                    <tr valign="top" bgcolor="#ebebe7" width="100%" >
+                      <td bgcolor="#ebebe7" colspan="2"  >
+                          <b>Shopping Cart Items--To Buy Now</b>
+                      </td>
+                      <td bgcolor="#ebebe7" class="small"><b>Price:</b></td>
 
-                            <td width="8%" bgcolor="#ebebe7" align="middle" class="small "><b>Qty:</b></td>
-                          </tr>
-                          <%#= cart_form.fields_for :shopping_cart_items, @cart_items do |cart_items_form| %>
-                          <% @cart_items.each_with_index do |item, i| %>
-                            <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
-                              <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
-                            <% end %>
-                          <% end %>
-                        </tbody>
-                      </table>
+                      <td width="8%" bgcolor="#ebebe7" align="middle" class="small "><b>Qty:</b></td>
+                    </tr>
+                    <% @cart_items.each_with_index do |item, i| %>
+                      <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
+                        <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
+                      <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
             </td>
           </tr>
         <% end %>
 
 
         <% unless @saved_cart_items.empty? %>
-          <tr>
+          <tr style='background-color: #FFF;'>
             <td align="center" colspan="1">
 
             </td>
           </tr>
-          <tr>
+          <tr style='background-color: #FFF;'>
             <td>
-              <table width="100%" cellspacing="0" cellpadding="10">
+              <table width="100%" cellspacing="0" cellpadding="10" style='border: 0px solid #FFF;'>
                 <tbody>
                   <tr valign="top" bgcolor="#eeeecc">
                       <td bgcolor="#eeeecc" colspan="2"><a name="savedforlater"><b>Saved Items--To Buy Later</b></a></td>

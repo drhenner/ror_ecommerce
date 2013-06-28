@@ -1,12 +1,11 @@
 class UsersNewsletter < ActiveRecord::Base
   require 'digest'
-  attr_accessible :newsletter_id, :user_id
   belongs_to :newsletter
   belongs_to :user
 
   def self.unsubscribe(email, key)
     if unsubscribe_key(email) == key
-      user = User.includes(:users_newsletters).where(['email = ?', email]).first
+      user = User.where(email: email).first
       if user
         user.users_newsletters.map(&:destroy)
       end

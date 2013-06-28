@@ -4,7 +4,7 @@ module RorEReports
     def initialize(start_time, end_time)
       @start_time = start_time
       @end_time   = end_time
-      @legders = TransactionLedger.where("created_at >= ? AND created_at <= ?", start_time, end_time).all
+      @legders = TransactionLedger.where("created_at >= ? AND created_at <= ?", start_time, end_time).to_a
     end
 
     def revenue

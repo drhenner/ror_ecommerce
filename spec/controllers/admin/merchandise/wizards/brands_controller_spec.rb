@@ -19,13 +19,13 @@ describe Admin::Merchandise::Wizards::BrandsController do
 
   it "create action should render new template when model is invalid" do
     Brand.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :brand => {:name => 'prod brand'}
     response.should render_template(:index)
   end
 
   it "create action should redirect when model is valid" do
     Brand.any_instance.stubs(:valid?).returns(true)
-    post :create
+    post :create, :brand => {:name => 'prod brand'}
     controller.session[:product_wizard][:brand_id].should_not be_nil
     response.should redirect_to(admin_merchandise_wizards_product_types_url)
   end

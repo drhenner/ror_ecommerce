@@ -6,7 +6,7 @@ describe Admin::Config::AccountsController do
   before(:each) do
     activate_authlogic
 
-    @user = create_admin_user
+    @user = create_super_admin_user
     login_as(@user)
   end
 
@@ -28,14 +28,14 @@ describe Admin::Config::AccountsController do
 
   it "create action should render new template when model is invalid" do
     Account.any_instance.stubs(:valid?).returns(false)
-    post :create
+    post :create, :account => {:name => 'Tests', :account_type => 'Free2You', :monthly_charge => 10, :active => true}
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     @account = build(:account)
     Account.any_instance.stubs(:valid?).returns(true)
-    post :create, :account => @account.attributes
+    post :create, :account => {:name => 'Tests', :account_type => 'Free2You', :monthly_charge => 10, :active => true}
     response.should redirect_to(admin_config_accounts_url())
   end
 
@@ -48,14 +48,14 @@ describe Admin::Config::AccountsController do
   it "update action should render edit template when model is invalid" do
     @account = create(:account)
     Account.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @account.id
+    put :update, :id => @account.id, :account => {:name => 'Tests', :account_type => 'Free2You', :monthly_charge => 10, :active => true}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @account = create(:account)
     Account.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @account.id
+    put :update, :id => @account.id, :account => {:name => 'Tests', :account_type => 'Free2You', :monthly_charge => 10, :active => true}
     response.should redirect_to(admin_config_accounts_url())
   end
 

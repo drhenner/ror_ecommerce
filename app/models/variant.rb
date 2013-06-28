@@ -37,10 +37,10 @@ class Variant < ActiveRecord::Base
   belongs_to :product
   belongs_to :brand
   belongs_to :inventory
+  belongs_to :image_group
 
-  before_validation :create_inventory, :on => :create
-
-  #validates :name,        :presence => true
+  before_validation :create_inventory#, :on => :create
+  #after_save :expire_cache
 
   validates :inventory_id, :presence => true
   validates :price,       :presence => true
@@ -59,6 +59,16 @@ class Variant < ActiveRecord::Base
   ADMIN_OUT_OF_STOCK_QTY  = 0
   OUT_OF_STOCK_QTY        = 2
   LOW_STOCK_QTY           = 6
+
+  def featured_image(image_size = :small)
+    image_urls(image_size).first
+  end
+
+  def image_urls(image_size = :small)
+    Rails.cache.fetch("variant-image_urls-#{self}-#{image_size}", :expires_in => 3.hours) do
+      image_group ? image_group.image_urls(image_size) : product.image_urls(image_size)
+    end
+  end
 
   # returns quantity available to purchase
   #
@@ -311,8 +321,7 @@ class Variant < ActiveRecord::Base
   # @param [Optional params]
   # @return [ Array[Variant] ]
   def self.admin_grid(product, params = {})
-    grid = where({:variants => { :product_id => product.id} })
-    grid = grid.includes(:product)
+    grid = where({:variants => { :product_id => product.id} }).includes(:product)
     grid = grid.where({:products => {:name => params[:product_name]}})  if params[:product_name].present?
     grid = grid.where(['sku LIKE ? ', "#{params[:sku]}%"])  if params[:sku].present?
     grid
@@ -321,6 +330,7 @@ class Variant < ActiveRecord::Base
   private
 
     def create_inventory
-      self.inventory = Inventory.create({:count_on_hand => 0, :count_pending_to_customer => 0, :count_pending_from_supplier => 0}) unless inventory
+      self.inventory = Inventory.create({:count_on_hand => 0, :count_pending_to_customer => 0, :count_pending_from_supplier => 0}) unless inventory_id
     end
+
 end

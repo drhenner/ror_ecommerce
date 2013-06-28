@@ -5,10 +5,15 @@ class Admin::Merchandise::Products::DescriptionsController < Admin::BaseControll
 
   def update
     @product = Product.find(params[:id])
-    if @product.update_attributes(params[:product])
+    if @product.update_attributes(allowed_params)
       redirect_to admin_merchandise_product_url(@product)
     else
       render :action => :edit
     end
+  end
+  private
+
+  def allowed_params
+    params.require(:product).permit(:name, :description_markup)
   end
 end

@@ -30,7 +30,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
 
   # POST /purchase_orders
   def create
-    @purchase_order = PurchaseOrder.new(params[:purchase_order])
+    @purchase_order = PurchaseOrder.new(allowed_params)
 
     if @purchase_order.save
       redirect_to(:action => :index, :notice => 'Purchase order was successfully created.')
@@ -43,7 +43,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   # PUT /purchase_orders/1
   def update
     @purchase_order = PurchaseOrder.find(params[:id])
-    if @purchase_order.update_attributes(params[:purchase_order])
+    if @purchase_order.update_attributes(allowed_params)
       redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.')
     else
       form_info
@@ -59,9 +59,14 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   end
   private
 
+
+  def allowed_params
+    params.require(:purchase_order).permit(:supplier_id, :invoice_number, :tracking_number, :notes, :receive_po, :ordered_at, :estimated_arrival_on, :created_at, :updated_at, :total_cost)
+  end
+
   def form_info
     @select_suppliers = Supplier.all.collect{|s| [s.name, s.id]}
-    @select_variants  = Variant.includes(:product).all.collect {|v| [v.name_with_sku, v.id]}
+    @select_variants  = Variant.includes(:product).collect {|v| [v.name_with_sku, v.id]}
   end
 
   def sort_column

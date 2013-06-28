@@ -13,7 +13,7 @@ class Property < ActiveRecord::Base
   validates :display_name,       :presence => true, :length => { :maximum => 165 }
   # active is default true at the DB level
 
-  scope :visible, where(active: true)
+  scope :visible, -> {where(active: true)}
 
 
   def full_name

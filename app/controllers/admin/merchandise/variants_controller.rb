@@ -21,7 +21,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
 
   def create
     @product = Product.find(params[:product_id])
-    @variant = @product.variants.new(params[:variant])
+    @variant = @product.variants.new(allowed_params)
 
     if @variant.save
       redirect_to admin_merchandise_product_variants_url(@product)
@@ -41,7 +41,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   def update
     @variant = Variant.includes( :product ).find(params[:id])
 
-    if @variant.update_attributes(params[:variant])
+    if @variant.update_attributes(allowed_params)
       redirect_to admin_merchandise_product_variants_url(@variant.product)
     else
       form_info
@@ -59,6 +59,10 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   end
 
   private
+
+  def allowed_params
+    params.require(:variant).permit(:sku, :name, :price, :cost, :deleted_at, :master, :brand_id, :inventory_id )
+  end
 
     def form_info
       @brands = Brand.all.collect{|b| [b.name, b.id] }
