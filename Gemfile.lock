@@ -104,6 +104,9 @@ GEM
       uuidtools (~> 2.1)
     bluecloth (2.1.0)
     builder (3.1.4)
+    byebug (1.4.2)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     cancan (1.6.10)
     capybara (1.1.4)
       mime-types (>= 1.16)
@@ -121,6 +124,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.0.9)
     columnize (0.3.6)
     compass (0.12.2)
       chunky_png (~> 1.2)
@@ -179,6 +183,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     metaclass (0.0.1)
+    method_source (0.8.1)
     mime-types (1.23)
     minitest (4.7.5)
     mocha (0.13.3)
@@ -208,6 +213,13 @@ GEM
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
       ttfunk (~> 1.0.2)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-byebug (1.1.0)
+      byebug (~> 1.4.0)
+      pry (~> 0.9.12)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -261,6 +273,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    slop (3.4.5)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -308,6 +321,7 @@ DEPENDENCIES
   awesome_nested_set!
   aws-sdk
   bluecloth (~> 2.1.0)
+  byebug
   cancan (~> 1.6.8)
   capybara (~> 1.1)
   chronic
@@ -331,6 +345,7 @@ DEPENDENCIES
   paperclip (~> 3.0)
   pg
   prawn (~> 0.12.0)
+  pry-byebug
   rails (= 4.0.0)
   rails-erd
   rails3-generators!
