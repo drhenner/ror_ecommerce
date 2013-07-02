@@ -63,9 +63,10 @@ group :development do
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
-
   gem "rails-erd"
   gem "debugger"
+  gem 'byebug', :platforms => [:mingw_20, :mri_20, :ruby_20]
+  gem 'pry-byebug', :platforms => [:mingw_20, :mri_20, :ruby_20]
 
   # YARD AND REDCLOTH are for generating yardocs
   gem 'yard'
