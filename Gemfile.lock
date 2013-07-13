@@ -1,10 +1,16 @@
 GIT
-  remote: git://github.com/milgner/compass-rails.git
-  revision: 1749c06f15dc4b058427e7969810457213647fb8
-  branch: rails4
+  remote: git://github.com/Compass/compass-rails.git
+  revision: 32c16cb90f78053310b35199a970c53355bcd300
+  branch: rails4-hack
   specs:
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+
+GIT
+  remote: git://github.com/bmabey/database_cleaner.git
+  revision: 5dc784af6661fd9067953458fbac1b2e0334f0db
+  specs:
+    database_cleaner (1.0.1)
 
 GIT
   remote: git@github.com:FriendlyId/friendly_id.git
@@ -12,12 +18,6 @@ GIT
   branch: rails4
   specs:
     friendly_id (4.1.0.beta.2)
-
-GIT
-  remote: git@github.com:bmabey/database_cleaner.git
-  revision: 5dc784af6661fd9067953458fbac1b2e0334f0db
-  specs:
-    database_cleaner (1.0.1)
 
 GIT
   remote: git@github.com:christophemaximin/authlogic.git
@@ -29,12 +29,12 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: git@github.com:cschramm/awesome_nested_set.git
-  revision: d48ac57e3e7714d50c44a4ff3fd1a6fde1becafe
+  remote: git@github.com:collectiveidea/awesome_nested_set.git
+  revision: dc95e0d64600d32f36568360ccb83951b2a9034f
   branch: rails4
   specs:
     awesome_nested_set (2.1.6)
-      activerecord (>= 4.0.0.beta)
+      activerecord (~> 4.0.0)
 
 GIT
   remote: https://github.com/neocoin/rails3-generators.git
