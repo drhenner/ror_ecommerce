@@ -24,6 +24,7 @@ gem 'compass-rails', :git => 'git://github.com/Compass/compass-rails.git', :bran
 gem 'dynamic_form'
 gem "friendly_id", :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
 gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
+gem 'jbuilder'
 gem "jquery-rails"
 gem 'jquery-ui-rails'
 gem 'json', '~> 1.8.0'

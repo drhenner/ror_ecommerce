@@ -153,6 +153,10 @@ class Order < ActiveRecord::Base
     invoices.last.state
   end
 
+  def self.between(start_time, end_time)
+    where("created_at >= ? AND created_at <= ?", start_time, end_time)
+  end
+
   def self.finished
     where({:orders => { :state => ['complete', 'paid']}})
   end
