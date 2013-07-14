@@ -3,7 +3,7 @@ class Admin::Reports::WeeklyChartsController < Admin::Reports::BaseController
   before_filter :set_time_range
   layout 'admin_charts'
   def index
-    @sales_data = RorEReports::Sales.new(start_time, end_time)
+    @sales_data = RorEReports::Sales.new(start_time, number_of_data_points)
   end
 
   private
@@ -17,16 +17,16 @@ class Admin::Reports::WeeklyChartsController < Admin::Reports::BaseController
     set_end_time
   end
 
-  def set_end_time
-    @end_time = case time_frame
+  def number_of_data_points
+    data_point  = case time_frame
     when 'Daily'
-      start_time + 7.days
+      7
     when 'Weekly'
-      start_time + 5.weeks
+      5
     when 'Monthly'
-      start_time + 5.months
+      5
     else
-      start_time + 5.weeks
+      5
     end
   end
 

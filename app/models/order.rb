@@ -157,6 +157,10 @@ class Order < ActiveRecord::Base
     where("created_at >= ? AND created_at <= ?", start_time, end_time)
   end
 
+  def self.order_by_completion
+    order('orders.completed_at asc')
+  end
+
   def self.finished
     where({:orders => { :state => ['complete', 'paid']}})
   end
