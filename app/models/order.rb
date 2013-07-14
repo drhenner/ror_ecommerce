@@ -154,7 +154,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.between(start_time, end_time)
-    where("created_at >= ? AND created_at <= ?", start_time, end_time)
+    where("orders.completed_at >= ? AND orders.completed_at <= ?", start_time, end_time)
   end
 
   def self.order_by_completion

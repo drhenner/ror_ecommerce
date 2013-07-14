@@ -12,7 +12,7 @@ class Admin::Reports::WeeklyChartsController < Admin::Reports::BaseController
     if params[:start_date].present?
       @start_time = Time.parse(params[:start_date])
     else
-      @start_time = Chronic.parse('5 weeks ago').beginning_of_week
+      @start_time = Chronic.parse("#{number_of_data_points} weeks ago").beginning_of_week
     end
     set_end_time
   end
@@ -20,13 +20,13 @@ class Admin::Reports::WeeklyChartsController < Admin::Reports::BaseController
   def number_of_data_points
     data_point  = case time_frame
     when 'Daily'
-      7
+      30
     when 'Weekly'
-      5
+      13
     when 'Monthly'
-      5
+      12
     else
-      5
+      10
     end
   end
 
