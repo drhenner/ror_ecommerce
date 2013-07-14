@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= site_name %></title>
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+
+  <%= stylesheet_link_tag "admin/foundation" %>
+  <%= stylesheet_link_tag "admin/app" %>
+  <!--[if lt IE 8]
+    <%= stylesheet_link_tag "admin/ie.css" %>
+  <![endif]-->
+  <%= csrf_meta_tag %>
+
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag "admin/app" %>
+  <%= javascript_include_tag "admin/jquery.customforms" %>
+  <%= javascript_include_tag "admin/jquery.placeholder.min" %>
+  <%= javascript_include_tag "admin/jquery.reveal" %>
+  <%= javascript_include_tag "admin/jquery.tooltips" %>
+  <%= javascript_include_tag "admin/modernizr.foundation" %>
+
+  <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+
+  <%= yield :head %>
+</head>
+<body class="bp">
+  <div class="container">
+    <div class="row">
+      <% if notice || alert %>
+        <div class="flash_messages">
+          <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice %>
+          <%= raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
+        </div>
+      <% end %>
+
+      <%= render :partial => "shared/admin/header_bar" %>
+
+      <% if content_for? :header_sub_bar %>
+        <div id='header_sub_bar'>
+          <%= yield :header_sub_bar %>
+        </div>
+      <% end %>
+
+      <% if content_for?(:sidemenu) %>
+        <div class="admin_main_content nine large-9 columns">
+          <%= yield %>
+        </div>
+        <div class="three  large-3 columns sidebar" >
+          <%= yield :sidemenu %>
+        </div>
+      <% else %>
+        <div class='admin_main_content'>
+          <%= yield %>
+        </div>
+      <% end %>
+    </div>
+    <div class="footer">
+      <p class="left"><%= site_name %></p>
+      <p class="right">Powered by <%= link_to "RoR eCommerce", "http://ror-e.com" %>. v<%= RoReCommerce::Version %></p>
+    </div>
+  </div>
+
+  <%= yield :bottom %>
+
+  <script>
+  jQuery(window).ready(
+    function() {
+      jQuery('.flash_notice').delay(6000).slideUp( 'slow');
+      jQuery('.flash_error').delay(6000).slideUp( 'slow');
+    }
+  );
+  </script>
+
+</body>
+  <%= yield :below_body %>
+</html>

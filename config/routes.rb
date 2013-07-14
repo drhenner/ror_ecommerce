@@ -84,6 +84,7 @@ Hadean::Application.routes.draw do
 
     namespace :reports do
       resource :overview, :only => [:show]
+      resources :graphs
     end
     namespace :rma do
       resources  :orders do

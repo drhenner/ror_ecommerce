@@ -28,8 +28,6 @@ gem "jquery-rails"
 gem 'jquery-ui-rails'
 gem 'json', '~> 1.8.0'
 
-#gem 'lazy_high_charts'
-
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri', '~> 1.5.0'
 gem 'paperclip', '~> 3.0'
