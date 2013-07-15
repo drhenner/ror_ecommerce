@@ -9,6 +9,7 @@ describe Admin::Reports::WeeklyChartsController do
   end
 
   it "index action should render index template" do
+    RorEReports::Sales.any_instance.stubs(:weekly_summary).returns(fake_sales_data)
     get :index, format: :json
     expect(response).to render_template(:index)
     expect(response.body).to eq fake_sales_data.to_json
