@@ -48,7 +48,7 @@ gem 'state_machine', '~> 1.2.0'
 gem 'will_paginate', '~> 3.0.4'
 
 group :production do
-  gem 'mysql2', '~> 0.3.11'
+  gem 'mysql2', '~> 0.3.12'
   gem 'pg'
 end
 
