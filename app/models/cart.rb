@@ -91,18 +91,11 @@ class Cart < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :customer, class_name: 'User'
   has_many    :cart_items
-  has_many    :shopping_cart_items,       -> { where(active: true, item_type_id: ItemType::SHOPPING_CART_ID) },
-                                          class_name: 'CartItem'
-
-  has_many    :saved_cart_items,          -> { where( active: true, item_type_id: ItemType::SAVE_FOR_LATER_ID) },
-                                          class_name: 'CartItem'
-  has_many    :wish_list_items,           -> { where( active: true, item_type_id: ItemType::WISH_LIST_ID) },
-                                          class_name: 'CartItem'
-
-  has_many    :purchased_items,           -> { where( active: true, item_type_id: ItemType::PURCHASED_ID) },
-                                          class_name: 'CartItem'
-
-  has_many    :deleted_cart_items,        -> { where(active: false) }, class_name: 'CartItem'
+  has_many    :shopping_cart_items, -> { where(active: true, item_type_id: ItemType::SHOPPING_CART_ID) },   class_name: 'CartItem'
+  has_many    :saved_cart_items,    -> { where( active: true, item_type_id: ItemType::SAVE_FOR_LATER_ID) }, class_name: 'CartItem'
+  has_many    :wish_list_items,     -> { where( active: true, item_type_id: ItemType::WISH_LIST_ID) },      class_name: 'CartItem'
+  has_many    :purchased_items,     -> { where( active: true, item_type_id: ItemType::PURCHASED_ID) },      class_name: 'CartItem'
+  has_many    :deleted_cart_items,  -> { where(active: false) }, class_name: 'CartItem'
 
   accepts_nested_attributes_for :shopping_cart_items
 
@@ -151,10 +144,10 @@ class Cart < ActiveRecord::Base
     if admin_purchase && (quantity_to_purchase > 0)
       cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
     elsif variant.sold_out?
-      cart_item = saved_cart_items.create(:variant_id   => variant_id,
-                                    :user         => customer,
-                                    :item_type_id => ItemType::SAVE_FOR_LATER_ID,
-                                    :quantity     => qty#,#:price      => variant.price
+      cart_item = saved_cart_items.create(variant_id:   variant_id,
+                                          user:         customer,
+                                          item_type_id: ItemType::SAVE_FOR_LATER_ID,
+                                          quantity:     qty
                                     ) if items.size < 1
     else
       cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
@@ -204,10 +197,10 @@ class Cart < ActiveRecord::Base
 
   def add_cart_items(items, qty, customer, cart_item_type_id, variant_id)
     if items.size < 1
-      cart_item = shopping_cart_items.create(:variant_id   => variant_id,
-                                    :user         => customer,
-                                    :item_type_id => cart_item_type_id,
-                                    :quantity     => qty#,#:price      => variant.price
+      cart_item = shopping_cart_items.create(variant_id:   variant_id,
+                                             user:         customer,
+                                             item_type_id: cart_item_type_id,
+                                             quantity:     qty
                                     )
     else
       cart_item = items.first
@@ -224,19 +217,23 @@ class Cart < ActiveRecord::Base
 
   def items_to_add_or_destroy(items_in_cart, order)
     #destroy_any_order_item_that_was_removed_from_cart
-    order.order_items.delete_if {|order_item| !items_in_cart.keys.any?{|variant_id| variant_id == order_item.variant_id } }
+    destroy_order_items_not_in_cart!(items_in_cart, order)
    # order.order_items.delete_all #destroy(order_item.id)
     items = order.order_items.inject({}) {|h, item| h[item.variant_id].nil? ? h[item.variant_id] = [item.id]  : h[item.variant_id] << item.id; h}
     items_in_cart.each_pair do |variant_id, qty_in_cart|
       variant = Variant.find(variant_id)
-      if items[variant_id].nil?
+      if items[variant_id].nil? # the order does not have any order_items with this variant_id
         order.add_items( variant , qty_in_cart)
-      elsif qty_in_cart - items[variant_id].size > 0
+      elsif qty_in_cart - items[variant_id].size > 0 # the order does not enough order_items with this variant_id
         order.add_items( variant , qty_in_cart - items[variant_id].size)
-      elsif qty_in_cart - items[variant_id].size < 0
+      elsif qty_in_cart - items[variant_id].size < 0 # the order has too many order_items with this variant_id
         order.remove_items( variant , qty_in_cart )
       end
     end
     order
   end
+  private
+    def destroy_order_items_not_in_cart!(items_in_cart, order)
+      order.order_items.delete_if {|order_item| !items_in_cart.keys.any?{|variant_id| variant_id == order_item.variant_id } }
+    end
 end
