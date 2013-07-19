@@ -57,8 +57,8 @@ group :development do
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem "better_errors", '~> 0.9.0'
+  gem "binding_of_caller", '~> 0.7.2'
   gem "rails-erd"
   gem 'byebug', :platforms => [:mingw_20, :mri_20, :ruby_20]
   gem 'pry-byebug', :platforms => [:mingw_20, :mri_20, :ruby_20]
