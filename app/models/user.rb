@@ -357,7 +357,7 @@ class User < ActiveRecord::Base
     first_name.present? ? where("users.first_name LIKE ?", "#{first_name}%") : all
   end
 
-  def self.last_name_filter(email)
+  def self.last_name_filter(last_name)
     last_name.present? ? where("users.last_name LIKE ?", "#{last_name}%") : all
   end
 
