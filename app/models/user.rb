@@ -44,10 +44,6 @@ class User < ActiveRecord::Base
 
     config.validate_login_field = true;
     config.validate_email_field = true;
-
-    # Remove unecessary field validation given by Authlogic.
-    #config.validate_password_field = false;
-
   end
 
   before_validation :sanitize_data
@@ -72,15 +68,10 @@ class User < ActiveRecord::Base
   has_many    :finished_orders,           -> { where(state: ['complete', 'paid']) },  class_name: 'Order'
   has_many    :completed_orders,          -> { where(state: 'complete') },            class_name: 'Order'
 
-  has_many    :phones,                    dependent: :destroy,
-                                          as: :phoneable
+  has_many    :phones,          dependent: :destroy,       as: :phoneable
+  has_one     :primary_phone, -> { where(primary: true) }, as: :phoneable, class_name: 'Phone'
 
-  has_one     :primary_phone,             -> { where(primary: true) },
-                                          as: :phoneable,
-                                          class_name: 'Phone'
-
-  has_many    :addresses,                 dependent: :destroy,
-                                          as: :addressable
+  has_many    :addresses,       dependent: :destroy,       as: :addressable
 
   has_one     :default_billing_address,   -> { where(billing_default: true, active: true) },
                                           as:         :addressable,
@@ -104,23 +95,11 @@ class User < ActiveRecord::Base
   has_many    :carts,                     dependent: :destroy
 
   has_many    :cart_items
-  has_many    :shopping_cart_items,       -> { where(active: true,
-                                                        item_type_id: ItemType::SHOPPING_CART_ID) },
-                                          class_name: 'CartItem'
-
-  has_many    :wish_list_items,           -> { where(active:  true,
-                                                        item_type_id: ItemType::WISH_LIST_ID) },
-                                          class_name: 'CartItem'
-
-  has_many    :saved_cart_items,          -> { where(active:  true,
-                                                        item_type_id: ItemType::SAVE_FOR_LATER) },
-                                          class_name: 'CartItem'
-
-  has_many    :purchased_items,           -> { where(active:  true,
-                                                        item_type_id: ItemType::PURCHASED_ID) },
-                                          class_name: 'CartItem'
-
-  has_many    :deleted_cart_items,        -> { where( active: false) }, class_name: 'CartItem'
+  has_many    :shopping_cart_items, -> { where(active: true, item_type_id: ItemType::SHOPPING_CART_ID) }, class_name: 'CartItem'
+  has_many    :wish_list_items,     -> { where(active: true, item_type_id: ItemType::WISH_LIST_ID) },     class_name: 'CartItem'
+  has_many    :saved_cart_items,    -> { where(active: true, item_type_id: ItemType::SAVE_FOR_LATER) },   class_name: 'CartItem'
+  has_many    :purchased_items,     -> { where(active: true, item_type_id: ItemType::PURCHASED_ID) },     class_name: 'CartItem'
+  has_many    :deleted_cart_items,  -> { where( active: false) }, class_name: 'CartItem'
   has_many    :payment_profiles
   has_many    :transaction_ledgers, as: :accountable
 
@@ -283,9 +262,7 @@ class User < ActiveRecord::Base
     self.last_name  = self.last_name.strip.capitalize   unless last_name.nil?
 
     ## CHANGE THIS IF YOU HAVE DIFFERENT ACCOUNT TYPES
-    unless account_id
-      self.account = Account.first
-    end
+    self.account = Account.first unless account_id
   end
 
   # email activation instructions after a user signs up
@@ -348,11 +325,9 @@ class User < ActiveRecord::Base
   # @param [Optional params]
   # @return [ Array[User] ]
   def self.admin_grid(params = {})
-    grid = User.includes(:roles)
-    grid = grid.where("users.first_name LIKE ?", "#{params[:first_name]}%") if params[:first_name].present?
-    grid = grid.where("users.last_name LIKE ?",  "#{params[:last_name]}%")  if params[:last_name].present?
-    grid = grid.where("users.email LIKE ?",      "#{params[:email]}%")      if params[:email].present?
-    grid
+    includes(:roles).first_name_filter(params[:first_name]).
+                     last_name_filter(params[:last_name]).
+                     email_filter(params[:email])
   end
 
   def deliver_password_reset_instructions!
@@ -377,6 +352,18 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def self.first_name_filter(first_name)
+    first_name.present? ? where("users.first_name LIKE ?", "#{first_name}%") : all
+  end
+
+  def self.last_name_filter(email)
+    last_name.present? ? where("users.last_name LIKE ?", "#{last_name}%") : all
+  end
+
+  def self.email_filter(email)
+    email.present? ? where("users.email LIKE ?", "#{email}%") : all
+  end
 
   def set_referral_registered_at
     if refer_al = Referral.find_by_email(email)
