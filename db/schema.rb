@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130603053252) do
+ActiveRecord::Schema.define(version: 20130719071644) do
 
   create_table "accounting_adjustments", force: true do |t|
     t.integer  "adjustable_id",                           null: false
@@ -683,7 +683,6 @@ ActiveRecord::Schema.define(version: 20130603053252) do
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.date     "birth_date"
     t.string   "email"
     t.string   "state"
     t.integer  "account_id"

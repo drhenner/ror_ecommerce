@@ -15,7 +15,6 @@
 #  id                :integer(4)      not null, primary key
 #  first_name        :string(255)
 #  last_name         :string(255)
-#  birth_date        :date
 #  email             :string(255)
 #  state             :string(255)
 #  account_id        :integer(4)
@@ -116,7 +115,6 @@ class User < ActiveRecord::Base
                           :uniqueness => true,##  This should be done at the DB this is too expensive in rails
                           :format   => { :with => CustomValidators::Emails.email_validator },
                           :length => { :maximum => 255 }
-  validate :validate_age
   #validates :password,    :presence => { :if => :password_required? }, :confirmation => true
 
   accepts_nested_attributes_for :addresses, :user_roles
@@ -185,33 +183,6 @@ class User < ActiveRecord::Base
   # @return [ Cart ]
   def current_cart
     carts.last
-  end
-
-  # formats the String
-  #
-  # @param [String] formatted in Euro-time
-  # @return [ none ]  sets birth_date for the user
-  def format_birth_date(b_date)
-    self.birth_date = Date.strptime(b_date, "%m/%d/%Y").to_s(:db) if b_date.present?
-  end
-
-  def display_birth_date
-    birth_date ? I18n.localize(birth_date, :format => :us_date) : 'N/A'
-  end
-
-  # formats the String
-  #
-  # @param [String] formatted in Euro-time
-  # @return [ none ]  sets birth_date for the user
-  def form_birth_date
-    birth_date.present? ? birth_date.strftime("%m/%d/%Y") : nil
-  end
-  # formats the String
-  #
-  # @param [String] formatted in Euro-time
-  # @return [ none ]  sets birth_date for the user
-  def form_birth_date=(val)
-    self.birth_date = Date.strptime(val, "%m/%d/%Y").to_s(:db) if val.present?
   end
 
   ##  This method will one day grow into the products a user most likely likes.
@@ -369,28 +340,6 @@ class User < ActiveRecord::Base
     if refer_al = Referral.find_by_email(email)
       refer_al.set_referral_user(id)
     end
-  end
-
-  def validate_age
-    if birth_date && birth_date_changed?
-      if too_old?
-        self.errors.add(:birth_date, "This user is too old (#{age}).")
-      elsif too_young?
-        self.errors.add(:birth_date, "This user is too young (#{age}).")
-      end
-    end
-  end
-
-  def too_old?
-    age > 110
-  end
-
-  def too_young?
-    age < 2
-  end
-
-  def age
-    birth_date.age
   end
 
   def start_store_credits

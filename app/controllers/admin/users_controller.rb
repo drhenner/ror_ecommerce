@@ -20,7 +20,6 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(user_params)
-    @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
     authorize! :create_users, current_user
     if @user.save
       @user.deliver_activation_instructions!
@@ -43,7 +42,6 @@ class Admin::UsersController < Admin::BaseController
     params[:user][:role_ids] ||= []
     @user = User.includes(:roles).find(params[:id])
     authorize! :create_users, current_user
-    @user.format_birth_date(params[:user][:birth_date]) if params[:user][:birth_date].present?
     if @user.update_attributes(user_params)
       flash[:notice] = "#{@user.name} has been updated."
       redirect_to admin_users_url

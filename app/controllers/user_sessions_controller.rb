@@ -30,7 +30,7 @@ class UserSessionsController < ApplicationController
   private
 
   def user_params
-    params.require(:user_session).permit(:password, :password_confirmation, :first_name, :last_name, :email, :birth_date)
+    params.require(:user_session).permit(:password, :password_confirmation, :first_name, :last_name, :email)
   end
 
   def set_user_to_cart_items

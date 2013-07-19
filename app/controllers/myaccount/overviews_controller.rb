@@ -19,7 +19,7 @@ class Myaccount::OverviewsController < Myaccount::BaseController
   private
 
     def user_params
-      params.require(:user).permit(:password, :password_confirmation, :first_name, :last_name, :birth_date)
+      params.require(:user).permit(:password, :password_confirmation, :first_name, :last_name)
     end
     def selected_myaccount_tab(tab)
       tab == 'profile'

@@ -13,42 +13,14 @@ describe User do
   end
 
   context "Invalid User" do
-    before(:each) do
-      @user = build(:user, :form_birth_date => '05/05/1900')
-    end
 
-    it "should be valid with minimum attributes(Too old)" do
-      @user = build(:user, :form_birth_date => '05/05/1900')
+    it "should be valid without first_name" do
+      @user = build(:user, :first_name => '')
       @user.should_not be_valid
     end
 
-    it "should be valid with minimum attributes(Not born yet)" do
-      now = Time.now + 10.days
-      @user = build(:user, :form_birth_date => now.strftime("%m/%d/%Y"))
-      @user.should_not be_valid
-    end
   end
 end
-
-
-describe User, ".form_birth_date(val)" do
-  it "should return the correct b-day" do
-    user = create(:user, :form_birth_date => '05/18/1975')
-    #should_receive(:authenticate).with("password").and_return(true)
-    user.birth_date.should_not be_blank
-    user.form_birth_date.should == '05/18/1975'
-    #ActiveSupport::TimeZone.us_zones.map(&:to_s).include?(user.time_zone).should be_true
-  end
-
-  it "should return the correct b-day" do
-    user = create(:user, :form_birth_date => '')
-    #should_receive(:authenticate).with("password").and_return(true)
-    user.birth_date.should be_blank
-    user.form_birth_date.should == nil
-    #ActiveSupport::TimeZone.us_zones.map(&:to_s).include?(user.time_zone).should be_true
-  end
-end
-
 
 describe User, ".name" do
   it "should return the correct name" do
@@ -134,19 +106,6 @@ describe User, "instance methods" do
     end
 
     #pending "add your specific find products method here"
-  end
-
-  context ".format_birth_date(b_date)" do
-    it 'should return a US date formatted correctly' do
-      @user.format_birth_date('12/17/1975')
-      @user.birth_date.should_not be_nil
-      @user.birth_date.strftime('%m/%d/%Y').should == '12/17/1975'
-    end
-
-    it 'should return nil if no date is given' do
-      @user.format_birth_date('')
-      @user.birth_date.should be_nil
-    end
   end
 
   context ".billing_address" do
