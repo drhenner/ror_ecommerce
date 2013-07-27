@@ -1,0 +1,8 @@
+<h2> New Address (<%= customer.name %>) </h2>
+
+<%= form_for @form_address, :url => admin_user_datas_user_addresses_path(customer, @form_address) do |f| %>
+  <%=  render :partial => 'form', :locals => {:f => f} %>
+  <div class="actions"><%= f.submit 'Create' , :class => 'button' %></div>
+<% end %>
+
+<p><%= link_to "Back to List", admin_user_datas_user_addresses_path(customer), :class => 'button' %></p>

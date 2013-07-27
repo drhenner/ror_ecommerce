@@ -1,4 +1,4 @@
-class Admin::UserDatas::ReferralsController < Admin::BaseController
+class Admin::UserDatas::ReferralsController < Admin::UserDatas::BaseController
   helper_method :sort_column, :sort_direction, :referral_types, :referral_programs
   def index
     @referrals = Referral.order(sort_column + " " + sort_direction).

@@ -324,8 +324,8 @@ DEPENDENCIES
   autotest-rails-pure
   awesome_nested_set!
   aws-sdk
-  better_errors
-  binding_of_caller
+  better_errors (~> 0.9.0)
+  binding_of_caller (~> 0.7.2)
   bluecloth (~> 2.1.0)
   byebug
   cancan (~> 1.6.8)

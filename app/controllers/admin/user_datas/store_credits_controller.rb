@@ -1,4 +1,4 @@
-class Admin::UserDatas::StoreCreditsController < Admin::BaseController
+class Admin::UserDatas::StoreCreditsController < Admin::UserDatas::BaseController
   helper_method :customer
   def show
     @store_credit = customer.store_credit

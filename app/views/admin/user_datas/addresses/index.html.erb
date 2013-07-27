@@ -1,0 +1,47 @@
+<% content_for :head do -%>
+
+<% end %>
+
+<h1> <%= customer.name.possessive %> Addresses </h1>
+
+<div id="address_grid_wrapper" class='pretty_table'>
+  <table>
+    <thead>
+      <tr class='odd'>
+
+          <th>Address</th>
+          <th>Default</th>
+          <th>Active</th>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for address in @addresses %>
+      <tr  class='<%= cycle("odd", "")%>'>
+
+          <td>
+            <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => address} %>
+          </td>
+          <td><%= address.default %></td>
+          <td><%= address.active %></td>
+          <td><%= link_to 'View', [:admin, :user_datas, customer, address] %></td>
+        <td>
+          <% if address.active %>
+            <%= link_to "edit", edit_admin_user_datas_user_address_path(customer, address) %></td>
+          <% end %>
+        <td>
+          <% if address.active %>
+            <%= link_to "inactivate", [:admin, :user_datas, customer, address], data: { confirm: 'Are you sure?' }, :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @addresses %>
+
+<p><%= link_to "New Address", new_admin_user_datas_user_address_path(customer), :class => 'button' %></p>
