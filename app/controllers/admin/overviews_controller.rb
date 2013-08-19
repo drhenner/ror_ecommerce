@@ -16,7 +16,7 @@ class Admin::OverviewsController < ApplicationController
       @user = User.new(args)
       if @user.active? || @user.activate!
         @user.save
-        @user.role_ids = Role.all.collect{|r| r.id }
+        @user.role_ids = Role.all.map{|r| r.id }
         @user.save
         @current_user = @user
         @user_session = UserSession.new(session_args)
