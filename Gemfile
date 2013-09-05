@@ -10,29 +10,29 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
-gem 'authlogic', :git => 'git@github.com:christophemaximin/authlogic.git', :branch => 'fix_deprecated_with_scope' #, "3.2.0"
+gem 'authlogic',          git: 'git@github.com:christophemaximin/authlogic.git', branch: 'fix_deprecated_with_scope' #, "3.2.0"
 gem "asset_sync"
-gem 'awesome_nested_set', :git => "git@github.com:collectiveidea/awesome_nested_set.git", :branch => 'rails4'
+gem 'awesome_nested_set', '~> 3.0.0.rc.1'
 gem 'aws-sdk'
-gem 'bluecloth',     '~> 2.1.0'
-gem 'cancan', '~> 1.6.8'
+gem 'bluecloth',      '~> 2.1.0'
+gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
-gem 'compass-rails', :git => 'git://github.com/Compass/compass-rails.git', :branch => 'rails4-hack'
-#gem 'compass-rails', :git => 'git://github.com/milgner/compass-rails.git', :branch => 'rails4'
+gem 'compass-rails', git: 'git://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
+#gem 'compass-rails',  git: 'git://github.com/milgner/compass-rails.git', branch: 'rails4'
 
 
 gem 'dynamic_form'
-gem "friendly_id", :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
-gem 'haml',  ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem 'jbuilder'
+gem "friendly_id",    '~> 5.0.0.rc1'#, :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
+gem 'haml',           ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 gem 'jquery-ui-rails'
-gem 'json', '~> 1.8.0'
+gem 'json',           '~> 1.8.0'
 
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
-gem 'nokogiri', '~> 1.5.0'
-gem 'paperclip', '~> 3.0'
-gem 'prawn', '~> 0.12.0'
+gem 'nokogiri',     '~> 1.5.0'
+gem 'paperclip',    '~> 3.0'
+gem 'prawn',        '~> 0.12.0'
 
 gem "rails3-generators", :git => "https://github.com/neocoin/rails3-generators.git"
 gem "rails_config"

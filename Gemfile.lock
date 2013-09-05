@@ -13,13 +13,6 @@ GIT
     database_cleaner (1.1.1)
 
 GIT
-  remote: git@github.com:FriendlyId/friendly_id.git
-  revision: c49ce30ff2b370669ccf1708e99fb08ab51435d9
-  branch: rails4
-  specs:
-    friendly_id (4.1.0.beta.2)
-
-GIT
   remote: git@github.com:christophemaximin/authlogic.git
   revision: 4f7e8cf6219fc7c4e92dca02d4f3e3ca934ad25d
   branch: fix_deprecated_with_scope
@@ -27,14 +20,6 @@ GIT
     authlogic (3.2.1)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-
-GIT
-  remote: git@github.com:collectiveidea/awesome_nested_set.git
-  revision: dc95e0d64600d32f36568360ccb83951b2a9034f
-  branch: rails4
-  specs:
-    awesome_nested_set (2.1.6)
-      activerecord (~> 4.0.0)
 
 GIT
   remote: https://github.com/neocoin/rails3-generators.git
@@ -98,7 +83,9 @@ GEM
       ZenTest (>= 4.4.1)
     autotest-growl (0.2.16)
     autotest-rails-pure (4.1.2)
-    aws-sdk (1.15.0)
+    awesome_nested_set (3.0.0.rc.1)
+      activerecord (~> 4.0.0)
+    aws-sdk (1.17.0)
       json (~> 1.4)
       nokogiri (< 1.6.0)
       uuidtools (~> 2.1)
@@ -123,7 +110,7 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.1.6)
-    chronic (0.9.1)
+    chronic (0.10.1)
     chunky_png (1.2.8)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -144,7 +131,7 @@ GEM
       mail (~> 2.2)
     erubis (2.7.0)
     excon (0.25.3)
-    execjs (2.0.0)
+    execjs (2.0.1)
     factory_girl (3.3.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (3.3.0)
@@ -164,6 +151,8 @@ GEM
       nokogiri (~> 1.5)
       ruby-hmac
     formatador (0.2.4)
+    friendly_id (5.0.0.rc1)
+      activerecord (~> 4.0.0)
     fssm (0.2.10)
     haml (4.0.3)
       tilt
@@ -187,7 +176,7 @@ GEM
       treetop (~> 1.4.8)
     metaclass (0.0.1)
     method_source (0.8.2)
-    mime-types (1.24)
+    mime-types (1.25)
     minitest (4.7.5)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
@@ -270,10 +259,10 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    selenium-webdriver (2.35.0)
+    selenium-webdriver (2.35.1)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
-      rubyzip
+      rubyzip (< 1.0.0)
       websocket (~> 1.0.4)
     slop (3.4.6)
     sprockets (2.10.0)
@@ -296,7 +285,7 @@ GEM
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
     tzinfo (0.3.37)
-    uglifier (2.1.2)
+    uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     uuidtools (2.1.4)
@@ -320,7 +309,7 @@ DEPENDENCIES
   autotest (~> 4.4.6)
   autotest-growl
   autotest-rails-pure
-  awesome_nested_set!
+  awesome_nested_set (~> 3.0.0.rc.1)
   aws-sdk
   better_errors (~> 0.9.0)
   binding_of_caller (~> 0.7.2)
@@ -336,7 +325,7 @@ DEPENDENCIES
   factory_girl (~> 3.3.0)
   factory_girl_rails (~> 3.3.0)
   faker
-  friendly_id!
+  friendly_id (~> 5.0.0.rc1)
   haml (>= 3.0.13)
   jbuilder
   jquery-rails
