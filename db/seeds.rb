@@ -8,6 +8,7 @@
 
 puts "START SEEDING"
 
+puts "COUNTRIES"
 file_to_load  = Rails.root + 'db/seed/countries.yml'
 countries_list   = YAML::load( File.open( file_to_load ) )
 
@@ -19,7 +20,7 @@ countries_list.each_pair do |key,country|
   end
 end
 
-
+puts "States"
 file_to_load  = Rails.root + 'db/seed/states.yml'
 states_list   = YAML::load( File.open( file_to_load ) )
 
@@ -29,27 +30,33 @@ states_list.each_pair do |key,state|
   State.create(state['attributes']) unless s
 end
 
+puts "ROLES"
 roles = Role::ROLES
 roles.each do |role|
   Role.find_or_create_by_name(role)
 end
 
+puts "Address Types"
 AddressType::NAMES.each do |address_type|
   AddressType.find_or_create_by_name(address_type)
 end
 
+puts "PHONE TYPES"
 PhoneType::NAMES.each do |phone_type|
   PhoneType.find_or_create_by_name(phone_type)
 end
 
+puts "Item Types"
 ItemType::NAMES.each do |item_type|
   ItemType.find_or_create_by_name(item_type)
 end
 
+puts "DEAL TYPES"
 DealType::TYPES.each do |dt|
   DealType.find_or_create_by_name(dt)
 end
 
+puts "Accounts"
 Account::TYPES.each_pair do |acc_type, value|
   acc = Account.find_by_name(acc_type)
   unless acc
@@ -57,18 +64,22 @@ Account::TYPES.each_pair do |acc_type, value|
   end
 end
 
+puts "SHIPPING RATE TYPES"
 ShippingRateType::TYPES.each do |rate_type|
   ShippingRateType.find_or_create_by_name(rate_type)
 end
 
+puts "Shipping Zones"
 ShippingZone::LOCATIONS.each do |loc|
-  ShippingZone.find_or_create_by_name(loc)
+  ShippingZone.where(name: loc ).first_or_create
 end
 
+puts "ACCOUNT TYPES"
 TransactionAccount::ACCOUNT_TYPES.each do |acc_type|
-  TransactionAccount.find_or_create_by_name(acc_type)
+  TransactionAccount.where(name: acc_type ).first_or_create
 end
 
+puts "Return Reasons"
 ReturnReason::REASONS.each do |value|
   rr = ReturnReason.find_by_label(value)
   unless rr
@@ -76,6 +87,7 @@ ReturnReason::REASONS.each do |value|
   end
 end
 
+puts "Return CONDITIONS"
 ReturnCondition::CONDITIONS.each do |value|
   rc = ReturnCondition.find_by_label(value)
   unless rc
@@ -84,6 +96,7 @@ ReturnCondition::CONDITIONS.each do |value|
 end
 letters = Newsletter.count
 
+puts "Newsletters"
 Newsletter::AUTOSUBSCRIBED.each do |name|
   unless Newsletter.where(:name => name).first
     Newsletter.create(:name => name, :autosubscribe => true)
@@ -105,6 +118,7 @@ Newsletter::MANUALLY_SUBSCRIBE.each do |name|
   end
 end
 
+puts "Referral Bonuses"
 ReferralBonus::BONUSES.each do |referral_bonus_attributes|
   rb = ReferralBonus.find_by_name(referral_bonus_attributes[:name])
   unless rb
@@ -112,6 +126,7 @@ ReferralBonus::BONUSES.each do |referral_bonus_attributes|
   end
 end
 
+puts "Referral PROGRAMS"
 ReferralProgram::PROGRAMS.each do |referral_program_attributes|
   rp = ReferralProgram.find_by_name(referral_program_attributes[:name])
   unless rp
