@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pagination_rows
-    params[:rows] ||= 20
+    params[:rows] ||= 25
     params[:rows].to_i
   end
 
