@@ -4,8 +4,8 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
   def index
     #@comments = order.comments
     respond_to do |format|
-        format.json { render :json => order.comments.to_json, :status => 206}
-        format.html { render :action => 'index' }
+        format.json { render json: order.comments.to_json, status: 206}
+        format.html { render action: 'index' }
     end
   end
 
