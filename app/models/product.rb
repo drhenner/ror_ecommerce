@@ -53,17 +53,17 @@ class Product < ActiveRecord::Base
   before_validation :not_active_on_create!, :on => :create
   before_save :create_content
 
-  accepts_nested_attributes_for :variants,            :reject_if => proc { |attributes| attributes['sku'].blank? }
-  accepts_nested_attributes_for :product_properties,  :reject_if => proc { |attributes| attributes['description'].blank? }, :allow_destroy => true
-  accepts_nested_attributes_for :images,              :reject_if => proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, :allow_destroy => true
+  accepts_nested_attributes_for :variants,           reject_if: proc { |attributes| attributes['sku'].blank? }
+  accepts_nested_attributes_for :product_properties, reject_if: proc { |attributes| attributes['description'].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :images,             reject_if: proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, allow_destroy: true
 
-  validates :shipping_category_id,  :presence => true
-  validates :product_type_id,       :presence => true
-  validates :name,                  :presence => true,   :length => { :maximum => 165 }
-  validates :description_markup,    :presence => true,   :length => { :maximum => 2255 },     :if => :active
-  validates :meta_keywords,         :presence => true,        :length => { :maximum => 255 }, :if => :active
-  validates :meta_description,      :presence => true,        :length => { :maximum => 255 }, :if => :active
-  validates :permalink,             :uniqueness => true,      :length => { :maximum => 150 }
+  validates :shipping_category_id,  presence: true
+  validates :product_type_id,       presence: true
+  validates :name,                  presence: true,   length: { :maximum => 165 }
+  validates :description_markup,    presence: true,   length: { :maximum => 2255 },     :if => :active
+  validates :meta_keywords,         presence: true,        length: { :maximum => 255 }, :if => :active
+  validates :meta_description,      presence: true,        length: { :maximum => 255 }, :if => :active
+  validates :permalink,             uniqueness: true,      length: { :maximum => 150 }
 
   def hero_variant
     active_variants.detect{|v| v.master } || active_variants.first
