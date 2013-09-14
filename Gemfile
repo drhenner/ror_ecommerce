@@ -4,15 +4,17 @@ ruby "2.0.0"
 ## Bundle rails:
 gem 'rails', '4.0.0'
 
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier',     '>= 1.3.0'
 gem 'sass-rails',   '~> 4.0.0'
 
 gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
-gem 'authlogic',          git: 'git@github.com:christophemaximin/authlogic.git', branch: 'fix_deprecated_with_scope' #, "3.2.0"
+#gem 'authlogic',         git: 'git@github.com:christophemaximin/authlogic.git', branch: 'fix_deprecated_with_scope'
+gem 'authlogic',          git: 'git@github.com:binarylogic/authlogic.git'
 gem "asset_sync"
 gem 'awesome_nested_set', '~> 3.0.0.rc.1'
+
 gem 'aws-sdk'
 gem 'bluecloth',      '~> 2.1.0'
 gem 'cancan',         '~> 1.6.8'

@@ -13,13 +13,12 @@ GIT
     database_cleaner (1.1.1)
 
 GIT
-  remote: git@github.com:christophemaximin/authlogic.git
-  revision: 4f7e8cf6219fc7c4e92dca02d4f3e3ca934ad25d
-  branch: fix_deprecated_with_scope
+  remote: git@github.com:binarylogic/authlogic.git
+  revision: abc09970ed1fad98c6c12f4ca64d1670d37d11db
   specs:
-    authlogic (3.2.1)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
+    authlogic (3.3.0)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
 
 GIT
   remote: https://github.com/neocoin/rails3-generators.git
