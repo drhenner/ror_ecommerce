@@ -1,0 +1,114 @@
+  <% if @shopping_address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shopping_address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
+
+      <ul>
+      <% @shopping_address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class='main-address ' >
+    <div class="inline twelve ">
+      <div class="field six columns">
+         <%= f.label :first_name %>
+         <%= f.text_field :first_name, :class => '' %>
+      </div>
+
+      <div class="field six columns">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, :class => '' %>
+      </div>
+    </div>
+    <div class="twelve ">
+      <div class="field">
+
+        <%= f.fields_for :phones do |phone_f| %>
+          <div class=" six columns">
+            <%= phone_f.label :display_number, 'Primary Phone' %>
+            <%= phone_f.text_field :display_number %>
+          </div>
+          <div class=" six columns">
+            <%= phone_f.label :phone_type_id, 'Type' %>
+            <%= phone_f.select :phone_type_id, phone_types %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='clear'></div>
+      <div class="twelve columns">
+        <div class="field">
+          <%= f.label :address1 %>
+          <%= f.text_field :address1 %>
+
+          <%= f.label :address2 %>
+          <%= f.text_field :address2 %>
+        </div>
+      </div>
+
+    <div class='clearfix'></div>
+      <div class=" twelve ">
+        <div class="field five columns">
+          <%= f.label :city %>
+          <%= f.text_field :city %>
+        </div>
+
+      <% if nil %>
+        <div class="field four">
+          <%= f.label :state_name %>
+          <%= f.text_field :state_name %>
+        </div>
+      <% end %>
+      <% if Settings.require_state_in_address %>
+        <div class="field four columns">
+          <%= f.label    :state_id, "State" %>
+          <%= f.select   :state_id, @states,
+                        {:include_blank => true, :prompt => "STATE"} %>
+        </div>
+      <% elsif countries.size == 1 %>
+        <div class="field column">
+          <%= f.label :country_id, "Country" %>
+          <%= countries.first.name %>
+          <%= f.hidden_field   :country_id %>
+        </div>
+      <% else %>
+        <div class="field column">
+          <%= f.label    :country_id, "Country" %>
+          <%= f.select   :country_id, select_countries,
+                        {:include_blank => true}, {:style => 'display:none;'} %>
+          <div class='custom dropdown'>
+            <a  class="current"><%= f.object.country.try(:name) || 'SELECT YOUR COUNTRY' %></a>
+            <a href="#" class="selector"></a>
+            <ul class='no-bullet'>
+              <% select_countries.each do |c| %>
+                <li value='<%= f.object.country_id %>'
+                    class="<%= 'selected' if c.last == f.object.country_id %>"><%= c.first %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+        <div class="field three columns">
+          <%= f.label :zip_code %>
+          <%= f.text_field :zip_code %>
+        </div>
+      </div>
+
+</div>
+  <div class="field twelve column" style='margin-bottom:10px;'>
+    <label for='address_billing_default' class='ten' style='margin-top:3px;display: inline-block;'>
+      <%= f.check_box :billing_default, :class => 'columns' %>
+      Make this my default Billing Address
+    </label>
+  </div>
+
+  <div class="actions column">
+    <%= f.submit 'Save & Continue', :class => 'button  bottom20' %>
+    <% unless current_page?(shopping_billing_addresses_path) %>
+      <%= link_to 'Back', shopping_billing_addresses_path, :class => 'secondary button' %>
+    <% end %>
+  </div>
+<div class='clearfix'></div>

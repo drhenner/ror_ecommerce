@@ -1,6 +1,6 @@
 require  'spec_helper'
 
-describe Shopping::AddressesController do
+describe Shopping::BillingAddressesController do
   render_views
 
   before(:each) do
@@ -10,7 +10,7 @@ describe Shopping::AddressesController do
 
     @variant  = create(:variant)
     create_cart(@cur_user, @cur_user, [@variant])
-    @shipping_address = create(:address, :addressable_id => @cur_user.id, :addressable_type => 'User')
+    @billing_address = create(:address, :addressable_id => @cur_user.id, :addressable_type => 'User')
   end
 
   it "index action should render index template" do
@@ -20,37 +20,39 @@ describe Shopping::AddressesController do
 
   it "create action should render new template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
-    post :create, :address => @shipping_address.attributes
+    post :create, :address => @billing_address.attributes
     response.should render_template(:index)
   end
 
   it "create action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
-    post :create, :address => @shipping_address.attributes
+    controller.stubs(:next_form_url).returns(shopping_shipping_methods_url)
+    post :create, :address => @billing_address.attributes
     response.should redirect_to(shopping_shipping_methods_url)
   end
 
   it "edit action should render edit template" do
-    get :edit, :id => @shipping_address.id
+    get :edit, :id => @billing_address.id
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_address.id, :address => @shipping_address.attributes
+    put :update, :id => @billing_address.id, :address => @billing_address.attributes
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_address.id, :address => @shipping_address.attributes
+    controller.stubs(:next_form_url).returns(shopping_shipping_methods_url)
+    put :update, :id => @billing_address.id, :address => @billing_address.attributes
     response.should redirect_to(shopping_shipping_methods_url)
   end
 
   it "update action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
-    put :select_address, :id => @shipping_address.id
+    controller.stubs(:next_form_url).returns(shopping_shipping_methods_url)
+    put :select_address, :id => @billing_address.id
     response.should redirect_to(shopping_shipping_methods_url)
   end
-
 end

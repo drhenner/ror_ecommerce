@@ -154,6 +154,7 @@ class ApplicationController < ActionController::Base
   def select_countries
     @select_countries ||= Country.form_selector
   end
+
   def cc_params
     {
           :brand              => params[:type],

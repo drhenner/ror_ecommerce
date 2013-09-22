@@ -38,12 +38,25 @@ Hadean::Application.routes.draw do
   end
 
   namespace :shopping do
+    resources  :addresses do
+      member do
+        put :select_address
+      end
+    end
+
+    resources  :billing_addresses do
+      member do
+        put :select_address
+      end
+    end
+
     resources  :cart_items do
       member do
         put :move_to
       end
     end
     resource  :coupon, :only => [:show, :create]
+
     resources  :orders do
       member do
         get :checkout
@@ -51,12 +64,6 @@ Hadean::Application.routes.draw do
       end
     end
     resources  :shipping_methods
-    resources  :addresses do
-      member do
-        put :select_address
-      end
-    end
-
   end
 
   namespace :admin do

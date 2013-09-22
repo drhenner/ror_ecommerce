@@ -23,6 +23,7 @@
     <div id='final-order-shipping-address' class='panel four  columns radius last' >
       <h5>Billing Address</h5>
       <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} %>
+      <%= link_to 'Change address', shopping_billing_addresses_path, :class => 'button tiny green' %>
     </div>
   </div>
   <div class='pretty_table five large-5 columns last'>
