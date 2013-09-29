@@ -233,6 +233,33 @@ Remember to run `rake sunspot:reindex` before doing your search if you already h
 
 * more documentation
 
+
+##SETUP assets on S3 with CORS
+
+Putting assets on S3 can cause issues with FireFox/IE.  You can read about the issue if you search for "S3 & CORS".  Basically FF & IE are keeping things more secure but in the process you are required to do some setup.
+
+I ran into the same thing with assets not being public for IE and FireFox but Chrome seemed to work fine. There is a work around for this though. There is something called a CORS Config that opens up your assets to whatever domains you specify.
+
+Here's how to open up your assets to your website.  (Thanks @DTwigs)
+
+* Click on your bucket.
+* Click on the properties button to open the properties tab.
+* Expand the "Permissions" accordion and click " Add CORS Configuration"
+
+Now paste this code in there:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <MaxAgeSeconds>3000</MaxAgeSeconds>
+    <AllowedHeader>Content-*</AllowedHeader>
+    <AllowedHeader>Host</AllowedHeader>
+    </CORSRule>
+    </CORSConfiguration>
+
+
 ##Author
 
 RoR Ecommerce was created by David Henner. [Contributors](https://github.com/drhenner/ror_ecommerce/blob/master/Contributors.md).
