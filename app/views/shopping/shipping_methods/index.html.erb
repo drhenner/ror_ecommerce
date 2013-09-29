@@ -1,7 +1,7 @@
 <h1>Pick a Shipping Method</h1>
 
 <div class='clearfix'>
-  <%= form_tag(shopping_shipping_method_path(session_order.id), :method => :put) do -%>
+  <%= form_tag(shopping_shipping_method_path(session_order.id), html: {class: 'custom'}, method: :put) do -%>
     <% @order_items.group_by(&:shipping_category_id).each do |shipping_category_id, items| %>
       <div class='column float-left ten large-10 line_items_blue last'>
           <% items.each do |item| %>

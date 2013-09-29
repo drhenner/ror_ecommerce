@@ -48,6 +48,7 @@ gem 'state_machine', '~> 1.2.0'
 #gem 'sunspot_solr', '~> 2.0.0'
 #gem 'sunspot_rails', '~> 2.0.0'
 gem 'will_paginate', '~> 3.0.4'
+gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do
   gem 'mysql2', '~> 0.3.12'

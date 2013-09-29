@@ -18,6 +18,6 @@
   <% end %>
 </div>
 <br />
-<%= form_for @shopping_address, :url => shopping_billing_addresses_path do |address_form| %>
+<%= form_for @shopping_address, url: shopping_billing_addresses_path, html: {class: 'custom'} do |address_form| %>
   <%= render :partial =>  'form', :locals => {:f => address_form}  %>
 <% end %>

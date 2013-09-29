@@ -1,25 +1,25 @@
-/*jslint unparam: true, browser: true, indent: 2 */
-
-;(function ($, window, document, undefined) {
+(function ($, window, document, undefined) {
   'use strict';
 
   Foundation.libs.forms = {
     name : 'forms',
 
-    version : '4.0.4',
+    version: '4.3.2',
 
-    settings : {
-      disable_class: 'no-custom'
+    cache: {},
+
+    settings: {
+      disable_class: 'no-custom',
+      last_combo : null
     },
 
-    init : function (scope, method, options) {
-      this.scope = scope || this.scope;
+    init: function (scope, method, options) {
 
       if (typeof method === 'object') {
         $.extend(true, this.settings, method);
       }
 
-      if (typeof method != 'string') {
+      if (typeof method !== 'string') {
         if (!this.settings.init) {
           this.events();
         }
@@ -32,63 +32,82 @@
       }
     },
 
-    assemble : function () {
-      $('form.custom input[type="radio"]', $(this.scope)).not('[data-customforms="disabled"]')
-        .each(this.append_custom_markup);
-      $('form.custom input[type="checkbox"]', $(this.scope)).not('[data-customforms="disabled"]')
-        .each(this.append_custom_markup);
-      $('form.custom select', $(this.scope)).not('[data-customforms="disabled"]')
+    assemble: function () {
+
+      var forms = this;
+
+      $('form.custom input[type="radio"],[type="checkbox"]', $(this.scope))
+        .not('[data-customforms="disabled"]')
+        .not('.' + this.settings.disable_class)
+        .each(function(idx, sel){
+          forms.set_custom_markup(sel);
+        })
+        .change(function(){
+          forms.set_custom_markup(this);
+        });
+
+      $('form.custom select', $(this.scope))
+        .not('[data-customforms="disabled"]')
+        .not('.' + this.settings.disable_class)
+        .not('[multiple=multiple]')
         .each(this.append_custom_select);
     },
 
-    events : function () {
+    events: function () {
       var self = this;
 
       $(this.scope)
-        .on('change.fndtn.forms', 'form.custom select:not([data-customforms="disabled"])', function (e) {
-          self.refresh_custom_select($(this));
+        .on('click.fndtn.forms', 'form.custom span.custom.checkbox', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          self.toggle_checkbox($(this));
+        })
+        .on('click.fndtn.forms', 'form.custom span.custom.radio', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          self.toggle_radio($(this));
+        })
+        .on('change.fndtn.forms', 'form.custom select', function (e, force_refresh) {
+          if ($(this).is('[data-customforms="disabled"]')) return;
+          self.refresh_custom_select($(this), force_refresh);
         })
         .on('click.fndtn.forms', 'form.custom label', function (e) {
-          var $associatedElement = $('#' + self.escape($(this).attr('for')) + ':not([data-customforms="disabled"])'),
+          if ($(e.target).is('label')) {
+            var $associatedElement = $('#' + self.escape($(this).attr('for'))).not('[data-customforms="disabled"]'),
               $customCheckbox,
               $customRadio;
-          if ($associatedElement.length !== 0) {
-            if ($associatedElement.attr('type') === 'checkbox') {
-              e.preventDefault();
-              $customCheckbox = $(this).find('span.custom.checkbox');
 
-              //the checkbox might be outside after the label
-              if ($customCheckbox.length == 0) {
-                $customCheckbox = $(this).next('span.custom.checkbox');
+            if ($associatedElement.length !== 0) {
+              if ($associatedElement.attr('type') === 'checkbox') {
+                e.preventDefault();
+                $customCheckbox = $(this).find('span.custom.checkbox');
+                //the checkbox might be outside after the label or inside of another element
+                if ($customCheckbox.length === 0) {
+                  $customCheckbox = $associatedElement.add(this).siblings('span.custom.checkbox').first();
+                }
+                self.toggle_checkbox($customCheckbox);
+              } else if ($associatedElement.attr('type') === 'radio') {
+                e.preventDefault();
+                $customRadio = $(this).find('span.custom.radio');
+                //the radio might be outside after the label or inside of another element
+                if ($customRadio.length === 0) {
+                  $customRadio = $associatedElement.add(this).siblings('span.custom.radio').first();
+                }
+                self.toggle_radio($customRadio);
               }
-              //the checkbox might be outside before the label
-              if ($customCheckbox.length == 0) {
-                $customCheckbox = $(this).prev('span.custom.checkbox');
-              }
-              self.toggle_checkbox($customCheckbox);
-            } else if ($associatedElement.attr('type') === 'radio') {
-              e.preventDefault();
-              $customRadio = $(this).find('span.custom.radio');
-              //the radio might be outside after the label
-              if ($customRadio.length == 0) {
-                $customRadio = $(this).next('span.custom.radio');
-              }
-              //the radio might be outside before the label
-              if ($customRadio.length == 0) {
-                $customRadio = $(this).prev('span.custom.radio');
-              }
-              self.toggle_radio($customRadio);
             }
           }
+        })
+        .on('mousedown.fndtn.forms', 'form.custom div.custom.dropdown', function () {
+          return false;
         })
         .on('click.fndtn.forms', 'form.custom div.custom.dropdown a.current, form.custom div.custom.dropdown a.selector', function (e) {
           var $this = $(this),
               $dropdown = $this.closest('div.custom.dropdown'),
-              $select = $dropdown.prev();
+              $select = getFirstPrevSibling($dropdown, 'select');
 
           // make sure other dropdowns close
-          if(!$dropdown.hasClass('open'))
-            $(self.scope).trigger('click');
+          if (!$dropdown.hasClass('open')) $(self.scope).trigger('click');
 
           e.preventDefault();
           if (false === $select.is(':disabled')) {
@@ -108,48 +127,148 @@
         .on('click.fndtn.forms touchend.fndtn.forms', 'form.custom div.custom.dropdown li', function (e) {
           var $this = $(this),
               $customDropdown = $this.closest('div.custom.dropdown'),
-              $select = $customDropdown.prev(),
+              $select = getFirstPrevSibling($customDropdown, 'select'),
               selectedIndex = 0;
 
           e.preventDefault();
           e.stopPropagation();
 
-          if ( ! $(this).hasClass('disabled')) {
+          if (!$(this).hasClass('disabled')) {
             $('div.dropdown').not($customDropdown).removeClass('open');
 
-            var $oldThis= $this
-              .closest('ul')
+            var $oldThis = $this.closest('ul')
               .find('li.selected');
             $oldThis.removeClass('selected');
 
             $this.addClass('selected');
 
-            $customDropdown
-              .removeClass('open')
+            $customDropdown.removeClass('open')
               .find('a.current')
-              .html($this.html());
+              .text($this.text());
 
             $this.closest('ul').find('li').each(function (index) {
-              if ($this[0] == this) {
+              if ($this[0] === this) {
                 selectedIndex = index;
               }
-
             });
             $select[0].selectedIndex = selectedIndex;
 
             //store the old value in data
             $select.data('prevalue', $oldThis.html());
-            $select.trigger('change');
+            
+            // Kick off full DOM change event
+            if (typeof (document.createEvent) != 'undefined') {
+              var event = document.createEvent('HTMLEvents');
+              event.initEvent('change', true, true);
+              $select[0].dispatchEvent(event);
+            } else {
+              $select[0].fireEvent('onchange'); // for IE
+            }
           }
-        });
+      });
+
+      $(window).on('keydown', function (e) {
+        var focus = document.activeElement,
+            self = Foundation.libs.forms,
+            dropdown = $('.custom.dropdown'),
+      select = getFirstPrevSibling(dropdown, 'select'),
+      inputs = $('input,select,textarea,button'); // Zepto-compatible jQuery(":input")
+
+        if (dropdown.length > 0 && dropdown.hasClass('open')) {
+          e.preventDefault();
+
+      if (e.which === 9) {
+          $(inputs[$(inputs).index(select) + 1]).focus();
+        dropdown.removeClass('open');
+      }
+
+          if (e.which === 13) {
+            dropdown.find('li.selected').trigger('click');
+          }
+
+          if (e.which === 27) {
+            dropdown.removeClass('open');
+          }
+
+          if (e.which >= 65 && e.which <= 90) {
+            var next = self.go_to(dropdown, e.which),
+                current = dropdown.find('li.selected');
+
+            if (next) {
+              current.removeClass('selected');
+              self.scrollTo(next.addClass('selected'), 300);
+            }
+          }
+
+          if (e.which === 38) {
+            var current = dropdown.find('li.selected'),
+                prev = current.prev(':not(.disabled)');
+
+            if (prev.length > 0) {
+              prev.parent()[0].scrollTop = prev.parent().scrollTop() - self.outerHeight(prev);
+              current.removeClass('selected');
+              prev.addClass('selected');
+            }
+          } else if (e.which === 40) {
+            var current = dropdown.find('li.selected'),
+                next = current.next(':not(.disabled)');
+
+            if (next.length > 0) {
+              next.parent()[0].scrollTop = next.parent().scrollTop() + self.outerHeight(next);
+              current.removeClass('selected');
+              next.addClass('selected');
+            }
+          }
+        }
+      });
+
+    $(window).on('keyup', function (e) {
+          var focus = document.activeElement,
+              dropdown = $('.custom.dropdown');
+
+      if (focus === dropdown.find('.current')[0]) {
+        dropdown.find('.selector').focus().click();
+      }
+    });
 
       this.settings.init = true;
     },
 
-    append_custom_markup : function (idx, sel) {
-      var $this = $(sel).hide(),
-          type  = $this.attr('type'),
+    go_to: function (dropdown, character) {
+      var lis = dropdown.find('li'),
+          count = lis.length;
+
+      if (count > 0) {
+        for (var i = 0; i < count; i++) {
+          var first_letter = lis.eq(i).text().charAt(0).toLowerCase();
+          if (first_letter === String.fromCharCode(character).toLowerCase()) return lis.eq(i);
+        }
+      }
+    },
+
+    scrollTo: function (el, duration) {
+      if (duration < 0) return;
+      var parent = el.parent();
+      var li_height = this.outerHeight(el);
+      var difference = (li_height * (el.index())) - parent.scrollTop();
+      var perTick = difference / duration * 10;
+
+      this.scrollToTimerCache = setTimeout(function () {
+        if (!isNaN(parseInt(perTick, 10))) {
+          parent[0].scrollTop = parent.scrollTop() + perTick;
+          this.scrollTo(el, duration - 10);
+        }
+      }.bind(this), 10);
+    },
+
+    set_custom_markup: function (sel) {
+      var $this = $(sel),
+          type = $this.attr('type'),
           $span = $this.next('span.custom.' + type);
+          
+      if (!$this.parent().hasClass('switch')) {
+        $this.addClass('hidden-field');
+      }
 
       if ($span.length === 0) {
         $span = $('<span class="custom ' + type + '"></span>').insertAfter($this);
@@ -159,134 +278,159 @@
       $span.toggleClass('disabled', $this.is(':disabled'));
     },
 
-    append_custom_select : function (idx, sel) {
-      var self = Foundation.libs.forms,
-          $this = $( sel ),
-          $customSelect = $this.next( 'div.custom.dropdown' ),
-          $customList = $customSelect.find( 'ul' ),
-          $selectCurrent = $customSelect.find( ".current" ),
-          $selector = $customSelect.find( ".selector" ),
-          $options = $this.find( 'option' ),
-          $selectedOption = $options.filter( ':selected' ),
-          copyClasses = $this.attr('class') ? $this.attr('class').split(' ') : [],
-          maxWidth = 0,
-          liHtml = '',
-          $listItems,
-          $currentSelect = false;
+    append_custom_select: function (idx, sel) {
+        var self = Foundation.libs.forms,
+            $this = $(sel),
+            $customSelect = $this.next('div.custom.dropdown'),
+            $customList = $customSelect.find('ul'),
+            $selectCurrent = $customSelect.find(".current"),
+            $selector = $customSelect.find(".selector"),
+            $options = $this.find('option'),
+            $selectedOption = $options.filter(':selected'),
+            copyClasses = $this.attr('class') ? $this.attr('class').split(' ') : [],
+            maxWidth = 0,
+            liHtml = '',
+            $listItems,
+            $currentSelect = false;
 
-      if ($this.hasClass(self.settings.disable_class)) return;
+        if ($customSelect.length === 0) {
+          var customSelectSize = $this.hasClass('small') ? 'small' : $this.hasClass('medium') ? 'medium' : $this.hasClass('large') ? 'large' : $this.hasClass('expand') ? 'expand' : '';
 
-      if ($customSelect.length === 0) {
-        var customSelectSize = $this.hasClass( 'small' )   ? 'small'   :
-                               $this.hasClass( 'medium' )  ? 'medium'  :
-                               $this.hasClass( 'large' )   ? 'large'   :
-                               $this.hasClass( 'expand' )  ? 'expand'  : '';
+          $customSelect = $('<div class="' + ['custom', 'dropdown', customSelectSize].concat(copyClasses).filter(function (item, idx, arr) {
+            if (item === '') return false;
+            return arr.indexOf(item) === idx;
+          }).join(' ') + '"><a href="#" class="selector"></a><ul /></div>');
 
-        $customSelect = $('<div class="' + ['custom', 'dropdown', customSelectSize ].concat(copyClasses).filter(function(item, idx,arr){ if(item == '') return false; return arr.indexOf(item) == idx; }).join( ' ' ) + '"><a href="#" class="selector"></a><ul /></div>');
-        $selector = $customSelect.find(".selector");
-        $customList = $customSelect.find("ul");
-        liHtml = $options.map(function() { return "<li>" + $( this ).html() + "</li>"; } ).get().join( '' );
-        $customList.append(liHtml);
-        $currentSelect = $customSelect.prepend('<a href="#" class="current">' + $selectedOption.html() + '</a>' ).find( ".current" );
-        $this
-          .after( $customSelect )
-          .hide();
+          $selector = $customSelect.find(".selector");
+          $customList = $customSelect.find("ul");
 
-      } else {
-        liHtml = $options.map(function() {
-            return "<li>" + $( this ).html() + "</li>";
-          })
-          .get().join('');
-        $customList
-          .html('')
-          .append(liHtml);
+          liHtml = $options.map(function () {
+            var copyClasses = $(this).attr('class') ? $(this).attr('class') : '';
+            return "<li class='" + copyClasses + "'>" + $(this).html() + "</li>";
+          }).get().join('');
 
-      } // endif $customSelect.length === 0
-      $customSelect.toggleClass('disabled', $this.is( ':disabled' ) );
-      $listItems = $customList.find( 'li' );
+          $customList.append(liHtml);
 
-      $options.each( function ( index ) {
-        if ( this.selected ) {
-          $listItems.eq( index ).addClass( 'selected' );
+          $currentSelect = $customSelect
+            .prepend('<a href="#" class="current">' + ($selectedOption.html() || '') + '</a>')
+            .find(".current");
 
-          if ($currentSelect) {
-            $currentSelect.html( $( this ).html() );
+          $this.after($customSelect)
+            .addClass('hidden-field');
+        } else {
+          liHtml = $options.map(function () {
+              return "<li>" + $(this).html() + "</li>";
+            })
+            .get().join('');
+
+          $customList.html('')
+            .append(liHtml);
+
+        } // endif $customSelect.length === 0
+
+        self.assign_id($this, $customSelect);
+        $customSelect.toggleClass('disabled', $this.is(':disabled'));
+        $listItems = $customList.find('li');
+
+        // cache list length
+        self.cache[$customSelect.data('id')] = $listItems.length;
+
+        $options.each(function (index) {
+          if (this.selected) {
+            $listItems.eq(index).addClass('selected');
+
+            if ($currentSelect) {
+              $currentSelect.html($(this).html());
+            }
           }
+          if ($(this).is(':disabled')) {
+            $listItems.eq(index).addClass('disabled');
+          }
+        });
 
-        }
-        if ($(this).is(':disabled')) {
-          $listItems.eq( index ).addClass( 'disabled' );
-        }
-      });
-
-      //
-      // If we're not specifying a predetermined form size.
-      //
-      if (!$customSelect.is('.small, .medium, .large, .expand')) {
-
-        // ------------------------------------------------------------------------------------
-        // This is a work-around for when elements are contained within hidden parents.
-        // For example, when custom-form elements are inside of a hidden reveal modal.
         //
-        // We need to display the current custom list element as well as hidden parent elements
-        // in order to properly calculate the list item element's width property.
-        // -------------------------------------------------------------------------------------
-
-        $customSelect.addClass( 'open' );
+        // If we're not specifying a predetermined form size.
         //
-        // Quickly, display all parent elements.
-        // This should help us calcualate the width of the list item's within the drop down.
-        //
-        var self = Foundation.libs.forms;
-        self.hidden_fix.adjust( $customList );
+        if (!$customSelect.is('.small, .medium, .large, .expand')) {
 
-        maxWidth = ( self.outerWidth($listItems) > maxWidth ) ? self.outerWidth($listItems) : maxWidth;
+          // ------------------------------------------------------------------------------------
+          // This is a work-around for when elements are contained within hidden parents.
+          // For example, when custom-form elements are inside of a hidden reveal modal.
+          //
+          // We need to display the current custom list element as well as hidden parent elements
+          // in order to properly calculate the list item element's width property.
+          // -------------------------------------------------------------------------------------
 
-        Foundation.libs.forms.hidden_fix.reset();
+          $customSelect.addClass('open');
+          //
+          // Quickly, display all parent elements.
+          // This should help us calcualate the width of the list item's within the drop down.
+          //
+          var self = Foundation.libs.forms;
+          self.hidden_fix.adjust($customList);
 
-        $customSelect.removeClass( 'open' );
+          maxWidth = (self.outerWidth($listItems) > maxWidth) ? self.outerWidth($listItems) : maxWidth;
 
-      } // endif
+          Foundation.libs.forms.hidden_fix.reset();
+
+          $customSelect.removeClass('open');
+
+        } // endif
 
     },
 
-    refresh_custom_select : function ($select) {
+    assign_id: function ($select, $customSelect) {
+      var id = [+new Date(), Foundation.random_str(5)].join('-');
+      $select.attr('data-id', id);
+      $customSelect.attr('data-id', id);
+    },
+
+    refresh_custom_select: function ($select, force_refresh) {
       var self = this;
       var maxWidth = 0,
-        $customSelect = $select.next(),
-        $options = $select.find('option');
+          $customSelect = $select.next(),
+          $options = $select.find('option'),
+          $customList = $customSelect.find('ul'),
+          $listItems = $customSelect.find('li');
 
-      $customSelect.find('ul').html('');
+      if ($options.length !== this.cache[$customSelect.data('id')] || force_refresh) {
+        $customList.html('');
 
-      $options.each(function () {
-        var $li = $('<li>' + $(this).html() + '</li>');
-        $customSelect.find('ul').append($li);
-      });
+        // rebuild and re-populate all at once
+        var customSelectHtml = '';
+        $options.each(function () {
+          var $this = $(this), thisHtml = $this.html(), thisSelected = this.selected;
+          customSelectHtml += '<li class="' + (thisSelected ? ' selected ' : '') + ($this.is(':disabled') ? ' disabled ' : '') + '">' + thisHtml + '</li>';
+          if (thisSelected) {
+            $customSelect.find('.current').html(thisHtml);
+          }
+        });
 
-      // re-populate
-      $options.each(function (index) {
-        if (this.selected) {
-          $customSelect.find('li').eq(index).addClass('selected');
-          $customSelect.find('.current').html($(this).html());
-        }
-        if ($(this).is(':disabled')) {
-          $customSelect.find('li').eq(index).addClass('disabled');
-        }
-      });
+        $customList.html(customSelectHtml);
 
-      // fix width
-      $customSelect.removeAttr('style')
-        .find('ul').removeAttr('style');
-      $customSelect.find('li').each(function () {
-        $customSelect.addClass('open');
-        if (self.outerWidth($(this)) > maxWidth) {
-          maxWidth = self.outerWidth($(this));
-        }
-        $customSelect.removeClass('open');
-      });
+        // fix width
+        $customSelect.removeAttr('style');
+        $customList.removeAttr('style');
+        $customSelect.find('li').each(function () {
+          $customSelect.addClass('open');
+          if (self.outerWidth($(this)) > maxWidth) {
+            maxWidth = self.outerWidth($(this));
+          }
+          $customSelect.removeClass('open');
+        });
+
+        $listItems = $customSelect.find('li');
+        // cache list length
+        this.cache[$customSelect.data('id')] = $listItems.length;
+      }
+    },
+    
+    refresh_custom_selection: function ($select) {
+      var selectedValue = $('option:selected', $select).text();
+      $('a.current', $select.next()).text(selectedValue);
     },
 
-    toggle_checkbox : function ($element) {
+    toggle_checkbox: function ($element) {
       var $input = $element.prev(),
           input = $input[0];
 
@@ -298,98 +442,115 @@
       }
     },
 
-    toggle_radio : function ($element) {
-      var $input = $element.prev(),
-          $form = $input.closest('form.custom'),
-          input = $input[0];
+    toggle_radio: function ($element) {
+        var $input = $element.prev(),
+            $form = $input.closest('form.custom'),
+            input = $input[0];
 
-      if (false === $input.is(':disabled')) {
-        $form.find('input[type="radio"][name="' + this.escape($input.attr('name')) + '"]').next().not($element).removeClass('checked');
-        if ( !$element.hasClass('checked') ) {
-          $element.toggleClass('checked');
+        if (false === $input.is(':disabled')) {
+          $form.find('input[type="radio"][name="' + this.escape($input.attr('name')) + '"]')
+            .next().not($element).removeClass('checked');
+
+          if (!$element.hasClass('checked')) {
+            $element.toggleClass('checked');
+          }
+
+          input.checked = $element.hasClass('checked');
+
+          $input.trigger('change');
         }
-        input.checked = $element.hasClass('checked');
-
-        $input.trigger('change');
-      }
     },
 
-    escape : function (text) {
+    escape: function (text) {
+      if (!text) return '';
       return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     },
 
-    hidden_fix : {
-      /**
-       * Sets all hidden parent elements and self to visibile.
-       *
-       * @method adjust
-       * @param {jQuery Object} $child
-       */
+    hidden_fix: {
+        /**
+         * Sets all hidden parent elements and self to visibile.
+         *
+         * @method adjust
+         * @param {jQuery Object} $child
+         */
 
-      // We'll use this to temporarily store style properties.
-      tmp : [],
+        // We'll use this to temporarily store style properties.
+        tmp: [],
 
-      // We'll use this to set hidden parent elements.
-      hidden : null,
+        // We'll use this to set hidden parent elements.
+        hidden: null,
 
-      adjust : function( $child ) {
-        // Internal reference.
-        var _self = this;
+        adjust: function ($child) {
+          // Internal reference.
+          var _self = this;
 
-        // Set all hidden parent elements, including this element.
-        _self.hidden = $child.parents().andSelf().filter( ":hidden" );
+          // Set all hidden parent elements, including this element.
+          _self.hidden = $child.parents();
+          _self.hidden = _self.hidden.add($child).filter(":hidden");
 
-        // Loop through all hidden elements.
-        _self.hidden.each( function() {
+          // Loop through all hidden elements.
+          _self.hidden.each(function () {
 
-          // Cache the element.
-          var $elem = $( this );
+            // Cache the element.
+            var $elem = $(this);
 
-          // Store the style attribute.
-          // Undefined if element doesn't have a style attribute.
-          _self.tmp.push( $elem.attr( 'style' ) );
+            // Store the style attribute.
+            // Undefined if element doesn't have a style attribute.
+            _self.tmp.push($elem.attr('style'));
 
-          // Set the element's display property to block,
-          // but ensure it's visibility is hidden.
-          $elem.css( { 'visibility' : 'hidden', 'display' : 'block' } );
-        });
+            // Set the element's display property to block,
+            // but ensure it's visibility is hidden.
+            $elem.css({
+                'visibility': 'hidden',
+                'display': 'block'
+            });
+          });
 
-      }, // end adjust
+        }, // end adjust
 
-      /**
-       * Resets the elements previous state.
-       *
-       * @method reset
-       */
-      reset : function() {
-        // Internal reference.
-        var _self = this;
-        // Loop through our hidden element collection.
-        _self.hidden.each( function( i ) {
-          // Cache this element.
-          var $elem = $( this ),
-              _tmp = _self.tmp[ i ]; // Get the stored 'style' value for this element.
+        /**
+         * Resets the elements previous state.
+         *
+         * @method reset
+         */
+        reset: function () {
+          // Internal reference.
+          var _self = this;
+          // Loop through our hidden element collection.
+          _self.hidden.each(function (i) {
+            // Cache this element.
+            var $elem = $(this),
+                _tmp = _self.tmp[i]; // Get the stored 'style' value for this element.
 
-          // If the stored value is undefined.
-          if( _tmp === undefined )
+            // If the stored value is undefined.
+            if (_tmp === undefined)
             // Remove the style attribute.
-            $elem.removeAttr( 'style' );
-          else
+            $elem.removeAttr('style');
+            else
             // Otherwise, reset the element style attribute.
-            $elem.attr( 'style', _tmp );
+            $elem.attr('style', _tmp);
+          });
+          // Reset the tmp array.
+          _self.tmp = [];
+          // Reset the hidden elements variable.
+          _self.hidden = null;
 
-        });
-        // Reset the tmp array.
-        _self.tmp = [];
-        // Reset the hidden elements variable.
-        _self.hidden = null;
-
-      } // end reset
-
+        } // end reset
     },
 
-    off : function () {
+    off: function () {
       $(this.scope).off('.fndtn.forms');
+    },
+
+    reflow : function () {}
+  };
+
+  var getFirstPrevSibling = function($el, selector) {
+    var $el = $el.prev();
+    while ($el.length) {
+      if ($el.is(selector)) return $el;
+      $el = $el.prev();
     }
+    return $();
   };
 }(Foundation.zj, this, this.document));

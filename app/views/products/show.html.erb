@@ -8,13 +8,12 @@
 
   <div class=' clearfix'>
     <% if @product.active_variants.empty? %>
-      <div id='no-variant-available' class=' four  last'>
+      <div id='no-variant-available' class=' four large-4 last'>
         Sorry this product is not currently available.
       </div>
     <% else %>
 
-
-      <div id='left_product_wrapper' class='columns five'>
+      <div id='left_product_wrapper' class='columns five large-5'>
          <!-- <ul class='horizontal-list'>
             <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
           </ul> -->
@@ -50,7 +49,7 @@
           <% end %>
 
       </div>
-      <div id='right_2_product_wrapper' class='six columns last'>
+      <div id='right_2_product_wrapper' class='six columns large-6 last'>
           <div id='right_product_wrapper' class=''>
             <div class='product_title_name'><%= @product.name %></div>
             <% if @product.active_variants.count > 0 %>
@@ -63,7 +62,7 @@
               <div id='your_product' class='panel'>
                 <% @product.active_variants.each_with_index do |variant, i| %>
                   <div id='variant_<%= variant.id %>'
-                       class='button variant_select secondary <%= 'selected_variant' if i == 0 %>'
+                       class='tiny button variant_select secondary <%= 'selected_variant' if i == 0 %>'
                        data-variant_id='<%= variant.id %>'>
                     <%= raw variant.product_name %>
                   </div>
@@ -80,7 +79,7 @@
                         </div>
                         <div class='add_to_cart_wrapper '>
                           <% unless @product.active_variants.empty? %>
-                            <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'button' %>
+                            <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'small button' %>
                           <% end %>
                         </div>
                     <% end %>
@@ -89,7 +88,7 @@
               </div>
 
               <div id='product_tabs'  class='' style='padding-bottom:5px;'>
-                <div class="section-container tabs" style='height:100%;' data-section data-options="deep_linking: true; ">
+                <div class="section-container tabs auto" style='height:100%;' data-section data-options="deep_linking: true; ">
                   <section class="section">
                     <p class="title"><a >Product</a></p>
                     <div class="content">

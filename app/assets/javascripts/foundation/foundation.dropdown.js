@@ -6,21 +6,24 @@
   Foundation.libs.dropdown = {
     name : 'dropdown',
 
-    version : '4.0.6',
+    version : '4.3.2',
 
     settings : {
-      activeClass: 'open'
+      activeClass: 'open',
+      is_hover: false,
+      opened: function(){},
+      closed: function(){}
     },
 
     init : function (scope, method, options) {
       this.scope = scope || this.scope;
-      Foundation.inherit(this, 'throttle');
+      Foundation.inherit(this, 'throttle scrollLeft data_options');
 
       if (typeof method === 'object') {
         $.extend(true, this.settings, method);
       }
 
-      if (typeof method != 'string') {
+      if (typeof method !== 'string') {
 
         if (!this.settings.init) {
           this.events();
@@ -35,18 +38,39 @@
     events : function () {
       var self = this;
 
-      $(this.scope).on('click.fndtn.dropdown', '[data-dropdown]', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        self.toggle($(this));
-      });
+      $(this.scope)
+        .on('click.fndtn.dropdown', '[data-dropdown]', function (e) {
+          var settings = $.extend({}, self.settings, self.data_options($(this)));
+          e.preventDefault();
 
-      $('*, html, body').on('click.fndtn.dropdown', function (e) {
-        if (!$(e.target).data('dropdown')) {
-          $('[data-dropdown-content]')
-            .css('left', '-99999px')
-            .removeClass(self.settings.activeClass);
+          if (!settings.is_hover) self.toggle($(this));
+        })
+        .on('mouseenter', '[data-dropdown]', function (e) {
+          var settings = $.extend({}, self.settings, self.data_options($(this)));
+          if (settings.is_hover) self.toggle($(this));
+        })
+        .on('mouseleave', '[data-dropdown-content]', function (e) {
+          var target = $('[data-dropdown="' + $(this).attr('id') + '"]'),
+              settings = $.extend({}, self.settings, self.data_options(target));
+          if (settings.is_hover) self.close.call(self, $(this));
+        })
+        .on('opened.fndtn.dropdown', '[data-dropdown-content]', this.settings.opened)
+        .on('closed.fndtn.dropdown', '[data-dropdown-content]', this.settings.closed);
+
+      $(document).on('click.fndtn.dropdown', function (e) {
+        var parent = $(e.target).closest('[data-dropdown-content]');
+
+        if ($(e.target).data('dropdown') || $(e.target).parent().data('dropdown')) {
+          return;
         }
+        if (!($(e.target).data('revealId')) && 
+          (parent.length > 0 && ($(e.target).is('[data-dropdown-content]') || 
+            $.contains(parent.first()[0], e.target)))) {
+          e.stopPropagation();
+          return;
+        }
+
+        self.close.call(self, $('[data-dropdown-content]'));
       });
 
       $(window).on('resize.fndtn.dropdown', self.throttle(function () {
@@ -56,19 +80,39 @@
       this.settings.init = true;
     },
 
-    toggle : function (target, resize) {
-      var dropdown = $('#' + target.data('dropdown'));
+    close: function (dropdown) {
+      var self = this;
+      dropdown.each(function () {
+        if ($(this).hasClass(self.settings.activeClass)) {
+          $(this)
+            .css(Foundation.rtl ? 'right':'left', '-99999px')
+            .removeClass(self.settings.activeClass);
+          $(this).trigger('closed');
+        }
+      });
+    },
 
-      $('[data-dropdown-content]').not(dropdown).css('left', '-99999px').removeClass(this.settings.activeClass);
-
-      if (dropdown.hasClass(this.settings.activeClass)) {
-        dropdown
-          .css('left', '-99999px')
-          .removeClass(this.settings.activeClass);
-      } else {
+    open: function (dropdown, target) {
         this
           .css(dropdown
             .addClass(this.settings.activeClass), target);
+        dropdown.trigger('opened');
+    },
+
+    toggle : function (target) {
+      var dropdown = $('#' + target.data('dropdown'));
+      if (dropdown.length === 0) {
+        // No dropdown found, not continuing
+        return;
+      }
+
+      this.close.call(this, $('[data-dropdown-content]').not(dropdown));
+
+      if (dropdown.hasClass(this.settings.activeClass)) {
+        this.close.call(this, dropdown);
+      } else {
+        this.close.call(this, $('[data-dropdown-content]'))
+        this.open.call(this, dropdown, target);
       }
     },
 
@@ -82,25 +126,40 @@
     },
 
     css : function (dropdown, target) {
-      if (dropdown.parent()[0] === $('body')[0]) {
+      var offset_parent = dropdown.offsetParent();
+      // if (offset_parent.length > 0 && /body/i.test(dropdown.offsetParent()[0].nodeName)) {
         var position = target.offset();
-      } else {
-        var position = target.position();
-      }
+        position.top -= offset_parent.offset().top;
+        position.left -= offset_parent.offset().left;
+      // } else {
+      //   var position = target.position();
+      // }
 
       if (this.small()) {
         dropdown.css({
           position : 'absolute',
           width: '95%',
-          left: '2.5%',
           'max-width': 'none',
           top: position.top + this.outerHeight(target)
         });
+        dropdown.css(Foundation.rtl ? 'right':'left', '2.5%');
       } else {
+        if (!Foundation.rtl && $(window).width() > this.outerWidth(dropdown) + target.offset().left && !this.data_options(target).align_right) {
+          var left = position.left;
+          if (dropdown.hasClass('right')) {
+            dropdown.removeClass('right');
+          }
+        } else {
+          if (!dropdown.hasClass('right')) {
+            dropdown.addClass('right');
+          }
+          var left = position.left - (this.outerWidth(dropdown) - this.outerWidth(target));
+        }
+
         dropdown.attr('style', '').css({
           position : 'absolute',
           top: position.top + this.outerHeight(target),
-          left: position.left
+          left: left
         });
       }
 
@@ -117,6 +176,8 @@
       $(window).off('.fndtn.dropdown');
       $('[data-dropdown-content]').off('.fndtn.dropdown');
       this.settings.init = false;
-    }
+    },
+
+    reflow : function () {}
   };
 }(Foundation.zj, this, this.document));

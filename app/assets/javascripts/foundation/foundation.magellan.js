@@ -6,10 +6,11 @@
   Foundation.libs.magellan = {
     name : 'magellan',
 
-    version : '4.0.0',
+    version : '4.3.2',
 
     settings : {
-      activeClass: 'active'
+      activeClass: 'active',
+      threshold: 0
     },
 
     init : function (scope, method, options) {
@@ -20,7 +21,7 @@
         $.extend(true, this.settings, method);
       }
 
-      if (typeof method != 'string') {
+      if (typeof method !== 'string') {
         if (!this.settings.init) {
           this.fixed_magellan = $("[data-magellan-expedition]");
           this.set_threshold();
@@ -54,7 +55,7 @@
         .on('update-position.fndtn.magellan', function(){
           var $el = $(this);
           // $el.data("magellan-fixed-position","");
-          //$el.data("magellan-top-offset", "");
+          // $el.data("magellan-top-offset", "");
         })
         .trigger('update-position');
 
@@ -79,8 +80,10 @@
             if ($expedition.data("magellan-fixed-position") != fixed_position) {
               $expedition.data("magellan-fixed-position", fixed_position);
               if (fixed_position) {
+                $expedition.addClass('fixed');
                 $expedition.css({position:"fixed", top:0});
               } else {
+                $expedition.removeClass('fixed');
                 $expedition.css({position:"", top:""});
               }
               if (fixed_position && typeof attr != 'undefined' && attr != false) {
@@ -117,7 +120,7 @@
     },
 
     set_threshold : function () {
-      if (!this.settings.threshold) {
+      if (typeof this.settings.threshold !== 'number') {
         this.settings.threshold = (this.fixed_magellan.length > 0) ? 
           this.outerHeight(this.fixed_magellan, true) : 0;
       }
@@ -125,6 +128,9 @@
 
     off : function () {
       $(this.scope).off('.fndtn.magellan');
-    }
+      $(window).off('.fndtn.magellan');
+    },
+
+    reflow : function () {}
   };
 }(Foundation.zj, this, this.document));

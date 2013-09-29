@@ -66,12 +66,14 @@
       </div>
 
 </div>
-  <div class="field twelve large-12 column" style='margin-bottom:10px;'>
+<div class="field twelve large-12 column" style='margin-bottom:10px;'>
+  <label for='address_default' class='ten large-10' style='margin-top:3px;display: inline-block;'>
     <%= f.check_box :default, :class => 'columns' %>
-    <%= f.label :default, "Make this my default shipping method", :class => 'ten ', :style => 'margin-top:3px;' %>
-  </div>
+    Make this my default shipping address
+  </label>
+</div>
 
   <div class="actions column">
-    <%= f.submit 'Submit', :class => 'button' %>
+    <%= f.submit 'Submit', :class => 'small button' %>
   </div>
 <div class='clearfix'></div>

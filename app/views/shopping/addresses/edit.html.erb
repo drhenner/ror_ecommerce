@@ -1,8 +1,7 @@
 <h1>Edit Address</h1>
 
-<%= form_for(@form_address, :url => shopping_address_path(@form_address)) do |f| %>
+<%= form_for(@form_address, url: shopping_address_path(@form_address), html: {class: 'custom'}) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
-
 
 <%= link_to 'Back', shopping_addresses_path %>

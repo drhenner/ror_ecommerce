@@ -43,7 +43,7 @@
         <div class="field four large-4 columns">
           <%= f.label    :state_id, "State/Province" %>
           <%= f.select   :state_id, @states,
-                        :include_blank => true %>
+                        {:include_blank => true, :prompt => "State"} %>
         </div>
       <% elsif countries.size == 1 %>
         <div class="field column">
@@ -66,9 +66,12 @@
       </div>
 
 </div>
+
   <div class="field twelve large-12 column" style='margin-bottom:10px;'>
-    <%= f.check_box :default, :class => 'columns' %>
-    <%= f.label :default, "Make this my default shipping method", :class => 'ten large-10 ', :style => 'margin-top:3px;' %>
+    <label for='address_default' class='ten large-10' style='margin-top:3px;display: inline-block;'>
+      <%= f.check_box :default, :class => 'columns' %>
+      Make this my default shipping address
+    </label>
   </div>
 
   <div class="actions column">

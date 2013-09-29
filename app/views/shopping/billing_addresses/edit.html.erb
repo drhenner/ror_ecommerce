@@ -1,6 +1,6 @@
 <h1>Edit Billing Address</h1>
 
-<%= form_for(@form_address, :url => shopping_billing_address_path(@form_address)) do |f| %>
+<%= form_for(@form_address, url: shopping_billing_address_path(@form_address), html: {class: 'custom'}) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 

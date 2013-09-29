@@ -38,7 +38,7 @@
 
     <%= form_for  @user_session, :as => :user_session,
                   :url => user_sessions_path(@user_session),
-                  :html => {:class => 'span-12'} do |form| %>
+                  :html => {:class => 'span-12 custom'} do |form| %>
       <h3>Log in.</h3>
       <fieldset>
          <ol id='login_form'>
@@ -63,7 +63,7 @@
   </div>
 
   <div id='signup' class='offset-by-one'>
-    <%= form_for @user, :url => customer_registrations_path(@user)  do |form| %>
+    <%= form_for @user, url: customer_registrations_path(@user), html: {class: 'custom'}  do |form| %>
       <h3>New to <%= site_name %>?</h3>
       <p>A <%= site_name %> account is required to checkout. </p>
       <fieldset>

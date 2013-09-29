@@ -1,8 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-#require 'ripple/railtie'
-#require 'riak-sessions'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,7 +18,7 @@ module Hadean
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '0.10.1'
+    config.assets.version = '0.11.0'
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
