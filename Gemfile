@@ -10,8 +10,9 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
-#gem 'authlogic',          git: 'git@github.com:binarylogic/authlogic.git'
-gem 'authlogic',          git: 'https://github.com/binarylogic/authlogic.git'
+# Use https if you are pushing to HEROKU
+#gem 'authlogic',          git: 'https://github.com/binarylogic/authlogic.git'
+gem 'authlogic',          git: 'git@github.com:binarylogic/authlogic.git'
 
 gem "asset_sync"
 gem 'awesome_nested_set', '~> 3.0.0.rc.1'
@@ -20,8 +21,9 @@ gem 'aws-sdk'
 gem 'bluecloth',      '~> 2.1.0'
 gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
-gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
-#gem 'compass-rails',  git: 'git://github.com/milgner/compass-rails.git', branch: 'rails4'
+# Use https if you are pushing to HEROKU
+#gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
+gem 'compass-rails',  git: 'git://github.com/milgner/compass-rails.git', branch: 'rails4'
 
 
 gem 'dynamic_form'
