@@ -22,8 +22,8 @@ gem 'bluecloth',      '~> 2.1.0'
 gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
-#gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
-gem 'compass-rails',  git: 'git://github.com/milgner/compass-rails.git', branch: 'rails4'
+gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
+#gem 'compass-rails',  git: 'git://github.com/milgner/compass-rails.git', branch: 'rails4'
 
 
 gem 'dynamic_form'
@@ -54,12 +54,13 @@ gem 'will_paginate', '~> 3.0.4'
 gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do
-  gem 'mysql2', '~> 0.3.12'
+  #gem 'mysql2', '~> 0.3.12'
   gem 'pg'
 end
 
 group :development do
-  gem 'sqlite3'
+  #gem 'sqlite3'
+  gem 'pg'
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"

@@ -196,6 +196,13 @@ describe Product, "class methods" do
     it "should return deleted Products " do
       product1 = create(:product)
       product2 = create(:product)
+
+      product1.deleted_at = Time.zone.now - 1.day
+      product2.deleted_at = Time.zone.now - 1.day
+      product1.save!
+      product2.save!
+
+
       admin_grid = Product.admin_grid({}, false)
       admin_grid.size.should == 2
       admin_grid.include?(product1).should be_true

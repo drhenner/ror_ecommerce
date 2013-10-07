@@ -82,9 +82,17 @@ class PurchaseOrder < ActiveRecord::Base
   # @param [none]
   # @return [none]
   def receive_variants
+=begin
     po_variants = PurchaseOrderVariant.where(:purchase_order_id => self.id).lock("LOCK IN SHARE MODE")
     po_variants.each do |po_variant|
       po_variant.receive! unless po_variant.is_received?
+    end
+=end
+    po_variants = PurchaseOrderVariant.where(:purchase_order_id => self.id)
+    po_variants.each do |po_variant|
+      po_variant.with_lock do
+        po_variant.receive! unless po_variant.is_received?
+      end
     end
   end
 

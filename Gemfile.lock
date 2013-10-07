@@ -5,20 +5,20 @@ GIT
     database_cleaner (1.1.1)
 
 GIT
-  remote: git://github.com/milgner/compass-rails.git
-  revision: c86e7fd9c2605c80816a2f64a3fb8b7c3a09e494
-  branch: rails4
-  specs:
-    compass-rails (1.0.3)
-      compass (>= 0.12.2, < 0.14)
-
-GIT
   remote: git@github.com:binarylogic/authlogic.git
   revision: abc09970ed1fad98c6c12f4ca64d1670d37d11db
   specs:
     authlogic (3.3.0)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
+
+GIT
+  remote: https://github.com/Compass/compass-rails.git
+  revision: 32c16cb90f78053310b35199a970c53355bcd300
+  branch: rails4-hack
+  specs:
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
 
 GIT
   remote: https://github.com/neocoin/rails3-generators.git
@@ -182,7 +182,6 @@ GEM
     money (5.1.1)
       i18n (~> 0.6.0)
     multi_json (1.7.9)
-    mysql2 (0.3.13)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.8)
@@ -273,7 +272,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.8)
     state_machine (1.2.0)
     thor (0.18.1)
     thread_safe (0.1.2)
@@ -334,7 +332,6 @@ DEPENDENCIES
   json (~> 1.8.0)
   launchy
   mocha (~> 0.13.3)
-  mysql2 (~> 0.3.12)
   nokogiri (~> 1.5.0)
   paperclip (~> 3.0)
   pg
@@ -349,7 +346,6 @@ DEPENDENCIES
   rspec-rails (~> 2.12.2)
   rspec-rails-mocha
   sass-rails (~> 4.0.0)
-  sqlite3
   state_machine (~> 1.2.0)
   uglifier (>= 1.3.0)
   will_paginate (~> 3.0.4)
