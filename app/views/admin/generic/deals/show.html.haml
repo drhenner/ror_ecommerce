@@ -1,0 +1,24 @@
+%h3 Deal
+%ul
+  %li
+    %label Buy Quantity:
+    = @deal.buy_quantity
+  %li
+    %label Get Percentage:
+    = @deal.get_percentage
+  %li
+    %label Deal Type:
+    = @deal.deal_type.name
+  %li
+    %label Product Type:
+    = @deal.product_type.name
+  %li
+    %label Get Amount:
+    = @deal.get_amount
+  %li
+    %label Deleted At:
+    = @deal.deleted_at
+%p
+  |
+  = link_to "Destroy", [:admin, :generic, @deal], :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button' |
+  = link_to "View All", admin_generic_deals_path, :class => 'button'

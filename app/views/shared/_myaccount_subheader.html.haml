@@ -1,0 +1,17 @@
+.three.large-3.columns
+  - if content_for? :account_title
+    %h3= yield :account_title
+  - else
+    %h3 Your Account
+  #myaccount-header-menu
+    %ul.side-nav
+      %li{ :class => "#{ selected_myaccount_tab('address') ? 'active' : ''}"}
+        = link_to 'Addresses', myaccount_addresses_path()
+      %li{ :class => "#{ selected_myaccount_tab('credit_cards') ? 'active' : ''}"}
+        = link_to 'Credit Cards', myaccount_credit_cards_path()
+      %li{ :class => "#{ selected_myaccount_tab('orders') ? 'active' : ''}"}
+        = link_to 'Orders', myaccount_orders_path()
+      %li{ :class => "#{ selected_myaccount_tab('profile') ? 'active' : ''}"}
+        = link_to 'Profile', myaccount_overview_path()
+      %li{ :class => "#{ selected_myaccount_tab('referrals') ? 'active' : ''}"}
+        = link_to 'Referrals', myaccount_referrals_path()

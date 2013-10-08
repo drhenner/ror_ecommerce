@@ -1,8 +1,0 @@
-<h3>Editing Shipping Category <%= @shipping_category.name %> </h3>
-
-<%= form_for(@shipping_category, :url => admin_config_shipping_category_path(@shipping_category)) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
-<% end %>
-
-<%= link_to 'Show', admin_config_shipping_category_path(@shipping_category), :class => 'button' %>
-<%= link_to 'Back', admin_config_shipping_categories_path, :class => 'button' %>

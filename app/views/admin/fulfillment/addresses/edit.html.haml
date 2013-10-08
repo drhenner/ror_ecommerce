@@ -1,0 +1,11 @@
+%h1 Change address
+- @addresses.each_with_index do |address, i|
+  - selected = @address.id == address.id
+  %div{:class => "span-5 rounded-4
+              #{cycle("line_item_yellow", "line_item_gray")}
+              #{'address_selected' if selected}", :id => "select-address-#{i}"}
+    = render :partial => '/shared/compact_address', :locals => {:shopping_address => address}
+    - if selected
+      Currently Selected.
+    - else
+      = link_to 'Use', admin_fulfillment_shipment_address_path(@shipment, address), :method => 'put'

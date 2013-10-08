@@ -1,0 +1,11 @@
+#admin-product-properties{:class => " #{product_property_form.object.new_record? ? 'new_fields' : 'fields'}  "}
+  .field.six.large-6
+    %div{:style => "float:right;"}
+      = remove_child_link('remove', product_property_form)
+    %label Property:
+    = product_property_form.select       :property_id, all_properties
+    %br/
+    Description:  #{product_property_form.text_field   :description}
+    Position:     #{product_property_form.number_field  :position, {:step => 1}}
+  - if product_property_form.object.new_record?
+    %hr/

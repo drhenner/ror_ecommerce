@@ -1,0 +1,30 @@
+- content_for :head do
+  = stylesheet_link_tag 'tables.css'
+.nine.large-9.columns
+  %h3
+    Order # #{@order.number}
+  .pretty_table.ten
+    %table{:style => "margin: 0;"}
+      %tbody
+        %tr
+          %td.left-align Number:
+          %td
+            = @order.number
+        %tr
+          %td.left-align Completed at:
+          %td
+            = @order.display_completed_at
+        %tr
+          %td.left-align Shipping Address:
+          %td
+            = render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} if @order.ship_address_id
+        %tr
+          %td.left-align Billing Address:
+          %td
+            = render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} if @order.bill_address_id
+        %tr
+          %td{:colspan => "2"} Items
+        - @order.order_items.each do |item|
+          %tr
+            %td.left-align{:colspan => "2"}
+              = item.variant.product_name

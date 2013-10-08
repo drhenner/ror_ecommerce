@@ -1,0 +1,24 @@
+- if @shipment.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@shipment.errors.count, "error")
+      prohibited this shipment from being saved:
+    %ul
+      - @shipment.errors.full_messages.each do |msg|
+        %li= msg
+#shipment-details.last.line_item_yellow
+  %ul.vertical-list.width-list.space-list-40
+    %li
+      %label Shipped at:
+      %span= l @shipment.shipped_at, :format => :us_time if @shipment.shipped_at
+    %li{:style => "clear:both;"}
+      %label Tracking #:
+      %span= f.text_field :tracking
+    %li
+      %label Shipment #:
+      %span= @shipment.number
+    %li
+      %label Status:
+      %span= @shipment.state
+  .actions
+    = f.submit 'Update Tracking #'

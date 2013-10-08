@@ -1,0 +1,25 @@
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag admin_inventory_suppliers_path, :method => 'get', :id => "suppliers_search" do
+      = hidden_field_tag :direction, params[:direction]
+      = hidden_field_tag :sort, params[:sort]
+      %label Name
+      = text_field_tag :name, params[:name]
+      %label Email
+      = text_field_tag :email, params[:email]
+      %div{:style => "text-align:center"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+.admin_title_header
+  %h3 Suppliers
+  = link_to "New Supplier", new_admin_inventory_supplier_path, :class => "button"
+.admin_suppliers
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable "name", "Name"
+        %th= sortable "email"
+    - @suppliers.each do |supplier|
+      %tr{:class => cycle("odd", "")}
+        %td= link_to supplier.name, edit_admin_inventory_supplier_path(supplier)
+        %td= supplier.email
+  = will_paginate @suppliers

@@ -1,0 +1,39 @@
+- if @session_admin_order
+  = render :partial => '/admin/shopping/checkout/right_panel_summary'
+- else
+  %h3
+    = session_admin_cart.customer_id ? session_admin_cart.customer.name : 'No Customer'
+  = link_to 'change customer', admin_shopping_users_path
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header
+          Item
+        %th Price:
+        %th Qty
+        %th Price + Tax
+    - session_admin_cart.shopping_cart_items.each do |item|
+      %tr{:class => "#{cycle("odd", "")} "}
+        %td= item.variant.product_name
+        %td= item.variant.price
+        %td= item.quantity
+        %td= item.quantity.to_f * item.variant.price
+    %tr.odd.top_border
+      %td
+      %td Sub-total:
+      %td
+      %td= sub_total = session_admin_cart.shopping_cart_items.inject(0) {|total,i| (i.quantity.to_f * i.variant.price) + total }
+    %tr
+      %td
+      %td Shipping Charges:
+      %td
+      %td TBD
+    %tfoot
+      %tr.even
+        %td
+        %td Total:
+        %td
+        %td
+          %em TBD
+  - unless session_admin_cart.shopping_cart_items.empty?
+    = link_to 'Checkout', start_checkout_process_admin_shopping_checkout_order_path, :class => 'button', :method => 'POST'

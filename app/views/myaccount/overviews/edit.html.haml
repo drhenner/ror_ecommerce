@@ -1,0 +1,4 @@
+.nine.large-9.columns
+  %h3 Edit Profile
+  = form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f|
+    = render :partial => 'form', :locals => {:f => f}

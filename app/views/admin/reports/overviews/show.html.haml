@@ -1,0 +1,91 @@
+- content_for :head do
+  = stylesheet_link_tag 'cupertino/jquery-ui-1.8.12.custom.css'
+- content_for :below_body do
+  = javascript_include_tag 'datePickerInitialize'
+%h1 Reports
+.row
+  .twelve.large-12
+    .panel
+      .row
+        .six.large-6.column
+          %h4
+            Start #{I18n.localize(start_time,  :format => :us_time)}
+        .six.large-6.column
+          %h4
+            End #{I18n.localize(end_time,  :format => :us_time)}
+      %ul.vertical-list.long
+        %li
+          %label # of cart items added
+          = @final_number_of_cart_items - @beginning_number_of_cart_items
+        %li
+          %label Total # of cart items
+          = @final_number_of_cart_items
+        %li
+          %label # of Orders
+          = @orders_report.quantity
+.row
+  .three.large-3.column
+    .panel
+      %h4 Accounting
+      %ul
+        %li
+          %label Revenue
+          = number_to_currency @accounting_report.revenue
+        %li
+          %label Cash
+          = number_to_currency @accounting_report.cash
+        %li
+          %label Accounts Receivable
+          = number_to_currency @accounting_report.accounts_receivable
+        %li
+          %label Accounts Payable
+          = number_to_currency @accounting_report.accounts_payable
+  .three.large-3.column
+    .panel
+      %h4 Orders
+      %ul
+        %li
+          %label Amount
+          = number_to_currency @orders_report.total_amount
+        %li
+          %label Amount Returned
+          = number_to_currency @orders_report.amount_returned
+  .three.large-3.column
+    .panel
+      %h4 Customers
+      %ul
+        %li
+          %label Final # of Users
+          = @customers_report.total_users
+        %li
+          %label New Users in TimeFrame
+          = @customers_report.users_in_timeframe
+        %li
+          %label Final # of Customers
+          = @customers_report.total_customers
+        %li
+          %label Customers in TimeFrame
+          = @customers_report.customers_in_timeframe
+  .three.large-3.column{:id => ""}
+    .panel.graceful
+      %h4 Filter
+      = form_tag(  admin_reports_overview_path(), |
+        :method => :get,                          |
+        :id   => 'request_report_form') do        |
+        = hidden_field_tag('schedule', nil)
+        %ul#report-filters
+          %li
+            %label Start Date
+            = text_field_tag 'start_date', nil, :placeholder => 'dd/mm/yyyy', :class => 'ui-datepicker'
+          %li
+            = submit_tag 'Daily',                           |
+              :data  => { disable_with: 'Please wait...' }, |
+              :class => 'button small report-submit-button' |
+          %li
+            = submit_tag 'Weekly',                          |
+              :data  => { disable_with: 'Please wait...' }, |
+              :class => 'button small report-submit-button' |
+          %li
+            = submit_tag 'Monthly',                         |
+              :data  => { disable_with: 'Please wait...' }, |
+              :class => 'button small report-submit-button' |

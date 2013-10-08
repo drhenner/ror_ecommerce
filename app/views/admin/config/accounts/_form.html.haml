@@ -1,0 +1,17 @@
+- if @account.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@account.errors.count, "error")
+      prohibited this account from being saved:
+    %ul
+      - @account.errors.full_messages.each do |msg|
+        %li= msg
+%fieldset
+  %label Name
+  = f.text_field :name
+  %label Account Type
+  = f.text_field :account_type
+  %label Monthly Charge
+  = f.text_field :monthly_charge
+  %label Active
+  = f.check_box :active

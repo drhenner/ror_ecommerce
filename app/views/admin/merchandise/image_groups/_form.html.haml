@@ -1,0 +1,17 @@
+- if @image_group.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@image_group.errors.count, "error")
+      prohibited this purchase_order from being saved:
+    %ul
+      - @image_group.errors.full_messages.each do |msg|
+        %li= msg
+%fieldset
+  %legend
+    Images - #{add_child_link "New Image", :images}
+  = new_child_fields_template form, :images, :form_builder_local => :image_form
+  #image_group_images.span-16
+    - @image_group.images.each do |image|
+      .variant_form.left.span-16.last{:id => "image_#{image.id}"}
+        = form.fields_for :images, image do |image_form|
+          = render :partial => 'image', :locals => {:image_form => image_form }

@@ -1,0 +1,10 @@
+%h1
+  Edit #{@image_group.name}
+%p= @image_group.product.name
+= form_for @image_group, :url => [:admin, :merchandise, @image_group] do |f|
+  = render :partial => 'form', :locals => {:form => f}
+  .actions= f.submit 'Update' , :class => 'button'
+%p
+  = link_to "Show", [:admin, :merchandise, @image_group], :class => 'button'
+  |
+  = link_to "View All", admin_merchandise_image_groups_path, :class => 'button'

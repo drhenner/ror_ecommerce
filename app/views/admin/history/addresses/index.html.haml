@@ -1,0 +1,28 @@
+%h1
+  = @order.user.name
+  's  Addresses
+%p Select the Address to change the shipment to or Create a new address.
+%table
+  %tr.odd
+    %th.column1_header First name
+    %th Last name
+    %th Address1
+    %th Address2
+    %th City
+    %th State
+    %th Zip code
+    %th
+    %th
+  - @addresses.each do |address|
+    %tr{:class => cycle("odd", "")}
+      %td= address.first_name
+      %td= address.last_name
+      %td= address.address1
+      %td= address.address2
+      %td= address.city
+      %td= address.state_id
+      %td= address.zip_code
+      %td
+        = button_to 'Select', admin_history_order_address_path(@order, address), :method => :put
+%br/
+= link_to 'New Address', new_admin_history_order_address_path(@order)

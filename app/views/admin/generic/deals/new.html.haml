@@ -1,0 +1,5 @@
+%h3 New Deal
+= form_for @deal, :url => admin_generic_deals_path(@deal) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+  .actions= f.submit 'Create' , :class => "button"
+%p= link_to "Back to List", admin_generic_deals_path, :class => "button"

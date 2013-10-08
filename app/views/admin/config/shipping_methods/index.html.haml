@@ -1,0 +1,17 @@
+.admin_title_header
+  %h3 Shipping Methods
+  = link_to "New Shipping Method", new_admin_config_shipping_method_path, :class => 'button'
+.admin_shipping_methods
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header Name
+        %th Zone
+        %th
+    - @shipping_methods.each do |shipping_method|
+      %tr{:class => cycle("odd", "")}
+        %td
+          = shipping_method.name
+        %td
+          = shipping_method.shipping_zone.name
+        %td= link_to "Edit", edit_admin_config_shipping_method_path(shipping_method)

@@ -1,0 +1,25 @@
+%h1
+  Inventory Adjustment  for #{@variant.product_name}
+= form_for(@variant, :url => admin_inventory_adjustment_path(@variant)) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+  .generic_submit_button
+    = f.submit "Update Inventory",         |
+      :class  => "button",                 |
+      :id     => "adjust_inventory_button" |
+%table
+  %thead
+    %tr
+      %th SKU
+      %th count on hand
+      %th pending to customer
+      %th count pending from supplier
+      %th
+  %tr
+    %td= @variant.sku
+    %td= @variant.inventory.count_on_hand
+    %td= @variant.inventory.count_pending_to_customer
+    %td= @variant.inventory.count_pending_from_supplier
+%p
+  = link_to "Show #{@variant.product_name}" , admin_inventory_adjustment_path( @variant.product ), :class => 'button'
+  |
+  = link_to 'View Products', admin_inventory_adjustments_path, :class => 'button'

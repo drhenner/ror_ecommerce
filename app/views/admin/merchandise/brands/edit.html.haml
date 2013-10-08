@@ -1,0 +1,9 @@
+= render :partial => '/admin/merchandise/sub_header'
+%h3
+  Editing Brand - #{@brand.name}
+  = form_for(@brand, :url => admin_merchandise_brand_path(@brand)) do |f|
+    = render :partial => 'form', :locals => {:f => f}
+    = f.submit 'Update', :class => 'button'
+  %p
+    = link_to 'Show', admin_merchandise_brand_path( @brand ), :class => 'button'
+    = link_to 'View All', admin_merchandise_brands_path, :class => 'button'

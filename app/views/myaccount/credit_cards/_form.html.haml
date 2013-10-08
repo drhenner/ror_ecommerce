@@ -1,0 +1,15 @@
+- if @credit_card.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@credit_card.errors.count, "error")
+      prohibited this credit_card from being saved:
+    %ul
+      - @credit_card.errors.full_messages.each do |msg|
+        %li= msg
+Please implement me!
+%br/
+.field
+  = f.label :name
+  = f.text_field :name
+.actions
+  = f.submit

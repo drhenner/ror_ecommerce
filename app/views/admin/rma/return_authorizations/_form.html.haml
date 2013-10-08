@@ -1,0 +1,39 @@
+- if @return_authorization.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@return_authorization.errors.count, "error")
+      prohibited this return_authorization from being saved:
+    %ul
+      - @return_authorization.errors.full_messages.each do |msg|
+        %li= msg
+.field
+  = f.label :amount
+  %br/
+  = f.text_field :amount
+.field
+  = f.label :restocking_fee
+  %br/
+  = f.text_field :restocking_fee
+#return_items.large-6
+  - @order.order_items.each do |item|
+    .variant_form.left.last{:id => "image_#{item.id}"}
+      - return_item = @return_authorization.return_items.detect {|p| p.order_item_id == item.id }
+      - return_item = return_item || ReturnItem.new(:order_item => item)
+      - return_item.updated_by = current_user.id
+      = f.fields_for :return_items, return_item do |item_form|
+        = render :partial => 'item', :locals => { :item_form    => item_form, |
+          :return_item  => return_item,                                       |
+          :order_item   => item }                                             |
+        = item_form.hidden_field :updated_by
+= f.hidden_field :user_id
+= f.hidden_field :created_by
+.column.float-left
+  = f.fields_for :comments do |comment_form|
+    = comment_form.hidden_field :user_id
+    = comment_form.hidden_field :created_by
+    .field
+      = comment_form.label :note
+      %br/
+      = comment_form.text_area :note, :class => 'span-8 height-40'
+.actions
+  = f.submit 'Submit', :class => 'button'

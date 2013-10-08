@@ -1,6 +1,0 @@
-<h3>Editing Supplier - <%= @supplier.name %></h3>
-
-<%= form_for @supplier, :url  => admin_inventory_supplier_path(@supplier) do |form| %>
-  <%= render :partial => '/admin/inventory/suppliers/form', :locals => {:form => form} %>
-  <%= submit_tag "Update", :class  => "button" %>
-<% end %>

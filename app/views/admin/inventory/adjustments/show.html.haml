@@ -1,0 +1,21 @@
+%h3
+  Inventory Adjustment for #{@product.name}
+.admin_adjustments
+  %table
+    %thead
+      %tr
+        %th SKU
+        %th count on hand
+        %th pending to customer
+        %th count pending from supplier
+        %th
+    - @product.variants.each do |variant|
+      %tr
+        %td= variant.sku
+        %td= variant.inventory.count_on_hand
+        %td= variant.inventory.count_pending_to_customer
+        %td= variant.inventory.count_pending_from_supplier
+        %td= link_to "Change", edit_admin_inventory_adjustment_path(variant)
+%p
+  = link_to "View Other Product", admin_inventory_adjustments_path, :class => 'button'
+  = link_to "Back to Product", admin_merchandise_product_path(@product), :class => 'button'

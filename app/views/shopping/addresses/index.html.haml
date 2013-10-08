@@ -1,0 +1,17 @@
+- if  @shopping_addresses.empty?
+  %h2 New Address
+- else
+  %h3 Pick a Shipping Address
+#shopping_addresses_selections.twelve.last
+  - @shopping_addresses.each do |shopping_address|
+    .four.large-4.columns.last.box
+      = render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address}
+      = button_to 'Use', select_address_shopping_address_path(shopping_address), :class => 'button spade inline-block', :method => :put
+      = link_to 'Edit', edit_shopping_address_path(shopping_address)
+      = link_to 'Delete', shopping_address_path(shopping_address), :data => {:confirm => 'Are you sure?'}, :method => :delete
+    %hr{:style => "color:#aac"}/
+  - if session_order.ready_to_checkout?
+    = link_to 'Order Summary', shopping_orders_path, :class => 'button success'
+%br/
+= form_for @shopping_address, url: shopping_addresses_path, html: {class: 'custom'} do |address_form|
+  = render :partial =>  'form', :locals => {:f => address_form}

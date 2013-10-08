@@ -1,0 +1,45 @@
+= render :partial => '/admin/merchandise/sub_header'
+%h2
+  Product: #{@product.name} (#{'*' if @variant.master}#{@variant.sku})
+= link_to 'Edit Variant', edit_admin_merchandise_product_variant_path(@product, @variant), :class => 'button'
+%fieldset#admin-product-names.span-12
+  .clear
+  .span-3
+    = label :variant, :sku
+  .span-6.last
+    = @variant.sku
+  .clear
+  .span-3
+    = label :variant, :price
+  .span-6.last
+    = @variant.price
+  .clear
+  .span-3
+    = label :variant, :cost
+  .span-6.last
+    = @variant.cost
+  .clear
+  .span-3
+    = label :variant, :count_on_hand
+  .span-6.last
+    = @variant.count_on_hand
+  .clear
+  .span-3
+    = label :variant, :count_pending_to_customer
+  .span-6.last
+    = @variant.count_pending_to_customer
+  .clear
+  .span-3
+    = label :variant, :count_pending_from_supplier
+  .span-6.last
+    = @variant.count_pending_from_supplier
+%fieldset#admin-product-properties.span-12
+  %legend Properties
+  - @variant.variant_properties.each do |variant_prop|
+    = variant_prop.property.identifing_name
+    \: #{variant_prop.description}
+    %br/
+- if @variant.active?
+  = link_to 'Inactivate Variant',                                                             |
+    admin_merchandise_product_variant_path(@product, @variant),                               |
+    :class => 'button red-button', :method => :delete, :data => {:confirm => "Are you sure?"} |

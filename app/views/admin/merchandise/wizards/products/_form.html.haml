@@ -1,0 +1,31 @@
+- content_for :head do
+  = javascript_include_tag 'admin/merchandise_product'
+- content_for :below_body do
+  :javascript
+    Hadean.AdminMerchandiseProductForm.initialize("#{@product.id}");
+= error_messages_for 'product'
+%label Name
+= form.text_field :name
+%label Permalink
+= form.text_field :permalink
+%label Search Keywords
+= form.text_field :set_keywords, :placeholder => "separate keywords with a comma"
+%label Meta Keywords
+= form.text_field :meta_keywords
+%label Meta Description
+= form.text_field :meta_description
+%label Product Type
+= form.select :product_type_id, @select_product_types
+%label Shipping Category
+= form.select :shipping_category_id, @select_shipping_category
+%label Brand
+= form.select :brand_id, @brands
+%fieldset
+  %legend Properties
+  #product_properties.six.large-6
+    - @all_properties.each do |property|
+      .property_form.left.span-12.last{ :id => "property_#{property.id}", :style => "#{'display:none;' if @product.id && !@product.properties.detect {|p| p.id == property.id}}"}
+        = form.fields_for :product_properties, property.product_properties.find_or_initialize_by(product_id: @product.id) do |product_property_form|
+          %label= property.full_name
+          = product_property_form.hidden_field :property_id
+          %label "Description: #{product_property_form.text_field :description}"

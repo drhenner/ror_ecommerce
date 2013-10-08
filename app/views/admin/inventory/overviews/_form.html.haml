@@ -1,0 +1,14 @@
+%fieldset#admin-product-overviews.span-14
+  %legend Inventory
+  %div Count on Hand
+  #variant_overviews.span-14.last
+    - @product.variants.each do |variant|
+      .variant_form.left.span-14.last{:id => "variant_#{variant.id}"}
+        = form.fields_for :variants,          |
+          variant do |variant_inventory_form| |
+          .span-13{:style => "background-color: #{cycle("#F2F5F9", "#FFF")};"}
+            .span-9.first
+              = variant.name_with_sku
+              \:  # on hand => #{variant.count_on_hand}
+            .span-3.prepend-1.last
+              Add #{variant_inventory_form.text_field :qty_to_add , :class => 'span-1'}

@@ -1,0 +1,12 @@
+%h1 New Shipping Category
+= form_for(@shipping_category, :url => admin_config_shipping_categories_path) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+= link_to 'Back', admin_config_shipping_categories_path, :class => 'button'
+%p
+  An example Shipping Category could be "Clothing".  Use shipping category to group products that can be shipped with the same shipping method.  For Example:
+  %ul
+    %li Product "A" can be shipped UPS next day and UPS ground.
+    %li Product "B" can be shipped UPS next day and UPS ground.
+    %li Product "C" can only be shipped UPS ground.
+  %br/
+  You will assign Product A & B to the same shipping category.  But Product C would need a different shipping Category.

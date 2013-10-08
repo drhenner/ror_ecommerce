@@ -1,0 +1,56 @@
+!!!
+%html
+  %head
+    %title= site_name
+    %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}/
+    = stylesheet_link_tag "admin/foundation"
+    = stylesheet_link_tag "admin/app"
+    /
+      [if lt IE 8]
+      <haml:loud> stylesheet_link_tag &amp;quot;admin/ie.css&amp;quot; </haml:loud>
+      <![endif]
+    = csrf_meta_tag
+    = javascript_include_tag 'application'
+    = javascript_include_tag "admin/app"
+    = javascript_include_tag "admin/jquery.customforms"
+    = javascript_include_tag "admin/jquery.placeholder.min"
+    = javascript_include_tag "admin/jquery.reveal"
+    = javascript_include_tag "admin/jquery.tooltips"
+    = javascript_include_tag "admin/modernizr.foundation"
+    %link{:href => "http://cdn.oesmith.co.uk/morris-0.4.3.min.css", :rel => "stylesheet"}/
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"}
+    %script{:src => "http://cdn.oesmith.co.uk/morris-0.4.3.min.js"}
+    = yield :head
+  %body.bp
+    .container
+      .row
+        - if notice || alert
+          .flash_messages
+            = raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice
+            = raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert
+        = render :partial => "shared/admin/header_bar"
+        - if content_for? :header_sub_bar
+          #header_sub_bar
+            = yield :header_sub_bar
+        - if content_for?(:sidemenu)
+          .admin_main_content.nine.large-9.columns
+            = yield
+          .three.large-3.columns.sidebar
+            = yield :sidemenu
+        - else
+          .admin_main_content
+            = yield
+      .footer
+        %p.left= site_name
+        %p.right
+          Powered by #{link_to "RoR eCommerce", "http://ror-e.com"}. v#{RoReCommerce::Version}
+    = yield :bottom
+    :javascript
+      jQuery(window).ready(
+        function() {
+          jQuery('.flash_notice').delay(6000).slideUp( 'slow');
+          jQuery('.flash_error').delay(6000).slideUp( 'slow');
+        }
+      );
+  = yield :below_body

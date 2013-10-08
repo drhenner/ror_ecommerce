@@ -1,0 +1,33 @@
+- @saved_cart_items.each_with_index do |item, i|
+  %tr
+    %td{:align => "right", :valign => "top", :width => "20%"}
+      .tiny
+        %b{:name => "s#{i}"}
+          Item added on
+          %br/
+          = item.created_at.strftime(I18n.translate('time.formats.long_date'))
+      .small-gradientbuttons.small-redtheme.ready-to-add-to-cart{:id => "add_#{i}_to_cart"}
+        %ul
+          %li
+            = link_to 'Move to Cart',                                               |
+              move_to_shopping_cart_item_path(item, :variant_id => item.variant_id, |
+              :item_type_id     => ItemType::SHOPPING_CART_ID),                     |
+              :method           => 'put',                                           |
+              :class            => 'button tiny success'                            |
+          %li
+            = link_to 'Delete', shopping_cart_item_path(item, :variant_id => item.variant_id), |
+              :method => :delete, :class            => 'button tiny alert'                     |
+    %td{:style => "padding-right: 20px;", :valign => "top"}
+      .small
+        %b
+          = link_to item.variant.product_name, product_path(item.variant.product)
+        = item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ')
+        %br/
+        = item.variant.display_stock_status('', '')
+        %br/
+    %td.small{:valign => "top"}
+      %b.price= number_to_currency item.price
+      %br/
+  %tr
+    %td{:colspan => "5"}
+      %hr{:color => "#aac"}/

@@ -1,0 +1,4 @@
+%h1 New Shipping Zone
+= form_for(@shipping_zone, :url => admin_config_shipping_zones_path()) do |f|
+  = render :partial =>  'form', :locals => {:f => f}
+= link_to 'Back', admin_config_shipping_zones_path, :class => 'button'

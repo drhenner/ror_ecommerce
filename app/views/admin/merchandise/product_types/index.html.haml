@@ -1,0 +1,23 @@
+= render :partial => '/admin/merchandise/sub_header'
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag admin_merchandise_product_types_path, :method => 'get', :id => "product_types_search" do
+      = hidden_field_tag :direction, params[:direction]
+      = hidden_field_tag :sort, params[:sort]
+      %label Name
+      = text_field_tag :name, params[:name]
+      %div{:style => "text-align:center"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+    .clearfix
+.admin_title_header
+  %h3 Product Types
+  = link_to "New Type", new_admin_merchandise_product_type_path, :class => "button"
+.admin_product_types
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable "name"
+    - @product_types.each do |product_type|
+      %tr{:class => cycle("odd", "")}
+        %td= link_to product_type.name, edit_admin_merchandise_product_type_path(product_type)
+  = will_paginate @product_types

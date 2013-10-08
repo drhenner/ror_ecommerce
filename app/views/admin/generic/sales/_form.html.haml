@@ -1,0 +1,14 @@
+= f.error_messages
+%ul
+  %li.field.three
+    = f.label :product_id
+    = f.select :product_id, products, :include_blank => true
+  %li.field.three
+    = f.label :percent_off
+    = f.text_field :percent_off
+  %li.field.date-select
+    = f.label :starts_at
+    = f.datetime_select :starts_at
+  %li.field.date-select
+    = f.label :ends_at
+    = f.datetime_select :ends_at

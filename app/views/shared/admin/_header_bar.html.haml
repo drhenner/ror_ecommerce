@@ -1,0 +1,7 @@
+.admin-login
+  %span= current_user.name
+  = link_to 'Logout', logout_path, :id => 'admin-logout-button', :method => :delete
+%nav.nav-bar.top-bar
+  %section.top-bar-section
+    %ul.left
+      = render :partial => "/shared/admin/header_buttons"

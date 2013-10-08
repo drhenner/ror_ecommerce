@@ -1,0 +1,21 @@
+#order-confirmation
+  .row
+    .eight.columns
+      .top-box.background-gray.red-border-left
+        %h4.margin-0.text-10.bold.margin-left-10.padding-left-10.padding-top-10 Thank You, Your order has been placed
+        .row.padding-top-10.padding-left-30
+          %ul.twelve.large-12.columns
+            %li
+              An email confirmation has been sent to you
+            %li
+              Order Number:
+              %span.bold.black= @order.number
+      %hr{:style => "color:#aac;"}/
+      .padding-10.border-1.margin-0
+        - @order.order_items.each_with_index do |item, i|
+          .row.clearfix.bottom20
+            .four.column.top20
+              = image_tag item.variant.product.featured_image(:medium)
+            .eight.column
+              %h4.red.bold.text-10.top20
+                Item ##{i + 1}: #{raw item.variant.product_name}

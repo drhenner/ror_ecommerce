@@ -1,0 +1,12 @@
+%h2
+  Supplier: #{@supplier.name}
+%fieldset#admin-product-names.span-12
+  .span-3
+    = label :supplier, :name
+  .span-6.last
+    = @supplier.name
+  .clear
+  .span-3
+    = label :supplier, :email
+  .span-6.last
+    = @supplier.email

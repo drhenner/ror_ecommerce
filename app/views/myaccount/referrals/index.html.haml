@@ -1,0 +1,29 @@
+-# content_for :content_header do
+  = render :partial => '/shared/main_content_header'
+#referral_content.nine.large-9.columns
+  %h3#referral_title Invite a Friend
+  %div
+    %p
+      Ready to get your friends aboard?  Enter their information below:
+    = form_for @referral, :url => myaccount_referrals_path(@referral) do |f|
+      = render :partial => 'form', :locals => {:f => f}
+      .right-actions
+        = f.submit 'Invite', :class => 'button dark-orange-button'
+    - if @referrals.empty?
+    - else
+      #admin_referral_grid_wrapper.referral_table
+        %table
+          %thead
+            %tr
+              %th Name
+              %th Email
+              %th Status
+          %tbody
+            - for referral in @referrals
+              %tr
+                %td
+                  = referral.name
+                %td
+                  = referral.email
+                %td
+                  = referral.display_status + "(#{referral.display_formatted_status_date})"

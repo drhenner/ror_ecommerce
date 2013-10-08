@@ -1,0 +1,47 @@
+-# content_for :head do
+  = javascript_include_tag 'admin/merchandise_product'
+- content_for :below_body do
+  :javascript
+    //Hadean.AdminMerchandiseProductForm.initialize(#{@variant.id});
+= error_messages_for 'variant'
+%fieldset#admin-product-names.span-12
+  .clear
+  .span-3
+    = form.label :sku
+  .span-6.last
+    = form.text_field :sku
+  .clear
+  .span-3
+    = form.label :price
+  .span-6.last
+    = form.text_field :price
+  .clear
+  .span-3
+    = form.label :cost
+  .span-6.last
+    = form.text_field :cost
+  .clear
+  .span-3
+    = form.label :master
+  .span-6.last
+    = form.check_box :master
+  .clear
+  .span-3
+    = form.label :brand_id
+  .span-6.last
+    = form.select :brand_id, @brands, { :include_blank => true }
+%fieldset#admin-product-properties.span-12
+  %legend Properties
+  #variant_properties.span-12.last
+    - @product.properties.each do |property|
+      .variant_form.left.span-12.last{:id => "variant_#{property.id}"}
+        = form.fields_for :variant_properties,                                                                 |
+          property.variant_properties.find_or_initialize_by_variant_id(@variant.id) do |variant_property_form| |
+          .span-4.left
+            = property.display_name
+            \:
+          Primary?: #{variant_property_form.check_box  :primary}
+          %br/
+          = variant_property_form.hidden_field  :property_id
+          Description: #{variant_property_form.text_field    :description}
+          %br/

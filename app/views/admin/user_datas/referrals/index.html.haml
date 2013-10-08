@@ -1,0 +1,36 @@
+%h1 Referrals
+#admin_referral_grid_wrapper.pretty_table
+  %table
+    %tr.odd
+    %thead
+      %th.column1_header= sortable 'name', 'Name'
+      %th Email
+      %th Referring User
+      %th Referral Program
+      %th New User
+      %th Referral Type
+      %th Sent At
+      %th Registered At
+      %th Purchased At
+      %th Applied
+      %th
+    - for referral in @referrals
+      %tr{:class => cycle("odd", "")}
+        %td= link_to referral.name, [:admin, :user_datas, referral]
+        %td= referral.email
+        %td= referral.referring_user.name
+        %td= referral.referral_program.name
+        %td= referral.referral_user.try(:name)
+        %td= referral.referral_type.name
+        %td= referral.sent_at
+        %td= referral.registered_at
+        %td= referral.purchased_at
+        %td= referral.applied
+        %td= link_to "", [:admin, :user_datas, referral], :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'ss_sprite ss_cross'
+= will_paginate @referrals
+%p= link_to "Assign Referral", new_admin_user_datas_referral_path, :class => 'button'
+%p
+  = link_to "Apply Referrals",                       |
+    apply_admin_user_datas_referral_path(0),         |
+    :data => { :confirm => 'Are you sure?' },        |
+    :class => 'button red-button', :method => 'POST' |

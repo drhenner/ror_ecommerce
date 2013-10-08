@@ -1,0 +1,27 @@
+.admin_title_header.clearfix
+  %h3 Deals
+  = link_to "New Deal", new_admin_generic_deal_path, :class => "button"
+.admin_deals
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable 'buy_quantity', 'Buy Quantity'
+        %th Get Percentage
+        %th Deal Type
+        %th Product Type
+        %th Get Amount
+        %th Deleted At
+        %th
+        %th
+    %tbody
+      - for deal in @deals
+        %tr{:class => cycle("odd", "")}
+          %td= link_to deal.buy_quantity, [:admin, :generic, deal]
+          %td= deal.get_percentage
+          %td= deal.deal_type.name
+          %td= deal.product_type.name
+          %td= deal.get_amount
+          %td= deal.deleted_at
+          %td
+        %td= link_to "delete", [:admin, :generic, deal], :data => {:confirm => 'Are you sure?'}, :method => :delete
+= will_paginate @deals

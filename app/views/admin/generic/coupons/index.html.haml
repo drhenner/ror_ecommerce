@@ -1,0 +1,20 @@
+.admin_title_header.clearfix
+  %h3 Coupons
+  = link_to "New Coupon", new_admin_generic_coupon_path, :class => 'button'
+.admin_coupons
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header Code
+        %th Type
+        %th Starts at
+        %th Expires at
+        %th
+    - for coupon in @coupons
+      %tr{:class => cycle("odd", "")}
+        %td
+          = link_to coupon.code, admin_generic_coupon_path(coupon), :style => "#{(coupon.expires_at <= Time.zone.now) ? 'color:#F65566' : ''}"
+        %td= coupon.type
+        %td= coupon.display_start_time
+        %td= coupon.display_expires_time
+        %td= link_to "Edit", edit_admin_generic_coupon_path(coupon)

@@ -1,6 +1,0 @@
-<h3>New Supplier</h3>
-
-<%= form_for @supplier, :url  => admin_inventory_suppliers_path do |form| %>
-  <%= render :partial => '/admin/inventory/suppliers/form', :locals => {:form => form} %>
-  <%= submit_tag "Create", :class  => "button" %>
-<% end %>

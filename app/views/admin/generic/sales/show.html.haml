@@ -1,0 +1,19 @@
+%h1 Sale
+%ul
+  %li
+    %label Product:
+    = @sale.product_id
+  %li
+    %label Percent Off:
+    = @sale.percent_off
+  %li
+    %label Starts At:
+    = @sale.starts_at
+  %li
+    %label Ends At:
+    = @sale.ends_at
+%p
+  = link_to "Edit", edit_admin_generic_sale_path(@sale), :class => 'button'
+  |
+  = link_to "Destroy", [:admin, :generic, @sale], :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'button' |
+  = link_to "View All", admin_generic_sales_path, :class => 'button'

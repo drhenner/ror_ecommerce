@@ -1,9 +1,0 @@
-<h3>New Shipping Method</h3>
-
-<p>An example Shipping Method could be "UPS 3-5 day"</p>
-
-<%= form_for(@shipping_method, :url => admin_config_shipping_methods_path) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
-<% end %>
-
-<%= link_to 'Back', admin_config_shipping_methods_path, :class => "button" %>

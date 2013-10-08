@@ -1,0 +1,14 @@
+%h2 Coupon
+- unless @coupon.errors.empty?
+  %ul
+    - @coupon.errors.full_messages.each do |msg|
+      %li
+        %strong= msg
+= form_for(@coupon, :url => shopping_coupon_path(@coupon)) do |f|
+  .field
+    = f.label :code
+    = f.text_field :code
+  %div{:style => "display:inline;"}
+    = submit_tag "Save", :class => 'button small'
+    \&nbsp; &nbsp; &nbsp;
+    = link_to 'Skip Coupon', shopping_orders_path, :class => ' button small'

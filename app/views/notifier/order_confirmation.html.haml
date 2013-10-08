@@ -1,0 +1,17 @@
+- @order.find_total
+%h1
+  Hi #{@user.name},
+%p
+  Thanks you for your recent purchase at #{@site_name}.  Below you will see your confirmation details.
+%h4
+  Order Number: #{@order.number}
+%ul
+  - @order.order_items.group_by(&:variant).each do |variant, order_items|
+    %li
+      = order_items.size
+      = variant.product_name
+      \: #{order_items.size}
+  %li
+    Order Total (#{number_to_currency @invoice.amount})
+%p Thank you and have a great day!
+= render :partial => 'notifier/main_footer'

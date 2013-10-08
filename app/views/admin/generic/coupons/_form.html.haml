@@ -1,0 +1,31 @@
+- if @coupon.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@coupon.errors.count, "error")
+      prohibited this coupon from being saved:
+    %ul
+      - @coupon.errors.full_messages.each do |msg|
+        %li= msg
+%fieldset
+  %label Code
+  = f.text_field :code
+  - unless @coupon.id
+    %label Type
+    = select_tag :c_type, @coupon_types.map{|ct| "<option>#{ct}</option>"}.join().html_safe , { :include_blank => true }
+  %label Amount
+  = f.text_field :amount
+  %label Minimum Value
+  = f.text_field :minimum_value
+  %label Percent
+  = f.text_field :percent
+  %label Description
+  = f.text_area :description
+  %label Combine
+  = f.check_box :combine
+  %label Starts at
+  .date-select
+    = f.date_select :starts_at
+  %label Expires at
+  .date-select
+    = f.date_select :expires_at
+= f.submit "Create", :class => "button"

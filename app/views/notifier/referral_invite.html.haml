@@ -1,0 +1,9 @@
+%h1
+  Hi #{@referral.name}
+%p
+  = @user.name
+  wants you to join the club.
+%p
+  Follow this : #{link_to 'link', @url} to get in on the fun.
+%p Thank you and have a great day!
+= render :partial => 'notifier/main_footer'

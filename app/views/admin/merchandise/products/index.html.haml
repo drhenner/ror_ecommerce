@@ -1,0 +1,35 @@
+= render :partial => '/admin/merchandise/sub_header'
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag admin_merchandise_products_path, :method => 'get', :id => "products_search" do
+      %label Name
+      = text_field_tag :name, params[:name]
+      %label Product Type
+      = select_tag "product_type_id", options_from_collection_for_select(product_types, "id", "name"), :include_blank => true
+      %div{:style => "text-align:center; margin-top: 15px"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+      #order_hidden
+        = hidden_field_tag :direction, params[:direction]
+        = hidden_field_tag :sort, params[:sort]
+    .clearfix
+.admin_title_header
+  %h3 Products
+  = link_to "New Product", new_admin_merchandise_product_path, :class => "button", :id => "new_product_button"
+  = link_to "New Product Wizard", admin_merchandise_wizards_brands_path, :class => "button", :id => "new_product_wizard_button"
+.admin_products
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable "name"
+        %th Active
+        %th= 'Product Type'
+        %th
+        %th
+    - @products.each do |product|
+      %tr{:class => cycle("odd", "")}
+        %td= link_to product.name, edit_admin_merchandise_product_path(product)
+        %td= product.available? ? 'Yes' : 'No'
+        %td= product.product_type.name
+        %td= link_to "Edit Variants",  edit_admin_merchandise_multi_product_variant_path(product)
+        %td= link_to "Show",  admin_merchandise_product_path(product)
+  = will_paginate @products

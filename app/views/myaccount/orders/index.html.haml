@@ -1,0 +1,20 @@
+.nine.large-9.columns
+  %h3 Orders
+  - unless @orders.length > 0
+    You currently do not have any orders.
+  - @orders.each do |order|
+    .order-list-item.ten
+      %ul
+        %li
+          %label Number:
+          = link_to order.number, myaccount_order_path(order)
+        %li
+          %label Amount:
+          = number_to_currency( order.first_invoice_amount )
+        %li
+          %label Status:
+          = order.status
+        %li
+          %label Completed at:
+          = order.display_completed_at
+    %hr/

@@ -1,0 +1,9 @@
+%fieldset
+  %label Name
+  = form.text_field :name
+  %label Active
+  = form.check_box :active
+%fieldset
+  %legend Properties
+  #prototype_properties
+    = render :partial => "property_form", :locals => { :form => form }

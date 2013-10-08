@@ -1,0 +1,14 @@
+.six
+  - @order.order_items.each do |item|
+    - if item.paid? && item.unshipped?
+      .property_form.left.last
+        - checked = false
+        = check_box_tag "order[order_item_ids][]", item.id, checked
+        = item.variant.product_name
+    - else
+      = item.variant.product_name
+      %br/
+  .clearfix
+  %p &nbsp;
+  .actions
+    = f.submit 'Ship checked items.'

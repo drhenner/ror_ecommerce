@@ -1,8 +1,0 @@
-<h1>Change Address</h1>
-
-<%= form_for(@address, :url => admin_history_order_address_path(@order, @address)) do |f| %>
-  <%= render :partial => '/admin/history/addresses/form', :locals => {:f => f } %>
-<% end %>
-
-<%= link_to 'Show', admin_history_order_address_path(@order, @address) %> |
-<%= link_to 'Back', admin_history_orders_path() %>

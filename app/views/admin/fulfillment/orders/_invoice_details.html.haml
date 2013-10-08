@@ -1,0 +1,26 @@
+%div{:style => "display:inline-block;"}
+  %ul.vertical-list
+    %li
+      %label State:
+      %span
+        = invoice.state
+    %li
+      %label Invoice #:
+      %span
+        = invoice.number
+    %li
+      %label Charge Amount:
+      %span
+        = number_to_currency invoice.amount
+- if invoice.authorized?
+  %a.button.success{:id => "capture-invoice-button-#{invoice.id}", :style => "display:inline-block;"}
+    Collect
+  /
+    <a id='capture-partial-invoice-button-<haml:loud> invoice.id </haml:loud>' style='display:inline-block;' class='line_item_blue'>
+    Collect Partial
+    </a>
+  %a.button.alert{:id => "cancel-invoice-button-#{invoice.id}", :style => "display:inline-block;"}
+    CANCEL
+- if invoice.paid? && @order && @order.shipments.count == 0
+  = link_to 'Create New Shipment', admin_fulfillment_shipments_path(:order_number => @order.number), :method => 'POST'
+  for all items.

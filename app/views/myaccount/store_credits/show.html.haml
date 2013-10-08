@@ -1,0 +1,6 @@
+.nine.large-9.columns
+  %h3
+    = current_user.name
+    Store Credits
+  %p#users-credits
+    You currently have #{number_to_currency @store_credit.amount} worth of credits.

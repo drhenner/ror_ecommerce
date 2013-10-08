@@ -1,0 +1,28 @@
+= render :partial => '/admin/merchandise/sub_header'
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag admin_merchandise_properties_path, :method => 'get', :id => "products_search" do
+      = hidden_field_tag :direction, params[:direction]
+      = hidden_field_tag :sort, params[:sort]
+      %label Indentifing Name
+      = text_field_tag :identifing_name, params[:identifing_name]
+      %label Display Name
+      = text_field_tag :display_name, params[:display_name]
+      %div{:style => "text-align:center"}
+        = submit_tag "Search", :name => nil, :class => "button red-button"
+.admin_title_header
+  %h3 Properties
+  = link_to "New Property", new_admin_merchandise_property_path, :class => "button", :id => "new_property_button"
+.admin_properties
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable 'identifing_name',"ID name"
+        %th= sortable "display_name"
+        %th Active
+    - @properties.each do |property|
+      %tr{:class => cycle("odd", "")}
+        %td= link_to property.identifing_name, edit_admin_merchandise_property_path(property)
+        %td= property.display_name
+        %td= property.display_active
+  = will_paginate @properties

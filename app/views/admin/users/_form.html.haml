@@ -1,0 +1,30 @@
+%fieldset
+  %legend New User
+  .row
+    .six.large-6.columns
+      %label First Name
+      = form.text_field :first_name
+      %label Email Address
+      = form.text_field :email
+    .six.large-6.columns
+      %label Last Name
+      = form.text_field :last_name
+      %label State
+      = form.select :state, @states
+- if current_user.super_admin?
+  %fieldset#admin-password.span-12
+    %p Leave blank if you don't want to change the password.
+    %ul
+      %li
+        = form.label :password
+        = form.password_field :password
+      %li
+        = form.label :password_confirmation
+        = form.password_field :password_confirmation
+  %fieldset
+    %legend User Roles
+    - @all_roles.each do |role|
+      .property_form.left.span-9.last
+        - checked = @user.id && @user.roles.include?(role)
+        = check_box_tag "user[role_ids][]", role.id, checked
+        = role.name

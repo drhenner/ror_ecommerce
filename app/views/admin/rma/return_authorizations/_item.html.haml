@@ -1,0 +1,11 @@
+%fieldset#admin-product-items{:class => " large-6 six #{item_form.object.new_record? ? 'new_fields' : 'fields'}  ", :style => "float:left;"}
+  %p.field
+  %div{:style => "float:right;"}
+    = remove_child_link('remove', item_form)
+  = item_form.hidden_field  :order_item_id
+  Return Item: #{order_item.variant.product_name} #{number_to_currency order_item.total}
+  %br/
+  Return Condition: #{item_form.select  :return_condition_id, @return_conditions, :include_blank => true}
+  %br/
+  Return Reason:    #{item_form.select  :return_reason_id,    @return_reasons, :include_blank => true}
+  %br/

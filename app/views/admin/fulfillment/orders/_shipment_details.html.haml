@@ -1,0 +1,26 @@
+.panel
+  %h4 Shipment Details
+  - if order.shipments.empty?
+    .well
+      No Shipments have been made on this order.
+      %br/
+      - if order.paid?
+        %a#create-shipment-button.tiny.button{"data-url" => create_shipment_admin_fulfillment_order_path(order.id)}
+          = t("label_create_shipment_button")
+  - else
+    - order.shipments.each do |shipment|
+      %ul.vertical-list
+        %li
+          %label Shipping Method:
+          = shipment.shipping_method.name
+        %li
+          %label Shipping #:
+          = shipment.number
+        %li
+          %label Tracking:
+          = shipment.tracking
+        %li
+          %label State:
+          = shipment.state
+    .panel.callout
+      = link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(:order_id => order.number)

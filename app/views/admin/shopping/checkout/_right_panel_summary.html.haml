@@ -1,0 +1,66 @@
+%h3
+  = session_admin_order.user ? session_admin_order.user.name : 'No User'
+%table
+  %thead
+    %tr.odd
+      %th.column1_header
+        Item
+      %th Price:
+      %th Qty
+      %th Price + Tax
+  - session_admin_order.order_items.each do |item|
+    %tr{:class => "#{cycle("odd", "")} "}
+      %td= item.variant.product_name
+      %td= item.price
+      %td/
+    %td= item.total
+  %tr.odd.top_border
+    %td
+    %td Sub-total:
+    %td
+    %td= sub_total = session_admin_order.sub_total
+  %tr
+    %td
+    - if session_admin_order.order_items.size > 0
+      %td= link_to 'Shipping Charges:', admin_shopping_checkout_shipping_methods_path
+      %td
+      %td
+        = session_admin_order.display_shipping_charges
+    - else
+      %td Shipping Charges:
+      %td
+      %td N/A
+  - if session_admin_order.coupon_amount > 0.0
+    %tr
+      %td
+      %td Coupon:
+      %td
+      %td= number_to_currency session_admin_order.coupon_amount
+  - if session_admin_order.deal_amount && session_admin_order.deal_amount > 0.0
+    %tr
+      %td
+      %td Promotion:
+      %td
+      %td= number_to_currency session_admin_order.deal_amount
+  %tr.odd
+    %td
+    %td Tax:
+    %td
+    %td
+      - if session_admin_order.ready_to_checkout?
+        = number_to_currency session_admin_order.taxed_amount
+  - if session_admin_order.ready_to_checkout? && session_admin_order.amount_to_credit && session_admin_order.amount_to_credit > 0.0
+    %tr.odd
+      %td
+      %td Credits:
+      %td
+      %td= number_to_currency session_admin_order.amount_to_credit
+  %tfoot
+    %tr.even
+      %td
+      %td Total:
+      %td
+      %td
+        %em
+          - if session_admin_order.ready_to_checkout?
+            = number_to_currency session_admin_order.credited_total

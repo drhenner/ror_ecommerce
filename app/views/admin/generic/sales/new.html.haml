@@ -1,0 +1,5 @@
+%h1 New Sale
+= form_for @sale, :url => admin_generic_sales_path(@sale) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+  .actions= f.submit 'Create' , :class => 'button'
+%p= link_to "Back to List", admin_generic_sales_path, :class => 'button'

@@ -1,0 +1,5 @@
+= render :partial => '/admin/merchandise/sub_header'
+%h3 New Prototype
+= form_for @prototype, :url  => admin_merchandise_prototypes_path do |form|
+  = render :partial => 'form', :locals => {:form => form}
+  = submit_tag "Create", :class  => "button"

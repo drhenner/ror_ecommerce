@@ -1,0 +1,10 @@
+- if @brand.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@brand.errors.count, "error")
+      prohibited this brand from being saved:
+    %ul
+      - @brand.errors.full_messages.each do |msg|
+        %li= msg
+%label Name
+= f.text_field :name

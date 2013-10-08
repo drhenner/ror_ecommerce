@@ -1,0 +1,4 @@
+%h3 New User
+= form_for  @user, :url => admin_users_path(@user)  do |form|
+  = render :partial => '/admin/users/form', :locals => {:form => form}
+  = form.submit "Create", :class => 'button'

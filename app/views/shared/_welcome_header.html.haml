@@ -1,0 +1,68 @@
+%div
+  %nav.top-bar
+    %ul.title-area
+      / Title Area
+      %li.name
+        %h1
+          = link_to site_name, root_path
+      %li.toggle-topbar.menu-icon
+        %a{:href => "#"}
+          %span Menu
+    / Left Nav Section
+    %section.top-bar-section
+      %ul.left
+        %li.divider
+        %li.has-dropdown
+          = link_to 'Products', products_path, :class => 'active'
+          %ul.dropdown
+            %li.has-dropdown
+              %a{:href => "#"} Level 1 &rarr;
+              %ul.dropdown
+                %li
+                  %a{:href => "#"} Add Link here
+                %li
+                  %a{:href => "#"} Add Link 2 here
+            - product_types.each do |pt_tab|
+              %li
+                = link_to_unless_current pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id)
+            %li.divider
+            %li
+              = link_to 'All Products', products_path
+        %li.divider.hide-for-small
+      / Right Nav Section
+      %ul.right
+        %li.divider.show-for-medium-and-up
+        %li.has-dropdown
+          = link_to( 'Your Cart', shopping_cart_items_path)
+          %ul.dropdown
+            - if session_cart.shopping_cart_items.size > 0
+              %li
+                = link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do
+                  %strong Items
+              %li.divider
+              - session_cart.shopping_cart_items.each do |item|
+                %li
+                  = link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do
+                    = item.name
+            - else
+              %li.divider
+              %li
+                = link_to( 'Your cart is Empty!', shopping_cart_items_path)
+        %li.has-dropdown
+          %a{:href => "#"} Your Account
+          %ul.dropdown
+            - unless current_user
+              %li= link_to 'Login',  login_path
+            - else
+              - if current_user.admin?
+                %li= link_to 'Admin', admin_users_path
+              %li.divider
+              %li
+                = link_to myaccount_overview_path do
+                  %label Account
+              %li= link_to raw('Orders &rarr;' ), myaccount_orders_path
+              %li= link_to 'Addresses', myaccount_addresses_path
+              %li= link_to 'Credit Cards', myaccount_credit_cards_path
+              %li= link_to 'Credits', myaccount_store_credit_path
+              %li.divider
+              %li= link_to 'Log Out', logout_path

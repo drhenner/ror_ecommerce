@@ -22,8 +22,8 @@ gem 'bluecloth',      '~> 2.1.0'
 gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
-#gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
-gem 'compass-rails',  git: 'git://github.com/milgner/compass-rails.git', branch: 'rails4'
+gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
+#gem 'compass-rails',  git: 'git://github.com/milgner/compass-rails.git', branch: 'rails4'
 
 
 gem 'dynamic_form'
@@ -55,11 +55,12 @@ gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do
   gem 'mysql2', '~> 0.3.12'
-  gem 'pg'
+  #gem 'pg'
 end
 
 group :development do
   gem 'sqlite3'
+  #gem 'pg'
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
@@ -72,6 +73,8 @@ group :development do
   # YARD AND REDCLOTH are for generating yardocs
   gem 'yard'
   gem 'RedCloth'
+
+  gem "erb2haml"
 end
 group :test, :development do
   gem 'capybara', "~> 1.1"#, :git => 'git://github.com/jnicklas/capybara.git'

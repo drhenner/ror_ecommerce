@@ -1,0 +1,8 @@
+- @all_properties.each do |property|
+  .property_form.left.span-9.last{:id => "property_#{property.id}"}
+    - checked_property = @product.name && @product.properties.select {|p| p.id == property.id }
+    .span-4
+      = check_box_tag "product[property_ids][]", property.id, checked_property ? 1 : 0
+      = property.display_name
+      \:
+    = text_field_tag "property[name]", checked_property.try(:description)

@@ -1,0 +1,20 @@
+= f.error_messages
+%ul
+  %li.field
+    = f.label :buy_quantity
+    = f.number_field :buy_quantity
+  %li.field
+    = f.label :get_percentage
+    = f.number_field :get_percentage
+  %li.field
+    = f.label :deal_type_id
+    = f.select :deal_type_id, deal_types, :include_blank => true
+  %li.field
+    = f.label :product_type_id
+    = f.select :product_type_id, product_types, :include_blank => true
+  %li.field
+    = f.label :get_amount
+    = f.number_field :get_amount
+  %li.field.date-select
+    = f.label :deleted_at
+    = f.datetime_select :deleted_at

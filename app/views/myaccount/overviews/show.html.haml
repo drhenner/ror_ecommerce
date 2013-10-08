@@ -1,0 +1,23 @@
+.five.large-5.column
+  %h4
+    = current_user.name
+    Profile
+  %ul#profile_details
+    %li
+      %label Email:
+      = current_user.email
+    %li
+      = link_to "Edit", edit_myaccount_overview_path()
+.four.large-4.column
+  %div
+    %h4 Address
+    - if current_user.shipping_address
+      = render :partial => '/shared/compact_address', :locals => { :shopping_address => current_user.shipping_address }
+      = link_to "Edit", edit_myaccount_address_path(current_user.shipping_address)
+    - else
+      No Address Saved.
+      %br/
+      = link_to "New", new_myaccount_address_path()
+  %div
+    %h4 Store Credits
+    = number_to_currency current_user.store_credit.amount

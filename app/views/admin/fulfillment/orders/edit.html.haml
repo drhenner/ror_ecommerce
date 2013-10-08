@@ -1,0 +1,76 @@
+%h2
+  New shipment for Order # #{@order.number}
+%div
+  %b
+    Shipment for #{link_to @order.user.name, admin_user_path(@order.user)}
+.clear
+#order-shipment-items.four.large-4.column
+  .panel
+    %h4 Order Items
+    - @order.order_items.each_with_index do |item,i|
+      %ul.vertical-list.compact
+        %li
+          %b= item.variant.product_name
+        %li
+          %label SKU:
+          = item.variant.sku
+        %li
+          %label Price:
+          = number_to_currency item.variant.price
+        - if item.shipped?
+          %li
+            %label Shipped:
+            = item.shipment.display_shipped_at
+          %li
+            %label Shipping #:
+            = item.shipment.number
+        - else
+          %li
+            Not Shipped Yet,  #{item.shipping_rate.shipping_method.name}
+      %b= item.state.upcase
+      - if item.paid? && !item.shipped?
+        = link_to 'Ship Individually!',                                                          |
+          admin_fulfillment_partial_order_shipments_path( @order, :order_item_ids => [item.id]), |
+          :method => 'POST', :class => 'button'                                                  |
+    - if @order.paid? && @order.order_items.any?(&:unshipped?)
+      = link_to 'New Shipment',                                      |
+        new_admin_fulfillment_partial_order_shipment_path( @order ), |
+        :class => 'button'                                           |
+.four.large-4.column
+  .panel
+    %h4 Shipping address
+    .well
+      = render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address}
+#shipment-details-box.four.large-4.column
+  = render :partial => 'admin/fulfillment/orders/shipment_details', :locals => {:order => @order}
+.clearfix
+.row
+  .six.large-6{:style => "text-align:left;"}
+    .panel
+      %h4 Invoice
+      - @order.invoices.each do |invoice|
+        .order-invoice{"data-invoice_id" => invoice.id, "data-order_id" => @order.id, :id => "invoice-line-#{invoice.id}"}
+          - if @order.invoices.last.id == invoice.id
+            = render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last }
+  .six.large-6.column
+    %b Return Merchandise Authorization:
+    .panel
+      - if @order.return_authorizations.size > 0
+        = link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order), |
+          :class => 'button '                                                      |
+        %br/
+        %br/
+      - else
+        = link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order), |
+          :class => 'button '                                                          |
+#dialog{:title => "Cancel Invoice"}
+  #dialog-message
+    %p Are you sure you want to Cancel the Order and Shipment?
+- content_for :head do
+  = stylesheet_link_tag "cupertino/jquery-ui-1.8.12.custom"
+- content_for :bottom do
+  = javascript_include_tag "admin/fulfillment"
+  :javascript
+    <haml:silent>     @order.invoices.each do |invoice| 
+    </haml:silent><haml:block>     // Hadean.Utility.registerOnLoadHandler(Hadean.Fulfillment.initialize(#{invoice.id}, #{@order.id} ));
+    </haml:block>

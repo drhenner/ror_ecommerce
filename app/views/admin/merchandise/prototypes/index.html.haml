@@ -1,0 +1,22 @@
+= render :partial => '/admin/merchandise/sub_header'
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag admin_merchandise_prototypes_path, :method => 'get', :id => "products_search" do
+      = hidden_field_tag :direction, params[:direction]
+      = hidden_field_tag :sort, params[:sort]
+      %label Name
+      = text_field_tag :name, params[:name]
+      %div{:style => "text-align:center"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+.admin_title_header
+  %h3 Prototypes
+  = link_to "New Prototype", new_admin_merchandise_prototype_path, :class  => "button"
+.admin_prototypes
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable "name"
+    - @prototypes.each do |prototype|
+      %tr{:class => cycle("odd", "")}
+        %td= link_to prototype.name, edit_admin_merchandise_prototype_path(prototype)
+  = will_paginate @prototypes
