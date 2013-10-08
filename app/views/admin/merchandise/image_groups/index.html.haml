@@ -1,0 +1,17 @@
+- content_for :head do
+  %h1 Image Groups
+#image_group_grid_wrapper.pretty_table
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable 'name', 'Name'
+        %th Product
+        %th
+    %tbody
+      - for image_group in @image_groups
+        %tr{:class => cycle("odd", "")}
+          %td= link_to image_group.name, [:admin, :merchandise, image_group]
+          %td= image_group.product.name
+          %td= link_to "edit", edit_admin_merchandise_image_group_path(image_group)
+= will_paginate @image_groups
+%p= link_to "New Image Group", new_admin_merchandise_image_group_path, :class => 'button'

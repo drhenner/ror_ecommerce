@@ -1,0 +1,15 @@
+%h1
+  Order #{order.number} Comments
+.pretty_table
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header Name
+        %th
+        %th
+    - for comment in order.comments
+      %tr{:class => cycle("odd", "")}
+        %td= link_to comment.name, admin_fulfillment_order_comment_path(order, comment)
+        %td= link_to "Edit", edit_admin_fulfillment_order_comment_path(order, comment)
+        %td= link_to "Destroy", admin_fulfillment_order_comment_path(order, comment), :confirm => 'Are you sure?', :method => :delete
+%p= link_to "New Comment", new_admin_fulfillment_order_comment_path(order), :class => 'button'

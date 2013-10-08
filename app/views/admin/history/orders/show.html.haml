@@ -1,0 +1,77 @@
+%p#notice= notice
+.ten.column
+  %b Order Information:
+  #order-items.panel
+    %ul.vertical-list
+      %li
+        %label Order Number:
+        = @order.number
+      %li
+        %label Customer:
+        = @order.name
+      %li
+        %label Email:
+        = @order.email
+      %li
+        %label Completed at:
+        = @order.completed_at ? I18n.localize(@order.completed_at, :format => :us_time) : ''
+      %li
+        %label Shipped:
+        = @order.has_shipment? ? 'Yes' : 'No'
+- if @order.order_items.size > 0
+  .six.column
+    %b Items
+    #order-items.panel
+      - @order.order_items.each do |item|
+        = item.variant.product_name
+        = number_to_currency item.total
+        %br/
+.six.column
+  %b Shipping Address
+  #order-address.panel
+    = render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address}
+    %br/
+    %p
+      = link_to 'Change Address', admin_history_order_addresses_path(@order), :class => 'button green'
+      %br/
+      (This will not change the shipments that have already been placed)
+.six.column
+  %b Shipments:
+  - @order.shipments.each do |shipment|
+    #order-shipment-items.panel
+      State: #{shipment.state.humanize}
+      %br/
+      Shipping Method: #{shipment.shipping_method.name}
+      %br/
+      Shipping #: #{shipment.number} Tracking:#{shipment.tracking}
+  - if @order.shipments.empty?
+    #order-shipment-items.panel
+      No Shipments have been made for this Order.
+.span-7.six.column
+  %b Invoices:
+  - @order.invoices.each do |invoice|
+    #order-invoices.panel
+      %ul.vertical-list
+        %li
+          %label Number:
+          = invoice.number
+        %li
+          %label State:
+          = invoice.state
+        %li
+          %label at:
+          = I18n.localize(invoice.updated_at, :format => :us_time)
+        %li
+          %label Amount:
+          = number_to_currency invoice.amount
+.six.column
+  %b Return Merchandise Authorization:
+  .panel
+    - if @order.return_authorizations.size > 0
+      = link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order), |
+        :class => 'button '                                                      |
+      %br/
+      %br/
+    - else
+      = link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order), |
+        :class => 'button '                                                          |

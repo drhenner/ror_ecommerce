@@ -1,4 +1,4 @@
-
+require 'spec_helper'
 
 describe Notifier, "Signup Email" do
     #include EmailSpec::Helpers

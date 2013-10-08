@@ -1,0 +1,28 @@
+- content_for :head do
+  = stylesheet_link_tag 'products_page.css'
+#featured_item.nine.columns
+  #interesting_items
+    %ul#interesting_items-list
+      - @products.each_with_index do |product, i|
+        %li{:id => "interesting_product_#{i}"}
+          .interesting_items-image
+            = link_to product_path(product), title: product.name do
+              .no-hover-show
+                - if product.hero_variant.try(:low_stock?)
+                  = image_tag("ribbons/#{product.hero_variant.stock_status}.png", |
+                    :width => 63, :height => 62,                                  |
+                    :class => 'upper_left_overlay' )                              |
+                .hover-details.unfade
+                  %p.bottom-hover-details
+                    = number_to_currency product.price_range.first
+                    - if product.price_range?
+                      to
+                      = number_to_currency product.price_range.last
+              = link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix'
+          .interesting_items-details
+            = product.name
+            %br/
+    .clearfix
+#right_side_panel.three.columns.last
+  #right_side_panel_promo
+    Join our web site and get additional Savings....  #{image_tag "logos/#{Image::MAIN_LOGO}.png", :alt => 'hadean image.'}

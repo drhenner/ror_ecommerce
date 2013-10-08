@@ -1,0 +1,23 @@
+.admin_title_header
+  %h3 Shipping Rates
+  = link_to 'New Shipping Rate', new_admin_config_shipping_rate_path, :class => 'button'
+.admin_shipping_rates
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header Shipping Method
+        %th Rate
+        %th Shipping rate type
+        %th Minimum Charge
+        %th Category
+        %th
+        %th
+    - @shipping_rates.each do |shipping_rate|
+      %tr{:class => cycle("odd", "")}
+        %td= shipping_rate.shipping_method.descriptive_name
+        %td= shipping_rate.rate
+        %td= shipping_rate.shipping_rate_type.name
+        %td= shipping_rate.minimum_charge
+        %td= shipping_rate.shipping_category.name
+        %td= link_to 'Show', admin_config_shipping_rate_path(shipping_rate)
+        %td= link_to 'Edit', edit_admin_config_shipping_rate_path(shipping_rate)

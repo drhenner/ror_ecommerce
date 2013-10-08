@@ -1,0 +1,4 @@
+%h3 New Shipping Rate
+= form_for(@shipping_rate, :url => admin_config_shipping_rates_path) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+= link_to "Back", admin_config_shipping_rates_path, :class => "button"

@@ -1,0 +1,7 @@
+.nine.large-9.columns
+  %h3 Edit Credit Card
+  = form_for(@credit_card, :url => myaccount_credit_card_path(@credit_card)) do |f|
+    = render :partial => 'form', :locals => {:f => f}
+  = link_to 'Show', myaccount_credit_card_path( @credit_card ), :class => 'button'
+  |
+  = link_to 'View All', myaccount_credit_cards_path, :class => 'button'

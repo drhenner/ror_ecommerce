@@ -1,0 +1,27 @@
+#shipment-address.three.rounded-10.line_item_yellow
+  .panel
+    = render :partial => '/shared/compact_address', :locals => {:shopping_address => @shipment.address}
+    = link_to 'Change Address', edit_admin_fulfillment_shipment_address_path(@shipment, @shipment.address)
+.eleven
+  #shipment_form_wrapper.six.column
+    %h2 Edit Shipment
+    = form_for(@shipment, :url => admin_fulfillment_shipment_path(@shipment)) do |f|
+      = render :partial => 'form', :locals => {:f => f }
+    = link_to 'Show', admin_fulfillment_shipment_path(@shipment)
+    |
+    = link_to 'Back', admin_fulfillment_shipments_path(:order_id => @shipment.order.number)
+  #shipment_comment_form_wrapper.six.column
+    %h2 Notes
+    #order_comments
+      %ul
+        - @shipment.order.comments.each do |comment|
+          %li
+            = comment.note
+          %hr/
+    = form_for( @comment,                                               |
+        :url => admin_fulfillment_order_comments_path(@shipment.order), |
+        :html => {'data-order_id' => @shipment.order.number}            |
+      ) do |f|                                                          |
+      = render :partial => 'comments_form', :locals => {:f => f }
+- content_for :bottom do
+  = javascript_include_tag "admin/fulfillment_shipment.js"

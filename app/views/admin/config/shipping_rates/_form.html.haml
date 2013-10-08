@@ -1,0 +1,20 @@
+- if @shipping_rate.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@shipping_rate.errors.count, "error")
+      prohibited this shipping_rate from being saved:
+    %ul
+      - @shipping_rate.errors.full_messages.each do |msg|
+        %li= msg
+%fieldset
+  %label Shipping Method
+  = f.select :shipping_method_id, @shipping_methods
+  %label Rate
+  = f.text_field :rate
+  %label Minimum Charge
+  = f.text_field :minimum_charge
+  %label Shipping Rate Type
+  = f.select :shipping_rate_type_id, @shipping_rate_types
+  %label Shipping Category
+  = f.select :shipping_category_id, @shipping_categories
+= f.submit "Create", :class => "button"

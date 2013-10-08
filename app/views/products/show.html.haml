@@ -1,0 +1,94 @@
+- content_for :head do
+  = stylesheet_link_tag 'product_page.css'
+  = stylesheet_link_tag 'pikachoose_product.css'
+%div
+  #product
+    .clearfix
+      - if @product.active_variants.empty?
+        #no-variant-available.four.large-4.last
+          Sorry this product is not currently available.
+      - else
+        #left_product_wrapper.columns.five.large-5
+          /
+            <ul class='horizontal-list'>
+            <li><haml:loud> link_to &amp;#39;Share&amp;#39;, &amp;#39;#share-product&amp;#39;, :class =&amp;gt; &amp;#39;button small share&amp;#39; </haml:loud></li>
+            </ul>
+          - if @product.hero_variant.low_stock?
+            = image_tag("ribbons/#{@product.hero_variant.stock_status}.png", |
+              :width => 63, :height => 62,                                   |
+              :style => 'border:none;',                                      |
+              :class => 'upper_left_overlay'                                 |
+              )                                                              |
+          - if @product.images.size == 1
+            %ul
+              - @product.images.each do |image|
+                %li
+                  %a= image_tag(image.photo.url(:large))
+          - elsif @product.images.size == 0
+            %ul
+              %li
+                %a= image_tag(@product.featured_image(:large))
+          - else
+            %ul#pikame.jcarousel-skin-pika
+              - @product.images.each do |image|
+                %li
+                  %a= image_tag(image.photo.url(:large))
+        #right_2_product_wrapper.six.columns.large-6.last
+          #right_product_wrapper
+            .product_title_name= @product.name
+            - if @product.active_variants.count > 0
+              .product_content
+                .product_content_price
+                  = number_to_currency @product.active_variants.first.price
+              #your_product.panel
+                - @product.active_variants.each_with_index do |variant, i|
+                  %div{:class => "tiny button variant_select secondary #{'selected_variant' if i == 0}", "data-variant_id" => variant.id, :id => "variant_#{variant.id}"}
+                    = raw variant.product_name
+                .properties_inner_wrapper
+                  %hr/
+                  = form_for  @cart_item,                                          |
+                    :url  => shopping_cart_items_path(@cart_item),                 |
+                    :html => { :id => 'new_cart_item', :class => 'custom' } do |f| |
+                    = f.hidden_field :variant_id
+                    .four
+                      Quantity:
+                      = f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => ' '}
+                    .add_to_cart_wrapper
+                      - unless @product.active_variants.empty?
+                        = link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'small button'
+                .clearfix{:style => "margin-bottom:20px;"} &nbsp;
+              #product_tabs{:style => "padding-bottom:5px;"}
+                .section-container.tabs.auto{"data-options" => "deep_linking: true; ", "data-section" => "", :style => "height:100%;"}
+                  %section.section
+                    %p.title
+                      %a Product
+                    .content
+                      %div= raw @product.description
+                  %section.section
+                    %p.title
+                      %a Properties
+                    .content
+                      %div
+                        - @product.active_variants.each_with_index do |var, i|
+                          %div{:class => "variant_properties #{'selected' if i == 0}", :id => "variant_properties_#{var.id}"}
+                            %ul.vertical-list
+                              - var.variant_properties.each do |prop|
+                                %li
+                                  %label
+                                    = prop.property_name
+                                    \:
+                                  = prop.description
+\&nbsp;
+.clearfix{:style => "height:50px;"} &nbsp
+#generic-dialog
+- content_for :below_body do
+  = javascript_include_tag 'shopping/cart.js'
+  = javascript_include_tag 'jquery.jcarousel.js'
+  = javascript_include_tag 'jquery.pikachoose.full.js'
+  - if @product.images.size > 1
+    :javascript
+      $(document).ready(function (){
+          $("#pikame").PikaChoose({autoPlay:true, carousel:false, carouselVertical:false});
+          $('#pikame').data('pikachoose').Pause();
+      });
+  = javascript_include_tag 'product_page.js'

@@ -1,0 +1,22 @@
+#myaccount-profile_name_form.clearfix
+  %fieldset#myaccount-profile.five.columns
+    %ul
+      %li
+        = f.label :first_name
+        = f.text_field :first_name, :placeholder => "First Name"
+      %li
+        = f.label :last_name
+        = f.text_field :last_name
+      %li
+        = f.label :email
+        = f.text_field :email
+#myaccount-profile_form.clearfix
+  %fieldset#myaccount-profile-password.five
+    %ul
+      %li
+        = f.label :password
+        = f.password_field :password
+      %li
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+  .actions= f.submit 'Update' , :class => 'button'

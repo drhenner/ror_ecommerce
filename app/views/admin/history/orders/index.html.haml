@@ -1,0 +1,19 @@
+%h3 Orders
+.history_orders
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header Number
+        %th Name
+        %th Email
+        %th Completed at
+        %th Shipped
+    - @orders.each do |order|
+      %tr{:class => cycle("odd", "")}
+        %td= link_to order.number, admin_history_order_path(order)
+        %td= order.name
+        %td= order.email
+        %td= order.display_completed_at(:us_time)
+        %td= order.has_shipment?.to_s
+= will_paginate @orders
+%br/

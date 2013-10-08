@@ -1,0 +1,21 @@
+- content_for :head do
+  %h1 Comments
+#comment_grid_wrapper.pretty_table
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable 'note', 'Note'
+        %th Commentable Type
+        %th Created By
+        %th User
+    %tbody
+      - for comment in @comments
+        %tr{:class => cycle("odd", "")}
+          %td= link_to comment.note[0..100], [:admin, :customer_service, customer, comment]
+          %td= comment.commentable_type
+          %td= comment.author.try(:name)
+          %td= comment.user.try(:name)
+= will_paginate @comments
+%p
+  = link_to "New Comment", new_admin_customer_service_user_comment_path(customer), :class => 'button'
+  = link_to "Back to #{customer.name}", admin_user_path(customer), :class => 'small button'

@@ -1,0 +1,55 @@
+.row{:style => "text-align: left;"}
+  %p#notice= notice
+  .four.column
+    %h3 Shipment details
+    %ul.vertical-list.width-list
+      %li
+        %label Shipped at:
+        %span= l @shipment.shipped_at, :format => :us_time if @shipment.shipped_at
+      %li{:style => "clear:both;"}
+        %label Tracking #:
+        %span= @shipment.tracking
+      %li
+        %label Shipment #:
+        %span= @shipment.number
+      %li
+        %label Status:
+        %span= @shipment.state
+      %li
+  .five.column
+    %h3 Order Items
+    %ul.vertical-list.width-list
+      - @shipment.order_items.each do |item|
+        %li
+          %label Product:
+          %span= item.variant.product_name
+        %li
+          %label SKU:
+          %span= item.variant.sku
+        %li
+          %label Price:
+          %span= number_to_currency item.price
+        %li
+          %label Shipping Rate:
+          %span= number_to_currency( item.shipping_rate.rate )
+        %li
+          %label Shipping Method:
+          %span= item.shipping_rate.shipping_method.name
+        %hr/
+  .three.column
+    %h3 Order Details
+    %ul.vertical-list.width-list
+      %li
+        %label Order #:
+        %span= @shipment.order.number
+      %li
+        %label Customer:
+        %span= @shipment.order.user.name
+      %li
+        %label{:style => "width:200px;"} Shipping Address:
+        %div
+          = render :partial => '/shared/compact_address', :locals => {:shopping_address => @shipment.address}
+    %hr/
+  = link_to 'Edit', edit_admin_fulfillment_shipment_path(@shipment), :class => 'button small'
+  |
+  = link_to 'View Shipments for this Order', admin_fulfillment_shipments_path(:order_id => @shipment.order.number), :class => 'button small'

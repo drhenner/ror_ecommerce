@@ -1,0 +1,27 @@
+.row{:style => "margin-top:10px;"}
+  .large-4.four.column
+    .panel
+      %b Invoices:
+      - @order.invoices.each do |invoice|
+        #order-invoices.span-7.rounded-10
+          Number: #{invoice.number}
+          %br/
+          State: #{invoice.state}
+          %br/
+          at: #{I18n.localize(invoice.updated_at, :format => :us_time)}
+          %br/
+          Amount: #{number_to_currency invoice.amount}
+  .large-4.four.column
+    .panel
+      %b Items
+      #order-items.rounded-10
+        - @order.order_items.each do |item|
+          = item.variant.product_name
+          = number_to_currency item.total
+          %br/
+%h2 New RMA
+.large-6.six.column
+  = form_for(@return_authorization, :url => admin_rma_order_return_authorizations_path(@order)) do |f|
+    = render :partial => '/admin/rma/return_authorizations/form', :locals => {:f => f}
+- if @order.return_authorizations.size > 0
+  = link_to 'Back', admin_rma_order_return_authorizations_path(@order), :class => 'button'

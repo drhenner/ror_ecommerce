@@ -1,0 +1,32 @@
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag admin_document_invoices_path, :method => 'get', :id => "invoices_search" do
+      %label Order #
+      = text_field_tag :order_number, params[:order_number]
+      %div{:style => "text-align:center; margin-top: 15px"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+      #order_hidden
+        = hidden_field_tag :direction, params[:direction]
+        = hidden_field_tag :sort, params[:sort]
+    .clearfix
+%h3 Invoices
+%table
+  %thead
+    %tr.odd
+      %th.column1_header Amount
+      %th State
+      %th Order
+      %th Type
+      %th
+      %th
+  - for invoice in @invoices
+    %tr{:class => cycle("odd", "")}
+      %td= invoice.amount
+      %td= invoice.state
+      %td= invoice.order.number
+      %td= invoice.invoice_type
+      %td= link_to "Show", admin_document_invoice_path(invoice)
+      %td
+        - if invoice.authorized?
+          = link_to "Cancel", admin_document_invoice_path(invoice), :confirm => 'Are you sure?', :method => :delete
+= will_paginate @invoices

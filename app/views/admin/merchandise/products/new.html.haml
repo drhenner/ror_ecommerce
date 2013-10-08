@@ -1,0 +1,10 @@
+= render :partial => '/admin/merchandise/sub_header'
+%h2 New Product
+#article-sidebar.sidebar
+  = form_for @product, :url  => admin_merchandise_products_path, |
+    :html => {:class => ''}  do |form|                           |
+    = render :partial => 'form', :locals => {:form => form }
+    .generic_submit_button
+      = submit_tag "Create",               |
+        :class  => "button",               |
+        :id     => "create_product_button" |

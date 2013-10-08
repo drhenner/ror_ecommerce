@@ -1,0 +1,50 @@
+%h3 Shipping Method
+- i = 1
+- session_admin_order.order_items.group_by(&:variant_id).each do |variant_id, items|
+  %div{:id => "order-item-#{i}"}
+    = render :partial => 'order_item', :locals => {:items => items }
+  - i += 1
+%h3
+  Credit Card Info
+  %h3
+    = form_tag( admin_shopping_checkout_order_path(), |
+      :method => :put,                                |
+      :id   => 'purchase_admin_order') do             |
+      .field.column
+        = label_tag  :name
+      .clearfix
+      .field.column
+        = label_tag 'First'
+        = text_field_tag(:first_name, @credit_card.first_name ,:class => '')
+      .field.column
+        = label_tag :last_name, 'Last'
+        = text_field_tag(:last_name, @credit_card.last_name,:class => '')
+      .clearfix
+      .five.large-5.columns
+        = label_tag 'Number'
+        = text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "off")
+      .five.large-5.columns
+        = label_tag :verification_value, 'VCC'
+        = text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'four disableAutoComplete', :autocomplete => "off")
+      .clearfix
+      %div{:class => "field column float-left #{'form-field error' if @credit_card.errors['brand'].present?}"}
+        = label_tag :brand, 'Type'
+        = select_tag(:brand, options_for_select(['visa', 'mastercard']), :class => " #{'form-field error' if @credit_card.errors['brand'].present?}" )
+      %div{:class => "field column float-left #{'form-field error' if @credit_card.errors['month'].present?}"}
+        = label_tag :month, 'Month', :class => " #{'form-field error' if @credit_card.errors['month'].present?}"
+        = select_tag(:month, options_for_select(['01', '02',  '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']))
+      %div{:class => "field column float-left #{'form-field error' if @credit_card.errors['year'].present?}"}
+        = label_tag :year, 'Year', :class => " #{'form-field error' if @credit_card.errors['year'].present?}"
+        = select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10))), :class => " #{'form-field error' if @credit_card.errors['year'].present?}")
+      .clear
+      = submit_tag 'Complete Order', :class => 'button '
+    - content_for :right_side_bar do
+      .twelve.large-12.panel
+        %h5 Shipping Address
+        = render :partial => '/shared/compact_address', :locals => {:shopping_address => session_admin_order.ship_address}
+        = link_to 'Change', admin_shopping_checkout_shipping_addresses_path
+      .twelve.large-12.panel
+        %h5 Billing Address
+        = render :partial => '/shared/compact_address', :locals => {:shopping_address => session_admin_order.bill_address}
+        = link_to 'Change', admin_shopping_checkout_billing_addresses_path
+      .clear{:style => "margin-bottom:8px;"}

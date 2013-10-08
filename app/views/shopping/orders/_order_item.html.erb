@@ -1,9 +1,0 @@
-<div class='seven large-7 clearfix <%= cycle("line_item_blue", "line_item_light_gray") -%>'>
-    <div class='seven large-7 columns '>
-      <%= image_tag(items.first.variant.product.featured_image(:mini)) %>
-      <%= items.first.variant.product.name %> Quantity: <%= items.size %>
-    </div>
-    <div class='five large-5 columns last'>
-      <%= raw items.first.variant.display_property_details %>
-    </div>
-</div>

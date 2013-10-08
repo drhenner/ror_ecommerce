@@ -1,0 +1,35 @@
+- if @order
+  %h3
+    Shipments for Order # #{@order.number}
+- else
+  %h3 Shipments
+%table
+  %thead
+    %tr.odd
+      %th.column1_header Number
+      %th Order #
+      %th Shipped at
+      %th Tracking
+      %th State
+      %th Items
+      %th
+      %th
+      %th
+  - @shipments.each do |shipment|
+    - if shipment.has_items?
+      %tr{:class => cycle("odd", "")}
+        %td= shipment.number
+        %td= link_to shipment.order.number, edit_admin_fulfillment_order_path(shipment.order)
+        %td= I18n.localize(shipment.shipped_at, :format => :us_time) if shipment.shipped_at
+        %td= shipment.tracking
+        %td= shipment.state
+        %td
+          = raw shipment.order_items.collect {|item| item.variant.product_name }.join('<br/>')
+        %td= link_to 'Show', admin_fulfillment_shipment_path(shipment)
+        %td= link_to 'Edit', edit_admin_fulfillment_shipment_path(shipment)
+        %td
+          - unless shipment.shipped?
+            = button_to 'Mark Shipped',                                                           |
+              ship_admin_fulfillment_shipment_path(shipment, :order_id => shipment.order.number), |
+              :confirm => "Are you sure?",                                                        |
+              :method => :put                                                                     |

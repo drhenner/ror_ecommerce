@@ -1,0 +1,34 @@
+= render :partial => '/admin/merchandise/wizards/sub_header'
+- if  @properties.empty?
+  %h3 New Property
+- else
+  %h3 Pick a Property
+= form_for @property, :url => admin_merchandise_wizards_property_path(:id => 0), :method => 'PUT' do |product_form|
+  #properties_selections.four.large-4.last
+    = select_tag 'property[ids][]',                                                  |
+      options_from_collection_for_select(@properties, "id", "full_name", @selected), |
+      :class => 'chzn-select  column',                                               |
+      :multiple => 'true',                                                           |
+      :style    => 'overflow:scroll; width: 350px',                                  |
+      'data-placeholder' => 'Choose Properties'                                      |
+  = product_form.submit 'Use Properties', :class => 'button'
+- unless  @properties.empty?
+  %h2 New Property
+  %p If all the you want properties don't exist, create it now.
+= form_for @property, :url => admin_merchandise_wizards_properties_path do |property_form|
+  = render :partial =>  'form', :locals => {:form => property_form}
+- unless  @prototypes.empty?
+  .nine.large-9.last.column
+    %h3 New Prototype
+    %p If you have a prototype created, select it here.
+    - @prototypes.each do |prototype|
+      %div{:class => "six large-6 column #{cycle '', '', 'last'}"}
+        %label= prototype.name
+        = button_to 'Use', admin_merchandise_wizards_prototype_path(prototype), |
+          :class => 'button spade inline-block',                                |
+          :method => :put                                                       |
+- content_for :head do
+  = stylesheet_link_tag 'chosen.css'
+- content_for :below_body do
+  = javascript_include_tag 'chosen/chosen.jquery.min.js'
+  = javascript_include_tag 'admin/wizards/properties.js'

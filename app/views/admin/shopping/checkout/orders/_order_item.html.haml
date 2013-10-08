@@ -1,0 +1,10 @@
+.span-14.panel.clearfix.shipping_methods_admin_panel
+  .seven.large-7.columns
+    = image_tag(items.first.variant.product.featured_image(:mini))
+    = items.first.variant.product.name
+    Quantity: #{items.size}
+  .five.large-5.columns{:style => "text-align:left;"}
+    - items.first.variant.variant_properties.each do |vp|
+      %label= vp.property.display_name
+      = vp.description
+      %br/

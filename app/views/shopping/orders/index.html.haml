@@ -1,0 +1,105 @@
+- content_for :head do
+  = stylesheet_link_tag 'tables.css'
+#order-wrapper.twelve
+  .seven.large-7.columns
+    %h1 Order Summary
+    #order-items-summary
+      - i = 1
+      - @order.order_items.group_by(&:variant_id).each do |variant_id, items|
+        .panel{:id => "order-item-#{i}"}
+          = render :partial => 'order_item', :locals => {:items => items }
+        - i += 1
+    .row
+      #final-order-shipping-address.four.large-6.columns.radius
+        .panel
+          %h5 Shipping Address
+          = render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address}
+          = link_to 'Change address', shopping_addresses_path, :class => 'button tiny green'
+      #final-order-shipping-address.four.large-6.columns.radius.last
+        .panel
+          %h5 Billing Address
+          = render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address}
+          = link_to 'Change address', shopping_billing_addresses_path, :class => 'button tiny green'
+  .pretty_table.five.large-5.columns.last
+    %table
+      %thead
+        %tr.odd
+          %th.column1_header
+            Item
+          %th Price:
+          %th Price + Tax
+      - @order.order_items.each do |item|
+        %tr{:class => "#{cycle("odd", "")} "}
+          %td= item.variant.product.name
+          %td= number_to_currency item.price
+          %td= number_to_currency item.total
+      %tr.odd
+        %td
+        %td Sub-total:
+        %td= number_to_currency @order.sub_total
+      %tr
+        %td
+        %td Shipping Charges:
+        %td= number_to_currency @order.shipping_charges
+      - if @order.coupon_amount > 0.0
+        %tr
+          %td
+          %td Coupon:
+          %td= number_to_currency @order.coupon_amount
+      - if @order.deal_amount && @order.deal_amount > 0.0
+        %tr
+          %td
+          %td Promotion:
+          %td= number_to_currency @order.deal_amount
+          %td
+      %tr
+        %td
+        %td Tax:
+        %td= number_to_currency @order.taxed_amount
+      - if @order.amount_to_credit && @order.amount_to_credit > 0.0
+        %tr.odd
+          %td
+          %td Credits:
+          %td
+          %td= number_to_currency @order.amount_to_credit
+      %tfoot
+        %tr.even
+          %td
+          %td Total:
+          %td
+            %em= number_to_currency @order.credited_total
+    %div
+    = form_tag( shopping_order_path(@order), |
+      method: :put,                          |
+      html:  {class: 'custom'},              |
+      id:    'purchase_order') do            |
+      .field
+        = label_tag  :name
+      .clear
+      .row
+        .field.six.large-6.column
+          = label_tag 'First'
+          = text_field_tag(:first_name, @credit_card.first_name)
+        .field.six.large-6.column
+          = label_tag :last_name, 'Last'
+          = text_field_tag(:last_name, @credit_card.last_name)
+      .clear
+      .row
+        .field.twelve.large-8.column
+          = label_tag 'Number'
+          = text_field_tag(:number, @credit_card.number ,:class => ' disableAutoComplete', :autocomplete => "off")
+        .field.three.large-3.column
+          = label_tag :verification_value, 'VCC'
+          = text_field_tag(:verification_value, @credit_card.verification_value ,:class => 'disableAutoComplete', :autocomplete => "off")
+      .twelve.large-12.clearfix.custom
+        .row
+          .field.column.large-6
+            = label_tag :type, 'Type'
+            = select_tag(:type, options_for_select(['visa', 'mastercard']))
+          .field.column.large-3
+            = label_tag :month
+            = select_tag(:month, options_for_select(['01', '02',  '03', '04', '05', '06', '07', '08', '09', '10', '11', '12' ]))
+          .field.column.large-3
+            = label_tag :year
+            = select_tag(:year, options_for_select((Time.zone.now.year..(Time.zone.now.year + 10))))
+      = submit_tag 'Complete Order', :class => 'button success'

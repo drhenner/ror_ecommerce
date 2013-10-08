@@ -1,0 +1,58 @@
+!!!
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7 ] <html class="ie6" lang="en">
+/[if IE 7 ] <html class="ie7" lang="en">
+/[if IE 8 ] <html class="ie8" lang="en">
+/[if IE 9 ] <html class="ie9" lang="en">
+/ [if (gt IE 9)|!(IE)]><!
+%html{:lang => "en"}
+  / <![endif]
+  %html
+    %head
+      %title
+        = content_for?(:title) ? "#{site_name}: #{yield(:title)}" : site_name
+      %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}/
+      = stylesheet_link_tag "normalize.css"
+      = stylesheet_link_tag "foundation_and_overrides.css"
+      = stylesheet_link_tag 'site/app.css'
+      = javascript_include_tag 'vendor/custom.modernizr'
+      /
+        [if lt IE 8]
+        <haml:loud> stylesheet_link_tag &amp;#39;ie.css&amp;#39;, :media =&amp;gt; &amp;#39;screen, projection&amp;#39;</haml:loud>
+        <![endif]
+      /
+        [if lt IE 7]
+        <haml:loud> stylesheet_link_tag &amp;#39;ie6.css&amp;#39;, :media =&amp;gt; &amp;#39;screen, projection&amp;#39; </haml:loud>
+        <![endif]
+      = csrf_meta_tag
+      = yield :head
+      = render 'shared/metadata'
+    %body
+      #body_wrapper
+        = render :partial => '/shared/welcome_header'
+        - if notice || alert
+          .row
+            - if notice || alert
+              .flash_messages
+                = raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a></div>"  if notice
+                = raw "<div data-alert class='alert-box alert'>#{alert} <a href='' class='close'>&times;</a></div>"     if alert
+        #content_wrapper{:class => "row #{"myaccount" if myaccount_tab} "}
+          - if myaccount_tab
+            %h1{:style => "text-align:center;"}= site_name
+            %hr.first_double_hr/
+            %hr.second_double_hr/
+            = render :partial => '/shared/myaccount_subheader'
+          = yield
+        #prefooter_wrapper &nbsp;
+      = render 'shared/main_footer'
+      = render 'shared/google_analytics' unless @disable_ga
+      = javascript_include_tag 'application'
+      = yield :bottom
+      :javascript
+        jQuery(window).ready(
+          function() {
+            jQuery('.flash_notice').delay(6000).slideUp( 'slow');
+            jQuery('.flash_error').delay(6000).slideUp( 'slow');
+          }
+        );
+    = yield :below_body

@@ -1,0 +1,5 @@
+%h3 New Shipping Method
+%p An example Shipping Method could be "UPS 3-5 day"
+= form_for(@shipping_method, :url => admin_config_shipping_methods_path) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+= link_to 'Back', admin_config_shipping_methods_path, :class => "button"

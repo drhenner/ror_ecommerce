@@ -1,0 +1,14 @@
+- content_for :head do
+  = stylesheet_link_tag 'signup.css'
+%div{:style => "margin-bottom:20px;"}
+  %h1
+    = I18n.t :reset_password_title
+  %p
+    = t :reset_password_text
+  = form_for(@user, :url => customer_password_reset_path(@user)) do |f|
+    .field
+      = f.label :email
+      %br/
+      = f.text_field :email
+    %p
+      = submit_tag 'Continue', :class => 'button'

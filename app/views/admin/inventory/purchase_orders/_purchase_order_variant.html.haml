@@ -1,0 +1,14 @@
+%fieldset{:class => "twelve columns #{po_form.object.new_record? ? 'new_fields' : 'fields'}"}
+  %div{:style => "float:right;"}
+    = remove_child_link('remove', po_form)
+  %label Variant
+  - if po_form.object.id
+    = po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "chzn-select select_variants ten columns"
+  - else
+    = po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "select_variants ten columns"
+  .six.columns
+    %label Quantity
+    = po_form.text_field :quantity
+  .six.columns
+    %label Cost
+    = po_form.text_field :cost

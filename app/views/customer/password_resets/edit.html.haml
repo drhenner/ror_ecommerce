@@ -1,0 +1,6 @@
+.bottom20.seven.columns
+  %h1
+    = site_name
+    Password Reset
+  = form_for(@user, :url => customer_password_reset_path(:id => @user.perishable_token)) do |f|
+    = render :partial => 'form', :locals => {:f => f}

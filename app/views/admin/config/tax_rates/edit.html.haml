@@ -1,0 +1,10 @@
+%h3
+  Editing (#{@tax_rate.state.abbreviation}) Tax Rate
+= form_for(@tax_rate, :url => admin_config_tax_rate_path(@tax_rate)) do |f|
+  = render :partial =>  'form', :locals => {:f => f}
+= link_to 'Show', admin_config_tax_rate_path(@tax_rate), :class => 'button'
+= link_to 'Back', admin_config_tax_rates_path, :class => 'button'
+- content_for :bottom do
+  = javascript_include_tag "admin/config_tax_rate"
+  :javascript
+    Hadean.Utility.registerOnLoadHandler(Hadean.TaxRateForm.initialize());

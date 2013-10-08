@@ -1,0 +1,10 @@
+%h3 Inventory Adjustments
+.admin_adjustments
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header Name
+    - for product in @products
+      %tr{:class => cycle("odd", "")}
+        %td= link_to product.name, admin_inventory_adjustment_path(product)
+  = will_paginate @products

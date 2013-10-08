@@ -1,0 +1,35 @@
+- content_for :head do
+- content_for :right_side_bar do
+  .admin_filters
+    = form_tag admin_shopping_products_path, :method => 'get', :id => "products_search" do
+      %p
+      %ul.search_boxes
+        %li
+          = label_tag 'Name'
+          = text_field_tag :name, params[:name]
+        %li
+          = label_tag 'Product Type'
+          = select_tag "product_type_id", options_from_collection_for_select(product_types, "id", "name"), {:include_blank => true, :class => 'auto_width'}
+      %div{:style => "text-align:center"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+      #order_hidden
+        = hidden_field_tag :direction, params[:direction]
+        = hidden_field_tag :sort, params[:sort]
+    .clearfix
+%h2 Products
+#admin_shopping_products_page_wrapper
+  #admin_shopping_products_grid_wrapper.column.pretty_table
+    %table
+      %thead
+        %tr.odd
+          %th.column1_header= sortable "name"
+          %th Available
+          %th= 'Product Type'
+          %th Price Range
+      - @products.each do |product|
+        %tr{:class => cycle("odd", "")}
+          %td= link_to product.name, edit_admin_shopping_product_path(product)
+          %td= product.available? ? 'Yes' : 'No'
+          %td= product.product_type.name
+          %td= product.display_price_range
+    = will_paginate @products

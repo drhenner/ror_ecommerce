@@ -1,0 +1,20 @@
+- if @user.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@user.errors.count, "error")
+      prohibited this password_reset from being saved:
+    %ul
+      - @user.errors.full_messages.each do |msg|
+        %li= msg
+%p
+  Please enter your new password.
+.field
+  = f.label :password
+  %br/
+  = f.password_field :password
+.field
+  = f.label :password_confirmation
+  %br/
+  = f.password_field :password_confirmation
+.actions
+  = f.submit 'Change Password', :class => 'button'

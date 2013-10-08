@@ -1,0 +1,16 @@
+.nine.large-9.columns
+  %h3 Credit Cards
+  - if @credit_cards.empty?
+    %p
+      You do not have a Credit Card on File
+  - else
+    %table
+      %tr
+        %th Name
+      - for credit_card in @credit_cards
+        %tr
+          %td= credit_card.name
+          %td= link_to "Show", myaccount_credit_card_path(credit_card)
+          %td= link_to "Edit", edit_myaccount_credit_card_path(credit_card)
+          %td= link_to "Remove", myaccount_credit_card_path(credit_card), :confirm => 'Are you sure?', :method => :delete
+  %p= link_to "New Credit Card", new_myaccount_credit_card_path, :class => 'button'

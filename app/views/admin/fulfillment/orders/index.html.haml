@@ -1,0 +1,39 @@
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag admin_fulfillment_orders_path, :method => 'get', :id => "orders_search" do
+      %p
+      %ul.search_boxes
+        %li
+          = label_tag 'Number'
+          = text_field_tag :number, params[:number]
+        %li
+          = label_tag 'Email'
+          = text_field_tag :email, params[:email]
+        %li
+          = label_tag 'shipped'
+          = check_box_tag :shipped, 'true', params[:shipped] == 'true'
+      %div{:style => "text-align:center"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+      #order_hidden
+        = hidden_field_tag :direction, params[:direction]
+        = hidden_field_tag :sort, params[:sort]
+    .clearfix
+%h3 Shipping Orders
+#admin_fulfillment_orders_page_wrapper
+  #admin_fulfillment_orders_grid_wrapper.column.pretty_table
+    %table
+      %thead
+        %tr.odd
+          %th.column1_header= sortable "number"
+          %th= sortable "email"
+          %th= "Name"
+          %th Status
+          %th= 'Shipped'
+      - @orders.each do |order|
+        %tr{:class => cycle("odd", "")}
+          %td= link_to order.number, edit_admin_fulfillment_order_path(order)
+          %td= order.email
+          %td= order.name
+          %td= order.display_completed_at
+          %td= order.shipped.to_s
+    = will_paginate @orders

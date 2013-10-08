@@ -1,0 +1,36 @@
+%tr
+  %td{:align => "right", :style => "padding:2px;", :valign => "top", :width => "18%"}
+    .tiny
+      %b{:name => i}
+        Item added on
+        %br/
+        = item.created_at.strftime(I18n.translate('time.formats.long_date'))
+    %div{:id => "remove_#{i}_from_cart"}
+      %ul
+        %li
+          = link_to 'Save for Later',                                             |
+            move_to_shopping_cart_item_path(item, :variant_id => item.variant_id, |
+            :item_type_id     => ItemType::SAVE_FOR_LATER_ID),                    |
+            :method           => 'put',                                           |
+            :class            => 'button tiny secondary'                          |
+        %li
+          = link_to 'Delete', shopping_cart_item_path(item, :variant_id => item.variant_id), |
+            :method => :delete, :class            => 'button tiny alert'                     |
+  %td{:style => "padding-right: 20px;", :valign => "top"}
+    .small
+      = image_tag item.variant.featured_image
+      %b
+        = link_to item.variant.product_name, product_path(item.variant.product)
+      = item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ')
+      %br/
+      = item.variant.display_stock_status('', '')
+      %br/
+  %td.small{:valign => "top"}
+    %b.price= number_to_currency item.price
+    %br/
+    %br/
+  %td{:valign => "top"}
+    = cart_items_form.number_field :quantity, :size=>"2"
+%tr
+  %td{:colspan => "5"}
+    %hr{:color => "#aac"}/

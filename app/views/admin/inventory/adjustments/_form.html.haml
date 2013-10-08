@@ -1,0 +1,19 @@
+- if @variant.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@variant.errors.count, "error")
+      prohibited this purchase_order from being saved:
+    %ul
+      - @variant.errors.full_messages.each do |msg|
+        %li= msg
+.clear
+.span-12
+  .span-5
+    = f.label :qty_to_add
+  .span-6.last
+    = f.number_field :qty_to_add, {:step => 1}
+  .span-5
+    %label Amount ($$$) Refunded by the Supplier
+  .span-6.last
+    = number_field_tag :refund, 0.00, {:step => 0.01}
+.clear

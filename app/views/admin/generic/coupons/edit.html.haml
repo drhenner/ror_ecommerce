@@ -1,0 +1,6 @@
+%h1 Edit Coupon
+= form_for(@coupon, :as => :coupon, :url => admin_generic_coupon_path(@coupon)) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+= link_to 'Show', admin_generic_coupon_path( @coupon ), :class => 'button'
+|
+= link_to 'View All', admin_generic_coupons_path, :class => 'button'

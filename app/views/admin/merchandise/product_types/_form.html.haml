@@ -1,0 +1,11 @@
+%fieldset#admin-product_type-names
+  .six.columns
+    %label Name
+    = form.text_field :name
+  .six.columns
+    %label Parent
+    = form.select :parent_id,                                                             |
+      nested_set_options(ProductType, @product_type) {|i| "#{'-' * i.level} #{i.name}" }, |
+      { :include_blank => true }                                                          |
+.generic_submit_button
+  = submit_tag button_action, :class => "button", :id => "create_product_type_button"

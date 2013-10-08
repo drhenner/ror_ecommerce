@@ -1,0 +1,20 @@
+%h3 Receive Purchase Order
+= form_for @purchase_order, :url  => admin_inventory_receiving_path(@purchase_order), |
+  :html => {:class => 'prepend-4'}  do |form|                                         |
+  %fieldset#admin-product-names.span-11.fields
+    .span-15
+      .span-14
+        .span-11
+          Invoice: #{@purchase_order.invoice_number}
+          \--- Tracking #: #{@purchase_order.display_tracking_number}
+        %div{:style => "float:right;"}
+          Receive All: #{form.check_box :receive_po}
+      = form.fields_for :purchase_order_variants,  @purchase_order.purchase_order_variants do |po_variant_form|
+        .span-14
+          = render :partial => 'form', :locals => { :po_variant_form => po_variant_form }
+  .generic_submit_button
+    = submit_tag "Update",                      |
+      :class  => "button",                      |
+      :id     => "create_purchase_order_button" |
+  |
+  = link_to 'Back', admin_inventory_receivings_path

@@ -1,0 +1,31 @@
+%h3 Product Overview
+.admin_inventory_overviews
+  - @products.each do |product|
+    %table
+      %thead
+        %tr.odd
+          %th.column1_header{:colspan => "3"}
+            = product.name
+          %th
+            = link_to 'edit product', edit_admin_merchandise_product_path(product), :class => 'button small', :style => 'margin:0;'
+            = link_to 'change inventory', admin_inventory_adjustment_path(product), :class => 'button small', :style => 'margin:0;'
+        %tr
+          %th SKU
+          %th price
+          %th Qty
+          %th description
+      %tbody
+        - product.variants.each do |variant|
+          %tr{:class => cycle("odd", "")}
+            %td= variant.sku
+            %td= variant.price
+            %td= variant.count_on_hand
+            %td
+              %ul.vertical-list
+                - variant.variant_properties.each do |vp|
+                  %li
+                    %label
+                      = vp.property_name
+                      \:
+                    = vp.description
+= will_paginate @products

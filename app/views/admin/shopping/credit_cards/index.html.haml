@@ -1,0 +1,9 @@
+%h1 Listing credit_cards
+%table
+  %tr
+    %th
+  - @credit_cards.each do |credit_card|
+    %tr
+      %td= link_to 'Show', admin_shopping_credit_card credit_card
+%br/
+= link_to 'New Credit card', new_admin_shopping_credit_card_path

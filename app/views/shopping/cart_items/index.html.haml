@@ -1,0 +1,59 @@
+- content_for :head do
+  = stylesheet_link_tag 'shopping_cart_page.css'
+#cart-items-wrapper.items-wrapper.nine.coloumns.last
+  - if  @cart_items.blank? && @saved_cart_items.empty?
+    %h2{:style => "text-align:center;"}
+      = I18n.t(:nothing_in_cart)
+  - elsif  @cart_items.blank?
+    %h2{:style => "text-align:center;"}
+      = I18n.t(:only_items_saved_for_later)
+    .panel.graceful
+      %h3{:style => "text-align:center;color:#333;"}
+        = I18n.t(:add_items_saved_for_later)
+  = form_for session_cart, url: shopping_cart_item_path(session_cart), html: {class: 'custom'}, :as => :cart do |cart_form|
+    - unless @cart_items.blank?
+      #update-cart-wrapper.ten.large-10.columns
+        #update_all_cart.small-gradientbuttons
+          %ul.seven.large-7
+            %li
+              %span{:style => "margin-top:3px;"} Make any changes below?
+            %li
+              = cart_form.submit 'update', :class => 'tiny button alert'
+      .two.large-2.columns{:style => "margin-top: 3px;text-align: right;"}
+        = cart_form.submit 'checkout', {:checkout => 1, :class => 'small button success'}
+      .clear
+    %table{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border: 0px solid #FFF;", :width => "100%"}
+      %tbody
+        - unless @cart_items.blank?
+          %tr
+            %td
+              %table{:cellpadding => "10", :cellspacing => "0", :width => "100%"}
+                %tbody
+                  %tr{:bgcolor => "#ebebe7", :valign => "top", :width => "100%"}
+                    %td{:bgcolor => "#ebebe7", :colspan => "2"}
+                      %b Shopping Cart Items--To Buy Now
+                    %td.small{:bgcolor => "#ebebe7"}
+                      %b Price:
+                    %td.small{:align => "middle", :bgcolor => "#ebebe7", :width => "8%"}
+                      %b Qty:
+                  - @cart_items.each_with_index do |item, i|
+                    = cart_form.fields_for :shopping_cart_items, item do |cart_items_form|
+                      = render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }
+        - unless @saved_cart_items.empty?
+          %tr{:style => "background-color: #FFF;"}
+            %td{:align => "center", :colspan => "1"}
+          %tr{:style => "background-color: #FFF;"}
+            %td
+              %table{:cellpadding => "10", :cellspacing => "0", :style => "border: 0px solid #FFF;", :width => "100%"}
+                %tbody
+                  %tr{:bgcolor => "#eeeecc", :valign => "top"}
+                    %td{:bgcolor => "#eeeecc", :colspan => "2"}
+                      %a{:name => "savedforlater"}
+                        %b Saved Items--To Buy Later
+                    %td.small{:bgcolor => "#eeeecc", :colspan => "2"}
+                      %b Price:
+                  = render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty?
+.span-6.last
+  #submit_purchase_cart.gradientbuttons.redtheme.purchase-cart
+    %ul
+      %li

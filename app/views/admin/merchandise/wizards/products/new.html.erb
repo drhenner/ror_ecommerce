@@ -1,9 +1,0 @@
-<%= render :partial => '/admin/merchandise/wizards/sub_header'%>
-<h3>New Product</h3>
-
-<%= form_for(@product, :url => admin_merchandise_wizards_products_path()) do |f| %>
-  <%= render :partial => 'form', :locals => {:form => f} %>
-  <%= submit_tag "Create", :class  => "button" %>
-<% end %>
-
-<div class='clearfix'></div>

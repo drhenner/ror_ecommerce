@@ -1,0 +1,54 @@
+- if @address.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@address.errors.count, "error")
+      prohibited this shipping address from being saved:
+    %ul
+      - @address.errors.full_messages.each do |msg|
+        %li= msg
+.main-address
+  .inline.twelve.large-12
+    .field.six.large-6.columns
+      = f.label :first_name
+      = f.text_field :first_name, :class => ''
+    .field.six.large-6.columns
+      = f.label :last_name
+      = f.text_field :last_name, :class => ''
+  .clear
+  .twelve.large-12.columns
+    .field
+      = f.label :address1
+      = f.text_field :address1
+      %br/
+      = f.label :address2
+      = f.text_field :address2
+  .clearfix
+  .twelve.large-12.clearfix
+    .field.five.columns
+      = f.label :city
+      = f.text_field :city
+    - if Settings.require_state_in_address
+      .field.four.large-4.columns
+        = f.label    :state_id, "State/Province"
+        = f.select   :state_id, @states, |
+          :include_blank => true         |
+    - elsif countries.size == 1
+      .field.column
+        = f.label :country_id, "Country"
+        = countries.first.name
+        = f.hidden_field   :country_id
+    - else
+      .field.column
+        = f.label    :country_id, "Country"
+        = f.select   :country_id, select_countries, |
+          :include_blank => true                    |
+    .field.two.large-2.columns
+      = f.label :zip_code
+      = f.text_field :zip_code
+.field.twelve.large-12.column{:style => "margin-bottom:10px;"}
+  %label.ten.large-10{:for => "address_default", :style => "margin-top:3px;display: inline-block;"}
+    = f.check_box :default, :class => 'columns'
+    Make this my default shipping address
+.actions.column
+  = f.submit 'Submit', :class => 'small button'
+.clearfix

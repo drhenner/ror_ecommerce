@@ -1,0 +1,7 @@
+%div{:class => "span-11 #{po_variant_form.object.is_received? ? 'received_po' : 'not_received_po'}"}
+  - po_variant = po_variant_form.object
+  = po_variant.variant.name_with_sku
+  Qty: #{po_variant.quantity}
+  Cost: #{po_variant.cost}
+  .span-3.last{:style => "float:right;"}
+    - unless po_variant_form.object.is_received?

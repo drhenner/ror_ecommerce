@@ -1,0 +1,4 @@
+%h1 Editing account
+= form_for( @account, :url => admin_config_account_path(@account)) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+= link_to 'Back', admin_config_accounts_path, :class => 'button'

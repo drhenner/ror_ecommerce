@@ -1,0 +1,34 @@
+- content_for :sidemenu do
+  = link_to "New Purchase Order", new_admin_inventory_purchase_order_path, :class => "button", :id => "new_purchase_order_button"
+  .admin_filters
+    = form_tag admin_inventory_purchase_orders_path, :method => 'get', :id => "purchase_orders_search" do
+      = hidden_field_tag :direction, params[:direction]
+      = hidden_field_tag :sort, params[:sort]
+      %label Supplier Name
+      = text_field_tag :supplier_name, params[:supplier_name]
+      %label Invoice Number
+      = text_field_tag :invoice_number, params[:invoice_number]
+      %label Tracking Number
+      = text_field_tag :tracking_number, params[:tracking_number]
+      %label Received
+      = check_box_tag :receive_po, 'true', params[:receive_po] == 'true'
+      %div{:style => "text-align:center"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+%h3 Purchase Orders
+.admin_purchase_orders
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header= sortable "supplier_name"
+        %th= sortable "invoice_number"
+        %th= sortable "tracking_number"
+        %th= label_tag "estimated_arrival"
+        %th= "Received"
+    - @purchase_orders.each do |order|
+      %tr{:class => cycle("odd", "")}
+        %td= link_to order.supplier_name, edit_admin_inventory_purchase_order_path(order)
+        %td= order.invoice_number
+        %td= order.tracking_number
+        %td= order.display_estimated_arrival_on
+        %td= order.display_received
+  = will_paginate @purchase_orders

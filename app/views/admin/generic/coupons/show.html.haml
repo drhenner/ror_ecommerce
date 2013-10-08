@@ -1,0 +1,29 @@
+%h1 Coupon
+%p
+  %strong Code:
+  = @coupon.code
+%p
+  %strong Amount:
+  = @coupon.amount
+%p
+  %strong Minimum Value:
+  = @coupon.minimum_value
+%p
+  %strong Percent:
+  = @coupon.percent
+%p
+  %strong Description:
+  = @coupon.description
+%p
+  %strong combine:
+  = @coupon.combine.to_s
+%p
+  %strong Starts at:
+  = @coupon.display_start_time
+%p
+  %strong Expires at:
+  = @coupon.display_expires_time
+%p
+  = link_to "Edit", edit_admin_generic_coupon_path(@coupon), :class => 'button'
+  |
+  = link_to "View All", admin_generic_coupons_path, :class => 'button'

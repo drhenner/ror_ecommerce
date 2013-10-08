@@ -1,0 +1,44 @@
+%h2 RMAs
+-# content_for :head do
+  = javascript_include_tag "admin/index_grid"
+= render :partial => '/admin/rma/sub_header'
+- content_for :sidemenu do
+  .admin_filters
+    = form_tag admin_rma_order_return_authorizations_path(@order), :method => 'get', :id => "products_search" do
+      %p
+      %ul.search_boxes
+        %li
+          = label_tag 'RMA #'
+          = text_field_tag :number, params[:number]
+        %li
+          = label_tag 'Status'
+          = text_field_tag :state, params[:state]
+      %div{:style => "text-align:center"}
+        = submit_tag "Search", :name => nil, :class => 'button red-button'
+      #order_hidden
+        = hidden_field_tag :direction, params[:direction]
+        = hidden_field_tag :sort, params[:sort]
+    .clearfix
+#admin_rma_page_wrapper
+  #admin_rma_grid_wrapper.column.pretty_table
+    %table
+      %thead
+        %tr
+          %th= sortable "number"
+          %th= sortable "amount"
+          %th= sortable "User"
+          %th= "order_number"
+          %th Status
+      - @return_authorizations.each do |return_authorization|
+        %tr
+          %td= link_to return_authorization.number, edit_admin_rma_order_return_authorization_path(@order, return_authorization)
+          %td= return_authorization.amount
+          %td= return_authorization.user_name
+          %td= return_authorization.order_number
+          %td= return_authorization.state
+    = will_paginate @return_authorizations
+  #admin_new_rma_button.admin_new_button.last
+.span-10
+  = link_to 'Order Info',             |
+    admin_history_order_path(@order), |
+    :class => 'button heart'          |

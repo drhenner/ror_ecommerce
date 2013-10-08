@@ -1,0 +1,6 @@
+.nine.large-9.columns
+  %h3 New Address
+  = form_for(@address, :url => myaccount_addresses_path(@address), html: {class: 'custom'}) do |f|
+    = render :partial => 'form', :locals => {:f => f}
+  %div
+    = link_to 'Back to List', myaccount_addresses_path, :class => 'secondary small button  '

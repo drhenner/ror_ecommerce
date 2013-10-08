@@ -1,0 +1,16 @@
+= render :partial => '/admin/merchandise/sub_header'
+.admin_title_header
+  %h3 Brands
+  = link_to "New Brand", new_admin_merchandise_brand_path, :class => 'button'
+.admin_brands
+  %table
+    %thead
+      %tr.odd
+        %th.column1_header Name
+        %th
+        %th
+    - for brand in @brands
+      %tr{:class => cycle("odd", "")}
+        %td= link_to brand.name, admin_merchandise_brand_path(brand)
+        %td= link_to "Edit", edit_admin_merchandise_brand_path(brand)
+        %td= link_to "Delete", admin_merchandise_brand_path(brand), confirm: 'Are you sure?', method: :delete

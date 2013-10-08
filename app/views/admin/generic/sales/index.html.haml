@@ -1,0 +1,22 @@
+- content_for :head do
+  %h1 Sales
+#admin_sale_grid_wrapper.pretty_table
+  %table
+    %tr.odd
+      %th.column1_header= sortable 'product_id', 'Product'
+      %th Percent Off
+      %th Starts At
+      %th Ends At
+      %th
+      %th
+    %tbody
+      - for sale in @sales
+        %tr{:class => cycle("odd", "")}
+          %td= link_to sale.product_id, [:admin, :generic, sale]
+          %td= sale.percent_off
+          %td= sale.starts_at
+          %td= sale.ends_at
+          %td= link_to "edit", edit_admin_generic_sale_path(sale)
+          %td= link_to "inactivate", [:admin, :generic, sale], :data => { :confirm => 'Are you sure?' }, :method => :delete
+= will_paginate @sales
+%p= link_to "New Sale", new_admin_generic_sale_path, :class => 'button'

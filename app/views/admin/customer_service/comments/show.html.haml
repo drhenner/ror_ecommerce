@@ -1,0 +1,17 @@
+%h1 Comment
+%ul
+  %li
+    %label Note:
+    = @comment.note
+  %li
+    %label Commentable Type:
+    = @comment.commentable_type
+  %li
+    %label Created By:
+    = @comment.author.try(:name)
+  %li
+    %label User:
+    = @comment.user.try(:name)
+%p
+  = link_to "View All", admin_customer_service_user_comments_path(customer), :class => 'button'
+  = link_to "Back to #{customer.name}", admin_user_path(customer), :class => 'small button'

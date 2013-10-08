@@ -1,0 +1,45 @@
+!!!
+%html
+  %head
+    %title= site_name
+    %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}/
+    = stylesheet_link_tag 'sprite.css'
+    = stylesheet_link_tag "admin/foundation"
+    = stylesheet_link_tag "admin/app"
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+    = csrf_meta_tags
+    = javascript_include_tag 'application'
+    = javascript_include_tag "admin/app"
+    = javascript_include_tag "admin/jquery.customforms"
+    = javascript_include_tag "admin/jquery.placeholder.min"
+    = javascript_include_tag "admin/jquery.reveal"
+    = javascript_include_tag "admin/jquery.tooltips"
+    = javascript_include_tag "admin/modernizr.foundation"
+    = yield :head
+  %body.bp
+    - if notice || alert
+      .flash_messages
+        = raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a></div>"  if notice
+        = raw "<div data-alert class='alert-box alert'>#{alert} <a href='' class='close'>&times;</a></div>"     if alert
+    .container.row
+      = render :partial => 'shared/admin/header_bar'
+    .container.bp
+      - if  content_for? :header_sub_bar
+        #header_sub_bar
+          = yield :header_sub_bar
+    .container{:style => "width:1080px;"}
+      .content.last{:style => "width:1080px;"}
+        .column{:style => "#{content_for? :sidebar ? 'width:530px;': ''}"}
+          = yield
+        - if  content_for? :sidebar
+          = yield :sidebar
+    = yield :bottom
+    :javascript
+      jQuery(window).ready(
+        function() {
+          jQuery('.flash_notice').delay(6000).slideUp( 'slow');
+          jQuery('.flash_error').delay(6000).slideUp( 'slow');
+        }
+      );
+  = yield :below_body

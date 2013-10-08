@@ -1,0 +1,17 @@
+- if @product.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@product.errors.count, "error")
+      prohibited this purchase_order from being saved:
+    %ul
+      - @product.errors.full_messages.each do |msg|
+        %li= msg
+%fieldset#admin-product-properties.span-14{:style => "padding-bottom:10px;"}
+  %legend Properties
+  #product_properties.span-14
+    = f.fields_for :product_properties do |product_property_form|
+      .variant_form.left.six.large-6.last{:style => "margin-bottom:20px;"}
+        = render :partial => 'product_property', :locals => {:product_property_form => product_property_form }
+.span-14{:style => "margin-top:20px;"}
+  = add_child_button "New Property", :product_properties
+  = new_child_fields_template f, :product_properties, :form_builder_local => :product_property_form

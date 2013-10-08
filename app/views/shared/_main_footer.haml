@@ -1,0 +1,7 @@
+- loop_footer_tabs = {'Terms & Conditions' => terms_path,'About' => about_path}
+#footer_wrapper.row
+  .large-9.columns
+    %ul#main-footer-tabs.inline-list
+      - loop_footer_tabs.each_pair do |tab_name, tab_path|
+        %li
+          = link_to_unless_current tab_name, tab_path

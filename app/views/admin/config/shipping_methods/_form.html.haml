@@ -1,0 +1,14 @@
+- if @shipping_method.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@shipping_method.errors.count, "error")
+      prohibited this Shipping Method from being saved:
+    %ul
+      - @shipping_method.errors.full_messages.each do |msg|
+        %li= msg
+%fieldset
+  %label Name
+  = f.text_field :name
+  %label Shipping Zone
+  = f.select :shipping_zone_id, @shipping_zones
+= f.submit "Create", :class => "button"

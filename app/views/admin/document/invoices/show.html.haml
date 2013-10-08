@@ -1,0 +1,12 @@
+%h1
+  Invoice for Order(#{@invoice.order.number})
+%p
+  %strong Amount:
+  = @invoice.amount
+%p
+  %strong Status:
+  = @invoice.state
+%p
+  = link_to "View PDF", admin_document_invoice_path(@invoice, :format => 'pdf'), :class => 'button'
+%p
+  = link_to "View All", admin_document_invoices_path, :class => 'button'

@@ -1,0 +1,72 @@
+%h3
+  = @user.name
+= link_to "Edit #{@user.name}", edit_admin_user_path(@user), class: 'tiny success button'
+.row
+  .four.large-4.column
+    .panel
+      %h4 Orders
+      - @user.finished_orders.sort_by{|o| o.completed_at}.reverse!.each do |order|
+        %ul.vertical-list
+          %li
+            %label Order #
+            = link_to order.number, edit_admin_fulfillment_order_path(order)
+          %li
+            %label Price
+            = order.first_invoice_amount.present? ? number_to_currency( order.first_invoice_amount ) : 'Not Charged yet.'
+          %li
+            %label Completed at:
+            = order.display_completed_at
+          %li
+            %label Status:
+            = order.state
+  <div class='four large-4 column', style='padding-left:0px;'>
+  .panel
+    %h4 Shipments
+    - @user.shipments.each do |shipment|
+      %ul.vertical-list
+        %li
+          %label # of Items
+          = shipment.order_items.count
+        %li
+          %label Shipped at:
+          = shipment.display_shipped_at
+  .panel
+    %h4 Addresses
+    = link_to "Add New Address", new_admin_user_datas_user_address_path(@user), class: 'small button'
+    %ul.vertical-list
+      - @user.addresses.each do |address|
+        %li
+          = render :partial => '/shared/compact_address', :locals => {:shopping_address => address}
+          %br/
+          - if address.active
+            = link_to "edit", edit_admin_user_datas_user_address_path(@user, address), class: 'tiny button'
+  .panel
+    %h4 Returns
+    - @user.return_authorizations.each do |rma|
+      %ul.vertical-list
+        %li
+          %label Number:
+          = rma.number
+        %li
+          %label Order #:
+          = rma.order.number
+        %li
+          %label Amount:
+          = number_to_currency rma.amount
+        %li
+          %label CS Rep:
+          = rma.author.try(:name)
+<div class='four large-4 column', style='padding-left:0px;'>
+<div class='panel', style='margin-left:1px;'>
+%h4 Notes
+- @user.comments.each do |comment|
+  %hr/
+  %div
+    %h5= comment.author.try(:name)
+    %p
+      %b Note:
+      = comment.note
+    = comment.commentable_type
+    %br/
+    = I18n.localize(comment.created_at, :format => :us_time)
+= link_to "New Comment", new_admin_customer_service_user_comment_path(@user), :class => 'small button'

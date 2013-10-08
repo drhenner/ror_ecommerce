@@ -1,0 +1,18 @@
+%h1 Wish List
+- current_user.wish_list_items do |item|
+  = item
+- if current_user.wish_list_items.empty?
+  %h5 You currently don't have any items in your wish list.
+  = render :partial => '/shopping/cart_items/saved_items' unless current_user.saved_cart_items.empty?
+- else
+  .span-18.last
+    .span-9.rounded-10.line_item_blue
+      %ul
+        - current_user.wish_list_items.each_with_index do |item, i|
+          %li.individual-cart-item{:id => "cart-item-#{i}"}
+            - photo_url = item.variant.product.featured_image
+            = image_tag(photo_url) if photo_url
+            = item.variant.product_name
+            = link_to 'remove', wish_item_path(item, :variant_id => item.variant_id), |
+              :method => :delete                                                      |
+    = render :partial => '/shopping/cart_items/saved_items' unless current_user.saved_cart_items.empty?

@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %title= site_name
+    %link{:href => "/assets/favicon.ico", :rel => "shortcut icon"}/
+    = stylesheet_link_tag 'sprite.css'
+    = stylesheet_link_tag "admin/foundation"
+    = stylesheet_link_tag "admin/app"
+    = stylesheet_link_tag "admin/cart"
+    /
+      [if lt IE 8]
+      <haml:silent>
+      </haml:silent>  <![endif]
+    = csrf_meta_tag
+    = javascript_include_tag 'application'
+    = javascript_include_tag "admin/app"
+    = javascript_include_tag "admin/jquery.customforms"
+    = javascript_include_tag "admin/jquery.placeholder.min"
+    = javascript_include_tag "admin/jquery.reveal"
+    = javascript_include_tag "admin/jquery.tooltips"
+    = javascript_include_tag "admin/modernizr.foundation"
+    = yield :head
+  %body.bp
+    .container.row
+      - if notice || alert
+        .flash_messages
+          = raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice
+          = raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert
+      = render :partial => 'shared/admin/header_bar'
+      .admin_main_content.eight.large-8.columns
+        = yield
+      #cart-right-side-panel.four.large-4.columns.last.float-right
+        = render :partial => '/admin/shopping/right_panel_summary'
+        = yield :right_side_bar
+    = yield :bottom
+    :javascript
+      jQuery(window).ready(
+        function() {
+          jQuery('.flash_notice').delay(6000).slideUp( 'slow');
+          jQuery('.flash_error').delay(6000).slideUp( 'slow');
+        }
+      );
+  = yield :below_body

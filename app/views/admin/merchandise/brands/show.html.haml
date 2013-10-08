@@ -1,0 +1,11 @@
+= render :partial => '/admin/merchandise/sub_header'
+%h3
+  Brand - #{@brand.name}
+%p
+  %strong Name:
+  = @brand.name
+%p
+  = link_to "Edit", edit_admin_merchandise_brand_path(@brand), :class => 'button'
+  = link_to "Delete", admin_merchandise_brand_path(@brand), :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button'
+  = link_to "New Brand", new_admin_merchandise_brand_path, :class => 'button'
+  = link_to "View All", admin_merchandise_brands_path, :class => 'button'
