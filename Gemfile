@@ -54,13 +54,13 @@ gem 'will_paginate', '~> 3.0.4'
 gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do
-  #gem 'mysql2', '~> 0.3.12'
-  gem 'pg'
+  gem 'mysql2', '~> 0.3.12'
+  #gem 'pg'
 end
 
 group :development do
-  #gem 'sqlite3'
-  gem 'pg'
+  gem 'sqlite3'
+  #gem 'pg'
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
