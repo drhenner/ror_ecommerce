@@ -13,7 +13,7 @@ GIT
       compass (>= 0.12.2, < 0.14)
 
 GIT
-  remote: git@github.com:binarylogic/authlogic.git
+  remote: https://github.com/binarylogic/authlogic.git
   revision: abc09970ed1fad98c6c12f4ca64d1670d37d11db
   specs:
     authlogic (3.3.0)
