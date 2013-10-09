@@ -226,8 +226,13 @@ GEM
       activesupport (>= 3.0)
       choice (~> 0.1.6)
       ruby-graphviz (~> 1.0.4)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_config (0.3.3)
       activesupport (>= 3.0)
+    rails_serve_static_assets (0.0.1)
+    rails_stdout_logging (0.0.2)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
@@ -343,6 +348,7 @@ DEPENDENCIES
   rails (= 4.0.0)
   rails-erd
   rails3-generators!
+  rails_12factor
   rails_config
   rake (~> 10.0.3)
   rmagick
