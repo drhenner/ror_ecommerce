@@ -5,9 +5,9 @@ GIT
     database_cleaner (1.1.1)
 
 GIT
-  remote: git://github.com/milgner/compass-rails.git
-  revision: c86e7fd9c2605c80816a2f64a3fb8b7c3a09e494
-  branch: rails4
+  remote: https://github.com/Compass/compass-rails.git
+  revision: 32c16cb90f78053310b35199a970c53355bcd300
+  branch: rails4-hack
   specs:
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)

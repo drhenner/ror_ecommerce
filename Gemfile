@@ -22,8 +22,8 @@ gem 'bluecloth',      '~> 2.1.0'
 gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
-gem 'compass-rails', git: 'https://github.com/milgner/compass-rails.git', branch: 'rails4'
-#gem 'compass-rails',  git: 'git://github.com/milgner/compass-rails.git', branch: 'rails4'
+gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
+#gem 'compass-rails',  git: 'git://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
 
 
 gem 'dynamic_form'
