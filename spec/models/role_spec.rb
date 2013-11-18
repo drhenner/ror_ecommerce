@@ -12,27 +12,3 @@ describe Role do
 
   end
 end
-
-describe Role, '#find_role_id(id)' do
-  it "should return role from memcache" do
-    first_role = Role.first
-    role = Role.find_role_id(first_role.id)
-    role.id.should == first_role.id
-
-    # the second call exercizes memcache
-    memcache_role = Role.find_role_id(first_role.id)
-    memcache_role.id.should == first_role.id
-  end
-end
-
-describe Role, '#find_role_name(name)' do
-  it "should return role from memcache" do
-    first_role = Role.first
-    role = Role.find_role_name(first_role.name)
-    role.id.should == first_role.id
-
-    # the second call exercizes memcache
-    memcache_role = Role.find_role_name(first_role.name)
-    memcache_role.id.should == first_role.id
-  end
-end
