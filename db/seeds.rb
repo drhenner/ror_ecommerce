@@ -33,27 +33,27 @@ end
 puts "ROLES"
 roles = Role::ROLES
 roles.each do |role|
-  Role.find_or_create_by_name(role)
+  Role.find_or_create_by(name: role)
 end
 
 puts "Address Types"
 AddressType::NAMES.each do |address_type|
-  AddressType.find_or_create_by_name(address_type)
+  AddressType.find_or_create_by(name: address_type)
 end
 
 puts "PHONE TYPES"
 PhoneType::NAMES.each do |phone_type|
-  PhoneType.find_or_create_by_name(phone_type)
+  PhoneType.find_or_create_by(name: phone_type)
 end
 
 puts "Item Types"
 ItemType::NAMES.each do |item_type|
-  ItemType.find_or_create_by_name(item_type)
+  ItemType.find_or_create_by(name: item_type)
 end
 
 puts "DEAL TYPES"
 DealType::TYPES.each do |dt|
-  DealType.find_or_create_by_name(dt)
+  DealType.find_or_create_by(name: dt)
 end
 
 puts "Accounts"
@@ -66,7 +66,7 @@ end
 
 puts "SHIPPING RATE TYPES"
 ShippingRateType::TYPES.each do |rate_type|
-  ShippingRateType.find_or_create_by_name(rate_type)
+  ShippingRateType.find_or_create_by(name: rate_type)
 end
 
 puts "Shipping Zones"
