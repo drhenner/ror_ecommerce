@@ -18,7 +18,6 @@
 #  master       :boolean(1)      default(FALSE), not null
 #  created_at   :datetime
 #  updated_at   :datetime
-#  brand_id     :integer(4)
 #  inventory_id :integer(4)
 #
 
@@ -35,7 +34,6 @@ class Variant < ActiveRecord::Base
   has_many   :purchase_orders, :through => :purchase_order_variants
 
   belongs_to :product
-  belongs_to :brand
   belongs_to :inventory
   belongs_to :image_group
 
@@ -48,6 +46,7 @@ class Variant < ActiveRecord::Base
   validates :sku,         :presence => true,       :length => { :maximum => 255 }
 
   accepts_nested_attributes_for :variant_properties#, :inventory
+  delegate  :brand, :to => :product, :allow_nil => true
 
   delegate  :count_on_hand,
             :count_pending_to_customer,
@@ -212,7 +211,7 @@ class Variant < ActiveRecord::Base
   # @param [none]
   # @return [String]
   def brand_name
-    brand_id ? brand.name : product.brand_name
+    product.brand_name
   end
 
   # The variant has many properties.  but only one is the primary property

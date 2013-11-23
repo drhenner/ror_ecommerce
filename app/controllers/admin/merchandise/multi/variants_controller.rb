@@ -30,6 +30,5 @@ class Admin::Merchandise::Multi::VariantsController < Admin::BaseController
   end
 
   def form_info
-    @brands = Brand.all.collect{|b| [b.name, b.id] }
   end
 end
