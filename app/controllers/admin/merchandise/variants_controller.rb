@@ -61,15 +61,11 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:variant).permit(:sku, :name, :price, :cost, :deleted_at, :master, :brand_id, :inventory_id )
+    params.require(:variant).permit(:sku, :name, :price, :cost, :deleted_at, :master, :inventory_id )
   end
 
     def form_info
-      @brands = Brand.all.collect{|b| [b.name, b.id] }
-      #@prototypes = Prototype.all.collect{|pt| [pt.name, pt.id]}
-      #@all_properties = Property.all
-      #@select_variant_types = VariantType.all.collect{|pt| [pt.name, pt.id]}
-      #@select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
+
     end
 
     def sort_column
