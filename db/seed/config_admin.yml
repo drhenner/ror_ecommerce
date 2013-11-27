@@ -396,7 +396,6 @@ variants:
       name:
       price: 30.00
       cost: 10.00
-      brand_id: 1
       inventory_id: 1
   2: #'Polo Shirt 2'
     attributes:
@@ -405,7 +404,6 @@ variants:
       name:
       price: 30.00
       cost: 10.00
-      brand_id: 1
       inventory_id: 2
   3: #'Polo Shirt 3'
     attributes:
@@ -414,7 +412,6 @@ variants:
       name:
       price: 30.00
       cost: 10.00
-      brand_id: 1
       inventory_id: 3
   4: #'Cute Pants 1'
     attributes:
@@ -423,7 +420,6 @@ variants:
       name:
       price: 30.00
       cost: 10.00
-      brand_id: 1
       inventory_id: 4
   5: #'Cute Pants 2'
     attributes:
@@ -432,7 +428,6 @@ variants:
       name:
       price: 30.00
       cost: 10.00
-      brand_id: 1
       inventory_id: 5
 variant_properties:
   1: #'Polo Shirt 1'
