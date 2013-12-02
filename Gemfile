@@ -11,7 +11,7 @@ gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
 # Use https if you are pushing to HEROKU
-gem 'authlogic',          git: 'https://github.com/binarylogic/authlogic.git'
+gem 'authlogic',          "~> 3.3.0"
 #gem 'authlogic',          git: 'git@github.com:binarylogic/authlogic.git'
 
 gem "asset_sync"
@@ -28,22 +28,23 @@ gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch
 
 gem 'dynamic_form'
 gem 'jbuilder'
-gem "friendly_id",    '~> 5.0.0.rc1'#, :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
-gem 'haml',           ">= 3.0.13"#, ">= 3.0.4"#, "2.2.21"#,
+gem "friendly_id",    '~> 5.0.1'#, :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
+gem 'haml',           ">= 4.0.4"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 gem 'jquery-ui-rails'
 gem 'json',           '~> 1.8.0'
 
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
-gem 'nokogiri',     '~> 1.5.0'
+gem 'nokogiri',     '~> 1.6.0'
 gem 'paperclip',    '~> 3.0'
 gem 'prawn',        '~> 0.12.0'
 
-gem "rails3-generators", git: "https://github.com/neocoin/rails3-generators.git"
+gem "rails3-generators", "~> 1.0.0"
+#git: "https://github.com/neocoin/rails3-generators.git"
 gem "rails_config"
 gem 'rmagick',    :require => 'RMagick'
 
-gem 'rake', '~> 10.0.3'
+gem 'rake', '~> 10.1'
 
 # gem 'resque', require: 'resque/server'
 
@@ -61,6 +62,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'railroady'
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
@@ -77,7 +79,7 @@ end
 group :test, :development do
   gem 'capybara', "~> 1.1"#, :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
-  gem 'database_cleaner', :github => 'bmabey/database_cleaner'
+  gem 'database_cleaner', "~> 1.2"
 end
 
 group :test do

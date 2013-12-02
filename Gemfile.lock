@@ -1,31 +1,10 @@
 GIT
-  remote: git://github.com/bmabey/database_cleaner.git
-  revision: 733849482546297c48f97b292cf3ad4e498eaad0
-  specs:
-    database_cleaner (1.2.0)
-
-GIT
   remote: https://github.com/Compass/compass-rails.git
   revision: 32c16cb90f78053310b35199a970c53355bcd300
   branch: rails4-hack
   specs:
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
-
-GIT
-  remote: https://github.com/binarylogic/authlogic.git
-  revision: abc09970ed1fad98c6c12f4ca64d1670d37d11db
-  specs:
-    authlogic (3.3.0)
-      activerecord (>= 3.2)
-      activesupport (>= 3.2)
-
-GIT
-  remote: https://github.com/neocoin/rails3-generators.git
-  revision: 6bdea11693e69917849dabc6bd38cf752e8ff194
-  specs:
-    rails3-generators (0.17.4)
-      railties (>= 3.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -78,15 +57,18 @@ GEM
       activemodel
       fog (>= 1.8.0)
     atomic (1.1.14)
+    authlogic (3.3.0)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     autotest-growl (0.2.16)
     autotest-rails-pure (4.1.2)
     awesome_nested_set (3.0.0.rc.2)
       activerecord (~> 4.0.0)
-    aws-sdk (1.26.0)
+    aws-sdk (1.29.0)
       json (~> 1.4)
-      nokogiri (>= 1.4.4, < 1.6.0)
+      nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -121,6 +103,7 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.1.3)
@@ -167,14 +150,15 @@ GEM
     jquery-ui-rails (4.1.0)
       railties (>= 3.1.0)
     json (1.8.1)
-    launchy (2.4.0)
+    launchy (2.4.2)
       addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     metaclass (0.0.1)
     method_source (0.8.2)
-    mime-types (1.25)
+    mime-types (1.25.1)
+    mini_portile (0.5.2)
     minitest (4.7.5)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
@@ -185,7 +169,8 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
-    nokogiri (1.5.10)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -202,7 +187,7 @@ GEM
     prawn (0.12.0)
       pdf-reader (>= 0.9.0)
       ttfunk (~> 1.0.2)
-    pry (0.9.12.3)
+    pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -212,6 +197,7 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
+    railroady (1.1.1)
     rails (4.0.1)
       actionmailer (= 4.0.1)
       actionpack (= 4.0.1)
@@ -225,6 +211,8 @@ GEM
       activesupport (>= 3.0)
       choice (~> 0.1.6)
       ruby-graphviz (~> 1.0.4)
+    rails3-generators (1.0.0)
+      railties (>= 3.0.0)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -237,7 +225,7 @@ GEM
       activesupport (= 4.0.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.0.4)
+    rake (10.1.0)
     rmagick (2.13.2)
     rspec-core (2.12.2)
     rspec-expectations (2.12.1)
@@ -268,7 +256,7 @@ GEM
       rubyzip (~> 1.0.0)
       websocket (~> 1.0.4)
     slop (3.4.7)
-    sprockets (2.10.0)
+    sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -288,7 +276,7 @@ GEM
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
     tzinfo (0.3.38)
-    uglifier (2.3.1)
+    uglifier (2.3.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uuidtools (2.1.4)
@@ -310,7 +298,7 @@ DEPENDENCIES
   activemerchant (~> 1.29.3)
   american_date
   asset_sync
-  authlogic!
+  authlogic (~> 3.3.0)
   autotest (~> 4.4.6)
   autotest-growl
   autotest-rails-pure
@@ -324,14 +312,14 @@ DEPENDENCIES
   capybara (~> 1.1)
   chronic
   compass-rails!
-  database_cleaner!
+  database_cleaner (~> 1.2)
   dynamic_form
   email_spec
   factory_girl (~> 3.3.0)
   factory_girl_rails (~> 3.3.0)
   faker
-  friendly_id (~> 5.0.0.rc1)
-  haml (>= 3.0.13)
+  friendly_id (~> 5.0.1)
+  haml (>= 4.0.4)
   jbuilder
   jquery-rails
   jquery-ui-rails
@@ -339,17 +327,18 @@ DEPENDENCIES
   launchy
   mocha (~> 0.13.3)
   mysql2 (~> 0.3.12)
-  nokogiri (~> 1.5.0)
+  nokogiri (~> 1.6.0)
   paperclip (~> 3.0)
   pg
   prawn (~> 0.12.0)
   pry-byebug
+  railroady
   rails (= 4.0.1)
   rails-erd
-  rails3-generators!
+  rails3-generators (~> 1.0.0)
   rails_12factor
   rails_config
-  rake (~> 10.0.3)
+  rake (~> 10.1)
   rmagick
   rspec-rails (~> 2.12.2)
   rspec-rails-mocha
