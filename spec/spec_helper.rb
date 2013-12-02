@@ -5,6 +5,7 @@ require 'rspec/rails'
 require "authlogic/test_case"
 require "email_spec"
 require "mocha/setup"
+require "factory_girl_rails"
 #require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
