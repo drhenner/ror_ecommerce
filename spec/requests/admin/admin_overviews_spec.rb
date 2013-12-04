@@ -40,7 +40,7 @@ describe "Admin::Overviews" do
       cookied_admin_login
 
       visit admin_overviews_path
-      page.should have_content('It would be best to go')
+      page.should have_content('Best to go through the list below in separate tabs')
     end
   end
 end
