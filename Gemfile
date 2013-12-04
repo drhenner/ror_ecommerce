@@ -10,9 +10,11 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
 gem "american_date"
+
 # Use https if you are pushing to HEROKU
-gem 'authlogic',          "~> 3.3.0"
-#gem 'authlogic',          git: 'git@github.com:binarylogic/authlogic.git'
+##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
+gem 'authlogic', github: 'binarylogic/authlogic', ref: 'e4b2990d6282f3f7b50249b4f639631aef68b939'
+#gem 'authlogic',          "~> 3.3.0"
 
 gem "asset_sync"
 gem 'awesome_nested_set', '~> 3.0.0.rc.1'
@@ -29,7 +31,6 @@ gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch
 gem 'dynamic_form'
 gem 'jbuilder'
 gem "friendly_id",    '~> 5.0.1'#, :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
-gem 'haml',           ">= 4.0.4"#, ">= 3.0.4"#, "2.2.21"#,
 gem "jquery-rails"
 gem 'jquery-ui-rails'
 gem 'json',           '~> 1.8.0'

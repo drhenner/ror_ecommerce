@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/binarylogic/authlogic.git
+  revision: e4b2990d6282f3f7b50249b4f639631aef68b939
+  ref: e4b2990d6282f3f7b50249b4f639631aef68b939
+  specs:
+    authlogic (3.3.0)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+
+GIT
   remote: https://github.com/Compass/compass-rails.git
   revision: 32c16cb90f78053310b35199a970c53355bcd300
   branch: rails4-hack
@@ -57,9 +66,6 @@ GEM
       activemodel
       fog (>= 1.8.0)
     atomic (1.1.14)
-    authlogic (3.3.0)
-      activerecord (>= 3.2)
-      activesupport (>= 3.2)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     autotest-growl (0.2.16)
@@ -77,7 +83,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bluecloth (2.1.0)
     builder (3.1.4)
-    byebug (2.3.1)
+    byebug (2.4.0)
       columnize (~> 0.3.6)
       debugger-linecache (~> 1.2.0)
     cancan (1.6.10)
@@ -136,12 +142,10 @@ GEM
     friendly_id (5.0.1)
       activerecord (~> 4.0.0)
     fssm (0.2.10)
-    haml (4.0.4)
-      tilt
     hashery (2.1.1)
     hike (1.2.3)
-    i18n (0.6.5)
-    jbuilder (1.5.2)
+    i18n (0.6.9)
+    jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
@@ -298,7 +302,7 @@ DEPENDENCIES
   activemerchant (~> 1.29.3)
   american_date
   asset_sync
-  authlogic (~> 3.3.0)
+  authlogic!
   autotest (~> 4.4.6)
   autotest-growl
   autotest-rails-pure
@@ -319,7 +323,6 @@ DEPENDENCIES
   factory_girl_rails (~> 3.3.0)
   faker
   friendly_id (~> 5.0.1)
-  haml (>= 4.0.4)
   jbuilder
   jquery-rails
   jquery-ui-rails
