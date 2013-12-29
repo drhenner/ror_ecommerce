@@ -52,8 +52,8 @@ Hadean::Application.configure do
 
     ActiveMerchant::Billing::Base.mode = :test
     #::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-    #  :login      => Settings.paypal.login
-    #  :password   => Settings.paypal.password
+    #  :login      => Settings.paypal.login,
+    #  :password   => Settings.paypal.password,
     #  :signature  => Settings.paypal.signature
     #)
 
@@ -64,12 +64,12 @@ Hadean::Application.configure do
     )
 #
 #    ::CIM_GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
-#      :login    => Settings.authnet.login
-#      :password => Settings.authnet.password
+#      :login    => Settings.authnet.login,
+#      :password => Settings.authnet.password,
 #      :test     => true   #  Make sure this is pointing to the authnet test server.  This needs to be uncommented to test capturing a payment.
 #    )
     #::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
-    #  :login     => Settings.braintree.login
+    #  :login     => Settings.braintree.login,
     #  :password  => Settings.braintree.password
     #)
   end
