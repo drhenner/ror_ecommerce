@@ -117,8 +117,8 @@ Hadean::Application.configure do
 
     ActiveMerchant::Billing::Base.mode = :test
     #::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-    #  :login      => Settings.paypal.login
-    #  :password   => Settings.paypal.password
+    #  :login      => Settings.paypal.login,
+    #  :password   => Settings.paypal.password,
     #  :signature  => Settings.paypal.signature
     #)
 
@@ -135,7 +135,7 @@ Hadean::Application.configure do
     )
     Paperclip::Attachment.default_options[:storage] = :s3
     #::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
-    #  :login     => Settings.braintree.login
+    #  :login     => Settings.braintree.login,
     #  :password  => Settings.braintree.password
     #)
   end
