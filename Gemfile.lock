@@ -81,7 +81,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bluecloth (2.1.0)
+    bluecloth (2.2.0)
     builder (3.1.4)
     byebug (2.4.0)
       columnize (~> 0.3.6)
@@ -310,7 +310,7 @@ DEPENDENCIES
   aws-sdk
   better_errors (~> 0.9.0)
   binding_of_caller (~> 0.7.2)
-  bluecloth (~> 2.1.0)
+  bluecloth (~> 2.2.0)
   byebug
   cancan (~> 1.6.8)
   capybara (~> 1.1)
