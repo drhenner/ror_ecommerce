@@ -15,18 +15,18 @@ Hadean::Application.routes.draw do
   get 'admin/merchandise' => 'admin/merchandise/summary#index'
   resources :products, :only => [:index, :show, :create]
 
-  resources :wish_items,  :only => [:index, :destroy]
-  resources :states,      :only => [:index]
-  resource :about,        :only => [:show]
-  resources :terms,       :only => [:index]
-  resource  :unsubscribe,       :only => :show
+  resources :wish_items,  only: [:index, :destroy]
+  resources :states,      only: [:index]
+  resource :about,        only: [:show]
+  resources :terms,       only: [:index]
+  resource  :unsubscribe, only: :show
 
   root :to => "welcome#index"
 
   namespace :customer do
-    resources :registrations,   :only => [:index, :new, :create]
-    resource  :password_reset,  :only => [:new, :create, :edit, :update]
-    resource  :activation,      :only => [:show]
+    resources :registrations,   only: [:index, :new, :create]
+    resource  :password_reset,  only: [:new, :create, :edit, :update]
+    resource  :activation,      only: [:show]
   end
 
   namespace :myaccount do
