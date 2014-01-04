@@ -9,6 +9,7 @@ Hadean::Application.routes.draw do
 
   get 'admin'   => 'admin/overviews#index'
   get 'login'   => 'user_sessions#new'
+  get 'logout'  => 'user_sessions#destroy'
   delete 'logout'  => 'user_sessions#destroy'
   get 'signup'  => 'customer/registrations#new'
   get 'admin/merchandise' => 'admin/merchandise/summary#index'

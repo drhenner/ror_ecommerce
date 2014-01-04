@@ -85,7 +85,7 @@
               <li><%= link_to 'Credit Cards', myaccount_credit_cards_path %></li>
               <li><%= link_to 'Credits', myaccount_store_credit_path %></li>
               <li class="divider"></li>
-              <li><%= link_to 'Log Out', logout_path %></li>
+              <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
             <% end %>
           </ul>
         </li>
