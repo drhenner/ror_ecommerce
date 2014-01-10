@@ -27,6 +27,7 @@ class VariantRequiredError < StandardError; end
 class Product < ActiveRecord::Base
   extend FriendlyId
   friendly_id :permalink, use: :finders
+  include Presentation::ProductPresenter
 
   serialize :product_keywords, Array
 
@@ -118,14 +119,6 @@ class Product < ActiveRecord::Base
   # @return [String] product_keywords separated by comma
   def set_keywords
     product_keywords ? product_keywords.join(', ') : ''
-  end
-
-  # range of the product prices in plain english
-  #
-  # @param [Optional String] separator between the low and high price
-  # @return [String] Low price + separator + High price
-  def display_price_range(j = ' to ')
-    price_range.join(j)
   end
 
   # range of the product prices (Just teh low and high price) as an array

@@ -32,6 +32,7 @@
 class User < ActiveRecord::Base
   include TransactionAccountable
   include UserCim
+  include Presentation::UserPresenter
 
   acts_as_authentic do |config|
     config.validate_email_field
@@ -143,14 +144,6 @@ class User < ActiveRecord::Base
     !['canceled', 'inactive'].any? {|s| self.state == s }
   end
 
-  # in plain english returns 'true' or 'false' if the user is active or not
-  #
-  # @param [none]
-  # @return [ String ]
-  def display_active
-    active?.to_s
-  end
-
   # returns true or false if the user has a role or not
   #
   # @param [String] role name the user should have
@@ -214,14 +207,6 @@ class User < ActiveRecord::Base
     active?
   end
 
-  # gives the user's first and last name if available, otherwise returns the users email
-  #
-  # @param [none]
-  # @return [ String ]
-  def name
-    (first_name? && last_name?) ? [first_name.capitalize, last_name.capitalize ].join(" ") : email
-  end
-
   # sanitizes the saving of data.  removes white space and assigns a free account type if one doesn't exist
   #
   # @param  [ none ]
@@ -245,15 +230,6 @@ class User < ActiveRecord::Base
     else
       Notifier.signup_notification(self.id).deliver
     end
-  end
-
-  # name and email string for the user
-  # ex. '"John Wayne" "jwayne@badboy.com"'
-  #
-  # @param  [ none ]
-  # @return [ String ]
-  def email_address_with_name
-    "\"#{name}\" <#{email}>"
   end
 
   # place holder method for creating cim profiles for recurring billing

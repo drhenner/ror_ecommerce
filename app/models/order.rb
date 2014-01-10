@@ -49,6 +49,7 @@
 class Order < ActiveRecord::Base
   extend FriendlyId
   friendly_id :number
+  include Presentation::OrderPresenter
 
   has_many   :order_items, :dependent => :destroy
   has_many   :shipments
@@ -103,24 +104,8 @@ class Order < ActiveRecord::Base
     order_items.map(&:pay!)
   end
 
-  # user name on the order
-  #
-  # @param [none]
-  # @return [String] user name on the order
-  def name
-    self.user.name
-  end
-
   def transaction_time
     calculated_at || Time.zone.now
-  end
-
-  # formated date of the complete_at datetime on the order
-  #
-  # @param [none]
-  # @return [String] formated date or 'Not Finished.' if the order is not completed
-  def display_completed_at(format = :us_date)
-    completed_at ? I18n.localize(completed_at, :format => format) : 'Not Finished.'
   end
 
   # how much you initially charged the customer
@@ -366,12 +351,6 @@ class Order < ActiveRecord::Base
   def shipping_charges(items = nil)
     return @order_shipping_charges if defined?(@order_shipping_charges)
     @order_shipping_charges = shipping_rates(items).inject(0.0) {|sum, shipping_rate|  sum + shipping_rate.rate  }
-  end
-
-  def display_shipping_charges
-    items = OrderItem.order_items_in_cart(self.id)
-    return 'TBD' if items.any?{|i| i.shipping_rate_id.nil? }
-    shipping_charges(items)
   end
 
   # all the shipping rate to apply to the order
