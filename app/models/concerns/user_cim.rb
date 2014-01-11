@@ -66,7 +66,6 @@ module UserCim
   private
 
   def create_cim_profile
-    puts '---------------------------------=======================-------------------============================---------------'
     return true if customer_cim_id
     #Login to the gateway using your credentials in environment.rb
     @gateway = CIM_GATEWAY
