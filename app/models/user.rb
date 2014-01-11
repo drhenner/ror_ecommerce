@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   include TransactionAccountable
   include UserCim
   include Presentation::UserPresenter
+  include UserEmailer
 
   acts_as_authentic do |config|
     config.validate_email_field
@@ -169,6 +170,14 @@ class User < ActiveRecord::Base
     role?(:super_administrator)
   end
 
+  # returns true or false if the user is a registered user or not
+  #
+  # @param [none]
+  # @return [ Boolean ]
+  def registered_user?
+    active?
+  end
+
   # returns your last cart or nil
   #
   # @param [none]
@@ -199,14 +208,6 @@ class User < ActiveRecord::Base
     default_shipping_address ? default_shipping_address : shipping_addresses.first
   end
 
-  # returns true or false if the user is a registered user or not
-  #
-  # @param [none]
-  # @return [ Boolean ]
-  def registered_user?
-    active?
-  end
-
   # sanitizes the saving of data.  removes white space and assigns a free account type if one doesn't exist
   #
   # @param  [ none ]
@@ -220,28 +221,6 @@ class User < ActiveRecord::Base
     self.account = Account.first unless account_id
   end
 
-  # email activation instructions after a user signs up
-  #
-  # @param  [ none ]
-  # @return [ none ]
-  def deliver_activation_instructions!
-    if Settings.uses_resque_for_background_emails
-      Resque.enqueue(Jobs::SendSignUpNotification, self.id)
-    else
-      Notifier.signup_notification(self.id).deliver
-    end
-  end
-
-  # place holder method for creating cim profiles for recurring billing
-  #
-  # @param  [ none ]
-  # @return [ String ] CIM id returned from the gateway
-  def get_cim_profile
-    return customer_cim_id if customer_cim_id
-    create_cim_profile
-    customer_cim_id
-  end
-
   # name and first line of address (used by credit card gateway to descript the merchant)
   #
   # @param  [ none ]
@@ -250,39 +229,12 @@ class User < ActiveRecord::Base
     [name, default_shipping_address.try(:address_lines)].compact.join(', ')
   end
 
-  # Find users that have signed up for the subscription
-  #
-  # @params [ none ]
-  # @return [ Arel ]
-  def self.find_subscription_users
-    where('account_id NOT IN (?)', Account::FREE_ACCOUNT_IDS )
-  end
-
   # include addresses in Find
   #
   # @params [ none ]
   # @return [ Arel ]
   def include_default_addresses
     includes([:default_billing_address, :default_shipping_address, :account])
-  end
-
-  # paginated results from the admin User grid
-  #
-  # @param [Optional params]
-  # @return [ Array[User] ]
-  def self.admin_grid(params = {})
-    includes(:roles).first_name_filter(params[:first_name]).
-                     last_name_filter(params[:last_name]).
-                     email_filter(params[:email])
-  end
-
-  def deliver_password_reset_instructions!
-    self.reset_perishable_token!
-    if Settings.uses_resque_for_background_emails
-      Resque.enqueue(Jobs::SendPasswordResetInstructions, self.id)
-    else
-      Notifier.password_reset_instructions(self.id).deliver rescue puts( 'do nothing...  dont blow up over a password reset email')
-    end
   end
 
   def number_of_finished_orders
@@ -295,6 +247,24 @@ class User < ActiveRecord::Base
 
   def store_credit_amount
     store_credit.amount
+  end
+
+  # Find users that have signed up for the subscription
+  #
+  # @params [ none ]
+  # @return [ Arel ]
+  def self.find_subscription_users
+    where('users.account_id NOT IN (?)', Account::FREE_ACCOUNT_IDS )
+  end
+
+  # paginated results from the admin User grid
+  #
+  # @param [Optional params]
+  # @return [ Array[User] ]
+  def self.admin_grid(params = {})
+    includes(:roles).first_name_filter(params[:first_name]).
+                     last_name_filter(params[:last_name]).
+                     email_filter(params[:email])
   end
 
   private
@@ -325,34 +295,13 @@ class User < ActiveRecord::Base
     self.crypted_password.blank?
   end
 
-  #def create_cim_profile
-  #  return true if customer_cim_id
-  #  #Login to the gateway using your credentials in environment.rb
-  #  @gateway = GATEWAY
-  #
-  #  #setup the user object to save
-  #  @user = {:profile => user_profile}
-  #
-  #  #send the create message to the gateway API
-  #  response = @gateway.create_customer_profile(@user)
-  #
-  #  if response.success? and response.authorization
-  #    update_attributes({:customer_cim_id => response.authorization})
-  #    return true
-  #  end
-  #  return false
-  #end
-
   def subscribe_to_newsletters
     newsletter_ids = Newsletter.where(:autosubscribe => true).pluck(:id)
     self.newsletter_ids = newsletter_ids
   end
 
-  def user_profile
-    return {:merchant_customer_id => id, :email => email, :description => merchant_description}
-  end
-
   def before_validation_on_create
     self.access_token = SecureRandom::hex(9+rand(6)) if access_token.nil?
   end
+
 end
