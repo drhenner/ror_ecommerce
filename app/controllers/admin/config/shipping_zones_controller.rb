@@ -43,7 +43,6 @@ class Admin::Config::ShippingZonesController < Admin::Config::BaseController
 
   protected
 
-
   def allowed_params
     params.require(:shipping_zone).permit(:name)
   end

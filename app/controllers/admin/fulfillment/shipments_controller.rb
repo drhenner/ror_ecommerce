@@ -53,7 +53,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
     @shipment = Shipment.find(params[:id])
 
     respond_to do |format|
-      if @shipment.update_attributes(params[:shipment])
+      if @shipment.update_attributes(allowed_params)
         format.html { redirect_to(admin_fulfillment_shipment_path(@shipment, :order_id => @shipment.order.number), :notice => 'Shipment was successfully updated.') }
       else
         form_info
@@ -93,6 +93,10 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   end
 
   private
+
+  def allowed_params
+    params.require(:shipment).permit!
+  end
 
   def load_info
     @order = Order.includes([:shipments, {:order_items => [:shipment, {:variant => :product}]}]).find_by_number(params[:order_id])

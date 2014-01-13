@@ -55,7 +55,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   private
 
   def allowed_params
-    params.require(:prototype).permit( :name, :active, :property_ids )
+    params.require(:prototype).permit( :name, :active, :property_ids => [] )
   end
 
   def sort_column

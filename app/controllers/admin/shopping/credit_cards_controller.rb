@@ -16,7 +16,7 @@ class Admin::Shopping::CreditCardsController < Admin::Shopping::BaseController
 
   # POST /admin/order/credit_cards
   def create
-    @credit_card = session_admin_cart[:user].credit_cards.new(params[:credit_card])
+    @credit_card = session_admin_cart[:user].credit_cards.new(allowed_params)
 
     respond_to do |format|
       if @credit_card.save
@@ -25,5 +25,10 @@ class Admin::Shopping::CreditCardsController < Admin::Shopping::BaseController
         format.html { render :action => "new" }
       end
     end
+  end
+  private
+
+  def allowed_params
+    params.require(:credit_card).permit!
   end
 end
