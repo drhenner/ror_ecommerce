@@ -13,7 +13,11 @@ class UserSessionsController < ApplicationController
       ## if there is a cart make sure the user_id is correct
       set_user_to_cart_items
       flash[:notice] = I18n.t('login_successful')
-      redirect_back_or_default root_url
+      if @user_session.record.admin?
+        redirect_back_or_default admin_users_url
+      else
+        redirect_back_or_default root_url
+      end
     else
       @user = User.new(user_params)
       redirect_to login_url, :alert => I18n.t('login_failure')
