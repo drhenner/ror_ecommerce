@@ -23,13 +23,13 @@ describe Admin::Inventory::OverviewsController do
 
   it "update action should render edit template when model is invalid" do
     Product.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @product.id
+    put :update, :id => @product.id, :product => {:name => 'blah'}
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     Product.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @product.id
+    put :update, :id => @product.id, :product => {:name => 'blah'}
     response.should redirect_to(admin_inventory_overviews_url())
   end
 end

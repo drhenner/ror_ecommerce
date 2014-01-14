@@ -3,8 +3,8 @@
 class ImageGroup < ActiveRecord::Base
   #attr_accessible :name, :product_id, :images_attributes
 
-  validates :name,  :presence => true
-  validates :product_id,  :presence => true
+  validates :name,        presence: true
+  validates :product_id,  presence: true
 
   belongs_to :product
   has_many :variants
