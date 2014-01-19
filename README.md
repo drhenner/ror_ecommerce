@@ -8,6 +8,7 @@ They will be addressed ASAP.
 Please look at the [homepage](http://www.ror-e.com) for more details.  Or take a look at the [github page](http://drhenner.github.com/ror_ecommerce/index.html)
 
 ![RoR Ecommerce](http://ror-e.com/images/logo.png "ROR Ecommerce").
+[![Code Climate](https://codeclimate.com/github/drhenner/ror_ecommerce.png)](https://codeclimate.com/github/drhenner/ror_ecommerce)
 
 This is a Rails e-commerce platform.
 ROR Ecommerce is a *Rails 4 application* with the intent to allow developers to create an ecommerce solution easily.
