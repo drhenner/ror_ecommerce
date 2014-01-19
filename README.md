@@ -217,10 +217,15 @@ Start Solr before starting your server:
 
     rake sunspot:solr:start
 
-Go to the bottom of `product.rb` and uncomment:
+Go to `product.rb` and uncomment:
 
 ```ruby
-Product.class_eval
+#include ProductSolr
+```
+
+Also remove the method:
+```ruby
+def self.standard_search
 ```
 
 Take a look at setting up Solr - [Solr in 5 minutes](http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less)

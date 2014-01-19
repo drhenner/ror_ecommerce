@@ -29,6 +29,7 @@ class Product < ActiveRecord::Base
   friendly_id :permalink, use: :finders
   include Presentation::ProductPresenter
   include ProductFilters
+  #include ProductSolr # If you want to use SOLR search uncomment
 
   serialize :product_keywords, Array
 
@@ -240,28 +241,3 @@ class Product < ActiveRecord::Base
                             ].join(': ')
     end
 end
-
-## If you want to use SOLR search uncomment the following:
-=begin
-    Product.class_eval do
-      searchable do
-        text    :name, :default_boost => 2
-        text      :product_keywords#, :multiple => true
-        text      :description
-        time      :deleted_at
-      end
-
-      def self.standard_search(args, params = {})
-        params[:rows] ||= 15
-        params[:page] ||= 1
-        Product.search(:include => [:properties, :images]) do
-          keywords(args)
-          any_of do
-            with(:deleted_at).greater_than(Time.zone.now)
-            with(:deleted_at, nil)
-          end
-          paginate page: params[:page].to_i, per_page: params[:rows].to_i
-        end
-      end
-    end
-=end
