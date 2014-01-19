@@ -28,6 +28,7 @@ class Product < ActiveRecord::Base
   extend FriendlyId
   friendly_id :permalink, use: :finders
   include Presentation::ProductPresenter
+  include ProductFilters
 
   serialize :product_keywords, Array
 
@@ -51,7 +52,7 @@ class Product < ActiveRecord::Base
 
 
   before_validation :sanitize_data
-  before_validation :not_active_on_create!, :on => :create
+  before_validation :not_active_on_create!, on: :create
   before_save :create_content
 
   accepts_nested_attributes_for :variants,           reject_if: proc { |attributes| attributes['sku'].blank? }
@@ -60,11 +61,13 @@ class Product < ActiveRecord::Base
 
   validates :shipping_category_id,  presence: true
   validates :product_type_id,       presence: true
-  validates :name,                  presence: true,   length: { :maximum => 165 }
-  validates :description_markup,    presence: true,   length: { :maximum => 2255 },     :if => :active
-  validates :meta_keywords,         presence: true,        length: { :maximum => 255 }, :if => :active
-  validates :meta_description,      presence: true,        length: { :maximum => 255 }, :if => :active
-  validates :permalink,             uniqueness: true,      length: { :maximum => 150 }
+  validates :name,                  presence: true,   length: { maximum: 165 }
+  validates :description_markup,    presence: true,   length: { maximum: 2255 },     if: :active
+  validates :meta_keywords,         presence: true,        length: { maximum: 255 }, if: :active
+  validates :meta_description,      presence: true,        length: { maximum: 255 }, if: :active
+  validates :permalink,             uniqueness: true,      length: { maximum: 150 }
+
+  validate  :ensure_available
 
   def hero_variant
     active_variants.detect{|v| v.master } || active_variants.first
@@ -85,13 +88,13 @@ class Product < ActiveRecord::Base
   # @param [Optional Symbol] the size of the image expected back
   # @return [String] name of the file to show from the public folder
   def featured_image(image_size = :small)
-    Rails.cache.fetch("Product-featured_image-#{id}-#{image_size}", :expires_in => 3.hours) do
+    Rails.cache.fetch("Product-featured_image-#{id}-#{image_size}", expires_in: 3.hours) do
       images.first ? images.first.photo.url(image_size) : "no_image_#{image_size.to_s}.jpg"
     end
   end
 
   def image_urls(image_size = :small)
-    Rails.cache.fetch("Product-image_urls-#{id}-#{image_size}", :expires_in => 3.hours) do
+    Rails.cache.fetch("Product-image_urls-#{id}-#{image_size}", expires_in: 3.hours) do
       images.empty? ? ["no_image_#{image_size.to_s}.jpg"] : images.map{|i| i.photo.url(image_size) }
     end
   end
@@ -145,7 +148,7 @@ class Product < ActiveRecord::Base
   # @param [args]
   # @param [params]  :rows, :page
   # @return [ Product ]
-  def self.standard_search(args, params = {:page => 1, :per_page => 15})
+  def self.standard_search(args, params = {page: 1, per_page: 15})
       Product.includes( [:properties, :images]).active.
               where(['products.name LIKE ? OR products.meta_keywords LIKE ?', "%#{args}%", "%#{args}%"]).
               paginate(params)
@@ -191,71 +194,9 @@ class Product < ActiveRecord::Base
   def brand_name
     brand_id ? brand.name : ''
   end
-  # paginated results from the admin products grid
-  #
-  # @param [Optional params]
-  # @param [Optional Boolean] the state of the product you are searching (active == true)
-  # @return [ Array[Product] ]
-  def self.admin_grid(params = {}, active_state = nil)
-    grid = includes(:variants).
-                deleted_at_filter(active_state).
-                name_filter(params[:name]).
-                product_type_filter( params[:product_type_id] ).
-                shipping_category_filter(params[:shipping_category_id]).
-                available_at_gt_filter(params[:available_at_gt]).
-                available_at_lt_filter(params[:available_at_lt])
-  end
 
   private
 
-    def self.available_at_lt_filter(available_at_lt)
-      if available_at_lt.present?
-        where("products.available_at < ?", available_at_lt)
-      else
-        all
-      end
-    end
-
-    def self.available_at_gt_filter(available_at_gt)
-      if available_at_gt.present?
-        where("products.available_at > ?", available_at_gt)
-      else
-        all
-      end
-    end
-    def self.shipping_category_filter(shipping_category_id)
-      if shipping_category_id.present?
-        where("products.shipping_category_id = ?", shipping_category_id)
-      else
-        all
-      end
-    end
-
-    def self.product_type_filter(product_type_id)
-      if product_type_id.present?
-        where("products.product_type_id = ?", product_type_id)
-      else
-        all
-      end
-    end
-
-    def self.name_filter(name)
-      if name.present?
-        where("products.name LIKE ?", "#{name}%")
-      else
-        all
-      end
-    end
-
-    def self.deleted_at_filter(active_state)
-      if active_state
-        active
-      elsif active_state == false##  note nil != false
-        where(['products.deleted_at IS NOT NULL AND products.deleted_at <= ?', Time.zone.now.to_s(:db)])
-      else
-        all
-      end
-    end
     def create_content
       self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
     end
@@ -279,6 +220,13 @@ class Product < ActiveRecord::Base
     def sanitize_meta_description
       if name && description.present? && meta_description.blank?
         self.meta_description = [name.first(55), description.remove_hyper_text.first(197)].join(': ')
+      end
+    end
+
+    def ensure_available
+      if active? && deleted_at_changed?
+        self.errors.add(:base, 'There must be active variants.')  if active_variants.blank?
+        self.errors.add(:base, 'Variants must have inventory.')   unless active_variants.any?{|v| v.is_available? }
       end
     end
 
@@ -312,7 +260,7 @@ end
             with(:deleted_at).greater_than(Time.zone.now)
             with(:deleted_at, nil)
           end
-          paginate :page => params[:page].to_i, :per_page => params[:rows].to_i
+          paginate page: params[:page].to_i, per_page: params[:rows].to_i
         end
       end
     end

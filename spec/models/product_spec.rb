@@ -166,14 +166,44 @@ describe Product, "class methods" do
 
   context "#standard_search(args)" do
     it "should search products" do
-      product1  = create(:product, :meta_keywords => 'no blah', :name => 'blah')
-      product2  = create(:product, :meta_keywords => 'tester blah')
+      product1  = create(:product, meta_keywords: 'no blah', name: 'blah')
+      product2  = create(:product, meta_keywords: 'tester blah')
+      Product.any_instance.stubs(:ensure_available).returns(true)
       product1.activate!
       product2.activate!
       args = 'tester'
       products = Product.standard_search(args)
       products.include?(product1).should be_false
       products.include?(product2).should be_true
+    end
+  end
+
+  context '.activate!' do
+    it "should activate the product " do
+      product = create(:product)
+      variant = create(:variant, product: product)
+      variant.add_count_on_hand(1)
+      product.activate!
+      product.reload
+      expect(product.active?).to be_true
+    end
+
+    it "should not activate a product without variants" do
+      product = create(:product)
+      product.activate!
+      product.reload
+      expect(product.active?).to be_false
+    end
+
+    it "should not activate a product without inventory" do
+      product = create(:product)
+      variant = create(:variant, product: product)
+      variant.inventory.count_on_hand = 0
+      variant.inventory.count_pending_to_customer = 0
+      variant.inventory.save!
+      product.activate!
+      product.reload
+      expect(product.active?).to be_false
     end
   end
 
@@ -186,6 +216,7 @@ describe Product, "class methods" do
     it "should return Products " do
       product1 = create(:product)
       product2 = create(:product)
+      Product.any_instance.stubs(:ensure_available).returns(true)
       product1.activate!
       product2.activate!
       admin_grid = Product.admin_grid({}, true)
