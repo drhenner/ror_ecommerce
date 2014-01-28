@@ -24,8 +24,8 @@ gem 'bluecloth',      '~> 2.2.0'
 gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
-gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
-#gem 'compass-rails',  git: 'git://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
+gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git'
+#gem 'compass-rails',  git: 'git://github.com/Compass/compass-rails.git'
 
 
 gem 'dynamic_form'
@@ -69,9 +69,8 @@ group :development do
   gem "autotest-rails-pure"
   gem "better_errors", '~> 0.9.0'
   gem "binding_of_caller", '~> 0.7.2'
+  gem 'debugger'#, '~> 1.6.1'
   gem "rails-erd"
-  gem 'byebug', :platforms => [:mingw_20, :mri_20, :ruby_20]
-  gem 'pry-byebug', :platforms => [:mingw_20, :mri_20, :ruby_20]
 
   # YARD AND REDCLOTH are for generating yardocs
   gem 'yard'
@@ -91,15 +90,6 @@ group :test do
   gem 'rspec-rails', '~> 2.12.2'
 
   gem 'email_spec'
-
   gem "faker"
-  gem "autotest", '~> 4.4.6'
-  gem "autotest-rails-pure"
-
-  if RUBY_PLATFORM =~ /darwin/
-    #gem "autotest-fsevent", '~> 0.2.5'
-  end
-  gem "autotest-growl"
-  gem "ZenTest", '4.9.1'#, '4.6.2'
 
 end
