@@ -100,7 +100,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       params.require(:product).permit(:name, :description, :product_keywords, :set_keywords, :product_type_id,
                                       :prototype_id, :shipping_category_id, :permalink, :available_at, :deleted_at,
                                       :meta_keywords, :meta_description, :featured, :description_markup, :brand_id,
-                                      product_properties_attributes: [:product_id, :property_id, :position, :description])
+                                      product_properties_attributes: [:id, :product_id, :property_id, :position, :description])
     end
 
     def form_info
