@@ -104,6 +104,8 @@ If you just want to see what ror_ecommerce looks like, before you enter any prod
 
     rake db:seed_fake
 
+If you have not already done so point your browser to http://lvh.me:3000/admin/overviews and set up the admin user.
+
 You should now have a minimal dataset, and be able to see a demo of the various parts of the app.
 Note: make sure you have `config/settings.yml` set up correctly before you try to checkout.
 Also, please take a look at [The 15 minute e-commerce video](http://www.ror-e.com/info/videos/7).
