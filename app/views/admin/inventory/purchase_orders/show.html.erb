@@ -1,0 +1,69 @@
+<h3>Purchase Order <%= @purchase_order %></h3>
+<div class='row'>
+  <div class=" large-4 columns">
+    <div>
+    <label>Supplier</label>
+    <%= @purchase_order.supplier.name %>
+    </div>
+
+    <div>
+    <label>Invoice Number</label>
+    <%= @purchase_order.invoice_number %>
+    </div>
+
+    <div>
+    <label>Total Cost</label>
+    <%= @purchase_order.total_cost %>
+    </div>
+
+    <div>
+    <label>Tracking Number</label>
+    <%= @purchase_order.tracking_number %>
+    </div>
+  </div>
+  <div class=" large-8 columns">
+    <div>
+    <label>Notes</label>
+    <%= @purchase_order.notes %>
+    </div>
+
+    <div>
+    <label>Ordered At</label>
+    <div class='date-select'>
+      <% if !!@purchase_order.ordered_at %>
+        <%= I18n.l @purchase_order.ordered_at, format: :us_time %>
+      <% else %>
+        ---
+      <% end %>
+    </div>
+    </div>
+
+    <div>
+    <label>Estimated Arrival on</label>
+    <div class='date-select'>
+      <% if !!@purchase_order.estimated_arrival_on %>
+        <%= I18n.l @purchase_order.estimated_arrival_on, format: :us_date %>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+<div class='row top20'>
+  <div class="six columns panel" >
+    <label>Details:</label>
+    <% @purchase_order.purchase_order_variants.each do |po_variant| %>
+      <div>
+        Variant: <%= po_variant.variant.name %><br/>
+        Quantity: <%= po_variant.quantity %><br/>
+        Cost: <%= po_variant.cost %><br/>
+        Received: <%= !!po_variant.is_received %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if !@purchase_order.receive_po %>
+  <%= link_to 'Receive PO', edit_admin_inventory_receiving_path(@purchase_order), class: "button" %> |
+<% end %>
+<%= link_to 'Back', admin_inventory_purchase_orders_path %>
+<div class='clearfix'>&nbsp;</div>

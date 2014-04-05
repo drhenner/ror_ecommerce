@@ -38,7 +38,13 @@
     </thead>
     <% @purchase_orders.each do |order| %>
       <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to order.supplier_name, edit_admin_inventory_purchase_order_path(order) %></td>
+        <td>
+          <% if order.received? %>
+            <%= link_to order.supplier_name, admin_inventory_purchase_order_path(order) %>
+          <% else %>
+            <%= link_to order.supplier_name, edit_admin_inventory_purchase_order_path(order) %>
+          <% end %>
+        </td>
         <td><%= order.invoice_number %></td>
         <td><%= order.tracking_number %></td>
         <td><%= order.display_estimated_arrival_on %></td>
