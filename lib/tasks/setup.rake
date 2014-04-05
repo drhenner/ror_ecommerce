@@ -26,5 +26,7 @@ namespace :db do
     else
       puts 'IT APPEAR YOU ALREADY HAVE DATA. PLEASE truncate your DB or take a look because it might be ready to go!!'
     end
+
+    Product.update_all(deleted_at: nil)
   end
 end
