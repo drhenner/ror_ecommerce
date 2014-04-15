@@ -185,6 +185,15 @@ class Cart < ActiveRecord::Base
              update_all("item_type_id = #{ItemType::PURCHASED_ID}") if !order.variant_ids.empty?
   end
 
+  def merge_with_previous_cart!
+    if user_id && previous_cart
+      current_items = cart_items.map(&:variant_id)
+      previous_cart.cart_items.each do |item|
+        self.add_variant(item.variant_id, item.user, item.quantity) unless current_items.include?(item.variant_id)
+      end
+    end
+  end
+
   private
   def update_shopping_cart(cart_item,customer, qty = 1)
     if customer
