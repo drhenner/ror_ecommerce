@@ -11,7 +11,8 @@ class UserSessionsController < ApplicationController
       session[:authenticated_at] = Time.now
       cookies[:insecure] = false
       ## if there is a cart make sure the user_id is correct
-      set_user_to_cart_items
+      set_user_to_cart_items(@user_session.record)
+      merge_carts
       flash[:notice] = I18n.t('login_successful')
       if @user_session.record.admin?
         redirect_back_or_default admin_users_url
@@ -37,12 +38,4 @@ class UserSessionsController < ApplicationController
     params.require(:user_session).permit(:password, :password_confirmation, :first_name, :last_name, :email)
   end
 
-  def set_user_to_cart_items
-    if session_cart.user_id != @user_session.record.id
-      session_cart.update_attribute(:user_id, @user_session.record.id )
-    end
-    session_cart.cart_items.each do |item|
-      item.update_attribute(:user_id, @user_session.record.id ) if item.user_id != @user_session.record.id
-    end
-  end
 end

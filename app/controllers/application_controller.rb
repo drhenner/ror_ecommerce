@@ -130,6 +130,21 @@ class ApplicationController < ActionController::Base
     @random_user = cookies[:hadean_uid] ? User.find_by_persistence_token(cookies[:hadean_uid]) : nil
   end
 
+  def merge_carts
+    if !!current_user
+      session_cart.merge_with_previous_cart!
+    end
+  end
+
+  def set_user_to_cart_items(user)
+    if session_cart.user_id != user.id
+      session_cart.update_attribute(:user_id, user.id )
+    end
+    session_cart.cart_items.each do |item|
+      item.update_attribute(:user_id, user.id ) if item.user_id != user.id
+    end
+  end
+
   ###  Authlogic helper methods
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
