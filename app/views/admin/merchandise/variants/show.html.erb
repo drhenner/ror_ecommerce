@@ -2,6 +2,7 @@
 
 <h2> Product: <%= @product.name %> (<%= '*' if @variant.master %><%= @variant.sku %>)</h2>
 
+<%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'button small' %>
 <%= link_to 'Edit Variant', edit_admin_merchandise_product_variant_path(@product, @variant), :class => 'button' %>
 
 <fieldset id="admin-product-names" class='span-12'>
