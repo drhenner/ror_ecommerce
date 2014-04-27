@@ -6,7 +6,7 @@
 
 <% content_for :sidemenu do %>
   <div class='admin_filters'>
-    <%= form_tag admin_merchandise_product_variants_path(@product), :method => 'get', :id => "variants_search" do %>
+    <%= form_tag admin_merchandise_product_variants_path(@product), method: 'get', id: "variants_search" do %>
       <p>
         <ul class=' search_boxes'>
           <!--
@@ -57,16 +57,16 @@
 
   </div>
 
-  <div id="admin_new_variant_button" class="admin_new_button last">
+  <div id="admin_new_variant_button" class="admin_new_button three columns">
     <%= link_to "New Variant", new_admin_merchandise_product_variant_path(@product),
-                                :class  => "button green",
+                                :class  => "button green small",
                                 :id     => "new_product_button" %>
   </div>
 
-  <div id="admin_product_button" class="admin_product_button last">
-    <%= link_to "View Product", admin_merchandise_product_path(@product),
-                                :class  => "button spade",
-                                :id     => "new_product_button" %>
+  <div id="admin_product_button" class="admin_product_button three columns">
+    <%= link_to "Back to Product", admin_merchandise_product_path(@product),
+                                :class  => "button spade small",
+                                :id     => "" %>
   </div>
 
 </div>
