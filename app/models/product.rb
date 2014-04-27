@@ -184,7 +184,7 @@ class Product < ActiveRecord::Base
   end
 
   def available?
-    active
+    has_shipping_method? && has_active_variants?
   end
 
   # returns the brand's name or a blank string
@@ -196,7 +196,15 @@ class Product < ActiveRecord::Base
     brand_id ? brand.name : ''
   end
 
+  def has_shipping_method?
+    shipping_category.shipping_rates.exists?
+  end
+
   private
+
+    def has_active_variants?
+      active_variants.any?{|v| v.is_available? }
+    end
 
     def create_content
       self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?

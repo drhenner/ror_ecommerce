@@ -111,52 +111,101 @@ describe Product, ".tax_rate" do
 end
 
 describe Product, ".instance methods" do
-  before(:each) do
-    product  = create(:product)
-    @previous_master = create(:variant, :product => product, :master => true, :price => 15.05, :deleted_at => (Time.zone.now - 1.day ))
-    create(:variant, :product => product, :master => true, :price => 15.01)
-    create(:variant, :product => product, :master => false, :price => 10.00)
-    @product  = Product.find(product.id)
-  end
-
-  context "featured_image" do
-
-    it 'should return no_image url' do
-      @product.featured_image.should        == 'no_image_small.jpg'
-      @product.featured_image(:mini).should == 'no_image_mini.jpg'
+  context 'with three variants' do
+    before(:each) do
+      product  = create(:product)
+      @previous_master = create(:variant, :product => product, :master => true, :price => 15.05, :deleted_at => (Time.zone.now - 1.day ))
+      create(:variant, :product => product, :master => true, :price => 15.01)
+      create(:variant, :product => product, :master => false, :price => 10.00)
+      @product  = Product.find(product.id)
     end
 
-  end
+    context "featured_image" do
 
-  context ".price" do
-    it 'should return the lowest price' do
-      @product.price.should == 10.00
+      it 'should return no_image url' do
+        @product.featured_image.should        == 'no_image_small.jpg'
+        @product.featured_image(:mini).should == 'no_image_mini.jpg'
+      end
+
+    end
+
+    context ".price" do
+      it 'should return the lowest price' do
+        @product.price.should == 10.00
+      end
+    end
+
+    context ".set_keywords=(value)" do
+      it 'should set keywords' do
+        @product.set_keywords             =  'hi, my, name, is, Dave'
+        @product.product_keywords.should  == ['hi', 'my', 'name', 'is', 'Dave']
+        @product.set_keywords.should      == 'hi, my, name, is, Dave'
+      end
+    end
+
+    context ".display_price_range(j = ' to ')" do
+      it 'should return the price range' do
+        @product.display_price_range.should == '10.0 to 15.01'
+      end
+    end
+
+    context ".price_range" do
+      it 'should return the price range' do
+        @product.price_range.should == [10.0, 15.01]
+      end
+    end
+
+    context ".price_range?" do
+      it 'should return the price range' do
+        @product.price_range?.should be_true
+      end
     end
   end
 
-  context ".set_keywords=(value)" do
-    it 'should set keywords' do
-      @product.set_keywords             =  'hi, my, name, is, Dave'
-      @product.product_keywords.should  == ['hi', 'my', 'name', 'is', 'Dave']
-      @product.set_keywords.should      == 'hi, my, name, is, Dave'
+  context 'without variants' do
+    before(:each) do
+      @product  = FactoryGirl.create(:product)
     end
-  end
 
-  context ".display_price_range(j = ' to ')" do
-    it 'should return the price range' do
-      @product.display_price_range.should == '10.0 to 15.01'
+    context '.available?' do
+      context 'with a shipping rate but no inventory' do
+        it 'should be false' do
+          inventory   = create(:inventory, count_on_hand: 100, count_pending_to_customer: 100)
+          @variant    = create(:variant, product: @product, inventory: inventory)
+          FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
+          expect(@product.available?).to be_false
+        end
+      end
+
+      context 'with inventory but no shipping rate' do
+        it 'should be false' do
+          inventory   = create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
+          @variant    = create(:variant, product: @product, inventory: inventory)
+          expect(@product.available?).to be_false
+        end
+      end
+
+      context 'with a shipping rate & inventory' do
+        it 'should be true' do
+          inventory   = create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
+          @variant    = create(:variant, product: @product, inventory: inventory)
+          FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
+          expect(@product.available?).to be_true
+        end
+      end
     end
-  end
 
-  context ".price_range" do
-    it 'should return the price range' do
-      @product.price_range.should == [10.0, 15.01]
-    end
-  end
+    context '.has_shipping_method?' do
+      it 'should be false without a shipping rate' do
+        expect(@product.has_shipping_method?).to be_false
+      end
 
-  context ".price_range?" do
-    it 'should return the price range' do
-      @product.price_range?.should be_true
+      it 'should be true with a shipping rate' do
+        inventory   = create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
+        @variant    = create(:variant, product: @product, inventory: inventory)
+        FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
+        expect(@product.has_shipping_method?).to be_true
+      end
     end
   end
 end
