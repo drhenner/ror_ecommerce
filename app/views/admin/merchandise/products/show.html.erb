@@ -3,16 +3,18 @@
 <h3>Product: <%= @product.name %></h3>
 
 <span style='color:<%= @product.active ? "#3A3" : "#C33" %>; float:right; margin-top: -45px'>
-  <% if @product.available? %>
-    <%= link_to 'Active', admin_merchandise_product_path(@product),
+  <% if @product.active? %>
+    <%= link_to 'Make Inactive', admin_merchandise_product_path(@product),
                           :method => :delete,
                           :data => {:confirm => "This will inactivate the product,  Are you sure?"},
                           :class => 'button green-button' %>
-  <% else %>
-    <%= link_to 'Not Active', activate_admin_merchandise_product_path(@product),
+  <% elsif @product.available? %>
+    <%= link_to 'Activate', activate_admin_merchandise_product_path(@product),
                               :method => 'PUT',
                               :data => {:confirm => "This will activate the product,  Are you sure?"},
                               :class => 'button red-button' %>
+  <% else %>
+    Not Ready for Production
   <% end %>
 </span>
 
@@ -34,6 +36,26 @@
 
   <label>Shipping Category</label>
   <p><%= @product.shipping_category.name %></p>
+
+  <label>Shipping Details</label>
+  <table>
+    <% rates = @product.shipping_category.shipping_rates %>
+    <tr><th><%= link_to 'Shipping Zone', admin_config_shipping_rates_path %></th><th></th></tr>
+    <% @shipping_zones.each do |zone| %>
+      <tr>
+        <td><%= zone.name %></td>
+        <td>
+          <% product_rates = rates.map { |rate| rate.shipping_method.name if rate.shipping_method.shipping_zone_id == zone.id }.compact %>
+          <% if product_rates.empty? %>
+            Not Available
+          <% else %>
+            <%= product_rates.join('</br>').html_safe %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
 </fieldset>
 
 <fieldset>

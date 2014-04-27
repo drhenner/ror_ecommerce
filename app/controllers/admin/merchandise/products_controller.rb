@@ -10,7 +10,8 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product        = Product.find(params[:id])
+    @shipping_zones =  ShippingZone.all
     respond_with(@product)
   end
 
