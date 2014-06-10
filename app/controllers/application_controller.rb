@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
                 :product_types,
                 :myaccount_tab,
                 :select_countries,
-                :customer_confirmation_page_view
+                :customer_confirmation_page_view,
+                :sort_direction
 
   before_filter :secure_session
 
@@ -168,6 +169,10 @@ class ApplicationController < ActionController::Base
 
   def select_countries
     @select_countries ||= Country.form_selector
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
   def cc_params

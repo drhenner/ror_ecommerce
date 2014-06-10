@@ -10,12 +10,14 @@
   </div>
 <% end %>
 
-<fieldset>
-  <label>Name</label>
-  <%= f.text_field :name %>
-
-  <label>Shipping Zone</label>
-  <%= f.select :shipping_zone_id, @shipping_zones %>
-</fieldset>
+<ul class='large-4'>
+  <li>
+    <label>Name</label>
+    <%= f.text_field :name %>
+  </li><li>
+    <label>Shipping Zone</label>
+    <%= f.select :shipping_zone_id, @shipping_zones %>
+  </li>
+</ul>
 
 <%= f.submit "Create", :class => "button" %>

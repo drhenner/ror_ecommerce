@@ -1,0 +1,19 @@
+<% if @country.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@country.errors.count, "error") %> prohibited this country from being saved:</h2>
+
+    <ul>
+    <% @country.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<ul>
+  <li class='field large-4 '>
+    <label>Shipping Zone</label>
+    <%= f.select :shipping_zone_id, shipping_zones, include_blank: true %>
+  </li>
+</ul>
+<%= f.submit "Update", class: "button" %>
