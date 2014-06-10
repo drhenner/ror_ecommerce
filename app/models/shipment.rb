@@ -61,13 +61,13 @@ class Shipment < ActiveRecord::Base
     order_items.size > 0
   end
 
-  # when the order has been shipped the inventory must be updated
-  #
-  # @param [none]
-  # @return [ Boolean ]
+  # when the order has been shipped
+  #   the inventory must be updated
   def ship_inventory
-    order_items.each{ |item| item.variant.subtract_pending_to_customer(1) }
-    order_items.each{ |item| item.variant.subtract_count_on_hand(1) }
+    order_items.each do |item|
+      item.variant.subtract_pending_to_customer(1)
+      item.variant.subtract_count_on_hand(1)
+    end
   end
 
   # mark the order as shipped when the item ships
