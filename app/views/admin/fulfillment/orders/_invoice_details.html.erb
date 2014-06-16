@@ -21,5 +21,5 @@
   </a>
 <% end %>
 <% if invoice.paid? && @order && @order.shipments.count == 0 %>
-  <%= link_to 'Create New Shipment', admin_fulfillment_shipments_path(:order_number => @order.number), :method => 'POST' %> for all items.
+  <%= link_to 'Create New Shipment', admin_fulfillment_shipments_path(order_number: @order.number), method: 'POST' %> for all items.
 <% end %>

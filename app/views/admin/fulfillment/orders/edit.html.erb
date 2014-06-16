@@ -49,16 +49,17 @@
 
 <div class='row'>
   <div class=' six large-6 ' style='text-align:left;'>
-    <div class='panel'>
-      <h4>Invoice</h4>
-      <% @order.invoices.each do |invoice| %>
-        <div id='invoice-line-<%= invoice.id %>' class='order-invoice' data-invoice_id='<%= invoice.id %>' data-order_id='<%= @order.id %>'>
-          <% if @order.invoices.last.id == invoice.id %>
-              <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoices.last } %>
-          <% end %>
+    <% @order.invoices.each do |invoice| %>
+      <div class='panel'>
+        <h4>Invoice</h4>
+        <div id='invoice-line-<%= invoice.id %>'
+             class='order-invoice'
+             data-invoice_id='<%= invoice.id %>'
+             data-order_id='<%= @order.id %>'>
+          <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoice } %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
   <div class=' six large-6 column'>
     <b>Return Merchandise Authorization:</b>
