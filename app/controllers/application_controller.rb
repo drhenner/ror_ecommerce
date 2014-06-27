@@ -15,8 +15,6 @@ class ApplicationController < ActionController::Base
                 :customer_confirmation_page_view,
                 :sort_direction
 
-  before_filter :secure_session
-
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
     if current_user && current_user.admin?
@@ -83,18 +81,6 @@ class ApplicationController < ActionController::Base
 
   def is_production_simulation
     false
-  end
-
-  def secure_session
-    if Rails.env == 'production' || is_production_simulation
-      if session_cart && !request.ssl?
-        cookies[:insecure] = true
-      else
-        cookies[:insecure] = false
-      end
-    else
-      cookies[:insecure] = false
-    end
   end
 
   def session_cart
