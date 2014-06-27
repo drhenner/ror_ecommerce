@@ -38,12 +38,13 @@ class Shopping::OrdersController < Shopping::BaseController
 
     if !@order.in_progress?
       session_cart.mark_items_purchased(@order)
+      session[:order_id] = nil
       flash[:error] = I18n.t('the_order_purchased')
       redirect_to myaccount_order_url(@order)
     elsif @credit_card.valid?
       if response = @order.create_invoice(@credit_card,
                                           @order.credited_total,
-                                          {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
+                                          { email: @order.email, billing_address: address, ip: @order.ip_address },
                                           @order.amount_to_credit)
         if response.succeeded?
           expire_all_browser_cache
@@ -70,7 +71,7 @@ class Shopping::OrdersController < Shopping::BaseController
     @tab = 'confirmation'
     if session[:last_order].present? && session[:last_order] == params[:id]
       session[:last_order] = nil
-      @order = Order.where(:number => params[:id]).includes({:order_items => :variant}).first
+      @order = Order.where(number: params[:id]).includes({order_items: :variant}).first
       render :layout => 'application'
     else
       session[:last_order] = nil
@@ -91,6 +92,7 @@ class Shopping::OrdersController < Shopping::BaseController
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new()
     @order.credited_total
   end
+
   def require_login
     if !current_user
       session[:return_to] = shopping_orders_url
