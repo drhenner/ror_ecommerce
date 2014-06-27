@@ -32,16 +32,11 @@ class Shopping::BaseController < ApplicationController
   end
 
   def not_secure?
-    !current_user || has_not_logged_in_recently? || user_visited_a_non_ssl_page_since_login?
+    !current_user || has_not_logged_in_recently?
   end
 
   def has_not_logged_in_recently?(minutes = 20)
     session[:authenticated_at].nil? || Time.now - session[:authenticated_at] > (60 * minutes)
-  end
-
-  ## this should happen every time the user goes to a non-SSL page
-  def user_visited_a_non_ssl_page_since_login?
-    cookies[:insecure].nil? || cookies[:insecure] == true
   end
 
   def session_order

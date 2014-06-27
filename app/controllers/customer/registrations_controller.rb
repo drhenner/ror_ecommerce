@@ -24,7 +24,6 @@ class Customer::RegistrationsController < ApplicationController
       set_user_to_cart_items(@user)
       cookies[:hadean_uid] = @user.access_token
       session[:authenticated_at] = Time.now
-      cookies[:insecure] = false
       flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
       redirect_back_or_default root_url
     else
