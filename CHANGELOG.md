@@ -1,3 +1,13 @@
+###2.0.1
+* RAILS 4.0.4
+* upgrade gems
+* autofill more on checkout
+* show all invoices created for an order in admin
+* edit shipping zone in admin
+* bugs (purchase )
+* merge carts after signing in
+* better UI
+
 ###2.0.0beta1
 
 * RAILS 4.0.0.rc1 YEAH BABY!
