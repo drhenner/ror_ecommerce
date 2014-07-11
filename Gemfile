@@ -2,19 +2,20 @@ source 'http://rubygems.org'
 ruby "2.0.0"
 
 ## Bundle rails:
-gem 'rails', '4.0.4'
+gem 'rails', '4.0.8'
 
 gem 'uglifier',     '>= 1.3.0'
 gem 'sass-rails',   '~> 4.0.0'
 
 gem 'actionpack-page_caching'
-gem "activemerchant", '~> 1.29.3'#, :lib => 'active_merchant'
+gem "activemerchant", '~> 1.29'#, :lib => 'active_merchant'
 gem "american_date"
 
 # Use https if you are pushing to HEROKU
 ##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
-gem 'authlogic', github: 'binarylogic/authlogic', ref: 'e4b2990d6282f3f7b50249b4f639631aef68b939'
-#gem 'authlogic',          "~> 3.3.0"
+#gem 'authlogic', github: 'binarylogic/authlogic', ref: 'e4b2990d6282f3f7b50249b4f639631aef68b939'
+gem 'authlogic'#,          "~> 3.3.0"
+gem 'scrypt'
 
 gem "asset_sync"
 gem 'awesome_nested_set', '~> 3.0.0.rc.1'
@@ -24,14 +25,14 @@ gem 'bluecloth',      '~> 2.2.0'
 gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
-gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git'
-#gem 'compass-rails',  git: 'git://github.com/Compass/compass-rails.git'
+#gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git'
+gem 'compass-rails',  git: 'git://github.com/Compass/compass-rails.git'
 
 
 gem 'dynamic_form'
 gem 'jbuilder'
 gem "friendly_id",    '~> 5.0.1'#, :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
-gem "jquery-rails"
+gem "jquery-rails",    '~> 3.1.1'
 gem 'jquery-ui-rails'
 gem 'json',           '~> 1.8.0'
 
@@ -56,7 +57,7 @@ gem 'will_paginate', '~> 3.0.4'
 gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do
-  gem 'mysql2', '~> 0.3.12'
+  gem 'mysql2', '~> 0.3.16'
   gem 'pg'
   gem 'rails_12factor'
 end

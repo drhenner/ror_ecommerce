@@ -7,8 +7,8 @@ FactoryGirl.define do
     bill_address    { |c| c.association(:address) }
     ship_address    { |c| c.association(:address) }
     active          true
-    calculated_at   Time.now
-    completed_at    Time.now
+    calculated_at   Time.zone.now
+    completed_at    Time.zone.now
 
     after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
   end
