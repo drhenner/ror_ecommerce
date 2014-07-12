@@ -1,7 +1,6 @@
 require 'printing/main_printer'
 module InvoicePrinter
   include MainPrinter
-  include ActionView::Helpers::NumberHelper
 
   def print_form(order_invoice)
     document = Prawn::Document.new do |pdf|
@@ -15,35 +14,27 @@ module InvoicePrinter
     print_png_background(pdf, png_background)
     print_logo(pdf)
   rescue OpenURI::HTTPError => e
-    pdf.bounding_box([20,720], :width => 120) do
-      pdf.draw_text "LOGO", {:size => 32, :at => [50,50]}
+    pdf.bounding_box([20,720], width: 120) do
+      pdf.draw_text "LOGO", { size: 32, at: [50,50] }
     end
   end
 
   def background_png
-    if Rails.env == 'development'
-      [Rails.root, '/app/assets/images/invoice_template.png'].join
-    else
-      URI.join(root_url, ActionController::Base.helpers.asset_path("invoice_template.png"))
-    end
+    image_uri(root_url, "invoice_template.png")
   end
 
   def logo_png
-    if Rails.env == 'development'
-      [Rails.root, '/app/assets/images/logos/logo.png'].join
-    else
-      URI.join(root_url, ActionController::Base.helpers.asset_path("logos/logo.png"))
-    end
+    image_uri(root_url, "logos/logo.png")
   end
 
   def print_png_background(pdf, png_background)
-    pdf.bounding_box([10,730], :width => 530) do
-      pdf.image open(png_background), :width => 519 if png_background && ENV['FOG_DIRECTORY'].present?
+    pdf.bounding_box([10,730], width: 530) do
+      pdf.image open(png_background), width: 519 if png_background && ENV['FOG_DIRECTORY'].present?
     end
   end
 
   def print_logo(pdf)
-    pdf.bounding_box([20,720], :width => 120) do
+    pdf.bounding_box([20,720], width: 120) do
       pdf.image open(logo_png) if ENV['FOG_DIRECTORY'].present?
     end
   end
@@ -66,26 +57,26 @@ module InvoicePrinter
   end
 
   def shipping_charges_details(pdf, invoice)
-    pdf.draw_text 'Shipping',      {:at => [130, 270 ]}
-    pdf.draw_text number_to_currency(invoice.order.shipping_charges),      {:at => [470, 270 ]}
+    pdf.draw_text 'Shipping',      { at: [130, 270] }
+    draw_currency_at(pdf, invoice.order.shipping_charges, [470, 270])
   end
 
   def coupon_details(pdf, invoice)
     if invoice.order.coupon_id
-      pdf.draw_text 'Coupon',      {:at => [130, 257]}
-      pdf.draw_text number_to_currency(invoice.order.coupon_amount),      {:at => [470, 257]}
+      pdf.draw_text 'Coupon',      { at: [130, 257] }
+      draw_currency_at(pdf, invoice.order.coupon_amount, [470, 257])
     end
   end
 
   def deal_details(pdf, invoice)
     if invoice.order.deal_amount && invoice.order.deal_amount > 0.0
-      pdf.draw_text 'Deal',      {:at => [130, 244]}
-      pdf.draw_text number_to_currency(invoice.order.deal_amount),      {:at => [470, 244]}
+      pdf.draw_text 'Deal',      { at: [130, 244] }
+      draw_currency_at(pdf, invoice.order.deal_amount, [470, 244])
     end
   end
 
   def final_price_details(pdf, invoice)
-    pdf.draw_text number_to_currency(invoice.order.total_tax_charges.round_at(2)),      {:at => [480, 175], :size => 10 }
+    draw_currency_at(pdf, invoice.order.total_tax_charges.round_at(2), [480, 175], 10)
   end
 
   def line_items_details(pdf, invoice)
@@ -96,8 +87,8 @@ module InvoicePrinter
   end
 
   def line_item_details(pdf, item, line_num)
-    pdf.draw_text item.variant.product_name,      {:at => [130, 420 - (line_num * 50) ]}
-    pdf.draw_text number_to_currency(item.price), {:at => [470, 420 - (line_num * 50) ]}
+    pdf.draw_text item.variant.product_name,      { at: [130, 420 - (line_num * 50) ] }
+    draw_currency_at(pdf, item.price, [470, 420 - (line_num * 50)])
   end
 
   def next_num
@@ -117,7 +108,7 @@ module InvoicePrinter
   end
 
   def print_header_details(pdf, invoice)
-    pdf.bounding_box([0,400], :width => 612) do
+    pdf.bounding_box([0,400], width: 612) do
       @invoice_yml.each do |info|
         if info.last['multiple_lines']
           print_multiple_lines(pdf, invoice, info)
@@ -132,8 +123,8 @@ module InvoicePrinter
     pdf.bounding_box(   [  info.last['arguements']['bounded_at'][0].to_i,
                           info.last['arguements']['bounded_at'][1].to_i
                         ],
-                          :width => info.last['arguements']['bounded_by'][0].to_i,
-                          :height => info.last['arguements']['bounded_by'][1].to_i
+                          width: info.last['arguements']['bounded_by'][0].to_i,
+                          height: info.last['arguements']['bounded_by'][1].to_i
                         ) do
       print_lines(pdf, invoice.send(info.last['method'].to_sym) )
     end

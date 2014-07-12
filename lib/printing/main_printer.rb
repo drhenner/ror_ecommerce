@@ -1,9 +1,11 @@
 module MainPrinter
+  include ActionView::Helpers::NumberHelper
+  DEFAULT_SIZE = 13
 
   def check_box(pdf,x_location,y_location, check_size = 12)
     pdf.text "X", :at => [x_location,y_location], :size => check_size
   end
-  
+
   # Converts the lines to actual text
   #
   # @param [pdf] pdf to be printed on
@@ -13,30 +15,43 @@ module MainPrinter
       pdf.text line
     end if lines
   end
-  
-  
+
+  def image_uri(url, name)
+    if Rails.env == 'development'
+      [Rails.root, "/app/assets/images/#{name}"].join
+    else
+      URI.join(url, ActionController::Base.helpers.asset_path(name))
+    end
+  end
+
+  # at is an array with X & Y...  [200, 100]
+  # amount in decimal  100.0  => 100 dollars
+  def draw_currency_at(pdf, amount, at, size = MainPrinter::DEFAULT_SIZE)
+    pdf.draw_text number_to_currency(amount), { at: at, size: size }
+  end
+
   # Converts the string to actual text
   #
   # @param [pdf] pdf to be printed on
   # @param [display_string] string to be printed
   # @param [yml_info] customization
   def print_line(pdf, display_string, yml_info)
-    
+
     arguements         = {}
     if yml_info['arguements']['at']
       x_loc = yml_info['arguements']['at'][0].to_f
       y_loc = yml_info['arguements']['at'][1].to_f
       arguements[:at]    = [x_loc, y_loc]
     end
-    
+
     if yml_info['arguements']['size']
       arguements[:size]  = yml_info['arguements']['size']
     else
-      arguements[:size]  = 13
+      arguements[:size]  = MainPrinter::DEFAULT_SIZE
     end
     pdf.draw_text display_string, arguements
   end
-  
+
   ## method: checker_form(pdf)
   ## This is a method to see the x-y locations throughout your document
   # This is a good method for developing a new form
@@ -58,9 +73,9 @@ module MainPrinter
   end
 
   def checker_background(pdf, png_background = nil)
-      pdf.bounding_box([10,730], :width => 530) do
-          pdf.image png_background, :width => 519 if png_background
-          checker_form(pdf)
-      end
+    pdf.bounding_box([10,730], :width => 530) do
+      pdf.image png_background, :width => 519 if png_background
+      checker_form(pdf)
+    end
   end # end of print_form method
 end
