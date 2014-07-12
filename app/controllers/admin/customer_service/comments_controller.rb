@@ -18,7 +18,7 @@ class Admin::CustomerService::CommentsController < Admin::CustomerService::BaseC
     @comment.user_id = customer.id
     @comment.created_by = current_user.id
     if @comment.save
-      redirect_to [:admin, :customer_service, customer, @comment], :notice => "Successfully created comment."
+      redirect_to [:admin, :customer_service, customer, @comment], notice: "Successfully created comment."
     else
       render :new
     end
