@@ -64,6 +64,6 @@ describe Admin::Inventory::PurchaseOrdersController do
     @purchase_order = create(:purchase_order)
     delete :destroy, :id => @purchase_order.id
     response.should redirect_to(admin_inventory_purchase_orders_url)
-    PurchaseOrder.exists?(@purchase_order.id).should be_false
+    expect(PurchaseOrder.exists?(@purchase_order.id)).to eq false
   end
 end

@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+# ActiveRecord::Migration.check_pending!
 require "authlogic/test_case"
 require "email_spec"
 require "mocha/setup"
@@ -32,7 +33,9 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
+  config.include Capybara::DSL
 
+  config.infer_spec_type_from_file_location!
 
   config.before(:suite) { trunctate_unseeded }
 

@@ -20,7 +20,7 @@ describe Referral do
       referral.referral_program.expects(:give_credits).once
       referral.give_credits!
       referral.reload
-      referral.applied.should be_true
+      expect(referral.applied).to be true
     end
   end
 

@@ -7,7 +7,7 @@ describe ProductType, '#admin_grid(params = {})' do
     admin_grid = ProductType.admin_grid
     info = admin_grid.all
     info.size.should == 2
-    info.include?(product_type1).should be_true
-    info.include?(product_type2).should be_true
+    expect(info.include?(product_type1)).to be true
+    expect(info.include?(product_type2)).to be true
   end
 end

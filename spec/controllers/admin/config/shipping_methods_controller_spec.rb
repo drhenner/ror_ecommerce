@@ -1,6 +1,6 @@
 require  'spec_helper'
 
-describe Admin::Config::ShippingMethodsController do
+describe Admin::Config::ShippingMethodsController, type: :controller do
   render_views
 
   before(:each) do

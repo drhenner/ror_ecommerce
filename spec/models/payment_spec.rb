@@ -24,7 +24,7 @@ describe Payment, " class methods" do
     it 'should unstore the payment profile' do
       #GATEWAY.expects(:ssl_post).returns(successful_unstore_response)
       charge = Payment.unstore(  '1')
-      charge.success.should     be_true
+      expect(charge.success).to     be_truthy
       charge.action.should      == 'unstore'
       charge.message.should     == BogusGateway::SUCCESS_MESSAGE
     end
@@ -33,7 +33,7 @@ describe Payment, " class methods" do
       #GATEWAY.expects(:ssl_post).returns(successful_unstore_response)
       charge = Payment.unstore(  '3')
       #  puts charge.inspect
-      charge.success.should_not     be_true
+      expect(charge.success).not_to     be_truthy
       charge.action.should      == 'unstore'
     end
   end
@@ -44,7 +44,7 @@ describe Payment, " class methods" do
                                 @amount,
                                 credit_card(:number => '1')
                               )
-      auth.success.should     be_true
+      expect(auth.success).to be true
       auth.action.should      == 'authorization'
       auth.message.should     == BogusGateway::SUCCESS_MESSAGE
       #puts auth.params#[:reference]
@@ -57,7 +57,7 @@ describe Payment, " class methods" do
                                 @amount,
                                 credit_card(:number => '2')
                               )
-      auth.success.should_not     be_true
+      expect(auth.success).not_to     be_truthy
       auth.action.should      == 'authorization'
       auth.message.should     == BogusGateway::FAILURE_MESSAGE
     end
@@ -68,7 +68,7 @@ describe Payment, " class methods" do
                                 @amount,
                                 credit_card(:number => '3')
                               )
-      auth.success.should_not     be_true
+      expect(auth.success).not_to     be_truthy
       auth.action.should      == 'authorization'
       auth.message.should     == BogusGateway::ERROR_MESSAGE
     end
@@ -77,20 +77,20 @@ describe Payment, " class methods" do
   context "#capture(amount, authorization, options = {})" do
     it 'should capture the payment' do
       capt = Payment.capture( @amount, '123')
-      capt.success.should     be_true
+      expect(capt.success).to     be true
       capt.action.should      == 'capture'
       capt.message.should     == BogusGateway::SUCCESS_MESSAGE
     end
     it 'should not capture the payment for failure' do
       capt = Payment.capture( @amount, '2')
-      capt.success.should_not     be_true
+      expect(capt.success).not_to     be_truthy
       capt.action.should      == 'capture'
       capt.message.should     == BogusGateway::FAILURE_MESSAGE
     end
 
     it 'should capture the payment in error state' do
       capt = Payment.capture( @amount, '1')
-      capt.success.should_not     be_true
+      expect(capt.success).not_to     be_truthy
       capt.action.should      == 'capture'
       capt.message.should     == BogusGateway::CAPTURE_ERROR_MESSAGE
     end
@@ -100,20 +100,20 @@ describe Payment, " class methods" do
   context "#charge( amount, profile_key, options ={})" do
     it 'should charge the payment' do
       charge = Payment.charge( @amount, credit_card(:number => '1'))
-      charge.success.should     be_true
+      expect(charge.success).to be true
       charge.action.should      == 'charge'
       charge.message.should     == BogusGateway::SUCCESS_MESSAGE
     end
     it 'should charge the payment' do
       charge = Payment.charge( @amount, credit_card(:number => '2'))
-      charge.success.should_not     be_true
+      expect(charge.success).not_to     be_truthy
       charge.action.should      == 'charge'
       charge.message.should     == BogusGateway::FAILURE_MESSAGE
     end
   end
 
   context "#validate_card( credit_card, options ={})" do
-    pending "test for validate_card( credit_card, options ={})"
+    skip "test for validate_card( credit_card, options ={})"
   end
 
   #context "#process(action, amount = nil)" # This method is being exersized by many other methods

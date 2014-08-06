@@ -26,7 +26,7 @@ describe WishItemsController do
 
   it "destroy action should render index template" do
     delete :destroy, :id => @wish_item.id, :variant_id => @variant.id
-    CartItem.find(@wish_item.id).active.should be_false
+    expect(CartItem.find(@wish_item.id).active).to eq false
     response.should render_template(:index)
   end
 end

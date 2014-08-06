@@ -59,6 +59,6 @@ describe Admin::Merchandise::ProductTypesController do
     @product_type = create(:product_type)
     delete :destroy, :id => @product_type.id
     response.should redirect_to(admin_merchandise_product_types_url)
-    ProductType.find(@product_type.id).active.should be_false
+    expect(ProductType.find(@product_type.id).active).to eq false
   end
 end

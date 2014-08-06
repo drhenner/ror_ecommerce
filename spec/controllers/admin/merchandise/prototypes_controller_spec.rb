@@ -59,7 +59,7 @@ describe Admin::Merchandise::PrototypesController do
     Prototype.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @prototype.id, :prototype => {:name => 'Tes', :property_ids => [property.id]}
     @prototype.reload
-    @prototype.property_ids.include?(property.id).should be_true
+    expect(@prototype.property_ids.include?(property.id)).to be true
     response.should redirect_to(admin_merchandise_prototypes_url())
   end
 
@@ -67,6 +67,6 @@ describe Admin::Merchandise::PrototypesController do
     @prototype = create(:prototype)
     delete :destroy, :id => @prototype.id
     response.should redirect_to(admin_merchandise_prototypes_url)
-    Prototype.find(@prototype.id).active.should be_false
+    expect(Prototype.find(@prototype.id).active).to eq false
   end
 end

@@ -74,6 +74,6 @@ describe Admin::Fulfillment::CommentsController do
     @comment = create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     delete :destroy, :id => @comment.id, :order_id => @order.number
     response.should redirect_to(admin_fulfillment_order_comments_url(@order))
-    Comment.exists?(@comment.id).should be_false
+    expect(Comment.exists?(@comment.id)).to eq false
   end
 end

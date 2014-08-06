@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
-ruby "2.0.0"
+#ruby "2.1.2"
 
 ## Bundle rails:
-gem 'rails', '4.0.8'
+gem 'rails', '4.1.4'
 
 gem 'uglifier',     '>= 1.3.0'
 gem 'sass-rails',   '~> 4.0.0'
@@ -18,7 +18,7 @@ gem 'authlogic'#,          "~> 3.3.0"
 gem 'scrypt'
 
 gem "asset_sync"
-gem 'awesome_nested_set', '~> 3.0.0.rc.1'
+gem 'awesome_nested_set', '~> 3.0.0'
 
 gem 'aws-sdk'
 gem 'bluecloth',      '~> 2.2.0'
@@ -38,7 +38,7 @@ gem 'json',           '~> 1.8.0'
 
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri',     '~> 1.6.0'
-gem 'paperclip',    '~> 3.0'
+gem 'paperclip',    '~> 4.0'
 gem 'prawn',        '~> 0.12.0'
 
 gem "rails3-generators", "~> 1.0.0"
@@ -70,7 +70,7 @@ group :development do
   gem "autotest-rails-pure"
   gem "better_errors", '~> 0.9.0'
   gem "binding_of_caller", '~> 0.7.2'
-  gem 'debugger'#, '~> 1.6.1'
+  #gem 'debugger'#, '~> 1.6.1'
   gem "rails-erd"
 
   # YARD AND REDCLOTH are for generating yardocs
@@ -78,7 +78,7 @@ group :development do
   gem 'RedCloth'
 end
 group :test, :development do
-  gem 'capybara', "~> 1.1"#, :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'capybara'#, "~> 2.4.1"#, :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner', "~> 1.2"
 end
@@ -88,7 +88,7 @@ group :test do
   gem 'factory_girl_rails', "~> 3.3.0"
   gem 'mocha', '~> 0.13.3', :require => false
   gem 'rspec-rails-mocha'
-  gem 'rspec-rails', '~> 2.12.2'
+  gem 'rspec-rails', '2.99.0'#, '~> 3.0.2'
 
   gem 'email_spec'
   gem "faker"

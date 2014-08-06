@@ -74,6 +74,6 @@ describe Admin::UserDatas::ReferralsController do
     referral = FactoryGirl.create(:referral)
     delete :destroy, :id => referral.id
     response.should redirect_to(admin_user_datas_referrals_url)
-    Referral.exists?(referral.id).should be_false
+    expect(Referral.exists?(referral.id)).to eq false
   end
 end

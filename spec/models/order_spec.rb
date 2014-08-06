@@ -43,7 +43,7 @@ describe Order, "instance methods" do
       @order = create(:order)
       @invoice.stubs(:cancel_authorized_payment).returns(true)
       @order.cancel_unshipped_order(@invoice).should == true
-      @order.active.should be_false
+      expect(@order.active).to be false
     end
   end
 
@@ -378,7 +378,7 @@ describe Order, "instance methods" do
     it 'should set number and save' do
       order = create(:order)
       order.number = nil
-      order.send(:save_order_number).should be_true
+      expect(order.send(:save_order_number)).to be true
       order.number.should_not == (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
     end
   end
@@ -409,28 +409,28 @@ describe Order, "instance methods" do
   context ".has_shipment?" do
     #shipments_count > 0
     it 'should return false' do
-      @order.has_shipment?.should be_false
+      expect(@order.has_shipment?).to be false
     end
     it 'should return true' do
       create(:shipment, :order => @order)
-      Order.find(@order.id).has_shipment?.should be_true
+      expect(Order.find(@order.id).has_shipment?).to be true
     end
   end
 
   context ".create_shipments_with_order_item_ids(order_item_ids)" do
     it "should return false if there aren't any ids" do
       @order_item = FactoryGirl.create(:order_item, :order => @order)
-      @order.create_shipments_with_order_item_ids([]).should be_false
+      expect(@order.create_shipments_with_order_item_ids([])).to be false
     end
     it "should return false if the ids cant be shipped" do
       @order_item = FactoryGirl.create(:order_item, :order => @order, :state => 'unpaid')
-      @order.create_shipments_with_order_item_ids([@order_item.id]).should be_false
+      expect(@order.create_shipments_with_order_item_ids([@order_item.id])).to be false
     end
     it "should return true if the ids can be shipped" do
       @order_item = FactoryGirl.build(:order_item, :order => @order)
       @order_item.state = 'paid'
       @order_item.save
-      @order.create_shipments_with_order_item_ids([@order_item.id]).should be_true
+      expect(@order.create_shipments_with_order_item_ids([@order_item.id])).to be true
     end
   end
 
@@ -441,8 +441,8 @@ describe Order, "instance methods" do
       order_item2 = create(:order_item, :order => @order, :price => 9.00)
       @order.stubs(:order_items).returns([order_item1, order_item2])
       @order.send(:item_prices).class.should == Array
-      @order.send(:item_prices).include?(2.01).should be_true
-      @order.send(:item_prices).include?(9.00).should be_true
+      expect(@order.send(:item_prices).include?(2.01)).to be true
+      expect(@order.send(:item_prices).include?(9.00)).to be true
     end
   end
 
@@ -557,14 +557,14 @@ describe Order, "#find_by_number(num)" do
 end
 
 
-describe Order, "#find_finished_order_grid(params = {})" do
+describe Order, "#find_finished_order_grid(params = {})", type: :model do
   it "should return finished Orders " do
     order1 = create(:order, :completed_at => nil)
     order2 = create(:order, :completed_at => Time.now)
     admin_grid = Order.find_finished_order_grid
     admin_grid.size.should == 1
-    admin_grid.include?(order1).should be_false
-    admin_grid.include?(order2).should be_true
+    expect(admin_grid.include?(order1)).to be false
+    expect(admin_grid.include?(order2)).to be true
   end
 end
 
@@ -574,7 +574,7 @@ describe Order, "#fulfillment_grid(params = {})" do
     order2 = create(:order, :shipped => true)
     admin_grid = Order.fulfillment_grid
     admin_grid.size.should == 1
-    admin_grid.include?(order1).should be_true
-    admin_grid.include?(order2).should be_false
+    expect(admin_grid.include?(order1)).to be true
+    expect(admin_grid.include?(order2)).to be false
   end
 end

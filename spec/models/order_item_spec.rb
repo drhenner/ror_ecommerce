@@ -11,12 +11,12 @@ describe OrderItem, "instance methods" do
   context ".shipped?" do
     it 'should return true if there is a shipment_id' do
       @order_item.shipment_id = 1
-      @order_item.shipped?.should be_true
+      expect(@order_item.shipped?).to be true
     end
 
     it 'should return false if there is a shipment_id' do
       @order_item.shipment_id = nil
-      @order_item.shipped?.should be_false
+      expect(@order_item.shipped?).to be false
     end
   end
 
@@ -78,19 +78,19 @@ describe OrderItem, "instance methods" do
     it 'should be ready to calculate if we know the shipping rate and tax rate' do
       @order_item.shipping_rate_id = 1
       @order_item.tax_rate_id = 1
-      @order_item.ready_to_calculate?.should be_true
+      expect(@order_item.ready_to_calculate?).to be_truthy
     end
 
     it 'should not be ready to calculate if we dont know the shipping rate ' do
       @order_item.shipping_rate_id = nil
       @order_item.tax_rate_id = 1
-      @order_item.ready_to_calculate?.should be_false
+      expect(@order_item.ready_to_calculate?).to be_falsey
     end
 
     it 'should not be ready to calculate if we know the tax rate' do
       @order_item.shipping_rate_id = 1
       @order_item.tax_rate_id = nil
-      @order_item.ready_to_calculate?.should be_false
+      expect(@order_item.ready_to_calculate?).to be_falsey
     end
   end
 end
@@ -170,5 +170,5 @@ describe OrderItem, "With VAT" do
   end
 end
 describe OrderItem, "#order_items_in_cart(order_id)" do
-  pending "test for order_items_in_cart(order_id)"
+  skip "test for order_items_in_cart(order_id)"
 end

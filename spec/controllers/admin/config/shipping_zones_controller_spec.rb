@@ -1,6 +1,6 @@
 require  'spec_helper'
 
-describe Admin::Config::ShippingZonesController do
+describe Admin::Config::ShippingZonesController, type: :controller do
   render_views
 
   before(:each) do

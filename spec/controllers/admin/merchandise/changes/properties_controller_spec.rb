@@ -30,7 +30,7 @@ describe Admin::Merchandise::Changes::PropertiesController do
     property = create(:property)
     @product = create(:product)
     Product.any_instance.stubs(:valid?).returns(true)
-    put :update, :product_id => @product.id, :product => product_properties_attributes
+    put :update, product_id: @product.id, product: product_properties_attributes
     response.should redirect_to(admin_merchandise_product_url(@product.id))
   end
 

@@ -50,16 +50,16 @@ describe Invoice, "instance methods" do
     it 'should create a CreditCardCapture transaction' do
       @invoice.stubs(:amount).returns(20.50)
       #@invoice.stubs(:batches).returns([])
-      @invoice.capture_complete_order.should be_true
+      expect(@invoice.capture_complete_order).to be true
       @invoice.order.user.transaction_ledgers.size.should == 2
     end
 
     context ".authorize_complete_order" do
       it 'should create a CreditCardReceivePayment transaction' do
         @invoice.stubs(:amount).returns(20.50)
-        @invoice.authorize_complete_order.should be_true
+        expect(@invoice.authorize_complete_order).to be true
         @invoice.order.user.transaction_ledgers.size.should == 2
-        @invoice.capture_complete_order.should be_true
+        expect(@invoice.capture_complete_order).to be true
         @invoice.order.user.transaction_ledgers.size.should == 4
       end
 
@@ -68,7 +68,7 @@ describe Invoice, "instance methods" do
           @invoice.stubs(:amount).returns(20.50)
           @invoice.authorize_complete_order
 
-          @invoice.cancel_authorized_payment.should be_true
+          expect(@invoice.cancel_authorized_payment).to be true
           @invoice.order.user.transaction_ledgers.size.should == 4
           revenue_credits = []
           ar_credits      = []
@@ -137,7 +137,7 @@ describe Invoice, "#generate(order_id, charge_amount)" do
     invoice = Invoice.generate(1, charge_amount)
     invoice.id.should == nil
     invoice.invoice_type.should == Invoice::PURCHASE
-    invoice.valid?.should be_true
+    expect(invoice.valid?).to be true
   end
 end
 describe Invoice, 'optimize' do
@@ -162,10 +162,10 @@ describe Invoice, 'optimize' do
   describe Invoice, ".succeeded?" do
     it 'will return a true if authorized or paid' do
       invoice = create(:invoice, :state => 'authorized')
-      invoice.succeeded?.should be_true
+      expect(invoice.succeeded?).to be true
 
       invoice = create(:invoice, :state => 'paid')
-      invoice.succeeded?.should be_true
+      expect(invoice.succeeded?).to be true
     end
   end
 end
@@ -178,11 +178,11 @@ describe Invoice, ".integer_amount" do
 end
 
 describe Invoice, ".authorize_payment(credit_card, options = {})" do
-  pending "test for authorize_payment(credit_card, options = {})"
+  skip "test for authorize_payment(credit_card, options = {})"
 end
 
 describe Invoice, ".capture_payment(options = {})" do
-  pending "test for capture_payment(options = {})"
+  skip "test for capture_payment(options = {})"
 end
 
 describe Invoice, ".user_id" do

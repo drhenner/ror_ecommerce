@@ -1,6 +1,6 @@
 require  'spec_helper'
 
-describe Admin::Config::CountriesController do
+describe Admin::Config::CountriesController, type: :controller do
   # fixtures :all
   render_views
 
@@ -32,7 +32,7 @@ describe Admin::Config::CountriesController do
     Country.any_instance.stubs(:valid?).returns(true)
     put :activate, :id => country.id, :country => country.attributes
     country.reload
-    country.active.should be_true
+    expect(country.active).to be true
     response.should redirect_to(admin_config_countries_url)
   end
 
@@ -42,6 +42,6 @@ describe Admin::Config::CountriesController do
     delete :destroy, :id => country.id
     response.should redirect_to(admin_config_countries_url)
     country.reload
-    country.active.should be_false
+    expect(country.active).to eq false
   end
 end

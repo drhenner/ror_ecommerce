@@ -18,7 +18,7 @@ describe Admin::Generic::DealsController do
 
   it "show action should render show template" do
     deal = create(:deal)
-    get :show, :id => deal.id
+    get :show, id: deal.id
     response.should render_template(:show)
   end
 
@@ -30,14 +30,14 @@ describe Admin::Generic::DealsController do
   it "create action should render new template when model is invalid" do
     deal = FactoryGirl.build(:deal)
     Deal.any_instance.stubs(:valid?).returns(false)
-    post :create, :deal => deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at')
+    post :create, deal: deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at')
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     deal = FactoryGirl.build(:deal)
     Deal.any_instance.stubs(:valid?).returns(true)
-    post :create, :deal => deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at')
+    post :create, deal: deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at')
     response.should redirect_to(admin_generic_deal_url(assigns[:deal]))
   end
 
@@ -48,23 +48,23 @@ describe Admin::Generic::DealsController do
   end
 
   it "update action should render edit template when model is invalid" do
-    deal = create(:deal)
+    deal = FactoryGirl.create(:deal)
     Deal.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => deal.id, :deal => deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at')
+    put :update, id: deal.id, deal: deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at')
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    deal = create(:deal)
+    deal = FactoryGirl.create(:deal)
     Deal.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => deal.id, :deal => deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at')
+    put :update, id: deal.id, deal: deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at')
     response.should redirect_to(admin_generic_deal_url(assigns[:deal]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    deal = create(:deal)
-    delete :destroy, :id => deal.id
+    deal = FactoryGirl.create(:deal)
+    delete :destroy, id: deal.id
     response.should redirect_to(admin_generic_deals_url)
-    Deal.find(deal.id).deleted_at.should_not be_nil
+    expect(Deal.find(deal.id).deleted_at).not_to be_nil
   end
 end

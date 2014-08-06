@@ -1,6 +1,6 @@
 require  'spec_helper'
 
-describe Admin::Config::TaxRatesController do
+describe Admin::Config::TaxRatesController, type: :controller do
   render_views
 
   before(:each) do
@@ -62,6 +62,6 @@ describe Admin::Config::TaxRatesController do
     @tax_rate = create(:tax_rate)
     delete :destroy, :id => @tax_rate.id
     response.should redirect_to(admin_config_tax_rates_url)
-    TaxRate.find(@tax_rate.id).active.should be_false
+    expect(TaxRate.find(@tax_rate.id).active).to eq false
   end
 end

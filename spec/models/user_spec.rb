@@ -41,17 +41,17 @@ describe User, "instance methods" do
   context ".admin?" do
     it 'ahould be an admin' do
       user = create_admin_user
-      user.admin?.should be_true
+      expect(user.admin?).to be true
     end
 
     it 'ahould be an admin' do
       user = create_super_admin_user
-      user.admin?.should be_true
+      expect(user.admin?).to be true
     end
 
     it 'ahould not be an admin' do
       user = create(:user)
-      user.admin?.should be_false
+      expect(user.admin?).to be false
     end
   end
 end
@@ -65,9 +65,9 @@ describe User, "instance methods" do
   context ".active?" do
     it 'should not be active' do
       @user.state = 'canceled'
-      @user.active?.should be_false
+      expect(@user.active?).to be false
       @user.state = 'inactive'
-      @user.active?.should be_false
+      expect(@user.active?).to be false
     end
 
   end
@@ -102,7 +102,7 @@ describe User, "instance methods" do
   context ".might_be_interested_in_these_products" do
     it 'should find products' do
       product = create(:product)
-      @user.might_be_interested_in_these_products.include?(product).should be_true
+      expect(@user.might_be_interested_in_these_products.include?(product)).to be true
     end
 
     #pending "add your specific find products method here"
@@ -158,12 +158,12 @@ describe User, "instance methods" do
 
     it 'should not be a registered user' do
       @user.state = 'active'
-      @user.registered_user?.should be_true
+      expect(@user.registered_user?).to be true
     end
 
     it 'should not be a registered user' do
       @user.state = 'canceled'
-      @user.registered_user?.should be_false
+      expect(@user.registered_user?).to be false
     end
   end
 
@@ -208,7 +208,7 @@ describe User, "instance methods" do
   end
 
   context ".get_cim_profile" do
-    pending "test for get_cim_profile"
+    skip "test for get_cim_profile"
   end
 
   context ".merchant_description" do
@@ -254,17 +254,17 @@ describe User, 'private methods' do
   context ".password_required?" do
     it 'should require a password if the crypted password is blank' do
       @user.crypted_password = nil
-      @user.send(:password_required?).should be_true
+      expect(@user.send(:password_required?)).to be true
     end
 
     it 'should not require a password if the crypted password is present' do
       @user.crypted_password = 'blah'
-      @user.send(:password_required?).should be_false
+      expect(@user.send(:password_required?)).to be false
     end
   end
 
   context ".create_cim_profile" do
-    pending "test for create_cim_profile"
+    skip "test for create_cim_profile"
   end
 
   context ".before_validation_on_create" do
@@ -285,9 +285,9 @@ describe User, 'private methods' do
     it 'should return a hash of user info' do
       @user.save
       profile = @user.send(:user_profile)
-      profile.keys.include?(:merchant_customer_id).should be_true
-      profile.keys.include?(:email).should be_true
-      profile.keys.include?(:description).should be_true
+      expect(profile.keys.include?(:merchant_customer_id)).to be true
+      expect(profile.keys.include?(:email)).to be true
+      expect(profile.keys.include?(:description)).to be true
     end
   end
 end
@@ -299,7 +299,7 @@ describe User, "#admin_grid(params = {})" do
     user2 = create(:user)
     admin_grid = User.admin_grid
     admin_grid.size.should == 2
-    admin_grid.include?(user1).should be_true
-    admin_grid.include?(user2).should be_true
+    expect(admin_grid.include?(user1)).to be true
+    expect(admin_grid.include?(user2)).to be true
   end
 end

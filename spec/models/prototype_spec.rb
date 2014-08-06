@@ -16,7 +16,7 @@ describe Prototype, "#admin_grid(params = {})" do
     prototype2 = create(:prototype)
     admin_grid = Prototype.admin_grid
     admin_grid.size.should == 2
-    admin_grid.include?(prototype1).should be_true
-    admin_grid.include?(prototype2).should be_true
+    expect(admin_grid.include?(prototype1)).to be true
+    expect(admin_grid.include?(prototype2)).to be true
   end
 end

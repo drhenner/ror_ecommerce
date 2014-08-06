@@ -71,6 +71,6 @@ describe Admin::Generic::CouponsController do
     @coupon = create(:coupon)
     delete :destroy, :id => @coupon.id
     response.should redirect_to(admin_generic_coupons_url)
-    Coupon.exists?(@coupon.id).should be_false
+    expect(Coupon.exists?(@coupon.id)).to eq false
   end
 end

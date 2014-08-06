@@ -40,7 +40,7 @@ describe Customer::PasswordResetsController do
   it "update action should redirect when model is valid" do
     @user = create(:user)
     User.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @user.perishable_token, :user => {:password => 'testPWD123', :password_confirmation => 'testPWD123'}
+    put :update, id: @user.perishable_token, user: { password: 'testPWD123', password_confirmation: 'testPWD123'}
     response.should redirect_to(login_url)
   end
 

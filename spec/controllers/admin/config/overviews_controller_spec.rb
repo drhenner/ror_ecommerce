@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::Config::OverviewsController do
+describe Admin::Config::OverviewsController, type: :controller do
 
   before(:each) do
     activate_authlogic

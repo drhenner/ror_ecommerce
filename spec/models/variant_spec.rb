@@ -10,13 +10,13 @@ describe Variant, " instance methods" do
     it 'should be sold out' do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::OUT_OF_STOCK_QTY))
       @variant    = create(:variant,   :inventory => inventory)
-      @variant.sold_out?.should be_true
+      expect(@variant.sold_out?).to be true
     end
 
     it 'should not be sold out' do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (99 - Variant::OUT_OF_STOCK_QTY))
       @variant    = create(:variant,   :inventory => inventory)
-      @variant.sold_out?.should be_false
+      expect(@variant.sold_out?).to be false
     end
 
   end
@@ -26,19 +26,19 @@ describe Variant, " instance methods" do
       it 'should be low stock' do
         inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (101 - Variant::OUT_OF_STOCK_QTY))
         @variant    = create(:variant,   :inventory => inventory)
-        @variant.low_stock?.should be_true
+        expect(@variant.low_stock?).to be true
       end
 
       it 'should be low stock' do
         inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::LOW_STOCK_QTY))
         @variant    = create(:variant,   :inventory => inventory)
-        @variant.low_stock?.should be_true
+        expect(@variant.low_stock?).to be true
       end
 
       it 'should not be low stock' do
         inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (99 - Variant::LOW_STOCK_QTY))
         @variant    = create(:variant,   :inventory => inventory)
-        @variant.low_stock?.should be_false
+        expect(@variant.low_stock?).to be false
       end
   end
 
@@ -184,7 +184,7 @@ describe Variant, " instance methods" do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
       @variant    = create(:variant,   :inventory => inventory)
       @variant.save
-      @variant.is_available?.should be_true
+      expect(@variant.is_available?).to be true
     end
 
     it "should not be available" do
@@ -192,7 +192,7 @@ describe Variant, " instance methods" do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 100)
       @variant    = create(:variant,   :inventory => inventory)
       @variant.save
-      @variant.is_available?.should be_false
+      expect(@variant.is_available?).to be false
     end
   end
 
@@ -202,7 +202,7 @@ describe Variant, " instance methods" do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
       @variant    = create(:variant,   :inventory => inventory)
       @variant.save
-      @variant.is_available?.should be_true
+      expect(@variant.is_available?).to be true
     end
   end
 
@@ -286,7 +286,7 @@ describe Variant, "#admin_grid(product, params = {})" do
     variant2 = create(:variant, :product => product)
     admin_grid = Variant.admin_grid(product)
     admin_grid.size.should == 2
-    admin_grid.include?(variant1).should be_true
-    admin_grid.include?(variant2).should be_true
+    expect(admin_grid.include?(variant1)).to be true
+    expect(admin_grid.include?(variant2)).to be true
   end
 end

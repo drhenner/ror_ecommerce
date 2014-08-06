@@ -6,7 +6,7 @@ describe Product, ".instance methods with images" do
   end
 
   context "featured_image" do
-    pending "test for featured_image"
+    skip "test for featured_image"
     #it 'should return an image url' do
       # @your_model.should_receive(:save_attached_files).and_return(true)
       # Image.new :photo => File.new(Rails.root + 'spec/fixtures/images/rails.png')
@@ -157,7 +157,7 @@ describe Product, ".instance methods" do
 
     context ".price_range?" do
       it 'should return the price range' do
-        @product.price_range?.should be_true
+        expect(@product.price_range?).to be true
       end
     end
   end
@@ -173,7 +173,7 @@ describe Product, ".instance methods" do
           inventory   = create(:inventory, count_on_hand: 100, count_pending_to_customer: 100)
           @variant    = create(:variant, product: @product, inventory: inventory)
           FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
-          expect(@product.available?).to be_false
+          expect(@product.available?).to be false
         end
       end
 
@@ -181,7 +181,7 @@ describe Product, ".instance methods" do
         it 'should be false' do
           inventory   = create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
           @variant    = create(:variant, product: @product, inventory: inventory)
-          expect(@product.available?).to be_false
+          expect(@product.available?).to be false
         end
       end
 
@@ -190,21 +190,21 @@ describe Product, ".instance methods" do
           inventory   = create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
           @variant    = create(:variant, product: @product, inventory: inventory)
           FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
-          expect(@product.available?).to be_true
+          expect(@product.available?).to be true
         end
       end
     end
 
     context '.has_shipping_method?' do
       it 'should be false without a shipping rate' do
-        expect(@product.has_shipping_method?).to be_false
+        expect(@product.has_shipping_method?).to be false
       end
 
       it 'should be true with a shipping rate' do
         inventory   = create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
         @variant    = create(:variant, product: @product, inventory: inventory)
         FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
-        expect(@product.has_shipping_method?).to be_true
+        expect(@product.has_shipping_method?).to be true
       end
     end
   end
@@ -222,8 +222,8 @@ describe Product, "class methods" do
       product2.activate!
       args = 'tester'
       products = Product.standard_search(args)
-      products.include?(product1).should be_false
-      products.include?(product2).should be_true
+      expect(products.include?(product1)).to be false
+      expect(products.include?(product2)).to be true
     end
   end
 
@@ -234,14 +234,14 @@ describe Product, "class methods" do
       variant.add_count_on_hand(1)
       product.activate!
       product.reload
-      expect(product.active?).to be_true
+      expect(product.active?).to be true
     end
 
     it "should not activate a product without variants" do
       product = create(:product)
       product.activate!
       product.reload
-      expect(product.active?).to be_false
+      expect(product.active?).to be false
     end
 
     it "should not activate a product without inventory" do
@@ -252,12 +252,12 @@ describe Product, "class methods" do
       variant.inventory.save!
       product.activate!
       product.reload
-      expect(product.active?).to be_false
+      expect(product.active?).to be false
     end
   end
 
   context "#featured" do
-    pending "test for featured"
+    skip "test for featured"
   end
 
   context "#admin_grid(params = {}, active_state = nil)" do
@@ -270,16 +270,16 @@ describe Product, "class methods" do
       product2.activate!
       admin_grid = Product.admin_grid({}, true)
       admin_grid.size.should == 2
-      admin_grid.include?(product1).should be_true
-      admin_grid.include?(product2).should be_true
+      expect(admin_grid.include?(product1)).to be true
+      expect(admin_grid.include?(product2)).to be true
     end
     it "should return deleted Products " do
       product1 = create(:product)
       product2 = create(:product)
       admin_grid = Product.admin_grid({}, false)
       admin_grid.size.should == 2
-      admin_grid.include?(product1).should be_true
-      admin_grid.include?(product2).should be_true
+      expect(admin_grid.include?(product1)).to be true
+      expect(admin_grid.include?(product2)).to be true
     end
   end
 end

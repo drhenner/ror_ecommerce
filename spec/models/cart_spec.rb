@@ -153,7 +153,7 @@ describe Cart, ".remove_variant" do
     variant_ids =  @cart.cart_items.collect {|ci| ci.variant.id }
     @cart.remove_variant(variant_ids.first)
     @cart.cart_items.each do |ci|
-      ci.active.should be_false if ci.variant.id == variant_ids.first
+      expect(ci.active).to( be false ) if ci.variant.id == variant_ids.first
     end
   end
 end
@@ -174,8 +174,8 @@ describe  ".merge_with_previous_cart! " do
       cart_item2    = create(:cart_item, cart: previous_cart, user: @user, variant: @variant2)
       @cart.merge_with_previous_cart!
       @cart.reload
-      expect(@cart.cart_items.map(&:variant_id).include?(@variant1.id)).to be_true
-      expect(@cart.cart_items.map(&:variant_id).include?(@variant2.id)).to be_true
+      expect(@cart.cart_items.map(&:variant_id).include?(@variant1.id)).to be true
+      expect(@cart.cart_items.map(&:variant_id).include?(@variant2.id)).to be true
     end
   end
 
@@ -185,7 +185,7 @@ describe  ".merge_with_previous_cart! " do
       cart_item2    = create(:cart_item, cart: previous_cart, user: @user, variant: @variant1, quantity: 1)
       @cart.merge_with_previous_cart!
       @cart.reload
-      expect(@cart.cart_items.map(&:variant_id).include?(@variant1.id)).to be_true
+      expect(@cart.cart_items.map(&:variant_id).include?(@variant1.id)).to be true
       expect(@cart.cart_items.size).to eq 1
       expect(@cart.cart_items.first.quantity).to eq 2
     end

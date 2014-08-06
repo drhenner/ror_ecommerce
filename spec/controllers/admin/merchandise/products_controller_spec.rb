@@ -74,14 +74,14 @@ describe Admin::Merchandise::ProductsController do
     @product = create(:product, :deleted_at => (Time.zone.now - 1.day))
     put :activate, id: @product.id, :product => product_attributes
     @product.reload
-    @product.active.should be_true
+    expect(@product.active).to be true
     response.should redirect_to(admin_merchandise_product_url(assigns[:product]))
   end
   it "activate action should redirect to create description when model is valid" do
     @product = create(:product, :description_markup => nil, :deleted_at => (Time.zone.now - 1.day))
     put :activate, id: @product.id, :product => product_attributes
     @product.reload
-    @product.active.should be_false
+    expect(@product.active).to be false
     response.should redirect_to(edit_admin_merchandise_products_description_url(assigns[:product]))
   end
 
@@ -89,7 +89,7 @@ describe Admin::Merchandise::ProductsController do
     @product = create(:product)
     delete :destroy, id: @product.id
     response.should redirect_to(admin_merchandise_product_url(@product))
-    Product.find(@product.id).active.should be_false
+    expect(Product.find(@product.id).active).to eq false
   end
   def product_attributes
     {:name => 'cute pants', :set_keywords => 'test,one,two,three', :product_type_id => 1, :prototype_id => nil, :shipping_category_id => 1, :permalink => 'linkToMe', :available_at => Time.zone.now, :deleted_at => nil, :meta_keywords => 'cute,pants,bacon', :meta_description => 'good pants', :featured => true, :brand_id => 1}

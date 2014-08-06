@@ -64,6 +64,6 @@ describe Admin::UserDatas::AddressesController do
   it "destroy action should destroy model and redirect to index action" do
     address = FactoryGirl.create(:address, :addressable_id => @customer.id, :addressable_type => 'User')
     delete :destroy, user_id: @customer.id, :id => address.id
-    expect(Address.find(address.id).active).to be_false
+    expect(Address.find(address.id).active).to eq false
   end
 end

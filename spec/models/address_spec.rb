@@ -42,7 +42,7 @@ describe Address, "methods" do
     it 'should inactivate the address' do
       @address.save
       @address.inactive!
-      @address.active.should be_false
+      expect(@address.active).to be false
     end
   end
 
@@ -162,7 +162,7 @@ describe Address, "#save" do
 
   before(:each) do
     @user     = FactoryGirl.create(:user)
-    @address  = FactoryGirl.create(:address, :addressable => @user)
+    @address  = FactoryGirl.create(:address, addressable: @user)
   end
 
   it "should only the last default address should be the default address" do
@@ -174,10 +174,9 @@ describe Address, "#save" do
     @address2.save
     @address.default = true
     @address.save
-    @address.default.should       be_true
-    @address2.reload.default.should_not  be_true
-    @address2.reload.default.should_not  be_true
-    @address3.reload.default.should  be_true # should only update the addresses that belong to that user
+    expect(@address.default).to       be true
+    expect(@address2.reload.default).not_to  be true
+    expect(@address3.reload.default).to  be true # should only update the addresses that belong to that user
   end
 end
 
