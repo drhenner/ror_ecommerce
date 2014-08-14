@@ -37,59 +37,61 @@
 
       <div class="clear"></div>
     <% end %>
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" style='border: 0px solid #FFF;'>
-      <tbody>
-        <% unless @cart_items.blank? %>
-        <tr>
-            <td>
-                <table width="100%" cellspacing="0" cellpadding="10">
-                  <tbody>
-                    <tr valign="top" bgcolor="#ebebe7" width="100%" >
-                      <td bgcolor="#ebebe7" colspan="2"  >
-                          <b>Shopping Cart Items--To Buy Now</b>
-                      </td>
-                      <td bgcolor="#ebebe7" class="small"><b>Price:</b></td>
+    <div class='twelve columns'>
+      <table width="100%" cellspacing="0" cellpadding="0" border="0" style='border: 0px solid #FFF;'>
+        <tbody>
+          <% unless @cart_items.blank? %>
+          <tr>
+              <td>
+                  <table width="100%" cellspacing="0" cellpadding="10">
+                    <tbody>
+                      <tr valign="top" bgcolor="#ebebe7" width="100%" >
+                        <td bgcolor="#ebebe7" colspan="2"  >
+                            <b>Shopping Cart Items--To Buy Now</b>
+                        </td>
+                        <td bgcolor="#ebebe7" class="small"><b>Price:</b></td>
 
-                      <td width="8%" bgcolor="#ebebe7" align="middle" class="small "><b>Qty:</b></td>
-                    </tr>
-                    <% @cart_items.each_with_index do |item, i| %>
-                      <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
-                        <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
+                        <td width="8%" bgcolor="#ebebe7" align="middle" class="small "><b>Qty:</b></td>
+                      </tr>
+                      <% @cart_items.each_with_index do |item, i| %>
+                        <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
+                          <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
+                        <% end %>
                       <% end %>
-                    <% end %>
+                    </tbody>
+                  </table>
+              </td>
+            </tr>
+          <% end %>
+
+
+          <% unless @saved_cart_items.empty? %>
+            <tr style='background-color: #FFF;'>
+              <td align="center" colspan="1">
+
+              </td>
+            </tr>
+            <tr style='background-color: #FFF;'>
+              <td>
+                <table width="100%" cellspacing="0" cellpadding="10" style='border: 0px solid #FFF;'>
+                  <tbody>
+                    <tr valign="top" bgcolor="#eeeecc">
+                        <td bgcolor="#eeeecc" colspan="2"><a name="savedforlater"><b>Saved Items--To Buy Later</b></a></td>
+                        <td bgcolor="#eeeecc" colspan="2" class="small"><b>Price:</b></td>
+                    </tr>
+
+                    <%= render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty? %>
+
                   </tbody>
                 </table>
-            </td>
-          </tr>
-        <% end %>
+              </td>
+            </tr>
 
+          <% end %>
 
-        <% unless @saved_cart_items.empty? %>
-          <tr style='background-color: #FFF;'>
-            <td align="center" colspan="1">
-
-            </td>
-          </tr>
-          <tr style='background-color: #FFF;'>
-            <td>
-              <table width="100%" cellspacing="0" cellpadding="10" style='border: 0px solid #FFF;'>
-                <tbody>
-                  <tr valign="top" bgcolor="#eeeecc">
-                      <td bgcolor="#eeeecc" colspan="2"><a name="savedforlater"><b>Saved Items--To Buy Later</b></a></td>
-                      <td bgcolor="#eeeecc" colspan="2" class="small"><b>Price:</b></td>
-                  </tr>
-
-                  <%= render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty? %>
-
-                </tbody>
-              </table>
-            </td>
-          </tr>
-
-        <% end %>
-
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   <% end %>
 </div>
 
