@@ -20,7 +20,7 @@ The project has *Solr searching*, *Compass* and *Zurb Foundation for CSS* and us
 The gem list is quite large and the project still has a large wish list.
 In spite of that, it is currently the most complete Rails solution, and it will only get better.
 
-Please use *Ruby 2.0* and enjoy *Rails 4.0*.
+Please use *Ruby 2.1* and enjoy *Rails 4.1*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
@@ -39,8 +39,8 @@ The login name is test@ror-e.com with a password => test123
 
 Please feel free to ask/answer questions in our [Google Group](http://groups.google.com/group/ror_ecommerce).
 
-Install RVM with Ruby 2.0.
-If you have 2.0 on your system you're good to go.
+Install RVM with Ruby 2.1.
+If you have 2.1 on your system you're good to go.
 Please refer to the [RVM](http://beginrescueend.com/rvm/basics/) site for more details.
 
 Copy the `database.yml` for your setup.
