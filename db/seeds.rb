@@ -26,7 +26,7 @@ states_list   = YAML::load( File.open( file_to_load ) )
 
 
 states_list.each_pair do |key,state|
-  s = State.find_by_abbreviation_and_country_id(state['attributes']['abbreviation'], state['attributes']['country_id'])
+  s = State.find_by(abbreviation: state['attributes']['abbreviation'], country_id: state['attributes']['country_id'])
   State.create(state['attributes']) unless s
 end
 
@@ -58,7 +58,7 @@ end
 
 puts "Accounts"
 Account::TYPES.each_pair do |acc_type, value|
-  acc = Account.find_by_name(acc_type)
+  acc = Account.find_by(name: acc_type)
   unless acc
     Account.create(:name => acc_type, :account_type => acc_type, :monthly_charge => value)
   end
@@ -89,7 +89,7 @@ end
 
 puts "Return CONDITIONS"
 ReturnCondition::CONDITIONS.each do |value|
-  rc = ReturnCondition.find_by_label(value)
+  rc = ReturnCondition.find_by(label: value)
   unless rc
     ReturnCondition.create(:label => value, :description => value )
   end
@@ -120,7 +120,7 @@ end
 
 puts "Referral Bonuses"
 ReferralBonus::BONUSES.each do |referral_bonus_attributes|
-  rb = ReferralBonus.find_by_name(referral_bonus_attributes[:name])
+  rb = ReferralBonus.find_by(name: referral_bonus_attributes[:name])
   unless rb
     ReferralBonus.create(referral_bonus_attributes)
   end
@@ -128,7 +128,7 @@ end
 
 puts "Referral PROGRAMS"
 ReferralProgram::PROGRAMS.each do |referral_program_attributes|
-  rp = ReferralProgram.find_by_name(referral_program_attributes[:name])
+  rp = ReferralProgram.find_by(name: referral_program_attributes[:name])
   unless rp
     ReferralProgram.create(referral_program_attributes)
   end
