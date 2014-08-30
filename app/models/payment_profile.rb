@@ -26,6 +26,8 @@
 #     should serve you very well.
 # http://cookingandcoding.com/2010/01/14/using-activemerchant-with-authorize-net-and-authorize-cim/
 #
+require "active_merchant/billing/rails"
+
 class PaymentProfile < ActiveRecord::Base
   include PaymentProfileCim
   belongs_to :user

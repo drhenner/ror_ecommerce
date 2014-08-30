@@ -313,7 +313,7 @@ DEPENDENCIES
   cancan (~> 1.6.8)
   capybara
   chronic
-  compass-rails
+  compass-rails (~> 2.0.0)
   database_cleaner (~> 1.2)
   dynamic_form
   email_spec
