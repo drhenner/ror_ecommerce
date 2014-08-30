@@ -8,7 +8,7 @@ gem 'uglifier',     '>= 1.3.0'
 gem 'sass-rails',   '~> 4.0.0'
 
 gem 'actionpack-page_caching'
-gem "activemerchant", '~> 1.29'#, :lib => 'active_merchant'
+gem "activemerchant", '~> 1.44'#, :lib => 'active_merchant'
 gem "american_date"
 
 # Use https if you are pushing to HEROKU
@@ -17,16 +17,16 @@ gem "american_date"
 gem 'authlogic'#,          "~> 3.3.0"
 gem 'scrypt'
 
-gem "asset_sync"
+gem "asset_sync",         '~> 1.1.0'
 gem 'awesome_nested_set', '~> 3.0.0'
 
-gem 'aws-sdk'
+gem 'aws-sdk',        '~> 1.52.0'
 gem 'bluecloth',      '~> 2.2.0'
 gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
 #gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git'
-gem 'compass-rails',  git: 'git://github.com/Compass/compass-rails.git'
+gem 'compass-rails', '~> 2.0.0'
 
 
 gem 'dynamic_form'
