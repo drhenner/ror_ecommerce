@@ -70,7 +70,7 @@ group :development do
   gem "autotest-rails-pure"
   gem "better_errors", '~> 0.9.0'
   gem "binding_of_caller", '~> 0.7.2'
-  #gem 'debugger'#, '~> 1.6.1'
+  gem 'byebug'
   gem "rails-erd"
 
   # YARD AND REDCLOTH are for generating yardocs
