@@ -13,7 +13,7 @@ file_to_load  = Rails.root + 'db/seed/countries.yml'
 countries_list   = YAML::load( File.open( file_to_load ) )
 
 countries_list.each_pair do |key,country|
-  s = Country.find_by_abbreviation(country['abbreviation'])
+  s = Country.find_by(abbreviation: country['abbreviation'])
   unless s
     c = Country.create(country) unless s
     c.update_attribute(:active, true) if Country::ACTIVE_COUNTRY_IDS.include?(c.id)
