@@ -25,7 +25,7 @@ ROR Ecommerce is designed so that if you understand Rails you will understand RO
 There is nothing in this project besides what you might see in a normal Rails application.
 If you don't like something, you are free to just change it like you would in any other Rails app.
 
-*Contributors are welcome!*
+**Contributors are welcome!**
 We will always need help with UI, documentation, and code, so feel free to pitch in.
 To get started, simply fork this repo, make *any* changes (big or small), and create a pull request.
 
