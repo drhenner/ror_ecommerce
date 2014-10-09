@@ -17,8 +17,7 @@ There is a minimal customer facing shopping cart understanding that this will be
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
 
 The project has *Solr searching*, *Compass* and *Zurb Foundation for CSS* and uses *jQuery*.
-The gem list is quite large and the project still has a large wish list.
-In spite of that, it is currently the most complete Rails solution, and it will only get better.
+Currently the most complete Rails solution for your small business.
 
 Please use *Ruby 2.1* and enjoy *Rails 4.1*.
 
@@ -26,7 +25,7 @@ ROR Ecommerce is designed so that if you understand Rails you will understand RO
 There is nothing in this project besides what you might see in a normal Rails application.
 If you don't like something, you are free to just change it like you would in any other Rails app.
 
-Contributors are welcome!
+** Contributors are welcome! **
 We will always need help with UI, documentation, and code, so feel free to pitch in.
 To get started, simply fork this repo, make *any* changes (big or small), and create a pull request.
 
@@ -34,6 +33,8 @@ To get started, simply fork this repo, make *any* changes (big or small), and cr
 
 Take a look at [The Demo](https://ror-e.herokuapp.com).
 The login name is test@ror-e.com with a password => test123
+
+NOTE: Given that everyone has admin rights to the demo it is frequently looking less than "beautiful".
 
 ##Getting Started
 
@@ -276,6 +277,6 @@ RoR Ecommerce was created by David Henner. [Contributors](https://github.com/drh
 
 Shipping categories are categories based off price:
 
-you might have two shipping categories (light items) & (heavy items)
+you might have two shipping categories (light items) & (heavy items) where heavy items are charged per item purchased and light items are charged once for all items purchased.  (hence buying 30 feathers has the same shipping charges as one feather)
 
 Have fun!!!
