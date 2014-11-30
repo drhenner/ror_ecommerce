@@ -12,13 +12,13 @@ describe Admin::Document::InvoicesController do
 
   it "index action should render index template" do
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "show action should render show template" do
     invoice = create(:invoice)
     get :show, :id => invoice.id
-    response.should render_template(:show)
+    expect(response).to render_template(:show)
   end
 
 end

@@ -13,7 +13,7 @@ describe Myaccount::OrdersController do
   it "index action should render index template" do
     @order = create(:order, :user => @user)
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "show action should render show template" do
@@ -21,7 +21,7 @@ describe Myaccount::OrdersController do
     @order.state = 'complete'
     @order.save
     get :show, id: @order.number
-    response.should render_template(:show)
+    expect(response).to render_template(:show)
   end
 
 end
@@ -31,7 +31,7 @@ describe Myaccount::OrdersController do
 
   it "index action should go to login page" do
     get :index
-    response.should redirect_to(login_url)
+    expect(response).to redirect_to(login_url)
   end
 
   it "show action should go to login page" do
@@ -39,6 +39,6 @@ describe Myaccount::OrdersController do
     @order.state = 'complete'
     @order.save
     get :show, id: @order.id
-    response.should redirect_to(login_url)
+    expect(response).to redirect_to(login_url)
   end
 end

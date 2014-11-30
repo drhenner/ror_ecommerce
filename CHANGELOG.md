@@ -1,3 +1,10 @@
+###2.1.0
+* RAILS 4.2
+* Remove statemachine in favor of AASM
+* upgrade many gems (including rspec)
+* RUBY 2.1.5
+* Security fix for POSTGRES
+
 ###2.0.1
 * RAILS 4.0.4
 * upgrade gems

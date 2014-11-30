@@ -32,24 +32,24 @@ describe OrderItem, "instance methods" do
                                     )
 
       sale = Sale.for(product.id, Time.zone.now)
-      sale.id.should == new_sale.id
+      expect(sale.id).to eq new_sale.id
 
       @order_item.stubs(:price).returns(100.0)
       @order_item.stubs(:variant).returns(variant)
-      @order_item.sale_price(Time.zone.now).should == 80.0
+      expect(@order_item.sale_price(Time.zone.now)).to eq 80.0
     end
   end
 
   context ".shipping_method" do
     #shipping_rate.shipping_method
     it 'should return the shipping method' do
-      @order_item.shipping_method.should == @order_item.shipping_rate.shipping_method
+      expect(@order_item.shipping_method).to eq @order_item.shipping_rate.shipping_method
     end
   end
 
   context ".shipping_method_id" do
     it 'should return the shipping method id' do
-      @order_item.shipping_method_id.should == @order_item.shipping_rate.shipping_method_id
+      expect(@order_item.shipping_method_id).to eq @order_item.shipping_rate.shipping_method_id
     end
   end
 
@@ -70,7 +70,7 @@ describe OrderItem, "instance methods" do
     it 'should return the shipping method id' do
       @order_item.order.calculated_at = Time.now
       @order_item.set_order_calculated_at_to_nil
-      @order_item.order.calculated_at.should == nil
+      expect(@order_item.order.calculated_at).to be nil
     end
   end
 
@@ -104,7 +104,7 @@ describe OrderItem, "Without VAT" do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
       order_item.calculate_total
-      order_item.total.should == 20.00
+      expect(order_item.total).to eq 20.00
     end
   end
 
@@ -112,7 +112,7 @@ describe OrderItem, "Without VAT" do
     it 'should return tax_charge' do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
-      order_item.tax_charge.should == 2.00
+      expect(order_item.tax_charge).to eq 2.00
     end
   end
 
@@ -120,7 +120,7 @@ describe OrderItem, "Without VAT" do
     it 'should return tax_charge' do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
-      order_item.amount_of_charge_is_vat.should == 0.00
+      expect(order_item.amount_of_charge_is_vat).to eq 0.00
     end
   end
 
@@ -128,7 +128,7 @@ describe OrderItem, "Without VAT" do
     it 'should return tax_charge' do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
-      order_item.amount_of_charge_without_vat.should == 20.00
+      expect(order_item.amount_of_charge_without_vat).to eq 20.00
     end
   end
 end
@@ -141,7 +141,7 @@ describe OrderItem, "With VAT" do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
       order_item.calculate_total
-      order_item.total.should == 20.00
+      expect(order_item.total).to eq 20.00
     end
   end
 
@@ -149,7 +149,7 @@ describe OrderItem, "With VAT" do
     it 'should return tax_charge' do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
-      order_item.tax_charge.should == 0.00
+      expect(order_item.tax_charge).to eq 0.00
     end
   end
 
@@ -157,7 +157,7 @@ describe OrderItem, "With VAT" do
     it 'should return tax_charge' do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
-      order_item.amount_of_charge_is_vat.should == 1.82
+      expect(order_item.amount_of_charge_is_vat).to eq 1.82
     end
   end
 
@@ -165,7 +165,7 @@ describe OrderItem, "With VAT" do
     it 'should return tax_charge' do
       tax_rate = create(:tax_rate, :percentage => 10.0)
       order_item = create(:order_item, :tax_rate => tax_rate, :price => 20.00)
-      order_item.amount_of_charge_without_vat.should == 18.18
+      expect(order_item.amount_of_charge_without_vat).to eq 18.18
     end
   end
 end

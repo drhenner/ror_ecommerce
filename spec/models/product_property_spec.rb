@@ -5,10 +5,10 @@ describe ProductProperty do
     before(:each) do
       @product_property = build(:product_property)
     end
-    
+
     it "should be valid with minimum attributes" do
-      @product_property.should be_valid
+      expect(@product_property).to be_valid
     end
   end
-  
+
 end

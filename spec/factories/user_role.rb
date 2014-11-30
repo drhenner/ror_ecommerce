@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user_role do
-    user_id 1
+    user
     role_id Role::ADMIN_ID
   end
 end

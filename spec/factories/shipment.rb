@@ -8,6 +8,6 @@ FactoryGirl.define do
     shipped_at      nil
     active          true
 
-    after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+    #after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
   end
 end

@@ -8,7 +8,7 @@ describe ReferralBonus do
       beginning_credits = user.store_credit_amount
       referral_bonus.give_credits(user)
       user.reload
-      user.store_credit_amount.should == beginning_credits + 10.00
+      expect(user.store_credit_amount).to eq beginning_credits + 10.00
     end
   end
 end

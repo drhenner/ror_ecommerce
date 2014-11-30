@@ -6,7 +6,7 @@ describe Role do
 
     Role.all.each do |role|
       it "should be valid" do
-        role.should be_valid
+        expect(role).to be_valid
       end
     end
 

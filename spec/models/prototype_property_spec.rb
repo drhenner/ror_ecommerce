@@ -12,12 +12,12 @@ describe PrototypeProperty do
     end
 
     it "should be valid with minimum attributes" do
-      @prototype_property.should be_valid
+      expect(@prototype_property).to be_valid
     end
 
     it "should not be valid without property_id" do
       @prototype_property.property_id = nil
-      @prototype_property.should_not be_valid
+      expect(@prototype_property).not_to be_valid
     end
 
   end

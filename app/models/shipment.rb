@@ -16,6 +16,8 @@
 #
 
 class Shipment < ActiveRecord::Base
+  include AASM
+
   belongs_to :order, :counter_cache => true
   belongs_to :shipping_method
   belongs_to :address#, :polymorphic => true
@@ -32,17 +34,19 @@ class Shipment < ActiveRecord::Base
   CHARACTERS_SEED = 20
   NUMBER_SEED     = 2002002002000
 
-  state_machine :initial => 'pending' do
+  aasm column: :state do
+    state :pending, initial: true
+    state :ready_to_ship
+    state :shipped
 
     event :prepare do
-      transition :to => 'ready_to_ship', :from => 'pending'
+      transitions to: :ready_to_ship, from: :pending
     end
 
-    event :ship do
-      transition :to => 'shipped', :from => 'ready_to_ship'
+    event :ship, before: :set_to_shipped, after: [:ship_inventory, :mark_order_as_shipped] do
+      transitions to: :shipped, from: :ready_to_ship
     end
-    before_transition :to => 'shipped', :do => [:set_to_shipped]
-    after_transition :to => 'shipped', :do => [:ship_inventory, :mark_order_as_shipped]
+
   end
 
   # sets the shipped at time to the current time

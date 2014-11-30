@@ -10,6 +10,6 @@ class WishItemsController < ApplicationController
       item = current_user.wish_list_items(params[:variant_id]).first
       item.update_attributes(:active => false)
     end
-    render :action => :index
+    render  action: :index
   end
 end

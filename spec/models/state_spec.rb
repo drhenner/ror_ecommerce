@@ -10,28 +10,30 @@ describe State, " methods" do
   context ".abbreviation_name(append_name = )" do
 
     it 'should return the correct string with no params' do
-      @state.abbreviation_name.should == 'CA - California'
+      expect(@state.abbreviation_name).to eq 'CA - California'
     end
 
     it 'should return the correct string with  params' do
-      @state.abbreviation_name('JJJ').should == 'CA - California JJJ'
+      expect(@state.abbreviation_name('JJJ')).to eq 'CA - California JJJ'
     end
   end
 
   context ".abbrev_and_name" do
     it 'should return the correct string' do
-      @state.abbrev_and_name.should == 'CA - California'
+      expect(@state.abbrev_and_name).to eq 'CA - California'
     end
   end
 end
 
 describe State, "class methods" do
   context "#form_selector" do
-    @states = State.form_selector
-    @states.class.should              == Array
-    @states.first.class.should        == Array
-    @states.first.first.class.should  == String
-    @states.first.last.class.should   == Fixnum
+    it 'should return the correct objects' do
+      @states = State.form_selector
+      expect(@states.class).to              eq Array
+      expect(@states.first.class).to        eq Array
+      expect(@states.first.first.class).to  eq String
+      expect(@states.first.last.class).to   eq Fixnum
+    end
   end
 
   context 'all_with_country_id(country_id)' do
@@ -41,11 +43,11 @@ describe State, "class methods" do
     end
 
     it 'should return an array of States' do
-      @states.first.class.should        == State
+      expect(@states.first.class).to        eq State
     end
 
     it 'should states with country id == country_id' do
-      @states.first.country_id.should == @country.id
+      expect(@states.first.country_id).to eq @country.id
     end
   end
 end

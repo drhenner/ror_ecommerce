@@ -34,19 +34,19 @@ describe Admin::Shopping::Checkout::OrdersController do
   it "show action should render show template" do
     @order.stubs(:order_items).returns([])
     get :show
-    response.should redirect_to admin_shopping_products_url
+    expect(response).to redirect_to admin_shopping_products_url
   end
   it "show action should render show template" do
     @order_item = create(:order_item, :order => @order)
     @order.stubs(:order_items).returns([])
     get :show
-    response.should render_template(:show)
+    expect(response).to render_template(:show)
   end
 
   it "update action should render edit template when cc transaction is invalid" do
     @order.stubs(:complete?).returns(true)
     put :update#, :id => @order.id
-    response.should redirect_to( admin_history_order_url(@order))
+    expect(response).to redirect_to( admin_history_order_url(@order))
   end
 
 end

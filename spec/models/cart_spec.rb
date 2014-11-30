@@ -8,17 +8,17 @@ describe Cart, ".sub_total" do
   end
 
   it "should calculate subtotal correctly" do
-    @cart.sub_total.should == 10.00
+    expect(@cart.sub_total).to eq 10.00
   end
 
   it "should give the number of cart items" do
-    @cart.number_of_shopping_cart_items.should == 2
+    expect(@cart.number_of_shopping_cart_items).to eq 2
   end
 
   it "should give the number of cart items" do
     variant = FactoryGirl.create(:variant)
     @cart.add_variant(variant.id, @cart.user, 2)
-    @cart.number_of_shopping_cart_items.should == 4
+    expect(@cart.number_of_shopping_cart_items).to eq 4
   end
 end
 
@@ -44,29 +44,29 @@ describe Cart, " instance methods" do
 
     it 'should add item to in_progress orders' do
       @cart.add_items_to_checkout(@order)
-      @order.order_items.size.should == 2
+      expect(@order.order_items.size).to eq 2
     end
 
     it 'should keep items already in order to in_progress orders' do
       @cart.add_items_to_checkout(@order)
       @cart.add_items_to_checkout(@order)
-      @order.order_items.size.should == 2
+      expect(@order.order_items.size).to eq 2
     end
 
     it 'should add only needed items already in order to in_progress orders' do
       @cart.add_items_to_checkout(@order)
       @cart.shopping_cart_items.push(create(:cart_item))
       @cart.add_items_to_checkout(@order)
-      @order.order_items.size.should == 3
+      expect(@order.order_items.size).to eq 3
     end
 
     it 'should remove items not in cart to in_progress orders' do
       @cart.shopping_cart_items.push(create(:cart_item))
       @cart.add_items_to_checkout(@order) ##
-      @order.order_items.size.should == 3
+      expect(@order.order_items.size).to eq 3
       cart = create(:cart_with_two_5_dollar_items)
       cart.add_items_to_checkout(@order)
-      @order.order_items.size.should == 2
+      expect(@order.order_items.size).to eq 2
     end
   end
 
@@ -75,7 +75,7 @@ describe Cart, " instance methods" do
     it 'should assign the user to the cart' do
       user = create(:user)
       @cart.save_user(user)
-      @cart.user.should == user
+      expect(@cart.user).to eq user
     end
   end
 
@@ -94,7 +94,7 @@ describe Cart, '' do
       order.stubs(:variant_ids).returns(@cart.cart_items.collect{|ci| ci.variant_id})
       @cart.mark_items_purchased(order)
       @cart.cart_items.each do |ci|
-        ci.reload.item_type_id.should == ItemType::PURCHASED_ID
+        expect(ci.reload.item_type_id).to eq ItemType::PURCHASED_ID
       end
     end
 
@@ -104,7 +104,7 @@ describe Cart, '' do
       order.stubs(:variant_ids).returns([])
       @cart.mark_items_purchased(order)
       @cart.cart_items.each do |ci|
-        ci.reload.item_type_id.should_not == ItemType::PURCHASED_ID
+        expect(ci.reload.item_type_id).not_to eq ItemType::PURCHASED_ID
       end
     end
   end
@@ -121,7 +121,7 @@ describe Cart, ".add_variant" do
     Variant.any_instance.stubs(:sold_out?).returns(false)
     cart_item_size = @cart.shopping_cart_items.size
     @cart.add_variant(@variant.id, @cart.user)
-    @cart.shopping_cart_items.size.should == cart_item_size + 1
+    expect(@cart.shopping_cart_items.size).to eq cart_item_size + 1
   end
 
   it 'should add quantity of variant to cart' do
@@ -131,10 +131,10 @@ describe Cart, ".add_variant" do
     @cart.add_variant(@variant.id, @cart.user)
     @cart.cart_items.each do |item|
       #puts "#{item.variant_id} : #{@variant.id}  (#{item.quantity})"
-      item.quantity.should == 2 if item.variant_id == @variant.id
+      expect(item.quantity).to eq 2 if item.variant_id == @variant.id
     end
 
-    @cart.shopping_cart_items.size.should == cart_item_size + 1
+    expect(@cart.shopping_cart_items.size).to eq cart_item_size + 1
   end
 
   it 'should add quantity of variant to saved_cart_items if out of stock' do
@@ -142,8 +142,8 @@ describe Cart, ".add_variant" do
     cart_item_size = @cart.shopping_cart_items.size
     @cart.add_variant(@variant.id, nil)
 
-    @cart.shopping_cart_items.size.should == cart_item_size
-    @cart.saved_cart_items.size.should == 1
+    expect(@cart.shopping_cart_items.size).to eq cart_item_size
+    expect(@cart.saved_cart_items.size).to eq 1
   end
 end
 

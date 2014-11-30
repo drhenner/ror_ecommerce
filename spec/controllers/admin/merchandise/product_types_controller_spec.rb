@@ -14,51 +14,51 @@ describe Admin::Merchandise::ProductTypesController do
   it "index action should render index template" do
     @product_type = create(:product_type)
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "new action should render new template" do
     get :new
-    response.should render_template(:new)
+    expect(response).to render_template(:new)
   end
 
   it "create action should render new template when model is invalid" do
     ProductType.any_instance.stubs(:valid?).returns(false)
     post :create, :product_type => {:name => 'dis', :parent_id => 1}
-    response.should render_template(:new)
+    expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     @product_type = build(:product_type)
     ProductType.any_instance.stubs(:valid?).returns(true)
     post :create, :product_type => @product_type.attributes.reject {|k,v| !['name','parent_id'].include?(k)}
-    response.should redirect_to(admin_merchandise_product_types_url)
+    expect(response).to redirect_to(admin_merchandise_product_types_url)
   end
 
   it "edit action should render edit template" do
     @product_type = create(:product_type)
     get :edit, :id => @product_type.id
-    response.should render_template(:edit)
+    expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     @product_type = create(:product_type)
     ProductType.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @product_type.id, :product_type => {:name => 'dis', :parent_id => nil}
-    response.should render_template(:edit)
+    expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @product_type = create(:product_type)
     ProductType.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @product_type.id, :product_type => {:name => 'dis', :parent_id => nil}
-    response.should redirect_to(admin_merchandise_product_types_url)
+    expect(response).to redirect_to(admin_merchandise_product_types_url)
   end
 
   it "destroy action should destroy model and redirect to index action" do
     @product_type = create(:product_type)
     delete :destroy, :id => @product_type.id
-    response.should redirect_to(admin_merchandise_product_types_url)
+    expect(response).to redirect_to(admin_merchandise_product_types_url)
     expect(ProductType.find(@product_type.id).active).to eq false
   end
 end

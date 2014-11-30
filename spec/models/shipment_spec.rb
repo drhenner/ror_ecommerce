@@ -10,7 +10,7 @@ describe Shipment, 'instance methods' do
     #self.shipped_at = Time.zone.now
     it "should mark the shipment as shipped" do
       @shipment.set_to_shipped
-      @shipment.shipped_at.should_not be_nil
+      expect(@shipment.shipped_at).not_to be_nil
     end
   end
 
@@ -36,8 +36,8 @@ describe Shipment, 'instance methods' do
       @shipment.order_items.push(@order_item)
       @shipment.ship_inventory
       variant_after_shipment = Variant.find(@variant.id)
-      variant_after_shipment.count_on_hand.should == 99
-      variant_after_shipment.count_pending_to_customer.should == 49
+      expect(variant_after_shipment.count_on_hand).to eq 99
+      expect(variant_after_shipment.count_pending_to_customer).to eq 49
     end
   end
 
@@ -56,12 +56,12 @@ describe Shipment, 'instance methods' do
       # I18n.translate('time.formats.us_date')
       now = Time.zone.now
       @shipment.shipped_at = now
-      @shipment.display_shipped_at.should == now.strftime('%m/%d/%Y')
+      expect(@shipment.display_shipped_at).to eq now.strftime('%m/%d/%Y')
     end
 
     it 'should diplay "Not Shipped"' do
       @shipment.shipped_at = nil
-      @shipment.display_shipped_at.should == "Not Shipped."
+      expect(@shipment.display_shipped_at).to eq "Not Shipped."
     end
   end
 
@@ -96,10 +96,10 @@ describe Shipment, 'instance method from build' do
 
   context '.set_number, save_shipment_number and set_shipment_number' do
     it "should set_number after saving" do
-      @shipment.number.should be_nil
+      expect(@shipment.number).to be_nil
       @shipment.save
-      @shipment.number.should_not be_nil
-      @shipment.number.should  == (Shipment::NUMBER_SEED + @shipment.id).to_s(Shipment::CHARACTERS_SEED)
+      expect(@shipment.number).not_to be_nil
+      expect(@shipment.number).to eq (Shipment::NUMBER_SEED + @shipment.id).to_s(Shipment::CHARACTERS_SEED)
     end
   end
 
@@ -123,10 +123,9 @@ describe Shipment, '#create_shipments_with_items(order)' do
     order    = Order.find(@order.id)
     shipment = Shipment.create_shipments_with_items(order)
     order.reload
-    order.shipments.size.should == 2
-    #shipment.order_item_ids.should == order.order_item_ids
+    expect(order.shipments.size).to eq 2
+    #expect(shipment.order_item_ids).to eq order.order_item_ids
   end
-#shipping_method_id
 
   it 'should create 1 shipment with items with the same shipping method'do
     #shipping_method = create(:shipping_method)
@@ -141,8 +140,8 @@ describe Shipment, '#create_shipments_with_items(order)' do
     order    = Order.find(@order.id)
     shipment = Shipment.create_shipments_with_items(order)
     order.reload
-    order.shipments.size.should == 1
-    #shipment.order_item_ids.should == order.order_item_ids
+    expect(order.shipments.size).to eq 1
+    #expect(shipment.order_item_ids).to eq order.order_item_ids
   end
 
 end
@@ -156,7 +155,7 @@ describe Shipment, 'Class Methods' do
     it 'should return the shipment' do
       shipment = create(:shipment)
       s = Shipment.find_fulfillment_shipment(shipment.id)
-      s.id.should == shipment.id
+      expect(s.id).to eq shipment.id
     end
   end
 
@@ -164,7 +163,7 @@ describe Shipment, 'Class Methods' do
     it 'should return shipment id' do
       shipment     = create(:shipment)
       shipment_id  = Shipment.id_from_number(shipment.number)
-      shipment_id.should == shipment.id
+      expect(shipment_id).to eq shipment.id
     end
   end
 
@@ -172,7 +171,7 @@ describe Shipment, 'Class Methods' do
     it 'should find the shipment by number' do
       shipment = create(:shipment)
       find_shipment = Shipment.find_by_number(shipment.number)
-      find_shipment.id.should == shipment.id
+      expect(find_shipment.id).to eq shipment.id
     end
   end
 end

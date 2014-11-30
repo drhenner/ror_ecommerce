@@ -47,13 +47,13 @@ describe Variant, " instance methods" do
 
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::LOW_STOCK_QTY))
       @variant    = create(:variant,   :inventory => inventory)
-      @variant.display_stock_status.should == '(Low Stock)'
+      expect(@variant.display_stock_status).to eq '(Low Stock)'
     end
 
     it 'should be sold out' do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::OUT_OF_STOCK_QTY))
       @variant    = create(:variant,   :inventory => inventory)
-      @variant.display_stock_status.should == '(Sold Out)'
+      expect(@variant.display_stock_status).to eq '(Sold Out)'
     end
   end
 
@@ -61,14 +61,14 @@ describe Variant, " instance methods" do
     it 'should return the products tax rate for the given state' do
       tax_rate = create(:tax_rate)
       @variant.product.stubs(:tax_rate).returns(tax_rate)
-      @variant.product_tax_rate(1).should == tax_rate
+      expect(@variant.product_tax_rate(1)).to eq tax_rate
     end
   end
 
   context ".shipping_category_id" do
     it 'should return the products shipping_category' do
       @variant.product.stubs(:shipping_category_id).returns(32)
-      @variant.shipping_category_id.should == 32
+      expect(@variant.shipping_category_id).to eq 32
     end
   end
 
@@ -81,7 +81,7 @@ describe Variant, " instance methods" do
       variant_prop2 = create(:variant_property, :property => property, :description => 'blue')
       @variant.variant_properties.push(variant_prop1)
       @variant.variant_properties.push(variant_prop2)
-      @variant.display_property_details.should == 'Color: red<br/>Color: blue'
+      expect(@variant.display_property_details).to eq 'Color: red<br/>Color: blue'
     end
   end
 
@@ -93,10 +93,10 @@ describe Variant, " instance methods" do
       variant_prop2 = create(:variant_property, :property => property, :description => 'blue')
       @variant.variant_properties.push(variant_prop1)
       @variant.variant_properties.push(variant_prop2)
-      @variant.property_details.should == ['Color: red', 'Color: blue']
+      expect(@variant.property_details).to eq ['Color: red', 'Color: blue']
     end
     it 'should show the property details without properties' do
-      @variant.property_details.should == []
+      expect(@variant.property_details).to eq []
     end
   end
 
@@ -104,20 +104,20 @@ describe Variant, " instance methods" do
     it 'should return the variant name' do
       @variant.name = 'helloo'
       @variant.product.name = 'product says hello'
-      @variant.product_name.should == 'helloo'
+      expect(@variant.product_name).to eq 'helloo'
     end
 
     it 'should return the products name' do
         @variant.name = nil
         @variant.product.name = 'product says hello'
-        @variant.product_name.should == 'product says hello'
+        expect(@variant.product_name).to eq 'product says hello'
     end
 
     it 'should return the products name and subname' do
         @variant.name = nil
         @variant.product.name = 'product says hello'
         @variant.stubs(:primary_property).returns  create(:variant_property, :description => 'pp_name')
-        @variant.product_name.should == 'product says hello - pp_name'
+        expect(@variant.product_name).to eq 'product says hello - pp_name'
     end
   end
 
@@ -126,7 +126,7 @@ describe Variant, " instance methods" do
         @variant.name = nil
         @variant.product.name = 'product says hello'
         @variant.stubs(:primary_property).returns  create(:variant_property, :description => 'pp_name')
-        @variant.sub_name.should == 'pp_name'
+        expect(@variant.sub_name).to eq 'pp_name'
     end
   end
 
@@ -135,7 +135,7 @@ describe Variant, " instance methods" do
       brand     = create(:brand, :name => 'Reabok')
       @product  = create(:product, brand: brand)
       @variant.stubs(:product).returns @product
-      @variant.brand_name.should == 'Reabok'
+      expect(@variant.brand_name).to eq 'Reabok'
     end
   end
 
@@ -148,7 +148,7 @@ describe Variant, " instance methods" do
       variant_prop2 = create(:variant_property, :variant => @variant, :property => property2, :primary => false)
       @variant.variant_properties.push(variant_prop2)
       @variant.variant_properties.push(variant_prop1)
-      @variant.primary_property.should == variant_prop1
+      expect(@variant.primary_property).to eq variant_prop1
     end
 
     it 'should return the primary property' do
@@ -160,7 +160,7 @@ describe Variant, " instance methods" do
       @variant.variant_properties.push(variant_prop1)
       @variant.variant_properties.push(variant_prop2)
       @variant.save
-      @variant.primary_property.should == variant_prop1
+      expect(@variant.primary_property).to eq variant_prop1
     end
   end
 
@@ -168,13 +168,13 @@ describe Variant, " instance methods" do
     it "should show name_with_sku" do
       @variant.name = 'helloo'
       @variant.sku = '54321'
-      @variant.name_with_sku.should == 'helloo: 54321'
+      expect(@variant.name_with_sku).to eq 'helloo: 54321'
     end
   end
 
   context ".qty_to_add" do
     it "should return 0 for qty_to_add" do
-      @variant.qty_to_add.should == 0
+      expect(@variant.qty_to_add).to eq 0
     end
   end
 
@@ -214,7 +214,7 @@ describe Variant, " instance methods" do
       @variant.save
       @variant.add_count_on_hand(1)
       @variant.reload
-      @variant.inventory.count_on_hand.should == 101
+      expect(@variant.inventory.count_on_hand).to eq 101
     end
   end
 
@@ -226,7 +226,7 @@ describe Variant, " instance methods" do
       @variant.save
       @variant.subtract_count_on_hand(1)
       @variant.reload
-      @variant.inventory.count_on_hand.should == 99
+      expect(@variant.inventory.count_on_hand).to eq 99
     end
   end
 
@@ -237,7 +237,7 @@ describe Variant, " instance methods" do
       @variant.save
       @variant.add_pending_to_customer(1)
       @variant.reload
-      @variant.inventory.count_pending_to_customer.should == 100
+      expect(@variant.inventory.count_pending_to_customer).to eq 100
     end
   end
 
@@ -248,7 +248,7 @@ describe Variant, " instance methods" do
       @variant.save
       @variant.subtract_pending_to_customer(1)
       @variant.reload
-      @variant.inventory.count_pending_to_customer.should == 98
+      expect(@variant.inventory.count_pending_to_customer).to eq 98
     end
   end
 
@@ -258,7 +258,7 @@ describe Variant, " instance methods" do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
       @variant    = create(:variant,   :inventory => inventory)
       @variant.qty_to_add = 12
-      @variant.inventory.count_on_hand.should == 112
+      expect(@variant.inventory.count_on_hand).to eq 112
     end
   end
 end
@@ -268,12 +268,12 @@ describe Variant, "instance method" do
     it 'should be quantity_purchaseable' do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (98))
       @variant    = create(:variant,   :inventory => inventory)
-      @variant.quantity_purchaseable.should == 2 - Variant::OUT_OF_STOCK_QTY
+      expect(@variant.quantity_purchaseable).to eq 2 - Variant::OUT_OF_STOCK_QTY
     end
     it 'should be quantity_purchaseable by an admin' do
       inventory   = create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (98))
       @variant    = create(:variant,   :inventory => inventory)
-      @variant.quantity_purchaseable(true).should == 2 - Variant::ADMIN_OUT_OF_STOCK_QTY
+      expect(@variant.quantity_purchaseable(true)).to eq 2 - Variant::ADMIN_OUT_OF_STOCK_QTY
     end
   end
 
@@ -285,7 +285,7 @@ describe Variant, "#admin_grid(product, params = {})" do
     variant1 = create(:variant, :product => product)
     variant2 = create(:variant, :product => product)
     admin_grid = Variant.admin_grid(product)
-    admin_grid.size.should == 2
+    expect(admin_grid.size).to eq 2
     expect(admin_grid.include?(variant1)).to be true
     expect(admin_grid.include?(variant2)).to be true
   end

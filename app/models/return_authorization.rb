@@ -16,6 +16,8 @@
 #
 
 class ReturnAuthorization < ActiveRecord::Base
+  include AASM
+
   has_many   :return_items
   has_many   :comments, :as => :commentable
 
@@ -46,19 +48,27 @@ class ReturnAuthorization < ActiveRecord::Base
   CHARACTERS_SEED = 21
 
   ## after you process an RMA you must manually add the variant back into the system!!!
-  state_machine :initial => 'authorized' do
+  #state_machine :initial => 'authorized' do
+  aasm column: :state do
+    state :authorized , initial: true
+    state :received
+    state :cancelled
+    state :complete
+
     #after_transition :to => 'received', :do => :process_receive
     #after_transition :to => 'cancelled', :do => :process_canceled
-    before_transition :to => 'complete', :do => [:process_ledger_transactions, :mark_items_returned]
+    #before_transition :to => 'complete', :do => [:process_ledger_transactions, :mark_items_returned]
 
     event :receive do
-      transition :to => 'received', :from => 'authorized'
+      transitions to: :received, from: :authorized
     end
+
     event :cancel do
-      transition :to => 'cancelled', :from => 'authorized'
+      transitions to: :cancelled, from: :authorized
     end
-    event :complete do # do this after a payment was returned to the customer
-      transition :to => 'complete', :from => ['authorized', 'received']
+
+    event :complete, before: [:process_ledger_transactions, :mark_items_returned] do # do this after a payment was returned to the customer
+      transitions to: :complete, from: [:authorized, :received]
     end
   end
 

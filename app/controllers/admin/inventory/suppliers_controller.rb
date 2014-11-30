@@ -1,6 +1,5 @@
 class Admin::Inventory::SuppliersController < Admin::BaseController
   helper_method :sort_column, :sort_direction
-  respond_to :json, :html
 
   def index
     @suppliers = Supplier.admin_grid(params).order(sort_column + " " + sort_direction).
@@ -37,7 +36,10 @@ class Admin::Inventory::SuppliersController < Admin::BaseController
 
   def show
     @supplier = Supplier.find(params[:id])
-    respond_with(@supplier)
+    respond_to do |format|
+      format.html
+      format.json { render json: @supplier }
+    end
   end
 
 private

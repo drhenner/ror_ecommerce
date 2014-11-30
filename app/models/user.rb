@@ -30,6 +30,7 @@
 #
 
 class User < ActiveRecord::Base
+  include AASM
   include TransactionAccountable
   include UserCim
   include Presentation::UserPresenter
@@ -122,17 +123,17 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :reject_if => lambda { |t| ( t['display_number'].gsub(/\D+/, '').blank?) }
   accepts_nested_attributes_for :customer_service_comments, :reject_if => proc { |attributes| attributes['note'].strip.blank? }
 
-  state_machine :state, :initial => :active do
+  aasm column: :state do
     state :inactive
-    state :active
+    state :active, initial: true
     state :canceled
 
     event :activate do
-      transition all => :active, :unless => :active?
+      transitions from: [:inactive, :canceled], to: :active, unless: :active?
     end
 
     event :cancel do
-      transition :from => [:inactive, :active, :canceled], :to => :canceled
+      transitions from: [:inactive, :active, :canceled], to: :canceled
     end
 
   end

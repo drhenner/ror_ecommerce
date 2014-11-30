@@ -5,7 +5,7 @@ describe WishItemsController do
 
   it "redirect to login if no current_user" do
     get :index
-    response.should redirect_to(login_url)
+    expect(response).to redirect_to(login_url)
   end
 end
 
@@ -21,12 +21,12 @@ describe WishItemsController do
   end
   it "index action should render index template" do
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "destroy action should render index template" do
     delete :destroy, :id => @wish_item.id, :variant_id => @variant.id
     expect(CartItem.find(@wish_item.id).active).to eq false
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 end

@@ -18,13 +18,13 @@ describe Admin::Merchandise::Wizards::ProductsController do
 
   it "new action should render new template" do
     get :new
-    response.should render_template(:new)
+    expect(response).to render_template(:new)
   end
 
   it "create action should render new template when model is invalid" do
     Product.any_instance.stubs(:valid?).returns(false)
     post :create, :product => { :name => 'hello'}
-    response.should render_template(:new)
+    expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
@@ -34,6 +34,6 @@ describe Admin::Merchandise::Wizards::ProductsController do
                                 :product_type_id => 2,
                                 :shipping_category_id => 4
                               }
-    response.should redirect_to(edit_admin_merchandise_products_description_url(assigns[:product]))
+    expect(response).to redirect_to(edit_admin_merchandise_products_description_url(assigns[:product]))
   end
 end

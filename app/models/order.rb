@@ -47,6 +47,7 @@
 #
 
 class Order < ActiveRecord::Base
+  include AASM
   extend FriendlyId
   friendly_id :number
   include Presentation::OrderPresenter
@@ -83,20 +84,20 @@ class Order < ActiveRecord::Base
   NUMBER_SEED     = 1001001001000
   CHARACTERS_SEED = 21
 
-  state_machine :initial => 'in_progress' do
-    state 'in_progress'
-    state 'complete'
-    state 'paid'
-    state 'canceled'
+  aasm column: :state do
+    state :in_progress, initial: true
+    state :complete
+    state :paid
+    state :canceled
 
-    after_transition :to => 'paid', :do => [:mark_items_paid]
+    #after_transition :to => 'paid', :do => [:mark_items_paid]
 
     event :complete do
-      transition :to => 'complete', :from => 'in_progress'
+      transitions to: :complete, from: :in_progress
     end
 
-    event :pay do
-      transition :to => 'paid', :from => ['in_progress', 'complete']
+    event :pay, after: :mark_items_paid do
+      transitions to: :paid, from: [:in_progress, :complete]
     end
   end
 

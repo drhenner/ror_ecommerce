@@ -3,11 +3,11 @@ require 'spec_helper'
 describe Phone do
   context "Phone" do
     before(:each) do
-      @phone = build(:phone)
+      @phone = FactoryGirl.build(:phone)
     end
 
     it "should be valid with minimum attributes" do
-      @phone.should be_valid
+      expect(@phone).to be_valid
     end
 
   end

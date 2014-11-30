@@ -1,6 +1,6 @@
 class Admin::Merchandise::PropertiesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
-  respond_to :html, :json
+
   def index
     @properties = Property.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
@@ -49,10 +49,6 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
 
   def sort_column
     Property.column_names.include?(params[:sort]) ? params[:sort] : "identifing_name"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

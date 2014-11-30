@@ -6,7 +6,7 @@ describe AccountingAdjustment do
       inventory = create(:inventory, :count_on_hand => 30000)
       AccountingAdjustment.adjust_stock(inventory, 1000, 12.00)
       inventory.reload
-      inventory.count_on_hand.should == 31000
+      expect(inventory.count_on_hand).to eq 31000
     end
   end
 end

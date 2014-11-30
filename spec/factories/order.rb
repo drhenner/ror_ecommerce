@@ -10,7 +10,7 @@ FactoryGirl.define do
     calculated_at   Time.zone.now
     completed_at    Time.zone.now
 
-    after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+    #after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
   end
 
   factory :in_progress_order, :parent => :order do

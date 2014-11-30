@@ -16,6 +16,7 @@
 #
 
 class PurchaseOrder < ActiveRecord::Base
+  include AASM
   include TransactionAccountable
 
   belongs_to :supplier
@@ -40,20 +41,21 @@ class PurchaseOrder < ActiveRecord::Base
   RECEIVED    = 'received'
   STATES      = [PENDING, INCOMPLETE, RECEIVED]
 
-  state_machine :state, :initial => :pending do
-    state :pending
+  #state_machine :state, :initial => :pending do
+  aasm column: :state do
+    state :pending, initial: true
     state :incomplete
     state :received
 
-    after_transition :on => :complete, :do => [:pay_for_order, :receive_variants]
+    #after_transition :on => :complete, :do => [:pay_for_order, :receive_variants]
 
-    event :complete do |purchase_order|
-      transition all => :received
+    event :complete, after: [:pay_for_order, :receive_variants] do
+      transitions from: [:pending, :incomplete, :received],  to: :received
     end
 
     # mark as complete even though variants might not have been receive & payment was not made
     event :mark_as_complete do
-      transition :from => [:pending, :incomplete], :to => :received
+      transitions :from => [:pending, :incomplete], to: :received
     end
   end
 
@@ -99,7 +101,7 @@ class PurchaseOrder < ActiveRecord::Base
   end
 
   def display_estimated_arrival_on
-    estimated_arrival_on? ? estimated_arrival_on.to_s(:format => :us_date) : ""
+    estimated_arrival_on? ? I18n.localize(estimated_arrival_on, format: :us_date) : ""
   end
 
   # returns "the tracking #" if the tracking # exists, otherwise "N/A"

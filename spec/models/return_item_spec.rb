@@ -7,7 +7,7 @@ describe ReturnItem do
       end
 
       it "should be valid with minimum attributes" do
-        @return_item.should be_valid
+        expect(@return_item).to be_valid
       end
   end
 end

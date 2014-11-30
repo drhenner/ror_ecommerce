@@ -33,7 +33,7 @@ describe Admin::Shopping::Checkout::ShippingMethodsController do
     Address.any_instance.stubs(:shipping_method_ids).returns([1])
     controller.session[:order_admin_id] = @order.id
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
   it "index action should render index template" do
      @order = create(:order, :user => @user, :ship_address => @shipping_address)
@@ -41,7 +41,7 @@ describe Admin::Shopping::Checkout::ShippingMethodsController do
      Address.any_instance.stubs(:shipping_method_ids).returns([])
      controller.session[:order_admin_id] = @order.id
      get :index
-     response.should redirect_to(admin_config_shipping_zones_url)
+     expect(response).to redirect_to(admin_config_shipping_zones_url)
   end
 
   it "update action should render edit template when model is invalid" do
@@ -53,7 +53,7 @@ describe Admin::Shopping::Checkout::ShippingMethodsController do
     @shipping_method = create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @shipping_method.id, :shipping_category => {@shipping_category.id => nil}
-    response.should  redirect_to(admin_shopping_checkout_shipping_methods_url)
+    expect(response).to  redirect_to(admin_shopping_checkout_shipping_methods_url)
   end
 
   it "update action should redirect when model is valid" do
@@ -65,6 +65,6 @@ describe Admin::Shopping::Checkout::ShippingMethodsController do
     controller.stubs(:order_items_with_category).returns([@order_item])
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_method.id, :shipping_category => {@shipping_category.id => @shipping_rate.id}
-    response.should redirect_to(admin_shopping_checkout_order_url)
+    expect(response).to redirect_to(admin_shopping_checkout_order_url)
   end
 end

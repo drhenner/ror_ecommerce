@@ -20,7 +20,7 @@ main,
 nav,
 section,
 summary {
-    display: block;
+  display: block;
 }
 
 /**
@@ -30,7 +30,7 @@ summary {
 audio,
 canvas,
 video {
-    display: inline-block;
+  display: inline-block;
 }
 
 /**
@@ -39,8 +39,8 @@ video {
  */
 
 audio:not([controls]) {
-    display: none;
-    height: 0;
+  display: none;
+  height: 0;
 }
 
 /**

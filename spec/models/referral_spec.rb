@@ -36,7 +36,7 @@ describe Referral do
                         :registered_at    => nil)
     referral_user = FactoryGirl.create(:user, :email => 'john@doe.com')
     referral.reload
-    referral.referral_user_id.should == referral_user.id
-    referral.registered_at.should_not be_nil
+    expect(referral.referral_user_id).to eq referral_user.id
+    expect(referral.registered_at).not_to be_nil
   end
 end

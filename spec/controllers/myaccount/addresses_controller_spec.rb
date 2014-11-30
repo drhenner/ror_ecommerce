@@ -14,38 +14,38 @@ describe Myaccount::AddressesController do
 
   it "index action should render index template" do
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "show action should render show template" do
     @address = create(:address, :addressable => @user)
     get :show, :id => @address.id
-    response.should render_template(:show)
+    expect(response).to render_template(:show)
   end
 
   it "new action should render new template" do
     get :new
-    response.should render_template(:new)
+    expect(response).to render_template(:new)
   end
 
   it "create action should render new template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
     address = build(:address)
     post :create, :address => address.attributes
-    response.should render_template(:new)
+    expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
     address = build(:address)
     post :create, :address => address.attributes
-    response.should redirect_to(myaccount_address_url(assigns[:address]))
+    expect(response).to redirect_to(myaccount_address_url(assigns[:address]))
   end
 
   it "edit action should render edit template" do
     @address = create(:address, :addressable => @user)
     get :edit, :id => @address.id
-    response.should render_template(:edit)
+    expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
@@ -53,7 +53,7 @@ describe Myaccount::AddressesController do
     Address.any_instance.stubs(:valid?).returns(false)
     address = build(:address, :default => true)
     put :update, :id => @address.id, :address => address.attributes
-    response.should render_template(:edit)
+    expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
@@ -61,13 +61,13 @@ describe Myaccount::AddressesController do
     Address.any_instance.stubs(:valid?).returns(true)
     address = build(:address, :default => true)
     put :update, :id => @address.id, :address => address.attributes
-    response.should redirect_to(myaccount_address_url(assigns[:address]))
+    expect(response).to redirect_to(myaccount_address_url(assigns[:address]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
     @address = create(:address, :addressable => @user)
     delete :destroy, :id => @address.id
-    response.should redirect_to(myaccount_addresses_url)
+    expect(response).to redirect_to(myaccount_addresses_url)
     expect(Address.exists?(@address.id)).to be true
     a = Address.find(@address.id)
     expect(a.active).to eq false

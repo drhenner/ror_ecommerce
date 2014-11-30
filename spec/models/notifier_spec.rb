@@ -14,19 +14,19 @@ describe Notifier, "Signup Email" do
     end
 
     it "should be set to be delivered to the email passed in" do
-      @email.should deliver_to("Dave Commerce <myfake@email.com>")
+      expect(@email).to deliver_to("Dave Commerce <myfake@email.com>")
     end
 
     it "should contain the user's message in the mail body" do
-      @email.should have_body_text(/Dave Commerce/)
+      expect(@email).to have_body_text(/Dave Commerce/)
     end
 
     #it "should contain a link to the confirmation link" do
-    #  @email.should have_body_text(/#{confirm_account_url}/)
+    #  expect(@email).to have_body_text(/#{confirm_account_url}/)
     #end
 
     it "should have the correct subject" do
-      @email.should have_subject(/New account information/)
+      expect(@email).to have_subject(/New account information/)
     end
 
 end
@@ -43,11 +43,11 @@ describe Notifier, "#new_referral_credits" do
     @email = Notifier.new_referral_credits(@referring_user.id, @referral_user.id)
   end
   it "should be set to be delivered to the email passed in" do
-    @email.should deliver_to("referring_user@email.com")
+    expect(@email).to deliver_to("referring_user@email.com")
   end
 
   it "should have the correct subject" do
-    @email.should have_subject(/Referral Credits have been Applied/)
+    expect(@email).to have_subject(/Referral Credits have been Applied/)
   end
 end
 
@@ -63,11 +63,11 @@ describe Notifier, "#referral_invite(referral_id, inviter_id)" do
     @email = Notifier.referral_invite(@referral.id, @referring_user.id)
   end
   it "should be set to be delivered to the email passed in" do
-    @email.should deliver_to("referral_user@email.com")
+    expect(@email).to deliver_to("referral_user@email.com")
   end
 
   it "should have the correct subject" do
-    @email.should have_subject(/Referral from Dave/)
+    expect(@email).to have_subject(/Referral from Dave/)
   end
 end
 
@@ -84,19 +84,19 @@ describe Notifier, "#order_confirmation" do
     end
 
     it "should be set to be delivered to the email passed in" do
-      @email.should deliver_to("myfake@email.com")
+      expect(@email).to deliver_to("myfake@email.com")
     end
 
     it "should contain the user's message in the mail body" do
-      @email.should have_body_text(/Dave Commerce/)
+      expect(@email).to have_body_text(/Dave Commerce/)
     end
 
     #it "should contain a link to the confirmation link" do
-    #  @email.should have_body_text(/#{confirm_account_url}/)
+    #  expect(@email).to have_body_text(/#{confirm_account_url}/)
     #end
 
     it "should have the correct subject" do
-      @email.should have_subject(/Order Confirmation/)
+      expect(@email).to have_subject(/Order Confirmation/)
     end
 
 end

@@ -172,8 +172,9 @@ class Product < ActiveRecord::Base
   end
 
   def active(at = Time.zone.now)
-    deleted_at.nil? || deleted_at >= at
+    deleted_at.nil? || deleted_at > (at + 1.second)
   end
+
   def active?(at = Time.zone.now)
     active(at)
   end
@@ -211,7 +212,7 @@ class Product < ActiveRecord::Base
     end
 
     def not_active_on_create!
-      self.deleted_at = Time.zone.now
+      self.deleted_at ||= Time.zone.now
     end
 
     # if the permalink is not filled in set it equal to the name
@@ -236,6 +237,7 @@ class Product < ActiveRecord::Base
       if active? && deleted_at_changed?
         self.errors.add(:base, 'There must be active variants.')  if active_variants.blank?
         self.errors.add(:base, 'Variants must have inventory.')   unless active_variants.any?{|v| v.is_available? }
+        self.deleted_at = deleted_at_was if active_variants.blank? || !active_variants.any?{|v| v.is_available? }
       end
     end
 

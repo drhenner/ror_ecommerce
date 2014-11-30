@@ -5,11 +5,11 @@ describe Brand do
     before(:each) do
       @brand = build(:brand)
     end
-    
+
     it "should be valid with minimum attribues" do
-      @brand.should be_valid
+      expect(@brand).to be_valid
     end
-    
+
   end
-  
+
 end

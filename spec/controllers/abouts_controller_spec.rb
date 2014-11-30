@@ -5,6 +5,6 @@ describe AboutsController, type: :controller do
 
   it "show action should render show template" do
     get :show
-    response.should render_template(:show)
+    expect(response).to render_template(:show)
   end
 end

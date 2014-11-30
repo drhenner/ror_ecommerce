@@ -16,6 +16,8 @@
 #
 
 class OrderItem < ActiveRecord::Base
+  include AASM
+
   belongs_to :order
   belongs_to :shipping_rate
   belongs_to :variant
@@ -37,14 +39,18 @@ class OrderItem < ActiveRecord::Base
     @beginning_total            = self.total            rescue @beginning_total = nil # this stores the initial value of the total
   end
 
-  state_machine :initial => 'unpaid' do
+  #state_machine :initial => 'unpaid' do
+  aasm column: :state do
+    state :unpaid, initial: true
+    state :paid
+    state :returned
 
     event :pay do
-      transition :to => 'paid', :from => ['unpaid']
+      transitions to: :paid, from: :unpaid
     end
 
     event :return do
-      transition :to => 'returned', :from => ['paid']
+      transitions to: :returned, from: :paid
     end
     #after_transition :to => 'complete', :do => [:update_inventory]
   end

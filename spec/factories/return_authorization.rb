@@ -8,6 +8,6 @@ FactoryGirl.define do
     user            { |c| c.association(:user) }
     created_by      { |c| c.association(:user).id }
 
-    after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+    #after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
   end
 end

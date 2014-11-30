@@ -7,7 +7,7 @@ describe TransactionLedger do
     end
 
     it "should be valid with minimum attribues" do
-      @transaction_ledger.should be_valid
+      expect(@transaction_ledger).to be_valid
     end
 
   end

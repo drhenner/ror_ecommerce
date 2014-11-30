@@ -10,7 +10,7 @@ describe PurchaseOrderVariant, "instance methods" do
   context ".receive!" do
     it 'should call receive if true' do
       @purchase_order_variant.receive!
-      @purchase_order_variant.variant.inventory.count_on_hand.should == 110
+      expect(@purchase_order_variant.variant.inventory.count_on_hand).to eq 110
     end
 
     it 'should mark purchase order complete' do
