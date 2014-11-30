@@ -174,7 +174,7 @@ describe User, "instance methods" do
       @user.last_name       = ' lastnamE '
       @user.account         = nil
 
-      @user.sanitize_data
+      @user.send :sanitize_data
 
       expect(@user.email).to        eq 'bad@email.com'
       expect(@user.first_name).to   eq 'Bad name'

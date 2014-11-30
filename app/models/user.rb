@@ -209,19 +209,6 @@ class User < ActiveRecord::Base
     default_shipping_address ? default_shipping_address : shipping_addresses.first
   end
 
-  # sanitizes the saving of data.  removes white space and assigns a free account type if one doesn't exist
-  #
-  # @param  [ none ]
-  # @return [ none ]
-  def sanitize_data
-    self.email      = self.email.strip.downcase       unless email.blank?
-    self.first_name = self.first_name.strip.capitalize  unless first_name.nil?
-    self.last_name  = self.last_name.strip.capitalize   unless last_name.nil?
-
-    ## CHANGE THIS IF YOU HAVE DIFFERENT ACCOUNT TYPES
-    self.account = Account.first unless account_id
-  end
-
   # name and first line of address (used by credit card gateway to descript the merchant)
   #
   # @param  [ none ]
@@ -299,6 +286,19 @@ class User < ActiveRecord::Base
   def subscribe_to_newsletters
     newsletter_ids = Newsletter.where(:autosubscribe => true).pluck(:id)
     self.newsletter_ids = newsletter_ids
+  end
+
+  # sanitizes the saving of data.  removes white space and assigns a free account type if one doesn't exist
+  #
+  # @param  [ none ]
+  # @return [ none ]
+  def sanitize_data
+    self.email      = self.email.strip.downcase       unless email.blank?
+    self.first_name = self.first_name.strip.capitalize  unless first_name.nil?
+    self.last_name  = self.last_name.strip.capitalize   unless last_name.nil?
+
+    ## CHANGE THIS IF YOU HAVE DIFFERENT ACCOUNT TYPES
+    self.account = Account.first unless account_id
   end
 
   def before_validation_on_create
