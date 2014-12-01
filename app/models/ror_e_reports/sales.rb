@@ -13,26 +13,26 @@ module RorEReports
       summary = baseline_report
       @orders.each do |order|
         date = date_for(order.completed_at)
-        summary[date][:amount] += order.first_invoice_amount if date
-        summary[date][:sales]  += 1                          if date
+        summary[date.to_s][:amount] += order.first_invoice_amount if date
+        summary[date.to_s][:sales]  += 1                          if date
       end
       summary.values
     end
 
     def date_for(at)
-      report_dates.detect{|key, date_string| at.utc.to_date <= key.to_date }.try(:first)
+      report_dates.detect{|key, date_string| at.to_date <= key.to_date }.try(:first)
     end
 
     def report_dates
       @report_dates ||= (@number_of_weeks + 1).times.inject({}) do |h, i|
-        h[(@start_time + i.weeks).utc.to_date] = (@start_time + i.weeks).strftime("%Y-%m-%d")
+        h[(@start_time + i.weeks).to_date.to_s] = (@start_time + i.weeks).strftime("%Y-%m-%d")
         h
       end
     end
 
     def baseline_report
       @baseline_report ||= (@number_of_weeks + 1).times.inject({}) do |h, i|
-        h[(@start_time + i.weeks).utc.to_date] = {
+        h[(@start_time + i.weeks).to_date.to_s] = {
           date:   (@start_time + i.weeks).strftime("%Y-%m-%d"),
           amount: 0,
           sales:  0}
