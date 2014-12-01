@@ -9,7 +9,7 @@ describe Notifier, "Signup Email" do
     before(:each) do
       #"jojo@yahoo.com", "Jojo Binks"
       #[first_name.capitalize, last_name.capitalize ]
-      @user  = create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
+      @user  = FactoryGirl.create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
       @email = Notifier.signup_notification(@user.id)
     end
 
@@ -35,9 +35,9 @@ describe Notifier, "#new_referral_credits" do
   include Rails.application.routes.url_helpers
 
   before(:each) do
-    @referring_user = create(:user,     :email => 'referring_user@email.com', :first_name => 'Dave', :last_name => 'Commerce')
-    @referral       = create(:referral, :email => 'referral_user@email.com', :referring_user => @referring_user )
-    @referral_user  = create(:user,     :email => 'referral_user@email.com', :first_name => 'Dave', :last_name => 'referral')
+    @referring_user = FactoryGirl.create(:user,     :email => 'referring_user@email.com', :first_name => 'Dave', :last_name => 'Commerce')
+    @referral       = FactoryGirl.create(:referral, :email => 'referral_user@email.com', :referring_user => @referring_user )
+    @referral_user  = FactoryGirl.create(:user,     :email => 'referral_user@email.com', :first_name => 'Dave', :last_name => 'referral')
 
     #@referral_user.stubs(:referree).returns(@referral)
     @email = Notifier.new_referral_credits(@referring_user.id, @referral_user.id)
@@ -56,8 +56,8 @@ describe Notifier, "#referral_invite(referral_id, inviter_id)" do
   include Rails.application.routes.url_helpers
 
   before(:each) do
-    @referring_user = create(:user,     :email => 'referring_user@email.com', :first_name => 'Dave', :last_name => 'Commerce')
-    @referral       = create(:referral, :email => 'referral_user@email.com', :referring_user => @referring_user )
+    @referring_user = FactoryGirl.create(:user,     :email => 'referring_user@email.com', :first_name => 'Dave', :last_name => 'Commerce')
+    @referral       = FactoryGirl.create(:referral, :email => 'referral_user@email.com', :referring_user => @referring_user )
 
     #@referral_user.stubs(:referree).returns(@referral)
     @email = Notifier.referral_invite(@referral.id, @referring_user.id)
@@ -75,10 +75,10 @@ describe Notifier, "#order_confirmation" do
     include Rails.application.routes.url_helpers
 
     before(:each) do
-      @user         = create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
-      @order_item   = create(:order_item)
-      @order        = create(:order, :email => 'myfake@email.com', :user => @user)
-      @invoice        = create(:invoice, :order => @order)
+      @user         = FactoryGirl.create(:user, :email => 'myfake@email.com', :first_name => 'Dave', :last_name => 'Commerce')
+      @order_item   = FactoryGirl.create(:order_item)
+      @order        = FactoryGirl.create(:order, :email => 'myfake@email.com', :user => @user)
+      @invoice        = FactoryGirl.create(:invoice, :order => @order)
       @order.stubs(:order_items).returns([@order_item])
       @email = Notifier.order_confirmation(@order.id, @invoice.id)
     end

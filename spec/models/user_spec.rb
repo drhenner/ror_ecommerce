@@ -50,7 +50,7 @@ describe User, "instance methods" do
     end
 
     it 'ahould not be an admin' do
-      user = create(:user)
+      user = FactoryGirl.create(:user)
       expect(user.admin?).to be false
     end
   end
@@ -59,7 +59,7 @@ end
 describe User, "instance methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @user = create(:user)
+    @user = FactoryGirl.create(:user)
   end
 
   context ".active?" do
@@ -101,7 +101,7 @@ describe User, "instance methods" do
 
   context ".might_be_interested_in_these_products" do
     it 'should find products' do
-      product = create(:product)
+      product = FactoryGirl.create(:product)
       expect(@user.might_be_interested_in_these_products.include?(product)).to be true
     end
 
@@ -111,24 +111,24 @@ describe User, "instance methods" do
   context ".billing_address" do
     # default_billing_address ? default_billing_address : default_shipping_address
     it 'should return nil if you dont have an address' do
-      #add = create(:address, :addressable => @user, :default => true)
+      #add = FactoryGirl.create(:address, :addressable => @user, :default => true)
       expect(@user.billing_address).to be_nil
     end
 
     it 'should use your shipping address if you dont have a default billing address' do
-      add = create(:address, :addressable => @user, :default => true)
+      add = FactoryGirl.create(:address, :addressable => @user, :default => true)
       expect(@user.billing_address).to eq add
     end
 
     it 'should use your default billing address if you have one available' do
-      add = create(:address, :addressable => @user, :default => true)
-      bill_add = create(:address, :addressable => @user, :billing_default => true)
+      add = FactoryGirl.create(:address, :addressable => @user, :default => true)
+      bill_add = FactoryGirl.create(:address, :addressable => @user, :billing_default => true)
       expect(@user.billing_address).to eq bill_add
     end
 
     it 'should return the first address if not defaults are set' do
-      #add = create(:address, :addressable => @user, :default => true)
-      add = create(:address, :addressable => @user)
+      #add = FactoryGirl.create(:address, :addressable => @user, :default => true)
+      add = FactoryGirl.create(:address, :addressable => @user)
       expect(@user.billing_address).to eq add
     end
   end
@@ -136,19 +136,19 @@ describe User, "instance methods" do
   context ".shipping_address" do
     # default_billing_address ? default_billing_address : default_shipping_address
     it 'should return nil if you dont have an address' do
-      #add = create(:address, :addressable => @user, :default => true)
+      #add = FactoryGirl.create(:address, :addressable => @user, :default => true)
       expect(@user.shipping_address).to be_nil
     end
 
     it 'should use your default shipping address if you have one available' do
-      add = create(:address, :addressable => @user, :default => true)
-      bill_add = create(:address, :addressable => @user, :billing_default => true)
+      add = FactoryGirl.create(:address, :addressable => @user, :default => true)
+      bill_add = FactoryGirl.create(:address, :addressable => @user, :billing_default => true)
       expect(@user.shipping_address).to eq add
     end
 
     it 'should return the first address if not defaults are set' do
-      #add = create(:address, :addressable => @user, :default => true)
-      add = create(:address, :addressable => @user)
+      #add = FactoryGirl.create(:address, :addressable => @user, :default => true)
+      add = FactoryGirl.create(:address, :addressable => @user)
       expect(@user.shipping_address).to eq add
     end
   end
@@ -214,7 +214,7 @@ describe User, "instance methods" do
   context ".merchant_description" do
     # [name, default_shipping_address.try(:address_lines)].compact.join(', ')
     it 'should show the name and address lines' do
-      address = create(:address, :address1 => 'Line one street', :address2 => 'Line two street')
+      address = FactoryGirl.create(:address, :address1 => 'Line one street', :address2 => 'Line two street')
       @user.first_name = 'First'
       @user.last_name  = 'Second'
 
@@ -223,7 +223,7 @@ describe User, "instance methods" do
     end
 
     it 'should show the name and address lines without address2' do
-      address = create(:address, :address1 => 'Line one street', :address2 => nil)
+      address = FactoryGirl.create(:address, :address1 => 'Line one street', :address2 => nil)
       @user.first_name = 'First'
       @user.last_name  = 'Second'
 
@@ -237,7 +237,7 @@ end
 describe User, 'store_credit methods' do
   context '.start_store_credits' do
     it 'should create store_credit object on create' do
-      user = create(:user)
+      user = FactoryGirl.create(:user)
       expect(user.store_credit).not_to be_nil
       expect(user.store_credit.id).not_to be_nil
     end
@@ -295,8 +295,8 @@ end
 describe User, "#admin_grid(params = {})" do
   it "should return users " do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    user1 = create(:user)
-    user2 = create(:user)
+    user1 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user)
     admin_grid = User.admin_grid
     expect(admin_grid.size).to eq 2
     expect(admin_grid.include?(user1)).to be true

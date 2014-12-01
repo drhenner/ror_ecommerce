@@ -11,7 +11,7 @@ end
 describe Invoice, "instance methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @invoice = create(:invoice, :created_at => '2010-11-26 23:55:14')
+    @invoice = FactoryGirl.create(:invoice, :created_at => '2010-11-26 23:55:14')
   end
 
   context '.order_ship_address_lines' do
@@ -98,7 +98,7 @@ end
 describe Invoice, "#process_rma(return_amount, order)" do
   it 'should create a invoice for an RMA' do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    order = create(:order)
+    order = FactoryGirl.create(:order)
     invoice = Invoice.process_rma(20.55, order)
     #@invoice.stubs(:batches).returns([])
     #expect(invoice.capture_complete_order).to be_true
@@ -110,12 +110,12 @@ end
 describe Invoice, "Class methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @invoice = create(:invoice)
+    @invoice = FactoryGirl.create(:invoice)
   end
 
   describe Invoice, "#id_from_number(num)" do
     it 'should return invoice id' do
-      invoice     = create(:invoice)
+      invoice     = FactoryGirl.create(:invoice)
       invoice_id  = Invoice.id_from_number(invoice.number)
       expect(invoice_id).to eq invoice.id
     end
@@ -123,7 +123,7 @@ describe Invoice, "Class methods" do
 
   describe Invoice, "#find_by_number(num)" do
     it 'should find the invoice by number' do
-      invoice = create(:invoice)
+      invoice = FactoryGirl.create(:invoice)
       find_invoice = Invoice.find_by_number(invoice.number)
       expect(find_invoice.id).to eq invoice.id
     end
@@ -132,7 +132,7 @@ end
 
 describe Invoice, "#generate(order_id, charge_amount)" do
   it 'should find the invoice by number' do
-    #invoice = create(:invoice)
+    #invoice = FactoryGirl.create(:invoice)
     charge_amount = 20.15
     invoice = Invoice.generate(1, charge_amount)
     expect(invoice.id).to           be nil
@@ -146,25 +146,25 @@ describe Invoice, 'optimize' do
   end
   describe Invoice, ".unique_order_number" do
     it 'should return a unique_order_number' do
-      invoice = create(:invoice)
+      invoice = FactoryGirl.create(:invoice)
       expect(invoice.send(:unique_order_number).length).to be > 8
     end
   end
 
   describe Invoice, ".authorization_reference" do
     it 'will return a confirmation id if there is a successful payment' do
-      invoice = create(:invoice)
-      payment = create(:payment, :invoice => invoice, :action => 'authorization', :success => true, :confirmation_id => 'good')
+      invoice = FactoryGirl.create(:invoice)
+      payment = FactoryGirl.create(:payment, :invoice => invoice, :action => 'authorization', :success => true, :confirmation_id => 'good')
       expect(invoice.authorization_reference).to eq payment.confirmation_id
     end
   end
 
   describe Invoice, ".succeeded?" do
     it 'will return a true if authorized or paid' do
-      invoice = create(:invoice, :state => 'authorized')
+      invoice = FactoryGirl.create(:invoice, :state => 'authorized')
       expect(invoice.succeeded?).to be true
 
-      invoice = create(:invoice, :state => 'paid')
+      invoice = FactoryGirl.create(:invoice, :state => 'paid')
       expect(invoice.succeeded?).to be true
     end
   end
@@ -172,7 +172,7 @@ end
 
 describe Invoice, ".integer_amount" do
   it 'should reprent the dollar amount in integer form' do
-    invoice = create(:invoice, :amount => 13.56)
+    invoice = FactoryGirl.create(:invoice, :amount => 13.56)
     expect(invoice.integer_amount).to eq 1356
   end
 end
@@ -187,14 +187,14 @@ end
 
 describe Invoice, ".user_id" do
   it 'should give the orders user_id' do
-    invoice = create(:invoice)
+    invoice = FactoryGirl.create(:invoice)
     expect(invoice.user_id).to eq invoice.order.user_id
   end
 end
 
 describe Invoice, ".user" do
   it 'should give the orders user_id' do
-    invoice = create(:invoice)
+    invoice = FactoryGirl.create(:invoice)
     expect(invoice.user.id).to eq invoice.order.user.id
   end
 end

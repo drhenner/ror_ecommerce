@@ -90,6 +90,7 @@ group :test, :development do
 end
 
 group :test do
+  # gem 'byebug'
   #gem 'factory_girl', "~> 3.3.0"
   #gem 'factory_girl_rails', "~> 3.3.0"
   gem 'factory_girl', "~> 4.5.0"

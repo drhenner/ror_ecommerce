@@ -51,21 +51,21 @@ describe Coupon do
     context "eligible?(at)" do
 
       it "should return true" do
-        order = create(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now - 1.days)
         @coupon_value.stubs(:expires_at).returns(Time.now + 1.days)
         expect(@coupon_value.eligible?(order)).to be true
       end
 
       it "should return false" do
-        order = create(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now - 3.days)
         @coupon_value.stubs(:expires_at).returns(Time.now - 1.days)
         expect(@coupon_value.eligible?(order)).to be false
       end
 
       it "should return false" do
-        order = create(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now + 1.days)
         @coupon_value.stubs(:expires_at).returns(Time.now + 18.days)
         expect(@coupon_value.eligible?(order)).to be false

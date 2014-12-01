@@ -4,7 +4,7 @@ describe Cart, ".sub_total" do
   # shopping_cart_items.inject(0) {|sum, item| item.total + sum}
 
   before(:each) do
-    @cart = create(:cart_with_two_5_dollar_items)
+    @cart = FactoryGirl.create(:cart_with_two_5_dollar_items)
   end
 
   it "should calculate subtotal correctly" do
@@ -24,7 +24,7 @@ end
 
 describe Cart, " instance methods" do
   before(:each) do
-    @cart = create(:cart_with_two_5_dollar_items)
+    @cart = FactoryGirl.create(:cart_with_two_5_dollar_items)
   end
 
   #  items_to_add_or_destroy is exersized within add_items_to_checkout
@@ -39,7 +39,7 @@ describe Cart, " instance methods" do
   context " add_items_to_checkout" do
 
     before(:each) do
-      @order = create(:in_progress_order)
+      @order = FactoryGirl.create(:in_progress_order)
     end
 
     it 'should add item to in_progress orders' do
@@ -64,7 +64,7 @@ describe Cart, " instance methods" do
       @cart.shopping_cart_items.push(create(:cart_item))
       @cart.add_items_to_checkout(@order) ##
       expect(@order.order_items.size).to eq 3
-      cart = create(:cart_with_two_5_dollar_items)
+      cart = FactoryGirl.create(:cart_with_two_5_dollar_items)
       cart.add_items_to_checkout(@order)
       expect(@order.order_items.size).to eq 2
     end
@@ -73,7 +73,7 @@ describe Cart, " instance methods" do
   context ".save_user(u)" do
     #pending "test for save_user(u)"
     it 'should assign the user to the cart' do
-      user = create(:user)
+      user = FactoryGirl.create(:user)
       @cart.save_user(user)
       expect(@cart.user).to eq user
     end
@@ -84,13 +84,13 @@ end
 describe Cart, '' do
 
   before(:each) do
-    @cart = create(:cart_with_two_items)
+    @cart = FactoryGirl.create(:cart_with_two_items)
   end
 
   context 'mark_items_purchased(order)' do
     it 'should mark cart items as purchased' do
 
-      order = create(:order)
+      order = FactoryGirl.create(:order)
       order.stubs(:variant_ids).returns(@cart.cart_items.collect{|ci| ci.variant_id})
       @cart.mark_items_purchased(order)
       @cart.cart_items.each do |ci|
@@ -100,7 +100,7 @@ describe Cart, '' do
 
     it 'should not mark cart items as purchased if it isnt in the order' do
 
-      order = create(:order)
+      order = FactoryGirl.create(:order)
       order.stubs(:variant_ids).returns([])
       @cart.mark_items_purchased(order)
       @cart.cart_items.each do |ci|
@@ -113,8 +113,8 @@ end
 describe Cart, ".add_variant" do
   # need to stub variant.sold_out? and_return(false)
   before(:each) do
-    @cart = create(:cart_with_two_5_dollar_items)
-    @variant = create(:variant)
+    @cart = FactoryGirl.create(:cart_with_two_5_dollar_items)
+    @variant = FactoryGirl.create(:variant)
   end
 
   it 'should add variant to cart' do
@@ -149,7 +149,7 @@ end
 
 describe Cart, ".remove_variant" do
   it 'should inactivate variant in cart' do
-    @cart = create(:cart_with_two_items)
+    @cart = FactoryGirl.create(:cart_with_two_items)
     variant_ids =  @cart.cart_items.collect {|ci| ci.variant.id }
     @cart.remove_variant(variant_ids.first)
     @cart.cart_items.each do |ci|
@@ -160,18 +160,18 @@ end
 
 describe  ".merge_with_previous_cart! " do
   before(:each) do
-    @user     = create(:user)
-    @variant1 = create(:variant, price: 1.00)
-    @variant2 = create(:variant, price: 5.00)
-    @variant3 = create(:variant, price: 30.00)
-    @cart       = create(:cart, user: @user)
-    @cart_item  = create(:cart_item, cart: @cart, user: @user, variant: @variant1, quantity: 2)
+    @user     = FactoryGirl.create(:user)
+    @variant1 = FactoryGirl.create(:variant, price: 1.00)
+    @variant2 = FactoryGirl.create(:variant, price: 5.00)
+    @variant3 = FactoryGirl.create(:variant, price: 30.00)
+    @cart       = FactoryGirl.create(:cart, user: @user)
+    @cart_item  = FactoryGirl.create(:cart_item, cart: @cart, user: @user, variant: @variant1, quantity: 2)
   end
 
   context 'with each cart having one item' do
     it 'should add items from previous cart' do
-      previous_cart = create(:cart, user: @user)
-      cart_item2    = create(:cart_item, cart: previous_cart, user: @user, variant: @variant2)
+      previous_cart = FactoryGirl.create(:cart, user: @user)
+      cart_item2    = FactoryGirl.create(:cart_item, cart: previous_cart, user: @user, variant: @variant2)
       @cart.merge_with_previous_cart!
       @cart.reload
       expect(@cart.cart_items.map(&:variant_id).include?(@variant1.id)).to be true
@@ -181,8 +181,8 @@ describe  ".merge_with_previous_cart! " do
 
   context 'with each cart having the same' do
     it 'should add items from previous cart' do
-      previous_cart = create(:cart, user: @user)
-      cart_item2    = create(:cart_item, cart: previous_cart, user: @user, variant: @variant1, quantity: 1)
+      previous_cart = FactoryGirl.create(:cart, user: @user)
+      cart_item2    = FactoryGirl.create(:cart_item, cart: previous_cart, user: @user, variant: @variant1, quantity: 1)
       @cart.merge_with_previous_cart!
       @cart.reload
       expect(@cart.cart_items.map(&:variant_id).include?(@variant1.id)).to be true

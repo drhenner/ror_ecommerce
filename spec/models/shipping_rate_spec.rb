@@ -25,7 +25,7 @@ describe ShippingRate, 'instance methods' do
     it "should return the name" do
       ship_rate_type = ShippingRateType.find_by_name('Individual')
       @shipping_rate.shipping_rate_type = ship_rate_type
-      shipping_method = create(:shipping_method, :name => 'shipname')
+      shipping_method = FactoryGirl.create(:shipping_method, :name => 'shipname')
       @shipping_rate.shipping_method = shipping_method
       expect(@shipping_rate.name).to eq 'shipname, USA, (Individual - 5.5)'
     end
@@ -43,13 +43,13 @@ describe ShippingRate, 'instance methods' do
   context ".name_with_rate" do
     # [shipping_method.name, number_to_currency(rate)].join(' - ')
     it "should return the name_with_rate" do
-      shipping_method = create(:shipping_method, :name => 'shipname')
+      shipping_method = FactoryGirl.create(:shipping_method, :name => 'shipname')
       @shipping_rate.shipping_method = shipping_method
       @shipping_rate.stubs(:individual?).returns(false)
       expect(@shipping_rate.name_with_rate).to eq 'shipname - $5.50'
     end
     it "should return the name_with_rate" do
-      shipping_method = create(:shipping_method, :name => 'shipname')
+      shipping_method = FactoryGirl.create(:shipping_method, :name => 'shipname')
       @shipping_rate.shipping_method = shipping_method
       @shipping_rate.stubs(:individual?).returns(true)
       expect(@shipping_rate.name_with_rate).to eq 'shipname - $5.50 / item'

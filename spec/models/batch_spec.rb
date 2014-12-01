@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Batch do
   context " Batch" do
     before(:each) do
-      @batch = build(:batch)
+      @batch = FactoryGirl.build(:batch)
     end
 
     it "should be valid with minimum attribues" do

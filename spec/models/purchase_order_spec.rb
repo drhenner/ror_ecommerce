@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PurchaseOrder do
   before(:each) do
-    @purchase_order = build(:purchase_order)
+    @purchase_order = FactoryGirl.build(:purchase_order)
   end
 
   it "should be valid with minimum attribues" do
@@ -12,14 +12,14 @@ end
 
 describe PurchaseOrder, ".display_received" do
   it "should return Yes when true" do
-    order = build(:purchase_order)
+    order = FactoryGirl.build(:purchase_order)
     order.stubs(:state).returns('received')
 
     expect(order.display_received).to eq "Yes"
   end
 
   it "should return No when false" do
-    order = build(:purchase_order)
+    order = FactoryGirl.build(:purchase_order)
     order.stubs(:state).returns('pending')
 
     expect(order.display_received).to eq "No"
@@ -28,7 +28,7 @@ end
 
 describe PurchaseOrder, ".display_estimated_arrival_on" do
   it "should return the correct name" do
-    order = build(:purchase_order)
+    order = FactoryGirl.build(:purchase_order)
     now = Time.now
     order.stubs(:estimated_arrival_on).returns(now.to_date)
 
@@ -38,8 +38,8 @@ end
 
 describe PurchaseOrder, ".supplier_name" do
   it "should return the correct name" do
-    order = build(:purchase_order)
-    supplier = build(:supplier)
+    order    = FactoryGirl.build(:purchase_order)
+    supplier = FactoryGirl.build(:supplier)
     supplier.stubs(:name).returns("Supplier Test")
     order.stubs(:supplier).returns(supplier)
 
@@ -49,7 +49,7 @@ end
 
 describe PurchaseOrder, 'instance methods' do
   before(:each) do
-    @purchase_order = create(:purchase_order, :state => 'pending')
+    @purchase_order = FactoryGirl.create(:purchase_order, :state => 'pending')
     @purchase_order.purchase_order_variants.push(create(:purchase_order_variant, :purchase_order => @purchase_order, :is_received => false))
   end
 
@@ -102,7 +102,7 @@ end
 
 describe PurchaseOrder, ".pay_for_order" do
   it 'should pay for the order ' do
-    purchase_order = create(:purchase_order, :state => 'pending', :total_cost => 20.32)
+    purchase_order = FactoryGirl.create(:purchase_order, :state => 'pending', :total_cost => 20.32)
     expect(purchase_order.pay_for_order).to be true
     expect(purchase_order.transaction_ledgers.size).to eq 2
 
@@ -134,14 +134,14 @@ end
 
 describe PurchaseOrder, ".receive_variants" do
   it 'should receive PO_varaints ' do
-    purchase_order = create(:purchase_order, :state => 'pending')
+    purchase_order = FactoryGirl.create(:purchase_order, :state => 'pending')
     purchase_order.purchase_order_variants.push(create(:purchase_order_variant, :purchase_order => purchase_order, :is_received => false))
     PurchaseOrderVariant.any_instance.expects(:receive!).once
     purchase_order.receive_variants
   end
 
   it 'should not receive PO_varaints ' do
-    purchase_order = create(:purchase_order, :state => 'pending')
+    purchase_order = FactoryGirl.create(:purchase_order, :state => 'pending')
     purchase_order.purchase_order_variants.push(create(:purchase_order_variant, :purchase_order => purchase_order, :is_received => true))
     PurchaseOrderVariant.any_instance.expects(:receive!).never
     purchase_order.receive_variants
@@ -150,8 +150,8 @@ end
 
 describe PurchaseOrder, "#admin_grid(params = {})" do
   it "should return users " do
-    purchase_order1 = create(:purchase_order)
-    purchase_order2 = create(:purchase_order)
+    purchase_order1 = FactoryGirl.create(:purchase_order)
+    purchase_order2 = FactoryGirl.create(:purchase_order)
     admin_grid = PurchaseOrder.admin_grid
     expect(admin_grid.size).to eq 2
     expect(admin_grid.include?(purchase_order1)).to be true
@@ -161,10 +161,10 @@ end
 
 describe PurchaseOrder, "#receiving_admin_grid(params = {})" do
   it "should return PurchaseOrders " do
-    purchase_order1 = create(:purchase_order)
+    purchase_order1 = FactoryGirl.create(:purchase_order)
     purchase_order1.state = PurchaseOrder::RECEIVED
     purchase_order1.save
-    purchase_order2 = create(:purchase_order)
+    purchase_order2 = FactoryGirl.create(:purchase_order)
     admin_grid = PurchaseOrder.receiving_admin_grid
     expect(admin_grid.size).to eq 1
     expect(admin_grid.include?(purchase_order1)).to be false

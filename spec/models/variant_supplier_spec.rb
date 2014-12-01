@@ -3,7 +3,7 @@ require 'spec_helper'
 describe VariantSupplier do
   context "Valid VariantSupplier" do
     before(:each) do
-      @variant_supplier = build(:variant_supplier)
+      @variant_supplier = FactoryGirl.build(:variant_supplier)
     end
 
     it "should be valid with minimum attributes" do

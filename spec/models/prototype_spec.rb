@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Prototype do
   before(:each) do
-    @prototype = build(:prototype)
+    @prototype = FactoryGirl.build(:prototype)
   end
 
   it "should be valid with minimum attribues" do
@@ -12,8 +12,8 @@ end
 
 describe Prototype, "#admin_grid(params = {})" do
   it "should return Prototypes " do
-    prototype1 = create(:prototype)
-    prototype2 = create(:prototype)
+    prototype1 = FactoryGirl.create(:prototype)
+    prototype2 = FactoryGirl.create(:prototype)
     admin_grid = Prototype.admin_grid
     expect(admin_grid.size).to eq 2
     expect(admin_grid.include?(prototype1)).to be true

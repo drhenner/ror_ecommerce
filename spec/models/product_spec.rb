@@ -61,7 +61,7 @@ describe Product, ".tax_rate" do
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => (Time.zone.now - 1.month))
     Rails.cache.delete("TaxRate-active_at_ids-#{(Time.zone.now - 2.month).to_date}")
-    product  = create(:product)
+    product  = FactoryGirl.create(:product)
     expect(product.tax_rate(1, (Time.zone.now - 2.month))).to eq tax_rate
   end
   # there are no tax rates
@@ -115,8 +115,8 @@ describe Product, ".instance methods" do
     before(:each) do
       product  = FactoryGirl.create(:product)
       @previous_master = FactoryGirl.create(:variant, :product => product, :master => true, :price => 15.05, :deleted_at => (Time.zone.now - 1.day ))
-      create(:variant, :product => product, :master => true, :price => 15.01)
-      create(:variant, :product => product, :master => false, :price => 10.00)
+      FactoryGirl.create(:variant, :product => product, :master => true, :price => 15.01)
+      FactoryGirl.create(:variant, :product => product, :master => false, :price => 10.00)
       @product  = Product.find(product.id)
     end
 

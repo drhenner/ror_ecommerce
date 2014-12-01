@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Property do
   context "Valid Property" do
     before(:each) do
-      @property = build(:property)
+      @property = FactoryGirl.build(:property)
     end
 
     it "should be valid with minimum attributes" do
@@ -15,7 +15,7 @@ end
 
 describe Property, ".display_active" do
   before(:each) do
-    @property = build(:property)
+    @property = FactoryGirl.build(:property)
   end
 
   it 'should display True if true' do
@@ -31,8 +31,8 @@ end
 
 describe Property, "#admin_grid(params = {})" do
   it "should return Properties " do
-    property1 = create(:property)
-    property2 = create(:property)
+    property1 = FactoryGirl.create(:property)
+    property2 = FactoryGirl.create(:property)
     admin_grid = Property.admin_grid
     expect(admin_grid.size).to eq 2
     expect(admin_grid.include?(property1)).to be true

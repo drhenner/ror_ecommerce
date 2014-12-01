@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe ReturnAuthorization, 'instance methods' do
   before(:each) do
-    @user                 = create(:user)
-    @order                = create(:order)
-    @return_authorization = create(:return_authorization, :order => @order, :user => @user)
+    @user                 = FactoryGirl.create(:user)
+    @order                = FactoryGirl.create(:order)
+    @return_authorization = FactoryGirl.create(:return_authorization, :order => @order, :user => @user)
   end
 
   context '.mark_items_returned' do
@@ -12,7 +12,7 @@ describe ReturnAuthorization, 'instance methods' do
       order_item                = build(:order_item, :order => @order)
       order_item.state = 'paid'
       order_item.save
-      return_item               = create(:return_item, :order_item => order_item, :return_authorization => @return_authorization)
+      return_item               = FactoryGirl.create(:return_item, :order_item => order_item, :return_authorization => @return_authorization)
       @return_authorization.mark_items_returned
       expect(order_item.reload.state).to eq 'returned'
       expect(return_item.reload.returned).to be true
@@ -39,7 +39,7 @@ describe ReturnAuthorization, 'instance methods' do
 
   context ".set_order_number" do
     it 'should set number ' do
-      return_authorization = create(:return_authorization)
+      return_authorization = FactoryGirl.create(:return_authorization)
       return_authorization.number = nil
       return_authorization.set_order_number
       expect(return_authorization.number).not_to be_nil
@@ -48,7 +48,7 @@ describe ReturnAuthorization, 'instance methods' do
 
   context ".save_order_number" do
     it 'should set number and save' do
-      return_authorization = create(:return_authorization)
+      return_authorization = FactoryGirl.create(:return_authorization)
       return_authorization.number = nil
       expect(return_authorization.save_order_number).to be true
       expect(return_authorization.number).not_to eq (ReturnAuthorization::NUMBER_SEED + @return_authorization.id).to_s(ReturnAuthorization::CHARACTERS_SEED)
@@ -80,7 +80,7 @@ end
 
 describe ReturnAuthorization, "#find_by_number(num)" do
   it 'should find the invoice by number' do
-    return_authorization = create(:return_authorization)
+    return_authorization = FactoryGirl.create(:return_authorization)
     find_return_authorization = ReturnAuthorization.find_by_number(return_authorization.number)
     expect(find_return_authorization.id).to eq return_authorization.id
   end
@@ -88,8 +88,8 @@ end
 
 describe ReturnAuthorization, '#admin_grid(params)' do
   it "should return Return Authorizations " do
-    return_authorization1 = create(:return_authorization)
-    return_authorization2 = create(:return_authorization)
+    return_authorization1 = FactoryGirl.create(:return_authorization)
+    return_authorization2 = FactoryGirl.create(:return_authorization)
     admin_grid = ReturnAuthorization.admin_grid
     expect(admin_grid.size).to eq 2
     expect(admin_grid.include?(return_authorization1)).to be true
