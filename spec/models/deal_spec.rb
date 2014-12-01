@@ -44,7 +44,7 @@ describe Deal do
     it 'should return 0.0 because the deal starts tomorrow' do
       order_item3  = FactoryGirl.create(:order_item, :price => 25.0, order: @order, variant: @variant2)
       @order.stubs(:order_items).returns([@order_item, @order_item2, order_item3])
-      expect(Deal.best_qualifing_deal(@incomplete_order)).to eq 0.0 # $20.00 * 0.50
+      expect(Deal.best_qualifing_deal(@order)).to eq 0.0 # $20.00 * 0.50
     end
 
   end
