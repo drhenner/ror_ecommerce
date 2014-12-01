@@ -11,7 +11,7 @@ end
 describe Invoice, "instance methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @invoice = FactoryGirl.create(:invoice, :created_at => '2010-11-26 23:55:14')
+    @invoice = FactoryGirl.create(:invoice, created_at: '2010-11-26 23:55:14')
   end
 
   context '.order_ship_address_lines' do
@@ -110,7 +110,6 @@ end
 describe Invoice, "Class methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @invoice = FactoryGirl.create(:invoice)
   end
 
   describe Invoice, "#id_from_number(num)" do
@@ -132,9 +131,9 @@ end
 
 describe Invoice, "#generate(order_id, charge_amount)" do
   it 'should find the invoice by number' do
-    #invoice = FactoryGirl.create(:invoice)
+    order = FactoryGirl.create(:order)
     charge_amount = 20.15
-    invoice = Invoice.generate(1, charge_amount)
+    invoice = Invoice.generate(order.id, charge_amount)
     expect(invoice.id).to           be nil
     expect(invoice.invoice_type).to eq Invoice::PURCHASE
     expect(invoice.valid?).to       be true
@@ -195,6 +194,6 @@ end
 describe Invoice, ".user" do
   it 'should give the orders user_id' do
     invoice = FactoryGirl.create(:invoice)
-    expect(invoice.user.id).to eq invoice.order.user.id
+    expect(invoice.user.id).to eq invoice.order.user_id
   end
 end
