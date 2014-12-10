@@ -52,10 +52,11 @@ If you are using the mysql dmg file to install mysql you will need to edit your 
 
   export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 
-Run `rake secret` and copy/paste the output as `encryption_key` in `config/config.yml`.
+Install gems and build the app
 
     gem install bundler
     bundle install
+    rake secret # copy/paste the output as `encryption_key` in `config/config.yml`
     rake db:create:all
     rake db:migrate db:seed
     RAILS_ENV=test rake db:test:prepare
@@ -118,10 +119,12 @@ If installing rMagick on OS X 10.8 and using Homebrew to install ImageMagick, yo
 
 Do the following in the case of a Homebrew installed ImageMagick(and homebrew had issues):
 
-    * cd /usr/local/Cellar/imagemagick/6.8.0-10/lib
-    * ln -s libMagick++-Q16.7.dylib   libMagick++.dylib
-    * ln -s libMagickCore-Q16.7.dylib libMagickCore.dylib
-    * ln -s libMagickWand-Q16.7.dylib libMagickWand.dylib
+    * cd /usr/local/Cellar/imagemagick/6.8.9-8/lib
+    * ln -s libMagick++-6.Q16.5.dylib   libMagick++.dylib
+    * ln -s libMagickCore-6.Q16.2.dylib libMagickCore.dylib
+    * ln -s libMagickWand-6.Q16.2.dylib libMagickWand.dylib
+
+    * you may need to change the version path if the imagemagick has been updated
 
 ##YARDOCS
 
