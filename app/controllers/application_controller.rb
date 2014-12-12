@@ -17,11 +17,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
+    flash[:alert] = 'Sorry you are not allowed to do that.'
     if current_user && current_user.admin?
-      flash[:alert] = 'Sorry you are not allowed to do that.'
       redirect_to :back
     else
-      flash[:alert] = 'Sorry you are not allowed to do that.'
       redirect_to root_url
     end
   end
