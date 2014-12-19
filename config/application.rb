@@ -66,6 +66,8 @@ module Hadean
                                   :verification_value]
     # access any Settings here
     config.after_initialize do
+      Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
+      #Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style/:filename'
 
       Paperclip::Attachment.default_options[:s3_protocol]     = Settings.paperclip.s3_protocol
       Paperclip::Attachment.default_options[:s3_credentials]  = Settings.paperclip.s3_credentials.to_hash

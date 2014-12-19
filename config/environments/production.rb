@@ -140,18 +140,12 @@ Hadean::Application.configure do
     #)
   end
 
-  if ENV['FOG_DIRECTORY'].present?
-    PAPERCLIP__URL = "https://#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com/assets/products/:id/:style/:basename.:extension"
-  else
-    PAPERCLIP__URL = "/assets/products/:id/:style/:basename.:extension"
-  end
   PAPERCLIP_STORAGE_OPTS = {  styles: { :mini     => '48x48>',
                                         :small    => '100x100>',
                                         :medium   => '200x200>',
                                         :product  => '320x320>',
                                         :large    => '600x600>' },
                               default_style:  :product,
-                              s3_host_name:   "#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com",
-                              url:            PAPERCLIP__URL,
+                              url:            "/assets/products/:id/:style/:basename.:extension",
                               path:           ":rails_root/public/assets/products/:id/:style/:basename.:extension" }
 end
