@@ -14,6 +14,8 @@ class Admin::OverviewsController < ApplicationController
 
 
       @user = User.new(args)
+      @user.password = password
+      @user.password_confirmation = password
       if @user.active? || @user.activate!
         @user.save
         @user.role_ids = Role.all.map{|r| r.id }
@@ -37,9 +39,11 @@ class Admin::OverviewsController < ApplicationController
     @args ||= {
     :first_name => 'Admin',
     :last_name => 'User',
-    :email => 'admin@notarealemail.com',
-    :password => @password,
-    :password_confirmation => @password }
+    :email => 'admin@notarealemail.com' }
+  end
+
+  def password
+    @password ||= "admin_user_#{rand(1000)}"
   end
 
   def recent_admin_users
