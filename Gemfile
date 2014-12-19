@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-#ruby "2.1.2"
+ruby "2.1.5"
 
 ## Bundle rails:
 gem 'rails', '4.2.0.rc3'
