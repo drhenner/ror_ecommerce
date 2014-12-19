@@ -3,13 +3,13 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
   def index
     # by default find all POs that are not received
     @purchase_orders = PurchaseOrder.receiving_admin_grid(params).order(sort_column + " " + sort_direction).
-                                                        paginate(:page => pagination_page, :per_page => pagination_rows)
+                                                        paginate( page: pagination_page, per_page: pagination_rows)
   end
 
   def edit
     @purchase_order = PurchaseOrder.includes([:variants ,
                                               :supplier,
-                                              {:purchase_order_variants => {:variant => :product }}]).find(params[:id])
+                                              { purchase_order_variants: { variant: :product }}]).find(params[:id])
   end
 
   def update
@@ -18,7 +18,7 @@ class Admin::Inventory::ReceivingsController < Admin::BaseController
     if @purchase_order.update_attributes(allowed_params)
       redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.')
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 

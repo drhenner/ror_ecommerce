@@ -14,6 +14,6 @@ describe Myaccount::StoreCreditsController do
   it "show action should render show template" do
     @store_credit = create(:store_credit, :user => @user)
     get :show, :id => @store_credit.id
-    response.should render_template(:show)
+    expect(response).to render_template(:show)
   end
 end

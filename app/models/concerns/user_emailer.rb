@@ -9,7 +9,7 @@ module UserEmailer
     if Settings.uses_resque_for_background_emails
       Resque.enqueue(Jobs::SendSignUpNotification, self.id)
     else
-      Notifier.signup_notification(self.id).deliver
+      Notifier.signup_notification(self.id).deliver_later
     end
   end
 
@@ -18,7 +18,7 @@ module UserEmailer
     if Settings.uses_resque_for_background_emails
       Resque.enqueue(Jobs::SendPasswordResetInstructions, self.id)
     else
-      Notifier.password_reset_instructions(self.id).deliver rescue puts( 'do nothing...  dont blow up over a password reset email')
+      Notifier.password_reset_instructions(self.id).deliver_later rescue puts( 'do nothing...  dont blow up over a password reset email')
     end
   end
 

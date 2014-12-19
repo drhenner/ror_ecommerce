@@ -34,6 +34,7 @@ class Deal < ActiveRecord::Base
   validates :get_percentage,          :presence => true, :if => :get_amount_is_blank?
   validates :product_type_id,         :presence => true
   validates :get_amount,              :presence => true, :if => :get_percentage_is_blank?
+  #validates :description,             presence: true, length: {:maximum => 255}
 
   belongs_to :deal_type
   belongs_to :product_type

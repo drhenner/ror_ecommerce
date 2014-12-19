@@ -1,6 +1,5 @@
 class Admin::Merchandise::ProductsController < Admin::BaseController
   helper_method :sort_column, :sort_direction, :product_types
-  respond_to :html, :json
   authorize_resource
 
   def index
@@ -12,7 +11,10 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   def show
     @product        = Product.find(params[:id])
     @shipping_zones =  ShippingZone.all
-    respond_with(@product)
+    respond_to do |format|
+      format.html
+      format.json { render json: @product }
+    end
   end
 
   def new
@@ -119,12 +121,8 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       @product_types ||= ProductType.all
     end
 
-      def sort_column
-        Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
-      end
-
-      def sort_direction
-        %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-      end
+    def sort_column
+      Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
 
 end

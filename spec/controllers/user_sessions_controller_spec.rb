@@ -5,8 +5,8 @@ describe UserSessionsController do
     context "when login fails" do
       it "should display a message with login failure and render the login template" do
         post :create, :user_session => {:email => 'test@test.com'}
-        flash[:alert].should == I18n.t('login_failure')
-        response.should redirect_to login_url
+        expect(flash[:alert]).to eq I18n.t('login_failure')
+        expect(response).to redirect_to login_url
       end
     end
   end
@@ -21,8 +21,8 @@ describe UserSessionsController do
 
     it "should display a message with logout success and render the login template" do
       post :destroy
-      flash[:notice].should == I18n.t('logout_successful')
-      response.should redirect_to login_url
+      expect(flash[:notice]).to eq I18n.t('logout_successful')
+      expect(response).to redirect_to login_url
     end
   end
 end

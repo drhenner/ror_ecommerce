@@ -23,13 +23,13 @@ describe Shopping::CouponsController do
 
   it "show action should render show template" do
     get :show
-    response.should render_template(:show)
+    expect(response).to render_template(:show)
   end
 
   it "create action should render show template when coupon is not eligible" do
     Coupon.any_instance.stubs(:eligible?).returns(false)
     post :create, :coupon => {:code => 'qwerty' }
-    response.should render_template(:show)
+    expect(response).to render_template(:show)
   end
 
   it "create action should redirect when model is valid" do
@@ -38,6 +38,6 @@ describe Shopping::CouponsController do
     Shopping::CouponsController.any_instance.stubs(:update_order_coupon_id).returns(true)
     @controller.expects(:next_form_url).returns(shopping_orders_url)
     post :create, :coupon => {:code => 'qwerty' }
-    response.should redirect_to(shopping_orders_url)
+    expect(response).to redirect_to(shopping_orders_url)
   end
 end

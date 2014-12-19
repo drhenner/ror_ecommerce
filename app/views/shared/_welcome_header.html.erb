@@ -17,16 +17,18 @@
         <li class="has-dropdown">
           <%= link_to 'Products', products_path, :class => 'active' %>
           <ul class="dropdown">
-            <li class="has-dropdown">
-              <a href="#" class="">Level 1 &rarr;</a>
-              <ul class="dropdown">
-                <li><a href="#">Add Link here</a></li>
-                <li><a href="#">Add Link 2 here</a></li>
-              </ul>
-            </li>
+            <%- if nil # This is how you add a dropdown that slides to the right %>
+              <li class="has-dropdown">
+                <a href="#" class="">Level 1 &rarr;</a>
+                <ul class="dropdown">
+                  <li><a href="#">Add Link here</a></li>
+                  <li><a href="#">Add Link 2 here</a></li>
+                </ul>
+              </li>
+            <%- end -%>
             <% product_types.each do |pt_tab| %>
-              <li> <%= link_to_unless_current pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id) %> </li>
-            <% end %>
+              <li> <%= link_to pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id) %> </li>
+            <%- end -%>
             <li class="divider"></li>
             <li>
               <%= link_to 'All Products', products_path %>
@@ -66,7 +68,9 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <a href="#">Your Account</a>
+          <%= link_to myaccount_overview_path do %>
+            Your Account
+          <% end %>
           <ul class="dropdown">
             <% unless current_user %>
               <li><%= link_to 'Login',  login_path %></li>

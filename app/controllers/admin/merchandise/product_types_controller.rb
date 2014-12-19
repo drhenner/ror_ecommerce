@@ -1,6 +1,6 @@
 class Admin::Merchandise::ProductTypesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
-  respond_to :html, :json
+
   def index
     @product_types = ProductType.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
@@ -8,7 +8,10 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
 
   def show
     @product_type = ProductType.find(params[:id])
-    respond_with(@product_type)
+    respond_to do |format|
+      format.html
+      format.json { render json: @product_type }
+    end
   end
 
   def new
@@ -66,7 +69,4 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
     ProductType.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
 end

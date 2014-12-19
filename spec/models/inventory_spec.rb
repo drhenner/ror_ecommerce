@@ -23,21 +23,21 @@ describe Inventory do
       inventory = FactoryGirl.build(:inventory,
       :count_on_hand       =>      10,
       :count_pending_to_customer => 11 - Variant::OUT_OF_STOCK_QTY)
-      inventory.valid?.should == true
-      expect(inventory.save).to be true
+      expect(inventory.valid?).to eq true
+      expect(inventory.save).to   be true
     end
 
     it 'should not save inventory below out_of_stock limit' do
       inventory = FactoryGirl.build(:inventory,
       :count_on_hand       =>      100 ,
       :count_pending_to_customer => 101 - Variant::LOW_STOCK_QTY)
-      inventory.valid?.should == true
+      expect(inventory.valid?).to be true
     end
     it 'should not save inventory below out_of_stock limit' do
       inventory = FactoryGirl.build(:inventory,
       :count_on_hand       =>      100 + Variant::LOW_STOCK_QTY,
       :count_pending_to_customer => 0)
-      inventory.valid?.should == true
+      expect(inventory.valid?).to be true
     end
 
   end

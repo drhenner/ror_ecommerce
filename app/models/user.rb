@@ -30,6 +30,7 @@
 #
 
 class User < ActiveRecord::Base
+  include AASM
   include TransactionAccountable
   include UserCim
   include Presentation::UserPresenter
@@ -122,17 +123,17 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :reject_if => lambda { |t| ( t['display_number'].gsub(/\D+/, '').blank?) }
   accepts_nested_attributes_for :customer_service_comments, :reject_if => proc { |attributes| attributes['note'].strip.blank? }
 
-  state_machine :state, :initial => :active do
+  aasm column: :state do
     state :inactive
-    state :active
+    state :active, initial: true
     state :canceled
 
     event :activate do
-      transition all => :active, :unless => :active?
+      transitions from: [:inactive, :canceled], to: :active, unless: :active?
     end
 
     event :cancel do
-      transition :from => [:inactive, :active, :canceled], :to => :canceled
+      transitions from: [:inactive, :active, :canceled], to: :canceled
     end
 
   end
@@ -206,19 +207,6 @@ class User < ActiveRecord::Base
   # @return [ Address ]
   def shipping_address
     default_shipping_address ? default_shipping_address : shipping_addresses.first
-  end
-
-  # sanitizes the saving of data.  removes white space and assigns a free account type if one doesn't exist
-  #
-  # @param  [ none ]
-  # @return [ none ]
-  def sanitize_data
-    self.email      = self.email.strip.downcase       unless email.blank?
-    self.first_name = self.first_name.strip.capitalize  unless first_name.nil?
-    self.last_name  = self.last_name.strip.capitalize   unless last_name.nil?
-
-    ## CHANGE THIS IF YOU HAVE DIFFERENT ACCOUNT TYPES
-    self.account = Account.first unless account_id
   end
 
   # name and first line of address (used by credit card gateway to descript the merchant)
@@ -298,6 +286,19 @@ class User < ActiveRecord::Base
   def subscribe_to_newsletters
     newsletter_ids = Newsletter.where(:autosubscribe => true).pluck(:id)
     self.newsletter_ids = newsletter_ids
+  end
+
+  # sanitizes the saving of data.  removes white space and assigns a free account type if one doesn't exist
+  #
+  # @param  [ none ]
+  # @return [ none ]
+  def sanitize_data
+    self.email      = self.email.strip.downcase       unless email.blank?
+    self.first_name = self.first_name.strip.capitalize  unless first_name.nil?
+    self.last_name  = self.last_name.strip.capitalize   unless last_name.nil?
+
+    ## CHANGE THIS IF YOU HAVE DIFFERENT ACCOUNT TYPES
+    self.account = Account.first unless account_id
   end
 
   def before_validation_on_create

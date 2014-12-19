@@ -16,33 +16,33 @@ describe Admin::Merchandise::Wizards::ShippingCategoriesController do
 
   it "index action should render index template" do
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "create action should render new template when model is invalid" do
     ShippingCategory.any_instance.stubs(:valid?).returns(false)
     post :create, :shipping_category =>{:name => 'test'}
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "create action should redirect when model is valid" do
     ShippingCategory.any_instance.stubs(:valid?).returns(true)
     post :create, :shipping_category =>{:name => 'test'}
-    response.should redirect_to(new_admin_merchandise_wizards_product_url)
+    expect(response).to redirect_to(new_admin_merchandise_wizards_product_url)
   end
 
   it "update action should render edit template when model is invalid" do
     @shipping_category = create(:shipping_category)
     ShippingCategory.stubs(:find_by_id).returns(nil)
     put :update, :id => @shipping_category.id
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "update action should redirect when model is valid" do
     @shipping_category = create(:shipping_category)
     #ShippingCategory.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_category.id
-    controller.session[:product_wizard][:shipping_category_id].should   == @shipping_category.id
-    response.should redirect_to(new_admin_merchandise_wizards_product_url)
+    expect(controller.session[:product_wizard][:shipping_category_id]).to eq @shipping_category.id
+    expect(response).to redirect_to(new_admin_merchandise_wizards_product_url)
   end
 end

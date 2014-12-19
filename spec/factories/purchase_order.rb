@@ -7,6 +7,6 @@ FactoryGirl.define do
     estimated_arrival_on  { Time.now.to_date }
     total_cost  1.01
 
-    after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
+    #after(:build) {|oi| oi.send(:initialize_state_machines, :dynamic => :force)}
   end
 end

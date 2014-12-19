@@ -4,68 +4,68 @@ describe Coupon do
 
   context "Percent Coupon" do
     before(:each) do
-      @coupon_percent = build(:coupon_percent)
+      @coupon_percent = FactoryGirl.build(:coupon_percent)
     end
 
     it "should be valid " do
-      @coupon_percent.should be_valid
+      expect(@coupon_percent).to be_valid
     end
   end
 
   context "Value Coupon" do
     before(:each) do
-      @coupon_value = build(:coupon_value)
+      @coupon_value = FactoryGirl.build(:coupon_value)
     end
 
     it "should be valid " do
-      @coupon_value.should be_valid
+      expect(@coupon_value).to be_valid
     end
   end
 
   context "coupon instance methods" do
     before(:each) do
-      @order        = create(:order)
-      @coupon_value = create(:coupon_value, :amount => 5.00)
+      @order        = FactoryGirl.create(:order)
+      @coupon_value = FactoryGirl.create(:coupon_value, :amount => 5.00)
     end
 
     context "value(item_prices)" do
       it "should sum the prices for combine coupons" do
         @coupon_value.stubs(:combine).returns(true)
         @coupon_value.stubs(:qualified?).returns(true)
-        @coupon_value.value([2.01, 9.00], @order).should == 5.00
+        expect(@coupon_value.value([2.01, 9.00], @order)).to eq 5.00
       end
 
       it "should return the max price for non-combine coupons" do
         @coupon_value.stubs(:combine).returns(false)
         @coupon_value.stubs(:qualified?).returns(true)
-        @coupon_value.value([2.01, 9.00], @order).should == 5.00
+        expect(@coupon_value.value([2.01, 9.00], @order)).to eq 5.00
       end
 
       it "should return 0.00 for an order that doesnt qualify" do
         @coupon_value.stubs(:combine).returns(true)
         @coupon_value.stubs(:qualified?).returns(false)
-        @coupon_value.value([2.01, 9.00], @order).should == 0.00
+        expect(@coupon_value.value([2.01, 9.00], @order)).to eq 0.00
       end
     end
 
     context "eligible?(at)" do
 
       it "should return true" do
-        order = create(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now - 1.days)
         @coupon_value.stubs(:expires_at).returns(Time.now + 1.days)
         expect(@coupon_value.eligible?(order)).to be true
       end
 
       it "should return false" do
-        order = create(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now - 3.days)
         @coupon_value.stubs(:expires_at).returns(Time.now - 1.days)
         expect(@coupon_value.eligible?(order)).to be false
       end
 
       it "should return false" do
-        order = create(:order)
+        order = FactoryGirl.create(:order)
         @coupon_value.stubs(:starts_at).returns(Time.now + 1.days)
         @coupon_value.stubs(:expires_at).returns(Time.now + 18.days)
         expect(@coupon_value.eligible?(order)).to be false
@@ -94,12 +94,12 @@ describe Coupon do
         else # 1.9.3 or greater
           @coupon_value.starts_at = Time.zone.parse('1/13/2011')
         end
-        @coupon_value.display_start_time.should == '01/13/2011'
+        expect(@coupon_value.display_start_time).to eq '01/13/2011'
       end
 
       it "should return N/A" do
         @coupon_value.starts_at = nil
-        @coupon_value.display_start_time.should == 'N/A'
+        expect(@coupon_value.display_start_time).to eq 'N/A'
       end
     end
 
@@ -110,39 +110,39 @@ describe Coupon do
         else # 1.9.3 or greater
           @coupon_value.expires_at = Time.zone.parse('1/13/2011')
         end
-        @coupon_value.display_expires_time.should == '01/13/2011'
+        expect(@coupon_value.display_expires_time).to eq '01/13/2011'
       end
 
       it "should return N/A" do
         @coupon_value.expires_at = nil
-        @coupon_value.display_expires_time.should == 'N/A'
+        expect(@coupon_value.display_expires_time).to eq 'N/A'
       end
     end
   end
 
   context "coupon instance methods" do
     before(:each) do
-      @order        = create(:order)
-      @coupon_percent = create(:coupon_percent, :percent => 10)
+      @order        = FactoryGirl.create(:order)
+      @coupon_percent = FactoryGirl.create(:coupon_percent, :percent => 10)
     end
 
     context "value(item_prices)" do
       it "should sum the prices for combine coupons" do
         @coupon_percent.stubs(:combine).returns(true)
         @coupon_percent.stubs(:qualified?).returns(true)
-        @coupon_percent.value([2.01, 9.00], @order).should == 1.10
+        expect(@coupon_percent.value([2.01, 9.00], @order)).to eq 1.10
       end
 
       it "should return the max price for non-combine coupons" do
         @coupon_percent.stubs(:combine).returns(false)
         @coupon_percent.stubs(:qualified?).returns(true)
-        @coupon_percent.value([2.01, 9.00], @order).should == 0.90
+        expect(@coupon_percent.value([2.01, 9.00], @order)).to eq 0.90
       end
 
       it "should return 0.00 for an order that doesnt qualify" do
         @coupon_percent.stubs(:combine).returns(true)
         @coupon_percent.stubs(:qualified?).returns(false)
-        @coupon_percent.value([2.01, 9.00], @order).should == 0.00
+        expect(@coupon_percent.value([2.01, 9.00], @order)).to eq 0.00
       end
     end
   end

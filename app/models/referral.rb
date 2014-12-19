@@ -124,7 +124,7 @@ class Referral < ActiveRecord::Base
   end
   private
     def invite_referral
-      Notifier.referral_invite(self.id, referring_user_id).deliver
+      Notifier.referral_invite(self.id, referring_user_id).deliver_later
     end
 
     def validate_has_not_signed_up_yet

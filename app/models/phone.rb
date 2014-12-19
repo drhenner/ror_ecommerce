@@ -16,11 +16,11 @@ class Phone < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   belongs_to :phone_type
   #belongs_to :phone_priority
-  belongs_to :phoneable, :polymorphic => true
+  belongs_to :phoneable, polymorphic: true
 
-  validates :phone_type_id,  :presence => true
-  validates :number,  :presence => true, :numericality => true,
-                      :format   => { :with => CustomValidators::Numbers.phone_number_validator },
+  validates :phone_type_id, presence: true
+  validates :number,  :presence => true, :numericality => { only_integer: true },
+                     # :format   => { :with => CustomValidators::Numbers.phone_number_validator },
                       :length   => { :maximum => 25 }
 
   before_validation :sanitize_data
@@ -29,6 +29,7 @@ class Phone < ActiveRecord::Base
   def display_number=(val)
     self.number = val
   end
+
   def display_number
     number_to_phone( self.number )
   end
@@ -42,7 +43,7 @@ class Phone < ActiveRecord::Base
 
     def sanitize_data
       #  remove non-digits
-      self.number.gsub!(/\W+/, '') if number
+      self.number = self.number.gsub!(/\W+/, '') if number
     end
 
 end

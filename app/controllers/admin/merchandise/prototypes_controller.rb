@@ -1,6 +1,6 @@
 class Admin::Merchandise::PrototypesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
-  respond_to :html, :json
+
   def index
     @prototypes = Prototype.admin_grid(params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
@@ -61,10 +61,6 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
 
   def sort_column
     Prototype.column_names.include?(params[:sort]) ? params[:sort] : "name"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

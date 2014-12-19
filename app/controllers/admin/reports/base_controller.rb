@@ -5,6 +5,7 @@ class Admin::Reports::BaseController < Admin::BaseController
     if params[:start_date].present?
       @start_time = Time.parse(params[:start_date])
     else
+      Chronic.time_class = Time.zone
       @start_time = Chronic.parse('last week').beginning_of_week
     end
     set_end_time

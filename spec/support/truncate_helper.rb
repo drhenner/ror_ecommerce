@@ -1,12 +1,15 @@
 module Hadean
   module TruncateHelper
 
-    UNSEEDED_TABLES = [ "addresses",
+    UNSEEDED_TABLES = [ 'addresses',
                         'batches',
                         'brands',
                         'carts',
+                        'cart_items',
                         'comments',
+                        'deals',
                         'images',
+                        'inventories',
                         'invoices',
                         'orders',
                         'order_items',
@@ -23,6 +26,7 @@ module Hadean
                         'return_authorizations',
                         'return_items',
                         'referrals',
+                        'sales',
                         'shipments',
                         'shipping_categories',
                         'shipping_methods',

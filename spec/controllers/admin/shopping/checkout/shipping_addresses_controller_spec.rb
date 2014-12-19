@@ -32,19 +32,19 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
     @shipping_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
     @user.stubs(:shipping_addresses).returns([@shipping_address])
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "new action should render new template" do
     get :new
-    response.should render_template(:new)
+    expect(response).to render_template(:new)
   end
 
   it "create action should render new template when model is invalid" do
     @shipping_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
     Address.any_instance.stubs(:valid?).returns(false)
     post :create, :address => @shipping_address.attributes
-    response.should render_template(:new)
+    expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
@@ -52,7 +52,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
 
     Address.any_instance.stubs(:valid?).returns(true)
     post :create, :shipping_address_id => @shipping_address.id
-    response.should redirect_to(admin_shopping_checkout_shipping_methods_url)
+    expect(response).to redirect_to(admin_shopping_checkout_shipping_methods_url)
   end
 
   it "create action should redirect when model is valid" do
@@ -60,7 +60,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
 
     Address.any_instance.stubs(:valid?).returns(true)
     post :create, :address => @shipping_address.attributes
-    response.should redirect_to(admin_shopping_checkout_shipping_methods_url)
+    expect(response).to redirect_to(admin_shopping_checkout_shipping_methods_url)
   end
 
 end

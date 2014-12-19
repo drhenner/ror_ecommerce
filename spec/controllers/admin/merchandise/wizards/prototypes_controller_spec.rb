@@ -18,6 +18,6 @@ describe Admin::Merchandise::Wizards::PrototypesController do
     @prototype.stubs(:property_ids).returns([@property.id])
     #Prototype.any_instance.stubs(:find_by_id).returns(@prototype)
     put :update, :id => @prototype.id
-    response.should redirect_to(admin_merchandise_wizards_brands_url)
+    expect(response).to redirect_to(admin_merchandise_wizards_brands_url)
   end
 end

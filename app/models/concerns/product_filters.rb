@@ -22,7 +22,7 @@ module ProductFilters
 
       def available_at_lt_filter(available_at_lt)
         if available_at_lt.present?
-          where("products.available_at < ?", available_at_lt)
+          where("products.available_at <= ?", available_at_lt)
         else
           all
         end
@@ -30,7 +30,7 @@ module ProductFilters
 
       def available_at_gt_filter(available_at_gt)
         if available_at_gt.present?
-          where("products.available_at > ?", available_at_gt)
+          where("products.available_at >= ?", available_at_gt)
         else
           all
         end

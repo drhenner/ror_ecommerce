@@ -23,15 +23,15 @@
 #
 
 class Invoice < ActiveRecord::Base
+  include AASM
 
   has_many :payments
   has_many :batches, :as => :batchable#, :polymorphic => true
-  belongs_to :order
+  belongs_to :order, required: true
 
 
   validates :amount,        :presence => true
   validates :invoice_type,  :presence => true
-  #validates :order_id,      :presence => true
 
   PURCHASE  = 'Purchase'
   RMA       = 'RMA'
@@ -40,42 +40,38 @@ class Invoice < ActiveRecord::Base
   NUMBER_SEED     = 3002001004005
   CHARACTERS_SEED = 20
 
-  state_machine :initial => :pending do
-    state :pending
+  aasm column: :state do
+    state :pending, initial: true
     state :authorized
     state :paid
     state :payment_declined
     state :canceled
+    state :refunded
 
     #after_transition :on => 'cancel', :do => :cancel_authorized_payment
 
     event :payment_rma do
-      transition :from => :pending,
-                  :to   => :refunded
+      transitions from: :pending, to: :refunded
     end
     event :payment_authorized do
-      transition :from => :pending,
-                  :to   => :authorized
-      transition :from => :payment_declined,
-                  :to   => :authorized
+      transitions from: [:pending, :payment_declined], to: :authorized
     end
 
     event :payment_captured do
-      transition :from => :authorized,
-                  :to   => :paid
+      transitions from: :authorized, to: :paid
     end
+
     event :transaction_declined do
-      transition :from => :pending,
+      transitions :from => :pending,
                   :to   => :payment_declined
-      transition :from => :payment_declined,
+      transitions :from => :payment_declined,
                   :to   => :payment_declined
-      transition :from => :authorized,
+      transitions :from => :authorized,
                   :to   => :authorized
     end
 
     event :cancel do
-      transition :from => :authorized,
-                  :to  => :canceled
+      transitions from: :authorized, to: :canceled
     end
   end
 

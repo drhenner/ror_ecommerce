@@ -11,12 +11,12 @@ describe Sale, '#for(product_id, at)' do
                                   )
 
     sale = Sale.for(product.id, Time.zone.now)
-    sale.id.should == new_sale.id
+    expect(sale.id).to eq new_sale.id
 
     sale = Sale.for(product.id, (Time.zone.now - 2.days))
-    sale.should be_nil
+    expect(sale).to be_nil
 
     sale = Sale.for(product.id, (Time.zone.now + 2.days))
-    sale.should be_nil
+    expect(sale).to be_nil
   end
 end

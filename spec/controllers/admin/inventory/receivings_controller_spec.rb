@@ -13,22 +13,22 @@ describe Admin::Inventory::ReceivingsController do
 
   #it "show action should render show template" do
   #  get :show, :id => @purchase_order.id
-  #  response.should render_template(:show)
+  #  expect(response).to render_template(:show)
   #end
 
   it "index action should render index template" do
     get :index
-    response.should render_template(:index)
+    expect(response).to render_template(:index)
   end
 
   it "edit action should render edit template" do
     get :edit, :id => @purchase_order.id
-    response.should render_template(:edit)
+    expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     PurchaseOrder.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @purchase_order.id, :purchase_order => {:receive_po => '1'}
-    response.should redirect_to(admin_inventory_receivings_url( :notice => 'Purchase order was successfully updated.'))
+    expect(response).to redirect_to(admin_inventory_receivings_url( :notice => 'Purchase order was successfully updated.'))
   end
 end

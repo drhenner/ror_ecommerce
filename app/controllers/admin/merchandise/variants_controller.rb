@@ -1,6 +1,6 @@
 class Admin::Merchandise::VariantsController < Admin::BaseController
   helper_method :sort_column, :sort_direction
-  respond_to :html, :json
+
   def index
     @product = Product.find(params[:product_id])
     @variants = @product.variants.admin_grid(@product, params).order(sort_column + " " + sort_direction).
@@ -10,7 +10,10 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   def show
     @variant = Variant.includes(:product).find(params[:id])
     @product  =  @variant.product
-    respond_with(@variant)
+    respond_to do |format|
+      format.html
+      format.json { render json: @variant }
+    end
   end
 
   def new
@@ -70,10 +73,6 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
 
     def sort_column
       Variant.column_names.include?(params[:sort]) ? params[:sort] : "id"
-    end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
 end

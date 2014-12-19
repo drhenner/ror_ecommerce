@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:email)      { |n| "person#{n}@example.com" }
     password              'pasword'
     password_confirmation "pasword"
-    after(:build) {|user| user.send(:initialize_state_machines, dynamic: :force)}
+    #after(:build) {|user| user.send(:initialize_state_machines, dynamic: :force)}
   end
 
   factory :admin_user, parent: :user do

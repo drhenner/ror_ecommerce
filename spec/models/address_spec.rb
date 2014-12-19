@@ -8,7 +8,7 @@ describe Address do
     end
 
     it "should be valid with minimum attribues" do
-      @address.should be_valid
+      expect(@address).to be_valid
     end
   end
 end
@@ -34,7 +34,7 @@ describe Address, "methods" do
 
   context ".name" do
     it 'should return the correct string with no params' do
-      @address.name.should == 'Perez Hilton'
+      expect(@address.name).to eq 'Perez Hilton'
     end
   end
 
@@ -51,22 +51,22 @@ describe Address, "methods" do
     it 'should return all the address attributes except id, updated and created_at' do
       @address.save
       attributes = @address.address_attributes
-      attributes['id'].should be_nil
-      attributes['created_at'].should be_nil
-      attributes['updated_at'].should be_nil
-      attributes['first_name'].should == 'Perez'
+      expect(attributes['id']).to be_nil
+      expect(attributes['created_at']).to be_nil
+      expect(attributes['updated_at']).to be_nil
+      expect(attributes['first_name']).to eq 'Perez'
     end
   end
 
   context ".cc_params" do
     it 'should return the params needed by the credit card vaults' do
       cc_params = @address.cc_params
-      cc_params[:name].should    == 'Perez Hilton'
-      cc_params[:address1].should == '7th street'
-      cc_params[:city].should    == 'Fredville'
-      cc_params[:state].should   == 'CA'
-      cc_params[:zip].should     == '13156'
-      cc_params[:country].should == 'US'
+      expect(cc_params[:name]).to    eq 'Perez Hilton'
+      expect(cc_params[:address1]).to eq '7th street'
+      expect(cc_params[:city]).to    eq 'Fredville'
+      expect(cc_params[:state]).to   eq 'CA'
+      expect(cc_params[:zip]).to     eq '13156'
+      expect(cc_params[:country]).to eq 'US'
 
 
     end
@@ -74,7 +74,7 @@ describe Address, "methods" do
 
   context '.full_address_array' do
     it 'should return an array of address lines and name' do
-      @address.full_address_array.should == ['Perez Hilton','7th street','Fredville, CA 13156']
+      expect(@address.full_address_array).to eq ['Perez Hilton','7th street','Fredville, CA 13156']
     end
   end
 
@@ -82,16 +82,16 @@ describe Address, "methods" do
     # def address_lines(join_chars = ', ')
     # [address1, address2].delete_if{|add| add.blank?}.join(join_chars)
     it 'should display the address lines' do
-      @address.address_lines.should == '7th street'
+      expect(@address.address_lines).to eq '7th street'
       @address.address2 = 'test'
-      @address.address_lines.should == '7th street, test'
-      @address.address_lines(' H ').should == '7th street H test'
+      expect(@address.address_lines).to eq '7th street, test'
+      expect(@address.address_lines(' H ')).to eq '7th street H test'
     end
   end
 
   context ".state_abbr_name" do
     it 'should display the state_abbr_name' do
-      @address.state_abbr_name.should == @address.state.abbreviation
+      expect(@address.state_abbr_name).to eq @address.state.abbreviation
     end
   end
 
@@ -103,8 +103,9 @@ describe Address, "methods" do
       state = State.first
       state.stubs(:shipping_zone).returns(shipping_zone)
       address = FactoryGirl.create(:address, :state => state)
-      address.shipping_method_ids.should == [2,4]
+      expect(address.shipping_method_ids).to eq [2,4]
     end
+
     it 'should be the countries\'s shipping methods' do
       @finland = Country.find(67)
       @finland.shipping_zone_id = 2
@@ -114,7 +115,7 @@ describe Address, "methods" do
       shipping_zone.stubs(:shipping_method_ids).returns([2,3])
       @finland.stubs(:shipping_zone).returns(shipping_zone)
       address = FactoryGirl.create(:address, :country => @finland, :state => nil)
-      address.shipping_method_ids.should == [2,3]
+      expect(address.shipping_method_ids).to eq [2,3]
       Settings.require_state_in_address = true
     end
   end
@@ -122,14 +123,14 @@ describe Address, "methods" do
   describe Address, ".city_state_name" do
     #[city, state_abbr_name].join(', ')
     it 'should display the state_abbr_name' do
-      @address.city_state_name.should == "Fredville, #{@address.state.abbreviation}"
+      expect(@address.city_state_name).to eq "Fredville, #{@address.state.abbreviation}"
     end
   end
 
   describe Address, ".city_state_zip" do
     #[city_state_name, zip_code].join(' ')
     it 'should display the city_state_zip' do
-      @address.city_state_zip.should == "Fredville, #{@address.state.abbreviation} 13156"
+      expect(@address.city_state_zip).to eq "Fredville, #{@address.state.abbreviation} 13156"
     end
   end
 
@@ -146,14 +147,15 @@ describe Address, "methods" do
                           #:addressable_id   => 1,
                           #:active           => true
                           )
-
-    address.send(:sanitize_data)
-    address.first_name.should ==  'Perez'
-    address.last_name.should  ==  'Hilton'
-    address.city.should       ==  'Fredville'
-      address.zip_code.should ==  '13156'
-      address.address1.should ==  '1st street'
-      address.address2.should ==  '2nd street'
+    it 'should sanitize_data' do
+      address.send(:sanitize_data)
+      expect(address.first_name).to eq  'Perez'
+      expect(address.last_name).to  eq  'Hilton'
+      expect(address.city).to       eq  'Fredville'
+      expect(address.zip_code).to   eq  '13156'
+      expect(address.address1).to   eq  '1st street'
+      expect(address.address2).to   eq  '2nd street'
+    end
   end
 end
 
@@ -187,19 +189,19 @@ describe Address do
       new_address = old_address.dup
       new_address.save
       old_address.reload
-      old_address.should_not be_default
-      old_address.should_not be_billing_default
+      expect(old_address).not_to be_default
+      expect(old_address).not_to be_billing_default
     end
 
     context "when #replace_address_id is set" do
       it "replaces the address" do
         old_address = FactoryGirl.create(:address)
-        old_address.should be_active
+        expect(old_address).to be_active
         new_address = old_address.dup
         new_address.replace_address_id = old_address.id
         new_address.save
         old_address.reload
-        old_address.should_not be_active
+        expect(old_address).not_to be_active
       end
     end
   end

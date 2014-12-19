@@ -14,8 +14,8 @@ describe Payment, " class methods" do
       stor = Payment.store(
                             credit_card(:number => '1')
                           )
-      stor.action.should      == 'store'
-      stor.message.should     == BogusGateway::SUCCESS_MESSAGE
+      expect(stor.action).to      eq 'store'
+      expect(stor.message).to     eq BogusGateway::SUCCESS_MESSAGE
     end
   end
 
@@ -25,8 +25,8 @@ describe Payment, " class methods" do
       #GATEWAY.expects(:ssl_post).returns(successful_unstore_response)
       charge = Payment.unstore(  '1')
       expect(charge.success).to     be_truthy
-      charge.action.should      == 'unstore'
-      charge.message.should     == BogusGateway::SUCCESS_MESSAGE
+      expect(charge.action).to      eq 'unstore'
+      expect(charge.message).to     eq BogusGateway::SUCCESS_MESSAGE
     end
 
     it 'should not unstore the payment profile' do
@@ -34,7 +34,7 @@ describe Payment, " class methods" do
       charge = Payment.unstore(  '3')
       #  puts charge.inspect
       expect(charge.success).not_to     be_truthy
-      charge.action.should      == 'unstore'
+      expect(charge.action).to      eq 'unstore'
     end
   end
 
@@ -45,10 +45,10 @@ describe Payment, " class methods" do
                                 credit_card(:number => '1')
                               )
       expect(auth.success).to be true
-      auth.action.should      == 'authorization'
-      auth.message.should     == BogusGateway::SUCCESS_MESSAGE
+      expect(auth.action).to      eq 'authorization'
+      expect(auth.message).to     eq BogusGateway::SUCCESS_MESSAGE
       #puts auth.params#[:reference]
-      auth[:confirmation_id].should == BogusGateway::AUTHORIZATION
+      expect(auth[:confirmation_id]).to eq BogusGateway::AUTHORIZATION
     end
 
     it 'should not authorize the payment with failure' do
@@ -58,8 +58,8 @@ describe Payment, " class methods" do
                                 credit_card(:number => '2')
                               )
       expect(auth.success).not_to     be_truthy
-      auth.action.should      == 'authorization'
-      auth.message.should     == BogusGateway::FAILURE_MESSAGE
+      expect(auth.action).to      eq 'authorization'
+      expect(auth.message).to     eq BogusGateway::FAILURE_MESSAGE
     end
 
     it 'should not authorize the payment with error' do
@@ -69,8 +69,8 @@ describe Payment, " class methods" do
                                 credit_card(:number => '3')
                               )
       expect(auth.success).not_to     be_truthy
-      auth.action.should      == 'authorization'
-      auth.message.should     == BogusGateway::ERROR_MESSAGE
+      expect(auth.action).to      eq 'authorization'
+      expect(auth.message).to     eq BogusGateway::ERROR_MESSAGE
     end
   end
 
@@ -78,21 +78,21 @@ describe Payment, " class methods" do
     it 'should capture the payment' do
       capt = Payment.capture( @amount, '123')
       expect(capt.success).to     be true
-      capt.action.should      == 'capture'
-      capt.message.should     == BogusGateway::SUCCESS_MESSAGE
+      expect(capt.action).to      eq 'capture'
+      expect(capt.message).to     eq BogusGateway::SUCCESS_MESSAGE
     end
     it 'should not capture the payment for failure' do
       capt = Payment.capture( @amount, '2')
       expect(capt.success).not_to     be_truthy
-      capt.action.should      == 'capture'
-      capt.message.should     == BogusGateway::FAILURE_MESSAGE
+      expect(capt.action).to      eq 'capture'
+      expect(capt.message).to     eq BogusGateway::FAILURE_MESSAGE
     end
 
     it 'should capture the payment in error state' do
       capt = Payment.capture( @amount, '1')
       expect(capt.success).not_to     be_truthy
-      capt.action.should      == 'capture'
-      capt.message.should     == BogusGateway::CAPTURE_ERROR_MESSAGE
+      expect(capt.action).to      eq 'capture'
+      expect(capt.message).to     eq BogusGateway::CAPTURE_ERROR_MESSAGE
     end
 
   end
@@ -101,14 +101,14 @@ describe Payment, " class methods" do
     it 'should charge the payment' do
       charge = Payment.charge( @amount, credit_card(:number => '1'))
       expect(charge.success).to be true
-      charge.action.should      == 'charge'
-      charge.message.should     == BogusGateway::SUCCESS_MESSAGE
+      expect(charge.action).to      eq 'charge'
+      expect(charge.message).to     eq BogusGateway::SUCCESS_MESSAGE
     end
     it 'should charge the payment' do
       charge = Payment.charge( @amount, credit_card(:number => '2'))
       expect(charge.success).not_to     be_truthy
-      charge.action.should      == 'charge'
-      charge.message.should     == BogusGateway::FAILURE_MESSAGE
+      expect(charge.action).to      eq 'charge'
+      expect(charge.message).to     eq BogusGateway::FAILURE_MESSAGE
     end
   end
 

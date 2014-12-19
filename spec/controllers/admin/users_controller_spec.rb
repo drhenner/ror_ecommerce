@@ -29,13 +29,13 @@ describe Admin::UsersController do
 
   it "create action should render new template when model is invalid" do
     User.any_instance.stubs(:valid?).returns(false)
-    post :create, :user => @customer.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
+    post :create, user: @customer.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     User.any_instance.stubs(:valid?).returns(true)
-    post :create, :user => @customer.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
+    post :create, user: @customer.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
     expect(response).to redirect_to(admin_users_url())
   end
 

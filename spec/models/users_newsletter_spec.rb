@@ -3,8 +3,8 @@ require 'spec_helper'
 describe UsersNewsletter do
   context 'class methods' do
     before(:each) do
-      @newsletter = create(:newsletter, autosubscribe: true)
-      @user = create(:user)
+      @newsletter = FactoryGirl.create(:newsletter, autosubscribe: true)
+      @user       = FactoryGirl.create(:user)
     end
 
     it 'Users should auto subscribe from all newsletters' do
