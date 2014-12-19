@@ -146,6 +146,6 @@ Hadean::Application.configure do
                                         :product  => '320x320>',
                                         :large    => '600x600>' },
                               default_style:  :product,
-                              url:            "/assets/products/:id/:style/:basename.:extension",
+                              #url:            "/assets/products/:id/:style/:basename.:extension",
                               path:           ":rails_root/public/assets/products/:id/:style/:basename.:extension" }
 end
