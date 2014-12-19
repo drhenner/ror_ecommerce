@@ -27,12 +27,11 @@ class Invoice < ActiveRecord::Base
 
   has_many :payments
   has_many :batches, :as => :batchable#, :polymorphic => true
-  belongs_to :order
+  belongs_to :order, required: true
 
 
   validates :amount,        :presence => true
   validates :invoice_type,  :presence => true
-  #validates :order_id,      :presence => true
 
   PURCHASE  = 'Purchase'
   RMA       = 'RMA'
@@ -41,7 +40,6 @@ class Invoice < ActiveRecord::Base
   NUMBER_SEED     = 3002001004005
   CHARACTERS_SEED = 20
 
-  #state_machine :initial => :pending do
   aasm column: :state do
     state :pending, initial: true
     state :authorized
