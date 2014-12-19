@@ -22,7 +22,7 @@ gem 'authlogic', github: 'drhenner/authlogic', branch: 'rails4.2'
 #gem 'scrypt', '~> 1.2.0'
 
 gem "asset_sync",         '~> 1.1.0'
-gem 'awesome_nested_set', '~> 3.0.0'
+gem 'awesome_nested_set', '~> 3.0.1'
 
 gem 'aws-sdk',        '~> 1.59.0'
 gem 'bluecloth',      '~> 2.2.0'

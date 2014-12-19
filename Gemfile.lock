@@ -392,7 +392,7 @@ DEPENDENCIES
   asset_sync (~> 1.1.0)
   authlogic!
   autotest-rails-pure
-  awesome_nested_set (~> 3.0.0)
+  awesome_nested_set (~> 3.0.1)
   aws-sdk (~> 1.59.0)
   better_errors (~> 2.0.0)
   binding_of_caller (~> 0.7.2)

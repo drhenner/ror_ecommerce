@@ -7,7 +7,7 @@ class AddNestedSetToProductTypes < ActiveRecord::Migration
     add_index :product_types, :rgt
 
     ProductType.reset_column_information
-    ProductType.rebuild!
+    #ProductType.rebuild!
   end
 
   def self.down
