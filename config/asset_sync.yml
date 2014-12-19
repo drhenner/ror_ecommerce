@@ -4,7 +4,7 @@ defaults: &defaults
   aws_secret_access_key: "<%= ENV['AWS_SECRET_ACCESS_KEY'] %>"
   fog_directory: "<%= ENV['FOG_DIRECTORY'] %>"
   # You may need to specify what region your storage bucket is in
-  # fog_region: "eu-west-1"
+  fog_region: "us-west-1"
   existing_remote_files: keep
   # To delete existing remote files.
   # existing_remote_files: delete
