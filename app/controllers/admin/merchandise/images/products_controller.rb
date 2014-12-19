@@ -1,11 +1,11 @@
 class Admin::Merchandise::Images::ProductsController < Admin::BaseController
 
   def edit
-    @product  = Product.includes(:images).find(params[:id])
+    @product  = Product.includes(:images).friendly.find(params[:id])
   end
 
   def update
-    @product  = Product.find(params[:id])
+    @product  = Product.friendly.find(params[:id])
 
     if @product.update_attributes(allowed_params)
       redirect_to :action => :show

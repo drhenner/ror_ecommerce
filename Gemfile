@@ -35,7 +35,7 @@ gem 'compass-rails', '~> 2.0.1'
 
 gem 'dynamic_form'
 gem 'jbuilder'
-gem "friendly_id",     '~> 5.0.4'#, :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
+gem "friendly_id",     '~> 5.1.0.beta.1'#, :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
 gem "jquery-rails",    '~> 4.0.0'
 gem 'jquery-ui-rails'#, '~> 5.0.2'
 gem 'json',           '~> 1.8.1'

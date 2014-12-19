@@ -201,7 +201,7 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    friendly_id (5.0.4)
+    friendly_id (5.1.0.beta.1)
       activerecord (>= 4.0.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
@@ -408,7 +408,7 @@ DEPENDENCIES
   factory_girl (~> 4.5.0)
   factory_girl_rails (~> 4.5.0)
   faker
-  friendly_id (~> 5.0.4)
+  friendly_id (~> 5.1.0.beta.1)
   jbuilder
   jquery-rails (~> 4.0.0)
   jquery-ui-rails
