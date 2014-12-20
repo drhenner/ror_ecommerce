@@ -19,7 +19,7 @@ The cart allows you to track your customers' *cart history* and includes a *doub
 The project has *Solr searching*, *Compass* and *Zurb Foundation for CSS* and uses *jQuery*.
 Currently the most complete Rails solution for your small business.
 
-Please use *Ruby 2.1* and enjoy *Rails 4.1*.
+Please use *Ruby 2.1* and enjoy *Rails 4.2*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
