@@ -24,7 +24,7 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
     @shipping_category = ShippingCategory.new(allowed_params)
 
     if @shipping_category.save
-      redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully created.')
+      redirect_to(admin_config_shipping_rates_url(), notice: 'Shipping category was successfully created.')
     else
       render :action => "new"
     end
@@ -35,7 +35,7 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
     @shipping_category = ShippingCategory.find(params[:id])
 
     if @shipping_category.update_attributes(allowed_params)
-      redirect_to(admin_config_shipping_rates_url(), :notice => 'Shipping category was successfully updated.')
+      redirect_to(admin_config_shipping_rates_url(), notice: 'Shipping category was successfully updated.')
     else
       render :action => "edit"
     end

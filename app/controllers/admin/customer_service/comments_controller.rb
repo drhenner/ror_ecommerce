@@ -2,7 +2,7 @@ class Admin::CustomerService::CommentsController < Admin::CustomerService::BaseC
   helper_method :sort_column, :sort_direction, :customer
   def index
     @comments = customer.comments.order(sort_column + " " + sort_direction).
-                                  paginate(:page => pagination_page, :per_page => pagination_rows)
+                                  paginate(page: pagination_page, per_page: pagination_rows)
   end
 
   def show
