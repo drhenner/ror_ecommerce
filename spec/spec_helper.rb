@@ -59,6 +59,7 @@ RSpec.configure do |config|
     if defined?(Sunspot)
       ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
     end
+    Rails.cache.clear
     DatabaseCleaner.start
   end
 
