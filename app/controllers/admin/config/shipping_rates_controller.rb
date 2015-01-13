@@ -41,10 +41,10 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
 
     respond_to do |format|
       if @shipping_rate.save
-        format.html { redirect_to(admin_config_shipping_rate_url(@shipping_rate), :notice => 'Shipping rate was successfully created.') }
+        format.html { redirect_to(admin_config_shipping_rate_url(@shipping_rate), notice: 'Shipping rate was successfully created.') }
       else
         form_info
-        format.html { render :action => "new" }
+        format.html { render action: "new" }
       end
     end
   end
@@ -55,10 +55,10 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
 
     respond_to do |format|
       if @shipping_rate.update_attributes(allowed_params)
-        format.html { redirect_to(admin_config_shipping_rate_url(@shipping_rate), :notice => 'Shipping rate was successfully updated.') }
+        format.html { redirect_to(admin_config_shipping_rate_url(@shipping_rate), notice: 'Shipping rate was successfully updated.') }
       else
         form_info
-        format.html { render :action => "edit" }
+        format.html { render action: "edit" }
       end
     end
   end
@@ -70,8 +70,8 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
   end
 
   def form_info
-    @shipping_rate_types  = ShippingRateType.all.map{|srt| [srt.name, srt.id]}
-    @shipping_methods     = ShippingMethod.all.map{|sm| [sm.descriptive_name, sm.id]}
-    @shipping_categories  = ShippingCategory.all.map{|sc| [sc.name, sc.id]}
+    @shipping_rate_types  = ShippingRateType.all.map{|srt| [srt.name,            srt.id]}
+    @shipping_methods     = ShippingMethod.all.map{|sm|    [sm.descriptive_name, sm.id]}
+    @shipping_categories  = ShippingCategory.all.map{|sc|  [sc.name,             sc.id]}
   end
 end

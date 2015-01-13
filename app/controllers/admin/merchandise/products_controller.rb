@@ -37,7 +37,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     else
       form_info
       flash[:error] = "The product could not be saved"
-      render :action => :new
+      render action: :new
     end
   rescue
     render :text => "Please make sure you have solr started... Run this in the command line => bundle exec rake sunspot:solr:start"
@@ -55,7 +55,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       redirect_to admin_merchandise_product_url(@product)
     else
       form_info
-      render :action => :edit#, :layout => 'admin_markup'
+      render action: :edit#, :layout => 'admin_markup'
     end
   end
 
@@ -74,7 +74,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     end
     respond_to do |format|
       format.html
-      format.json { render :json => @properties_hash.to_json }
+      format.json { render json: @properties_hash.to_json }
     end
   end
 
@@ -111,10 +111,10 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     end
 
     def form_info
-      @prototypes               = Prototype.all.collect{|pt| [pt.name, pt.id]}
+      @prototypes               = Prototype.all.map{|pt| [pt.name, pt.id]}
       @all_properties           = Property.all
-      @select_shipping_category = ShippingCategory.all.collect {|sc| [sc.name, sc.id]}
-      @brands        = Brand.order(:name).collect {|ts| [ts.name, ts.id]}
+      @select_shipping_category = ShippingCategory.all.map {|sc| [sc.name, sc.id]}
+      @brands                   = Brand.order(:name).map {|ts| [ts.name, ts.id]}
     end
 
     def product_types

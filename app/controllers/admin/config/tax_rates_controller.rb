@@ -28,10 +28,10 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
     @tax_rate = TaxRate.new(allowed_params)
 
     if @tax_rate.save
-      redirect_to(admin_config_tax_rate_url(@tax_rate), :notice => 'Tax rate was successfully created.')
+      redirect_to(admin_config_tax_rate_url(@tax_rate), notice: 'Tax rate was successfully created.')
     else
       form_info
-      render :action => "new"
+      render action: "new"
     end
   end
 
@@ -43,7 +43,7 @@ class Admin::Config::TaxRatesController < Admin::Config::BaseController
       redirect_to(admin_config_tax_rate_url(@tax_rate), :notice => 'Tax rate was successfully updated.')
     else
       form_info
-      render :action => "edit"
+      render action: "edit"
     end
   end
 

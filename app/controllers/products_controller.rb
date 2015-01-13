@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
       product_types = product_type.self_and_descendants.map(&:id)
     end
     if product_types
-      @products = products.where('product_type_id IN (?)', product_types)
+      @products = products.where(product_type_id: product_types)
     else
       @products = products
     end

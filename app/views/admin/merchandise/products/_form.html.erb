@@ -61,7 +61,7 @@
     <%#= form.select :product_type_id, @select_product_types %>
     <%= form.select :product_type_id,
                     nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
-                    { :include_blank => true } %>
+                    { include_blank: true } %>
   </div>
 
 <div class='clear'></div>
@@ -93,7 +93,7 @@
     <% select_prototypes = [] << Prototype.new %>
     Prototype: <%= form.select :prototype_id,
                               @prototypes,
-                              { :include_blank => true },{'data-product_id' => @product.id} %>
+                              { include_blank: true },{'data-product_id' => @product.id} %>
   </div>
 
   <div id="product_properties" class=' '>
