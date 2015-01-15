@@ -56,7 +56,7 @@ Install gems and build the app
 
     gem install bundler
     bundle install
-    rake secret # copy/paste the output as `encryption_key` in `config/config.yml`
+    rake secret # copy/paste the output as `encryption_key` in `config/settings.yml`
     rake db:create:all
     rake db:migrate db:seed
     RAILS_ENV=test rake db:test:prepare
