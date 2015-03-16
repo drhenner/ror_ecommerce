@@ -13,7 +13,7 @@ module Hadean
                         'image_groups',
                         'inventories',
                         'invoices',
-                        'newletters',
+                        'newsletters',
                         'orders',
                         'order_items',
                         'payments',
