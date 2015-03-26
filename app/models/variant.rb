@@ -95,7 +95,7 @@ class Variant < ActiveRecord::Base
 
   # This is a form helper to inactivate a variant
   def inactivate=(val)
-    self.deleted_at = Time.zone.now if !deleted_at && (val && (val == '1' || val.to_s == 'true'))
+    val == '1' ? (self.deleted_at = Time.zone.now if !deleted_at) : self.deleted_at = nil
   end
 
   def inactivate
