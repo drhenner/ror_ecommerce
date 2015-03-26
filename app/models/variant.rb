@@ -94,8 +94,15 @@ class Variant < ActiveRecord::Base
   end
 
   # This is a form helper to inactivate a variant
+  #
+  # if :inactivate checkbox is checked (== '1') for the first time (!deleted_at),
+  # record :deleted_at time. if it isn't checked or was unchecked, make it .active? again.
   def inactivate=(val)
-    val == '1' ? (self.deleted_at = Time.zone.now if !deleted_at) : self.deleted_at = nil
+    if val == '1' 
+      self.deleted_at = Time.zone.now if !deleted_at
+    else
+      self.deleted_at = nil
+    end
   end
 
   def inactivate
