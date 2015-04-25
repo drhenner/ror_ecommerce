@@ -8,7 +8,7 @@ gem 'uglifier',     '>= 1.3.0'
 gem 'sass-rails',   '~> 4.0.0'
 
 gem 'actionpack-page_caching'
-gem "activemerchant", '~> 1.44'#, :lib => 'active_merchant'
+gem "activemerchant", '~> 1.48'#, :lib => 'active_merchant'
 gem "american_date"
 
 # Use https if you are pushing to HEROKU
