@@ -26,7 +26,7 @@ class Invoice < ActiveRecord::Base
   include AASM
 
   has_many :payments
-  has_many :batches, :as => :batchable#, :polymorphic => true
+  has_many :batches, as: :batchable#, :polymorphic => true
   belongs_to :order, required: true
 
 
@@ -62,12 +62,12 @@ class Invoice < ActiveRecord::Base
     end
 
     event :transaction_declined do
-      transitions :from => :pending,
-                  :to   => :payment_declined
-      transitions :from => :payment_declined,
-                  :to   => :payment_declined
-      transitions :from => :authorized,
-                  :to   => :authorized
+      transitions from:  :pending,
+                  to:    :payment_declined
+      transitions from:  :payment_declined,
+                  to:    :payment_declined
+      transitions from:  :authorized,
+                  to:    :authorized
     end
 
     event :cancel do
@@ -96,7 +96,7 @@ class Invoice < ActiveRecord::Base
   # @param [Optional Symbol] date format to be returned
   # @return [String] formated date
   def invoice_date(format = :us_date)
-    I18n.localize(created_at, :format => format)
+    I18n.localize(created_at, format: format)
   end
 
   # invoice number
@@ -128,8 +128,8 @@ class Invoice < ActiveRecord::Base
   # @param [Integer] order id
   # @param [Decimal] amount in dollars
   # @return [Invoice] invoice object
-  def Invoice.generate(order_id, charge_amount, credited_amount = 0.0)
-    Invoice.new(:order_id => order_id, :amount => charge_amount, :invoice_type => PURCHASE, :credited_amount => credited_amount)
+  def self.generate(order_id, charge_amount, credited_amount = 0.0)
+    Invoice.new(order_id: order_id, amount: charge_amount, invoice_type: PURCHASE, credited_amount: credited_amount)
   end
 
   def capture_complete_order
@@ -175,7 +175,7 @@ class Invoice < ActiveRecord::Base
 
   def self.process_rma(return_amount, order)
     transaction do
-      this_invoice = Invoice.new(:order => order, :amount => return_amount, :invoice_type => RMA)
+      this_invoice = Invoice.new(order: order, amount: return_amount, invoice_type: RMA)
       this_invoice.save
       this_invoice.complete_rma_return
       this_invoice.payment_rma!

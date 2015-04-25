@@ -77,9 +77,9 @@ class Order < ActiveRecord::Base
   attr_accessor :total, :sub_total, :deal_amount, :taxed_total, :deal_time
 
   #validates :number,     :presence => true
-  validates :user_id,     :presence => true
-  validates :email,       :presence => true,
-                          :format   => { :with => CustomValidators::Emails.email_validator }
+  validates :user_id,     presence: true
+  validates :email,       presence: true,
+                          format:   { with: CustomValidators::Emails.email_validator }
 
   NUMBER_SEED     = 1001001001000
   CHARACTERS_SEED = 21
@@ -125,7 +125,7 @@ class Order < ActiveRecord::Base
   # @return [none]
   def cancel_unshipped_order(invoice)
     transaction do
-      self.update_attributes(:active => false)
+      self.update_attributes(active: false)
       invoice.cancel_authorized_payment
     end
   end
@@ -202,7 +202,7 @@ class Order < ActiveRecord::Base
   # @param [none]
   # @return [Payment] payment object
   def order_complete!
-    self.state = 'complete'
+    self.state        = 'complete'
     self.completed_at = Time.zone.now
     update_inventory
   end
@@ -267,11 +267,11 @@ class Order < ActiveRecord::Base
   end
 
   def self.include_checkout_objects
-    includes([{:ship_address => :state},
-              {:bill_address => :state},
-              {:order_items =>
-                {:variant =>
-                  {:product => :images }}}])
+    includes([{ship_address: :state},
+              {bill_address: :state},
+              {order_items:
+                {variant:
+                  { product: :images }}}])
   end
 
   # calculates the total price of the order
@@ -370,9 +370,9 @@ class Order < ActiveRecord::Base
   def create_shipments_with_order_item_ids(order_item_ids)
     created_shipments = false
     self.order_items.find(order_item_ids).group_by(&:shipping_method_id).each do |shipping_method_id, order_items|
-      shipment = Shipment.new(:shipping_method_id => shipping_method_id,
-                              :address_id         => self.ship_address_id,
-                              :order_id           => self.id
+      shipment = Shipment.new(shipping_method_id: shipping_method_id,
+                              address_id:         self.ship_address_id,
+                              order_id:           self.id
                               )
       shipment_has_items = false
       order_items.each do |item|

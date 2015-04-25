@@ -13,6 +13,6 @@ class ItemType < ActiveRecord::Base
   WISH_LIST_ID       = 3
   PURCHASED_ID       = 4
 
-  validates :name,        :presence => true,       :length => { :maximum => 55 }
+  validates :name,        presence: true,       length: { maximum: 55 }
 
 end
