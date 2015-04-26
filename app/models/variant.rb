@@ -98,8 +98,9 @@ class Variant < ActiveRecord::Base
   # if :inactivate checkbox is checked (== '1') for the first time (!deleted_at),
   # record :deleted_at time. if it isn't checked or was unchecked, make it .active? again.
   def inactivate=(val)
-    if val == '1' 
-      self.deleted_at = Time.zone.now if !deleted_at
+    return unless val.present?
+    if val == '1' || val.to_s == 'true'
+      self.deleted_at ||= Time.zone.now
     else
       self.deleted_at = nil
     end
