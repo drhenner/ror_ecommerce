@@ -271,6 +271,13 @@ Now paste this code in there:
     </CORSRule>
     </CORSConfiguration>
 
+## Image Groups
+
+Typically a product has many variants.  (Variant ~= specific size of a given shoe)
+
+If you have many variants with the same image don't bother with an image group, just use the "products.images".
+
+Use ImageGroups for something like shoes. Lets say you have 3 colors, and each color has 10 sizes. You would create 3 images groups (one for each color). The image for each size would be the same and hence each variant would be associated to the same image_group for a given color.
 
 ##Author
 
