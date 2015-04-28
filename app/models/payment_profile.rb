@@ -35,16 +35,16 @@ class PaymentProfile < ActiveRecord::Base
 
   attr_accessor       :request_ip, :credit_card
 
-  validates :user_id,         :presence => true
-  validates :payment_cim_id,  :presence => true
-  validates :cc_type,         :presence => true, :length => { :maximum => 60 }
-  validates :last_digits,     :presence => true, :length => { :maximum => 10 }
-  validates :month,           :presence => true, :length => { :maximum => 6 }
-  validates :year,            :presence => true, :length => { :maximum => 6 }
+  validates :user_id,         presence: true
+  validates :payment_cim_id,  presence: true
+  validates :cc_type,         presence: true, length: { maximum: 60 }
+  validates :last_digits,     presence: true, length: { maximum: 10 }
+  validates :month,           presence: true, length: { maximum: 6 }
+  validates :year,            presence: true, length: { maximum: 6 }
 
 
   validate            :validate_card
-  #validates :address_id,      :presence => true
+  #validates :address_id,      presence: true
 
   #attr_accessible # none
 
@@ -67,9 +67,9 @@ class PaymentProfile < ActiveRecord::Base
   def save_default_profile(cc_user)
     PaymentProfile.transaction do
       if self.default == true
-        PaymentProfile.update_all( { :default  => false},
-                            { :payment_profiles => {
-                                  :user_id => cc_user.id,
+        PaymentProfile.update_all( { default: false },
+                            { payment_profiles: {
+                                  user_id: cc_user.id,
                                             } }) if cc_user
       end
       self.user = cc_user

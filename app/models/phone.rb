@@ -19,9 +19,9 @@ class Phone < ActiveRecord::Base
   belongs_to :phoneable, polymorphic: true
 
   validates :phone_type_id, presence: true
-  validates :number,  :presence => true, :numericality => { only_integer: true },
+  validates :number,  presence: true, numericality: { only_integer: true },
                      # :format   => { :with => CustomValidators::Numbers.phone_number_validator },
-                      :length   => { :maximum => 25 }
+                      length:    { maximum: 25 }
 
   before_validation :sanitize_data
   after_save        :default_phone_check

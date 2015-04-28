@@ -25,13 +25,13 @@ class Variant < ActiveRecord::Base
 
 
   has_many :variant_suppliers
-  has_many :suppliers,         :through => :variant_suppliers
+  has_many :suppliers,         through: :variant_suppliers
 
   has_many :variant_properties
-  has_many :properties,          :through => :variant_properties
+  has_many :properties,        through: :variant_properties
 
   has_many   :purchase_order_variants
-  has_many   :purchase_orders, :through => :purchase_order_variants
+  has_many   :purchase_orders, through: :purchase_order_variants
 
   belongs_to :product
   belongs_to :inventory
@@ -40,10 +40,10 @@ class Variant < ActiveRecord::Base
   before_validation :create_inventory#, :on => :create
   #after_save :expire_cache
 
-  validates :inventory_id, :presence => true
-  validates :price,       :presence => true
-  validates :product_id,  :presence => true
-  validates :sku,         :presence => true,       :length => { :maximum => 255 }
+  validates :inventory_id, presence: true
+  validates :price,       presence: true
+  validates :product_id,  presence: true
+  validates :sku,         presence: true,       length: { maximum: 255 }
 
   accepts_nested_attributes_for :variant_properties#, :inventory
   delegate  :brand, :to => :product, :allow_nil => true
@@ -53,7 +53,7 @@ class Variant < ActiveRecord::Base
             :count_pending_from_supplier,
             :count_on_hand=,
             :count_pending_to_customer=,
-            :count_pending_from_supplier=, :to => :inventory, :allow_nil => false
+            :count_pending_from_supplier=, to: :inventory, allow_nil: false
 
   ADMIN_OUT_OF_STOCK_QTY  = 0
   OUT_OF_STOCK_QTY        = 2
