@@ -72,7 +72,7 @@ in this production environment.  Hence you should add the following ENV variable
 
     FOG_DIRECTORY     => your bucket on AWS
     AWS_ACCESS_KEY_ID => your access key on AWS
-    AWS_ACCESS_KEY_ID => your secret key on AWS
+    AWS_SECRET_ACCESS_KEY => your secret key on AWS
     AUTHNET_LOGIN     => if you use authorize.net otherwise change config/settings.yml && config/environments/*.rb
     AUTHNET_PASSWORD  => if you use authorize.net otherwise change config/settings.yml && config/environments/*.rb
 
