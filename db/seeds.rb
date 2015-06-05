@@ -133,3 +133,8 @@ ReferralProgram::PROGRAMS.each do |referral_program_attributes|
     ReferralProgram.create(referral_program_attributes)
   end
 end
+
+puts "ReferralType"
+ReferralType::NAMES.each do |name|
+  ReferralType.find_or_create_by(name: name)
+end
