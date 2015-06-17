@@ -36,7 +36,7 @@ class PurchaseOrderVariant < ActiveRecord::Base
                                                 { :purchase_order_id => purchase_order_id,
                                                   :is_received       => false
                                                 } }).count
-        self.purchase_order.mark_as_complete
+        self.purchase_order.mark_as_complete unless purchase_order.received?
       end
     end
   end
