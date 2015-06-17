@@ -3,6 +3,8 @@ require  'spec_helper'
 describe Admin::Inventory::PurchaseOrdersController do
   render_views
 
+  let(:variant) { FactoryGirl.create(:variant) }
+
   before(:each) do
     activate_authlogic
 
@@ -36,8 +38,14 @@ describe Admin::Inventory::PurchaseOrdersController do
 
   it "create action should redirect when model is valid" do
     PurchaseOrder.any_instance.stubs(:valid?).returns(true)
-    post :create, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'}
-    expect(response).to redirect_to(admin_inventory_purchase_orders_url(:notice => 'Purchase order was successfully created.'))
+    post :create, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1', "total_cost"=>"110.0",
+      "notes"=>"",
+      "ordered_at(1i)"=>"#{Time.now.year}", "ordered_at(2i)"=>"#{Time.now.month}", "ordered_at(3i)"=>"#{Time.now.day}", "ordered_at(4i)"=>"00", "ordered_at(5i)"=>"37",
+      "estimated_arrival_on(1i)"=>"#{(Time.now + 1.day).year}", "estimated_arrival_on(2i)"=>"#{(Time.now + 1.day).month}", "estimated_arrival_on(3i)"=>"#{(Time.now + 1.day).day}",
+      "purchase_order_variants_attributes"=>{"1434515852375"=>{"_destroy"=>"false", "variant_id"=>"#{variant.id}", "quantity"=>"20", "cost"=>"20.50"},
+      "new_purchase_order_variants"=>{"_destroy"=>"false", "variant_id"=>"", "quantity"=>"", "cost"=>""}}}
+    expect(response).to redirect_to(admin_inventory_purchase_orders_url(notice: 'Purchase order was successfully created.'))
+    expect(PurchaseOrderVariant.count).to eq 1
   end
 
   it "edit action should render edit template" do

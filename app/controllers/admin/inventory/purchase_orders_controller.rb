@@ -61,11 +61,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
 
 
   def allowed_params
-    params.require(:purchase_order).permit( :supplier_id, :invoice_number,
-                                            :tracking_number, :notes,
-                                            :receive_po, :ordered_at,
-                                            :estimated_arrival_on, :total_cost,
-                                            purchase_order_variants: [:id, :variant_id, :quantity, :cost])
+    params.require(:purchase_order).permit!
   end
 
   def form_info
