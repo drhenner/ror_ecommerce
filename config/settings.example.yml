@@ -21,8 +21,8 @@ paypal:
   password:   somePASSWORD
   signature:  someSIGNATURE
 authnet:
-  login:      someLOGIN
-  password:   somePASSWORD
+  login:      <%= ENV['AUTHNET_LOGIN'] %>
+  password:   <%= ENV['AUTHNET_PASSWORD'] %>
 vat: false
 require_state_in_address: true
 
