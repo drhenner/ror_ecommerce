@@ -76,7 +76,6 @@ group :development do
   gem "autotest-rails-pure"
   gem "better_errors", '~> 2.0.0'
   gem "binding_of_caller", '~> 0.7.2'
-  gem 'byebug'
   gem "rails-erd"
 
   # YARD AND REDCLOTH are for generating yardocs
@@ -84,6 +83,7 @@ group :development do
   gem 'RedCloth'
 end
 group :test, :development do
+  gem 'byebug'
   gem 'capybara'#, "~> 2.4.1"#, :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner', "~> 1.2"
