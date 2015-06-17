@@ -24,6 +24,6 @@ class TransactionAccount < ActiveRecord::Base
 
   ACCOUNT_TYPES = [REVENUE, ACCOUNTS_RECEIVABLE, ACCOUNTS_PAYABLE, CASH, EXPENSE]
 
-  validates :name,              :presence => true,       :length => { :maximum => 255 }
+  validates :name,            presence: true, length: { maximum: 255 }
 
 end

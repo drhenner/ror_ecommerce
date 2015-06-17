@@ -276,7 +276,7 @@ class User < ActiveRecord::Base
   end
 
   def start_store_credits
-    self.store_credit = StoreCredit.new(:amount => 0.0, :user => self)
+    self.store_credit = StoreCredit.new( amount: 0.0, user: self)
   end
 
   def password_required?
@@ -284,7 +284,7 @@ class User < ActiveRecord::Base
   end
 
   def subscribe_to_newsletters
-    newsletter_ids = Newsletter.where(:autosubscribe => true).pluck(:id)
+    newsletter_ids = Newsletter.where( autosubscribe: true ).pluck(:id)
     self.newsletter_ids = newsletter_ids
   end
 
@@ -293,7 +293,7 @@ class User < ActiveRecord::Base
   # @param  [ none ]
   # @return [ none ]
   def sanitize_data
-    self.email      = self.email.strip.downcase       unless email.blank?
+    self.email      = self.email.strip.downcase         unless email.blank?
     self.first_name = self.first_name.strip.capitalize  unless first_name.nil?
     self.last_name  = self.last_name.strip.capitalize   unless last_name.nil?
 

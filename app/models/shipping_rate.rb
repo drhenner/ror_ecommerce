@@ -23,11 +23,11 @@ class ShippingRate < ActiveRecord::Base
   belongs_to  :shipping_category
   has_many    :products
 
-  validates  :rate,                   :presence => true, :numericality => true
+  validates  :rate,                   presence: true, numericality: true
 
-  validates  :shipping_method_id,     :presence => true
-  validates  :shipping_rate_type_id,  :presence => true
-  validates  :shipping_category_id,   :presence => true
+  validates  :shipping_method_id,     presence: true
+  validates  :shipping_rate_type_id,  presence: true
+  validates  :shipping_category_id,   presence: true
 
   scope :with_these_shipping_methods, lambda { |shipping_rate_ids, shipping_method_ids|
           where("shipping_rates.id IN (?)", shipping_rate_ids).

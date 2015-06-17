@@ -45,11 +45,11 @@
 class Coupon < ActiveRecord::Base
   has_many :orders
 
-  validates :code,          :presence => true
-  validates :minimum_value, :presence => true
-  validates :description,   :presence => true
-  validates :starts_at,     :presence => true
-  validates :expires_at,    :presence => true
+  validates :code,          presence: true
+  validates :minimum_value, presence: true
+  validates :description,   presence: true
+  validates :starts_at,     presence: true
+  validates :expires_at,    presence: true
 
   COUPON_TYPES = ['CouponPercent', 'CouponValue','CouponFirstPurchasePercent', 'CouponFirstPurchaseValue']
   # order must respond to item_prices

@@ -15,11 +15,11 @@ class TaxRate < ActiveRecord::Base
   belongs_to :state
   belongs_to :country
 
-  validates :percentage,    :numericality => true,
-                            :presence => true
-  validates :state_id,      :presence => true, :if => :tax_per_state?
-  validates :country_id,    :presence => true, :if => :tax_per_country?
-  validates :start_date,    :presence => true
+  validates :percentage,    numericality: true,
+                            presence: true
+  validates :state_id,      presence: true, if: :tax_per_state?
+  validates :country_id,    presence: true, if: :tax_per_country?
+  validates :start_date,    presence: true
 
   after_save :expire_cache
 

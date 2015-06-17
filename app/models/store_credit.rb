@@ -14,8 +14,8 @@ class StoreCredit < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :user_id, :presence => true
-  validates :amount , :presence => true
+  validates :user_id, presence: true
+  validates :amount , presence: true
 
   after_find :ensure_sql_math_rounding_issues
   # removes amount from object using SQL math
