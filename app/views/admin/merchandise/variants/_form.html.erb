@@ -54,7 +54,7 @@
       <div  id='variant_<%= property.id %>'
             class="variant_form left span-12 last">
         <%= form.fields_for :variant_properties,
-                            property.variant_properties.find_or_initialize_by_variant_id(@variant.id) do |variant_property_form|%>
+                            property.variant_properties.find_or_initialize_by(variant_id: @variant.id) do |variant_property_form|%>
           <div class='span-4 left'>
             <%= property.display_name %>:
           </div>
