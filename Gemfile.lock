@@ -227,7 +227,7 @@ GEM
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     multi_json (1.10.1)
-    mysql2 (0.3.17)
+    mysql2 (0.3.20)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
@@ -421,3 +421,6 @@ DEPENDENCIES
   will_paginate (~> 3.0.7)
   yard
   zurb-foundation (~> 4.3.2)
+
+BUNDLED WITH
+   1.10.6
