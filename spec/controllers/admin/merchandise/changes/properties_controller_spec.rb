@@ -13,22 +13,22 @@ describe Admin::Merchandise::Changes::PropertiesController do
 
   it "edit action should render edit template" do
 
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     get :edit, :product_id => @product.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    property = create(:property)
-    @product = create(:product)
+    property = FactoryGirl.create(:property)
+    @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
     put :update, :product_id => @product.id, :product => product_properties_attributes
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    property = create(:property)
-    @product = create(:product)
+    property = FactoryGirl.create(:property)
+    @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(true)
     put :update, product_id: @product.id, product: product_properties_attributes
     expect(response).to redirect_to(admin_merchandise_product_url(@product.id))

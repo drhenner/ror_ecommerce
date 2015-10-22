@@ -8,7 +8,7 @@ describe Admin::Inventory::ReceivingsController do
 
     @user = create_admin_user
     login_as(@user)
-    @purchase_order = create(:purchase_order)
+    @purchase_order = FactoryGirl.create(:purchase_order)
   end
 
   #it "show action should render show template" do

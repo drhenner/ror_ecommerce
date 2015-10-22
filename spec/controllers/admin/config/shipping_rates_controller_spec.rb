@@ -44,9 +44,9 @@ describe Admin::Config::ShippingRatesController, type: :controller do
   end
 
   it "new action should render new template" do
-    shipping_category = create(:shipping_category)
+    shipping_category = FactoryGirl.create(:shipping_category)
     ShippingCategory.stubs(:all).returns([shipping_category])
-    shipping_method = create(:shipping_method)
+    shipping_method = FactoryGirl.create(:shipping_method)
     ShippingMethod.stubs(:all).returns([shipping_method])
     get :new
     expect(response).to render_template(:new)
@@ -65,20 +65,20 @@ describe Admin::Config::ShippingRatesController, type: :controller do
   end
 
   it "edit action should render edit template" do
-    @shipping_rate = create(:shipping_rate)
+    @shipping_rate = FactoryGirl.create(:shipping_rate)
     get :edit, :id => @shipping_rate.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_rate = create(:shipping_rate)
+    @shipping_rate = FactoryGirl.create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_rate = create(:shipping_rate)
+    @shipping_rate = FactoryGirl.create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
     expect(response).to redirect_to(admin_config_shipping_rate_url(assigns[:shipping_rate]))

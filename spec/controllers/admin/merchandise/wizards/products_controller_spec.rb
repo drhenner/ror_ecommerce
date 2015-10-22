@@ -8,7 +8,7 @@ describe Admin::Merchandise::Wizards::ProductsController do
 
     @user = create_admin_user
     login_as(@user)
-    @property = create(:property)
+    @property = FactoryGirl.create(:property)
     controller.session[:product_wizard] = {}
     controller.session[:product_wizard][:brand_id] = 7# @brand.id
     controller.session[:product_wizard][:product_type_id] = 7# @brand.id

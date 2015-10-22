@@ -7,7 +7,7 @@ describe Admin::History::AddressesController do
     activate_authlogic
     @user = create_admin_user
     login_as(@user)
-    @order = create(:order)
+    @order = FactoryGirl.create(:order)
   end
 
   it "index action should render index template" do
@@ -16,7 +16,7 @@ describe Admin::History::AddressesController do
   end
 
   it "show action should render show template" do
-    @address = create(:address)
+    @address = FactoryGirl.create(:address)
     get :show, :id => @address.id, :order_id => @order.number
     expect(response).to render_template(:show)
   end
@@ -49,14 +49,14 @@ describe Admin::History::AddressesController do
   end
 
   it "update action should render edit template when model is invalid" do
-    @address = create(:address)
+    @address = FactoryGirl.create(:address)
     Order.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @address.id, :order_id => @order.number
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @address = create(:address)
+    @address = FactoryGirl.create(:address)
     Address.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @address.id, :order_id => @order.number
     expect(response).to redirect_to(admin_history_order_url(@order))

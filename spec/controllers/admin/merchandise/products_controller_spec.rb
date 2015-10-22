@@ -13,13 +13,13 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "index action should render index template" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     get :index
     expect(response).to render_template(:index)
   end
 
   it "show action should render show template" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     get :show, id: @product.id
     expect(response).to render_template(:show)
   end
@@ -31,7 +31,7 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "new action should render new template" do
-    @prototype = create(:prototype)
+    @prototype = FactoryGirl.create(:prototype)
     get :new
     expect(response).to render_template(:new)
   end
@@ -50,20 +50,20 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "edit action should render edit template" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     get :edit, id: @product.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
     put :update, id: @product.id, :product => product_attributes
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(true)
     put :update, id: @product.id, :product => product_attributes
     expect(response).to redirect_to(admin_merchandise_product_url(assigns[:product]))
@@ -71,14 +71,14 @@ describe Admin::Merchandise::ProductsController do
 
   it "activate action should redirect when model is valid" do
     Product.any_instance.stubs(:ensure_available).returns(true)
-    @product = create(:product, :deleted_at => (Time.zone.now - 1.day))
+    @product = FactoryGirl.create(:product, :deleted_at => (Time.zone.now - 1.day))
     put :activate, id: @product.id, :product => product_attributes
     @product.reload
     expect(@product.active).to be true
     expect(response).to redirect_to(admin_merchandise_product_url(assigns[:product]))
   end
   it "activate action should redirect to create description when model is valid" do
-    @product = create(:product, :description_markup => nil, :deleted_at => (Time.zone.now - 1.day))
+    @product = FactoryGirl.create(:product, :description_markup => nil, :deleted_at => (Time.zone.now - 1.day))
     put :activate, id: @product.id, :product => product_attributes
     @product.reload
     expect(@product.active).to be false
@@ -86,7 +86,7 @@ describe Admin::Merchandise::ProductsController do
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     delete :destroy, id: @product.id
     expect(response).to redirect_to(admin_merchandise_product_url(@product))
     expect(Product.find(@product.id).active).to eq false

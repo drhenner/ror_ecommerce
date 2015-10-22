@@ -12,7 +12,7 @@ describe Admin::Merchandise::Wizards::BrandsController do
   end
 
   it "index action should render index template" do
-    @brand = create(:brand)
+    @brand = FactoryGirl.create(:brand)
     get :index
     expect(response).to render_template(:index)
   end
@@ -31,7 +31,7 @@ describe Admin::Merchandise::Wizards::BrandsController do
   end
 
   it "update action should render edit template when model is invalid" do
-    @brand = create(:brand)
+    @brand = FactoryGirl.create(:brand)
     Brand.stubs(:find_by_id).returns(nil)
     put :update, :id => @brand.id
     expect(controller.session[:product_wizard][:brand_id]).to be_nil
@@ -39,7 +39,7 @@ describe Admin::Merchandise::Wizards::BrandsController do
   end
 
   it "update action should redirect when model is valid" do
-    @brand = create(:brand)
+    @brand = FactoryGirl.create(:brand)
     #Brand.stubs(:find_by_id).returns(@brand)
     #Brand.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @brand.id

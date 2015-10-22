@@ -6,7 +6,7 @@ describe Myaccount::OverviewsController do
   before(:each) do
     activate_authlogic
 
-    @user = create(:user)
+    @user = FactoryGirl.create(:user)
     login_as(@user)
   end
 
@@ -16,7 +16,7 @@ describe Myaccount::OverviewsController do
   end
 
   it "show action should render show template" do
-    @address = create(:address, :addressable => @user)
+    @address = FactoryGirl.create(:address, :addressable => @user)
     @user.stubs(:shipping_address).returns(@address)
     get :show
     expect(response).to render_template(:show)
@@ -29,13 +29,13 @@ describe Myaccount::OverviewsController do
 
   it "update action should render edit template when model is invalid" do
     User.any_instance.stubs(:valid?).returns(false)
-    put :update, :user => @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
+    put :update, user: @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     User.any_instance.stubs(:valid?).returns(true)
-    put :update, :user => @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
+    put :update, user: @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
     expect(response).to redirect_to(myaccount_overview_url())
   end
 end

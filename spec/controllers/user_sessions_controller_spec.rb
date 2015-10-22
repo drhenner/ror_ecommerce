@@ -12,8 +12,8 @@ describe UserSessionsController do
   end
 
   describe "#destroy" do
-    let(:user) { create(:user) }
-    let(:user_session) { UserSession.create :email => user.email, :password => 'password' }
+    let(:user)         { FactoryGirl.create(:user) }
+    let(:user_session) { UserSession.create email: user.email, password: 'password' }
 
     before do
       subject.stubs(:current_user_session).returns(user)

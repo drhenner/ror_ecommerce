@@ -28,7 +28,7 @@ class Admin::UsersController < Admin::BaseController
       redirect_to admin_users_url
     else
       form_info
-      render :action => :new
+      render action: :new
     end
   end
 

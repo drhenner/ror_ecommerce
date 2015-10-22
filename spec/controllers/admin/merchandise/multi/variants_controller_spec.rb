@@ -9,20 +9,20 @@ describe Admin::Merchandise::Multi::VariantsController do
   end
 
   it "edit action should render edit template" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     get :edit, product_id: @product.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
     put :update, product_id: @product.id, product: product_attributes
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(true)
     Variant.any_instance.stubs(:valid?).returns(true)
     put :update, product_id: @product.id, product: product_attributes

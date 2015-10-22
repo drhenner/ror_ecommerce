@@ -16,7 +16,7 @@ describe Admin::Config::ShippingMethodsController, type: :controller do
   end
 
   #it "show action should render show template" do
-  #  @shipping_method = create(:shipping_method)
+  #  @shipping_method = FactoryGirl.create(:shipping_method)
   #  get :show, :id => @shipping_method.id
   #  expect(response).to render_template(:show)
   #end
@@ -39,20 +39,20 @@ describe Admin::Config::ShippingMethodsController, type: :controller do
   end
 
   it "edit action should render edit template" do
-    @shipping_method = create(:shipping_method)
+    @shipping_method = FactoryGirl.create(:shipping_method)
     get :edit, :id => @shipping_method.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_method = create(:shipping_method)
+    @shipping_method = FactoryGirl.create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @shipping_method.id, :shipping_method => {:name => 'UPS 3-5 day', :shipping_zone_id => 1}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_method = create(:shipping_method)
+    @shipping_method = FactoryGirl.create(:shipping_method)
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_method.id, :shipping_method => {:name => 'UPS 3-5 day', :shipping_zone_id => 1}
     expect(response).to redirect_to(admin_config_shipping_methods_url())

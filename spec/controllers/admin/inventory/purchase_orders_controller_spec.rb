@@ -19,13 +19,13 @@ describe Admin::Inventory::PurchaseOrdersController do
   end
 
   #it "show action should render show template" do
-  #  @purchase_order = create(:purchase_order)
+  #  @purchase_order = FactoryGirl.create(:purchase_order)
   #  get :show, :id => @purchase_order.id
   #  expect(response).to render_template(:show)
   #end
 
   it "new action should render new template" do
-    create(:supplier)
+    FactoryGirl.create(:supplier)
     get :new
     expect(response).to render_template(:new)
   end
@@ -49,27 +49,27 @@ describe Admin::Inventory::PurchaseOrdersController do
   end
 
   it "edit action should render edit template" do
-    @purchase_order = create(:purchase_order)
+    @purchase_order = FactoryGirl.create(:purchase_order)
     get :edit, :id => @purchase_order.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @purchase_order = create(:purchase_order)
+    @purchase_order = FactoryGirl.create(:purchase_order)
     PurchaseOrder.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @purchase_order = create(:purchase_order)
+    @purchase_order = FactoryGirl.create(:purchase_order)
     PurchaseOrder.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'}
     expect(response).to redirect_to(admin_inventory_purchase_orders_url(:notice => 'Purchase order was successfully updated.'))
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @purchase_order = create(:purchase_order)
+    @purchase_order = FactoryGirl.create(:purchase_order)
     delete :destroy, :id => @purchase_order.id
     expect(response).to redirect_to(admin_inventory_purchase_orders_url)
     expect(PurchaseOrder.exists?(@purchase_order.id)).to eq false

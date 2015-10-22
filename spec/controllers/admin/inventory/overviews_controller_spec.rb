@@ -8,7 +8,7 @@ describe Admin::Inventory::OverviewsController do
 
     @user = create_admin_user
     login_as(@user)
-    @product = create(:product)
+    @product = FactoryGirl.create(:product)
   end
 
   it "index action should render index template" do

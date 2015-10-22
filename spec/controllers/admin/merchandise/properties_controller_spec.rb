@@ -13,7 +13,7 @@ describe Admin::Merchandise::PropertiesController do
   end
 
   it "index action should render index template" do
-    @property = create(:property)
+    @property = FactoryGirl.create(:property)
     get :index
     expect(response).to render_template(:index)
   end
@@ -36,27 +36,27 @@ describe Admin::Merchandise::PropertiesController do
   end
 
   it "edit action should render edit template" do
-    @property = create(:property)
+    @property = FactoryGirl.create(:property)
     get :edit, :id => @property.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @property = create(:property)
+    @property = FactoryGirl.create(:property)
     Property.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @property.id, :property => {:display_name => 'dis', :identifing_name => 'test'}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @property = create(:property)
+    @property = FactoryGirl.create(:property)
     Property.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @property.id, :property => {:display_name => 'dis', :identifing_name => 'test'}
     expect(response).to redirect_to(admin_merchandise_properties_url)
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @property = create(:property)
+    @property = FactoryGirl.create(:property)
     delete :destroy, :id => @property.id
     expect(response).to redirect_to(admin_merchandise_properties_url)
     expect(Property.find(@property.id).active).to eq false

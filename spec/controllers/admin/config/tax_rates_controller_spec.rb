@@ -39,27 +39,27 @@ describe Admin::Config::TaxRatesController, type: :controller do
   end
 
   it "edit action should render edit template" do
-    @tax_rate = create(:tax_rate)
+    @tax_rate = FactoryGirl.create(:tax_rate)
     get :edit, :id => @tax_rate.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @tax_rate = create(:tax_rate)
+    @tax_rate = FactoryGirl.create(:tax_rate)
     TaxRate.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @tax_rate.id, :tax_rate => { :start_date => Time.now.to_s(:db), :state_id => 1}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @tax_rate = create(:tax_rate)
+    @tax_rate = FactoryGirl.create(:tax_rate)
     TaxRate.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @tax_rate.id, :tax_rate => { :start_date => Time.now.to_s(:db), :state_id => 1}
     expect(response).to redirect_to(admin_config_tax_rate_url(assigns[:tax_rate]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @tax_rate = create(:tax_rate)
+    @tax_rate = FactoryGirl.create(:tax_rate)
     delete :destroy, :id => @tax_rate.id
     expect(response).to redirect_to(admin_config_tax_rates_url)
     expect(TaxRate.find(@tax_rate.id).active).to eq false

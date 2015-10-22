@@ -12,14 +12,14 @@ describe Admin::Shopping::Checkout::BillingAddressesController do
     controller.stubs(:verify_admin).returns(@admin_user)
     controller.stubs(:current_user).returns(@admin_user)
 
-    @user  = create(:user)
-    @cart = create(:cart, :user=> @admin_user, :customer => @user)
-    @cart_item = create(:cart_item, :cart => @cart)
+    @user      = FactoryGirl.create(:user)
+    @cart      = FactoryGirl.create(:cart, :user=> @admin_user, :customer => @user)
+    @cart_item = FactoryGirl.create(:cart_item, :cart => @cart)
     @cart.stubs(:cart_items).returns([@cart_item])
     #@cart.stubs(:customer).returns(@user)
 
     #controller.session[:admin_cart_id] = @cart.id
-    @order = create(:order, :user => @user)
+    @order = FactoryGirl.create(:order, :user => @user)
     #controller.session[:order_admin_id] = @order.id
 
     controller.stubs(:session_admin_cart).returns(@cart)
@@ -30,7 +30,7 @@ describe Admin::Shopping::Checkout::BillingAddressesController do
   it "index action should render index template" do
     #@order = create(:order)
     #session[:order_admin_id] = @order.id
-    @shipping_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
+    @shipping_address = FactoryGirl.create(:address, :addressable_id => @user.id, :addressable_type => 'User')
     @user.stubs(:shipping_addresses).returns([@shipping_address])
     get :index
     expect(response).to render_template(:index)
@@ -42,14 +42,14 @@ describe Admin::Shopping::Checkout::BillingAddressesController do
   end
 
   it "create action should render new template when model is invalid" do
-    @billing_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
+    @billing_address = FactoryGirl.create(:address, :addressable_id => @user.id, :addressable_type => 'User')
     Address.any_instance.stubs(:valid?).returns(false)
     post :create, :address => @billing_address.attributes
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    @billing_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
+    @billing_address = FactoryGirl.create(:address, :addressable_id => @user.id, :addressable_type => 'User')
 
     Address.any_instance.stubs(:valid?).returns(true)
     post :create, :billing_address_id => @billing_address.id
@@ -57,13 +57,11 @@ describe Admin::Shopping::Checkout::BillingAddressesController do
   end
 
   it "create action should redirect when model is valid" do
-    @billing_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
+    @billing_address = FactoryGirl.create(:address, :addressable_id => @user.id, :addressable_type => 'User')
 
     Address.any_instance.stubs(:valid?).returns(true)
     post :create, :address => @billing_address.attributes
     expect(response).to redirect_to(admin_shopping_checkout_order_url)
   end
-
-
 
 end

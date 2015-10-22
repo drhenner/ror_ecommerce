@@ -13,10 +13,10 @@ describe WishItemsController do
   render_views
   before(:each) do
     activate_authlogic
-    @cur_user = create(:user)
+    @cur_user   = FactoryGirl.create(:user)
     login_as(@cur_user)
-    @variant = create(:variant)
-    @wish_item = create(:cart_item, :item_type_id => ItemType::WISH_LIST_ID, :user_id => @cur_user.id, :variant => @variant)
+    @variant    = FactoryGirl.create(:variant)
+    @wish_item  = FactoryGirl.create(:cart_item, item_type_id: ItemType::WISH_LIST_ID, user_id: @cur_user.id, variant: @variant)
 
   end
   it "index action should render index template" do
@@ -25,7 +25,7 @@ describe WishItemsController do
   end
 
   it "destroy action should render index template" do
-    delete :destroy, :id => @wish_item.id, :variant_id => @variant.id
+    delete :destroy, id: @wish_item.id, variant_id: @variant.id
     expect(CartItem.find(@wish_item.id).active).to eq false
     expect(response).to render_template(:index)
   end

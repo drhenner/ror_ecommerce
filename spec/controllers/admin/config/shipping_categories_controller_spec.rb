@@ -16,7 +16,7 @@ describe Admin::Config::ShippingCategoriesController, type: :controller do
   end
 
   it "show action should render show template" do
-    @shipping_category = create(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     get :show, :id => @shipping_category.id
     expect(response).to render_template(:show)
   end
@@ -39,20 +39,20 @@ describe Admin::Config::ShippingCategoriesController, type: :controller do
   end
 
   it "edit action should render edit template" do
-    @shipping_category = create(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     get :edit, :id => @shipping_category.id
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_category = create(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     ShippingCategory.any_instance.stubs(:valid?).returns(false)
     put :update, :id => @shipping_category.id, :shipping_category => {:name => 'clothing'}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_category = create(:shipping_category)
+    @shipping_category = FactoryGirl.create(:shipping_category)
     ShippingCategory.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @shipping_category.id, :shipping_category => {:name => 'clothing'}
     expect(response).to redirect_to(admin_config_shipping_rates_url())

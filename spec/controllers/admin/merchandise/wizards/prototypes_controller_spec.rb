@@ -12,8 +12,8 @@ describe Admin::Merchandise::Wizards::PrototypesController do
   end
 
   it "update action should redirect when model is valid" do
-    @property = create(:property)
-    @prototype = create(:prototype)
+    @property  = FactoryGirl.create(:property)
+    @prototype = FactoryGirl.create(:prototype)
     @prototype.stubs(:properties).returns([@property])
     @prototype.stubs(:property_ids).returns([@property.id])
     #Prototype.any_instance.stubs(:find_by_id).returns(@prototype)

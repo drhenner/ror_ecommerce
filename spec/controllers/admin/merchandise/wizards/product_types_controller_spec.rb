@@ -9,7 +9,7 @@ describe Admin::Merchandise::Wizards::ProductTypesController do
     @user = create_admin_user
     login_as(@user)
     controller.session[:product_wizard] = {}
-    #@brand = create(:brand)
+    #@brand = FactoryGirl.create(:brand)
     controller.session[:product_wizard][:brand_id] = 7# @brand.id
   end
 
@@ -31,14 +31,14 @@ describe Admin::Merchandise::Wizards::ProductTypesController do
   end
 
   it "update action should render edit template when model is invalid" do
-    @product_type = create(:product_type)
+    @product_type = FactoryGirl.create(:product_type)
     ProductType.stubs(:find_by_id).returns(nil)
     put :update, :id => @product_type.id
     expect(response).to render_template(:index)
   end
 
   it "update action should redirect when model is valid" do
-    @product_type = create(:product_type)
+    @product_type = FactoryGirl.create(:product_type)
     #ProductType.any_instance.stubs(:valid?).returns(true)
     put :update, :id => @product_type.id
     expect(controller.session[:product_wizard][:product_type_id]).to eq @product_type.id
