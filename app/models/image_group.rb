@@ -21,7 +21,7 @@ class ImageGroup < ActiveRecord::Base
                     dependent:   :destroy
   after_save :expire_cache
 
-  accepts_nested_attributes_for :images, :reject_if => proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, :allow_destroy => true
+  accepts_nested_attributes_for :images, reject_if: proc { |t| (t['photo'].nil? && t['photo_from_link'].blank? && t['id'].blank?) }, allow_destroy: true
 
   def image_urls(image_size = :small)
     Rails.cache.fetch("ImageGroup-image_urls-#{id}-#{image_size}", :expires_in => 3.hours) do
