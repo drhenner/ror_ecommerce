@@ -187,6 +187,10 @@ class User < ActiveRecord::Base
     carts.last
   end
 
+  def manager?
+    role?(:manager)
+  end
+
   ##  This method will one day grow into the products a user most likely likes.
   #   Storing a list of product ids vs cron each night might be the most efficent mode for this method to work.
   def might_be_interested_in_these_products

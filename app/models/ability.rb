@@ -8,10 +8,12 @@ class Ability
 
     if user.super_admin?
       can :manage, :all
+
     elsif user.admin?
       can :manage, :all
     else
       can :read, Order, :user_id => user.id
+      can :read, Activity,:user_id => user.id
       can :manage, Order do |action, order|
         action != :destroy && order.state != 'complete' && order.user_id == user.id
       end

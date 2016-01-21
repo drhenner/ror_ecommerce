@@ -232,6 +232,10 @@ class Variant < ActiveRecord::Base
     pp ? pp : self.variant_properties.first
   end
 
+   def cod_available
+     product.cod?
+   end
+
   # returns the product name with sku
   #  ex: obj.name_with_sku => Nike: 1234-12345-1234
   #
