@@ -8,11 +8,11 @@
 #
 # This method does 2 things:
 #
-# 1) it determines if the items in your cart cost enough to reach the minimum qualifing amount needed for teh coupon to work.
+# 1) it determines if the items in your cart cost enough to reach the minimum qualifing amount needed for the coupon to work.
 # 2) it determines if the coupon is "eligible?"  (eligible? is a method)
 #
 #  The eligible? method changes functionality depending on what type of coupon is created.
-#    => at the most basic level it determine if the date of the order is greater than starts_at and less than expires_at
+#    => at the most basic level it determines if the date of the order is greater than starts_at and less than expires_at
 #
 #  For first_purchase_xxxxx  coupons eligible? also ensures the order that this is being applied
 #   to is the first item you have ever purchased.
