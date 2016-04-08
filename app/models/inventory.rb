@@ -19,6 +19,22 @@ class Inventory < ActiveRecord::Base
 
   validate :must_have_stock
 
+  # with SQL math add to count_on_hand attribute
+  #
+  # @param [Integer] number of variants to add
+  # @return [none]
+  def add_count_on_hand(num)
+    ### don't lock if we have plenty of stock.
+    if variant.low_stock?
+      lock!
+        self.count_on_hand = count_on_hand + num.to_i
+      save!
+    else
+      sql = "UPDATE inventories SET count_on_hand = (#{num} + count_on_hand) WHERE id = #{self.id}"
+      ActiveRecord::Base.connection.execute(sql)
+    end
+  end
+
   private
 
     def must_have_stock
