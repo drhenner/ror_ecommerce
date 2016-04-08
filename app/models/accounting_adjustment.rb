@@ -33,8 +33,7 @@ class AccountingAdjustment < ActiveRecord::Base
   def self.adjust_stock(inventory, qty_to_add, return_amount)
     transaction do
       accounting_adjustment = inventory.accounting_adjustments.create(:amount => return_amount, :notes => '')
-      inventory.count_on_hand = inventory.count_on_hand.to_i + qty_to_add.to_i
-      inventory.save
+      inventory.add_count_on_hand(qty_to_add)
       accounting_adjustment.refund_inventory
     end
   end
