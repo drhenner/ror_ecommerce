@@ -45,7 +45,8 @@ class Variant < ActiveRecord::Base
   validates :product_id,  presence: true
   validates :sku,         presence: true,       length: { maximum: 255 }
 
-  accepts_nested_attributes_for :variant_properties#, :inventory
+  accepts_nested_attributes_for :variant_properties, reject_if: proc { |attributes| attributes['description'].blank? }, allow_destroy: true
+
   delegate  :brand, :to => :product, :allow_nil => true
 
   delegate  :count_on_hand,

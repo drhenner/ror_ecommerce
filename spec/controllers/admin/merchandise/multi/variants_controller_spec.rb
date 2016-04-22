@@ -28,9 +28,10 @@ describe Admin::Merchandise::Multi::VariantsController do
     put :update, product_id: @product.id, product: product_attributes
 
     @product.reload
-    @product.variants.first.variant_properties.count
     expect(response).to redirect_to(admin_merchandise_product_url(@product))
-    expect(@product.variants.first.variant_properties.count).to eq 3
+    expect(@product.variants.first.variant_properties.count).to eq 2
+    expect(@product.variants.first.variant_properties.map(&:description)).to include 'Red'
+    expect(@product.variants.first.variant_properties.map(&:description)).to include 'Small'
   end
 
   def product_attributes
