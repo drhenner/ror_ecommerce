@@ -10,7 +10,7 @@ namespace :db do
       raise error
     end
     add_country = ENV['country']
-    
+
     file_to_load  = Rails.root + "db/seed/international_states/#{add_country}_states.yml"
     states_list   = YAML::load( File.open( file_to_load ) )
 

@@ -83,8 +83,8 @@ class Shopping::AddressesController < Shopping::BaseController
 
   def update_order_address_id(id)
     session_order.update_attributes(
-                          :ship_address_id => id ,
-                          :bill_address_id => (session_order.bill_address_id ? session_order.bill_address_id : id)
+                          ship_address_id: id ,
+                          bill_address_id: (session_order.bill_address_id ? session_order.bill_address_id : id)
                                     )
   end
 

@@ -405,7 +405,7 @@ DEPENDENCIES
   pg
   prawn (~> 0.12.0)
   railroady
-  rails (~> 4.2.0)
+  rails (= 4.2.1)
   rails-erd
   rails3-generators (~> 1.0.0)
   rails_12factor
@@ -421,6 +421,3 @@ DEPENDENCIES
   will_paginate (~> 3.0.7)
   yard
   zurb-foundation (~> 4.3.2)
-
-BUNDLED WITH
-   1.10.6

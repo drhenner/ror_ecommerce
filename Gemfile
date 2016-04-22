@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.1.5"
 
 ## Bundle rails:
-gem 'rails', '~> 4.2.0'
+gem 'rails', '4.2.1'
 
 gem 'uglifier',     '>= 1.3.0'
 gem 'sass-rails',   '~> 4.0.0'

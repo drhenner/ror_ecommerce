@@ -23,12 +23,14 @@ describe Admin::Merchandise::Multi::VariantsController do
 
   it "update action should redirect when model is valid" do
     @product = FactoryGirl.create(:product)
-    Product.any_instance.stubs(:valid?).returns(true)
-    Variant.any_instance.stubs(:valid?).returns(true)
+    #Product.any_instance.stubs(:valid?).returns(true)
+    #Variant.any_instance.stubs(:valid?).returns(true)
     put :update, product_id: @product.id, product: product_attributes
 
-
+    @product.reload
+    @product.variants.first.variant_properties.count
     expect(response).to redirect_to(admin_merchandise_product_url(@product))
+    expect(@product.variants.first.variant_properties.count).to eq 3
   end
 
   def product_attributes

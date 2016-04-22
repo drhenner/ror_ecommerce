@@ -31,10 +31,10 @@ class Shopping::CartItemsController < Shopping::BaseController
       if params[:commit] && params[:commit] == "checkout"
         redirect_to( checkout_shopping_order_url('checkout'))
       else
-        redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_passed_update') )
+        redirect_to(shopping_cart_items_url(), notice: I18n.t('item_passed_update') )
       end
     else
-      redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') )
+      redirect_to(shopping_cart_items_url(),   notice: I18n.t('item_failed_update') )
     end
   end
 ## TODO
@@ -47,7 +47,7 @@ class Shopping::CartItemsController < Shopping::BaseController
     if @cart_item.update_attributes(:item_type_id => params[:item_type_id])
       redirect_to(shopping_cart_items_url() )
     else
-      redirect_to(shopping_cart_items_url(), :notice => I18n.t('item_failed_update') )
+      redirect_to(shopping_cart_items_url(), notice: I18n.t('item_failed_update') )
     end
   end
 
