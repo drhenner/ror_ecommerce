@@ -42,13 +42,13 @@ gem 'json',           '~> 1.8.1'
 
 #gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri',     '~> 1.6.5'
-gem 'paperclip',    '~> 4.2'
+gem 'paperclip',    '~> 4.3.6'
 gem 'prawn',        '~> 0.12.0'
 
 gem "rails3-generators", "~> 1.0.0"
 #git: "https://github.com/neocoin/rails3-generators.git"
 gem "rails_config"
-gem 'rmagick',    '= 2.13.3', :require => 'RMagick'
+gem 'rmagick',    '= 2.15.4', :require => 'RMagick'
 
 gem 'rake', '~> 10.1'
 
