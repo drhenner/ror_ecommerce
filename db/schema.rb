@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.string   "name",           limit: 255,                                        null: false
     t.string   "account_type",   limit: 255,                                        null: false
     t.decimal  "monthly_charge",             precision: 8, scale: 2, default: 0.0,  null: false
-    t.boolean  "active",         limit: 1,                           default: true, null: false
+    t.boolean  "active",                                             default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.string   "zip_code",          limit: 255,                 null: false
     t.integer  "phone_id",          limit: 4
     t.string   "alternative_phone", limit: 255
-    t.boolean  "default",           limit: 1,   default: false
-    t.boolean  "billing_default",   limit: 1,   default: false
-    t.boolean  "active",            limit: 1,   default: true
+    t.boolean  "default",                       default: false
+    t.boolean  "billing_default",               default: false
+    t.boolean  "active",                        default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "country_id",        limit: 4
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer  "cart_id",      limit: 4
     t.integer  "variant_id",   limit: 4,                null: false
     t.integer  "quantity",     limit: 4, default: 1
-    t.boolean  "active",       limit: 1, default: true
+    t.boolean  "active",                 default: true
     t.integer  "item_type_id", limit: 4,                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.string  "name",             limit: 255
     t.string  "abbreviation",     limit: 5
     t.integer "shipping_zone_id", limit: 4
-    t.boolean "active",           limit: 1,   default: false
+    t.boolean "active",                       default: false
   end
 
   add_index "countries", ["active"], name: "index_countries_on_active", using: :btree
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.decimal  "minimum_value",               precision: 8, scale: 2
     t.integer  "percent",       limit: 4,                             default: 0
     t.text     "description",   limit: 65535,                                         null: false
-    t.boolean  "combine",       limit: 1,                             default: false
+    t.boolean  "combine",                                             default: false
     t.datetime "starts_at"
     t.datetime "expires_at"
     t.datetime "created_at"
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.decimal  "amount",                      precision: 8, scale: 2,                      null: false
     t.string   "invoice_type",    limit: 255,                         default: "Purchase", null: false
     t.string   "state",           limit: 255,                                              null: false
-    t.boolean  "active",          limit: 1,                           default: true,       null: false
+    t.boolean  "active",                                              default: true,       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "credited_amount",             precision: 8, scale: 2, default: 0.0
@@ -224,7 +224,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
 
   create_table "newsletters", force: :cascade do |t|
     t.string  "name",          limit: 255, null: false
-    t.boolean "autosubscribe", limit: 1,   null: false
+    t.boolean "autosubscribe",             null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -255,8 +255,8 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer  "bill_address_id", limit: 4
     t.integer  "ship_address_id", limit: 4
     t.integer  "coupon_id",       limit: 4
-    t.boolean  "active",          limit: 1,                           default: true,  null: false
-    t.boolean  "shipped",         limit: 1,                           default: false, null: false
+    t.boolean  "active",                                              default: true,  null: false
+    t.boolean  "shipped",                                             default: false, null: false
     t.integer  "shipments_count", limit: 4,                           default: 0
     t.datetime "calculated_at"
     t.datetime "completed_at"
@@ -276,8 +276,8 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer  "user_id",        limit: 4
     t.integer  "address_id",     limit: 4
     t.string   "payment_cim_id", limit: 255
-    t.boolean  "default",        limit: 1
-    t.boolean  "active",         limit: 1
+    t.boolean  "default"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "last_digits",    limit: 255
@@ -301,8 +301,8 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.string   "message",         limit: 255
     t.string   "action",          limit: 255
     t.text     "params",          limit: 65535
-    t.boolean  "success",         limit: 1
-    t.boolean  "test",            limit: 1
+    t.boolean  "success"
+    t.boolean  "test"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -318,7 +318,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.string   "number",         limit: 255,                 null: false
     t.string   "phoneable_type", limit: 255,                 null: false
     t.integer  "phoneable_id",   limit: 4,                   null: false
-    t.boolean  "primary",        limit: 1,   default: false
+    t.boolean  "primary",                    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -340,7 +340,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
   create_table "product_types", force: :cascade do |t|
     t.string  "name",      limit: 255,                null: false
     t.integer "parent_id", limit: 4
-    t.boolean "active",    limit: 1,   default: true
+    t.boolean "active",                default: true
     t.integer "rgt",       limit: 4
     t.integer "lft",       limit: 4
   end
@@ -361,7 +361,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.datetime "deleted_at"
     t.string   "meta_keywords",        limit: 255
     t.string   "meta_description",     limit: 255
-    t.boolean  "featured",             limit: 1,     default: false
+    t.boolean  "featured",                           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description_markup",   limit: 65535
@@ -379,7 +379,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
   create_table "properties", force: :cascade do |t|
     t.string  "identifing_name", limit: 255,                null: false
     t.string  "display_name",    limit: 255
-    t.boolean "active",          limit: 1,   default: true
+    t.boolean "active",                      default: true
   end
 
   create_table "prototype_properties", force: :cascade do |t|
@@ -392,7 +392,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
 
   create_table "prototypes", force: :cascade do |t|
     t.string  "name",   limit: 255,                null: false
-    t.boolean "active", limit: 1,   default: true, null: false
+    t.boolean "active",             default: true, null: false
   end
 
   create_table "purchase_order_variants", force: :cascade do |t|
@@ -400,7 +400,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer  "variant_id",        limit: 4,                                         null: false
     t.integer  "quantity",          limit: 4,                                         null: false
     t.decimal  "cost",                        precision: 8, scale: 2,                 null: false
-    t.boolean  "is_received",       limit: 1,                         default: false
+    t.boolean  "is_received",                                         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -432,7 +432,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
   end
 
   create_table "referral_programs", force: :cascade do |t|
-    t.boolean  "active",            limit: 1,     null: false
+    t.boolean  "active",                          null: false
     t.text     "description",       limit: 65535
     t.string   "name",              limit: 255,   null: false
     t.integer  "referral_bonus_id", limit: 4,     null: false
@@ -447,7 +447,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
   end
 
   create_table "referrals", force: :cascade do |t|
-    t.boolean  "applied",             limit: 1,   default: false
+    t.boolean  "applied",                         default: false
     t.datetime "clicked_at"
     t.string   "email",               limit: 255,                 null: false
     t.string   "name",                limit: 255
@@ -476,7 +476,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer  "user_id",        limit: 4,                                          null: false
     t.string   "state",          limit: 255,                                        null: false
     t.integer  "created_by",     limit: 4
-    t.boolean  "active",         limit: 1,                           default: true
+    t.boolean  "active",                                             default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -496,7 +496,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer  "order_item_id",           limit: 4,                 null: false
     t.integer  "return_condition_id",     limit: 4
     t.integer  "return_reason_id",        limit: 4
-    t.boolean  "returned",                limit: 1, default: false
+    t.boolean  "returned",                          default: false
     t.integer  "updated_by",              limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -538,7 +538,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.string   "number",             limit: 255,                null: false
     t.string   "state",              limit: 255,                null: false
     t.datetime "shipped_at"
-    t.boolean  "active",             limit: 1,   default: true, null: false
+    t.boolean  "active",                         default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -572,7 +572,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer  "shipping_category_id",  limit: 4,                                        null: false
     t.decimal  "minimum_charge",                  precision: 8, scale: 2, default: 0.0,  null: false
     t.integer  "position",              limit: 4
-    t.boolean  "active",                limit: 1,                         default: true
+    t.boolean  "active",                                                  default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -631,7 +631,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer "country_id", limit: 4
     t.date    "start_date",                                                  null: false
     t.date    "end_date"
-    t.boolean "active",     limit: 1,                         default: true
+    t.boolean "active",                                       default: true
   end
 
   add_index "tax_rates", ["state_id"], name: "index_tax_rates_on_state_id", using: :btree
@@ -717,7 +717,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer "variant_id",  limit: 4,                   null: false
     t.integer "property_id", limit: 4,                   null: false
     t.string  "description", limit: 255,                 null: false
-    t.boolean "primary",     limit: 1,   default: false
+    t.boolean "primary",                 default: false
   end
 
   add_index "variant_properties", ["property_id"], name: "index_variant_properties_on_property_id", using: :btree
@@ -730,7 +730,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.integer  "total_quantity_supplied", limit: 4,                         default: 0
     t.integer  "min_quantity",            limit: 4,                         default: 1
     t.integer  "max_quantity",            limit: 4,                         default: 10000
-    t.boolean  "active",                  limit: 1,                         default: true
+    t.boolean  "active",                                                    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -745,7 +745,7 @@ ActiveRecord::Schema.define(version: 20131123212228) do
     t.decimal  "price",                      precision: 8, scale: 2, default: 0.0,   null: false
     t.decimal  "cost",                       precision: 8, scale: 2, default: 0.0,   null: false
     t.datetime "deleted_at"
-    t.boolean  "master",         limit: 1,                           default: false, null: false
+    t.boolean  "master",                                             default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "inventory_id",   limit: 4

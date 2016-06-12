@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.1.5"
 
 ## Bundle rails:
-gem 'rails', '4.2.1'
+gem 'rails', '~> 4.2.6'
 
 gem 'uglifier',     '>= 1.3.0'
 gem 'sass-rails',   '~> 4.0.0'
@@ -47,7 +47,7 @@ gem 'prawn',        '~> 0.12.0'
 
 gem "rails3-generators", "~> 1.0.0"
 #git: "https://github.com/neocoin/rails3-generators.git"
-gem "rails_config"
+gem "config"
 gem 'rmagick',    '= 2.15.4', :require => 'RMagick'
 
 gem 'rake', '~> 10.1'
@@ -55,28 +55,27 @@ gem 'rake', '~> 10.1'
 # gem 'resque', require: 'resque/server'
 
 gem "sprockets",       "2.11.0"
-#gem 'state_machine',   '~> 1.2.0'
 gem 'aasm', '~> 4.0.3'
 #gem 'sunspot_solr',   '~> 2.0.0'
 #gem 'sunspot_rails',  '~> 2.0.0'
-gem 'will_paginate',   '~> 3.0.7'
+gem 'will_paginate',   '~> 3.1.0'
 gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do
-  gem 'mysql2', '~> 0.3.17'
+  # gem 'mysql2', '~> 0.4.4'
   gem 'pg'
   gem 'rails_12factor'
 end
 
 group :development do
-  gem 'sqlite3'
+  # gem 'sqlite3'
   gem 'railroady'
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
   gem "better_errors", '~> 2.0.0'
   gem "binding_of_caller", '~> 0.7.2'
-  gem "rails-erd"
+  # gem "rails-erd"
 
   # YARD AND REDCLOTH are for generating yardocs
   gem 'yard'
@@ -84,15 +83,13 @@ group :development do
 end
 group :test, :development do
   gem 'byebug'
+  gem 'mysql2', '~> 0.4.4'
   gem 'capybara'#, "~> 2.4.1"#, :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner', "~> 1.2"
 end
 
 group :test do
-  # gem 'byebug'
-  #gem 'factory_girl', "~> 3.3.0"
-  #gem 'factory_girl_rails', "~> 3.3.0"
   gem 'factory_girl', "~> 4.5.0"
   gem 'factory_girl_rails', "~> 4.5.0"
   gem 'mocha', '~> 0.13.3', :require => false
