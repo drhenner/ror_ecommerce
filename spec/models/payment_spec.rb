@@ -70,7 +70,7 @@ describe Payment, " class methods" do
                               )
       expect(auth.success).not_to     be_truthy
       expect(auth.action).to      eq 'authorization'
-      expect(auth.message).to     eq BogusGateway::ERROR_MESSAGE
+      expect(auth.message).to     eq BogusGateway::NUMBER_ERROR_MESSAGE
     end
   end
 
