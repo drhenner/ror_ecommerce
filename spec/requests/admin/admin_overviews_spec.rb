@@ -40,7 +40,6 @@ describe "Admin::Overviews" do
       cookied_admin_login
 
       visit admin_overviews_path
-      debugger
       expect(page).to have_content('Best to go through the list below in separate tabs')
     end
   end
