@@ -1,4 +1,4 @@
-class PrototypeProperty < ActiveRecord::Base
+class PrototypeProperty < ApplicationRecord
 
   belongs_to :prototype
   belongs_to :property

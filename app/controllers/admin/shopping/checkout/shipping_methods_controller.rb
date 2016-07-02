@@ -25,10 +25,10 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
     all_selected = true
     if params[:shipping_category].present?
       params[:shipping_category].each_pair do |category_id, rate_id|#[rate]
-        if rate_id
-          items = order_items_with_category(category_id)
+        if rate_id.present?
+          item_ids = order_item_ids_with_category(category_id)
 
-          OrderItem.where(id: items.map{|i| i.id}).update_all("shipping_rate_id = #{rate_id}")
+          OrderItem.where(id: item_ids).update_all("shipping_rate_id = #{rate_id}")
         else
           all_selected = false
         end
@@ -44,10 +44,10 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
   end
   private
 
-  def order_items_with_category(category_id)
-    items = OrderItem.includes([{:variant => :product}]).
-                      where(['order_items.order_id = ? AND
-                              products.shipping_category_id = ?', session_order_id, category_id])
+  def order_item_ids_with_category(category_id)
+    OrderItem.left_outer_joins([{:variant => :product}]).
+              where(['order_items.order_id = ? AND
+                      products.shipping_category_id = ?', session_order_id, category_id]).pluck('order_items.id')
   end
 
   def form_info

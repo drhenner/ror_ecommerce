@@ -12,7 +12,7 @@
 #  updated_at       :datetime
 #
 
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
   belongs_to :author, :class_name => 'User', :foreign_key => "created_by"

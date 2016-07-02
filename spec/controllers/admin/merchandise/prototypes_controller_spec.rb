@@ -29,12 +29,12 @@ describe Admin::Merchandise::PrototypesController do
 
   it "create action should render new template when model is invalid" do
     Prototype.any_instance.stubs(:valid?).returns(false)
-    post :create, prototype: {:name => 'Tes', :property_ids => [@property.id]}
+    post :create, params: { prototype: {:name => 'Tes', :property_ids => [@property.id]} }
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    post :create, prototype: { name: 'fred', active: true, property_ids: [@property.id]}
+    post :create, params: { prototype: { name: 'fred', active: true, property_ids: [@property.id]} }
     expect(response).to redirect_to(admin_merchandise_prototypes_url())
     prototype = Prototype.last
     expect(prototype.property_ids).to eq [@property.id]
@@ -42,21 +42,21 @@ describe Admin::Merchandise::PrototypesController do
 
   it "edit action should render edit template" do
     @prototype = FactoryGirl.create(:prototype)
-    get :edit, :id => @prototype.id
+    get :edit, params: { id: @prototype.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     @prototype = FactoryGirl.create(:prototype)
     Prototype.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @prototype.id, :prototype => {:name => 'Tes', :property_ids => [@property.id]}
+    put :update, params: { :id => @prototype.id, :prototype => {:name => 'Tes', :property_ids => [@property.id]} }
     expect(response).to render_template(:edit)
   end
 # ( :name, :active, :property_ids )
   it "update action should redirect when model is valid" do
     @prototype = FactoryGirl.create(:prototype)
     Prototype.any_instance.stubs(:valid?).returns(true)
-    put :update, id: @prototype.id, prototype: {:name => 'Tes', :property_ids => [@property.id]}
+    put :update, params: { id: @prototype.id, prototype: {:name => 'Tes', :property_ids => [@property.id]} }
     @prototype.reload
     expect(@prototype.property_ids.include?(@property.id)).to be true
     expect(response).to redirect_to(admin_merchandise_prototypes_url())
@@ -64,7 +64,7 @@ describe Admin::Merchandise::PrototypesController do
 
   it "destroy action should destroy model and redirect to index action" do
     @prototype = FactoryGirl.create(:prototype)
-    delete :destroy, :id => @prototype.id
+    delete :destroy, params: { id: @prototype.id }
     expect(response).to redirect_to(admin_merchandise_prototypes_url)
     expect(Prototype.find(@prototype.id).active).to eq false
   end

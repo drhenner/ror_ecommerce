@@ -1,4 +1,4 @@
-class Property < ActiveRecord::Base
+class Property < ApplicationRecord
 
   has_many :prototype_properties
   has_many :prototypes,          :through => :prototype_properties

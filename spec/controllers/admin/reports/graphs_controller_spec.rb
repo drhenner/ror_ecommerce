@@ -15,7 +15,7 @@ describe Admin::Reports::GraphsController do
   end
 
   it "show action should render show template" do
-    get :show, id: 'Orders'
+    get :show, params: { id: 'Orders' }
     expect(response).to render_template(:show)
   end
 end

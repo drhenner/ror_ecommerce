@@ -87,7 +87,7 @@
 #  customer_id :integer(4)
 #
 
-class Cart < ActiveRecord::Base
+class Cart < ApplicationRecord
   belongs_to  :user
   belongs_to  :customer, class_name: 'User'
   has_many    :cart_items

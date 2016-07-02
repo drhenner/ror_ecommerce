@@ -21,8 +21,7 @@
 #  inventory_id :integer(4)
 #
 
-class Variant < ActiveRecord::Base
-
+class Variant < ApplicationRecord
 
   has_many :variant_suppliers
   has_many :suppliers,         through: :variant_suppliers

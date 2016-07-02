@@ -14,7 +14,7 @@ describe Admin::Merchandise::Changes::PropertiesController do
   it "edit action should render edit template" do
 
     @product = FactoryGirl.create(:product)
-    get :edit, :product_id => @product.id
+    get :edit, params: { :product_id => @product.id }
     expect(response).to render_template(:edit)
   end
 
@@ -22,7 +22,7 @@ describe Admin::Merchandise::Changes::PropertiesController do
     property = FactoryGirl.create(:property)
     @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
-    put :update, :product_id => @product.id, :product => product_properties_attributes
+    put :update, params: { :product_id => @product.id, :product => product_properties_attributes }
     expect(response).to render_template(:edit)
   end
 
@@ -30,7 +30,7 @@ describe Admin::Merchandise::Changes::PropertiesController do
     property = FactoryGirl.create(:property)
     @product = FactoryGirl.create(:product)
     Product.any_instance.stubs(:valid?).returns(true)
-    put :update, product_id: @product.id, product: product_properties_attributes
+    put :update, params: { product_id: @product.id, product: product_properties_attributes }
     expect(response).to redirect_to(admin_merchandise_product_url(@product.id))
   end
 

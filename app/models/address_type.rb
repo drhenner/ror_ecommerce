@@ -19,7 +19,7 @@
 #  description :string(255)
 #
 
-class AddressType < ActiveRecord::Base
+class AddressType < ApplicationRecord
   has_many :addresses
 
   BILLING   = 'Billing'

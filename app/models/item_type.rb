@@ -1,4 +1,4 @@
-class ItemType < ActiveRecord::Base
+class ItemType < ApplicationRecord
   has_many :cart_items
 
   SHOPPING_CART   = 'shopping_cart'

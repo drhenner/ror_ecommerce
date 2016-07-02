@@ -24,7 +24,7 @@
 
 class VariantRequiredError < StandardError; end
 
-class Product < ActiveRecord::Base
+class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :permalink, use: :finders
   include Presentation::ProductPresenter

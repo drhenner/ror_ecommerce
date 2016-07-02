@@ -1,22 +1,25 @@
 source 'https://rubygems.org'
-ruby "2.1.5"
+ruby "2.3.1"
 
 ## Bundle rails:
-gem 'rails', '~> 4.2.6'
+gem 'rails', '~> 5.0.0.rc2'
 
 gem 'uglifier',     '>= 1.3.0'
-gem 'sass-rails',   '~> 4.0.0'
+# gem 'sass-rails',   '~> 6.0.0.beta1'
+gem 'sass-rails',   '~> 5.0.4'
 
 gem 'actionpack-page_caching'
 gem "activemerchant", '~> 1.48'#, :lib => 'active_merchant'
-gem "american_date"
+gem "american_date",  '~> 1.1.1'
 
 # Use https if you are pushing to HEROKU
 ##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
 #gem 'authlogic', github: 'binarylogic/authlogic', ref: 'e4b2990d6282f3f7b50249b4f639631aef68b939'
-#gem 'authlogic', '~> 3.4.3'#,          "~> 3.3.0"
+# gem 'authlogic', '~> 3.4.6'#,          "~> 3.3.0"
 
-gem 'authlogic', github: 'drhenner/authlogic', branch: 'rails4.2'
+#gem 'authlogic', github: 'drhenner/authlogic', branch: 'rails4.2'
+
+gem 'authlogic', git: 'git@github.com:ayb/authlogic.git'
 
 #gem 'scrypt', '~> 2.0.0'
 #gem 'scrypt', '~> 1.2.0'
@@ -30,7 +33,7 @@ gem 'cancan',         '~> 1.6.8'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
 #gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git'
-gem 'compass-rails', '~> 2.0.1'
+gem 'compass-rails', '~> 3.0.2'#'~> 2.0.5'
 
 
 gem 'dynamic_form'
@@ -54,7 +57,8 @@ gem 'rake', '~> 10.1'
 
 # gem 'resque', require: 'resque/server'
 
-gem "sprockets",       "2.11.0"
+# gem "sprockets",       "4.0.0.beta2"
+gem "sprockets",       "~> 3.6"
 gem 'aasm', '~> 4.0.3'
 #gem 'sunspot_solr',   '~> 2.0.0'
 #gem 'sunspot_rails',  '~> 2.0.0'
@@ -73,7 +77,7 @@ group :development do
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
-  gem "better_errors", '~> 2.0.0'
+  gem "better_errors", '~> 2.1.1'
   gem "binding_of_caller", '~> 0.7.2'
   # gem "rails-erd"
 
@@ -83,19 +87,19 @@ group :development do
 end
 group :test, :development do
   gem 'byebug'
-  gem 'mysql2', '~> 0.4.4'
-  gem 'capybara'#, "~> 2.4.1"#, :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'mysql2',   '~> 0.4.4'
+  gem 'capybara', '~> 2.7.1'
   gem 'launchy'
   gem 'database_cleaner', "~> 1.2"
 end
 
 group :test do
-  gem 'factory_girl', "~> 4.5.0"
+  gem 'factory_girl',       "~> 4.5.0"
   gem 'factory_girl_rails', "~> 4.5.0"
-  gem 'mocha', '~> 0.13.3', :require => false
+  gem 'mocha',              '~> 0.13.3', :require => false
+  gem 'rails-controller-testing'
   gem 'rspec-rails-mocha'
-  gem 'rspec-rails', '~> 3.1.0'#'2.99.0'#, '~> 3.0.2'
-
+  gem 'rspec-rails',        '~> 3.1.0'
   gem 'email_spec'
   gem "faker"
 

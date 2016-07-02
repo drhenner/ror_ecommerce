@@ -6,7 +6,7 @@
 #  http://www.ror-e.com/info/videos/2
 #
 
-class State < ActiveRecord::Base
+class State < ApplicationRecord
 
   belongs_to :country
   has_many   :addresses

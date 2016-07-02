@@ -21,27 +21,26 @@ describe Admin::Merchandise::Wizards::ShippingCategoriesController do
 
   it "create action should render new template when model is invalid" do
     ShippingCategory.any_instance.stubs(:valid?).returns(false)
-    post :create, :shipping_category =>{:name => 'test'}
+    post :create, params: { shipping_category: {name: 'test'} }
     expect(response).to render_template(:index)
   end
 
   it "create action should redirect when model is valid" do
     ShippingCategory.any_instance.stubs(:valid?).returns(true)
-    post :create, :shipping_category =>{:name => 'test'}
+    post :create, params: { shipping_category: { name: 'test'} }
     expect(response).to redirect_to(new_admin_merchandise_wizards_product_url)
   end
 
   it "update action should render edit template when model is invalid" do
     @shipping_category = FactoryGirl.create(:shipping_category)
     ShippingCategory.stubs(:find_by_id).returns(nil)
-    put :update, :id => @shipping_category.id
+    put :update, params: { id: @shipping_category.id }
     expect(response).to render_template(:index)
   end
 
   it "update action should redirect when model is valid" do
     @shipping_category = FactoryGirl.create(:shipping_category)
-    #ShippingCategory.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_category.id
+    put :update, params: { id: @shipping_category.id }
     expect(controller.session[:product_wizard][:shipping_category_id]).to eq @shipping_category.id
     expect(response).to redirect_to(new_admin_merchandise_wizards_product_url)
   end

@@ -15,7 +15,7 @@
 #  updated_at       :datetime
 #
 
-class OrderItem < ActiveRecord::Base
+class OrderItem < ApplicationRecord
   include AASM
 
   belongs_to :order

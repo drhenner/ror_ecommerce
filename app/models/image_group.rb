@@ -8,7 +8,7 @@
 #  hence each variant would be associated to the same image_group for a given color.
 #
 
-class ImageGroup < ActiveRecord::Base
+class ImageGroup < ApplicationRecord
   #attr_accessible :name, :product_id, :images_attributes
 
   validates :name,        presence: true

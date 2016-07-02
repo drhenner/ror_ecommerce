@@ -20,7 +20,7 @@
 #  updated_at     :datetime
 #
 
-class Batch < ActiveRecord::Base
+class Batch < ApplicationRecord
   belongs_to :batchable, :polymorphic => true
   has_many   :transactions
 

@@ -9,8 +9,7 @@
 #  updated_at :datetime
 #
 
-class StoreCredit < ActiveRecord::Base
-  #attr_accessible :amount, :user_id, :user
+class StoreCredit < ApplicationRecord
 
   belongs_to :user
 

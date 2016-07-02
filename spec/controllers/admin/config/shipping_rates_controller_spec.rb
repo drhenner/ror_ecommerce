@@ -5,7 +5,6 @@ describe Admin::Config::ShippingRatesController, type: :controller do
 
   before(:each) do
     activate_authlogic
-
     @user = create_super_admin_user
     login_as(@user)
   end
@@ -25,7 +24,7 @@ describe Admin::Config::ShippingRatesController, type: :controller do
 
   it "show action should render show template" do
     @shipping_rate = FactoryGirl.create(:shipping_rate)
-    get :show, :id => @shipping_rate.id
+    get :show, params: { id: @shipping_rate.id }
     expect(response).to render_template(:show)
   end
 
@@ -54,33 +53,33 @@ describe Admin::Config::ShippingRatesController, type: :controller do
 
   it "create action should render new template when model is invalid" do
     ShippingRate.any_instance.stubs(:valid?).returns(false)
-    post :create, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
+    post :create, params: { shipping_rate: {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1} }
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     ShippingRate.any_instance.stubs(:valid?).returns(true)
-    post :create, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
+    post :create, params: { shipping_rate: {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1} }
     expect(response).to redirect_to(admin_config_shipping_rate_url(assigns[:shipping_rate]))
   end
 
   it "edit action should render edit template" do
     @shipping_rate = FactoryGirl.create(:shipping_rate)
-    get :edit, :id => @shipping_rate.id
+    get :edit, params: { id: @shipping_rate.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     @shipping_rate = FactoryGirl.create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
+    put :update, params: { :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @shipping_rate = FactoryGirl.create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}
+    put :update, params: { :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}}
     expect(response).to redirect_to(admin_config_shipping_rate_url(assigns[:shipping_rate]))
   end
 

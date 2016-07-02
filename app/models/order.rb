@@ -46,7 +46,7 @@
 #  credited_amount :decimal(8, 2)   default(0.0)
 #
 
-class Order < ActiveRecord::Base
+class Order < ApplicationRecord
   include AASM
   extend FriendlyId
   friendly_id :number

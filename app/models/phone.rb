@@ -12,7 +12,7 @@
 #  updated_at     :datetime
 #
 
-class Phone < ActiveRecord::Base
+class Phone < ApplicationRecord
   include ActionView::Helpers::NumberHelper
   belongs_to :phone_type
   #belongs_to :phone_priority

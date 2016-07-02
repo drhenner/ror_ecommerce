@@ -15,7 +15,7 @@
 #  updated_at   :datetime
 #
 
-class CartItem < ActiveRecord::Base
+class CartItem < ApplicationRecord
   belongs_to :item_type
   belongs_to :user
   belongs_to :cart

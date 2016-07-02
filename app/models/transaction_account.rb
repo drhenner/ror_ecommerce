@@ -8,7 +8,7 @@
 #  updated_at :datetime
 #
 
-class TransactionAccount < ActiveRecord::Base
+class TransactionAccount < ApplicationRecord
   has_many :transaction_ledgers
   REVENUE             = 'Revenue'
   ACCOUNTS_RECEIVABLE = 'Accounts Receivable'

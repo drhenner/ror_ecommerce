@@ -1,4 +1,4 @@
-class Newsletter < ActiveRecord::Base
+class Newsletter < ApplicationRecord
 
   has_many    :users_newsletters, :dependent => :destroy
   has_many    :users, :through => :users_newsletters

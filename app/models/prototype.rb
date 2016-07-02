@@ -1,4 +1,4 @@
-class Prototype < ActiveRecord::Base
+class Prototype < ApplicationRecord
 
   has_many :products
   has_many :prototype_properties

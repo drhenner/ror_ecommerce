@@ -28,7 +28,7 @@
 #
 require "active_merchant/billing/rails"
 
-class PaymentProfile < ActiveRecord::Base
+class PaymentProfile < ApplicationRecord
   include PaymentProfileCim
   belongs_to :user
   belongs_to :address

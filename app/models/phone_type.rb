@@ -1,4 +1,4 @@
-class PhoneType < ActiveRecord::Base
+class PhoneType < ApplicationRecord
   has_many :phones
 
   validates :name, presence: true,       length: { maximum: 25 }

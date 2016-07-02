@@ -9,7 +9,7 @@
 #  updated_at :datetime
 #
 
-class Supplier < ActiveRecord::Base
+class Supplier < ApplicationRecord
 
   has_many :variant_suppliers
   has_many :variants,         through: :variant_suppliers

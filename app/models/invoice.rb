@@ -22,7 +22,7 @@
 #  credited_amount :decimal(8, 2)   default(0.0)
 #
 
-class Invoice < ActiveRecord::Base
+class Invoice < ApplicationRecord
   include AASM
 
   has_many :payments

@@ -22,13 +22,13 @@ describe Admin::Inventory::ReceivingsController do
   end
 
   it "edit action should render edit template" do
-    get :edit, :id => @purchase_order.id
+    get :edit, params: { id: @purchase_order.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     PurchaseOrder.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @purchase_order.id, :purchase_order => {:receive_po => '1'}
+    put :update, params: { id: @purchase_order.id, purchase_order: {:receive_po => '1'} }
     expect(response).to redirect_to(admin_inventory_receivings_url( :notice => 'Purchase order was successfully updated.'))
   end
 end

@@ -15,7 +15,7 @@
 #  updated_at         :datetime
 #
 
-class Shipment < ActiveRecord::Base
+class Shipment < ApplicationRecord
   include AASM
 
   belongs_to :order, :counter_cache => true

@@ -10,7 +10,6 @@ describe Admin::Inventory::SuppliersController do
     login_as(@user)
   end
 
-
   it "index action should render index template" do
     get :index
     expect(response).to render_template(:index)
@@ -18,7 +17,7 @@ describe Admin::Inventory::SuppliersController do
 
   it "show action should render show template" do
     @supplier = FactoryGirl.create(:supplier)
-    get :show, :id => @supplier.id
+    get :show, params: {id: @supplier.id}
     expect(response).to render_template(:show)
   end
 
@@ -29,33 +28,33 @@ describe Admin::Inventory::SuppliersController do
 
   it "create action should render new template when model is invalid" do
     Supplier.any_instance.stubs(:valid?).returns(false)
-    post :create, :supplier => {:name => 'John'}
+    post :create, params: { supplier: {:name => 'John'} }
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     Supplier.any_instance.stubs(:valid?).returns(true)
-    post :create, :supplier => {:name => 'Nike', :email => 'test@test.com'}
+    post :create, params: { supplier: {:name => 'Nike', :email => 'test@test.com'} }
     expect(response).to redirect_to(admin_inventory_suppliers_url())
   end
 
   it "edit action should render edit template" do
     @supplier = FactoryGirl.create(:supplier)
-    get :edit, :id => @supplier.id
+    get :edit, params: { id: @supplier.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     @supplier = FactoryGirl.create(:supplier)
     Supplier.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @supplier.id, :supplier => {:name => 'John', :email => 'test@test.com'}
+    put :update, params: { id: @supplier.id, :supplier => {:name => 'John', :email => 'test@test.com'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @supplier = FactoryGirl.create(:supplier)
     Supplier.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @supplier.id, :supplier => {:name => 'John', :email => 'test@test.com'}
+    put :update, params: { id: @supplier.id, :supplier => {:name => 'John', :email => 'test@test.com'} }
     expect(response).to redirect_to(admin_inventory_suppliers_url())
   end
 

@@ -17,7 +17,7 @@ describe Admin::Generic::SalesController do
 
   it "show action should render show template" do
     sale = FactoryGirl.create(:sale)
-    get :show, :id => sale.id
+    get :show, params: { :id => sale.id }
     expect(response).to render_template(:show)
   end
 
@@ -29,40 +29,40 @@ describe Admin::Generic::SalesController do
   it "create action should render new template when model is invalid" do
     sale = FactoryGirl.build(:sale)
     Sale.any_instance.stubs(:valid?).returns(false)
-    post :create, :sale => sale.attributes.except('id', 'created_at', 'updated_at')
+    post :create, params: { :sale => sale.attributes.except('id', 'created_at', 'updated_at') }
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     sale = FactoryGirl.build(:sale)
     Sale.any_instance.stubs(:valid?).returns(true)
-    post :create, :sale => sale.attributes.except('id', 'created_at', 'updated_at')
+    post :create, params: { :sale => sale.attributes.except('id', 'created_at', 'updated_at') }
     expect(response).to redirect_to(admin_generic_sale_url(assigns[:sale]))
   end
 
   it "edit action should render edit template" do
     sale = FactoryGirl.create(:sale)
-    get :edit, :id => sale.id
+    get :edit, params: { :id => sale.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     sale = FactoryGirl.create(:sale)
     Sale.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => sale.id, :sale => sale.attributes.except('id', 'created_at', 'updated_at')
+    put :update, params: { :id => sale.id, :sale => sale.attributes.except('id', 'created_at', 'updated_at') }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     sale = FactoryGirl.create(:sale)
     Sale.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => sale.id, :sale => sale.attributes.except('id', 'created_at', 'updated_at')
+    put :update, params: { :id => sale.id, :sale => sale.attributes.except('id', 'created_at', 'updated_at') }
     expect(response).to redirect_to(admin_generic_sale_url(assigns[:sale]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
     sale = FactoryGirl.create(:sale)
-    delete :destroy, :id => sale.id
+    delete :destroy, params: { :id => sale.id }
     expect(response).to redirect_to(admin_generic_sales_url)
     expect(Sale.exists?(sale.id)).to eq false
   end

@@ -11,7 +11,7 @@
 
 # Several classes inhertit this class.  This class describes the transaction type in the accounting system
 #
-class Transaction < ActiveRecord::Base
+class Transaction < ApplicationRecord
   belongs_to :batch
 
   has_many :transaction_ledgers

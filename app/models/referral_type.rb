@@ -1,4 +1,4 @@
-class ReferralType < ActiveRecord::Base
+class ReferralType < ApplicationRecord
   has_many :referrals
 
   validates :name,      :presence => true

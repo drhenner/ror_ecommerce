@@ -12,7 +12,6 @@ class Admin::OverviewsController < ApplicationController
       ##  This means we don't have any users
       ##  First we need to create a user with all permissions
 
-
       @user = User.new(args)
       @user.password = password
       @user.password_confirmation = password

@@ -42,7 +42,7 @@
 #  updated_at    :datetime
 #
 
-class Coupon < ActiveRecord::Base
+class Coupon < ApplicationRecord
   has_many :orders
 
   validates :code,          presence: true

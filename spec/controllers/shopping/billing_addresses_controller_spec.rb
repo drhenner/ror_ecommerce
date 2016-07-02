@@ -20,39 +20,39 @@ describe Shopping::BillingAddressesController do
 
   it "create action should render new template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
-    post :create, :address => @billing_address.attributes
+    post :create, params: { address: @billing_address.attributes }
     expect(response).to render_template(:index)
   end
 
   it "create action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
     controller.stubs(:next_form_url).returns(shopping_shipping_methods_url)
-    post :create, :address => @billing_address.attributes
+    post :create, params: {address: @billing_address.attributes}
     expect(response).to redirect_to(shopping_shipping_methods_url)
   end
 
   it "edit action should render edit template" do
-    get :edit, :id => @billing_address.id
+    get :edit, params: {id: @billing_address.id}
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @billing_address.id, :address => @billing_address.attributes
+    put :update, params: {id: @billing_address.id, address: @billing_address.attributes}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
     controller.stubs(:next_form_url).returns(shopping_shipping_methods_url)
-    put :update, :id => @billing_address.id, :address => @billing_address.attributes
+    put :update, params: {id: @billing_address.id, address: @billing_address.attributes}
     expect(response).to redirect_to(shopping_shipping_methods_url)
   end
 
   it "update action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
     controller.stubs(:next_form_url).returns(shopping_shipping_methods_url)
-    put :select_address, :id => @billing_address.id
+    put :select_address, params: {id: @billing_address.id}
     expect(response).to redirect_to(shopping_shipping_methods_url)
   end
 end

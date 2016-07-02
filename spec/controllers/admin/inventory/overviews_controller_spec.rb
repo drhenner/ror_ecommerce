@@ -17,19 +17,19 @@ describe Admin::Inventory::OverviewsController do
   end
 
   it "edit action should render edit template" do
-    get :edit, :id => @product.id
+    get :edit, params: { id: @product.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     Product.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @product.id, :product => {:name => 'blah'}
+    put :update, params: { :id => @product.id, :product => {:name => 'blah'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     Product.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @product.id, :product => {:name => 'blah'}
+    put :update, params: { :id => @product.id, :product => {:name => 'blah'} }
     expect(response).to redirect_to(admin_inventory_overviews_url())
   end
 end

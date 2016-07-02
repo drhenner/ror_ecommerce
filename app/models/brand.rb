@@ -11,7 +11,7 @@
 #  name :string(255)
 #
 
-class Brand < ActiveRecord::Base
+class Brand < ApplicationRecord
 
   has_many :variants
   has_many :products

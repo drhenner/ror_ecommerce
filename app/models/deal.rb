@@ -28,7 +28,7 @@
 #  updated_at      :datetime         not null
 #
 
-class Deal < ActiveRecord::Base
+class Deal < ApplicationRecord
 
   validates :buy_quantity,            :presence => true
   validates :get_percentage,          :presence => true, :if => :get_amount_is_blank?

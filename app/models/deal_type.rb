@@ -1,4 +1,4 @@
-class DealType < ActiveRecord::Base
+class DealType < ApplicationRecord
 
   validates :name,            :presence => true
 

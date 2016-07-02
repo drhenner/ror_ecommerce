@@ -20,36 +20,36 @@ describe Shopping::AddressesController do
 
   it "create action should render new template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
-    post :create, :address => @shipping_address.attributes
+    post :create, params: { address: @shipping_address.attributes }
     expect(response).to render_template(:index)
   end
 
   it "create action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
-    post :create, :address => @shipping_address.attributes
+    post :create, params: { address: @shipping_address.attributes }
     expect(response).to redirect_to(shopping_shipping_methods_url)
   end
 
   it "edit action should render edit template" do
-    get :edit, :id => @shipping_address.id
+    get :edit, params: { id: @shipping_address.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     Address.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @shipping_address.id, :address => @shipping_address.attributes
+    put :update, params: { id: @shipping_address.id, address: @shipping_address.attributes }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_address.id, :address => @shipping_address.attributes
+    put :update, params: { id: @shipping_address.id, address: @shipping_address.attributes }
     expect(response).to redirect_to(shopping_shipping_methods_url)
   end
 
   it "update action should redirect when model is valid" do
     Address.any_instance.stubs(:valid?).returns(true)
-    put :select_address, :id => @shipping_address.id
+    put :select_address, params: { id: @shipping_address.id }
     expect(response).to redirect_to(shopping_shipping_methods_url)
   end
 

@@ -8,7 +8,6 @@ describe Admin::Shopping::Checkout::OrdersController do
 
     @admin_user = create_admin_user
     login_as(@user)
-    #Admin::BaseController.stubs(:verify_admin).returns(@admin_user)
     controller.stubs(:verify_admin).returns(@admin_user)
     controller.stubs(:current_user).returns(@admin_user)
 

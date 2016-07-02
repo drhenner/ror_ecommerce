@@ -1,4 +1,4 @@
-class ReturnCondition < ActiveRecord::Base
+class ReturnCondition < ApplicationRecord
   has_many :return_items
 
   GOOD      = 'Good'
