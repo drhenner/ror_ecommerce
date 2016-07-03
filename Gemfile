@@ -16,23 +16,19 @@ gem "american_date",  '~> 1.1.1'
 ##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
 # gem 'authlogic', '~> 3.4.6'#,          "~> 3.3.0"
 
-#gem 'authlogic', github: 'drhenner/authlogic', branch: 'rails4.2'
-
-gem 'authlogic', git: 'git@github.com:ayb/authlogic.git'
+gem 'authlogic', git: 'git@github.com:ayb/authlogic.git', ref: 'e221212944b076fb742e42693837d9c9174ad091'
 
 #gem 'scrypt', '~> 2.0.0'
-#gem 'scrypt', '~> 1.2.0'
 
 gem "asset_sync",         '~> 1.1.0'
 gem 'awesome_nested_set', '~> 3.0.1'
 
 gem 'aws-sdk',        '~> 1.59.0'
 gem 'bluecloth',      '~> 2.2.0'
-gem 'cancan',         '~> 1.6.8'
+gem 'cancancan',      '~> 1.15.0'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
-#gem 'compass-rails', git: 'https://github.com/Compass/compass-rails.git'
-gem 'compass-rails', '~> 3.0.2'#'~> 2.0.5'
+gem 'compass-rails', '~> 3.0.2'
 
 
 gem 'dynamic_form'

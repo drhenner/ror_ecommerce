@@ -1,6 +1,7 @@
 GIT
   remote: git@github.com:ayb/authlogic.git
   revision: e221212944b076fb742e42693837d9c9174ad091
+  ref: e221212944b076fb742e42693837d9c9174ad091
   specs:
     authlogic (3.4.6)
       activerecord (>= 3.2)
@@ -84,7 +85,7 @@ GEM
     bluecloth (2.2.0)
     builder (3.2.2)
     byebug (9.0.5)
-    cancan (1.6.10)
+    cancancan (1.15.0)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -459,7 +460,7 @@ DEPENDENCIES
   binding_of_caller (~> 0.7.2)
   bluecloth (~> 2.2.0)
   byebug
-  cancan (~> 1.6.8)
+  cancancan (~> 1.15.0)
   capybara (~> 2.7.1)
   chronic
   compass-rails (~> 3.0.2)

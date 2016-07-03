@@ -54,7 +54,7 @@ class Shopping::CartItemsController < Shopping::BaseController
   # DELETE /carts/1
   # DELETE /carts/1.xml
   def destroy
-    session_cart.remove_variant(params[:variant_id]) if params[:variant_id]
+    session_cart.remove_variant(params[:variant_id]) if params[:variant_id].present?
     redirect_to(shopping_cart_items_url)
   end
 
