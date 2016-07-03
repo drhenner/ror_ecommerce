@@ -1,6 +1,6 @@
 class Admin::Merchandise::Changes::PropertiesController < Admin::BaseController
   helper_method :all_properties
-  before_filter :get_product
+  before_action :get_product
   def edit
     #@product.product_properties.build
   end

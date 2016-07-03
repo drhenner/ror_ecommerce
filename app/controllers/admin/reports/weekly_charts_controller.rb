@@ -1,6 +1,6 @@
 class Admin::Reports::WeeklyChartsController < Admin::Reports::BaseController
   #helper_method :start_time, :end_time
-  before_filter :set_time_range
+  before_action :set_time_range
   layout 'admin_charts'
   def index
     @sales_data = RorEReports::Sales.new(start_time, number_of_data_points)

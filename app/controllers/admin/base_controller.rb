@@ -2,7 +2,7 @@ class Admin::BaseController < ApplicationController
   helper_method :recent_admin_users
   layout 'admin'
 
-  before_filter :verify_admin
+  before_action :verify_admin
 
   def current_ability
     @current_ability ||= AdminAbility.new(current_user)

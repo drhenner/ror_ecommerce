@@ -1,5 +1,5 @@
 class Shopping::OrdersController < Shopping::BaseController
-  before_filter :require_login
+  before_action :require_login
   # GET /shopping/orders
   ### The intent of this action is two fold
   #
