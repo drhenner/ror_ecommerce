@@ -21,8 +21,8 @@ class CartItem < ApplicationRecord
   belongs_to :cart
   belongs_to :variant
 
-  validates :item_type_id,  :presence => true
-  validates :variant_id,    :presence => true
+  validates :item_type_id,  presence: true
+  validates :variant_id,    presence: true
 
   QUANTITIES = [1,2,3,4]
 

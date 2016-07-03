@@ -14,7 +14,6 @@ gem "american_date",  '~> 1.1.1'
 
 # Use https if you are pushing to HEROKU
 ##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
-#gem 'authlogic', github: 'binarylogic/authlogic', ref: 'e4b2990d6282f3f7b50249b4f639631aef68b939'
 # gem 'authlogic', '~> 3.4.6'#,          "~> 3.3.0"
 
 #gem 'authlogic', github: 'drhenner/authlogic', branch: 'rails4.2'
@@ -99,7 +98,7 @@ group :test do
   gem 'mocha',              '~> 0.13.3', :require => false
   gem 'rails-controller-testing'
   gem 'rspec-rails-mocha'
-  gem 'rspec-rails',        '~> 3.1.0'
+  gem 'rspec-rails',        '~> 3.5'
   gem 'email_spec'
   gem "faker"
 
