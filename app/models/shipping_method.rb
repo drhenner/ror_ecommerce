@@ -9,7 +9,7 @@
 #  updated_at       :datetime
 #
 
-class ShippingMethod < ActiveRecord::Base
+class ShippingMethod < ApplicationRecord
   has_many :shipping_rates
   belongs_to :shipping_zone
 

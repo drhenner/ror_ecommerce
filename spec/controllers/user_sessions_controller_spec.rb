@@ -4,7 +4,7 @@ describe UserSessionsController do
   describe "#create" do
     context "when login fails" do
       it "should display a message with login failure and render the login template" do
-        post :create, :user_session => {:email => 'test@test.com'}
+        post :create, params: { :user_session => {:email => 'test@test.com'} }
         expect(flash[:alert]).to eq I18n.t('login_failure')
         expect(response).to redirect_to login_url
       end

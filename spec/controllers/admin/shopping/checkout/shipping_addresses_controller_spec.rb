@@ -43,7 +43,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
   it "create action should render new template when model is invalid" do
     @shipping_address = FactoryGirl.create(:address, :addressable_id => @user.id, :addressable_type => 'User')
     Address.any_instance.stubs(:valid?).returns(false)
-    post :create, :address => @shipping_address.attributes
+    post :create, params: { address: @shipping_address.attributes }
     expect(response).to render_template(:new)
   end
 
@@ -51,7 +51,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
     @shipping_address = FactoryGirl.create(:address, :addressable_id => @user.id, :addressable_type => 'User')
 
     Address.any_instance.stubs(:valid?).returns(true)
-    post :create, :shipping_address_id => @shipping_address.id
+    post :create, params: { shipping_address_id: @shipping_address.id }
     expect(response).to redirect_to(admin_shopping_checkout_shipping_methods_url)
   end
 
@@ -59,7 +59,7 @@ describe Admin::Shopping::Checkout::ShippingAddressesController do
     @shipping_address = FactoryGirl.create(:address, :addressable_id => @user.id, :addressable_type => 'User')
 
     Address.any_instance.stubs(:valid?).returns(true)
-    post :create, :address => @shipping_address.attributes
+    post :create, params: { address: @shipping_address.attributes }
     expect(response).to redirect_to(admin_shopping_checkout_shipping_methods_url)
   end
 

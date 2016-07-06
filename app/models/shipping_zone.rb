@@ -1,4 +1,4 @@
-class ShippingZone < ActiveRecord::Base
+class ShippingZone < ApplicationRecord
   has_many :shipping_methods
   ## if your model requires more shipping zones create a join table and delete state.shipping_zone_id
   #has_many :state_shipping_zones

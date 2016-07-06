@@ -12,7 +12,7 @@
 #  updated_at        :datetime
 #
 
-class PurchaseOrderVariant < ActiveRecord::Base
+class PurchaseOrderVariant < ApplicationRecord
   belongs_to :purchase_order
   belongs_to :variant
 

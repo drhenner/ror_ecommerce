@@ -6,7 +6,7 @@
 #   t.datetime "updated_at",      :null => false
 # end
 
-class ReferralBonus < ActiveRecord::Base
+class ReferralBonus < ApplicationRecord
   self.table_name = 'referral_bonuses'
   has_many :referral_programs
 

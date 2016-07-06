@@ -13,7 +13,7 @@
 #  count_pending_from_supplier :integer          default(0)
 #
 
-class Inventory < ActiveRecord::Base
+class Inventory < ApplicationRecord
   has_one :variant
   has_many :accounting_adjustments, as: :adjustable
 

@@ -1,4 +1,4 @@
-class UsersNewsletter < ActiveRecord::Base
+class UsersNewsletter < ApplicationRecord
   require 'digest'
   belongs_to :newsletter
   belongs_to :user

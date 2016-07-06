@@ -15,7 +15,7 @@
 #  updated_at             :datetime
 #
 
-class TransactionLedger < ActiveRecord::Base
+class TransactionLedger < ApplicationRecord
   belongs_to :transaction_account
   belongs_to :transactionn, class_name: 'Transaction', foreign_key: :transaction_id
   belongs_to :accountable, polymorphic: true

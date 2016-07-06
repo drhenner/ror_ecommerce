@@ -19,7 +19,7 @@
 
 require 'paperclip'
 
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
   belongs_to :imageable, :polymorphic => true
 
   has_attached_file :photo, PAPERCLIP_STORAGE_OPTS ##  this constant is in /config/environments/*.rb

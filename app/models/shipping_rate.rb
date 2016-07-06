@@ -14,7 +14,7 @@
 #  updated_at            :datetime
 #
 
-class ShippingRate < ActiveRecord::Base
+class ShippingRate < ApplicationRecord
   include ActionView::Helpers::NumberHelper
 
   belongs_to :shipping_method

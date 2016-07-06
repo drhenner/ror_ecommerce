@@ -29,7 +29,7 @@
 #  updated_at        :datetime
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include AASM
   include TransactionAccountable
   include UserCim
@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   include UserEmailer
 
   acts_as_authentic do |config|
+    config.session_class = UserSession
+    config.login_field = :email
+
     config.validate_email_field
     config.validates_length_of_password_field_options( :minimum => 6, :on => :update, :if => :password_changed? )
 
@@ -235,6 +238,10 @@ class User < ActiveRecord::Base
 
   def store_credit_amount
     store_credit.amount
+  end
+
+  def self.find_by_downcase_email(login)
+    find_by_email(login.downcase)
   end
 
   # Find users that have signed up for the subscription

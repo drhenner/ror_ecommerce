@@ -14,7 +14,7 @@ describe Admin::Merchandise::ProductsController do
 
   it "edit action should render edit template" do
     @product = FactoryGirl.create(:product)
-    get :edit, id: @product.permalink
+    get :edit, params: { id: @product.permalink }
     expect(response).to render_template(:edit)
   end
 

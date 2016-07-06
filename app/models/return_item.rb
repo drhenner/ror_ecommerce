@@ -13,7 +13,7 @@
 #  updated_at              :datetime
 #
 
-class ReturnItem < ActiveRecord::Base
+class ReturnItem < ApplicationRecord
   belongs_to :return_reason
   belongs_to :return_condition
 

@@ -17,7 +17,7 @@ describe ProductsController do
   end
 
   it "show action should not blow up without a property association" do
-    get :show, id: @product.permalink
+    get :show, params: { id: @product.permalink }
     expect(response).to render_template(:show)
   end
 end

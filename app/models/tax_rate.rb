@@ -11,7 +11,7 @@
 #  active        :boolean(1)      default(TRUE)
 #
 
-class TaxRate < ActiveRecord::Base
+class TaxRate < ApplicationRecord
   belongs_to :state
   belongs_to :country
 

@@ -24,7 +24,7 @@
 #  updated_at      :datetime
 #
 
-class AccountingAdjustment < ActiveRecord::Base
+class AccountingAdjustment < ApplicationRecord
 
   has_many  :batches,             :as => :batchable
   has_many  :transaction_ledgers, :as => :accountable

@@ -1,6 +1,6 @@
 class Admin::Reports::OverviewsController < Admin::Reports::BaseController
   helper_method :start_time, :end_time
-  before_filter :set_time_range
+  before_action :set_time_range
 
   def show
     @accounting_report  = RorEReports::Accounting.new(start_time, end_time)

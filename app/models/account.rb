@@ -25,7 +25,7 @@
 #
 
 
-class Account < ActiveRecord::Base
+class Account < ApplicationRecord
 
   FREE  = 'Free'
   TYPES = {FREE => 0.00}

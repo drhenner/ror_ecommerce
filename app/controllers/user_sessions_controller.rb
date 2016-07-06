@@ -5,7 +5,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    @user_session = UserSession.new(user_params)
+    @user_session = UserSession.new(user_params.to_h)
     if @user_session.save
       cookies[:hadean_uid] = @user_session.record.access_token
       session[:authenticated_at] = Time.now

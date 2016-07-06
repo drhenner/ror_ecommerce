@@ -35,7 +35,7 @@
 #  updated_at        :datetime
 #
 
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
 
   belongs_to  :state
   belongs_to  :country

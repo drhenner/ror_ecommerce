@@ -15,7 +15,7 @@
 #  updated_at     :datetime
 #
 
-class ReturnAuthorization < ActiveRecord::Base
+class ReturnAuthorization < ApplicationRecord
   include AASM
 
   has_many   :return_items

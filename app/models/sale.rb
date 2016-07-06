@@ -1,4 +1,4 @@
-class Sale < ActiveRecord::Base
+class Sale < ApplicationRecord
   #attr_accessible :ends_at, :percent_off, :product_id, :starts_at
 
   belongs_to :product

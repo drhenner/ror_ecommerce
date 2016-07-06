@@ -29,13 +29,13 @@ describe Myaccount::OverviewsController do
 
   it "update action should render edit template when model is invalid" do
     User.any_instance.stubs(:valid?).returns(false)
-    put :update, user: @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
+    put :update, params: {user: @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}}
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     User.any_instance.stubs(:valid?).returns(true)
-    put :update, user: @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}
+    put :update, params: {user: @user.attributes.reject {|k,v| ![ 'first_name', 'last_name', 'password'].include?(k)}}
     expect(response).to redirect_to(myaccount_overview_url())
   end
 end

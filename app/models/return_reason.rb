@@ -1,4 +1,4 @@
-class ReturnReason < ActiveRecord::Base
+class ReturnReason < ApplicationRecord
   has_many :return_items
 
   DEFECTIVE     = 'Defective'

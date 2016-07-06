@@ -11,68 +11,67 @@ describe Admin::Fulfillment::CommentsController do
   end
 
   it "index action should render index template" do
-    get :index, :order_id => @order.number
+    get :index, params: { order_id: @order.number }
     expect(response).to render_template(:index)
   end
 
   it "show action should render show template" do
     @comment = FactoryGirl.create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
-    get :show, :id => @comment.id, :order_id => @order.number
+    get :show, params: { id: @comment.id, order_id: @order.number }
     expect(response).to render_template(:show)
   end
 
   it "new action should render new template" do
-    get :new, :order_id => @order.number
+    get :new, params: { order_id: @order.number }
     expect(response).to render_template(:new)
   end
 
   it "create action should render new template when model is invalid" do
     @comment = FactoryGirl.create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(false)
-    post :create, :order_id => @order.number, :comment => @comment.attributes
+    post :create, params: { :order_id => @order.number, :comment => @comment.attributes }
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     @comment = FactoryGirl.create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(true)
-    post :create, :order_id => @order.number, :comment => @comment.attributes
+    post :create, params: { order_id: @order.number, comment: @comment.attributes }
     #expect(response).to redirect_to(admin_fulfillment_order_comment_url(@order, assigns[:comment]))
     expect(response).to render_template(:show)
   end
 
-
   it "create action should redirect when model is valid" do
     @comment = FactoryGirl.create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(true)
-    post :create, :order_id => @order.number, :comment => @comment.attributes, :format => 'json'
+    post :create, params: { :order_id => @order.number, :comment => @comment.attributes, :format => 'json' }
     #expect(response).to redirect_to(admin_fulfillment_order_comment_url(@order, assigns[:comment]))
     expect(response.body).to eq assigns[:comment].to_json()
   end
 
   it "edit action should render edit template" do
     @comment = FactoryGirl.create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
-    get :edit, :id => @comment.id, :order_id => @order.number
+    get :edit, params: { :id => @comment.id, :order_id => @order.number }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     @comment = FactoryGirl.create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @comment.id, :order_id => @order.number, :comment => @comment.attributes
+    put :update, params: { :id => @comment.id, :order_id => @order.number, :comment => @comment.attributes }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @comment = FactoryGirl.create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
     Comment.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @comment.id, :order_id => @order.number, :comment => @comment.attributes
+    put :update, params: { :id => @comment.id, :order_id => @order.number, :comment => @comment.attributes }
     expect(response).to redirect_to(admin_fulfillment_order_comment_url(@order, assigns[:comment]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
     @comment = FactoryGirl.create(:comment, :commentable_id => @order.id, :commentable_type => @order.class.to_s)
-    delete :destroy, :id => @comment.id, :order_id => @order.number
+    delete :destroy, params: { :id => @comment.id, :order_id => @order.number }
     expect(response).to redirect_to(admin_fulfillment_order_comments_url(@order))
     expect(Comment.exists?(@comment.id)).to eq false
   end

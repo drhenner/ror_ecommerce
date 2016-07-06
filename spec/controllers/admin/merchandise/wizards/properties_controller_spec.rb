@@ -20,25 +20,25 @@ describe Admin::Merchandise::Wizards::PropertiesController do
 
   it "create action should render new template when model is invalid" do
     Property.any_instance.stubs(:valid?).returns(false)
-    post :create, :property => {:identifing_name => 'test', :display_name => 'test'}
+    post :create, params: { property: { identifing_name: 'test', display_name: 'test'} }
     expect(response).to render_template(:index)
   end
 
   it "create action should redirect when model is valid" do
     Property.any_instance.stubs(:valid?).returns(true)
-    post :create, :property => {:identifing_name => 'test', :display_name => 'test'}
+    post :create, params: { property: { identifing_name: 'test', display_name: 'test'} }
     expect(response).to render_template(:index)
   end
 
   it "update action should render edit template when model is invalid" do
     @property = FactoryGirl.create(:property)
-    put :update, :id => @property.id, :property => {:ids => [ ]}
+    put :update, params: { id: @property.id, property: {:ids => [ ]} }
     expect(response).to render_template(:index)
   end
 
   it "update action should redirect when model is valid" do
     @property = FactoryGirl.create(:property)
-    put :update, :id => @property.id, :property => {:ids => [ @property.id ]}
+    put :update, params: { id: @property.id, property: { ids: [ @property.id ]} }
     expect(controller.session[:product_wizard][:property_ids]).to eq [@property.id]
     expect(response).to redirect_to(admin_merchandise_wizards_shipping_categories_url)
   end

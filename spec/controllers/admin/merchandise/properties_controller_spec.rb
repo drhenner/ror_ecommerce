@@ -25,39 +25,39 @@ describe Admin::Merchandise::PropertiesController do
 
   it "create action should render new template when model is invalid" do
     Property.any_instance.stubs(:valid?).returns(false)
-    post :create, :property => {:display_name => 'dis', :identifing_name => 'test'}
+    post :create, params: { property: { display_name: 'dis', identifing_name: 'test'} }
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     Property.any_instance.stubs(:valid?).returns(true)
-    post :create, :property => {:display_name => 'dis', :identifing_name => 'test'}
+    post :create, params: { property: { display_name: 'dis', identifing_name: 'test'} }
     expect(response).to redirect_to(admin_merchandise_properties_url)
   end
 
   it "edit action should render edit template" do
     @property = FactoryGirl.create(:property)
-    get :edit, :id => @property.id
+    get :edit, params: { id: @property.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     @property = FactoryGirl.create(:property)
     Property.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @property.id, :property => {:display_name => 'dis', :identifing_name => 'test'}
+    put :update, params: { id: @property.id, property: {:display_name => 'dis', :identifing_name => 'test'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @property = FactoryGirl.create(:property)
     Property.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @property.id, :property => {:display_name => 'dis', :identifing_name => 'test'}
+    put :update, params: { :id => @property.id, :property => {:display_name => 'dis', :identifing_name => 'test'} }
     expect(response).to redirect_to(admin_merchandise_properties_url)
   end
 
   it "destroy action should destroy model and redirect to index action" do
     @property = FactoryGirl.create(:property)
-    delete :destroy, :id => @property.id
+    delete :destroy, params: { :id => @property.id }
     expect(response).to redirect_to(admin_merchandise_properties_url)
     expect(Property.find(@property.id).active).to eq false
   end

@@ -28,7 +28,7 @@ describe Shopping::CouponsController do
 
   it "create action should render show template when coupon is not eligible" do
     Coupon.any_instance.stubs(:eligible?).returns(false)
-    post :create, :coupon => {:code => 'qwerty' }
+    post :create, params: { coupon: { code: 'qwerty' } }
     expect(response).to render_template(:show)
   end
 
@@ -37,7 +37,7 @@ describe Shopping::CouponsController do
     CouponValue.any_instance.stubs(:eligible?).returns(true)
     Shopping::CouponsController.any_instance.stubs(:update_order_coupon_id).returns(true)
     @controller.expects(:next_form_url).returns(shopping_orders_url)
-    post :create, :coupon => {:code => 'qwerty' }
+    post :create, params: {coupon: { code: 'qwerty' }}
     expect(response).to redirect_to(shopping_orders_url)
   end
 end

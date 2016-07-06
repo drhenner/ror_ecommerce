@@ -6,7 +6,6 @@ describe Admin::Config::CountriesController, type: :controller do
 
   before(:each) do
     activate_authlogic
-
     @user = create_super_admin_user
     login_as(@user)
   end
@@ -20,7 +19,7 @@ describe Admin::Config::CountriesController, type: :controller do
     country = Country.first()
     country.update_attribute(:shipping_zone_id, nil)
     Country.any_instance.stubs(:valid?).returns(true)
-    put :update, id: country.id, country: {:shipping_zone_id => 1}
+    put :update, params: { id: country.id, country: {:shipping_zone_id => 1} }
     country.reload
     expect(country.shipping_zone_id).to eq 1
     expect(response).to redirect_to(admin_config_countries_url)
@@ -30,7 +29,7 @@ describe Admin::Config::CountriesController, type: :controller do
     country = Country.first()
     country.update_attribute(:active,  false)
     Country.any_instance.stubs(:valid?).returns(true)
-    put :activate, :id => country.id, :country => country.attributes
+    put :activate, params: { id: country.id, country: country.attributes }
     country.reload
     expect(country.active).to be true
     expect(response).to redirect_to(admin_config_countries_url)
@@ -39,7 +38,7 @@ describe Admin::Config::CountriesController, type: :controller do
   it "destroy action should make the country inactive and redirect to index action" do
     country = Country.first()
     country.update_attribute(:active,  true)
-    delete :destroy, :id => country.id
+    delete :destroy, params: { id: country.id }
     expect(response).to redirect_to(admin_config_countries_url)
     country.reload
     expect(country.active).to eq false

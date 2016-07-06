@@ -17,7 +17,7 @@ describe Admin::Merchandise::BrandsController do
 
   it "show action should render show template" do
     @brand = FactoryGirl.create(:brand)
-    get :show, :id => @brand.id
+    get :show, params: { id: @brand.id }
     expect(response).to render_template(:show)
   end
 
@@ -28,33 +28,33 @@ describe Admin::Merchandise::BrandsController do
 
   it "create action should render new template when model is invalid" do
     Brand.any_instance.stubs(:valid?).returns(false)
-    post :create, :brand => {:name => 'RoR ecommerce'}
+    post :create, params: { brand: {:name => 'RoR ecommerce'} }
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     Brand.any_instance.stubs(:valid?).returns(true)
-    post :create, :brand => {:name => 'RoR ecommerce'}
+    post :create, params: { brand: {:name => 'RoR ecommerce'} }
     expect(response).to redirect_to(admin_merchandise_brand_url(assigns[:brand]))
   end
 
   it "edit action should render edit template" do
     @brand = FactoryGirl.create(:brand)
-    get :edit, :id => @brand.id
+    get :edit, params: { :id => @brand.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     @brand = FactoryGirl.create(:brand)
     Brand.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @brand.id, :brand => {:name => 'RoR ecommerce'}
+    put :update, params: { :id => @brand.id, :brand => {:name => 'RoR ecommerce'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @brand = FactoryGirl.create(:brand)
     Brand.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @brand.id, :brand => {:name => 'RoR ecommerce'}
+    put :update, params: { :id => @brand.id, :brand => {:name => 'RoR ecommerce'} }
     expect(response).to redirect_to(admin_merchandise_brand_url(assigns[:brand]))
   end
 

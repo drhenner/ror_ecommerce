@@ -1,4 +1,4 @@
-class Country < ActiveRecord::Base
+class Country < ApplicationRecord
   has_many :states
 
   belongs_to :shipping_zone

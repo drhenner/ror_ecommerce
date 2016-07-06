@@ -16,7 +16,7 @@ describe Admin::Generic::CouponsController do
 
   it "show action should render show template" do
     @coupon = create(:coupon)
-    get :show, :id => @coupon.id
+    get :show, params: { id: @coupon.id }
     expect(response).to render_template(:show)
   end
 
@@ -30,7 +30,7 @@ describe Admin::Generic::CouponsController do
     Coupon.any_instance.stubs(:valid?).returns(false)
     attribs =  @coupon.attributes
     attribs.delete('type')
-    post :create, :coupon => attribs, :c_type => 'CouponValue'
+    post :create, params: { :coupon => attribs, :c_type => 'CouponValue' }
     expect(response).to render_template(:new)
   end
 
@@ -39,13 +39,13 @@ describe Admin::Generic::CouponsController do
     CouponValue.any_instance.stubs(:valid?).returns(true)
     attribs =  @coupon.attributes
     attribs.delete('type')
-    post :create, :coupon => attribs, :c_type => 'CouponValue'
+    post :create, params: { :coupon => attribs, :c_type => 'CouponValue' }
     expect(response).to redirect_to(admin_generic_coupon_url(assigns[:coupon]))
   end
 
   it "edit action should render edit template" do
     @coupon = create(:coupon)
-    get :edit, :id => @coupon.id
+    get :edit, params: { :id => @coupon.id }
     expect(response).to render_template(:edit)
   end
 
@@ -54,7 +54,7 @@ describe Admin::Generic::CouponsController do
     attribs =  @coupon.attributes
     attribs.delete('type')
     CouponValue.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @coupon.id, :coupon => attribs
+    put :update, params: { id: @coupon.id, coupon: attribs }
     expect(response).to render_template(:edit)
   end
 
@@ -63,13 +63,13 @@ describe Admin::Generic::CouponsController do
     attribs =  @coupon.attributes
     attribs.delete('type')
     CouponValue.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @coupon.id, :coupon => attribs
+    put :update, params: { id: @coupon.id, coupon: attribs }
     expect(response).to redirect_to(admin_generic_coupon_url(assigns[:coupon]))
   end
 
   it "destroy action should destroy model and redirect to index action" do
     @coupon = create(:coupon)
-    delete :destroy, :id => @coupon.id
+    delete :destroy, params: { id: @coupon.id }
     expect(response).to redirect_to(admin_generic_coupons_url)
     expect(Coupon.exists?(@coupon.id)).to eq false
   end

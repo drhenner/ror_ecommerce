@@ -52,11 +52,11 @@ describe Shopping::ShippingMethodsController do
 
     @shipping_rate   = FactoryGirl.create(:shipping_rate)
     @shipping_method = FactoryGirl.create(:shipping_method)
-    put :update, :id => @shipping_method.id,
-                 :shipping_category => {
+    put :update, params: { id: @shipping_method.id,
+                   shipping_category: {
                     @variant.product.shipping_category_id => @shipping_rate.id,
                     @variant2.product.shipping_category_id => nil
-                  }
+                  } }
     expect(response).to redirect_to(shopping_shipping_methods_url)
   end
 
@@ -73,7 +73,7 @@ describe Shopping::ShippingMethodsController do
     @controller.stubs(:not_secure?).returns(false)
     @controller.stubs(:next_form_url).returns(shopping_orders_url)
     ShippingMethod.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @shipping_method.id, :shipping_category => {@variant.product.shipping_category_id => @shipping_rate.id }
+    put :update, params: {id: @shipping_method.id, shipping_category: {@variant.product.shipping_category_id => @shipping_rate.id }}
     expect(response).to redirect_to(shopping_orders_url)
   end
 end

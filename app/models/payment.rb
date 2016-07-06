@@ -17,7 +17,7 @@
 #  updated_at      :datetime
 #
 
-class Payment < ActiveRecord::Base
+class Payment < ApplicationRecord
   belongs_to :invoice
 
   serialize :params

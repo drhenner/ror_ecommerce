@@ -13,7 +13,7 @@ describe Admin::Inventory::AdjustmentsController do
 
   it "show action should render show template" do
     @product = FactoryGirl.create(:product)
-    get :show, :id => @product.id
+    get :show, params: { :id => @product.id }
     expect(response).to render_template(:show)
   end
 
@@ -25,14 +25,14 @@ describe Admin::Inventory::AdjustmentsController do
 
   it "edit action should render edit template" do
     @variant = FactoryGirl.create(:variant)
-    get :edit, :id => @variant.id
+    get :edit, params: { :id => @variant.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
     @variant = FactoryGirl.create(:variant)
     Variant.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => @variant.id
+    put :update, params: { :id => @variant.id }
     expect(response).to render_template(:edit)
   end
 
@@ -40,7 +40,7 @@ describe Admin::Inventory::AdjustmentsController do
     @product = FactoryGirl.create(:product)
     @variant = FactoryGirl.create(:variant, :product => @product)
     Variant.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @variant.id, :variant => {:qty_to_add => '-3'}
+    put :update, params: { :id => @variant.id, :variant => {:qty_to_add => '-3'} }
     expect(response).to render_template(:edit)
   end
 
@@ -48,7 +48,7 @@ describe Admin::Inventory::AdjustmentsController do
     @product = FactoryGirl.create(:product)
     @variant = FactoryGirl.create(:variant, :product => @product)
     Variant.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @variant.id, :variant => {:qty_to_add => '-3'}, :refund => '12.09'
+    put :update, params: { :id => @variant.id, :variant => {:qty_to_add => '-3'}, :refund => '12.09' }
     expect(response).to redirect_to(admin_inventory_adjustment_url(@product))
   end
 
@@ -56,7 +56,7 @@ describe Admin::Inventory::AdjustmentsController do
     @product = FactoryGirl.create(:product)
     @variant = FactoryGirl.create(:variant, :product => @product)
     Variant.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => @variant.id, :variant => {:qty_to_add => '-3'}, :refund => '00.0'
+    put :update, params: { :id => @variant.id, :variant => {:qty_to_add => '-3'}, :refund => '00.0' }
     expect(response).to redirect_to(admin_inventory_adjustment_url(@product))
   end
 end
