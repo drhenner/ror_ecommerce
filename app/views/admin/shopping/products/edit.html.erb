@@ -4,11 +4,11 @@
 <% if @product.variants.empty? %>
   Sorry This product has no variants
 <% else %>
-  <%= form_tag admin_shopping_product_path(@product), :method => 'put' do %>
+  <%= form_tag admin_shopping_product_path(@product), method: 'put' do %>
     <% @product.variants.each_with_index do |variant, i| %>
-      <div class='panel product_admin_panel'>
+      <div class='panel callout product_admin_panel'>
         <ul  id='variant-<%= i %>'
-              class='<%= cycle("odd", "even") %> clear  clearfix panel radius' style='margin-bottom:20px;'>
+              class='<%= cycle("odd", "even") %> clear  clearfix panel callout radius' style='margin-bottom:20px;'>
           <li id='' class='six large-6 columns'>
             <%#= raw variant.display_property_details %>
             <% variant.variant_properties.each do |vp| %>
@@ -20,7 +20,7 @@
             Qty in Stock: <%= variant.display_stock_status %>(<%= variant.quantity_available %>)
           </li>
           <li id='variant-qty-<%= i %>' class='two large-2 columns' style='diplay:inline-block;'>
-            Quantity: <%= text_field_tag("variant[#{ variant.id }]", nil, :class => 'one', :style => 'width:50px;') %>
+            Quantity: <%= text_field_tag("variant[#{ variant.id }]", nil, :class => 'one large-1', :style => 'width:50px;') %>
           </li>
 
         </ul>

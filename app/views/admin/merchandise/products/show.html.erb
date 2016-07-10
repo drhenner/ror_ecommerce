@@ -1,4 +1,4 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header'%>
 
 <h3>Product: <%= @product.name %></h3>
 
@@ -106,5 +106,5 @@
 </fieldset>
 
 <p style="margin-top: 30px">
-  <%= link_to 'All Products', admin_merchandise_products_path(), :class => 'button yellow'%>
+  <%= link_to 'All Products', admin_merchandise_products_path(), :class => 'button yellow warning'%>
 </p>

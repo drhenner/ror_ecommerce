@@ -1,12 +1,14 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header'%>
 
-<h3>Edit Product Description</h3> <%= link_to 'Back to Product', admin_merchandise_product_path(@product), :class => 'button', :style => "float:right; margin-top: -45px" %>
+<h3>Edit Product Description</h3>
+
+<%= link_to 'Back to Product', admin_merchandise_product_path(@product), class: 'button', style: "float:right;margin-top:-45px" %>
 
 <div id="article-sidebar" class="sidebar">
-  <%= form_for @product, :url  => admin_merchandise_products_description_path(@product) do |f| %>
+  <%= form_for @product, url: admin_merchandise_products_description_path(@product) do |f| %>
     <%= f.text_field :name %>
-    <%= f.text_area :description_markup, :id => "markItUp", :cols => "92", :rows => "15" %>
-    <%= f.submit "Update", :class  => "button" %>
+    <%= f.text_area :description_markup, id: "markItUp", cols: "92", rows: "15" %>
+    <%= f.submit "Update", class: "button" %>
   <% end %>
 </div>
 

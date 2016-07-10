@@ -10,18 +10,15 @@
   </li>
   <li class="field">
     <%= f.label :deal_type_id %>
-    <%= f.select :deal_type_id, deal_types, :include_blank => true %>
+    <%= f.select :deal_type_id, deal_types, include_blank: true %>
   </li>
   <li class="field">
     <%= f.label :product_type_id %>
-    <%= f.select :product_type_id, product_types, :include_blank => true %>
+    <%= f.select :product_type_id, product_types, include_blank: true %>
   </li>
   <li class="field">
     <%= f.label :get_amount %>
     <%= f.number_field :get_amount %>
   </li>
-  <li class="field date-select" >
-    <%= f.label :deleted_at %>
-    <%= f.datetime_select :deleted_at %>
-  </li>
+
 </ul>

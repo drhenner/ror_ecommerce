@@ -2,7 +2,7 @@
   <% i = 1 %>
   <% session_admin_order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
     <div id='order-item-<%= i %>'>
-      <%= render :partial => 'order_item', :locals => {:items => items } %>
+      <%= render partial: 'order_item', locals: { items: items } %>
     </div>
     <% i += 1 %>
   <% end %>

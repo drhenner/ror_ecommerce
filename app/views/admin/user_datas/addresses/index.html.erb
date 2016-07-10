@@ -20,9 +20,8 @@
     <tbody>
     <% for address in @addresses %>
       <tr  class='<%= cycle("odd", "")%>'>
-
           <td>
-            <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => address} %>
+            <%= render :partial => '/shared/compact_address', locals: { shopping_address: address} %>
           </td>
           <td><%= address.default %></td>
           <td><%= address.active %></td>
@@ -33,7 +32,7 @@
           <% end %>
         <td>
           <% if address.active %>
-            <%= link_to "inactivate", [:admin, :user_datas, customer, address], data: { confirm: 'Are you sure?' }, :method => :delete %>
+            <%= link_to "inactivate", [:admin, :user_datas, customer, address], data: { confirm: 'Are you sure?' }, method: :delete %>
           <% end %>
         </td>
       </tr>
@@ -44,4 +43,4 @@
 
 <%= will_paginate @addresses %>
 
-<p><%= link_to "New Address", new_admin_user_datas_user_address_path(customer), :class => 'button' %></p>
+<p><%= link_to "New Address", new_admin_user_datas_user_address_path(customer), class: 'button' %></p>

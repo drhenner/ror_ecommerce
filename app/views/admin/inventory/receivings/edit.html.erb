@@ -1,7 +1,7 @@
 <h3>Receive Purchase Order</h3>
 
-<%= form_for @purchase_order, :url  => admin_inventory_receiving_path(@purchase_order),
-                              :html => {:class => 'prepend-4'}  do |form| %>
+<%= form_for @purchase_order, url: admin_inventory_receiving_path(@purchase_order),
+                              html: { class: 'prepend-4' } do |form| %>
 
   <fieldset id="admin-product-names" class='span-11 fields'>
     <div class='span-15'>
@@ -17,7 +17,7 @@
 
         <%= form.fields_for :purchase_order_variants,  @purchase_order.purchase_order_variants do |po_variant_form| %>
           <div class='span-14'>
-            <%= render :partial => 'form', :locals => { :po_variant_form => po_variant_form } %>
+            <%= render partial: 'form', locals: { po_variant_form: po_variant_form } %>
           </div>
         <% end %>
     </div>
@@ -28,8 +28,8 @@
 
   <div class=" generic_submit_button">
     <%= submit_tag "Update",
-                    :class  => "button",
-                    :id     => "create_purchase_order_button" %>
+                    class: "button",
+                    id:    "create_purchase_order_button" %>
   </div>
 <% end %>
 

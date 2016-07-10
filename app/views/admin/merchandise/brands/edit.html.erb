@@ -1,14 +1,14 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header'%>
 
 <h3>Editing Brand - <%= @brand.name %></h1>
 
-<%= form_for(@brand, :url => admin_merchandise_brand_path(@brand)) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
-  
-  <%= f.submit 'Update', :class => 'button' %>
+<%= form_for(@brand, url: admin_merchandise_brand_path(@brand)) do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+
+  <%= f.submit 'Update', class: 'button' %>
 <% end %>
 
 <p>
-  <%= link_to 'Show', admin_merchandise_brand_path( @brand ), :class => 'button' %>
-  <%= link_to 'View All', admin_merchandise_brands_path, :class => 'button' %>
+  <%= link_to 'Show', admin_merchandise_brand_path( @brand ), class: 'button' %>
+  <%= link_to 'View All', admin_merchandise_brands_path, class: 'button' %>
 </p>

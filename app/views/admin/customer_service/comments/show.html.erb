@@ -10,7 +10,7 @@
     <%= @comment.commentable_type %>
   </li>
   <li>
-    <label>Created By:</label>
+    <label>Author:</label>
     <%= @comment.author.try(:name) %>
   </li>
   <li>
@@ -19,6 +19,6 @@
   </li>
 </ul>
 <p>
-  <%= link_to "View All", admin_customer_service_user_comments_path(customer), :class => 'button' %>
-  <%= link_to "Back to #{customer.name}", admin_user_path(customer), :class => 'small button'  %>
+  <%= link_to "View All", admin_customer_service_user_comments_path(customer), class: 'button' %>
+  <%= link_to "Back to #{customer.name}", admin_user_path(customer), class: 'small button'  %>
 </p>

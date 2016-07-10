@@ -8,10 +8,10 @@
       <%= text_field_tag :name, params[:name] %>
 
       <label>Product Type</label>
-      <%= select_tag "product_type_id", options_from_collection_for_select(product_types, "id", "name"), :include_blank => true %>
+      <%= select_tag "product_type_id", options_from_collection_for_select(product_types, "id", "name"), include_blank: true %>
 
       <div style="text-align:center; margin-top: 15px">
-        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        <%= submit_tag "Search", name: nil, class: 'button red-button' %>
       </div>
       </p>
       <div id="order_hidden">

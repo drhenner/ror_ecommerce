@@ -1,11 +1,11 @@
 
   <%= f.error_messages %>
 <ul>
-  <li class="field three">
+  <li class="field three large-3">
     <%= f.label :product_id %>
-    <%= f.select :product_id, products, :include_blank => true %>
+    <%= f.select :product_id, products, include_blank: true %>
   </li>
-  <li class="field three">
+  <li class="field three large-3">
     <%= f.label :percent_off %>
     <%= f.text_field :percent_off %>
   </li>

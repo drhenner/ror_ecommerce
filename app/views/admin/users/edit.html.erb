@@ -2,7 +2,7 @@
 
 <%= link_to "Show #{@user.name}", admin_user_path(@user), class: 'tiny success button' %>
 
-<%= form_for @user, :url => admin_user_path(@user)  do |form| %>
-  <%= render :partial => '/admin/users/form', :locals => {:form => form} %>
-  <%= form.submit "Update", :class => 'button' %>
+<%= form_for @user, url: admin_user_path(@user)  do |form| %>
+  <%= render partial: '/admin/users/form', locals: { form: form } %>
+  <%= form.submit "Update", class: 'button' %>
 <% end %>

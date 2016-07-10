@@ -5,7 +5,7 @@
 
 <% content_for :sidemenu do %>
   <div class='admin_filters'>
-    <%= form_tag admin_shopping_users_path, :method => 'get', :id => "shopping_users_search" do %>
+    <%= form_tag admin_shopping_users_path, method: 'get', id: "shopping_users_search" do %>
       <p>
         <ul class=' search_boxes'>
           <li><%= label_tag 'first_name' %> <%= text_field_tag :first_name, params[:first_name] %></li>
@@ -13,7 +13,7 @@
           <li><%= label_tag 'email' %> <%= text_field_tag :email, params[:email] %></li>
         </ul>
         <div style='text-align:center'>
-        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        <%= submit_tag "Search", name: nil, class: 'button red-button alert' %>
         </div>
       </p>
       <div id="users">
@@ -31,7 +31,6 @@
 <div id="admin_shopping_users_page_wrapper">
   <div id="admin_shopping_users_grid_wrapper" class='column pretty_table'>
 
-
       <table>
         <thead>
         <tr class='odd'>
@@ -43,7 +42,7 @@
         </thead>
         <% @users.each do |user| %>
           <tr class='<%= cycle("odd", "")%>'>
-            <td><%= link_to user.first_name, admin_shopping_users_path(:user_id => user.id), :method => 'POST' %></td>
+            <td><%= link_to user.first_name, admin_shopping_users_path(user_id: user.id), method: 'POST' %></td>
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
             <td><%= user.state %></td>
@@ -51,12 +50,11 @@
         <% end %>
       </table>
 
-
     <%= will_paginate @users %>
 
   </div>
 
 </div>
-<%= form_tag admin_shopping_users_path, :id => 'admin-user-form' do %>
-  <%= hidden_field_tag('user_id', nil, :id => 'admin-user_id') %>
+<%= form_tag admin_shopping_users_path, id: 'admin-user-form' do %>
+  <%= hidden_field_tag('user_id', nil, id: 'admin-user_id') %>
 <% end %>
