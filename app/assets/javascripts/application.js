@@ -4,5 +4,4 @@
 //= require_tree  ./jquery
 //= require_tree  ./layout
 //= require foundation
-
 $(function(){ $(document).foundation(); });

@@ -3,37 +3,41 @@
   <%= stylesheet_link_tag 'tables.css' %>
 <% end %>
 
-<div class='nine large-9 columns'>
+<div class=' large-9 columns'>
   <h3> Order # <%= @order.number %> </h3>
 
-  <div class='pretty_table ten'>
+  <div class='pretty_table large-10'>
     <table style='margin: 0;'>
       <tbody>
         <tr>
-          <td class='left-align'> Number: </td><td> <%= @order.number %> </td>
+          <td class='text-left'> Number: </td><td class='text-left'> <%= @order.number %> </td>
         </tr>
         <tr>
-          <td class='left-align'> Completed at: </td><td> <%= @order.display_completed_at %> </td>
+          <td class='text-left'> Completed at: </td><td class='text-left'> <%= @order.display_completed_at %> </td>
         </tr>
         <tr>
-          <td class='left-align'> Shipping Address: </td>
-          <td>
-            <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} if @order.ship_address_id%>
+          <td class='text-left'> Shipping Address: </td>
+          <td class='text-left'>
+            <%= render partial: '/shared/compact_address',
+                       locals: { shopping_address: @order.ship_address } if @order.ship_address_id %>
           </td>
         </tr>
         <tr>
-          <td class='left-align'> Billing Address: </td>
-          <td>
-            <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} if @order.bill_address_id %>
+          <td class='text-left'> Billing Address: </td>
+          <td class='text-left'>
+            <%= render partial: '/shared/compact_address',
+                       locals: { shopping_address: @order.bill_address } if @order.bill_address_id %>
           </td>
         </tr>
 
         <tr>
-          <td COLSPAN=2> Items </td>
+          <td COLSPAN=2> <strong>Items</strong> </td>
         </tr>
         <% @order.order_items.each do |item| %>
           <tr>
-            <td class='left-align' COLSPAN=2> <%= item.variant.product_name %> </td>
+            <td class='text-left' COLSPAN=2>
+              <%= link_to item.variant.product_name, product_path(item.variant.product) %>
+            </td>
           </tr>
         <% end %>
       </tbody>

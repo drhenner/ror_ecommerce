@@ -32,5 +32,6 @@ Rails.application.config.assets.precompile += [ 'admin.css',
                                                 'tables.css',
                                                 'cupertino/jquery-ui-1.8.12.custom.css',# in vendor
                                                 'modstyles.css', # in vendor
-                                                'scaffold.css' # in vendor
+                                                'scaffold.css', # in vendor
+                                                'vendor/modernizr.js'
                                                 ]

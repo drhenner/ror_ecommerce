@@ -1,7 +1,7 @@
-<div class='nine large-9 columns'>
-  <h3> <%= current_user.name %> Store Credits </h3>
+<div class=' large-9 columns'>
+  <h3> Store Credits </h3>
 
   <p id='users-credits' class=''>
-      You currently have <%= number_to_currency @store_credit.amount %> worth of credits.
+    You currently have <strong><%= number_to_currency @store_credit.amount %></strong> worth of credits.
   </p>
 </div>

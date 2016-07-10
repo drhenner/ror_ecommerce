@@ -8,7 +8,7 @@ loop_footer_tabs = {
 
 <div id="footer_wrapper" class='row'>
   <div  class='nine large-9 columns'>
-    <ul id='main-footer-tabs' class='inline-list'>
+    <ul id='main-footer-tabs' class='menu '>
       <% loop_footer_tabs.each_pair do |tab_name, tab_path| %>
         <li> <%= link_to_unless_current tab_name, tab_path %> </li>
       <% end %>

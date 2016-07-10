@@ -19,6 +19,9 @@
   border-left:1px solid #e5eff8;
   padding:.3em 1em;
   text-align:center;
+  &.text-left {
+    text-align:left;
+  }
 }
 
 .pretty_table thead tr .column1_header {

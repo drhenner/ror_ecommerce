@@ -5,7 +5,7 @@
 
 
 
-<div id='cart-items-wrapper' class='items-wrapper nine coloumns last'>
+<div id='cart-items-wrapper' class='items-wrapper large-9 coloumns last'>
   <% if  @cart_items.blank? && @saved_cart_items.empty? %>
     <h2 style='text-align:center;'> <%= I18n.t(:nothing_in_cart) %></h2>
   <% elsif  @cart_items.blank? %>
@@ -16,7 +16,7 @@
   <%= form_for session_cart, url: shopping_cart_item_path(session_cart), html: {class: 'custom'}, :as => :cart do |cart_form| %>
 
     <% unless @cart_items.blank? %>
-      <div id='update-cart-wrapper' class='ten large-10 columns'>
+      <div id='update-cart-wrapper' class=' large-10 columns'>
 
           <div id='update_all_cart' class="small-gradientbuttons ">
             <ul class=' seven large-7 '>
@@ -31,13 +31,13 @@
           </div>
 
       </div>
-      <div  class='two large-2 columns' style='margin-top: 3px;text-align: right;'>
+      <div  class=' large-2 columns' style='margin-top: 3px;text-align: right;'>
         <%= cart_form.submit 'checkout', {:checkout => 1, :class => 'small button success'} %>
       </div>
 
       <div class="clear"></div>
     <% end %>
-    <div class='twelve columns'>
+    <div class='large-12 columns'>
       <table width="100%" cellspacing="0" cellpadding="0" border="0" style='border: 0px solid #FFF;'>
         <tbody>
           <% unless @cart_items.blank? %>

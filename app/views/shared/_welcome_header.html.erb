@@ -1,99 +1,95 @@
-<div class="">
-  <nav class="top-bar">
+<div class="top-bar">
+  <div class="top-bar-left">
 
-    <ul class="title-area">
+    <ul class="dropdown menu" data-dropdown-menu>
       <!-- Title Area -->
-      <li class="name">
-        <h1>
+      <li class="menu-text">
+        <h1 class="menu-text">
           <%= link_to site_name, root_path %>
         </h1>
       </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-      <!-- Left Nav Section -->
-    <section class="top-bar-section">
-      <ul class="left">
-        <li class="divider"></li>
-        <li class="has-dropdown">
-          <%= link_to 'Products', products_path, :class => 'active' %>
-          <ul class="dropdown">
-            <%- if nil # This is how you add a dropdown that slides to the right %>
-              <li class="has-dropdown">
-                <a href="#" class="">Level 1 &rarr;</a>
-                <ul class="dropdown">
-                  <li><a href="#">Add Link here</a></li>
-                  <li><a href="#">Add Link 2 here</a></li>
-                </ul>
-              </li>
-            <%- end -%>
-            <% product_types.each do |pt_tab| %>
-              <li> <%= link_to pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id) %> </li>
-            <%- end -%>
-            <li class="divider"></li>
-            <li>
-              <%= link_to 'All Products', products_path %>
+
+      <li class="divider"></li>
+      <li class="">
+        <%= link_to 'Products', products_path, :class => 'active' %>
+        <ul class="menu vertical">
+          <%- if nil # This is how you add a dropdown that slides to the right %>
+            <li class="">
+              <a href="#" >Level 1 &rarr;</a>
+              <ul class="menu">
+                <li><a href="#">Add Link here</a></li>
+                <li><a href="#">Add Link 2 here</a></li>
+              </ul>
             </li>
-          </ul>
-        </li>
-        <li class="divider hide-for-small"></li>
-      </ul>
+          <%- end -%>
+          <% product_types.each do |pt_tab| %>
+            <li> <%= link_to pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id) %> </li>
+          <%- end -%>
+          <li class="divider"></li>
+          <li>
+            <%= link_to 'All Products', products_path %>
+          </li>
+        </ul>
+      </li>
+      <li class="divider hide-for-small"></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <!-- Right Nav Section -->
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="divider show-for-medium-and-up"></li>
+      <li class="">
+        <%= link_to( 'Your Cart', shopping_cart_items_path) %>
+        <ul class="menu vertical">
 
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="divider show-for-medium-and-up"></li>
-        <li class="has-dropdown">
-          <%= link_to( 'Your Cart', shopping_cart_items_path) %>
-          <ul class="dropdown">
-
-            <% if session_cart.shopping_cart_items.size > 0 %>
-              <li>
-              <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
-                 <strong> Items </strong>
-              <% end %>
-              </li>
-              <li class="divider"></li>
-              <% session_cart.shopping_cart_items.each do |item| %>
-                <li>
-                  <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
-                     <%= item.name %>
-                  <% end %>
-                </li>
-              <% end %>
-            <% else %>
-              <li class="divider"></li>
-              <li>
-                <%= link_to( 'Your cart is Empty!', shopping_cart_items_path) %>
-              </li>
+          <% if session_cart.shopping_cart_items.size > 0 %>
+            <li>
+            <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
+               <strong> Items </strong>
             <% end %>
-          </ul>
-        </li>
-        <li class="has-dropdown">
-          <%= link_to myaccount_overview_path do %>
-            Your Account
-          <% end %>
-          <ul class="dropdown">
-            <% unless current_user %>
-              <li><%= link_to 'Login',  login_path %></li>
-            <% else %>
-              <% if current_user.admin? %>
-                <li><%= link_to 'Admin', admin_users_path %></li>
-              <% end %>
-              <li class="divider"></li>
+            </li>
+            <li class="divider"></li>
+            <% session_cart.shopping_cart_items.each do |item| %>
               <li>
-                <%= link_to myaccount_overview_path do %>
-                  <label>Account</label>
+                <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
+                   <%= item.name %>
                 <% end %>
               </li>
-              <li><%= link_to raw('Orders &rarr;' ), myaccount_orders_path %></li>
-              <li><%= link_to 'Addresses', myaccount_addresses_path %></li>
-              <li><%= link_to 'Credit Cards', myaccount_credit_cards_path %></li>
-              <li><%= link_to 'Credits', myaccount_store_credit_path %></li>
-              <li class="divider"></li>
-              <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
             <% end %>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </nav>
+          <% else %>
+            <li class="divider"></li>
+            <li>
+              <%= link_to( 'Your cart is Empty!', shopping_cart_items_path) %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <li class="">
+        <%= link_to myaccount_overview_path do %>
+          Your Account
+        <% end %>
+        <ul class="menu vertical">
+          <% unless current_user %>
+            <li><%= link_to 'Login',  login_path %></li>
+          <% else %>
+            <% if current_user.admin? %>
+              <li><%= link_to 'Admin', admin_users_path %></li>
+            <% end %>
+            <li class="divider"></li>
+            <li>
+              <%= link_to myaccount_overview_path do %>
+                <label>Account</label>
+              <% end %>
+            </li>
+            <li><%= link_to raw('Orders &rarr;' ), myaccount_orders_path %></li>
+            <li><%= link_to 'Addresses', myaccount_addresses_path %></li>
+            <li><%= link_to 'Credit Cards', myaccount_credit_cards_path %></li>
+            <li><%= link_to 'Credits', myaccount_store_credit_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </div>

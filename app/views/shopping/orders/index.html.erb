@@ -8,7 +8,7 @@
     <div id='order-items-summary'>
       <% i = 1 %>
       <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
-        <div id='order-item-<%= i %>' class='panel'>
+        <div id='order-item-<%= i %>' class='callout'>
           <%= render :partial => 'order_item', :locals => {:items => items } %>
         </div>
         <% i += 1 %>
@@ -16,14 +16,14 @@
     </div>
     <div class='row'>
       <div id='final-order-shipping-address' class=' four large-6 columns radius' >
-        <div class='panel'>
+        <div class='callout'>
           <h5>Shipping Address</h5>
           <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
           <%= link_to 'Change address', shopping_addresses_path, :class => 'button tiny green' %>
         </div>
       </div>
       <div id='final-order-shipping-address' class=' four large-6 columns radius last' >
-        <div class='panel'>
+        <div class='callout'>
           <h5>Billing Address</h5>
           <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} %>
           <%= link_to 'Change address', shopping_billing_addresses_path, :class => 'button tiny green' %>

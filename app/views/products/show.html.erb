@@ -1,7 +1,6 @@
 
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'product_page.css' %>
-  <%= stylesheet_link_tag 'pikachoose_product.css' %>
 <% end %>
 <div class=''>
 <div id='product' class=''>
@@ -14,44 +13,51 @@
     <% else %>
 
       <div id='left_product_wrapper' class='columns five large-5'>
-         <!-- <ul class='horizontal-list'>
-            <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
-          </ul> -->
-          <% if @product.hero_variant.low_stock? %>
-            <%= image_tag("ribbons/#{@product.hero_variant.stock_status}.png",
-                          :width => 63, :height => 62,
-                          :style => 'border:none;',
-                          :class => 'upper_left_overlay'
-                           ) %>
-          <% end %>
-          <% if @product.images.size == 1 %>
-            <ul>
-              <% @product.images.each do |image|%>
-                <li>
-                  <a><%= image_tag(image.photo.url(:large)) %></a>
-                </li>
-              <% end %>
-            </ul>
+
+          <% if @product.images.size >= 1 %>
+            <div class="orbit" role="region" aria-label="<%=@product.name %>" data-orbit data-use-m-u-i="false">
+              <ul class="orbit-container">
+                <button class="orbit-previous"><span class="show-for-sr">Previous</span>&#9664;&#xFE0E;</button>
+                <button class="orbit-next"><span class="show-for-sr">Next</span>&#9654;&#xFE0E;</button>
+                <% @product.images.each_with_index do |image, i|%>
+                  <li class="<%= 'is-active' if i == 0 %> orbit-slide">
+                    <%= image_tag(image.photo.url(:large)) %>
+                    <figcaption class="orbit-caption"><%= image.caption || @product.name %></figcaption>
+                  </li>
+                <% end %>
+              </ul>
+              <nav class="orbit-bullets">
+                <% @product.images.each_with_index do |image, i|%>
+                  <button class="<%= 'is-active' if i == 0 %>" data-slide="<%= i %>">
+                    <span data-slide="<%= i %>" class="show-for-sr"><%= i %></span>
+                    <% if i == 0 %>
+                      <span class="show-for-sr">Current Slide</span>
+                    <% end %>
+                  </button>
+                <% end %>
+              </nav>
+            </div>
           <% elsif @product.images.size == 0 %>
             <ul>
               <li>
                 <a><%= image_tag(@product.featured_image(:large)) %></a>
               </li>
             </ul>
-          <% else %>
-            <ul id="pikame" class="jcarousel-skin-pika">
-              <% @product.images.each do |image|%>
-                <li>
-                  <a><%= image_tag(image.photo.url(:large)) %></a>
-                </li>
-              <% end %>
-            </ul>
           <% end %>
 
       </div>
       <div id='right_2_product_wrapper' class='six columns large-6 last'>
           <div id='right_product_wrapper' class=''>
-            <div class='product_title_name'><%= @product.name %></div>
+            <div class='product_title_name'>
+              <%= @product.name %>
+              <% if @product.hero_variant.low_stock? %>
+                <%= image_tag("ribbons/#{@product.hero_variant.stock_status}_upper_right.png",
+                              :width => 63, :height => 62,
+                              :style => 'border:none;',
+                              :class => 'upper_right_overlay float-right'
+                               ) %>
+              <% end %>
+            </div>
             <% if @product.active_variants.count > 0 %>
               <div class='product_content'>
                 <div class='product_content_price'>
@@ -87,30 +93,24 @@
                   <div  class='clearfix' style='margin-bottom:20px;' >&nbsp;</div>
               </div>
 
-              <div id='product_tabs'  class='' style='padding-bottom:5px;'>
-                <div class="section-container tabs auto" style='height:100%;' data-section data-options="deep_linking: true; ">
-                  <section class="section">
-                    <p class="title"><a >Product</a></p>
-                    <div class="content">
-                      <div><%= raw @product.description %></div>
-                    </div>
-                  </section>
-                  <section class="section">
-                    <p class="title"><a >Properties</a></p>
-                    <div class="content">
-                      <div class=''>
-                        <% @product.active_variants.each_with_index do |var, i| %>
-                          <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
-                            <ul class='vertical-list'>
-                              <% var.variant_properties.each do |prop| %>
-                                <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
-                              <% end %>
-                            </ul>
-                          </div>
+              <ul id='product-tabs' class='tabs' data-tabs>
+                <li class="tabs-title is-active"><a href="#product-description" aria-selected="true">Product</a></li>
+                <li class="tabs-title"><a href="#product-properties">Properties</a></li>
+              </ul>
+              <div class="tabs-content" data-tabs-content="product-tabs">
+                <div class="tabs-panel is-active" id="product-description">
+                  <div><%= raw @product.description %></div>
+                </div>
+                <div class="tabs-panel" id="product-properties">
+                  <% @product.active_variants.each_with_index do |var, i| %>
+                    <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'is-hidden' if i != 0 %>'>
+                      <ul class='vertical-list'>
+                        <% var.variant_properties.each do |prop| %>
+                          <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
                         <% end %>
-                      </div>
+                      </ul>
                     </div>
-                  </section>
+                  <% end %>
                 </div>
               </div>
 
@@ -129,16 +129,5 @@
 
 <% content_for :below_body do -%>
   <%= javascript_include_tag 'shopping/cart.js' %>
-  <%= javascript_include_tag 'jquery.jcarousel.js' %>
-  <%= javascript_include_tag 'jquery.pikachoose.full.js' %>
-
-  <% if @product.images.size > 1 %>
-  <script>
-    $(document).ready(function (){
-        $("#pikame").PikaChoose({autoPlay:true, carousel:false, carouselVertical:false});
-        $('#pikame').data('pikachoose').Pause();
-    });
-  </script>
-  <% end %>
   <%= javascript_include_tag 'product_page.js' %>
 <% end %>
