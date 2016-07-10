@@ -129,16 +129,5 @@
 
 <% content_for :below_body do -%>
   <%= javascript_include_tag 'shopping/cart.js' %>
-  <%#= javascript_include_tag 'jquery.jcarousel.js' %>
-  <%#= javascript_include_tag 'jquery.pikachoose.full.js' %>
-
-  <% if nil && @product.images.size > 1 %>
-  <script>
-    $(document).ready(function (){
-        $("#pikame").PikaChoose({autoPlay:true, carousel:false, carouselVertical:false});
-        $('#pikame').data('pikachoose').Pause();
-    });
-  </script>
-  <% end %>
   <%= javascript_include_tag 'product_page.js' %>
 <% end %>
