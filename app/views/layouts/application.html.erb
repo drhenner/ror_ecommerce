@@ -13,15 +13,14 @@
   <link rel="shortcut icon" href="/assets/favicon.ico" />
 
   <%= stylesheet_link_tag "normalize.css" %>
-  <%= stylesheet_link_tag "foundation_and_overrides.css" %>
+  <%= stylesheet_link_tag "application.css" %>
   <%= stylesheet_link_tag 'site/app.css' %>
-  <%= javascript_include_tag 'vendor/custom.modernizr' %>
 
-    <!--[if lt IE 8]
-  <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
+  <!--[if lt IE 8]
+  <%= stylesheet_link_tag('ie.css', media: 'screen, projection')%>
   <![endif]-->
   <!--[if lt IE 7]
-      <%= stylesheet_link_tag 'ie6.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag('ie6.css', media: 'screen, projection') %>
   <![endif]-->
   <%= csrf_meta_tag %>
 
@@ -33,21 +32,25 @@
 <body >
 <div id='body_wrapper'>
 
-  <%= render :partial => '/shared/welcome_header'%>
+  <%= render partial: '/shared/welcome_header'%>
 
   <% if notice || alert %>
-    <div class="row">
-      <% if notice || alert %>
-        <div class="flash_messages">
-          <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a></div>"  if notice %>
-          <%= raw "<div data-alert class='alert-box alert'>#{alert} <a href='' class='close'>&times;</a></div>"     if alert %>
+      <div class="flash_notice callout <%= !!alert ? 'alert' : 'warning' %>" data-closable>
+        <div>
+        <% if alert %>
+          <%= alert %>
+        <% elsif notice %>
+          <%= notice %>
+        <% end %>
         </div>
-      <% end %>
-    </div>
+        <button class="close-button" aria-label="Close alert" type="button"  data-close>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
   <% end %>
 
     <div id='content_wrapper' class='row <%= "myaccount" if myaccount_tab %> '>
-      <%  if myaccount_tab %>
+      <% if myaccount_tab %>
         <h1 style='text-align:center;'><%= site_name %></h1>
         <hr class="first_double_hr">
         <hr class="second_double_hr">

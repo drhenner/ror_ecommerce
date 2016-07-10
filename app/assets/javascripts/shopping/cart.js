@@ -25,14 +25,18 @@ if (typeof Hadean.Cart.newForm == "undefined") {
       jQuery('.variant_select').click( function() {
 
           jQuery('.variant_properties').each( function(index, obj) {
-            jQuery(obj).removeClass('selected');
+            jQuery(obj).addClass('is-hidden');
           });
 
           var propId = '#variant_properties_' + $(this).data("variant_id");
-        $( propId ).addClass('selected');
+          jQuery(propId).removeClass('is-hidden');
           jQuery('#cart_item_variant_id').val($(this).data("variant_id"));
+          jQuery(".variant_select").removeClass('success');
+          jQuery(".variant_select").addClass('secondary');
           jQuery(".variant_select").removeClass('selected_variant');
           jQuery(this).addClass('selected_variant');
+          jQuery(this).removeClass('secondary');
+          jQuery(this).addClass('success');
           //jQuery('#submit_add_to_cart').removeClass('add-to-cart').addClass('ready-to-add-to-cart');
         }
       );

@@ -1,4 +1,4 @@
-<div class='three large-3 columns'>
+<div class='large-3 columns'>
     <% if content_for? :account_title %>
       <h3><%= yield :account_title %></h3>
     <% else %>
@@ -6,7 +6,7 @@
     <% end %>
 
   <div id='myaccount-header-menu'>
-    <ul  class=" side-nav">
+    <ul  class=" menu vertical ">
       <li <%= selected_myaccount_tab('address') ? 'class=active' : '' %>>
         <%= link_to 'Addresses', myaccount_addresses_path() %></li>
       <li <%= selected_myaccount_tab('credit_cards') ? 'class=active' : '' %>>
@@ -20,8 +20,6 @@
       <li <%= selected_myaccount_tab('referrals') ? 'class=active' : '' %>>
         <%= link_to 'Referrals', myaccount_referrals_path() %>
       </li>
-
-
     </ul>
   </div>
 </div>

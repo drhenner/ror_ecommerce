@@ -7,6 +7,23 @@ $hadean_orange            : #c6481a;
 $inline_error            : #8A1F11;
 $error_border            : #FBC2C4;
 $error_background         : #FBE3E4;
+.upper_left_overlay {
+  position:relative;
+  left:0px;
+  top:0px;
+  width: 50px;
+  height: 50px;
+}
+.upper_left_overlay:after
+{
+  content: '';
+  position: relative;
+  width: 50px;
+  height: 50px;
+  top: 5px;
+  left: 5px;
+  background-color: red;
+}
 #content_wrapper {
   #product {
     font-family: "MyriadPro", "Lucida Sans Unicode", "Lucida Grande", sans-serif;

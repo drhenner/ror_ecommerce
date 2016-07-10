@@ -6,7 +6,8 @@ class Myaccount::StoreCreditsController < Myaccount::BaseController
 
   private
 
-    def selected_myaccount_tab(tab)
-      tab == 'store_credit'
-    end
+  def selected_myaccount_tab(tab)
+    tab == 'store_credit'
+  end
+
 end

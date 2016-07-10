@@ -1,5 +1,5 @@
-<div class='five large-5 column'>
-  <h4> <%= current_user.name %> Profile </h4>
+<div class='large-5 column'>
+  <h4> <strong><%= current_user.name.possessive %> Profile </strong></h4>
 
   <ul id='profile_details' >
     <li>
@@ -13,19 +13,20 @@
   </ul>
 </div>
 
-<div class='four large-4 column'>
+<div class=' large-4 column'>
   <div>
-    <h4> Address </h4>
+    <h4> <strong>Address</strong> </h4>
     <% if current_user.shipping_address %>
-      <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => current_user.shipping_address } %>
+      <%= render partial: '/shared/compact_address', locals: { shopping_address: current_user.shipping_address } %>
       <%= link_to "Edit", edit_myaccount_address_path(current_user.shipping_address) %>
     <% else %>
       No Address Saved.<br/>
       <%= link_to "New", new_myaccount_address_path() %>
     <% end %>
   </div>
+  <br/>
   <div>
-    <h4> Store Credits </h4>
+    <h4> <strong>Store Credits</strong> </h4>
     <%= number_to_currency current_user.store_credit.amount %>
   </div>
 </div>
