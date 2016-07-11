@@ -9,7 +9,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def show
-    @product        = Product.find(params[:id])
+    @product        = Product.friendly.find(params[:id])
     @shipping_zones =  ShippingZone.all
     respond_to do |format|
       format.html
@@ -44,12 +44,12 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def edit
-    @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
+    @product        = Product.friendly.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
     form_info
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
 
     if @product.update_attributes(allowed_params)
       redirect_to admin_merchandise_product_url(@product)
@@ -60,7 +60,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def add_properties
-    prototype  = Prototype.includes(:properties).find(params[:id])
+    prototype  = Prototype.friendly.includes(:properties).find(params[:id])
     @properties = prototype.properties
     all_properties = Property.all
 
@@ -79,7 +79,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def activate
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
     @product.deleted_at = nil
     if @product.save
       redirect_to admin_merchandise_product_url(@product)
@@ -94,7 +94,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
     @product.deleted_at ||= Time.zone.now
     @product.save
 

@@ -9,18 +9,16 @@
   </div>
 <% end %>
 
-<fieldset>
-  <legend>Images - <%= add_child_link "New Image", :images %></legend>
-
-  <%= new_child_fields_template form, :images, :form_builder_local => :image_form %>
-
-  <div id="product_images" class='span-16'>
+<div>
+  <div id="product_images">
+    <%= new_child_fields_template form, :images, :form_builder_local => :image_form %>
     <% @product.images.each do |image| %>
-      <div id='image_<%= image.id %>' class="variant_form left span-16 last">
+      <div id='image_<%= image.id %>'  style='padding-bottom:10px;'>
         <%= form.fields_for :images, image do |image_form|%>
-          <%= render :partial => 'image', :locals => {:image_form => image_form } %>
+          <%= render partial: 'image', locals: { image_form: image_form } %>
         <% end %>
       </div>
     <% end %>
   </div>
-</fieldset>
+  <strong><%= add_child_button "New Image", :images, 'float-right small' %></strong>
+</div>

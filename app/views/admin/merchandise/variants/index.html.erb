@@ -1,4 +1,4 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header'%>
 
 <% content_for :head do -%>
   <%#= javascript_include_tag "admin/index_grid" %>
@@ -18,7 +18,7 @@
           -->
         </ul>
         <div style='text-align:center'>
-          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+          <%= submit_tag "Search", name: nil, class: 'button red-button alert' %>
         </div>
       </p>
       <div id="order_hidden">
@@ -57,13 +57,13 @@
 
   </div>
 
-  <div id="admin_new_variant_button" class="admin_new_button three columns">
+  <div id="admin_new_variant_button" class="admin_new_button three large-3 columns">
     <%= link_to "New Variant", new_admin_merchandise_product_variant_path(@product),
-                                :class  => "button green small",
+                                :class  => "button success small",
                                 :id     => "new_product_button" %>
   </div>
 
-  <div id="admin_product_button" class="admin_product_button three columns">
+  <div id="admin_product_button" class="admin_product_button three large-3 columns">
     <%= link_to "Back to Product", admin_merchandise_product_path(@product),
                                 :class  => "button spade small",
                                 :id     => "" %>

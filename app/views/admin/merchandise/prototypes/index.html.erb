@@ -2,14 +2,14 @@
 
 <% content_for :sidemenu do %>
   <div class='admin_filters'>
-    <%= form_tag admin_merchandise_prototypes_path, :method => 'get', :id => "products_search" do %>
+    <%= form_tag admin_merchandise_prototypes_path, method: 'get', id: "products_search" do %>
       <%= hidden_field_tag :direction, params[:direction] %>
       <%= hidden_field_tag :sort, params[:sort] %>
 
       <label>Name</label>
       <%= text_field_tag :name, params[:name] %>
       <div style="text-align:center">
-        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        <%= submit_tag "Search", name: nil, class: 'button red-button alert' %>
       </div>
     <% end %>
   </div>
@@ -17,7 +17,7 @@
 
 <div class='admin_title_header'>
   <h3>Prototypes</h3>
-  <%= link_to "New Prototype", new_admin_merchandise_prototype_path, :class  => "button"%>
+  <%= link_to "New Prototype", new_admin_merchandise_prototype_path, class: "button"%>
 </div>
 
 <div class="admin_prototypes">

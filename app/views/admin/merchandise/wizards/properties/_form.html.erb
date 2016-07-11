@@ -1,18 +1,18 @@
-    <div class='span-3'>
+    <div>
       <%= form.label :identifing_name %>
     </div>
-    <div class='span-5 last'>
-      <%= form.text_field :identifing_name, :class => 'span-4' %>
+    <div class='last'>
+      <%= form.text_field :identifing_name %>
     </div>
-  <p class='span-9 clear'>
-    <div class='span-3'>
+  <p class='clear'>
+    <div>
       <%= form.label :display_name %>
     </div>
-    <div class='span-5 last'>
-      <%= form.text_field :display_name, :class => 'span-4' %>
+    <div class=' last'>
+      <%= form.text_field :display_name %>
     </div>
   </p>
 
 <div class=" generic_submit_button">
-  <%= submit_tag "Create", :class => "button", :id => "create_product_type_button" %>
+  <%= submit_tag "Create", class: "button", id: "create_product_type_button" %>
 </div>

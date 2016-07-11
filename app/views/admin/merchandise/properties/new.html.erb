@@ -1,4 +1,4 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header'%>
 
 <h3>New Property</h3>
 
@@ -8,8 +8,8 @@
 </p>
 
 <%= form_for @property, :url  => admin_merchandise_properties_path do |form| %>
-  <%= render :partial => '/admin/merchandise/properties/form', :locals => {:form => form } %>
+  <%= render partial: '/admin/merchandise/properties/form', locals: { form: form } %>
   <div class=" generic_submit_button">
-    <%= submit_tag "Create", :class => "button", :id => "create_property_button" %>
+    <%= submit_tag "Create", class: "button", id: "create_property_button" %>
   </div>
 <% end %>

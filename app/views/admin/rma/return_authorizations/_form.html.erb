@@ -24,7 +24,7 @@
   <div id="return_items" class=' large-6'>
     <% @order.order_items.each do |item| %>
       <div  id='image_<%= item.id %>'
-            class="variant_form left  last">
+            class="variant_form left last">
         <% return_item = @return_authorization.return_items.detect {|p| p.order_item_id == item.id } %>
         <% return_item = return_item || ReturnItem.new(:order_item => item) %>
         <% return_item.updated_by = current_user.id %>
@@ -47,7 +47,7 @@
       <%= comment_form.hidden_field :created_by %>
     <div class="field ">
       <%= comment_form.label :note %><br />
-      <%= comment_form.text_area :note, :class => 'span-8 height-40' %>
+      <%= comment_form.text_area :note, :class => ' height-40' %>
     </div>
     <% end %>
   </div>

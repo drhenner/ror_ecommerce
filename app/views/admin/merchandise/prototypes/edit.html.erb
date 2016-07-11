@@ -1,8 +1,8 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header'%>
 
 <h3>Editing Prototype <%= @prototype.name %></h3>
 
-<%= form_for @prototype, :url  => admin_merchandise_prototype_path(@prototype) do |form| %>
-  <%= render :partial => '/admin/merchandise/prototypes/form', :locals => {:form => form} %>
-  <%= submit_tag "Update", :class  => "button" %>
+<%= form_for @prototype, url: admin_merchandise_prototype_path(@prototype) do |form| %>
+  <%= render partial: '/admin/merchandise/prototypes/form', locals: { form: form } %>
+  <%= submit_tag "Update", class: "button" %>
 <% end %>

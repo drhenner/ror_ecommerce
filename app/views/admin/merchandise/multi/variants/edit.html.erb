@@ -9,11 +9,11 @@
   </div>
   <div class='clearfix'></div>
   <div class=" generic_submit_button">
-    <%= link_to("New Variant", "javascript:void(0);", class: "add_variant_child button", "data-association" => :variants) %>
+    <%= link_to("New Variant", "javascript:void(0);", class: "add_variant_child button small secondary", "data-association" => :variants) %>
     <%= submit_tag "Update",
-                    class:  "button",
+                    class:  "button small",
                     id:     "update_product_button" %>
-    <%= link_to 'Back to Product',     admin_merchandise_product_path(@product), class: 'button' %>
+    <%= link_to 'Back to Product',     admin_merchandise_product_path(@product), class: 'button small secondary' %>
   </div>
 
 <% end %>

@@ -2,10 +2,14 @@
 
 <h3>Add Product Images</h3>
 
-<%= form_for @product, :url  => admin_merchandise_images_product_path(@product), :multipart => true do |form| %>
-  <%= render :partial => '/admin/merchandise/images/products/form', :locals => {:form => form} %>
-  <%= submit_tag "Create", :class  => "button" %>
+<div style='margin-bottom:10px;'>
+  <strong><%= @product.name.possessive %> Images</strong>
+</div>
+
+<%= form_for @product, url: admin_merchandise_images_product_path(@product), multipart: true do |form| %>
+  <%= render partial: '/admin/merchandise/images/products/form', locals: { form: form } %>
+  <%= submit_tag "Create", class: "button small" %>
 <% end %>
 
-<%= link_to 'View Images', admin_merchandise_images_product_path(@product), :class  => "button"%>
-<%= link_to 'Product Details', admin_merchandise_product_path(@product), :class  => "button" %>
+<%= link_to 'View Images', admin_merchandise_images_product_path(@product), class: "button small secondary"%>
+<%= link_to 'Product Details', admin_merchandise_product_path(@product),    class: "button small secondary" %>

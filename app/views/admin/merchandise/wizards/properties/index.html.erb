@@ -1,4 +1,4 @@
-<%= render :partial => '/admin/merchandise/wizards/sub_header'%>
+<%= render partial: '/admin/merchandise/wizards/sub_header'%>
 
 <% if  @properties.empty? %>
   <h3>New Property</h3>
@@ -6,7 +6,7 @@
   <h3>Pick a Property</h3>
 <% end %>
 
-<%= form_for @property, :url => admin_merchandise_wizards_property_path(:id => 0), :method => 'PUT' do |product_form| %>
+<%= form_for @property, url: admin_merchandise_wizards_property_path(:id => 0), method: 'PUT' do |product_form| %>
   <div id='properties_selections' class='four large-4 last'>
     <%= select_tag 'property[ids][]',
                     options_from_collection_for_select(@properties, "id", "full_name", @selected),
@@ -22,8 +22,8 @@
   <h2>New Property</h2>
   <p>If all the you want properties don't exist, create it now.</p>
 <% end %>
-<%= form_for @property, :url => admin_merchandise_wizards_properties_path do |property_form| %>
-  <%= render :partial =>  'form', :locals => {:form => property_form}  %>
+<%= form_for @property, url: admin_merchandise_wizards_properties_path do |property_form| %>
+  <%= render partial: 'form', locals: { form: property_form } %>
 <% end %>
 
 <% unless  @prototypes.empty? %>
@@ -34,7 +34,7 @@
       <div class='six large-6 column <%= cycle '', '', 'last' %>'>
         <label><%= prototype.name %></label>
         <%= button_to 'Use', admin_merchandise_wizards_prototype_path(prototype),
-                      :class => 'button spade inline-block',
+                      :class => 'button secondary inline-block',
                       :method => :put %>
       </div>
 

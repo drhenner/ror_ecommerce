@@ -10,7 +10,7 @@
 
 
       <div  id='order-items'
-            class='span-8 rounded-10 line_item_blue float-left'>
+            class='rounded-10 line_item_blue float-left'>
         <% @return_authorization.return_items.each do |item| %>
           <%= item.order_item.variant.product_name %> <br/>
         <% end %>
