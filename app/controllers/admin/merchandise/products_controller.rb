@@ -5,7 +5,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   def index
     params[:page] ||= 1
     @products = Product.admin_grid(params).order(sort_column + " " + sort_direction).
-                                              paginate(:page => pagination_page, :per_page => pagination_rows)
+                                              paginate(page: pagination_page, per_page: pagination_rows)
   end
 
   def show
