@@ -1,61 +1,61 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header'%>
 
 <h2> Product: <%= @product.name %> (<%= '*' if @variant.master %><%= @variant.sku %>)</h2>
 
 <%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'button small' %>
-<%= link_to 'Edit Variant', edit_admin_merchandise_product_variant_path(@product, @variant), :class => 'button' %>
+<%= link_to 'Edit Variant', edit_admin_merchandise_product_variant_path(@product, @variant), class: 'button' %>
 
-<fieldset id="admin-product-names" class='span-12'>
+<fieldset id="admin-product-names">
 
 <div class='clear'></div>
-<div class='span-3'>
+<div>
   <%= label :variant, :sku %>
 </div>
-<div class='span-6 last'>
+<div>
   <%= @variant.sku %>
 </div>
 <div class='clear'></div>
-<div class='span-3'>
+<div>
   <%= label :variant, :price %>
 </div>
-<div class='span-6 last'>
+<div>
   <%= @variant.price %>
 </div>
 
 <div class='clear'></div>
-<div class='span-3'>
+<div>
   <%= label :variant, :cost %>
 </div>
-<div class='span-6 last'>
+<div>
   <%= @variant.cost %>
 </div>
 
 <div class='clear'></div>
-<div class='span-3'>
+<div>
   <%= label :variant, :count_on_hand %>
 </div>
-<div class='span-6 last'>
+<div>
   <%= @variant.count_on_hand %>
 </div>
 
 <div class='clear'></div>
-<div class='span-3'>
+<div>
   <%= label :variant, :count_pending_to_customer %>
 </div>
-<div class='span-6 last'>
+<div>
   <%= @variant.count_pending_to_customer %>
 </div>
 
 <div class='clear'></div>
-<div class='span-3'>
+<div>
   <%= label :variant, :count_pending_from_supplier %>
 </div>
-<div class='span-6 last'>
+<div>
   <%= @variant.count_pending_from_supplier %>
 </div>
 </fieldset>
 
-<fieldset id="admin-product-properties" class='span-12'>
+<fieldset id="admin-product-properties">
   <legend>Properties</legend>
   <% @variant.variant_properties.each do |variant_prop|  %>
     <%= variant_prop.property.identifing_name %>: <%= variant_prop.description %> <br/>
@@ -64,5 +64,5 @@
 <% if @variant.active? %>
   <%= link_to 'Inactivate Variant',
               admin_merchandise_product_variant_path(@product, @variant),
-              :class => 'button red-button', :method => :delete, :data => {:confirm => "Are you sure?"} %>
+              class: 'button red-button alert', method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>

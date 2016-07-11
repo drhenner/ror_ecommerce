@@ -10,12 +10,12 @@
     <div class='six large-6 column box <%= cycle( '', 'last') %> <%= 'selected' if selected?(product_type.id) %> '>
       <label><%= product_type.name %></label><br/>
       <%= button_to 'Use', admin_merchandise_wizards_product_type_path(product_type),
-                    :class => "button spade inline-block  ",
-                    :method => :put %>
+                    class: "button secondary inline-block  ",
+                    method: :put %>
     </div>
   <% end %>
 </div>
 
-<%= form_for @product_type, :url => admin_merchandise_wizards_product_types_path do |product_type_form| %>
-  <%= render :partial =>  'form', :locals => {:form => product_type_form}  %>
+<%= form_for @product_type, url: admin_merchandise_wizards_product_types_path do |product_type_form| %>
+  <%= render partial: 'form', locals: { form: product_type_form } %>
 <% end %>

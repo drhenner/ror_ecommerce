@@ -9,7 +9,7 @@
   <% @brands.each do |brand| %>
     <div class='six large-6 column box <%= cycle( '', 'last') %> <%= 'selected' if selected?(brand.id) %> '>
       <label><%= brand.name %></label><br/>
-      <%= button_to 'Use', admin_merchandise_wizards_brand_path(brand), :class => "button spade inline-block", :method => :put %>
+      <%= button_to 'Use', admin_merchandise_wizards_brand_path(brand), class: "button secondary inline-block", method: :put %>
     </div>
   <% end %>
 </div>
@@ -19,6 +19,6 @@
 <% unless  @brands.empty? %>
   <h3>Create a New Brand</h3>
 <% end %>
-<%= form_for @brand, :url => admin_merchandise_wizards_brands_path do |brand_form| %>
-  <%= render :partial =>  'form', :locals => {:f => brand_form}  %>
+<%= form_for @brand, url: admin_merchandise_wizards_brands_path do |brand_form| %>
+  <%= render partial: 'form', locals: { f: brand_form }  %>
 <% end %>

@@ -2,7 +2,7 @@
 
 <% content_for :sidemenu do %>
   <div class='admin_filters'>
-    <%= form_tag admin_merchandise_properties_path, :method => 'get', :id => "products_search" do %>
+    <%= form_tag admin_merchandise_properties_path, method: 'get', id: "products_search" do %>
       <%= hidden_field_tag :direction, params[:direction] %>
       <%= hidden_field_tag :sort, params[:sort] %>
 
@@ -12,7 +12,7 @@
       <label>Display Name</label>
       <%= text_field_tag :display_name, params[:display_name] %>
       <div style='text-align:center'>
-        <%= submit_tag "Search", :name => nil, :class => "button red-button" %>
+        <%= submit_tag "Search", name: nil, class: "button red-button alert" %>
       </div>
     <% end %>
   </div>
@@ -21,7 +21,7 @@
 
 <div class='admin_title_header'>
   <h3>Properties</h3>
-  <%= link_to "New Property", new_admin_merchandise_property_path, :class => "button", :id => "new_property_button" %>
+  <%= link_to "New Property", new_admin_merchandise_property_path, class: "button", id: "new_property_button" %>
 </div>
 
 <div class="admin_properties">

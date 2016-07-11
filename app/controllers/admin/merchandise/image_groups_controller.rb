@@ -4,7 +4,7 @@ class Admin::Merchandise::ImageGroupsController < Admin::BaseController
   helper_method :sort_column, :sort_direction, :products
   def index
     @image_groups = ImageGroup.order(sort_column + " " + sort_direction).
-                                     paginate(:page => pagination_page, :per_page => pagination_rows)
+                                     paginate(page: pagination_page, per_page: pagination_rows)
   end
 
   def show
@@ -18,7 +18,7 @@ class Admin::Merchandise::ImageGroupsController < Admin::BaseController
   def create
     @image_group = ImageGroup.new(allowed_params)
     if @image_group.save
-      redirect_to edit_admin_merchandise_image_group_url( @image_group ), :notice => "Successfully created image group."
+      redirect_to edit_admin_merchandise_image_group_url( @image_group ), notice: "Successfully created image group."
     else
       render :new
     end
@@ -31,7 +31,7 @@ class Admin::Merchandise::ImageGroupsController < Admin::BaseController
   def update
     @image_group = ImageGroup.find(params[:id])
     if @image_group.update_attributes(allowed_params)
-      redirect_to [:admin, :merchandise, @image_group], :notice  => "Successfully updated image group."
+      redirect_to [:admin, :merchandise, @image_group], notice: "Successfully updated image group."
     else
       render :edit
     end

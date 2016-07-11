@@ -5,7 +5,7 @@
       <b>Invoices:</b>
       <% @order.invoices.each do |invoice| %>
           <div  id='order-invoices'
-                class='span-7 rounded-10 '>
+                class='rounded-10 '>
               Number: <%= invoice.number %> <br/>
               State: <%= invoice.state %> <br/>
               at: <%= I18n.localize(invoice.updated_at, :format => :us_time)%><br/>

@@ -1,13 +1,13 @@
 class Admin::Merchandise::Multi::VariantsController < Admin::BaseController
   helper_method :image_groups
   def edit
-    @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:product_id])
+    @product        = Product.friendly.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:product_id])
     form_info
     render :layout => 'admin_markup'
   end
 
   def update
-    @product = Product.find(params[:product_id])
+    @product = Product.friendly.find(params[:product_id])
 
     if @product.update_attributes(allowed_params)
       flash[:notice] = "Successfully updated variants"

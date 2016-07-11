@@ -27,12 +27,12 @@ EXAMPLE USAGE!!
     f.hidden_field(:_destroy) + link_to(name, "javascript:void(0)", :class => "remove_child")
   end
 
-  def add_child_link(name, association)
-    link_to(name, "javascript:void(0);", :class => "add_child", :"data-association" => association)
+  def add_child_link(name, association, classes = '')
+    link_to(name, "javascript:void(0);", class: "add_child #{classes}", :"data-association" => association)
   end
-  
-  def add_child_button(name, association)
-    link_to(name, "javascript:void(0);", :class => "add_child button", :"data-association" => association)
+
+  def add_child_button(name, association, classes = '')
+    link_to(name, "javascript:void(0);", class: "add_child button #{classes}", :"data-association" => association)
   end
 
   def new_child_fields_template(form_builder, association, options = {})

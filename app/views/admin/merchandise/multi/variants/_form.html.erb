@@ -1,19 +1,19 @@
 <%= form.fields_for :variants, Variant.new(product_id: @product.id), child_index: "new_variants" do |ff| %>
   <div id='variants_fields_template' style='display:none;'>
-    <div class='span-6 three large-3  columns new_variant_container'  style='float: left;' >
-      <table class='span-6 ar-sidebar' style='width:240px;' >
+    <div class='three large-3  columns new_variant_container'  style='float: left;' >
+      <table class=' ar-sidebar' style='width:240px;' >
         <tr>
           <td></td>
           <td style='float:right;'> <%= link_to 'remove', '#remove', :class => 'remove_variant_child' %> </td>
         </tr>
         <tr>
-          <td>SKU   </td><td> <%= ff.text_field :sku,   class: 'span-3' %> </td>
+          <td>SKU   </td><td> <%= ff.text_field :sku %> </td>
         </tr><tr>
-          <td>Price </td><td> <%= ff.text_field :price, class: 'span-3' %> </td>
+          <td>Price </td><td> <%= ff.text_field :price %> </td>
         </tr><tr>
-          <td>Cost  </td><td> <%= ff.text_field :cost,  class: 'span-3' %> </td>
+          <td>Cost  </td><td> <%= ff.text_field :cost %> </td>
         </tr><tr>
-          <td>Name  </td><td> <%= ff.text_field :name,  class: 'span-3' %> </td>
+          <td>Name  </td><td> <%= ff.text_field :name %> </td>
         </tr><tr>
           <td>Images  </td><td> <%= ff.select :image_group_id, image_groups,{ include_blank: true, prompt: "Defaults to product's images" } %> </td>
         </tr><tr>
@@ -33,7 +33,7 @@
                   </td>
                   <td >
                       <%= variant_property_form.hidden_field  :property_id %>
-                      <%= variant_property_form.text_field    :description, class: 'span-3' %>
+                      <%= variant_property_form.text_field    :description %>
                   </td >
                 </tr>
               <% end %>
@@ -45,7 +45,7 @@
 <% end %>
 
 <% @product.variants.each do |variant| %>
-  <div class='span-6 three large-3 column ' >
+  <div class=' three large-3 column ' >
     <%= form.fields_for :variants, variant do |ff|%>
       <table class='span-6 ar-sidebar' style='width:240px;'>
         <thead>
@@ -54,18 +54,18 @@
           </tr>
         </thead>
         <tr>
-          <td>SKU   </td><td> <%= ff.text_field :sku,   class: 'span-3' %> </td>
+          <td>SKU   </td><td> <%= ff.text_field :sku %> </td>
         </tr><tr>
-          <td>Price </td><td> <%= ff.text_field :price, class: 'span-3' %> </td>
+          <td>Price </td><td> <%= ff.text_field :price %> </td>
         </tr><tr>
-          <td>Cost  </td><td> <%= ff.text_field :cost,  class: 'span-3' %> </td>
+          <td>Cost  </td><td> <%= ff.text_field :cost %> </td>
         </tr><tr>
-          <td>Name  </td><td> <%= ff.text_field :name,  class: 'span-3' %> </td>
+          <td>Name  </td><td> <%= ff.text_field :name %> </td>
         </tr><tr>
           <td>Images  </td><td> <%= ff.select :image_group_id, image_groups,{ include_blank: true, prompt: "Defaults to product's images" } %> </td>
         </tr>
         <tr>
-          <td>Inactivate </td><td> <%= ff.check_box :inactivate, class: 'span-3' %> </td>
+          <td>Inactivate </td><td> <%= ff.check_box :inactivate %> </td>
         </tr>
           <% @product.properties.each do |property| %>
             <tr style='background:#ACF;text-align:center;'> <th colspan=2> <%= property.display_name %> </th> </tr>
@@ -81,7 +81,7 @@
                   </td>
                   <td >
                       <%= variant_property_form.hidden_field  :property_id %>
-                      <%= variant_property_form.text_field    :description,  class: 'span-3' %>
+                      <%= variant_property_form.text_field    :description %>
                   </td >
                 </tr>
               <% end %>
