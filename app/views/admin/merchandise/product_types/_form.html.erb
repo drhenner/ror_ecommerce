@@ -1,9 +1,9 @@
 <fieldset id="admin-product_type-names">
-  <div class="six columns">
+  <div class="six large-6 columns">
     <label>Name</label>
     <%= form.text_field :name %>
   </div>
-  <div class="six columns">
+  <div class="six large-6 columns">
     <label>Parent</label>
     <%= form.select :parent_id,
                       nested_set_options(ProductType, @product_type) {|i| "#{'-' * i.level} #{i.name}" },

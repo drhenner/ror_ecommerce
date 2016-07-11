@@ -45,7 +45,10 @@ module ProductFilters
 
       def product_type_filter(product_type_id)
         if product_type_id.present?
-          where("products.product_type_id = ?", product_type_id)
+          if product_type_id.present? && product_type = ProductType.find_by_id(product_type_id)
+            product_types = product_type.self_and_descendants.map(&:id)
+          end
+          where(products: { product_type_id: product_types })
         else
           all
         end

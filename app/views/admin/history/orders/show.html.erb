@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
-<div class=' ten column'>
+<div class=' ten large-10 column'>
   <b>Order Information:</b>
   <div  id='order-items'
-        class='panel '>
-      <ul class='vertical-list'>
+        class='panel callout'>
+      <ul class='vertical-list '>
             <li><label>Order Number:</label> <%= @order.number %></li>
             <li><label>Customer:    </label> <%= @order.name %></li>
             <li><label>Email:       </label> <%= @order.email %></li>
@@ -15,10 +15,10 @@
 
 <% if @order.order_items.size > 0 %>
 
-  <div class=' six column'>
+  <div class=' six large-6 column'>
   <b>Items</b>
     <div  id='order-items'
-          class=' panel '>
+          class=' panel callout'>
 
             <% @order.order_items.each do |item| %>
               <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
@@ -27,10 +27,10 @@
   </div>
 
 <% end %>
-<div class=' six column'>
+<div class=' six large-6 column'>
   <b>Shipping Address</b>
   <div  id='order-address'
-        class='panel '>
+        class='panel callout'>
             <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
             <br>
             <p><%= link_to 'Change Address', admin_history_order_addresses_path(@order), :class => 'button green' %> <br>
@@ -38,11 +38,11 @@
   </div>
 </div>
 
-<div class=' six column '>
+<div class=' six large-6 column '>
   <b>Shipments:</b>
   <% @order.shipments.each do |shipment| %>
       <div  id='order-shipment-items'
-            class='panel'>
+            class='panel callout'>
           State: <%= shipment.state.humanize %> <br/>
           Shipping Method: <%= shipment.shipping_method.name %> <br/>
           Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %>
@@ -50,18 +50,18 @@
   <% end %>
   <% if @order.shipments.empty? %>
     <div  id='order-shipment-items'
-          class=' panel'>
+          class=' panel callout'>
       No Shipments have been made for this Order.
     </div>
   <% end %>
 </div>
 
 
-<div class=' span-7 six column'>
+<div class=' span-7 six large-6 column'>
   <b>Invoices:</b>
   <% @order.invoices.each do |invoice| %>
       <div  id='order-invoices'
-            class=' panel'>
+            class=' panel callout'>
           <ul class='vertical-list'>
             <li><label>Number:</label> <%= invoice.number %> </li>
             <li><label>State: </label><%= invoice.state %></li>
@@ -72,9 +72,9 @@
   <% end %>
 </div>
 
-<div class=' six column'>
+<div class=' six large-6 column'>
   <b>Return Merchandise Authorization:</b>
-  <div class=' panel'>
+  <div class=' panel callout'>
     <% if @order.return_authorizations.size > 0 %>
        <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order),
                                 :class => 'button ' %>

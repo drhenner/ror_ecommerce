@@ -1,6 +1,6 @@
 <% content_for :sidemenu do %>
   <div class='admin_filters'>
-    <%= form_tag admin_inventory_receivings_path, :method => 'get', :id => "purchase_orders_search" do %>
+    <%= form_tag admin_inventory_receivings_path, method: 'get', id: "purchase_orders_search" do %>
       <%= hidden_field_tag :direction, params[:direction] %>
       <%= hidden_field_tag :sort, params[:sort] %>
 
@@ -14,7 +14,7 @@
       <%= text_field_tag :tracking_number, params[:tracking_number] %>
 
       <div style='text-align:center'>
-        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        <%= submit_tag "Search", name: nil, class: 'button red-button alert' %>
       </div>
     <% end %>
   </div>

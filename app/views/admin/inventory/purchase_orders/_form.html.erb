@@ -9,8 +9,9 @@
     </ul>
   </div>
 <% end %>
+
 <fieldset>
-  <div class="six columns">
+  <div class="six large-6 columns">
     <label>Supplier</label>
     <%= form.select :supplier_id, @select_suppliers, { :include_blank => true }, :class => "chzn-select ten columns" %>
 
@@ -37,7 +38,7 @@
     </div>
   </div>
 
-  <div class="six columns" style="background-color:#EEE;border: solid 1px #666;">
+  <div class="six large-6 columns" style="background-color:#EEE;border: solid 1px #666;">
     <%= form.fields_for :purchase_order_variants,  @purchase_order.purchase_order_variants do |po_variant_form| %>
       <%= render :partial => 'purchase_order_variant', :locals => { :po_form => po_variant_form } %>
     <% end %>

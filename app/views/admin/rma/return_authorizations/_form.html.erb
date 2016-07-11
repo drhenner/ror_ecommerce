@@ -21,9 +21,6 @@
   </div>
 
 
-
-
-
   <div id="return_items" class=' large-6'>
     <% @order.order_items.each do |item| %>
       <div  id='image_<%= item.id %>'
@@ -43,7 +40,6 @@
 
     <%= f.hidden_field :user_id %>
     <%= f.hidden_field :created_by %>
-
 
   <div class='column float-left'>
     <%= f.fields_for :comments do |comment_form|%>

@@ -1,4 +1,4 @@
-<fieldset class="twelve columns <%= po_form.object.new_record? ? 'new_fields' : 'fields' %>">
+<fieldset class="twelve large-12 columns <%= po_form.object.new_record? ? 'new_fields' : 'fields' %>">
   <div style='float:right;'>
     <%= remove_child_link('remove', po_form) %>
   </div>
@@ -9,11 +9,11 @@
     <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "select_variants ten columns" %>
   <% end %>
 
-  <div class="six columns">
+  <div class="six large-6 columns">
     <label>Quantity</label>
     <%= po_form.text_field :quantity %>
   </div>
-  <div class="six columns">
+  <div class="six large-6 columns">
     <label>Cost</label>
     <%= po_form.text_field :cost %>
   </div>

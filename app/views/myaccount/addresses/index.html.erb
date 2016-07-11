@@ -8,9 +8,9 @@
     <ul>
       <% for address in @addresses %>
         <li><br/>
-          <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => address } %>
+          <%= render :partial => '/shared/compact_address', locals: { shopping_address: address } %>
           <%= link_to "Edit", edit_myaccount_address_path(address) %> |
-          <%= link_to "Remove", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete %>
+          <%= link_to "Remove", myaccount_address_path(address), data: { confirm: 'Are you sure?' }, method: :delete %>
         </li>
       <% end %>
     </ul>

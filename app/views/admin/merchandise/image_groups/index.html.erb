@@ -8,7 +8,6 @@
   <table>
     <thead>
       <tr class='odd'>
-
           <th  class='column1_header'><%= sortable 'name', 'Name' %></th>
           <th>Product</th>
           <th></th>
@@ -28,4 +27,4 @@
 
 <%= will_paginate @image_groups %>
 
-<p><%= link_to "New Image Group", new_admin_merchandise_image_group_path, :class => 'button' %></p>
+<p><%= link_to "New Image Group", new_admin_merchandise_image_group_path, class: 'button' %></p>

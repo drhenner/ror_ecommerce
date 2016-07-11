@@ -1,5 +1,5 @@
 <% if @session_admin_order %>
-  <%= render :partial => '/admin/shopping/checkout/right_panel_summary'%>
+  <%= render partial: '/admin/shopping/checkout/right_panel_summary'%>
 <% else %>
 <h3>
   <%= session_admin_cart.customer_id ? session_admin_cart.customer.name : 'No Customer' %>

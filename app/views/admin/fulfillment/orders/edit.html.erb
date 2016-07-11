@@ -4,7 +4,7 @@
 </div>
 <div class='clear'></div>
 <div id='order-shipment-items' class='four large-4 column'>
-  <div class='panel'>
+  <div class='panel callout'>
     <h4>Order Items</h4>
     <% @order.order_items.each_with_index do |item,i| %>
       <ul class='vertical-list compact'>
@@ -35,7 +35,7 @@
   </div>
 </div>
 <div class=' four large-4 column' >
-  <div class='panel'>
+  <div class='panel callout'>
     <h4>Shipping address</h4>
     <div class='well'>
       <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
@@ -43,27 +43,27 @@
   </div>
 </div>
 <div id="shipment-details-box" class=' four large-4 column'>
-    <%= render :partial => 'admin/fulfillment/orders/shipment_details', :locals => {:order => @order} %>
+    <%= render partial: 'admin/fulfillment/orders/shipment_details', locals: { order: @order } %>
 </div>
 <div class='clearfix'></div>
 
 <div class='row'>
-  <div class=' six large-6 ' style='text-align:left;'>
+  <div class=' six large-6 column' style='text-align:left;'>
     <% @order.invoices.each do |invoice| %>
-      <div class='panel'>
+      <div class='panel callout'>
         <h4>Invoice</h4>
         <div id='invoice-line-<%= invoice.id %>'
              class='order-invoice'
              data-invoice_id='<%= invoice.id %>'
              data-order_id='<%= @order.id %>'>
-          <%= render :partial => 'invoice_details', :locals => { :invoice => @order.invoice } %>
+          <%= render partial: 'invoice_details', locals: { invoice: invoice } %>
         </div>
       </div>
     <% end %>
   </div>
   <div class=' six large-6 column'>
-    <b>Return Merchandise Authorization:</b>
-    <div class=' panel'>
+    <div class=' panel callout'>
+      <h4>Return Merchandise Authorization:</h4>
       <% if @order.return_authorizations.size > 0 %>
          <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order),
                                   :class => 'button ' %>

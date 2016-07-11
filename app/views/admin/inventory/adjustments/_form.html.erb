@@ -1,4 +1,3 @@
-
 <% if @variant.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@variant.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
@@ -10,6 +9,7 @@
     </ul>
   </div>
 <% end %>
+
 <div class='clear'></div>
 <div class='span-12'>
   <div class='span-5'>

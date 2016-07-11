@@ -1,13 +1,13 @@
 
 <h1> Inventory Adjustment  for <%= @variant.product_name %> </h1>
 
-<%= form_for(@variant, :url => admin_inventory_adjustment_path(@variant)) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
+<%= form_for(@variant, url: admin_inventory_adjustment_path(@variant)) do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
 
   <div class=" generic_submit_button">
     <%= f.submit "Update Inventory",
-                    :class  => "button",
-                    :id     => "adjust_inventory_button" %>
+                    class: "button",
+                    id:    "adjust_inventory_button" %>
   </div>
 
 <% end %>
@@ -32,6 +32,6 @@
 
 
 <p>
-  <%= link_to "Show #{@variant.product_name}" , admin_inventory_adjustment_path( @variant.product ), :class => 'button' %> |
-  <%= link_to 'View Products', admin_inventory_adjustments_path, :class => 'button' %>
+  <%= link_to "Show #{@variant.product_name}" , admin_inventory_adjustment_path( @variant.product ), class: 'button' %> |
+  <%= link_to 'View Products', admin_inventory_adjustments_path, class: 'button' %>
 </p>

@@ -1,4 +1,4 @@
-<div class='panel'>
+<div class='panel callout'>
   <h4>Shipment Details</h4>
   <% if order.shipments.empty? %>
       <div class='well'>
@@ -9,7 +9,7 @@
       </div>
   <% else %>
     <% order.shipments.each do |shipment| %>
-      <ul class='vertical-list'>
+      <ul class='vertical-list vertical menu'>
         <li> <label>Shipping Method:</label> <%= shipment.shipping_method.name %></li>
         <li> <label>Shipping #:</label> <%= shipment.number %> </li>
         <li> <label>Tracking:</label> <%= shipment.tracking %> </li>
@@ -17,7 +17,7 @@
       </ul>
     <% end %>
     <div class='panel callout'>
-      <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(:order_id => order.number) %>
+      <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(order_id: order.number) %>
     </div>
   <% end %>
 </div>

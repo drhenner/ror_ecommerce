@@ -9,14 +9,14 @@
     <%=t :reset_password_text %>
   </p>
 
-  <%= form_for(@user, :url => customer_password_reset_path(@user)) do |f| %>
+  <%= form_for(@user, url: customer_password_reset_path(@user)) do |f| %>
 
     <div class="field">
       <%= f.label :email %><br />
       <%= f.text_field :email %>
     </div>
     <p>
-    <%= submit_tag 'Continue', :class => 'button' %>
+    <%= submit_tag 'Continue', class: 'button' %>
     </p>
   <% end %>
 </div>

@@ -17,22 +17,22 @@
   <label>Country</label>
 
   <% if Settings.tax_per_state_id %>
-    <%= select_tag :select_country, options_from_collection_for_select(countries, "second", "first"), {:include_blank => true} %>
+    <%= select_tag :select_country, options_from_collection_for_select(countries, "second", "first"), { include_blank: true } %>
     <label>State</label>
-    <%= f.select :state_id, @states, {:include_blank => true} %>
+    <%= f.select :state_id, @states, { include_blank: true } %>
   <% else %>
     <label>Country</label>
-    <%= f.select :country_id, countries, {:include_blank => true} %>
+    <%= f.select :country_id, countries, { include_blank: true } %>
   <% end %>
 
   <label>Start Date</label>
   <div class='date-select'>
-    <%= f.date_select :start_date, {:start_year => Time.zone.now.year, :end_year => Time.zone.now.year + 12} %>
+    <%= f.date_select :start_date, { start_year: Time.zone.now.year, end_year: Time.zone.now.year + 12} %>
   </div>
 
   <label>End Date</label>
   <div class='date-select'>
-    <%= f.date_select :end_date, {:include_blank => true, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year + 12} %>
+    <%= f.date_select :end_date, { include_blank: true, start_year: Time.zone.now.year, end_year: Time.zone.now.year + 12} %>
   </div>
 
   <label>Active</label>

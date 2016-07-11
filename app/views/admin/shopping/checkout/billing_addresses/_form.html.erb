@@ -14,12 +14,12 @@
     <div class="inline">
       <div class="field column">
          <%= f.label :first_name %>
-         <%= f.text_field :first_name, :class => 'span-3' %>
+         <%= f.text_field :first_name %>
       </div>
 
       <div class="field column">
         <%= f.label :last_name %>
-        <%= f.text_field :last_name, :class => 'span-3' %>
+        <%= f.text_field :last_name %>
       </div>
     </div>
 <div class='clear'></div>
@@ -35,7 +35,7 @@
     <div class="field column">
       <%= f.label    :state_id, "State/Province" %>
       <%= f.select   :state_id, @states,
-                    :include_blank => true %>
+                     include_blank: true %>
     </div>
   <% elsif countries.size == 1 %>
     <div class="field column">
