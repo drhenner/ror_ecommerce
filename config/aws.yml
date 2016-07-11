@@ -1,20 +1,24 @@
 
 development:
-  bucket: <%= ENV['FOG_DIRECTORY'] %>
-  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  bucket:            <%= ENV['FOG_DIRECTORY'] %>
+  access_key_id:     <%= ENV['AWS_ACCESS_KEY_ID'] %>
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  s3_region:         <%= ENV['AWS_REGION'] %>
 
 test:
-  bucket: <%= ENV['FOG_DIRECTORY'] %>
-  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  bucket:            <%= ENV['FOG_DIRECTORY'] %>
+  access_key_id:     <%= ENV['AWS_ACCESS_KEY_ID'] %>
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  s3_region:         <%= ENV['AWS_REGION'] %>
 
 staging:
-  bucket: <%= ENV['FOG_DIRECTORY'] %>
-  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  bucket:            <%= ENV['FOG_DIRECTORY'] %>
+  access_key_id:     <%= ENV['AWS_ACCESS_KEY_ID'] %>
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  s3_region:         <%= ENV['AWS_REGION'] %>
 
 production:
-  bucket: <%= ENV['FOG_DIRECTORY'] %>
-  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  bucket:            <%= ENV['FOG_DIRECTORY'] %>
+  access_key_id:     <%= ENV['AWS_ACCESS_KEY_ID'] %>
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  s3_region:         <%= ENV['AWS_REGION'] %>

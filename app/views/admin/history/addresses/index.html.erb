@@ -23,7 +23,7 @@
     <td><%= address.state_id %></td>
     <td><%= address.zip_code %></td>
     <td>
-      <%= button_to 'Select', admin_history_order_address_path(@order, address), :method => :put %>
+      <%= button_to 'Select', admin_history_order_address_path(@order, address), method: :put %>
     </td>
   </tr>
 <% end %>

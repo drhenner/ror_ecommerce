@@ -6,7 +6,7 @@
 </div>
 
 <div class="admin_brands">
-  <table>
+  <table class='hover'>
     <thead>
     <tr class='odd'>
       <th class='column1_header'>Name</th><th></th><th></th>
@@ -16,7 +16,7 @@
       <tr class='<%= cycle("odd", "")%>'>
         <td><%= link_to brand.name, admin_merchandise_brand_path(brand) %></td>
         <td><%= link_to "Edit", edit_admin_merchandise_brand_path(brand) %></td>
-        <td><%= link_to "Delete", admin_merchandise_brand_path(brand), confirm: 'Are you sure?', method: :delete %></td>
+        <td><%= link_to "Delete", admin_merchandise_brand_path(brand),  data: { confirm: 'Are you sure?' }, method: :delete %></td>
       </tr>
     <% end %>
   </table>

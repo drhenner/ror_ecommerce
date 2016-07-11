@@ -1,6 +1,6 @@
 <% if @product.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@product.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited the images from being saved:</h2>
     <ul>
     <% @product.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
