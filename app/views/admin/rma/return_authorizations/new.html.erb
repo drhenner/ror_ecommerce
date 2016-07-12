@@ -1,7 +1,7 @@
 
 <div class=' row' style='margin-top:10px;'>
-  <div class=' large-4 four column '>
-    <div class='panel'>
+  <div class=' large-4  column '>
+    <div class=' callout'>
       <b>Invoices:</b>
       <% @order.invoices.each do |invoice| %>
           <div  id='order-invoices'
@@ -14,8 +14,8 @@
       <% end %>
     </div>
   </div>
-  <div class=' large-4 four column'>
-    <div class='panel'>
+  <div class=' large-4  column'>
+    <div class='callout'>
       <b>Items</b>
       <div  id='order-items'
             class=' rounded-10'>
@@ -30,7 +30,7 @@
 
 <h2>New RMA</h2>
 
-<div class=' large-6 six column '>
+<div class=' large-8 float-left column '>
 <%= form_for(@return_authorization, :url => admin_rma_order_return_authorizations_path(@order)) do |f| %>
   <%= render partial: '/admin/rma/return_authorizations/form', locals: { f: f } %>
 <% end %>

@@ -46,7 +46,7 @@ jQuery(document).ready(function ($) {
   $('input, textarea').placeholder();
 
   /* TOOLTIPS ------------ */
-  $(this).tooltips();
+  // $(this).tooltips();
 
   /* UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE6/7/8 SUPPORT AND ARE USING .block-grids */
   //  $('.block-grid.two-up>li:nth-child(2n+1)').css({clear: 'left'});
@@ -58,7 +58,7 @@ jQuery(document).ready(function ($) {
   /* DROPDOWN NAV ------------- */
 
   var lockNavBar = false;
-  /* Windows Phone, sadly, does not register touch events :( */
+  // Windows Phone, sadly, does not register touch events :(
   if (Modernizr.touch || navigator.userAgent.match(/Windows Phone/i)) {
     $('.nav-bar a.flyout-toggle').on('click.fndtn touchstart.fndtn', function(e) {
       e.preventDefault();

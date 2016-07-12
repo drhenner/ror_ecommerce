@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :amount %><br />
+    <%= f.label :amount %>
     <%= f.text_field :amount %>
   </div>
   <div class="field">
-    <%= f.label :restocking_fee %><br />
+    <%= f.label :restocking_fee %>
     <%= f.text_field :restocking_fee %>
   </div>
 
 
-  <div id="return_items" class=' large-6'>
+  <div id="return_items" class=''>
     <% @order.order_items.each do |item| %>
       <div  id='image_<%= item.id %>'
             class="variant_form left last">
         <% return_item = @return_authorization.return_items.detect {|p| p.order_item_id == item.id } %>
-        <% return_item = return_item || ReturnItem.new(:order_item => item) %>
+        <% return_item = return_item || ReturnItem.new( order_item: item) %>
         <% return_item.updated_by = current_user.id %>
         <%= f.fields_for :return_items, return_item do |item_form|%>
-          <%= render :partial => 'item', :locals => { :item_form    => item_form,
-                                                      :return_item  => return_item,
-                                                      :order_item   => item } %>
+          <%= render partial: 'item', locals: { :item_form    => item_form,
+                                                :return_item  => return_item,
+                                                :order_item   => item } %>
           <%= item_form.hidden_field :updated_by %>
         <% end %>
       </div>
@@ -52,6 +52,6 @@
     <% end %>
   </div>
 
-  <div class="actions">
-    <%= f.submit 'Submit', :class => 'button' %>
+  <div class="actions float-right row">
+    <%= f.submit 'Submit', class: 'button' %>
   </div>

@@ -12,12 +12,12 @@
   <![endif]-->
   <%= csrf_meta_tag %>
 
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag "admin/app" %>
-  <%= javascript_include_tag "admin/jquery.customforms" %>
-  <%= javascript_include_tag "admin/jquery.placeholder.min" %>
-  <%= javascript_include_tag "admin/jquery.reveal" %>
-  <%= javascript_include_tag "admin/jquery.tooltips" %>
+  <%#= javascript_include_tag 'application' %>
+  <%#= javascript_include_tag "admin/app" %>
+  <%#= javascript_include_tag "admin/jquery.customforms" %>
+  <%#= javascript_include_tag "admin/jquery.placeholder.min" %>
+  <%#= javascript_include_tag "admin/jquery.reveal" %>
+  <%#= javascript_include_tag "admin/jquery.tooltips" %>
   <%#= javascript_include_tag "admin/modernizr.foundation" %>
 
   <%= yield :head %>
@@ -49,10 +49,10 @@
       <% end %>
 
       <% if content_for?(:sidemenu) %>
-        <div class="admin_main_content nine large-9 columns">
+        <div class="admin_main_content  large-9 columns">
           <%= yield %>
         </div>
-        <div class="three large-3 columns sidebar" >
+        <div class=" large-3 columns sidebar" >
           <%= yield :sidemenu %>
         </div>
       <% else %>
@@ -67,6 +67,7 @@
     </div>
   </div>
 
+  <%= javascript_include_tag 'application' %>
   <%= yield :bottom %>
 
   <script>

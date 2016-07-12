@@ -3,7 +3,7 @@
   <b>Shipment for <%= link_to @order.user.name, admin_user_path(@order.user) %></b>
 </div>
 <div class='clear'></div>
-<div id='order-shipment-items' class='four large-4 column'>
+<div id='order-shipment-items' class=' large-4 column'>
   <div class='panel callout'>
     <h4>Order Items</h4>
     <% @order.order_items.each_with_index do |item,i| %>
@@ -23,32 +23,32 @@
       <% if item.paid? && !item.shipped? %>
         <%= link_to 'Ship Individually!',
                     admin_fulfillment_partial_order_shipments_path( @order, :order_item_ids => [item.id]),
-                    :method => 'POST', :class => 'button' %>
+                    method: 'POST', class: 'button' %>
       <% end %>
     <% end %>
 
     <% if @order.paid? && @order.order_items.any?(&:unshipped?) %>
       <%= link_to 'New Shipment',
                     new_admin_fulfillment_partial_order_shipment_path( @order ),
-                    :class => 'button' %>
+                    class: 'button' %>
     <% end %>
   </div>
 </div>
-<div class=' four large-4 column' >
+<div class=' large-4 column' >
   <div class='panel callout'>
     <h4>Shipping address</h4>
     <div class='well'>
-      <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+      <%= render partial: '/shared/compact_address', locals: { shopping_address: @order.ship_address } %>
     </div>
   </div>
 </div>
-<div id="shipment-details-box" class=' four large-4 column'>
+<div id="shipment-details-box" class=' large-4 column'>
     <%= render partial: 'admin/fulfillment/orders/shipment_details', locals: { order: @order } %>
 </div>
 <div class='clearfix'></div>
 
 <div class='row'>
-  <div class=' six large-6 column' style='text-align:left;'>
+  <div class=' large-6 column' style='text-align:left;'>
     <% @order.invoices.each do |invoice| %>
       <div class='panel callout'>
         <h4>Invoice</h4>
