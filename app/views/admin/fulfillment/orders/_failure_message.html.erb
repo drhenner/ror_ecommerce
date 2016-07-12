@@ -1,1 +1,7 @@
-Sorry there was an error.
+<% if @payment.test %>
+  Test account can't complete fulfillment.
+<% else %>
+  Sorry there was an error.
+<% end %>
+
+<%= @payment.message %>

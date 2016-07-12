@@ -37,7 +37,7 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
     @order    = Order.find_by_id(params[:id])
     @invoice  = @order.invoices.find(params[:invoice_id])
 
-    payment = @order.capture_invoice(@invoice)
+    @payment = @order.capture_invoice(@invoice)
 
 ##  several things happen on this request
 # => Payment is captured
@@ -50,10 +50,10 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
 # => Allow partial payments
 # => mark only order_items that will be shipped
 
-    if payment && payment.success?
-      render :partial => 'success_message'
+    if @payment && @payment.success?
+      render partial: 'success_message'
     else
-      render :partial => 'failure_message'
+      render partial: 'failure_message'
     end
   end
 
