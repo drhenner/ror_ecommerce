@@ -11,6 +11,11 @@
 <% end %>
 
 <fieldset>
+  <div class="field large-6">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
   <% has_images_already = @image_group.images.size > 0 %>
   <legend>Images - <%= add_child_button "New Image", :images, " #{has_images_already ? 'success small' : 'alert' }" %></legend>
 
