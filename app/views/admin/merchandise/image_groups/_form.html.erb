@@ -11,7 +11,17 @@
 <% end %>
 
 <fieldset>
-  <legend>Images - <%= add_child_link "New Image", :images %></legend>
+  <div class="field large-6">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <% has_images_already = @image_group.images.size > 0 %>
+  <legend>Images - <%= add_child_button "New Image", :images, " #{has_images_already ? 'success small' : 'alert' }" %></legend>
+
+  <% unless has_images_already %>
+    <br/><br/>
+  <% end %>
 
   <%= new_child_fields_template form, :images, form_builder_local: :image_form %>
 

@@ -2,7 +2,8 @@
 
 <%= form_for @referral, url: admin_user_datas_referrals_path(@referral) do |f| %>
   <%=  render partial: 'form', locals: { f: f } %>
-  <div class="actions"><%= f.submit 'Create' , class: 'button' %></div>
+  <div class="actions large-6">
+    <%= link_to "Back to List", admin_user_datas_referrals_path, class: 'button secondary small' %>
+    <%= f.submit 'Create' , class: 'button float-right' %>
+  </div>
 <% end %>
-
-<p><%= link_to "Back to List", admin_user_datas_referrals_path, class: 'button' %></p>

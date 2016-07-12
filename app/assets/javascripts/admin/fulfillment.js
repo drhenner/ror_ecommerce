@@ -26,7 +26,7 @@ Hadean.Fulfillment = {
     Hadean.Fulfillment.orderId = order_id;
 
     jQuery("#dialog").dialog({
-      bgiframe: true,
+      //bgiframe: true,
       autoOpen: false,
       height: 190,
       width: 460,

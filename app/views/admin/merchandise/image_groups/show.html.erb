@@ -1,24 +1,27 @@
 <h1> Image Group </h1>
 
 <ul>
-  <li>
-    <label>Name:</label>
+  <li class='row'>
+    <label class='large-2 column'>Name:</label>
     <%= @image_group.name %>
   </li>
+  <li class='row'>
+    <label class='large-2 column'>Product:</label>
+    <%= @image_group.product.name %>
+  </li>
   <li>
-    <label>Product:</label>
-    <%= @image_group.product_id %>
+    <br/>
+    <div class='row'>
+      <% @image_group.image_urls.each do |image_url|%>
+        <div class=' large-3 columns'>
+          <%= image_tag image_url %>
+        </div>
+      <% end %>
+    </div>
   </li>
 </ul>
-<div class='row'>
-  <% @image_group.image_urls.each do |image_url|%>
-    <div class='three large-3 columns'>
-      <%= image_tag image_url %>
-    </div>
-  <% end %>
-</div>
 
 <p>
-  <%= link_to "Edit", edit_admin_merchandise_image_group_path(@image_group), class: 'button' %> |
-  <%= link_to "View All", admin_merchandise_image_groups_path, class: 'button' %>
+  <%= link_to "Edit", edit_admin_merchandise_image_group_path(@image_group), class: 'button secondary' %>
+  <%= link_to "View All", admin_merchandise_image_groups_path, class: 'button secondary' %>
 </p>

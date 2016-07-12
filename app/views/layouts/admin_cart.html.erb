@@ -5,31 +5,40 @@
   <link rel="shortcut icon" href="/assets/favicon.ico" />
 
   <%= stylesheet_link_tag 'sprite.css' %>
-  <%= stylesheet_link_tag "admin/foundation" %>
-  <%= stylesheet_link_tag "admin/app" %>
-  <%= stylesheet_link_tag "admin/cart" %>
+  <%= stylesheet_link_tag "normalize.css" %>
+  <%= stylesheet_link_tag "application.css" %>
+  <%= stylesheet_link_tag 'admin/app.css' %>
+  <%= stylesheet_link_tag "admin/cart.css" %>
     <!--[if lt IE 8]
   <%#= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
   <![endif]-->
   <%= csrf_meta_tag %>
 
   <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag "admin/app" %>
-  <%= javascript_include_tag "admin/jquery.customforms" %>
-  <%= javascript_include_tag "admin/jquery.placeholder.min" %>
-  <%= javascript_include_tag "admin/jquery.reveal" %>
-  <%= javascript_include_tag "admin/jquery.tooltips" %>
-  <%= javascript_include_tag "admin/modernizr.foundation" %>
+  <%#= javascript_include_tag "admin/app" %>
+  <%#= javascript_include_tag "admin/jquery.customforms" %>
+  <%#= javascript_include_tag "admin/jquery.placeholder.min" %>
+  <%#= javascript_include_tag "admin/jquery.reveal" %>
+  <%#= javascript_include_tag "admin/jquery.tooltips" %>
+  <%#= javascript_include_tag "admin/modernizr.foundation" %>
 
   <%= yield :head %>
 </head>
 <body class="bp">
   <div class="container row">
     <% if notice || alert %>
-    <div class="flash_messages">
-      <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a>"  if notice %>
-      <%= raw "<div data-alert class='alert-box alert'> #{alert} <a href='' class='close'>&times;</a>"  if alert %>
-    </div>
+        <div class="flash_notice callout <%= !!alert ? 'alert' : 'warning' %>" data-closable>
+          <div>
+          <% if alert %>
+            <%= alert %>
+          <% elsif notice %>
+            <%= notice %>
+          <% end %>
+          </div>
+          <button class="close-button" aria-label="Close alert" type="button"  data-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
     <% end %>
 
     <%= render :partial => 'shared/admin/header_bar' %>

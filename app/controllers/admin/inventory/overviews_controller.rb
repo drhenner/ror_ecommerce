@@ -8,16 +8,16 @@ class Admin::Inventory::OverviewsController < Admin::BaseController
   end
 
   def edit
-    @product = Product.includes(:variants).find(params[:id])
+    @product = Product.friendly.includes(:variants).find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
 
     if @product.update_attributes(allowed_params)
-      redirect_to :action => :index
+      redirect_to action: :index
     else
-      render :action => :edit
+      render action: :edit
     end
   end
   private

@@ -35,7 +35,7 @@ if (typeof Hadean.Admin.purchaseOrder == "undefined") {
              type : "GET",
              url : "/admin/merchandise/products/"+ 0 +"/variants/"+ $(obj).val(),
              complete : function(json) {
-              variant = JSON.parse(json.responseText).variant;
+              variant = JSON.parse(json.responseText);
               variant.cost;
               $('#'+ obj.id.replace("variant_id", "cost")).val(variant.cost);
              },

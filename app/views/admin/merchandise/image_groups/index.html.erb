@@ -5,7 +5,7 @@
 <h1> Image Groups </h1>
 
 <div id="image_group_grid_wrapper" class='pretty_table'>
-  <table>
+  <table class='hover'>
     <thead>
       <tr class='odd'>
           <th  class='column1_header'><%= sortable 'name', 'Name' %></th>
@@ -28,3 +28,4 @@
 <%= will_paginate @image_groups %>
 
 <p><%= link_to "New Image Group", new_admin_merchandise_image_group_path, class: 'button' %></p>
+<%= render partial: 'how_image_groups_work' %>

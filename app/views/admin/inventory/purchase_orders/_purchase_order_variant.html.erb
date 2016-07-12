@@ -1,20 +1,22 @@
-<fieldset class="twelve large-12 columns <%= po_form.object.new_record? ? 'new_fields' : 'fields' %>">
+<div class=" large-11 columns <%= po_form.object.new_record? ? 'new_fields' : 'fields' %>">
   <div style='float:right;'>
     <%= remove_child_link('remove', po_form) %>
   </div>
   <label>Variant</label>
   <% if po_form.object.id %>
-    <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "chzn-select select_variants ten columns" %>
+    <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "chzn-select select_variants large-8" %>
   <% else %>
-    <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "select_variants ten columns" %>
+    <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "select_variants large-8 " %>
   <% end %>
 
-  <div class="six large-6 columns">
+  <div class=" large-6 ">
     <label>Quantity</label>
     <%= po_form.text_field :quantity %>
   </div>
-  <div class="six large-6 columns">
+  <div class=" large-6 ">
     <label>Cost</label>
     <%= po_form.text_field :cost %>
   </div>
-</fieldset>
+  <hr/>
+</div>
+

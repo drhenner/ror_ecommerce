@@ -2,7 +2,9 @@
 
 <h3>Edit Product Description</h3>
 
-<%= link_to 'Back to Product', admin_merchandise_product_path(@product), class: 'button', style: "float:right;margin-top:-45px" %>
+<div class='large-10'>
+<%= link_to 'Back to Product', admin_merchandise_product_path(@product), class: 'button secondary float-right small', style: "margin-top:-5px" %>
+</div>
 
 <div id="article-sidebar" class="sidebar">
   <%= form_for @product, url: admin_merchandise_products_description_path(@product) do |f| %>
@@ -15,12 +17,14 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "markitup/skins/markitup/style" %>
   <%= stylesheet_link_tag "markitup/sets/default/style" %>
+<% end %>
+<% content_for :bottom do %>
   <%= javascript_include_tag "markitup/jquery.markitup" %>
   <%= javascript_include_tag "markitup/sets/default/set" %>
-<% end %>
 
-<script type="text/javascript" >
-   $(document).ready(function() {
-      $("#markItUp").markItUp(mySettings);
-   });
-</script>
+  <script type="text/javascript" >
+     $(document).ready(function() {
+        $("#markItUp").markItUp(mySettings);
+     });
+  </script>
+<% end %>

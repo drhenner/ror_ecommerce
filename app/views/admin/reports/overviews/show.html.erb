@@ -8,13 +8,13 @@
 <h1> Reports </h1>
 
 <div class='row'>
-  <div class=' twelve large-12 '>
-    <div class='panel'>
+  <div class='large-12 '>
+    <div class='panel callout'>
       <div class='row'>
-        <div class=' six large-6 column'>
+        <div class='large-6 column'>
           <h4 > Start <%= I18n.localize(start_time,  :format => :us_time) %> </h4>
         </div>
-        <div class=' six large-6 column'>
+        <div class='large-6 column'>
           <h4 > End <%= I18n.localize(end_time,  :format => :us_time) %> </h4>
         </div>
       </div>
@@ -27,8 +27,8 @@
   </div>
 </div>
 <div class='row'>
-  <div class=' three large-3 column'>
-    <div class='panel'>
+  <div class=' large-3 column'>
+    <div class='callout'>
     <h4>Accounting </h4>
     <ul>
       <li><label>Revenue              </label><%= number_to_currency @accounting_report.revenue             %></li>
@@ -38,8 +38,8 @@
     </ul>
     </div>
   </div>
-  <div class='three large-3 column'>
-    <div class='panel'>
+  <div class=' large-3 column'>
+    <div class='callout'>
     <h4>Orders </h4>
     <ul>
       <li><label>Amount           </label><%= number_to_currency @orders_report.total_amount    %></li>
@@ -47,8 +47,8 @@
     </ul>
     </div>
   </div>
-  <div class=' three large-3 column'>
-    <div class='panel'>
+  <div class='large-3 column'>
+    <div class='panel callout'>
     <h4>Customers </h4>
     <ul>
       <li>
@@ -64,8 +64,8 @@
     </ul>
     </div>
   </div>
-  <div id='' class=' three large-3 column'>
-    <div class='panel graceful'>
+  <div id='' class=' large-3 column'>
+    <div class='callout graceful'>
       <h4>Filter </h4>
       <%= form_tag(  admin_reports_overview_path(),
                                     :method => :get,

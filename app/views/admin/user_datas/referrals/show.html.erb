@@ -1,50 +1,51 @@
 <h1> Referral </h1>
 
-<ul>
-  <li>
-    <label>Name:</label>
+<ul class="row large-5">
+  <li class='column'>
+    <span class="large-7 column"><strong>Name:</strong></span>
     <%= @referral.name %>
   </li>
-  <li>
-    <label>Email:</label>
+  <li class='column'>
+    <span class="large-7 column"><strong>Email:</strong></span>
     <%= @referral.email %>
   </li>
-  <li>
-    <label>Referring User:</label>
+  <li class='column'>
+    <span class="large-7 column"><strong>Referring User:</strong></span>
     <%= @referral.referring_user.try(:name) %>
   </li>
-  <li>
-    <label>Referral Program:</label>
+  <li class='column'>
+    <span class="large-7 column"><strong>Referral Program:</strong></span>
     <%= @referral.referral_program.name %>
   </li>
-  <li>
-    <label>Referral User:</label>
-    <%= @referral.referral_user_id %>
+  <li class='column'>
+    <span class="large-7 column"><strong>Referral User:</strong></span>
+    <%= @referral.referral_user.try(:name) || '-- Not signed up --' %>
   </li>
-  <li>
-    <label>Referral Type:</label>
+  <li class='column'>
+    <span class="large-7 column"><strong>Referral Type:</strong></span>
     <%= @referral.referral_type.try(:name) %>
   </li>
-  <li>
-    <label>Sent At:</label>
+  <li class='column'>
+    <span class="large-7 column"><strong>Sent At:</strong></span>
     <%= @referral.sent_at %>
   </li>
-  <li>
-    <label>Registered At:</label>
+  <li class='column'>
+    <span class="large-7 column"><strong>Registered At:</strong></span>
     <%= @referral.registered_at %>
   </li>
-  <li>
-    <label>Purchased At:</label>
+  <li class='column'>
+    <span class="large-7 column"><strong>Purchased At:</strong></span>
     <%= @referral.purchased_at %>
   </li>
-  <li>
-    <label>Applied:</label>
+  <li class='column'>
+    <span class="large-7 column"><strong>Applied:</strong></span>
     <%= @referral.applied %>
   </li>
 
 </ul>
 <p>
-  <%#= link_to "Edit", edit_admin_user_datas_referral_path(@referral), :class => 'button' %> |
-  <%= link_to "Destroy", [:admin, :user_datas, @referral], data: { confirm: "Are you sure?" }, method: :delete, class: 'button' %> |
+  <%#= link_to "Edit", edit_admin_user_datas_referral_path(@referral), :class => 'button' %>
+  <%= link_to "Destroy", [:admin, :user_datas, @referral], data: { confirm: "Are you sure?" }, method: :delete, class: 'button alert' %>
+  &nbsp;
   <%= link_to "View All", admin_user_datas_referrals_path, class: 'button' %>
 </p>

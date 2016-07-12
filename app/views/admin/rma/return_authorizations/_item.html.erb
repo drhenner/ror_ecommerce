@@ -1,6 +1,5 @@
 <fieldset id="admin-product-items"
-          style='float:left;'
-          class=' large-6 six <%= item_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
+          class=' large-6 callout <%= item_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
   <p class='field'>
     <div style='float:right;'>
       <%= remove_child_link('remove', item_form) %>

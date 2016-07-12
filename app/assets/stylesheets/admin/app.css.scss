@@ -3,6 +3,12 @@
 
 @import "site/panel";
 
+// ADMIN Form CSS
+
+textarea {
+  min-height: 80px;
+}
+
 div, .row {
   .top20 {margin-top: 20px;}
 }

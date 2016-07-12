@@ -12,7 +12,7 @@
 
 <% end %>
 
-<table>
+<table class='hover'>
   <thead>
     <tr>
       <th>SKU</th>
@@ -30,8 +30,7 @@
     </tr>
 </table>
 
-
 <p>
-  <%= link_to "Show #{@variant.product_name}" , admin_inventory_adjustment_path( @variant.product ), class: 'button' %> |
-  <%= link_to 'View Products', admin_inventory_adjustments_path, class: 'button' %>
+  <%= link_to "Show #{@variant.product_name}" , admin_inventory_adjustment_path( @variant.product ), class: 'button secondary' %>
+  <%= link_to 'View Products', admin_inventory_adjustments_path, class: 'button secondary' %>
 </p>

@@ -11,9 +11,9 @@
 <% end %>
 
 <fieldset>
-  <div class="six large-6 columns">
+  <div class="six large-4 columns">
     <label>Supplier</label>
-    <%= form.select :supplier_id, @select_suppliers, { :include_blank => true }, :class => "chzn-select ten columns" %>
+    <%= form.select :supplier_id, @select_suppliers, { include_blank: true }, class: "large-10 " %>
 
     <label>Invoice Number</label>
     <%= form.text_field :invoice_number %>
@@ -38,11 +38,11 @@
     </div>
   </div>
 
-  <div class="six large-6 columns" style="background-color:#EEE;border: solid 1px #666;">
-    <%= form.fields_for :purchase_order_variants,  @purchase_order.purchase_order_variants do |po_variant_form| %>
-      <%= render :partial => 'purchase_order_variant', :locals => { :po_form => po_variant_form } %>
+  <div class=" large-8 columns" style="background-color:#F6F6F6;border: solid 1px #666;">
+    <%= form.fields_for :purchase_order_variants, @purchase_order.purchase_order_variants do |po_variant_form| %>
+      <%= render partial: 'purchase_order_variant', locals: { po_form: po_variant_form } %>
     <% end %>
-    <p><%= link_to "New Variant", '#add_variant', :class => 'add_variant', 'data-association' => "purchase_order_variants" %></p>
-    <%= new_child_fields_template form, :purchase_order_variants, :form_builder_local => :po_form %>
+    <p><%= link_to "New Variant", '#add_variant', class: 'add_variant tiny button secondary', 'data-association' => "purchase_order_variants" %></p>
+    <%= new_child_fields_template form, :purchase_order_variants, form_builder_local: :po_form %>
   </div>
 </fieldset>

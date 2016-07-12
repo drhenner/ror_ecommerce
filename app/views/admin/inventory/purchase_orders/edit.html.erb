@@ -2,7 +2,9 @@
 
 <%= form_for @purchase_order, :url  => admin_inventory_purchase_order_path(@purchase_order) do |form| %>
   <%= render :partial => '/admin/inventory/purchase_orders/form', :locals => {:form => form} %>
-  <%= submit_tag "Update", :class  => "button" %>
+  <div class='row'>
+    <%= submit_tag "Update", class: "button float-right" %>
+  </div>
 <% end %>
 <% if !@purchase_order.receive_po %>
   <%= link_to 'Receive PO', edit_admin_inventory_receiving_path(@purchase_order) %> |

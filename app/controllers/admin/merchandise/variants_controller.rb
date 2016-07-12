@@ -2,7 +2,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   helper_method :sort_column, :sort_direction
 
   def index
-    @product = Product.find(params[:product_id])
+    @product = Product.friendly.find(params[:product_id])
     @variants = @product.variants.admin_grid(@product, params).order(sort_column + " " + sort_direction).
                                               paginate(:page => pagination_page, :per_page => pagination_rows)
   end
@@ -18,12 +18,12 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
 
   def new
     form_info
-    @product = Product.find(params[:product_id])
+    @product = Product.friendly.find(params[:product_id])
     @variant = @product.variants.new()
   end
 
   def create
-    @product = Product.find(params[:product_id])
+    @product = Product.friendly.find(params[:product_id])
     @variant = @product.variants.new(allowed_params)
 
     if @variant.save

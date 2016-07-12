@@ -4,5 +4,5 @@
   <%= render partial: '/admin/history/addresses/form', locals: { f: f } %>
 <% end %>
 
-<%= link_to 'Show', admin_history_order_address_path(@order, @address) %> |
-<%= link_to 'Back', admin_history_orders_path() %>
+<%= link_to 'Show', admin_history_order_address_path(@order, @address), class: 'button secondary' %>
+<%= link_to 'Back', admin_history_orders_path(), class: 'button secondary' %>

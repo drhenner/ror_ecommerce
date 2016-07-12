@@ -2,10 +2,10 @@
 
 <%= form_for @sale, :url => [:admin, :generic, @sale] do |f| %>
   <%=  render :partial => 'form', :locals => {:f => f} %>
-  <div class="actions"><%= f.submit 'Update' , :class => 'button' %></div>
+  <div class="actions"><%= f.submit 'Update' , class: 'button float-right' %></div>
 <% end %>
 
 <p>
-  <%= link_to "Show", [:admin, :generic, @sale], :class => 'button' %> |
-  <%= link_to "View All", admin_generic_sales_path, :class => 'button' %>
+  <%= link_to "Show", [:admin, :generic, @sale],    class: 'button secondary' %> |
+  <%= link_to "View All", admin_generic_sales_path, class: 'button secondary' %>
 </p>
