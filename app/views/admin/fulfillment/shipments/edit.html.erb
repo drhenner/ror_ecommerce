@@ -1,12 +1,12 @@
 <div  id='shipment-address'
-      class='three large-3 rounded-10 line_item_yellow'>
+      class='large-3 rounded-10'>
   <div class='panel callout'>
    <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @shipment.address} %>
    <%= link_to 'Change Address', edit_admin_fulfillment_shipment_address_path(@shipment, @shipment.address) %>
   </div>
 </div>
-<div class='eleven large-11'>
-  <div id='shipment_form_wrapper' class='six large-6 column'>
+<div class='large-11'>
+  <div id='shipment_form_wrapper' class=' large-6 column'>
     <h2>Edit Shipment</h2>
     <%= form_for(@shipment, :url => admin_fulfillment_shipment_path(@shipment)) do |f| %>
       <%= render :partial => 'form', :locals => {:f => f } %>
@@ -15,7 +15,7 @@
     <%= link_to 'Back', admin_fulfillment_shipments_path(:order_id => @shipment.order.number) %>
   </div>
 
-  <div id='shipment_comment_form_wrapper' class='six large-6 column'>
+  <div id='shipment_comment_form_wrapper' class='large-6 column'>
     <h2>Notes</h2>
     <div id='order_comments'>
       <ul>
