@@ -2,21 +2,21 @@
 
 <h3>Product: <%= @product.name %></h3>
 
-<span style='color:<%= @product.active ? "#3A3" : "#C33" %>; float:right; margin-top: -45px'>
+<div class='float-right large-6' style='color:<%= @product.active ? "#3A3" : "#C33" %>;'>
   <% if @product.active? %>
     <%= link_to 'Make Inactive', admin_merchandise_product_path(@product),
                           :method => :delete,
                           :data => {:confirm => "This will inactivate the product,  Are you sure?"},
-                          :class => 'button green-button' %>
+                          :class => 'button success float-right' %>
   <% elsif @product.available? %>
     <%= link_to 'Activate', activate_admin_merchandise_product_path(@product),
                               :method => 'PUT',
                               :data => {:confirm => "This will activate the product,  Are you sure?"},
-                              :class => 'button red-button' %>
+                              :class => 'button alert float-right' %>
   <% else %>
     Not Ready for Production
   <% end %>
-</span>
+</div>
 
 <fieldset>
   <label>Name</label>
