@@ -1,24 +1,30 @@
 <%= f.error_messages %>
-<ul>
-  <li class="field">
-    <%= f.label :buy_quantity %>
-    <%= f.number_field :buy_quantity %>
-  </li>
-  <li class="field">
-    <%= f.label :get_percentage %>
-    <%= f.number_field :get_percentage %>
-  </li>
-  <li class="field">
-    <%= f.label :deal_type_id %>
-    <%= f.select :deal_type_id, deal_types, include_blank: true %>
-  </li>
-  <li class="field">
-    <%= f.label :product_type_id %>
-    <%= f.select :product_type_id, product_types, include_blank: true %>
-  </li>
-  <li class="field">
-    <%= f.label :get_amount %>
-    <%= f.number_field :get_amount %>
-  </li>
+<div class='row'>
+  <ul class='column large-5'>
+    <li class="field">
+      <%= f.label :buy_quantity %>
+      <%= f.number_field :buy_quantity %>
+    </li>
+    <li class="field">
+      <%= f.label :get_percentage %>
+      <%= f.number_field :get_percentage %>
+    </li>
+    <li class="field">
+      <%= f.label :deal_type_id do %>
+        Deal Type
+        <%= f.select :deal_type_id, deal_types, include_blank: true %>
+      <% end %>
+    </li>
+  </ul>
+  <ul class='column large-5 float-left'>
+    <li class="field">
+      <%= f.label :product_type_id %>
+      <%= f.select :product_type_id, product_types, include_blank: true %>
+    </li>
+    <li class="field">
+      <%= f.label :get_amount %>
+      <%= f.number_field :get_amount %>
+    </li>
 
-</ul>
+  </ul>
+</div>

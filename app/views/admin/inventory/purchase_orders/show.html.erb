@@ -49,7 +49,7 @@
   </div>
 </div>
 <div class='row top20'>
-  <div class="six large-6 columns panel" >
+  <div class="six large-6 columns panel callout" >
     <label>Details:</label>
     <% @purchase_order.purchase_order_variants.each do |po_variant| %>
       <div>
@@ -63,7 +63,7 @@
 </div>
 
 <% if !@purchase_order.receive_po %>
-  <%= link_to 'Receive PO', edit_admin_inventory_receiving_path(@purchase_order), class: "button" %> |
+  <%= link_to 'Receive PO', edit_admin_inventory_receiving_path(@purchase_order), class: "button" %>
 <% end %>
 <%= link_to 'Back', admin_inventory_purchase_orders_path %>
 <div class='clearfix'>&nbsp;</div>

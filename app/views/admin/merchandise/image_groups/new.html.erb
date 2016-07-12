@@ -1,3 +1,4 @@
+<%= render partial: 'how_image_groups_work' %>
 <h1> New Image Group </h1>
 
 <%= form_for @image_group, url: admin_merchandise_image_groups_path(@image_group) do |f| %>
@@ -13,7 +14,9 @@
     </li>
   </ul>
 
-  <div class="actions"><%= f.submit 'Create' , class: 'button' %></div>
+  <div class="actions large-10">
+    <%= link_to "Back to List", admin_merchandise_image_groups_path, class: 'button secondary small' %>
+    <%= f.submit 'Create', class: 'button float-right' %>
+  </div>
 <% end %>
 
-<p><%= link_to "Back to List", admin_merchandise_image_groups_path, class: 'button' %></p>

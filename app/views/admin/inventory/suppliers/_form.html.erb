@@ -1,9 +1,12 @@
 <%= error_messages_for 'supplier' %>
-  
-<fieldset id="admin-supplier-names" class='span-12'>
-  <label>Name</label>
-  <%= form.text_field :name %>
 
-  <label>Email</label>
-  <%= form.text_field :email %>
-</fieldset>
+<ul id="admin-supplier-names" class='large-5'>
+  <li>
+    <label>Name</label>
+    <%= form.text_field :name %>
+  </li>
+  <li>
+    <label>Email</label>
+    <%= form.text_field :email %>
+  </li>
+</ul>

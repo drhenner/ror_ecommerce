@@ -1,0 +1,20 @@
+<div class='large-9'>
+  <p>
+    Here's the scoop,
+  </p>
+  <p>
+    First, Image Groups aren't required.  A product without an image group can just `has_many :images` and thus all its variants would likewise use those same images.
+  </p>
+  <p>
+    If however, you want a variant to have different images than its Product follow these steps:
+  </p>
+
+  <ol  style='list-style-type:decimal;' class='large-push-1'>
+    <li>Create an image Group and associate it to the product that has variants you want specific images for.</li>
+    <li>Make sure you named the above well.  Example <em>"Red Shoes"</em>  or <em>"Green Shoes"</em></li>
+    <li>Now edit the <em>"Red Shoes"</em> image group.  (basically associate images to the group)</li>
+    <li>Now go edit your product's variants.  For every variant that has <em>"Red Shoes"</em> associate the image group you just created to the variant.</li>
+    <li>That should be it.  But you will probably want to change your storefront to reflect this change.  Current the images will change but not everyplace you might want it.</li>
+    <li>Have Fun.</li>
+  </ol>
+</div>

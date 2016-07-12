@@ -1,7 +1,7 @@
 <h3>Inventory Adjustment for <%= @product.name %></h3>
 
 <div class="admin_adjustments">
-  <table>
+  <table class='hover'>
     <thead>
       <tr>
         <th>SKU</th>
@@ -24,6 +24,6 @@
 </div>
 
 <p>
-  <%= link_to "View Other Product", admin_inventory_adjustments_path, :class => 'button' %>
-  <%= link_to "Back to Product", admin_merchandise_product_path(@product), :class => 'button' %>
+  <%= link_to "View Other Product", admin_inventory_adjustments_path, class: 'button secondary' %>
+  <%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'button secondary' %>
 </p>
