@@ -39,7 +39,7 @@ describe Admin::CustomerService::CommentsController do
     comment = FactoryGirl.build(:comment, :user_id => @customer.id, :commentable => @customer)
     Comment.any_instance.stubs(:valid?).returns(true)
     post :create, params: { user_id: @customer.id, comment: comment.attributes.reject {|k,v| ['id', 'commentable_type', 'commentable_id', 'created_by', 'user_id'].include?(k)} }
-    expect(response).to redirect_to(admin_customer_service_user_comment_url(@customer, assigns[:comment]))
+    expect(response).to redirect_to(admin_customer_service_user_url(@customer))
   end
 
 end
