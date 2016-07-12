@@ -25,7 +25,7 @@ class Admin::Merchandise::Changes::PropertiesController < Admin::BaseController
   end
 
   def get_product
-    @product = Product.find_by(id: params[:product_id])
+    @product = Product.friendly.find_by(id: params[:product_id])
   end
 
 end

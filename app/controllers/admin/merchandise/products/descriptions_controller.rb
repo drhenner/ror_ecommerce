@@ -1,10 +1,10 @@
 class Admin::Merchandise::Products::DescriptionsController < Admin::BaseController
   def edit
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
     if @product.update_attributes(allowed_params)
       redirect_to admin_merchandise_product_url(@product)
     else

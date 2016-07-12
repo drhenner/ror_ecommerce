@@ -1,6 +1,6 @@
 class Admin::Inventory::AdjustmentsController < Admin::BaseController
   def show
-    @product = Product.includes(:variants).find(params[:id])
+    @product = Product.friendly.includes(:variants).find(params[:id])
   end
 
   def index
