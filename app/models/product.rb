@@ -188,6 +188,24 @@ class Product < ApplicationRecord
     has_shipping_method? && has_active_variants?
   end
 
+  def sold_out?
+    active_variants.all?(&:sold_out?)
+  end
+
+  def stock_status
+    if low_stock?
+      "low_stock"
+    elsif sold_out?
+      "sold_out"
+    else
+      "available"
+    end
+  end
+
+  def low_stock?
+    active_variants.any?(&:low_stock?)
+  end
+
   # returns the brand's name or a blank string
   #  ex: obj.brand_name => 'Nike'
   #

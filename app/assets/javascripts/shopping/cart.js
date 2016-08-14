@@ -28,6 +28,10 @@ if (typeof Hadean.Cart.newForm == "undefined") {
             jQuery(obj).addClass('is-hidden');
           });
 
+          var stockId = '.variant_stock_' + $(this).data("variant_id");
+          jQuery('.variant_stock').addClass('is-hidden');
+          jQuery(stockId).removeClass('is-hidden');
+
           var propId = '#variant_properties_' + $(this).data("variant_id");
           jQuery(propId).removeClass('is-hidden');
           jQuery('#cart_item_variant_id').val($(this).data("variant_id"));

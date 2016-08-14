@@ -108,6 +108,9 @@ class User < ApplicationRecord
   has_many    :payment_profiles
   has_many    :transaction_ledgers, as: :accountable
 
+  has_many    :notifications,           -> { where(sent_at: nil) }
+  has_many    :in_stock_notifications,  -> { where(sent_at: nil) }
+
   has_many    :return_authorizations
   has_many    :authored_return_authorizations, class_name: 'ReturnAuthorization', foreign_key: 'author_id'
 
@@ -133,6 +136,10 @@ class User < ApplicationRecord
 
     event :activate do
       transitions from: [:inactive, :canceled], to: :active, unless: :active?
+    end
+
+    event :deactivate do
+      transitions from: [:inactive, :active, :canceled], to: :inactive
     end
 
     event :cancel do
@@ -238,6 +245,10 @@ class User < ApplicationRecord
 
   def store_credit_amount
     store_credit.amount
+  end
+
+  def requested_to_be_notified?(variant_id)
+    in_stock_notifications.where(notifiable_id: variant_id, notifiable_type: 'Variant').exists?
   end
 
   def self.find_by_downcase_email(login)

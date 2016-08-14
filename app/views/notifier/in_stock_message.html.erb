@@ -1,0 +1,26 @@
+<h1>Hi,</h1>
+<p>
+  <% if @variants.size > 1 %>
+    You indicated you were interested when one of the following products were available.  Guess what!  You're in Luck.
+  <% else %>
+    You indicated you were interested when <%= @variants.first.name || @variants.first.product_name  %> was available.  Guess what!  You're in Luck.  Take a <%= link_to 'look', product_url(@variants.first.product) %>.
+  <% end %>
+</p>
+
+<table>
+  <%  @variants.each do |variant| %>
+    <tr><% variant_name = variant.name.presence || variant.product_name %>
+      <td>
+        <%= link_to product_url(variant.product) do %>
+          <%= image_tag variant.featured_image %>
+        <% end %>
+      </td>
+      <td>
+      <%= link_to variant_name, product_url(variant.product) %> <br/>
+      <%= raw variant.display_property_details %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p>Thank you and have a great day!</p>

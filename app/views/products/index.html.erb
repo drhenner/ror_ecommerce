@@ -15,9 +15,9 @@
 
               <div class='no-hover-show'>
                 <% if product.hero_variant.try(:low_stock?) %>
-                  <%= image_tag("ribbons/#{product.hero_variant.stock_status}.png",
-                                :width => 63, :height => 62,
-                                :class => 'upper_left_overlay' ) %>
+                  <%= image_tag("ribbons/#{product.stock_status}.png",
+                                 width: 63, height: 62,
+                                 class: 'upper_left_overlay' ) %>
                 <% end %>
                 <div class='hover-details unfade'>
                   <p class='bottom-hover-details'>

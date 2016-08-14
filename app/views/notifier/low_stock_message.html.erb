@@ -1,0 +1,21 @@
+<h1>Hi,</h1>
+<p>
+  <% if @variants.size > 1 %>
+    The following Variants are Low in Stock.
+  <% else %>
+    <%= @variants.first.name || @variants.first.product_name  %> is Low in Stock
+  <% end %>
+</p>
+
+<ul>
+  <%  @variants.each do |variant| %>
+    <li><b>Quantity Available:</b>  <%= variant.quantity_available %></li>
+    <li><b>Quantity Purchaseable:</b>  <%= variant.quantity_purchaseable %></li>
+
+    <li><b>Name</b> <%= variant.name || variant.product_name %></li>
+    <li><b>SKU</b> <%= variant.sku %></li>
+    <li><%= raw variant.display_property_details %></li>
+  <% end %>
+</ul>
+
+<p>Thank you and have a great day!</p>

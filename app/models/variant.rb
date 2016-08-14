@@ -32,6 +32,9 @@ class Variant < ApplicationRecord
   has_many   :purchase_order_variants
   has_many   :purchase_orders, through: :purchase_order_variants
 
+  has_many   :notifications, as: :notifiable
+  has_many   :in_stock_notifications, as: :notifiable
+
   belongs_to :product
   belongs_to :inventory
   belongs_to :image_group
@@ -48,13 +51,20 @@ class Variant < ApplicationRecord
 
   delegate  :brand, :to => :product, :allow_nil => true
 
-  delegate  :count_on_hand,
+  delegate  :quantity_available,
+            :quantity_purchaseable,
+            :quantity_purchaseable_if_user_wants,
+            :count_on_hand,
             :count_pending_to_customer,
             :count_pending_from_supplier,
             :add_count_on_hand,
             :count_on_hand=,
             :count_pending_to_customer=,
-            :count_pending_from_supplier=, to: :inventory, allow_nil: false
+            :count_pending_from_supplier=,
+            :display_stock_status,
+            :low_stock?,
+            :sold_out?,
+            :stock_status, to: :inventory, allow_nil: false
 
   ADMIN_OUT_OF_STOCK_QTY  = 0
   OUT_OF_STOCK_QTY        = 2
@@ -68,26 +78,6 @@ class Variant < ApplicationRecord
     Rails.cache.fetch("variant-image_urls-#{self}-#{image_size}", :expires_in => 3.hours) do
       image_group ? image_group.image_urls(image_size) : product.image_urls(image_size)
     end
-  end
-
-  # returns quantity available to purchase
-  #
-  # @param [none]
-  # @return [Boolean]
-  def quantity_purchaseable(admin_purchase = false)
-    admin_purchase ? (quantity_available - ADMIN_OUT_OF_STOCK_QTY) : (quantity_available - OUT_OF_STOCK_QTY)
-  end
-
-  def quantity_purchaseable_if_user_wants(this_number_of_items, admin_purchase = false)
-    (quantity_purchaseable(admin_purchase) < this_number_of_items) ? quantity_purchaseable(admin_purchase) : this_number_of_items
-  end
-
-  # returns quantity available in stock
-  #
-  # @param [none]
-  # @return [Boolean]
-  def quantity_available
-    (count_on_hand - count_pending_to_customer)
   end
 
   def active?
@@ -109,39 +99,6 @@ class Variant < ApplicationRecord
 
   def inactivate
     deleted_at ? true : false
-  end
-
-  # returns true if the stock level is above or == the out of stock level
-  #
-  # @param [none]
-  # @return [Boolean]
-  def sold_out?
-    (quantity_available) <= OUT_OF_STOCK_QTY
-  end
-
-  # returns true if the stock level is above or == the low stock level
-  #
-  # @param [none]
-  # @return [Boolean]
-  def low_stock?
-    (quantity_available) <= LOW_STOCK_QTY
-  end
-
-  # returns "(Sold Out)" or "(Low Stock)" or "" depending on if the variant is out of stock / low stock or has enough stock.
-  #
-  # @param [Optional String]
-  # @param [Optional String]
-  # @return [String]
-  def display_stock_status(start = '(', finish = ')')
-    return "#{start}Sold Out#{finish}"  if sold_out?
-    return "#{start}Low Stock#{finish}" if low_stock?
-    ''
-  end
-
-  def stock_status
-    return "sold_out"  if sold_out?
-    return "low_stock" if low_stock?
-    "available"
   end
 
   # price times the tax %
@@ -298,9 +255,7 @@ class Variant < ApplicationRecord
   # @return [none]
   def qty_to_add=(num)
     ###  TODO this method needs a history of who did what
-    inventory.lock!
-    self.inventory.count_on_hand = inventory.count_on_hand.to_i + num.to_i
-    inventory.save!
+    add_count_on_hand(num)
   end
 
   # method used by forms to set the initial qty_to_add for variants

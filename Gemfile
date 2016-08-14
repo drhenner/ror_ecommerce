@@ -28,7 +28,7 @@ gem 'bluecloth',      '~> 2.2.0'
 gem 'cancancan',      '~> 1.15.0'
 gem 'chronic'
 # Use https if you are pushing to HEROKU
-gem 'compass-rails', '~> 3.0.2'
+gem 'compass-rails', ref: '3861c9d9956dd1a5f4290ea87e9d90ba7fe44394'
 
 
 gem 'dynamic_form'
@@ -38,7 +38,7 @@ gem "jquery-rails",    '~> 4.1.1'
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'json',           '~> 1.8.1'
 
-#gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
+# gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
 gem 'nokogiri',     '~> 1.6.5'
 gem 'paperclip',    '~> 5.0.0'
 gem 'prawn',        '~> 0.12.0'

@@ -50,13 +50,6 @@
           <div id='right_product_wrapper' class=''>
             <div class='product_title_name'>
               <%= @product.name %>
-              <% if @product.hero_variant.low_stock? %>
-                <%= image_tag("ribbons/#{@product.hero_variant.stock_status}_upper_right.png",
-                              :width => 63, :height => 62,
-                              :style => 'border:none;',
-                              :class => 'upper_right_overlay float-right'
-                               ) %>
-              <% end %>
             </div>
             <% if @product.active_variants.count > 0 %>
               <div class='product_content'>
@@ -68,7 +61,7 @@
               <div id='your_product' class='panel'>
                 <% @product.active_variants.each_with_index do |variant, i| %>
                   <div id='variant_<%= variant.id %>'
-                       class='tiny button variant_select secondary <%= 'selected_variant' if i == 0 %>'
+                       class='tiny button variant_select <%= 'secondary' if i != 0 %> <%= 'selected_variant success' if i == 0 %>'
                        data-variant_id='<%= variant.id %>'>
                     <%= raw variant.product_name %>
                   </div>
@@ -81,11 +74,11 @@
                         <%= f.hidden_field :variant_id %>
                         <div class='four'>
                         Quantity:
-                        <%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => ' '} %>
+                        <%= f.select :quantity, [1,2,3,4], { include_blank: false }, { class: ' ' } %>
                         </div>
                         <div class='add_to_cart_wrapper '>
                           <% unless @product.active_variants.empty? %>
-                            <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'small button' %>
+                            <%= link_to 'Add to Cart', '#', id: 'submit_add_to_cart', class: 'small button' %>
                           <% end %>
                         </div>
                     <% end %>
@@ -99,15 +92,58 @@
               </ul>
               <div class="tabs-content" data-tabs-content="product-tabs">
                 <div class="tabs-panel is-active" id="product-description">
+                  <% @product.active_variants.each_with_index do |variant, i| %>
+                    <% if variant.low_stock? || variant.sold_out? %>
+                      <div  class='variant_stock variant_stock_<%= variant.id %> <%= 'is-hidden' if i != 0 %>'>
+                        <%= image_tag("ribbons/#{variant.stock_status}_upper_right.png",
+                                      :width => 63, :height => 62,
+                                      :style => 'border:none;',
+                                      :class => 'upper_right_overlay float-right'
+                                       ) %>
+                        <% if variant.sold_out? && (!current_user || !current_user.requested_to_be_notified?(variant.id)) %>
+                          <p>
+                          <% if current_user %>
+                            <%= link_to 'Notify me', notification_path(variant), data: { confirm: 'Click OK and you will get an email when this product is back in stock.' }, class: 'button tiny alert', style: 'margin-top:15px;', method: :put %> when this product is back in stock.
+                          <% else %>
+                            <%= link_to 'Notify me', '#', disabled: true, class: 'button tiny disabled', style: 'margin-top:15px;' %><br/>
+                            Login to be notified when this product is back in stock.
+                          <% end %>
+                          </p>
+                        <% elsif variant.sold_out? && (current_user && current_user.requested_to_be_notified?(variant.id)) %>
+                          <p class='alert callout'><em>You will be notified when this product is back in stock.</em></p>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  <% end %>
                   <div><%= raw @product.description %></div>
                 </div>
                 <div class="tabs-panel" id="product-properties">
                   <% @product.active_variants.each_with_index do |var, i| %>
                     <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'is-hidden' if i != 0 %>'>
+                      <% if var.low_stock? || var.sold_out? %>
+                        <div class='variant_stock variant_stock_<%= var.id %> <%= 'is-hidden' if i != 0 %>'>
+                          <%= image_tag("ribbons/#{var.stock_status}_upper_right.png",
+                                        :width => 63, :height => 62,
+                                        :style => 'border:none;',
+                                        :class => 'upper_right_overlay float-right'
+                                         ) %>
+                        </div>
+                      <% end %>
                       <ul class='vertical-list'>
                         <% var.variant_properties.each do |prop| %>
                           <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
                         <% end %>
+
+                          <% if var.sold_out? && (!current_user || !current_user.requested_to_be_notified?(var.id)) %>
+                            <li>
+                            <% if current_user %>
+                              <%= link_to 'Notify me', notification_path(var), data: { confirm: 'Click OK and you will get an email when this product is back in stock.' }, class: 'button tiny alert', style: 'margin-top:15px;', method: :put %> when this product is back in stock.
+                            <% else %>
+                              <%= link_to 'Notify me', '#', disabled: true, class: 'button tiny', style: 'margin-top:15px;' %><br/>
+                              Login to be notified when this product is back in stock.
+                            <% end %>
+                            </li>
+                          <% end %>
                       </ul>
                     </div>
                   <% end %>

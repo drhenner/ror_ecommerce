@@ -60,6 +60,7 @@ Install gems and build the app
     rake db:create:all
     rake db:migrate db:seed
     RAILS_ENV=test rake db:test:prepare
+    RAILS_ENV=test rake db:seed
 
 Once everything is set up, start the server with `rails server` and direct your web browser to [localhost:3000/admin/overviews](http://localhost:3000/admin/overviews).
 Write down the username/password (these are only shown once) and follow the directions.

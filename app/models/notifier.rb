@@ -61,6 +61,32 @@ class Notifier < ActionMailer::Base
          :subject => "Referral from #{@user.name}")
   end
 
+  def low_stock_message(user_ids, variant_ids)
+    @users    = User.select(:email).find(user_ids)
+    @variants = Variant.find(variant_ids)
+
+    mail( to: @users.map(&:email),
+          subject: "Low Stock Notification")
+  end
+
+  def out_of_stock_message(user_ids, variant_ids)
+    @users    = User.select(:email).find(user_ids)
+    @variants = Variant.find(variant_ids)
+
+    mail( to: @users.map(&:email),
+          subject: "Out of Stock Notification")
+  end
+
+  def in_stock_message(user_ids, variant_ids)
+    @users    = User.select(:email).find(user_ids)
+    @variants = Variant.find(variant_ids)
+
+    subject   = Array(variant_ids).size > 1 ? "Your product is now available" : "{@variants.first.name} is now available"
+
+    mail( bcc: @users.map(&:email),
+          subject: subject)
+  end
+
   private
     def phone_number
       @phone_number   = I18n.t(:company_phone)

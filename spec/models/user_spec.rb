@@ -248,7 +248,7 @@ describe User, 'private methods' do
 
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @user = build(:user)
+    @user = FactoryGirl.build(:user)
   end
 
   context ".password_required?" do
@@ -262,6 +262,29 @@ describe User, 'private methods' do
       expect(@user.send(:password_required?)).to be false
     end
   end
+
+
+  context ".requested_to_be_notified?" do
+    let(:user)          { FactoryGirl.create(:user) }
+    let(:variant)       { FactoryGirl.create(:variant) }
+    let(:notification)  { FactoryGirl.create(:in_stock_notification, sent_at: nil, user: user, notifiable: variant) }
+    let(:notification2) { FactoryGirl.create(:in_stock_notification, sent_at: Time.now, user: user, notifiable: variant) }
+
+    it 'should be false without any request' do
+      expect(user.requested_to_be_notified?(variant.id)).to be false
+    end
+
+    it 'should be true with a request' do
+      notification
+      expect(user.requested_to_be_notified?(variant.id)).to be true
+    end
+
+    it 'should be false with a request that was already sent' do
+      notification2
+      expect(user.requested_to_be_notified?(variant.id)).to be false
+    end
+  end
+
 
   context ".create_cim_profile" do
     skip "test for create_cim_profile"

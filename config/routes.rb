@@ -14,12 +14,13 @@ Hadean::Application.routes.draw do
   get 'signup'      => 'customer/registrations#new'
   get 'admin/merchandise' => 'admin/merchandise/summary#index'
 
-  resource  :about,       only: [:show]
-  resources :products,    only: [:index, :show, :create]
-  resources :states,      only: [:index]
-  resources :terms,       only: [:index]
-  resource  :unsubscribe, only: :show
-  resources :wish_items,  only: [:index, :destroy]
+  resource  :about,         only: [:show]
+  resources :notifications, only: [:update]
+  resources :products,      only: [:index, :show, :create]
+  resources :states,        only: [:index]
+  resources :terms,         only: [:index]
+  resource  :unsubscribe,   only: :show
+  resources :wish_items,    only: [:index, :destroy]
 
   root :to => "welcome#index"
 

@@ -14,8 +14,8 @@
                                                         :class            => 'button tiny secondary' %>
         </li>
         <li>
-          <%= link_to 'Delete', shopping_cart_item_path(item, :variant_id => item.variant_id),
-                              :method => :delete, :class            => 'button tiny alert' %>
+          <%= link_to 'Remove', shopping_cart_item_path(item, variant_id: item.variant_id),
+                                method: :delete, class: 'button tiny alert' %>
         </li>
       </ul>
     </div>
@@ -24,7 +24,7 @@
     <div class="small">
       <%= image_tag item.variant.featured_image %>
       <b>
-          <%= link_to item.variant.product_name, product_path(item.variant.product) %>
+        <%= link_to item.variant.product_name, product_path(item.variant.product) %>
       </b>
       <%=  item.variant.brand_name.blank? ? '' : ['-', item.variant.brand_name].join(' ') %><br/>
       <%= item.variant.display_stock_status('', '') %>
