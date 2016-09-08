@@ -19,7 +19,7 @@ The cart allows you to track your customers' *cart history* and includes a *doub
 The project has *Solr searching*, *Compass* and *Zurb Foundation for CSS* and uses *jQuery*.
 Currently the most complete Rails solution for your small business.
 
-Please use *Ruby 2.1* and enjoy *Rails 4.2*.
+Please use *Ruby 2.3* and enjoy *Rails 5*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
@@ -40,8 +40,8 @@ NOTE: Given that everyone has admin rights to the demo it is frequently looking 
 
 Please feel free to ask/answer questions in our [Google Group](http://groups.google.com/group/ror_ecommerce).
 
-Install RVM with Ruby 2.1.
-If you have 2.1 on your system you're good to go.
+Install RVM with Ruby 2.3.
+If you have 2.3 on your system you're good to go.
 Please refer to the [RVM](http://beginrescueend.com/rvm/basics/) site for more details.
 
 Copy the `database.yml` for your setup.
