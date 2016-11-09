@@ -1,7 +1,9 @@
-<div class="admin-login">
-  <span><%= current_user.name %></span>
-  <%= link_to 'Logout', logout_path, id: 'admin-logout-button', method: :delete %>
-</div>
+<% if current_user %>
+  <div class="admin-login">
+    <span><%= current_user.name %></span>
+    <%= link_to 'Logout', logout_path, id: 'admin-logout-button', method: :delete %>
+  </div>
+<% end %>
 
 <div class="nav-bar top-bar">
   <div class="top-bar-section">
