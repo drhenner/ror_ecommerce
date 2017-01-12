@@ -96,12 +96,12 @@ class Inventory < ApplicationRecord
   def send_stock_notifications(num)
     if num.to_i < 0 # added_stock
       if sold_out?
-        OutOfStockNotification.send!(variant.id).deliver_later
+        OutOfStockNotification.send!(variant.id)
       elsif low_stock?
-        LowStockNotification.send!(variant.id).deliver_later
+        LowStockNotification.send!(variant.id)
       end
     elsif !sold_out?
-      InStockNotification.send!(variant.id).deliver_later
+      InStockNotification.send!(variant.id)
     end
   end
 
