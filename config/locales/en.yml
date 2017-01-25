@@ -31,6 +31,7 @@ en:
   shipping_method_updated:                'Shipping method was successfully updated.'
   all_shipping_methods_must_be_selected:  'All the Shipping Methods must be selected'
   do_not_have_anything_in_your_cart:      "You don't have anything in your cart"
+  shopping_cart_items_do_not_match_order_items: "Your cart items have been changed, please checkout again."
 
   no_addresses_saved:                     'Currently no addresses saved.'
   meta_description:       'The best e-commerce store in the World!'

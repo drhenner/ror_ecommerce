@@ -130,6 +130,10 @@ class Cart < ApplicationRecord
     order
   end
 
+  def shopping_cart_items_equal_order_items?(order)
+    number_of_shopping_cart_items == order.order_items.length
+  end
+
   # Call this method when you want to add an item to the shopping cart
   #
   # @param [Integer, #read] variant id to add to the cart

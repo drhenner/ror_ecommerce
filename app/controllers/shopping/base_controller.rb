@@ -20,6 +20,9 @@ class Shopping::BaseController < ApplicationController
     if session_cart.shopping_cart_items.empty?
       flash[:notice] = I18n.t('do_not_have_anything_in_your_cart')
       return products_url
+    elsif !session_cart.shopping_cart_items_equal_order_items?(session_order)
+      flash[:alert] = I18n.t('shopping_cart_items_do_not_match_order_items')
+      return shopping_cart_items_url
     ## If we are insecure
     elsif not_secure?
       session[:return_to] = shopping_orders_url

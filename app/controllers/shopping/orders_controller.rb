@@ -36,7 +36,10 @@ class Shopping::OrdersController < Shopping::BaseController
 
     address = @order.bill_address.cc_params
 
-    if !@order.in_progress?
+    if !session_cart.shopping_cart_items_equal_order_items?(@order)
+      flash[:alert] = I18n.t('shopping_cart_items_do_not_match_order_items')
+      redirect_to shopping_cart_items_url
+    elsif !@order.in_progress?
       session_cart.mark_items_purchased(@order)
       session[:order_id] = nil
       flash[:error] = I18n.t('the_order_purchased')
