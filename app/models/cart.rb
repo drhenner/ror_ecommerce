@@ -136,14 +136,14 @@ class Cart < ApplicationRecord
     # cart will look like this: [{variant_id: 1, quantity: 2}]
     # order will look like this: [{variant_id: 1}, {variant_id: 1}]
     # before comparing, both need to be converted into the same style
-    cart_items = []
+    variant_ids_in_cart = []
     shopping_cart_items.each do |item|
       item.quantity.times do
-        cart_items.push(item.variant_id)
+        variant_ids_in_cart.push(item.variant_id)
       end
     end
     order_items = order.order_items.map(&:variant_id)
-    cart_items.sort == order_items.sort
+    variant_ids_in_cart.sort == order_items.sort
   end
 
   # Call this method when you want to add an item to the shopping cart
