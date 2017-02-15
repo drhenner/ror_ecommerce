@@ -93,6 +93,7 @@ Hadean.Fulfillment = {
                             );
     jQuery('#dialog-message').html('Are you sure you want to COLLECT FUNDS for this order?');
     jQuery('#dialog-message').css('background-color', '#CFD');
+    jQuery('.ui-dialog-title').text('Collect Invoice');
     jQuery('#dialog').dialog('open');
     return false;
   },// cancelInvoice
@@ -130,6 +131,7 @@ Hadean.Fulfillment = {
                             );
     jQuery('#dialog-message').html('Are you sure you want to CANCEL the Order and Shipment?');
     jQuery('#dialog-message').css('background-color', '#FCD');
+    jQuery('.ui-dialog-title').text('Cancel Invoice');
     jQuery('#dialog').dialog('open');
     return false;
   }// cancelInvoice

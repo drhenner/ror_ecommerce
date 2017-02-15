@@ -157,6 +157,10 @@ ul {
   }
 }
 
+.ui-dialog {
+  z-index: 99;
+}
+
 .footer {
   width: 1000px;
   max-width: 100%;

@@ -130,6 +130,22 @@ class Cart < ApplicationRecord
     order
   end
 
+  def shopping_cart_items_equal_order_items?(order)
+    # cart item has quantity, but order item doesn't.
+    # for example: cart and order both have two of the same item which variant_id is 1
+    # cart will look like this: [{variant_id: 1, quantity: 2}]
+    # order will look like this: [{variant_id: 1}, {variant_id: 1}]
+    # before comparing, both need to be converted into the same style
+    variant_ids_in_cart = []
+    shopping_cart_items.each do |item|
+      item.quantity.times do
+        variant_ids_in_cart.push(item.variant_id)
+      end
+    end
+    order_items = order.order_items.map(&:variant_id)
+    variant_ids_in_cart.sort == order_items.sort
+  end
+
   # Call this method when you want to add an item to the shopping cart
   #
   # @param [Integer, #read] variant id to add to the cart

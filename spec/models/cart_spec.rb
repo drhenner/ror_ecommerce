@@ -191,3 +191,61 @@ describe  ".merge_with_previous_cart! " do
     end
   end
 end
+
+describe Cart, ".shopping_cart_items_equal_order_items?" do
+  before(:each) do
+    @order = FactoryGirl.create(:order)
+    @cart = FactoryGirl.create(:cart)
+  end
+
+  context 'when cart items are equal orders' do
+    before(:each) do
+      variant = FactoryGirl.create(:variant)
+      @cart.add_variant(variant.id, @cart.user, 2)
+      @order.add_items(variant, 2)
+    end
+
+    it 'shold return true' do
+      expect(@cart.shopping_cart_items_equal_order_items?(@order)).to eq true
+    end
+  end
+
+  context 'when amount is not equal' do
+    before(:each) do
+      variant = FactoryGirl.create(:variant)
+      @cart.add_variant(variant.id, @cart.user, 2)
+    end
+
+    it 'should return false' do
+      expect(@cart.shopping_cart_items_equal_order_items?(@order)).to eq false
+    end
+  end
+
+  context 'when variants are not equal' do
+    before(:each) do
+      variant_1 = FactoryGirl.create(:variant)
+      variant_2 = FactoryGirl.create(:variant)
+      @cart.add_variant(variant_1.id, @cart.user, 2)
+      @order.add_items(variant_2, 2)
+    end
+
+    it 'should return false' do
+      expect(@cart.shopping_cart_items_equal_order_items?(@order)).to eq false
+    end
+  end
+
+  context 'when variant quantity is not equal, but total amount is equal' do
+    before(:each) do
+      variant_1 = FactoryGirl.create(:variant)
+      variant_2 = FactoryGirl.create(:variant)
+      @cart.add_variant(variant_1.id, @cart.user, 1)
+      @order.add_items(variant_1, 2)
+      @cart.add_variant(variant_2.id, @cart.user, 2)
+      @order.add_items(variant_2, 1)
+    end
+
+    it 'should return false' do
+      expect(@cart.shopping_cart_items_equal_order_items?(@order)).to eq false
+    end
+  end
+end
