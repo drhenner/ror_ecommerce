@@ -11,7 +11,7 @@ Please look at the [homepage](http://www.ror-e.com) for more details.  Or take a
 [![Code Climate](https://codeclimate.com/github/drhenner/ror_ecommerce.png)](https://codeclimate.com/github/drhenner/ror_ecommerce)
 
 This is a Rails e-commerce platform.
-ROR Ecommerce is a *Rails 4 application* with the intent to allow developers to create an ecommerce solution easily.
+ROR Ecommerce is a *Rails 5 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
