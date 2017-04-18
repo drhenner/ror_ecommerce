@@ -1,6 +1,6 @@
-#ROR Ecommerce
+# ROR Ecommerce
 
-##Project Overview
+## Project Overview
 
 Please create a ticket on github if you have issues.
 They will be addressed ASAP.
@@ -29,14 +29,14 @@ If you don't like something, you are free to just change it like you would in an
 We will always need help with UI, documentation, and code, so feel free to pitch in.
 To get started, simply fork this repo, make *any* changes (big or small), and create a pull request.
 
-##DEMO
+## DEMO
 
 Take a look at [The Demo](https://ror-e.herokuapp.com).
 The login name is test@ror-e.com with a password => test123
 
 NOTE: Given that everyone has admin rights to the demo it is frequently looking less than "beautiful".
 
-##Getting Started
+## Getting Started
 
 Please feel free to ask/answer questions in our [Google Group](http://groups.google.com/group/ror_ecommerce).
 
@@ -101,7 +101,7 @@ This is needed for using sendgrid on heroku(config/initializers/mail.rb):
     heroku config:add SENDGRID_PASSWORD=xxxxxxxxxxxxxxx
 
 
-##Quick Evaluation
+## Quick Evaluation
 
 If you just want to see what ror_ecommerce looks like, before you enter any products into the database, run the following command:
 
@@ -113,7 +113,7 @@ You should now have a minimal dataset, and be able to see a demo of the various 
 Note: make sure you have `config/settings.yml` set up correctly before you try to checkout.
 Also, please take a look at [The 15 minute e-commerce video](http://www.ror-e.com/info/videos/7).
 
-##ImageMagick and rMagick on OS X 10.8
+## ImageMagick and rMagick on OS X 10.8
 ------------------------------------
 
 If installing rMagick on OS X 10.8 and using Homebrew to install ImageMagick, you will need to symlink across some files or rMagick will not be able to build.
@@ -127,13 +127,13 @@ Do the following in the case of a Homebrew installed ImageMagick(and homebrew ha
 
     * you may need to change the version path if the imagemagick has been updated
 
-##YARDOCS
+## YARDOCS
 
 If you would like to read the docs, you can generate them with the following command:
 
     yardoc --no-private --protected app/models/*.rb
 
-####Payment Gateways
+#### Payment Gateways
 
 First, create `config/settings.yml` and change the encryption key and paypal/auth.net information.
 You can also change `config/settings.yml.example` to `config/settings.yml` until you get your real info.
@@ -166,7 +166,7 @@ Into:
 Paperclip.options[:command_path] = "/usr/bin"
 ```
 
-##Adding Dalli For Cache and the Session Store
+## Adding Dalli For Cache and the Session Store
 
 While optional, for a speedy site, using memcached is a good idea.
 
@@ -177,7 +177,7 @@ If you're on a Mac, the easiest way to install Memcached is to use [homebrew](ht
 
     memcached -vv
 
-####To Turn On the Dalli Cookie Store
+#### To Turn On the Dalli Cookie Store
 
 Remove the cookie store on line one of `config/initializers/session_store.rb`.
 In your Gemfile add:
@@ -197,7 +197,7 @@ require 'action_dispatch/middleware/session/dalli_store'
 Hadean::Application.config.session_store :dalli_store, :key => '_hadean_session_ugrdr6765745ce4vy'
 ```
 
-####To Turn On the Dalli Cache Store
+#### To Turn On the Dalli Cache Store
 
 It is also recommended to change the cache store in config/environments/*.rb
 
@@ -242,12 +242,12 @@ You need to run `rake sunspot:solr:start`, or remove Solr completely.
 
 Remember to run `rake sunspot:reindex` before doing your search if you already have data in the DB
 
-##TODO:
+## TODO:
 
 * more documentation
 
 
-##SETUP assets on S3 with CORS
+## SETUP assets on S3 with CORS
 
 Putting assets on S3 can cause issues with FireFox/IE.  You can read about the issue if you search for "S3 & CORS".  Basically FF & IE are keeping things more secure but in the process you are required to do some setup.
 
@@ -280,11 +280,11 @@ If you have many variants with the same image don't bother with an image group, 
 
 Use ImageGroups for something like shoes. Lets say you have 3 colors, and each color has 10 sizes. You would create 3 images groups (one for each color). The image for each size would be the same and hence each variant would be associated to the same image_group for a given color.
 
-##Author
+## Author
 
 RoR Ecommerce was created by David Henner. [Contributors](https://github.com/drhenner/ror_ecommerce/blob/master/Contributors.md).
 
-##FYI:
+## FYI:
 
 Shipping categories are categories based off price:
 
