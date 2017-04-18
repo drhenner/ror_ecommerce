@@ -354,6 +354,10 @@ class Order < ApplicationRecord
     @order_shipping_charges = shipping_rates(items).inject(0.0) {|sum, shipping_rate|  sum + shipping_rate.rate  }
   end
 
+  def get_total_discount
+    taxed_total || find_total_discount
+  end
+
   # all the shipping rate to apply to the order
   #
   # @param [none]

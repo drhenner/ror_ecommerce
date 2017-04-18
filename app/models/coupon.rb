@@ -60,6 +60,12 @@ class Coupon < ApplicationRecord
     qualified?(item_prices, order) ? coupon_amount(item_prices) : 0.0
   end
 
+  def self.active
+    where("coupon.deleted_at IS NULL OR coupon.deleted_at > ?", Time.zone.now)
+    #  Add this line if you want the available_at to function
+    #where("products.available_at IS NULL OR products.available_at >= ?", Time.zone.now)
+  end
+
   # Does the coupon meet the criteria to apply it.  (is the order price total over the coupon's minimum value)
   def qualified?(item_prices, order, at = nil)
     at ||= order.completed_at || Time.zone.now

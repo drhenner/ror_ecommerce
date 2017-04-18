@@ -48,6 +48,11 @@ class Deal < ApplicationRecord
     end
     0.0
   end
+
+  def self.eligible_on(product_type_id)
+    where(['deals.product_type_id IN (?)', product_type_id])
+  end
+
   def self.qualifing_deal(product_type_id, product_type_prices, at)
     deal = self.for_x_number_purchased(product_type_prices.size).
     for_product_type_id(product_type_id).existed_at(at).active_at(at).

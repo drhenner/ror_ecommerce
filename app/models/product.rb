@@ -58,7 +58,7 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :variants,           reject_if: proc { |attributes| attributes['sku'].blank? }
   accepts_nested_attributes_for :product_properties, reject_if: proc { |attributes| attributes['description'].blank? }, allow_destroy: true
-  accepts_nested_attributes_for :images,             reject_if: proc { |t| (t['photo'].nil? && t['photo_from_link'].blank? && t['id'].blank?) }, allow_destroy: true
+  accepts_nested_attributes_for :images,             reject_if: proc { |t| (t['photo'].nil? && t['photo_from_link'].blank?) }, allow_destroy: true
 
   validates :shipping_category_id,  presence: true
   validates :product_type_id,       presence: true
@@ -123,6 +123,12 @@ class Product < ApplicationRecord
   # @return [String] product_keywords separated by comma
   def set_keywords
     product_keywords ? product_keywords.join(', ') : ''
+  end
+
+  def discount_price
+    Rails.cache.fetch("Product-#{id}-#{price}", expires_in: 3.hours) do
+      discount_price.empty? ? [self.original_price] : self.discount_price }
+    end
   end
 
   # range of the product prices (Just teh low and high price) as an array
@@ -216,7 +222,7 @@ class Product < ApplicationRecord
   end
 
   def has_shipping_method?
-    shipping_category.shipping_rates.exists?
+    return true
   end
 
   private
