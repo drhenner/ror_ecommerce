@@ -11,7 +11,7 @@ Please look at the [homepage](http://www.ror-e.com) for more details.  Or take a
 [![Code Climate](https://codeclimate.com/github/drhenner/ror_ecommerce.png)](https://codeclimate.com/github/drhenner/ror_ecommerce)
 
 This is a Rails e-commerce platform.
-ROR Ecommerce is a *Rails 5 application* with the intent to allow developers to create an ecommerce solution easily.
+ROR Ecommerce is a *Rails 5.1 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
@@ -19,7 +19,7 @@ The cart allows you to track your customers' *cart history* and includes a *doub
 The project has *Solr searching*, *Compass* and *Zurb Foundation for CSS* and uses *jQuery*.
 Currently the most complete Rails solution for your small business.
 
-Please use *Ruby 2.3* and enjoy *Rails 5*.
+Please use *Ruby 2.4* and enjoy *Rails 5.1*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
@@ -40,8 +40,8 @@ NOTE: Given that everyone has admin rights to the demo it is frequently looking 
 
 Please feel free to ask/answer questions in our [Google Group](http://groups.google.com/group/ror_ecommerce).
 
-Install RVM with Ruby 2.3.
-If you have 2.3 on your system you're good to go.
+Install RVM with Ruby 2.4.
+If you have 2.4 on your system you're good to go.
 Please refer to the [RVM](http://beginrescueend.com/rvm/basics/) site for more details.
 
 Copy the `database.yml` for your setup.
