@@ -1,0 +1,12 @@
+<%= I18n.t(:company) %>
+
+**************************************************************************
+
+THANK YOU FOR SUBSCRIBING!
+
+Soon you will start receiving our <%= I18n.t(:company) %> newsletter with info and all the latest news.
+
+**************************************************************************
+
+If you've subscribed in error or wish to unsubscribe at any time please, go to: <%= unsubscribe_url(email: @recipient.email, :key => @key) %>
+Copyright &trade; <%= Time.zone.now.year %> <%= I18n.t(:company) %>.

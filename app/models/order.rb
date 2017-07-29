@@ -578,7 +578,7 @@ class Order < ApplicationRecord
   # @param none
   # @return [none]
   def update_tax_rates
-    if ship_address_id_changed?
+    if saved_change_to_attribute?(:ship_address_id)
       # set_beginning_values
       tax_time = completed_at? ? completed_at : Time.zone.now
       order_items.each do |item|

@@ -8,17 +8,14 @@ class Notifier < ActionMailer::Base
   # @param [user] user that signed up
   # => user must respond to email_address_with_name and name
   def signup_notification(recipient_id)
-    @recipient = User.find(recipient_id)
+    @user = @recipient = User.find(recipient_id)
+    @key  = UsersNewsletter.unsubscribe_key(@recipient.email)
 
     #attachments['an-image.jp'] = File.read("an-image.jpg")
     #attachments['terms.pdf'] = {:content => generate_your_pdf_here() }
 
     mail(:to => @recipient.email_address_with_name,
-         :subject => "New account information") do |format|
-      format.text { render :text => "Welcome!  #{@recipient.name} go to #{customer_activation_url(:a => @recipient.perishable_token )}" }
-      format.html { render :text => "<h1>Welcome</h1> #{@recipient.name} <a href='#{customer_activation_url(:a => @recipient.perishable_token )}'>Click to Activate</a>" }
-    end
-
+         :subject => "New account information")
   end
 
   def password_reset_instructions(user_id)

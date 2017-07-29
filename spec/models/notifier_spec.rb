@@ -18,7 +18,7 @@ describe Notifier, "Signup Email" do
     end
 
     it "should contain the user's message in the mail body" do
-      expect(@email).to have_body_text(/Dave Commerce/)
+      expect(@email).to have_body_text(/RoR Ecommerce newsletter/)
     end
 
     #it "should contain a link to the confirmation link" do
