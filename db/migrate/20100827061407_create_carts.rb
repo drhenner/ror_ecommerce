@@ -1,4 +1,4 @@
-class CreateCarts < ActiveRecord::Migration
+class CreateCarts < ActiveRecord::Migration[4.2]
   def self.up
     create_table :carts do |t|
       t.integer :user_id

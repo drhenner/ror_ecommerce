@@ -1,4 +1,4 @@
-class AddInventoryIdToVariants < ActiveRecord::Migration
+class AddInventoryIdToVariants < ActiveRecord::Migration[4.2]
   def self.up
     add_column :variants, :inventory_id, :integer
     remove_column :variants, :count_on_hand

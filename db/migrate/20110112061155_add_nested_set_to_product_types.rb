@@ -1,4 +1,4 @@
-class AddNestedSetToProductTypes < ActiveRecord::Migration
+class AddNestedSetToProductTypes < ActiveRecord::Migration[4.2]
   def self.up
     add_column :product_types, :rgt, :integer
     add_column :product_types, :lft, :integer

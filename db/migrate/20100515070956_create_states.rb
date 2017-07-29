@@ -1,7 +1,7 @@
-class CreateStates < ActiveRecord::Migration
+class CreateStates < ActiveRecord::Migration[4.2]
   def self.up
     create_table :states do |t|
-      
+
       t.string :name,                       :null => false
       t.string :abbreviation, :limit => 5,  :null => false,   :unique => true
       t.string :described_as

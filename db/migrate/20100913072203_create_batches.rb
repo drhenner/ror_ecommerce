@@ -1,4 +1,4 @@
-class CreateBatches < ActiveRecord::Migration
+class CreateBatches < ActiveRecord::Migration[4.2]
   def self.up
     create_table :batches do |t|
       t.string :batchable_type

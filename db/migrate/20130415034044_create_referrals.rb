@@ -1,4 +1,4 @@
-class CreateReferrals < ActiveRecord::Migration
+class CreateReferrals < ActiveRecord::Migration[4.2]
   def change
     create_table :referrals do |t|
       t.boolean :applied,             :default => false

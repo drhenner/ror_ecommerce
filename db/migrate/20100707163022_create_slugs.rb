@@ -1,4 +1,4 @@
-class CreateSlugs < ActiveRecord::Migration
+class CreateSlugs < ActiveRecord::Migration[4.2]
   def self.up
     create_table :slugs do |t|
       t.string :name

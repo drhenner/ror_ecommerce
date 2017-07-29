@@ -1,4 +1,4 @@
-class CreateInventories < ActiveRecord::Migration
+class CreateInventories < ActiveRecord::Migration[4.2]
   def self.up
     create_table :inventories do |t|
       #t.integer :variant_id

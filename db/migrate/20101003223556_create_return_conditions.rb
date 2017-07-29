@@ -1,4 +1,4 @@
-class CreateReturnConditions < ActiveRecord::Migration
+class CreateReturnConditions < ActiveRecord::Migration[4.2]
   def self.up
     create_table :return_conditions do |t|
       t.string :label

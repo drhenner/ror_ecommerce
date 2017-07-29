@@ -1,4 +1,4 @@
-class AddBrandToProducts < ActiveRecord::Migration
+class AddBrandToProducts < ActiveRecord::Migration[4.2]
 
   def self.up
     add_column :products, :brand_id, :integer

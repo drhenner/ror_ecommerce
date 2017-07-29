@@ -1,4 +1,4 @@
-class CreatePrototypes < ActiveRecord::Migration
+class CreatePrototypes < ActiveRecord::Migration[4.2]
   def self.up
     create_table :prototypes do |t|
       t.string      :name, :null => false

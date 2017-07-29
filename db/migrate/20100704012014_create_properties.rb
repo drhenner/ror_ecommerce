@@ -1,4 +1,4 @@
-class CreateProperties < ActiveRecord::Migration
+class CreateProperties < ActiveRecord::Migration[4.2]
   def self.up
     create_table :properties do |t|
       t.string      :identifing_name, :null => false

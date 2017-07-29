@@ -1,4 +1,4 @@
-class CreateReturnAuthorizations < ActiveRecord::Migration
+class CreateReturnAuthorizations < ActiveRecord::Migration[4.2]
   def self.up
     create_table :return_authorizations do |t|
       t.string :number#,         :null => false
@@ -9,7 +9,7 @@ class CreateReturnAuthorizations < ActiveRecord::Migration
       t.string :state,          :null => false
       t.integer :created_by
       t.boolean :active,                                                        :default => true
-      
+
       t.timestamps
     end
     add_index :return_authorizations, :number

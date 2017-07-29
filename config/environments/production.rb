@@ -19,6 +19,7 @@ Hadean::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+  config.assets.enable = true
 
   # config.assets.precompile += %w( *.css *.js )
 

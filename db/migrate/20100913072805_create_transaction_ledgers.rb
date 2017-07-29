@@ -1,4 +1,4 @@
-class CreateTransactionLedgers < ActiveRecord::Migration
+class CreateTransactionLedgers < ActiveRecord::Migration[4.2]
   def self.up
     create_table :transaction_ledgers do |t|
       t.string :accountable_type

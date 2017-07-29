@@ -1,4 +1,4 @@
-class CreateCartItems < ActiveRecord::Migration
+class CreateCartItems < ActiveRecord::Migration[4.2]
   def self.up
     create_table :cart_items do |t|
       t.integer :user_id
@@ -10,7 +10,7 @@ class CreateCartItems < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :cart_items, :user_id
     add_index :cart_items, :cart_id
     add_index :cart_items, :variant_id

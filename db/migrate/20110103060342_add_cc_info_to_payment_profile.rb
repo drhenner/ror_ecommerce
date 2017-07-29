@@ -1,4 +1,4 @@
-class AddCcInfoToPaymentProfile < ActiveRecord::Migration
+class AddCcInfoToPaymentProfile < ActiveRecord::Migration[4.2]
   def self.up
     add_column :payment_profiles, :last_digits, :string,  :length => 8
     add_column :payment_profiles, :month,       :string,  :length => 20

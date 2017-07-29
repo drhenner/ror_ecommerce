@@ -1,4 +1,4 @@
-class CreateVariants < ActiveRecord::Migration
+class CreateVariants < ActiveRecord::Migration[4.2]
   def self.up
     create_table :variants do |t|
       t.integer         :product_id,                                                :null => false
@@ -13,9 +13,9 @@ class CreateVariants < ActiveRecord::Migration
       t.integer         :count_pending_from_supplier, :default => 0, :null => false
       t.timestamps
     end
-    add_index :variants, :sku 
+    add_index :variants, :sku
     add_index :variants, :product_id
-    
+
     execute "alter table variants add constraint fk_variants_products foreign key (product_id) references products(id)" if SETTINGS[:use_foreign_keys]
   end
 

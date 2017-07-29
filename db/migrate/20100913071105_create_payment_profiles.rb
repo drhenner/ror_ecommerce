@@ -1,4 +1,4 @@
-class CreatePaymentProfiles < ActiveRecord::Migration
+class CreatePaymentProfiles < ActiveRecord::Migration[4.2]
   def self.up
     create_table :payment_profiles do |t|
       t.integer :user_id

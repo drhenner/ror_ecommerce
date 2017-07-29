@@ -1,4 +1,4 @@
-class CreateInvoices < ActiveRecord::Migration
+class CreateInvoices < ActiveRecord::Migration[4.2]
   def self.up
     create_table :invoices do |t|
       t.integer   :order_id,      :null => false
@@ -10,7 +10,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.boolean   :active,        :null => false, :default => true
 
       t.timestamps
-    end  
+    end
       #add_index :invoices, :number
     add_index :invoices, :order_id
   end

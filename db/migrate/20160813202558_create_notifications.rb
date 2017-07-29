@@ -10,5 +10,8 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
 
       t.datetime :created_at,      null: false
     end
+    add_index :notifications, [:type, :user_id]
+    add_index :notifications, [:user_id]
+    add_index :notifications, [:notifiable_type, :notifiable_id]
   end
 end

@@ -1,4 +1,4 @@
-class CreateShippingMethods < ActiveRecord::Migration
+class CreateShippingMethods < ActiveRecord::Migration[4.2]
   def self.up
     create_table :shipping_methods do |t|
       t.string :name, :null => false

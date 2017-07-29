@@ -1,4 +1,4 @@
-class CreatePurchaseOrders < ActiveRecord::Migration
+class CreatePurchaseOrders < ActiveRecord::Migration[4.2]
   def self.up
     create_table :purchase_orders do |t|
       t.integer :supplier_id,       :null => false
@@ -12,7 +12,7 @@ class CreatePurchaseOrders < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :purchase_orders, :supplier_id
     add_index :purchase_orders, :tracking_number
   end

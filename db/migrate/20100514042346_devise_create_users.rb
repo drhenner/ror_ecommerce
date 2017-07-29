@@ -1,13 +1,13 @@
-class DeviseCreateUsers < ActiveRecord::Migration
+class DeviseCreateUsers < ActiveRecord::Migration[4.2]
   def self.up
     create_table(:users) do |t|
       ##  THIS info goes into signup-info
       t.string :first_name, :length => 40
       t.string :last_name,  :length => 40
       t.date   :birth_date
-      
-      t.string :email 
-      t.string :state 
+
+      t.string :email
+      t.string :state
       t.integer :account_id
       t.string :customer_cim_id ## This is the ID returned from AUTH.NET
       t.string :password_salt
@@ -16,7 +16,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :persistence_token
       t.string :access_token
       t.integer :comments_count, :default => 0
-      
+
       #t.database_authenticatable :null => false
       #t.confirmable
       #t.recoverable
@@ -28,7 +28,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :users, :first_name
     add_index :users, :last_name
     add_index :users, :email,               :unique => true

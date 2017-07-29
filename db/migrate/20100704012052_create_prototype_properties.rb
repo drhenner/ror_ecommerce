@@ -1,11 +1,11 @@
-class CreatePrototypeProperties < ActiveRecord::Migration
+class CreatePrototypeProperties < ActiveRecord::Migration[4.2]
   def self.up
     create_table :prototype_properties do |t|
       t.integer 'prototype_id', :null => false
       t.integer 'property_id', :null => false
     end
-    
-    
+
+
     add_index :prototype_properties, :prototype_id
     add_index :prototype_properties, :property_id
     if SETTINGS[:use_foreign_keys]

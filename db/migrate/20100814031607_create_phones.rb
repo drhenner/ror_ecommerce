@@ -1,4 +1,4 @@
-class CreatePhones < ActiveRecord::Migration
+class CreatePhones < ActiveRecord::Migration[4.2]
   def self.up
     create_table :phones do |t|
       t.integer  :phone_type_id
@@ -8,7 +8,7 @@ class CreatePhones < ActiveRecord::Migration
       t.boolean  "primary",         :default => false
       t.timestamps
     end
-    
+
     add_index :phones, :phoneable_type
     add_index :phones, :phoneable_id
     add_index :phones, :phone_type_id

@@ -1,4 +1,4 @@
-class CreateCoupons < ActiveRecord::Migration
+class CreateCoupons < ActiveRecord::Migration[4.2]
   def self.up
     create_table :coupons do |t|
       t.string :type,                   :null => false
@@ -13,7 +13,7 @@ class CreateCoupons < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :coupons, :code
     add_index :coupons, :expires_at
 

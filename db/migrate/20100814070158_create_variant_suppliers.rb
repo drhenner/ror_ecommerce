@@ -1,4 +1,4 @@
-class CreateVariantSuppliers < ActiveRecord::Migration
+class CreateVariantSuppliers < ActiveRecord::Migration[4.2]
   def self.up
     create_table :variant_suppliers do |t|
       t.integer     :variant_id,                                            :null => false
@@ -10,7 +10,7 @@ class CreateVariantSuppliers < ActiveRecord::Migration
       t.boolean     :active,                              :default => true
       t.timestamps
     end
-    
+
     add_index :variant_suppliers, :variant_id
     add_index :variant_suppliers, :supplier_id
   end

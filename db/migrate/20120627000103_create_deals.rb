@@ -1,4 +1,4 @@
-class CreateDeals < ActiveRecord::Migration
+class CreateDeals < ActiveRecord::Migration[4.2]
   def change
     create_table :deals do |t|
       t.integer :buy_quantity,    :null => false

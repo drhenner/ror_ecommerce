@@ -1,4 +1,4 @@
-class CreateOrders < ActiveRecord::Migration
+class CreateOrders < ActiveRecord::Migration[4.2]
   def self.up
     create_table :orders do |t|
       t.string :number
@@ -14,10 +14,10 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :shipment_counter, :default => 0
       t.datetime :calculated_at
       t.datetime :completed_at
-      
+
       t.timestamps
     end
-    
+
     add_index :orders, :number
     add_index :orders, :email
     add_index :orders, :user_id

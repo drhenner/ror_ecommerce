@@ -1,4 +1,4 @@
-class CreateShippingZones < ActiveRecord::Migration
+class CreateShippingZones < ActiveRecord::Migration[4.2]
   def self.up
     create_table :shipping_zones do |t|
       t.string :name, :null => false

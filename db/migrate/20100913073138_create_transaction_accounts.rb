@@ -1,4 +1,4 @@
-class CreateTransactionAccounts < ActiveRecord::Migration
+class CreateTransactionAccounts < ActiveRecord::Migration[4.2]
   def self.up
     create_table :transaction_accounts do |t|
      # t.string :type

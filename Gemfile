@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.3.1"
 
 ## Bundle rails:
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.0'
 
 gem 'uglifier',     '>= 1.3.0'
 # gem 'sass-rails',   '~> 6.0.0.beta1'
@@ -16,7 +16,7 @@ gem "american_date",  '~> 1.1.1'
 ##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
 # gem 'authlogic', '~> 3.4.6'#,          "~> 3.3.0"
 
-gem 'authlogic',   '~> 3.5.0'
+gem 'authlogic',   '~> 3.6.0'
 
 #gem 'scrypt', '~> 2.0.0'
 
@@ -83,7 +83,7 @@ group :development do
 end
 group :test, :development do
   gem 'byebug'
-  gem 'mysql2',   '~> 0.4.4'
+  gem 'mysql2',   '~> 0.4.8'
   gem 'capybara', '~> 2.7.1'
   gem 'launchy'
   gem 'database_cleaner', "~> 1.2"

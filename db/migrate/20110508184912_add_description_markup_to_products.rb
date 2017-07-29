@@ -1,4 +1,4 @@
-class AddDescriptionMarkupToProducts < ActiveRecord::Migration
+class AddDescriptionMarkupToProducts < ActiveRecord::Migration[4.2]
   def self.up
     add_column :products, :description_markup, :text
   end

@@ -1,4 +1,4 @@
-class CreateAddresses < ActiveRecord::Migration
+class CreateAddresses < ActiveRecord::Migration[4.2]
   def self.up
     create_table :addresses do |t|
       t.integer  :address_type_id
@@ -19,7 +19,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.boolean  'active',              :default => true
       t.timestamps
     end
-    
+
     add_index :addresses, :state_id
     add_index :addresses, :addressable_id
     add_index :addresses, :addressable_type

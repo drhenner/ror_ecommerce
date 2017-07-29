@@ -1,4 +1,4 @@
-class CreatePhoneTypes < ActiveRecord::Migration
+class CreatePhoneTypes < ActiveRecord::Migration[4.2]
   def self.up
     create_table :phone_types do |t|
       t.string  :name,  :null => false

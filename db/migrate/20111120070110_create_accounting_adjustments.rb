@@ -1,4 +1,4 @@
-class CreateAccountingAdjustments < ActiveRecord::Migration
+class CreateAccountingAdjustments < ActiveRecord::Migration[4.2]
   def change
     create_table :accounting_adjustments do |t|
       t.integer :adjustable_id,  :null => false

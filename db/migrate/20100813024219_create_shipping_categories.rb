@@ -1,4 +1,4 @@
-class CreateShippingCategories < ActiveRecord::Migration
+class CreateShippingCategories < ActiveRecord::Migration[4.2]
   def self.up
     create_table :shipping_categories do |t|
       t.string :name, :null => false,   :unique => true

@@ -1,4 +1,4 @@
-class CreateReturnItems < ActiveRecord::Migration
+class CreateReturnItems < ActiveRecord::Migration[4.2]
   def self.up
     create_table :return_items do |t|
       t.integer :return_authorization_id, :null => false

@@ -1,4 +1,4 @@
-class CreateAccounts < ActiveRecord::Migration
+class CreateAccounts < ActiveRecord::Migration[4.2]
   def self.up
     create_table :accounts do |t|
       t.string  :name,            :null => false

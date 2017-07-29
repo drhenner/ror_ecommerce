@@ -1,4 +1,4 @@
-class CreateProducts < ActiveRecord::Migration
+class CreateProducts < ActiveRecord::Migration[4.2]
   def self.up
     create_table :products do |t|
       t.string            :name,                  :null => false

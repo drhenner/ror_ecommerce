@@ -1,4 +1,4 @@
-class CreatePurchaseOrderVariants < ActiveRecord::Migration
+class CreatePurchaseOrderVariants < ActiveRecord::Migration[4.2]
   def self.up
     create_table :purchase_order_variants do |t|
       t.integer :purchase_order_id, :null => false

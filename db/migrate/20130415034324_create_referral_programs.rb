@@ -1,4 +1,4 @@
-class CreateReferralPrograms < ActiveRecord::Migration
+class CreateReferralPrograms < ActiveRecord::Migration[4.2]
   def change
     create_table :referral_programs do |t|
       t.boolean :active,  :null => false
