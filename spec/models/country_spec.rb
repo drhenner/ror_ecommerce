@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Country do
 
   context "#form_selector" do
-require 'byebug'
     it 'should return the correct objects' do
       @countries = Country.form_selector
       expect(@countries.class.to_s).to              eq 'Array'
