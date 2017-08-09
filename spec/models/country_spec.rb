@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Country do
 
   context "#form_selector" do
-
+require 'byebug'
     it 'should return the correct objects' do
       @countries = Country.form_selector
       expect(@countries.class.to_s).to              eq 'Array'
       expect(@countries.first.class.to_s).to        eq 'Array'
       expect(@countries.first.first.class.to_s).to  eq 'String'
-      expect(@countries.first.last.class.to_s).to   eq 'Fixnum'
+      expect(@countries.first.last.class.to_s).to   eq 'Integer'
     end
   end
 end
