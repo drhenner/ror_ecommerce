@@ -2,8 +2,8 @@ class Shopping::CartItemsController < Shopping::BaseController
 
   # GET /shopping/cart_items
   def index
-    @cart_items       = session_cart.shopping_cart_items
-    @saved_cart_items = session_cart.saved_cart_items
+    @cart_items       = session_cart.shopping_cart_items.includes(:variant, variant: [:variant_properties, :inventory, :product, product: [:brand, :images]])
+    @saved_cart_items = session_cart.saved_cart_items.includes(:variant, variant: [:variant_properties, :inventory, :product, product: [:brand, :images]])
   end
 
   # POST /shopping/cart_items
