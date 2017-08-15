@@ -57,7 +57,7 @@ gem "sprockets",       "~> 3.7.0"
 gem 'aasm',            '~> 4.0.3'
 #gem 'sunspot_solr',   '~> 2.0.0'
 #gem 'sunspot_rails',  '~> 2.0.0'
-gem 'will_paginate',   '~> 3.1.0'
+gem 'will_paginate',   '~> 3.1.6'
 # gem 'zurb-foundation', '~> 4.3.2'
 gem 'foundation-rails', '6.2.3.0'
 
@@ -73,7 +73,7 @@ group :development do
   #gem 'awesome_print'
   #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem "autotest-rails-pure"
-  gem "better_errors", '~> 2.1.1'
+  gem "better_errors", '~> 2.3.0'
   gem "binding_of_caller", '~> 0.7.2'
   # gem "rails-erd"
 
@@ -86,7 +86,7 @@ group :test, :development do
   gem 'mysql2',   '~> 0.4.8'
   gem 'capybara', '~> 2.7.1'
   gem 'launchy'
-  gem 'database_cleaner', "~> 1.2"
+  gem 'database_cleaner', "~> 1.6.1"
 end
 
 group :test do
