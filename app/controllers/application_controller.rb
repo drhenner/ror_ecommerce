@@ -126,9 +126,7 @@ class ApplicationController < ActionController::Base
     if session_cart.user_id != user.id
       session_cart.update_attribute(:user_id, user.id )
     end
-    session_cart.cart_items.each do |item|
-      item.update_attribute(:user_id, user.id ) if item.user_id != user.id
-    end
+    session_cart.cart_items.where.not(user_id: user.id).update_all(user_id: user.id)
   end
 
   ###  Authlogic helper methods

@@ -8,14 +8,14 @@ describe Variant, " instance methods" do
   # LOW_STOCK_QTY    = 6
   context ".sold_out?" do
     it 'should be sold out' do
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::OUT_OF_STOCK_QTY))
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (100 - Variant::OUT_OF_STOCK_QTY))
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       expect(@variant.sold_out?).to be true
     end
 
     it 'should not be sold out' do
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (99 - Variant::OUT_OF_STOCK_QTY))
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (99 - Variant::OUT_OF_STOCK_QTY))
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       expect(@variant.sold_out?).to be false
     end
 
@@ -24,20 +24,20 @@ describe Variant, " instance methods" do
 
   context ".low_stock?" do
       it 'should be low stock' do
-        inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (101 - Variant::OUT_OF_STOCK_QTY))
-        @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+        inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (101 - Variant::OUT_OF_STOCK_QTY))
+        @variant    = FactoryGirl.create(:variant,   inventory: inventory)
         expect(@variant.low_stock?).to be true
       end
 
       it 'should be low stock' do
-        inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::LOW_STOCK_QTY))
-        @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+        inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (100 - Variant::LOW_STOCK_QTY))
+        @variant    = FactoryGirl.create(:variant,   inventory: inventory)
         expect(@variant.low_stock?).to be true
       end
 
       it 'should not be low stock' do
-        inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (99 - Variant::LOW_STOCK_QTY))
-        @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+        inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (99 - Variant::LOW_STOCK_QTY))
+        @variant    = FactoryGirl.create(:variant,   inventory: inventory)
         expect(@variant.low_stock?).to be false
       end
   end
@@ -45,14 +45,14 @@ describe Variant, " instance methods" do
   context ".display_stock_status(start = '(', finish = ')')" do
     it 'should be low stock' do
 
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::LOW_STOCK_QTY))
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (100 - Variant::LOW_STOCK_QTY))
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       expect(@variant.display_stock_status).to eq '(Low Stock)'
     end
 
     it 'should be sold out' do
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (100 - Variant::OUT_OF_STOCK_QTY))
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (100 - Variant::OUT_OF_STOCK_QTY))
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       expect(@variant.display_stock_status).to eq '(Sold Out)'
     end
   end
@@ -77,8 +77,8 @@ describe Variant, " instance methods" do
     it 'should show all property details' do
       property      = FactoryGirl.create(:property)
       property.stubs(:display_name).returns('Color')
-      variant_prop1 = FactoryGirl.create(:variant_property, :property => property, :description => 'red')
-      variant_prop2 = FactoryGirl.create(:variant_property, :property => property, :description => 'blue')
+      variant_prop1 = FactoryGirl.create(:variant_property, property: property, :description => 'red')
+      variant_prop2 = FactoryGirl.create(:variant_property, property: property, :description => 'blue')
       @variant.variant_properties.push(variant_prop1)
       @variant.variant_properties.push(variant_prop2)
       expect(@variant.display_property_details).to eq 'Color: red<br/>Color: blue'
@@ -89,8 +89,8 @@ describe Variant, " instance methods" do
     it 'should show the property details' do
       property      = FactoryGirl.create(:property)
       property.stubs(:display_name).returns('Color')
-      variant_prop1 = FactoryGirl.create(:variant_property, :property => property, :description => 'red')
-      variant_prop2 = FactoryGirl.create(:variant_property, :property => property, :description => 'blue')
+      variant_prop1 = FactoryGirl.create(:variant_property, property: property, :description => 'red')
+      variant_prop2 = FactoryGirl.create(:variant_property, property: property, :description => 'blue')
       @variant.variant_properties.push(variant_prop1)
       @variant.variant_properties.push(variant_prop2)
       expect(@variant.property_details).to eq ['Color: red', 'Color: blue']
@@ -132,7 +132,7 @@ describe Variant, " instance methods" do
 
   context ".brand_name" do
     it 'should return the variants subname' do
-      brand     = FactoryGirl.create(:brand, :name => 'Reabok')
+      brand     = FactoryGirl.create(:brand, name: 'Reabok')
       @product  = FactoryGirl.create(:product, brand: brand)
       @variant.stubs(:product).returns @product
       expect(@variant.brand_name).to eq 'Reabok'
@@ -144,8 +144,8 @@ describe Variant, " instance methods" do
       property      = FactoryGirl.create(:property)
       property2      = FactoryGirl.create(:property)
       property.stubs(:display_name).returns('Color')
-      variant_prop1 = FactoryGirl.create(:variant_property, :variant => @variant, :property => property, :primary => true)
-      variant_prop2 = FactoryGirl.create(:variant_property, :variant => @variant, :property => property2, :primary => false)
+      variant_prop1 = FactoryGirl.create(:variant_property, variant: @variant, property: property, primary: true)
+      variant_prop2 = FactoryGirl.create(:variant_property, variant: @variant, property: property2, primary: false)
       @variant.variant_properties.push(variant_prop2)
       @variant.variant_properties.push(variant_prop1)
       expect(@variant.primary_property).to eq variant_prop1
@@ -155,8 +155,8 @@ describe Variant, " instance methods" do
       property      = FactoryGirl.create(:property)
       property2      = FactoryGirl.create(:property)
       property.stubs(:display_name).returns('Color')
-      variant_prop1 = FactoryGirl.create(:variant_property, :variant => @variant, :property => property, :primary => true)
-      variant_prop2 = FactoryGirl.create(:variant_property, :variant => @variant, :property => property2, :primary => false)
+      variant_prop1 = FactoryGirl.create(:variant_property, variant: @variant, property: property, primary: true)
+      variant_prop2 = FactoryGirl.create(:variant_property, variant: @variant, property: property2, primary: false)
       @variant.variant_properties.push(variant_prop1)
       @variant.variant_properties.push(variant_prop2)
       @variant.save
@@ -181,16 +181,16 @@ describe Variant, " instance methods" do
   context ".is_available?" do
     it "should be available" do
 
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 99)
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       @variant.save
       expect(@variant.is_available?).to be true
     end
 
     it "should not be available" do
 
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 100)
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 100)
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       @variant.save
       expect(@variant.is_available?).to be false
     end
@@ -199,8 +199,8 @@ describe Variant, " instance methods" do
   context ".count_available(reload_variant = true)" do
     it "should return count_available" do
 
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 99)
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       @variant.save
       expect(@variant.is_available?).to be true
     end
@@ -209,8 +209,8 @@ describe Variant, " instance methods" do
   context ".add_count_on_hand(num)" do
     it "should update count_on_hand" do
 
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 99)
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       @variant.save
       @variant.add_count_on_hand(1)
       @variant.reload
@@ -221,8 +221,8 @@ describe Variant, " instance methods" do
   context ".subtract_count_on_hand(num)" do
     it "should update count_on_hand" do
 
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 99)
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       @variant.save
       @variant.subtract_count_on_hand(1)
       @variant.reload
@@ -232,8 +232,8 @@ describe Variant, " instance methods" do
 
   context ".add_pending_to_customer(num)" do
     it "should update count_on_hand" do
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 99)
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       @variant.save
       @variant.add_pending_to_customer(1)
       @variant.reload
@@ -243,8 +243,8 @@ describe Variant, " instance methods" do
 
   context ".subtract_pending_to_customer(num)" do
     it "should update subtract_pending_to_customer" do
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 99)
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 99)
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       @variant.save
       @variant.subtract_pending_to_customer(1)
       @variant.reload
@@ -255,8 +255,8 @@ describe Variant, " instance methods" do
   context ".qty_to_add=(num)" do
     it "should update count_on_hand with qty_to_add" do
 
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => 50)
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 50)
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       @variant.qty_to_add = 12
       expect(@variant.inventory.count_on_hand).to eq 112
     end
@@ -266,13 +266,13 @@ describe Variant, "instance method" do
 
   context ".quantity_purchaseable" do
     it 'should be quantity_purchaseable' do
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (98))
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (98))
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       expect(@variant.quantity_purchaseable).to eq 2 - Variant::OUT_OF_STOCK_QTY
     end
     it 'should be quantity_purchaseable by an admin' do
-      inventory   = FactoryGirl.create(:inventory, :count_on_hand => 100, :count_pending_to_customer => (98))
-      @variant    = FactoryGirl.create(:variant,   :inventory => inventory)
+      inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: (98))
+      @variant    = FactoryGirl.create(:variant,   inventory: inventory)
       expect(@variant.quantity_purchaseable(true)).to eq 2 - Variant::ADMIN_OUT_OF_STOCK_QTY
     end
   end
@@ -282,8 +282,8 @@ end
 describe Variant, "#admin_grid(product, params = {})" do
   it "should return variants for a specific product" do
     product = FactoryGirl.create(:product)
-    variant1 = FactoryGirl.create(:variant, :product => product)
-    variant2 = FactoryGirl.create(:variant, :product => product)
+    variant1 = FactoryGirl.create(:variant, product: product)
+    variant2 = FactoryGirl.create(:variant, product: product)
     admin_grid = Variant.admin_grid(product)
     expect(admin_grid.size).to eq 2
     expect(admin_grid.include?(variant1)).to be true

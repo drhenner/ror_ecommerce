@@ -154,7 +154,7 @@ class Cart < ApplicationRecord
   # @return [CartItem] return the cart item that is added to the cart
   def add_variant(variant_id, customer, qty = 1, cart_item_type_id = ItemType::SHOPPING_CART_ID, admin_purchase = false)
     items = shopping_cart_items.where(variant_id: variant_id).to_a
-    variant = Variant.where(id: variant_id).first
+    variant = Variant.find_by(id: variant_id)
     quantity_to_purchase = variant.quantity_purchaseable_if_user_wants(qty.to_i, admin_purchase)
     if admin_purchase && (quantity_to_purchase > 0)
       cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)

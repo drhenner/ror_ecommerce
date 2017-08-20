@@ -5,7 +5,7 @@ class UsersNewsletter < ApplicationRecord
 
   def self.unsubscribe(email, key)
     if unsubscribe_key(email) == key
-      user = User.where(email: email).first
+      user = User.find_by(email: email)
       if user
         user.users_newsletters.map(&:destroy)
       end

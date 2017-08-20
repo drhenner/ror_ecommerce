@@ -74,7 +74,7 @@ class Shopping::OrdersController < Shopping::BaseController
     @tab = 'confirmation'
     if session[:last_order].present? && session[:last_order] == params[:id]
       session[:last_order] = nil
-      @order = Order.where(number: params[:id]).includes({order_items: :variant}).first
+      @order = Order.includes({order_items: :variant}).find_by(number: params[:id])
       render :layout => 'application'
     else
       session[:last_order] = nil

@@ -49,7 +49,7 @@ class Variant < ApplicationRecord
 
   accepts_nested_attributes_for :variant_properties, reject_if: proc { |attributes| attributes['description'].blank? }, allow_destroy: true
 
-  delegate  :brand, :to => :product, :allow_nil => true
+  delegate  :brand, to: :product, allow_nil: true
 
   delegate  :quantity_available,
             :quantity_purchaseable,
@@ -75,7 +75,7 @@ class Variant < ApplicationRecord
   end
 
   def image_urls(image_size = :small)
-    Rails.cache.fetch("variant-image_urls-#{self}-#{image_size}", :expires_in => 3.hours) do
+    Rails.cache.fetch("variant-image_urls-#{self}-#{image_size}", expires_in: 3.hours) do
       image_group ? image_group.image_urls(image_size) : product.image_urls(image_size)
     end
   end
@@ -186,7 +186,7 @@ class Variant < ApplicationRecord
   # @param [none]
   # @return [VariantProperty]
   def primary_property
-    pp = self.variant_properties.where({ :variant_properties => {:primary => true}}).first
+    pp = self.variant_properties.find_by(primary: true)
     pp ? pp : self.variant_properties.first
   end
 
@@ -295,7 +295,7 @@ class Variant < ApplicationRecord
     end
 
     def create_inventory
-      self.inventory = Inventory.create({:count_on_hand => 0, :count_pending_to_customer => 0, :count_pending_from_supplier => 0}) unless inventory_id
+      self.inventory = Inventory.create({count_on_hand: 0, count_pending_to_customer: 0, count_pending_from_supplier: 0}) unless inventory_id
     end
 
 end
