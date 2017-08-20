@@ -21,7 +21,7 @@ gem 'authlogic',   '~> 3.6.0'
 #gem 'scrypt', '~> 2.0.0'
 
 gem "asset_sync",         '~> 2.2.0'
-gem 'awesome_nested_set', '~> 3.1.1'
+gem 'awesome_nested_set', '~> 3.1.3'
 
 gem 'aws-sdk',        '~> 2.3.21'
 gem 'bluecloth',      '~> 2.2.0'
@@ -54,7 +54,7 @@ gem 'rake', '~> 10.1'
 
 # gem "sprockets",       "4.0.0.beta2"
 gem "sprockets",       "~> 3.7.0"
-gem 'aasm',            '~> 4.0.3'
+gem 'aasm',            '~> 4.12.2'
 #gem 'sunspot_solr',   '~> 2.0.0'
 #gem 'sunspot_rails',  '~> 2.0.0'
 gem 'will_paginate',   '~> 3.1.6'
