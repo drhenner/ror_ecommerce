@@ -27,10 +27,10 @@ class PurchaseOrder < ApplicationRecord
   has_many  :batches,             :as => :batchable
   has_many  :transaction_ledgers, :as => :accountable
 
-  validates :invoice_number,  :presence => true, :length => { :maximum => 200 }
-  validates :ordered_at,      :presence => true
-  validates :total_cost,      :presence => true
-  #validates :is_received,     :presence => true
+  validates :invoice_number,  presence: true, length: { maximum: 200 }
+  validates :ordered_at,      presence: true
+  validates :total_cost,      presence: true
+  #validates :is_received,     presence: true
 
   accepts_nested_attributes_for :purchase_order_variants,
                                 :reject_if      => lambda { |attributes| attributes['cost'].blank? && attributes['quantity'].blank? },

@@ -27,9 +27,9 @@ class Shipment < ApplicationRecord
   before_validation :set_number
   after_create      :save_shipment_number
 
-  validates :order_id,            :presence => true
-  validates :address_id,          :presence => true
-  validates :shipping_method_id,  :presence => true
+  validates :order_id,            presence: true
+  validates :address_id,          presence: true
+  validates :shipping_method_id,  presence: true
 
   CHARACTERS_SEED = 20
   NUMBER_SEED     = 2002002002000

@@ -3,9 +3,9 @@ class ReferralProgram < ApplicationRecord
   has_many :referrals
   belongs_to :referral_bonus
 
-  validates :name,        :presence => true,       :length => { :maximum => 40 }
-  validates :description, :presence => true,       :length => { :maximum => 600 }
-  validates :referral_bonus_id, :presence => true
+  validates :name,        presence: true,       :length => { :maximum => 40 }
+  validates :description, presence: true,       :length => { :maximum => 600 }
+  validates :referral_bonus_id, presence: true
   # name
   # description
 

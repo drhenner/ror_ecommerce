@@ -10,8 +10,8 @@ class ReferralBonus < ApplicationRecord
   self.table_name = 'referral_bonuses'
   has_many :referral_programs
 
-  validates :name,              :presence => true,       :length => { :maximum => 70 }
-  validates :amount,            :presence => true
+  validates :name,              presence: true,       :length => { :maximum => 70 }
+  validates :amount,            presence: true
 
   BONUSES = [
       { :name             => '$5 per Referral',

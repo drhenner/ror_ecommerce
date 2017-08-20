@@ -30,8 +30,8 @@ class Invoice < ApplicationRecord
   belongs_to :order, required: true
 
 
-  validates :amount,        :presence => true
-  validates :invoice_type,  :presence => true
+  validates :amount,        presence: true
+  validates :invoice_type,  presence: true
 
   PURCHASE  = 'Purchase'
   RMA       = 'RMA'

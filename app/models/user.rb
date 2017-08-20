@@ -117,13 +117,13 @@ class User < ApplicationRecord
   validates :first_name,  presence: true, if: :registered_user?,
                           format:   { with: CustomValidators::Names.name_validator },
                           length:   { maximum: 30 }
-  validates :last_name,   :presence => true, :if => :registered_user?,
-                          :format   => { :with => CustomValidators::Names.name_validator },
-                          :length => { :maximum => 35 }
-  validates :email,       :presence => true,
-                          :uniqueness => true,##  This should be done at the DB this is too expensive in rails
-                          :format   => { :with => CustomValidators::Emails.email_validator },
-                          :length => { :maximum => 255 }
+  validates :last_name,   presence: true, if: :registered_user?,
+                          format:   { with: CustomValidators::Names.name_validator },
+                          length:   { maximum: 35 }
+  validates :email,       presence: true,
+                          uniqueness: true,##  This should be done at the DB this is too expensive in rails
+                          format:    { with: CustomValidators::Emails.email_validator },
+                          length:    { maximum: 255 }
 
   accepts_nested_attributes_for :addresses, :user_roles
   accepts_nested_attributes_for :phones, :reject_if => lambda { |t| ( t['display_number'].gsub(/\D+/, '').blank?) }

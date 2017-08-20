@@ -76,7 +76,7 @@ class Order < ApplicationRecord
 
   attr_accessor :total, :sub_total, :deal_amount, :taxed_total, :deal_time
 
-  #validates :number,     :presence => true
+  #validates :number,     presence: true
   validates :user_id,     presence: true
   validates :email,       presence: true,
                           format:   { with: CustomValidators::Emails.email_validator }

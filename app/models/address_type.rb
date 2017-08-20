@@ -32,6 +32,6 @@ class AddressType < ApplicationRecord
   #ORDER_ID    = 3
 
 
-  validates :name, :presence => true,       :length => { :maximum => 55 }
+  validates :name, presence: true,       length: { maximum: 55 }
 
 end

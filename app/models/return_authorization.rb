@@ -31,15 +31,15 @@ class ReturnAuthorization < ApplicationRecord
                                                                                   attributes['return_condition_id'].blank? }
   accepts_nested_attributes_for :comments,      :reject_if => proc { |attributes| attributes['note'].blank? }
 
-  #validates :number,      :presence => true
-  validates :amount,      :presence     => true,
-                          :numericality => true
+  #validates :number,      presence: true
+  validates :amount,      presence:     true,
+                          numericality: true
 
   validates :restocking_fee, :numericality => true, :allow_nil => true
 
-  validates :user_id,     :presence => true
-  validates :order_id,    :presence => true
-  validates :created_by,  :presence => true
+  validates :user_id,     presence: true
+  validates :order_id,    presence: true
+  validates :created_by,  presence: true
   validate :ensure_refund_is_larger_than_restocking
 
   after_create      :save_order_number

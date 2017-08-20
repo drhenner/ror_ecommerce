@@ -18,7 +18,7 @@
 
 class CouponValue < Coupon
 
-  validates :amount, :presence => true
+  validates :amount, presence: true
 
   private
 

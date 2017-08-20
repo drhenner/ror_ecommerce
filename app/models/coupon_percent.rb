@@ -18,7 +18,7 @@
 
 class CouponPercent < Coupon
 
-  validates :percent, :presence => true
+  validates :percent, presence: true
 
   private
 

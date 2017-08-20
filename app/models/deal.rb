@@ -30,10 +30,10 @@
 
 class Deal < ApplicationRecord
 
-  validates :buy_quantity,            :presence => true
-  validates :get_percentage,          :presence => true, :if => :get_amount_is_blank?
-  validates :product_type_id,         :presence => true
-  validates :get_amount,              :presence => true, :if => :get_percentage_is_blank?
+  validates :buy_quantity,            presence: true
+  validates :get_percentage,          presence: true, :if => :get_amount_is_blank?
+  validates :product_type_id,         presence: true
+  validates :get_amount,              presence: true, :if => :get_percentage_is_blank?
   #validates :description,             presence: true, length: {:maximum => 255}
 
   belongs_to :deal_type

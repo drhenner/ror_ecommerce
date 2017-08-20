@@ -3,8 +3,8 @@ class Country < ApplicationRecord
 
   belongs_to :shipping_zone
 
-  validates :name,  :presence => true,       :length => { :maximum => 200 }
-  validates :abbreviation,  :presence => true,       :length => { :maximum => 10 }
+  validates :name,  presence: true,       :length => { :maximum => 200 }
+  validates :abbreviation,  presence: true,       :length => { :maximum => 10 }
 
   scope :active_countries,   -> {where(:active => true)}
   scope :inactive_countries, -> {where(:active => false)}

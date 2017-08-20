@@ -28,8 +28,8 @@ class Image < ApplicationRecord
   validates_attachment_size     :photo, less_than: 8.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
 
-  validates :imageable_type,  :presence => true
-  validates :imageable_id,    :presence => true
+  validates :imageable_type,  presence: true
+  validates :imageable_id,    presence: true
   validate :validate_photo
 
   attr_accessor :photo_link

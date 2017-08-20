@@ -4,19 +4,19 @@ class Referral < ApplicationRecord
   belongs_to :referral_program
   belongs_to :referral_type
 
-  validates :referral_program_id,         :presence => true
-  validates :referral_type_id,            :presence => true
-  validates :referring_user_id,            :presence => true
-  validates :email,             :presence   => true,
-                                :uniqueness => true,
-                                :format     => { :with => CustomValidators::Emails.email_validator }
+  validates :referral_program_id,         presence: true
+  validates :referral_type_id,            presence: true
+  validates :referring_user_id,            presence: true
+  validates :email,             presence:   true,
+                                uniqueness: true,
+                                format:     { with: CustomValidators::Emails.email_validator }
 
   before_validation :assign_referral_program
   validate :validate_has_not_signed_up_yet
 
   after_create :invite_referral
 
-  delegate :decimal_amount, :to => :referral_program
+  delegate :decimal_amount, to: :referral_program
 
   CHARACTERS_SEED = 20
   NUMBER_SEED     = 2001002
