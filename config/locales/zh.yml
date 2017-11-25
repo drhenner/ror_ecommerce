@@ -1,0 +1,55 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+zh:
+  company:              'RoR Ecommerce'
+  company_phone:        '1-800-ROR-ECOM'
+  hello:                '你好'
+  out_of_stock_notice:  '抱歉这个产品目前缺货。'
+  item_saved_for_later: '这个产品会被保存以便以后使用。'
+  reset_password_title: '请确认你的标识信息来重置密码'
+  reset_password_text:  '请在下面输入你的电子邮件地址并单击确认按钮。'
+  something_went_wrong: '抱歉出错了'
+  item_failed_update:   '产品无法被更新。'
+  item_passed_update:   '产品被成功更新。'
+  could_not_process:    "无法处理"
+  the_credit_card:      "信用卡。"
+  credit_card:          "信用卡"
+  the_order:            "订单"
+  the_order_purchased:  "订单购买成功。"
+  is_not_valid:         '不正确。'
+  login_successful:     "登录成功！"
+  login_failure:        "错误的电子邮件或密码。"
+  logout_successful:    "注销成功"
+
+  nothing_in_cart:       "你的购物车为空。"
+  only_items_saved_for_later: "你这有以后备用的产品信息。"
+  add_items_saved_for_later: "移动这些商品到购物车并付款。"
+
+  select_address_before_shipping_method:  '在选择送货方式前选择一个地址。'
+  shipping_method_created:                '成功创建送货方式。'
+  shipping_method_updated:                '成功更新送货方式。'
+  all_shipping_methods_must_be_selected:  '所有送货方式都必须被选中'
+  do_not_have_anything_in_your_cart:      "你的购物车为空"
+  shopping_cart_items_do_not_match_order_items: "你的购物车被更新，请重新去付款页面。"
+
+  no_addresses_saved:                     '目前没有保存过的地址。'
+  meta_description:       '世界上最好用的电子商务网站！'
+  meta_keywords:          'Ruby on Rails, 电子商务'
+
+  label_create_shipment_button: '创建送货信息'
+
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%m/%d/%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+      us_date: "%m/%d/%Y"
+  time:
+    formats:
+      us_date: "%m/%d/%Y"
+      us_time: "%m/%d/%Y @ %I:%M %p"
+      long_date: "%B %d, %Y"
