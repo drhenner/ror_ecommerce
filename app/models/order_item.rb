@@ -39,7 +39,6 @@ class OrderItem < ApplicationRecord
     @beginning_total            = self.total            rescue @beginning_total = nil # this stores the initial value of the total
   end
 
-  #state_machine :initial => 'unpaid' do
   aasm column: :state do
     state :unpaid, initial: true
     state :paid

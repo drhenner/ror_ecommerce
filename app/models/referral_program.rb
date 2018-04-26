@@ -1,13 +1,10 @@
 class ReferralProgram < ApplicationRecord
-  #attr_accessible :active, :description, :name, :referral_bonus_id
   has_many :referrals
   belongs_to :referral_bonus
 
-  validates :name,        presence: true,       :length => { :maximum => 40 }
-  validates :description, presence: true,       :length => { :maximum => 600 }
+  validates :name,        presence: true,       length: { maximum: 40 }
+  validates :description, presence: true,       length: { maximum: 600 }
   validates :referral_bonus_id, presence: true
-  # name
-  # description
 
   delegate :decimal_amount, :to => :referral_bonus
 

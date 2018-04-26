@@ -90,7 +90,7 @@ class Variant < ApplicationRecord
   # record :deleted_at time. if it isn't checked or was unchecked, make it .active? again.
   def inactivate=(val)
     return unless val.present?
-    if val == '1' || val.to_s == 'true'
+    if val.to_s == '1' || val.to_s == 'true'
       self.deleted_at ||= Time.zone.now
     else
       self.deleted_at = nil

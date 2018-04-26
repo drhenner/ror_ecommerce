@@ -15,7 +15,6 @@
 class Phone < ApplicationRecord
   include ActionView::Helpers::NumberHelper
   belongs_to :phone_type
-  #belongs_to :phone_priority
   belongs_to :phoneable, polymorphic: true
 
   validates :phone_type_id, presence: true

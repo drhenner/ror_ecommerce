@@ -36,7 +36,7 @@ Hadean::Application.configure do
       !  This is required for the checkout process to work.
       !
       !  Remove or Adjust this warning in /config/environment.rb for developers on your team
-      !  once you everything working with your specific Gateway.
+      !  once you have everything working with your specific Gateway.
       ############################################################################################
       "
     end

@@ -48,7 +48,6 @@ class ReturnAuthorization < ApplicationRecord
   CHARACTERS_SEED = 21
 
   ## after you process an RMA you must manually add the variant back into the system!!!
-  #state_machine :initial => 'authorized' do
   aasm column: :state do
     state :authorized , initial: true
     state :received
