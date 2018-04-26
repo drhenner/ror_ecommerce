@@ -221,9 +221,6 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.datetime "send_at"
     t.datetime "sent_at"
     t.datetime "created_at", null: false
-    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
-    t.index ["type", "user_id"], name: "index_notifications_on_type_and_user_id"
-    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "order_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

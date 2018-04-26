@@ -72,11 +72,11 @@ class Coupon < ApplicationRecord
   end
 
   def display_start_time(format = :us_date)
-    starts_at ? I18n.localize(starts_at, :format => format) : 'N/A'
+    starts_at ? I18n.localize(starts_at, format: format) : 'N/A'
   end
 
   def display_expires_time(format = :us_date)
-    expires_at ? I18n.localize(expires_at, :format => format) : 'N/A'
+    expires_at ? I18n.localize(expires_at, format: format) : 'N/A'
   end
 
   private

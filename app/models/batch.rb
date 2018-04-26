@@ -21,7 +21,7 @@
 #
 
 class Batch < ApplicationRecord
-  belongs_to :batchable, :polymorphic => true
+  belongs_to :batchable, polymorphic: true
   has_many   :transactions
 
 
