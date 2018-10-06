@@ -64,8 +64,7 @@ class Shopping::BillingAddressesController < Shopping::BaseController
   end
 
   def select_address
-    address = current_user.addresses.find(params[:id])
-    update_order_address_id(address.id)
+    update_order_address_id(params[:id])
     redirect_to next_form_url(session_order)
   end
 
