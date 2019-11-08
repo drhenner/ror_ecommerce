@@ -17,7 +17,7 @@ class Admin::OverviewsController < ApplicationController
       @user.password_confirmation = password
       if @user.active? || @user.activate!
         @user.save
-        @user.role_ids = Role.all.map{|r| r.id }
+        @user.role_ids = Role.pluck(:id)
         @user.save
         @current_user = @user
         @user_session = UserSession.new(session_args)
