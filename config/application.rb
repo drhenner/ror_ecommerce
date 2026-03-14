@@ -6,7 +6,7 @@ Bundler.require(*Rails.groups)
 
 module Hadean
   class Application < Rails::Application
-    config.load_defaults 5.2
+    config.load_defaults 7.2
 
     config.assets.enabled = true
     config.assets.version = '0.11.0'

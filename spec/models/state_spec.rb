@@ -32,7 +32,7 @@ describe State, "class methods" do
       expect(@states.class).to              eq Array
       expect(@states.first.class).to        eq Array
       expect(@states.first.first.class).to  eq String
-      expect(@states.first.last.class).to   eq Fixnum
+      expect(@states.first.last.class).to   eq Integer
     end
   end
 

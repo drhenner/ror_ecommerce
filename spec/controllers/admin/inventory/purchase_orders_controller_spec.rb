@@ -32,13 +32,13 @@ describe Admin::Inventory::PurchaseOrdersController do
 
   it "create action should render new template when model is invalid" do
     PurchaseOrder.any_instance.stubs(:valid?).returns(false)
-    post :create, params: { :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'} }
+    post :create, params: { :purchase_order => {:ordered_at => Time.now.to_fs(:db), :supplier_id => '1'} }
     expect(response).to render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
     PurchaseOrder.any_instance.stubs(:valid?).returns(true)
-    post :create, params: { :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1', "total_cost"=>"110.0",
+    post :create, params: { :purchase_order => {:ordered_at => Time.now.to_fs(:db), :supplier_id => '1', "total_cost"=>"110.0",
       "notes"=>"",
       "ordered_at(1i)"=>"#{Time.now.year}", "ordered_at(2i)"=>"#{Time.now.month}", "ordered_at(3i)"=>"#{Time.now.day}", "ordered_at(4i)"=>"00", "ordered_at(5i)"=>"37",
       "estimated_arrival_on(1i)"=>"#{(Time.now + 1.day).year}", "estimated_arrival_on(2i)"=>"#{(Time.now + 1.day).month}", "estimated_arrival_on(3i)"=>"#{(Time.now + 1.day).day}",
@@ -57,14 +57,14 @@ describe Admin::Inventory::PurchaseOrdersController do
   it "update action should render edit template when model is invalid" do
     @purchase_order = FactoryBot.create(:purchase_order)
     PurchaseOrder.any_instance.stubs(:valid?).returns(false)
-    put :update, params: { :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'} }
+    put :update, params: { :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_fs(:db), :supplier_id => '1'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
     @purchase_order = FactoryBot.create(:purchase_order)
     PurchaseOrder.any_instance.stubs(:valid?).returns(true)
-    put :update, params: { :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'} }
+    put :update, params: { :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_fs(:db), :supplier_id => '1'} }
     expect(response).to redirect_to(admin_inventory_purchase_orders_url(:notice => 'Purchase order was successfully updated.'))
   end
 

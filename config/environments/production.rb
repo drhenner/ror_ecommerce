@@ -1,6 +1,6 @@
 Hadean::Application.configure do
   config.eager_load = true
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = :terser
 
   # Settings specified here will take precedence over those in config/environment.rb
 
@@ -8,7 +8,7 @@ Hadean::Application.configure do
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
-  config.cache_classes = true
+  config.enable_reloading = false
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
