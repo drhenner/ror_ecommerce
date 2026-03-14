@@ -1,109 +1,93 @@
-  <% if @shopping_address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shopping_address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
-
-      <ul>
+<% if @shopping_address.errors.any? %>
+  <div class="bg-red-50 border border-red-200 text-red-800 px-5 py-4 mb-6 text-sm rounded">
+    <h3 class="font-semibold mb-2"><%= pluralize(@shopping_address.errors.count, "error") %> prohibited this address from being saved:</h3>
+    <ul class="list-disc pl-5 space-y-1">
       <% @shopping_address.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
+    </ul>
+  </div>
+<% end %>
+
+<div class="max-w-2xl space-y-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <%= f.label :first_name, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+      <%= f.text_field :first_name, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+    </div>
+    <div>
+      <%= f.label :last_name, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+      <%= f.text_field :last_name, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+    </div>
+  </div>
+
+  <%= f.fields_for :phones do |phone_f| %>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <%= phone_f.label :display_number, 'Primary Phone', class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= phone_f.text_field :display_number, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+      </div>
+      <div>
+        <%= phone_f.label :phone_type_id, 'Type', class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= phone_f.select :phone_type_id, phone_types, {},
+            { class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm bg-white' } %>
+      </div>
     </div>
   <% end %>
-<div class='main-address ' >
-    <div class="inline twelve ">
-      <div class="field six columns">
-         <%= f.label :first_name %>
-         <%= f.text_field :first_name, :class => '' %>
-      </div>
 
-      <div class="field six columns">
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name, :class => '' %>
-      </div>
-    </div>
-    <div class="twelve ">
-      <div class="field">
-
-        <%= f.fields_for :phones do |phone_f| %>
-          <div class=" six columns">
-            <%= phone_f.label :display_number, 'Primary Phone' %>
-            <%= phone_f.text_field :display_number %>
-          </div>
-          <div class=" six columns">
-            <%= phone_f.label :phone_type_id, 'Type' %>
-            <%= phone_f.select :phone_type_id, phone_types %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class='clear'></div>
-      <div class="twelve columns">
-        <div class="field">
-          <%= f.label :address1 %>
-          <%= f.text_field :address1 %>
-
-          <%= f.label :address2 %>
-          <%= f.text_field :address2 %>
-        </div>
-      </div>
-
-    <div class='clearfix'></div>
-      <div class=" twelve ">
-        <div class="field five columns">
-          <%= f.label :city %>
-          <%= f.text_field :city %>
-        </div>
-
-      <% if Settings.require_state_in_address %>
-        <div class="field four columns">
-          <%= f.label    :state_id, "State" %>
-          <%= f.select   :state_id, @states,
-                        {:include_blank => true, :prompt => "STATE"} %>
-        </div>
-      <% elsif countries.size == 1 %>
-        <div class="field column">
-          <%= f.label :country_id, "Country" %>
-          <%= countries.first.name %>
-          <%= f.hidden_field   :country_id %>
-        </div>
-      <% else %>
-        <div class="field column">
-          <%= f.label    :country_id, "Country" %>
-          <%= f.select   :country_id, select_countries,
-                        {:include_blank => true}, {:style => 'display:none;'} %>
-          <div class='custom dropdown'>
-            <a  class="current"><%= f.object.country.try(:name) || 'SELECT YOUR COUNTRY' %></a>
-            <a href="#" class="selector"></a>
-            <ul class='no-bullet'>
-              <% select_countries.each do |c| %>
-                <li value='<%= f.object.country_id %>'
-                    class="<%= 'selected' if c.last == f.object.country_id %>"><%= c.first %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      <% end %>
-
-        <div class="field three columns">
-          <%= f.label :zip_code %>
-          <%= f.text_field :zip_code %>
-        </div>
-      </div>
-
-</div>
-  <div class="field twelve large-12 column" style='margin-bottom:10px;'>
-    <%= f.check_box :billing_default %>
-    <label for='address_billing_default' class='' style=''>
-      Make this my default Billing address
-    </label>
+  <div>
+    <%= f.label :address1, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+    <%= f.text_field :address1, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
   </div>
 
-  <div class="actions column">
-    <%= f.submit 'Save & Continue', :class => 'button  bottom20' %>
+  <div>
+    <%= f.label :address2, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+    <%= f.text_field :address2, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="col-span-2 md:col-span-1">
+      <%= f.label :city, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+      <%= f.text_field :city, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+    </div>
+
+    <% if Settings.require_state_in_address %>
+      <div>
+        <%= f.label :state_id, "State", class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= f.select :state_id, @states,
+            { include_blank: true, prompt: "State" },
+            { class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm bg-white' } %>
+      </div>
+    <% elsif countries.size == 1 %>
+      <div>
+        <%= f.label :country_id, "Country", class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <p class="text-sm py-2"><%= countries.first.name %></p>
+        <%= f.hidden_field :country_id %>
+      </div>
+    <% else %>
+      <div>
+        <%= f.label :country_id, "Country", class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= f.select :country_id, select_countries,
+            { include_blank: true },
+            { class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm bg-white' } %>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :zip_code, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+      <%= f.text_field :zip_code, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+    </div>
+  </div>
+
+  <label class="flex items-center gap-2 text-sm cursor-pointer">
+    <%= f.check_box :billing_default, class: 'accent-[var(--color-accent)]' %>
+    Make this my default billing address
+  </label>
+
+  <div class="flex items-center gap-3 pt-2">
+    <%= f.submit 'Save & Continue', class: 'btn btn-dark' %>
     <% unless current_page?(shopping_billing_addresses_path) %>
-      <%= link_to 'Back', shopping_billing_addresses_path, :class => 'secondary button' %>
+      <%= link_to 'Back', shopping_billing_addresses_path, class: 'btn btn-ghost text-[var(--color-text)] border-[var(--color-border)]' %>
     <% end %>
   </div>
-<div class='clearfix'></div>
-
+</div>

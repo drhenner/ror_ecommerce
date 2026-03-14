@@ -157,7 +157,8 @@ class Order < ApplicationRecord
 
   def add_cart_item( item, state_id = nil)
     self.save! if self.new_record?
-    tax_rate_id = state_id ? item.variant.product.tax_rate(state_id) : nil
+    return unless item.variant
+    tax_rate_id = state_id && item.variant.product ? item.variant.product.tax_rate(state_id) : nil
     item.quantity.times do
       oi =  OrderItem.create(
           :order        => self,
@@ -221,8 +222,8 @@ class Order < ApplicationRecord
     # also if any single item in the order has been updated, the order needs to be re-calculated
     if any_order_item_needs_to_be_calculated? && all_order_items_are_ready_to_calculate?
       calculate_each_order_items_total
-      sub_total = total
-      self.total = total + shipping_charges
+      self.sub_total = total
+      self.total = sub_total + shipping_charges
       self.calculated_at = Time.zone.now
       save
     end
@@ -282,10 +283,11 @@ class Order < ApplicationRecord
   def find_total(force = false)
     calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
     self.deal_time ||= Time.zone.now
-    self.deal_amount = Deal.best_qualifing_deal(self)
+    self.deal_amount = Deal.best_qualifing_deal(self) || 0.0
     self.find_sub_total
-    taxable_money     = (self.sub_total - deal_amount - coupon_amount) * ((100.0 + order_tax_percentage) / 100.0)
-    self.total        = (self.sub_total + shipping_charges - deal_amount - coupon_amount ).round_at( 2 )
+    discount          = deal_amount + coupon_amount
+    taxable_money     = [self.sub_total - discount, 0].max * ((100.0 + order_tax_percentage) / 100.0)
+    self.total        = [self.sub_total + shipping_charges - discount, 0].max.round_at( 2 )
     self.taxed_total  = (taxable_money + shipping_charges).round_at( 2 )
   end
 
@@ -322,7 +324,7 @@ class Order < ApplicationRecord
   # @param [none]
   # @return [Float] amount the coupon reduces the value of the order
   def coupon_amount
-    coupon_id ? coupon.value(item_prices, self) : 0.0
+    coupon_id && coupon ? coupon.value(item_prices, self) : 0.0
   end
 
   # called when creating the invoice.  This does not change the store_credit amount
@@ -338,11 +340,12 @@ class Order < ApplicationRecord
   # @param [none]
   # @return [Float] amount to remove from store credit
   def amount_to_credit
-    [find_total, user.store_credit.amount].min.to_f.round_at( 2 )
+    credit_balance = user.store_credit&.amount || 0.0
+    [find_total, credit_balance].min.to_f.round_at( 2 )
   end
 
   def remove_user_store_credits
-    user.store_credit.remove_credit(amount_to_credit) if amount_to_credit > 0.0
+    user.store_credit&.remove_credit(amount_to_credit) if amount_to_credit > 0.0
   end
 
   # calculates the total shipping charges for all the items in the cart
@@ -362,6 +365,7 @@ class Order < ApplicationRecord
   def shipping_rates(items = nil)
     items ||= OrderItem.order_items_in_cart(self.id)
     rates = items.inject([]) do |rates, item|
+      next rates unless item.shipping_rate
       rates << item.shipping_rate if item.shipping_rate.individual? || !rates.include?(item.shipping_rate)
       rates
     end
@@ -458,7 +462,7 @@ class Order < ApplicationRecord
   # @param none
   # @return [none]
   def update_inventory
-    self.order_items.each { |item| item.variant.add_pending_to_customer }
+    self.order_items.each { |item| item.variant&.add_pending_to_customer }
   end
 
   # variant ids in the order.
@@ -519,11 +523,11 @@ class Order < ApplicationRecord
     tax_time = completed_at? ? completed_at : Time.zone.now
     order_items.each do |item|
       if (calculated_at.nil? || item.updated_at > self.calculated_at)
-        item.tax_rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
+        item.tax_rate = item.variant&.product&.tax_rate(self.ship_address&.state_id, tax_time)
         item.calculate_total
         item.save
       end
-      self.total = total + item.total
+      self.total = total + (item.total || 0)
     end
   end
 
@@ -540,7 +544,7 @@ class Order < ApplicationRecord
   # @param none
   # @return [none]
   def set_email
-    self.email = user.email if user_id
+    self.email = user&.email if user_id
   end
 
   # Called before validation.  sets the order number, if the id is nil the order number is bogus
@@ -578,10 +582,10 @@ class Order < ApplicationRecord
   # @param none
   # @return [none]
   def update_tax_rates
-    if will_save_change_to_attribute?(:ship_address_id)
-      # set_beginning_values
+    if will_save_change_to_attribute?(:ship_address_id) && ship_address.present?
       tax_time = completed_at? ? completed_at : Time.zone.now
       order_items.each do |item|
+        next unless item.variant&.product
         rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
         if rate && item.tax_rate_id != rate.id
           item.tax_rate = rate

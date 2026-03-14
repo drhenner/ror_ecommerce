@@ -1,34 +1,44 @@
-<div id='myaccount-profile_name_form' class='row'>
-  <fieldset id="myaccount-profile" class='large-5 columns'>
-     <ul>
-       <li>
-         <%= f.label :first_name %>
-         <%= f.text_field :first_name, :placeholder => "First Name" %>
-        </li>
-        <li>
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name %>
-        </li>
-        <li>
-          <%= f.label :email %>
-          <%= f.text_field :email %>
-        </li>
+<div class="max-w-2xl">
+  <% if f.object.errors.any? %>
+    <div class="bg-red-50 border border-red-200 text-red-800 px-5 py-4 mb-6 text-sm rounded">
+      <h3 class="font-semibold mb-2"><%= pluralize(f.object.errors.count, "error") %> prohibited this profile from being saved:</h3>
+      <ul class="list-disc pl-5 space-y-1">
+        <% f.object.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-     </ul>
-  </fieldset>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="space-y-4">
+      <div>
+        <%= f.label :first_name, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= f.text_field :first_name, placeholder: "First Name", class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+      </div>
+      <div>
+        <%= f.label :last_name, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= f.text_field :last_name, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+      </div>
+      <div>
+        <%= f.label :email, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= f.text_field :email, disabled: true, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm bg-gray-100 text-[var(--color-text-muted)] cursor-not-allowed' %>
+      </div>
+    </div>
 
-  <fieldset id="myaccount-profile-password" class='large-4 '>
-    <ul>
-      <li>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-      </li>
-      <li>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
-      </li>
-    </ul>
-  </fieldset>
+    <div class="space-y-4">
+      <div>
+        <%= f.label :password, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= f.password_field :password, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+      </div>
+      <div>
+        <%= f.label :password_confirmation, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= f.password_field :password_confirmation, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <%= f.submit 'Update', class: 'btn btn-dark' %>
+  </div>
 </div>
-
-<div class="actions large-10"><%= f.submit 'Update' , class: 'button float-right' %></div>

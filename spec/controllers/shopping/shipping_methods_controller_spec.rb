@@ -68,7 +68,7 @@ describe Shopping::ShippingMethodsController do
     @order.stubs(:order_items).returns([@order_item])
     @controller.stubs(:find_or_create_order).returns(@order)
 
-    @shipping_rate   = FactoryBot.create(:shipping_rate)
+    @shipping_rate   = FactoryBot.create(:shipping_rate, shipping_category: @variant.product.shipping_category)
     @shipping_method = FactoryBot.create(:shipping_method)
     @controller.stubs(:not_secure?).returns(false)
     @controller.stubs(:next_form_url).returns(shopping_orders_url)

@@ -1,37 +1,27 @@
-<div id="order-confirmation">
-  <div class="row">
-    <div class='large-8 columns'>
-      <div class="top-box background-gray red-border-left">
-        <h3 style="margin-top:1rem;">Thank You, Your order has been placed</h3>
-        <div class='row' style='margin-top:1rem;margin-left:2rem;'>
-          <ul class='vertical menu large-12 columns'>
-            <li>
-              An email confirmation has been sent to you
-            </li>
-            <li>
-              Order Number: <strong><%= @order.number %></strong>
-            </li>
-          </ul>
+<div class="py-10 max-w-3xl mx-auto">
+  <div class="bg-[var(--color-highlight)] border border-[var(--color-border)] px-8 py-6 mb-8">
+    <h2 class="text-2xl font-normal mb-3" style="font-family: var(--font-display)">Thank you, your order has been placed</h2>
+    <ul class="space-y-1 text-sm text-[var(--color-text-muted)]">
+      <li>An email confirmation has been sent to you</li>
+      <li>Order Number: <strong class="text-[var(--color-text)]"><%= @order.number %></strong></li>
+    </ul>
+  </div>
+
+  <hr class="border-[var(--color-border)] mb-8">
+
+  <div class="space-y-6">
+    <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
+      <div class="flex gap-5 items-start">
+        <div class="w-24 h-24 shrink-0 bg-[var(--color-highlight)] overflow-hidden">
+          <%= link_to product_path(items.first.variant.product), title: items.first.variant.product.name do %>
+            <%= image_tag items.first.variant.product.featured_image(:medium), alt: items.first.variant.product.name, class: "w-full h-full object-cover" %>
+          <% end %>
+        </div>
+        <div>
+          <h3 class="text-base font-medium"><%= items.first.variant.product_name %></h3>
+          <p class="text-sm text-[var(--color-text-muted)] mt-1">Qty: <%= items.size %></p>
         </div>
       </div>
-      <hr style='color:#aac;'/>
-      <div>
-        <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
-          <div class='row media-object'>
-            <div class='large-4 columns'>
-              <%= link_to product_path(items.first.variant.product), title: items.first.variant.product.name do %>
-                <%= image_tag items.first.variant.product.featured_image(:medium), class: 'thumbnail' %>
-              <% end %>
-            </div>
-            <div class='large-8 columns'>
-              <h4 class=''>
-                <%= items.first.variant.product_name %>
-              </h4>
-              Qty: <%= items.size %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

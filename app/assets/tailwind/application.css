@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --max-width: 1360px;
+
+  --color-bg: #fafaf8;
+  --color-surface: #ffffff;
+  --color-border: #e5e2dc;
+  --color-text: #111111;
+  --color-text-muted: #6e6e6e;
+  --color-text-light: #aaaaaa;
+  --color-accent: #8b5e3c;
+  --color-accent-light: #c49a6c;
+  --color-cta: #111111;
+  --color-cta-text: #ffffff;
+  --color-highlight: #f5ede4;
+  --color-sale: #b44c3a;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 text-[13px] font-semibold uppercase tracking-wider border-none cursor-pointer transition-all duration-250;
+  }
+  .btn-dark {
+    background: var(--color-cta);
+    color: var(--color-cta-text);
+  }
+  .btn-dark:hover {
+    @apply bg-[#333];
+  }
+  .btn-accent {
+    background: var(--color-accent);
+    @apply text-white;
+  }
+  .btn-accent:hover {
+    @apply bg-[#7a5234];
+  }
+  .btn-white {
+    @apply bg-white;
+    color: var(--color-text);
+  }
+  .btn-white:hover {
+    background: var(--color-highlight);
+  }
+  .btn-ghost {
+    @apply bg-transparent text-white border border-white/40;
+  }
+  .btn-ghost:hover {
+    @apply border-white bg-white/10;
+  }
+  .btn-link {
+    @apply bg-transparent border-0 p-0 text-[13px] font-medium cursor-pointer normal-case tracking-normal pb-0.5;
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
+  }
+
+  .section-eyebrow {
+    @apply text-[11px] tracking-[2px] uppercase font-semibold mb-2;
+    color: var(--color-accent);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    @apply text-4xl font-normal tracking-tight;
+  }
+
+  .product-card {
+    @apply relative cursor-pointer overflow-hidden;
+  }
+  .product-card-image {
+    @apply aspect-[3/4] overflow-hidden relative;
+    background: var(--color-highlight);
+  }
+  .product-card-badge {
+    @apply absolute top-4 left-4 text-[10px] tracking-[1px] uppercase px-2.5 py-1 font-bold text-white;
+    background: var(--color-accent);
+  }
+  .product-card-badge.sale {
+    background: var(--color-sale);
+  }
+  .product-card-info {
+    @apply pt-3.5;
+  }
+  .product-card-brand {
+    @apply text-[10px] tracking-[1.2px] uppercase font-semibold mb-1;
+    color: var(--color-text-muted);
+  }
+  .product-card-name {
+    @apply text-[15px] font-medium mb-1;
+  }
+  .product-card-price {
+    @apply text-sm;
+    color: var(--color-text-muted);
+  }
+  .product-card-price .original {
+    @apply line-through mr-1.5;
+    color: var(--color-text-light);
+  }
+  .product-card-price .sale-price {
+    @apply font-semibold;
+    color: var(--color-sale);
+  }
+
+  /* Nav bar when scrolled (used by nav_scroll_controller) */
+  .solid {
+    @apply bg-white shadow-md;
+  }
+
+  /* Flash message animations */
+  .flash-out {
+    animation: flash-slide-up 0.4s ease forwards;
+  }
+  @keyframes flash-slide-up {
+    to {
+      opacity: 0;
+      transform: translateY(-100%);
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

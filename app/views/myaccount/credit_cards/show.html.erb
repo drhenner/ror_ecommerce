@@ -1,14 +1,12 @@
-<div class='nine large-9 columns'>
-  <h3> Credit Card </h3>
+<h3 class="text-xl font-medium mb-6">Credit Card</h3>
 
-<  p>
-    <strong>Name:</strong>
-    <%= @credit_card.name %>
-  </p>
+<p class="text-sm mb-6">
+  <span class="text-[var(--color-text-muted)]">Name:</span>
+  <strong><%= @credit_card.name %></strong>
+</p>
 
-  <p>
-    <%= link_to "Edit", edit_myaccount_credit_card_path(@credit_card), :class => 'button' %> |
-    <%= link_to "Destroy", myaccount_credit_card_path(@credit_card), :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button' %> |
-    <%= link_to "View All", myaccount_credit_cards_path, :class => 'button' %>
-  </p>
+<div class="flex items-center gap-3">
+  <%= link_to "Edit", edit_myaccount_credit_card_path(@credit_card), class: "btn btn-dark text-xs py-2 px-4" %>
+  <%= link_to "Delete", myaccount_credit_card_path(@credit_card), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: "text-xs text-[var(--color-sale)] hover:underline" %>
+  <%= link_to "View All", myaccount_credit_cards_path, class: "text-xs text-[var(--color-accent)] hover:underline" %>
 </div>

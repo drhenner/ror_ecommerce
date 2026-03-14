@@ -1,4 +1,5 @@
 class Shopping::BillingAddressesController < Shopping::BaseController
+  before_action :require_user
   helper_method :countries, :phone_types
   # GET /shopping/addresses
   def index
@@ -17,7 +18,7 @@ class Shopping::BillingAddressesController < Shopping::BaseController
   # GET /shopping/addresses/1/edit
   def edit
     form_info
-    @form_address = @shopping_address = Address.find(params[:id])
+    @form_address = @shopping_address = current_user.addresses.find(params[:id])
   end
 
   # POST /shopping/addresses
@@ -32,10 +33,12 @@ class Shopping::BillingAddressesController < Shopping::BaseController
       @shopping_address = current_user.addresses.find(params[:shopping_address_id])
     end
 
-      if @shopping_address.id
+      if @shopping_address&.id
         update_order_address_id(@shopping_address.id)
         redirect_to(next_form_url(session_order))
       else
+        @form_address = @shopping_address ||= Address.new
+        @form_address.phones.build if @form_address.phones.empty?
         form_info
         render :action => "index"
       end
@@ -70,7 +73,7 @@ class Shopping::BillingAddressesController < Shopping::BaseController
   end
 
   def destroy
-    @shopping_address = Address.find(params[:id])
+    @shopping_address = current_user.addresses.find(params[:id])
     @shopping_address.update(active: false)
 
     redirect_to(shopping_billing_addresses_url)
@@ -83,15 +86,19 @@ class Shopping::BillingAddressesController < Shopping::BaseController
   end
 
   def allowed_params
-    params.require(:address).permit(:first_name, :last_name, :address1, :address2, :city, :state_id, :state_name, :zip_code, :default, :billing_default, :country_id)
+    params.require(:address).permit(:first_name, :last_name, :address1, :address2, :city, :state_id, :state_name, :zip_code, :default, :billing_default, :country_id, phones_attributes: [:id, :display_number, :phone_type_id])
   end
 
   def phone_types
     @phone_types ||= PhoneType.all.map{|p| [p.name, p.id]}
   end
 
+  def countries
+    @countries ||= Country.active
+  end
+
   def form_info
-    @shopping_addresses = current_user.shipping_addresses
+    @shopping_addresses = current_user.billing_addresses
     @states     = State.form_selector
   end
 

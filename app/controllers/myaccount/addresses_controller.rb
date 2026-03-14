@@ -43,20 +43,18 @@ class Myaccount::AddressesController < Myaccount::BaseController
   # This is not normal because you should never Update an address.
   #   THE ADDRESS could point to an existing order which needs to keep the same address
   def update
+    old_address = current_user.addresses.find(params[:id])
     @address = current_user.addresses.new(allowed_params)
-    @address.replace_address_id = params[:id] # This makes the address we are updating inactive if we save successfully
+    @address.replace_address_id = old_address.id
 
-    # if we are editing the current default address then this is the default address
-    @address.default         = true if params[:id].to_i == current_user.default_shipping_address.try(:id)
-    @address.billing_default = true if params[:id].to_i == current_user.default_billing_address.try(:id)
+    @address.default         = true if old_address.id == current_user.default_shipping_address.try(:id)
+    @address.billing_default = true if old_address.id == current_user.default_billing_address.try(:id)
 
     respond_to do |format|
       if @address.save
         format.html { redirect_to(myaccount_address_url(@address), :notice => 'Address was successfully updated.') }
       else
-        # the form needs to have an id
-        @form_address = current_user.addresses.find(params[:id])
-        # the form needs to reflect the attributes to customer entered
+        @form_address = old_address
         @form_address.attributes = allowed_params
         form_info
         format.html { render :action => "edit" }

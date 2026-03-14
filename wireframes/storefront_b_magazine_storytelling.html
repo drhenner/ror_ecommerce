@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option B: Magazine / Category-Storytelling Storefront</title>
+<style>
+  :root {
+    --max-width: 1360px;
+    --nav-height: 72px;
+    --color-bg: #fafaf8;
+    --color-surface: #ffffff;
+    --color-border: #e5e2dc;
+    --color-text: #111111;
+    --color-text-muted: #6e6e6e;
+    --color-text-light: #aaaaaa;
+    --color-accent: #8b5e3c;
+    --color-accent-light: #c49a6c;
+    --color-cta: #111111;
+    --color-cta-text: #ffffff;
+    --color-highlight: #f5ede4;
+    --color-sale: #b44c3a;
+    --radius: 0;
+    --shadow: 0 2px 12px rgba(0,0,0,.06);
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-display: Georgia, 'Times New Roman', serif;
+    --transition: .25s ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ========== UTILITY BAR ========== */
+  .utility-bar {
+    background: var(--color-text); color: #fff;
+    text-align: center; padding: 8px 16px;
+    font-size: 12px; letter-spacing: .5px;
+  }
+  .utility-bar a { color: var(--color-accent-light); text-decoration: underline; }
+
+  /* ========== NAV (transparent over hero, solid elsewhere) ========== */
+  .nav {
+    position: absolute; top: 38px; left: 0; right: 0; z-index: 100;
+    height: var(--nav-height);
+    display: flex; align-items: center;
+    padding: 0 48px;
+    background: transparent;
+    transition: all var(--transition);
+  }
+  .nav.solid {
+    position: fixed; top: 0;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  }
+  .nav.solid .nav-logo, .nav.solid .nav-links a, .nav.solid .nav-right-btn { color: var(--color-text); }
+
+  .nav-logo {
+    font-family: var(--font-display); font-size: 22px; font-weight: 700;
+    letter-spacing: -1px; color: #fff;
+    transition: color var(--transition);
+  }
+
+  .nav-links {
+    display: flex; gap: 28px; margin-left: 48px;
+  }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; letter-spacing: .5px;
+    text-transform: uppercase; color: rgba(255,255,255,.85);
+    transition: color var(--transition); padding: 4px 0;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav.solid .nav-links a:hover { color: var(--color-accent); }
+
+  .nav-right {
+    margin-left: auto; display: flex; align-items: center; gap: 20px;
+  }
+  .nav-right-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 14px; color: rgba(255,255,255,.85);
+    transition: color var(--transition);
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--font-sans);
+  }
+  .nav-right-btn:hover { color: #fff; }
+  .nav.solid .nav-right-btn:hover { color: var(--color-accent); }
+  .nav-right-btn .cart-count {
+    background: var(--color-accent); color: #fff;
+    font-size: 10px; width: 18px; height: 18px;
+    border-radius: 50%; display: inline-flex;
+    align-items: center; justify-content: center; font-weight: 700;
+  }
+
+  /* ========== MEGA MENU (conceptual) ========== */
+  .mega-menu-hint {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 32px 48px;
+    box-shadow: var(--shadow);
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    width: 100%; height: 100vh; min-height: 600px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #3a3028 0%, #2a2420 40%, #1a1815 100%);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+  }
+  .hero-placeholder {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    font-size: 14px; color: rgba(255,255,255,.3);
+    background: rgba(255,255,255,.05); padding: 10px 20px; border-radius: 4px;
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 0 48px 80px; width: 100%;
+  }
+  .hero-tag {
+    display: inline-block; padding: 6px 14px;
+    background: var(--color-accent); color: #fff;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: var(--font-display); font-size: 56px; font-weight: 400;
+    color: #fff; line-height: 1.1; max-width: 640px;
+    margin-bottom: 16px; letter-spacing: -1px;
+  }
+  .hero-subtitle {
+    font-size: 17px; color: rgba(255,255,255,.7); max-width: 480px;
+    line-height: 1.6; margin-bottom: 32px;
+  }
+  .hero-actions { display: flex; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; font-size: 13px; font-weight: 600;
+    letter-spacing: .8px; text-transform: uppercase;
+    border: none; cursor: pointer; transition: all var(--transition);
+    text-decoration: none;
+  }
+  .btn-white { background: #fff; color: var(--color-text); }
+  .btn-white:hover { background: var(--color-highlight); }
+  .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.4); }
+  .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+  .btn-dark { background: var(--color-cta); color: var(--color-cta-text); }
+  .btn-dark:hover { background: #333; }
+  .btn-accent { background: var(--color-accent); color: #fff; }
+  .btn-accent:hover { background: #7a5234; }
+  .btn-link {
+    background: none; border: none; padding: 0;
+    font-size: 13px; font-weight: 500; color: var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
+    cursor: pointer; padding-bottom: 2px; text-transform: none; letter-spacing: 0;
+  }
+
+  /* ========== EDITORIAL GRID ========== */
+  .section { max-width: var(--max-width); margin: 0 auto; padding: 80px 48px; }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 40px;
+  }
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--color-accent); font-weight: 600; margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: 36px; font-weight: 400;
+    letter-spacing: -.5px;
+  }
+
+  .editorial-grid {
+    display: grid; gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .editorial-grid .card-large {
+    grid-column: span 2; grid-row: span 2;
+  }
+
+  .product-card { position: relative; cursor: pointer; overflow: hidden; }
+  .product-card-image {
+    aspect-ratio: 3/4; background: var(--color-highlight);
+    overflow: hidden; position: relative;
+  }
+  .card-large .product-card-image { aspect-ratio: auto; height: 100%; min-height: 500px; }
+  .product-card-image .placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, #e4ddd5 0%, #d4cdc4 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--color-text-light);
+    transition: transform .6s ease;
+  }
+  .product-card:hover .placeholder { transform: scale(1.03); }
+
+  .product-card-badge {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--color-accent); color: #fff;
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 4px 10px; font-weight: 700;
+  }
+  .product-card-badge.sale { background: var(--color-sale); }
+
+  .product-card-info { padding: 14px 0 0; }
+  .product-card-brand {
+    font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--color-text-muted); font-weight: 600; margin-bottom: 4px;
+  }
+  .product-card-name { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .product-card-price { font-size: 14px; color: var(--color-text-muted); }
+  .product-card-price .original {
+    text-decoration: line-through; color: var(--color-text-light); margin-right: 6px;
+  }
+  .product-card-price .sale-price { color: var(--color-sale); font-weight: 600; }
+
+  /* ========== STORY BANNER ========== */
+  .story-banner {
+    background: var(--color-text); color: #fff;
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+  }
+  .story-banner-image {
+    background: linear-gradient(135deg, #3a3028 0%, #2a2420 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: rgba(255,255,255,.3);
+    position: relative; overflow: hidden;
+  }
+  .story-banner-content {
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px;
+  }
+  .story-inner { max-width: 420px; }
+  .story-inner .section-eyebrow { color: var(--color-accent-light); text-align: left; }
+  .story-inner h2 {
+    font-family: var(--font-display); font-size: 40px; font-weight: 400;
+    line-height: 1.15; margin-bottom: 16px; color: #fff;
+  }
+  .story-inner p {
+    font-size: 15px; color: rgba(255,255,255,.6);
+    line-height: 1.7; margin-bottom: 28px;
+  }
+
+  /* ========== CATEGORY STORIES ========== */
+  .category-stories {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .category-story {
+    position: relative; overflow: hidden; cursor: pointer;
+    aspect-ratio: 4/5;
+  }
+  .category-story-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.6) 100%);
+    z-index: 1;
+  }
+  .category-story-image {
+    width: 100%; height: 100%;
+    transition: transform .6s ease;
+  }
+  .category-story:hover .category-story-image { transform: scale(1.04); }
+  .story-1 .category-story-image { background: linear-gradient(135deg, #c4b5a2 0%, #a89882 100%); }
+  .story-2 .category-story-image { background: linear-gradient(135deg, #8a9ea8 0%, #6b8490 100%); }
+  .story-3 .category-story-image { background: linear-gradient(135deg, #b8a490 0%, #9a8672 100%); }
+  .category-story-content {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+    padding: 28px;
+  }
+  .category-story-tag {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--color-accent-light); font-weight: 600; margin-bottom: 8px;
+  }
+  .category-story-title {
+    font-family: var(--font-display); font-size: 26px; font-weight: 400;
+    color: #fff; margin-bottom: 12px; line-height: 1.2;
+  }
+  .category-story-link {
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    color: #fff; font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,.5); padding-bottom: 2px;
+    display: inline-block;
+  }
+
+  /* ========== TRENDING ========== */
+  .trending-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  /* ========== FULL-WIDTH EDITORIAL ========== */
+  .editorial-full {
+    position: relative; height: 400px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; overflow: hidden;
+  }
+  .editorial-full-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #f5ede4 0%, #e8ddd0 100%);
+  }
+  .editorial-full-content {
+    position: relative; z-index: 1; max-width: 560px; padding: 0 24px;
+  }
+  .editorial-full-content .section-eyebrow { margin-bottom: 12px; }
+  .editorial-full-content h2 {
+    font-family: var(--font-display); font-size: 38px; font-weight: 400;
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  .editorial-full-content p {
+    font-size: 15px; color: var(--color-text-muted); line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    background: var(--color-text); color: rgba(255,255,255,.7);
+    padding: 64px 48px 32px;
+  }
+  .footer-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .footer-brand-text {
+    font-family: var(--font-display); font-size: 22px;
+    color: #fff; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px;
+  }
+  .footer-brand p { font-size: 13px; line-height: 1.6; max-width: 260px; }
+  .footer-col h4 {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,.4); font-weight: 600; margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { font-size: 13px; color: rgba(255,255,255,.6); transition: color var(--transition); }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom-bar {
+    max-width: var(--max-width); margin: 40px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: rgba(255,255,255,.3);
+  }
+
+  /* ========== ANNOTATIONS ========== */
+  .annotation {
+    max-width: var(--max-width); margin: 0 auto; padding: 40px 48px;
+  }
+  .annotation-box {
+    padding: 24px; background: #fffbeb; border: 1px solid #fde68a;
+    border-radius: 8px; font-size: 13px; line-height: 1.7;
+  }
+  .annotation-box strong { color: #92400e; }
+  .annotation-box code { background: #fef3c7; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+  .annotation-box ul { margin-top: 8px; padding-left: 20px; list-style: disc; }
+  .annotation-box li { margin-bottom: 6px; }
+  .annotation-box h4 { margin-top: 16px; margin-bottom: 6px; color: #78350f; font-size: 14px; }
+
+  .wireframe-label {
+    text-align: center; padding: 16px; background: #111; color: #fff;
+    font-size: 13px; letter-spacing: .5px;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+  }
+  .wireframe-label strong { color: var(--color-accent-light); }
+</style>
+</head>
+<body>
+
+<!-- ===== UTILITY BAR ===== -->
+<div class="utility-bar">
+  Free express shipping on orders over $150 &nbsp;&mdash;&nbsp; <a href="#">Shop Now</a>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav">
+  <a class="nav-logo" href="#">RoR Commerce</a>
+  <div class="nav-links">
+    <a href="#">New In</a>
+    <a href="#">Women</a>
+    <a href="#">Men</a>
+    <a href="#">Designers</a>
+    <a href="#">Editorial</a>
+    <a href="#">Sale</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-right-btn">&#8981; Search</button>
+    <button class="nav-right-btn">&#9825; Wishlist</button>
+    <button class="nav-right-btn">&#9862; Account</button>
+    <button class="nav-right-btn">Bag <span class="cart-count">3</span></button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-placeholder">Full-screen editorial campaign image &mdash; 1920&times;1080</div>
+  <div class="hero-content">
+    <div class="hero-tag">Editor's Pick</div>
+    <h1 class="hero-title">The Art of Understated Luxury</h1>
+    <p class="hero-subtitle">Our curators handpick the season's most compelling pieces. Discover the collection that defines modern elegance.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-white">Shop the Edit</a>
+      <a href="#" class="btn btn-ghost">Watch the Film</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDITORIAL PRODUCT GRID ===== -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Just Landed</div>
+      <h2 class="section-title">What's New This Week</h2>
+    </div>
+    <button class="btn-link">View all new arrivals &rarr;</button>
+  </div>
+  <div class="editorial-grid">
+    <div class="product-card card-large">
+      <div class="product-card-image">
+        <div class="placeholder">Feature Product<br>Large card<br>800&times;1000</div>
+      </div>
+      <div class="product-card-badge">Exclusive</div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Artisan Collective</div>
+        <div class="product-card-name">Hand-Stitched Leather Tote</div>
+        <div class="product-card-price">$340.00</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">Product 2<br>400&times;530</div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Maison Roux</div>
+        <div class="product-card-name">Silk Blend Blouse</div>
+        <div class="product-card-price">$185.00</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">Product 3<br>400&times;530</div>
+      </div>
+      <div class="product-card-badge sale">-30%</div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Nordic Essentials</div>
+        <div class="product-card-name">Wool-Cashmere Coat</div>
+        <div class="product-card-price"><span class="original">$420.00</span> <span class="sale-price">$294.00</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">Product 4<br>400&times;530</div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Studio Linen</div>
+        <div class="product-card-name">Relaxed Fit Trousers</div>
+        <div class="product-card-price">$128.00</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">Product 5<br>400&times;530</div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Terra &amp; Co</div>
+        <div class="product-card-name">Organic Cotton Knit</div>
+        <div class="product-card-price">$92.00</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CATEGORY STORIES ===== -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Explore</div>
+      <h2 class="section-title">Stories We Love</h2>
+    </div>
+  </div>
+  <div class="category-stories">
+    <div class="category-story story-1">
+      <div class="category-story-image"></div>
+      <div class="category-story-bg"></div>
+      <div class="category-story-content">
+        <div class="category-story-tag">The Edit</div>
+        <div class="category-story-title">Weekend Away: Effortless Packing</div>
+        <span class="category-story-link">Read the Story</span>
+      </div>
+    </div>
+    <div class="category-story story-2">
+      <div class="category-story-image"></div>
+      <div class="category-story-bg"></div>
+      <div class="category-story-content">
+        <div class="category-story-tag">Designer Spotlight</div>
+        <div class="category-story-title">Maison Roux: Parisian Minimalism</div>
+        <span class="category-story-link">Discover the Collection</span>
+      </div>
+    </div>
+    <div class="category-story story-3">
+      <div class="category-story-image"></div>
+      <div class="category-story-bg"></div>
+      <div class="category-story-content">
+        <div class="category-story-tag">Trend Report</div>
+        <div class="category-story-title">Quiet Luxury: The New Elegance</div>
+        <span class="category-story-link">Shop the Trend</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== STORY BANNER ===== -->
+<div class="story-banner">
+  <div class="story-banner-image">
+    <span style="background:rgba(255,255,255,.05);padding:8px 16px;border-radius:4px;">Brand story image &mdash; 960&times;480</span>
+  </div>
+  <div class="story-banner-content">
+    <div class="story-inner">
+      <div class="section-eyebrow">Craftsmanship</div>
+      <h2>Where Every Detail Tells a Story</h2>
+      <p>From Italian tanneries to Japanese dye houses, we partner with the world's finest artisans. Each product carries the mark of human hands and centuries-old tradition.</p>
+      <a href="#" class="btn btn-accent">Our Makers</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TRENDING NOW ===== -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Most Wanted</div>
+      <h2 class="section-title">Trending This Week</h2>
+    </div>
+    <button class="btn-link">View all &rarr;</button>
+  </div>
+  <div class="trending-row">
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">Trending 1<br>400&times;530</div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Nordic Essentials</div>
+        <div class="product-card-name">Merino Crew Neck</div>
+        <div class="product-card-price">$95.00</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">Trending 2<br>400&times;530</div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Artisan Collective</div>
+        <div class="product-card-name">Ceramic Desk Set</div>
+        <div class="product-card-price">$64.00</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">Trending 3<br>400&times;530</div>
+      </div>
+      <div class="product-card-badge sale">-20%</div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Terra &amp; Co</div>
+        <div class="product-card-name">Linen Shirt Dress</div>
+        <div class="product-card-price"><span class="original">$160.00</span> <span class="sale-price">$128.00</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">Trending 4<br>400&times;530</div>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-brand">Studio Linen</div>
+        <div class="product-card-name">Wide Leg Jumpsuit</div>
+        <div class="product-card-price">$175.00</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EDITORIAL FULL WIDTH ===== -->
+<div class="editorial-full">
+  <div class="editorial-full-bg"></div>
+  <div class="editorial-full-content">
+    <div class="section-eyebrow">The RoR Commerce Journal</div>
+    <h2>Subscribe for early access and insider stories</h2>
+    <p>Be the first to know about new arrivals, exclusive offers, and editorial features delivered to your inbox.</p>
+    <a href="#" class="btn btn-dark">Join the List</a>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-text">RoR Commerce</div>
+      <p>A curated marketplace for modern living. We believe in quality over quantity, and stories behind every product.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New In</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Designers</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Account</h4>
+      <ul>
+        <li><a href="#">My Orders</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">Addresses</a></li>
+        <li><a href="#">Store Credit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Social</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom-bar">
+    <span>&copy; 2026 RoR Commerce</span>
+    <span>Built with Ruby on Rails</span>
+  </div>
+</footer>
+
+<!-- ===== ANNOTATIONS ===== -->
+<div class="annotation" style="background:#fff;">
+  <div class="annotation-box">
+    <strong>Option B: Magazine / Category-Storytelling Storefront</strong> &mdash; Design decisions &amp; implementation notes:
+    <ul>
+      <li><strong>Transparent nav overlaying hero</strong> that transitions to solid on scroll. A <code>Stimulus</code> controller watches <code>IntersectionObserver</code> on the hero and toggles <code>.solid</code> class. Maps to existing <code>_welcome_header.html.erb</code>.</li>
+      <li><strong>Mega-menu</strong> on hover for category links &mdash; each panel shows featured category images. Uses product type images from <code>ProductType</code> and brand logos from <code>Brand</code>.</li>
+      <li><strong>Asymmetric editorial grid</strong> mixes a large featured product (2x2 span) with smaller cards. The large card uses <code>Product.featured</code>, the rest from recent products. All link to <code>products#show</code>.</li>
+      <li><strong>Category stories</strong> blend editorial content with shopping. These could be backed by a simple CMS model or static partials initially. Each links to filtered <code>products_path(product_type_id: ...)</code>.</li>
+      <li><strong>Brand badges</strong> on product cards &mdash; leverages existing <code>product.brand_name</code> method.</li>
+
+      <h4>Product Listing Page</h4>
+      <li>Masonry-style grid with 2-4 columns. Interspersed editorial banners break up the grid every 8-12 products. Sort and filter controls as a horizontal bar (not sidebar). Uses <code>Turbo Frames</code> for filter/sort to reload only the grid.</li>
+
+      <h4>Product Detail Page</h4>
+      <li>Full-width hero image at top, product details in a centered card below. Image gallery as horizontal scrollable strip. Variant selection + add to cart in a sticky bar that appears on scroll.</li>
+
+      <h4>Cart Page</h4>
+      <li>Full dedicated page (not drawer) with rich product cards showing images, variant details, and editorial-style layout. Order summary panel on the right. No tables.</li>
+
+      <h4>Checkout &amp; My Account</h4>
+      <li>Checkout: centered single-column with steps as a horizontal progress bar. Clean form fields with inline validation.</li>
+      <li>My Account: horizontal tab navigation across top (Orders, Addresses, Cards, Profile, Referrals, Credit).</li>
+
+      <h4>Tech Stack</h4>
+      <li>Custom CSS with <strong>CSS custom properties</strong> for theming. No framework dependency.</li>
+      <li><strong>Turbo Drive</strong> for smooth page transitions, keeping nav and footer mounted.</li>
+      <li><strong>Turbo Frames</strong> for product grid filtering, cart updates, variant selection.</li>
+      <li><strong>Stimulus</strong> for: transparent/solid nav toggle, mega-menu, image galleries, sticky add-to-cart bar.</li>
+      <li>Existing controllers and routes <strong>unchanged</strong>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="wireframe-label">
+  <strong>WIREFRAME &mdash; Option B: Magazine / Category-Storytelling Storefront</strong> &nbsp;|&nbsp; Editorial, brand-forward, visual storytelling &nbsp;|&nbsp; Net-a-Porter / Mr Porter inspired
+</div>
+
+</body>
+</html>

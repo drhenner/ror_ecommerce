@@ -51,7 +51,7 @@ describe "Admin::Overviews" do
       cookied_login
       visit admin_overviews_path
       expect(page).to have_content('account is required')
-      expect(page).to have_content('forgot password')
+      expect(page).to have_content('Forgot password?')
     end
   end
 end

@@ -4,11 +4,12 @@ export default class extends Controller {
   static values = { delay: { type: Number, default: 6000 } }
 
   connect() {
-    this.removing = false
+    this.removed = false
     this.timer = setTimeout(() => this.fadeOut(), this.delayValue)
   }
 
   disconnect() {
+    this.removed = true
     clearTimeout(this.timer)
     clearTimeout(this.fallbackTimer)
   }
@@ -19,14 +20,16 @@ export default class extends Controller {
   }
 
   fadeOut() {
-    if (this.removing) return
-    this.removing = true
+    if (this.removed) return
+    this.removed = true
 
     this.element.classList.add("flash-out")
     this.element.addEventListener("animationend", () => {
       this.element.remove()
     }, { once: true })
 
-    this.fallbackTimer = setTimeout(() => this.element.remove(), 1000)
+    this.fallbackTimer = setTimeout(() => {
+      if (this.element.parentNode) this.element.remove()
+    }, 1000)
   }
 }

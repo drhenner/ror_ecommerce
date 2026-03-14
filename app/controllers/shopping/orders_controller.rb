@@ -34,16 +34,21 @@ class Shopping::OrdersController < Shopping::BaseController
 
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
 
+    if @order.bill_address.nil?
+      flash[:alert] = I18n.t('billing_address_required', default: 'Please add a billing address before completing your order.')
+      redirect_to shopping_billing_addresses_url and return
+    end
+
     address = @order.bill_address.cc_params
 
     if !session_cart.shopping_cart_items_equal_order_items?(@order)
       flash[:alert] = I18n.t('shopping_cart_items_do_not_match_order_items')
-      redirect_to shopping_cart_items_url
+      redirect_to shopping_cart_items_url and return
     elsif !@order.in_progress?
       session_cart.mark_items_purchased(@order)
       session[:order_id] = nil
       flash[:error] = I18n.t('the_order_purchased')
-      redirect_to myaccount_order_url(@order)
+      redirect_to myaccount_order_url(@order) and return
     elsif @credit_card.valid?
       if response = @order.create_invoice(@credit_card,
                                           @order.credited_total,
@@ -54,7 +59,8 @@ class Shopping::OrdersController < Shopping::BaseController
           ##  MARK items as purchased
           session_cart.mark_items_purchased(@order)
           session[:last_order] = @order.number
-          redirect_to( confirmation_shopping_order_url(@order) ) and return
+          session[:order_id] = nil
+          redirect_to( confirmation_shopping_order_url(@order.number) ) and return
         else
           flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
         end
@@ -74,13 +80,17 @@ class Shopping::OrdersController < Shopping::BaseController
     @tab = 'confirmation'
     if session[:last_order].present? && session[:last_order] == params[:id]
       session[:last_order] = nil
-      @order = Order.includes({order_items: :variant}).find_by(number: params[:id])
-      render :layout => 'application'
+      @order = current_user.orders.includes({order_items: :variant}).find_by(number: params[:id])
+      if @order
+        render :layout => 'application'
+      else
+        redirect_to myaccount_orders_url
+      end
     else
       session[:last_order] = nil
       if current_user.finished_orders.present?
         redirect_to myaccount_order_url( current_user.finished_orders.last )
-      elsif current_user
+      else
         redirect_to myaccount_orders_url
       end
     end

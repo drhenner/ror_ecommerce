@@ -91,8 +91,8 @@ class Cart < ApplicationRecord
   belongs_to  :user
   belongs_to  :customer, class_name: 'User'
   has_many    :cart_items
-  has_many    :shopping_cart_items, -> { where(active: true, item_type_id: ItemType::SHOPPING_CART_ID) },   class_name: 'CartItem'
-  has_many    :saved_cart_items,    -> { where( active: true, item_type_id: ItemType::SAVE_FOR_LATER_ID) }, class_name: 'CartItem'
+  has_many    :shopping_cart_items, -> { joins(:variant).where(active: true, item_type_id: ItemType::SHOPPING_CART_ID) },   class_name: 'CartItem'
+  has_many    :saved_cart_items,    -> { joins(:variant).where(active: true, item_type_id: ItemType::SAVE_FOR_LATER_ID) }, class_name: 'CartItem'
   has_many    :wish_list_items,     -> { where( active: true, item_type_id: ItemType::WISH_LIST_ID) },      class_name: 'CartItem'
   has_many    :purchased_items,     -> { where( active: true, item_type_id: ItemType::PURCHASED_ID) },      class_name: 'CartItem'
   has_many    :deleted_cart_items,  -> { where(active: false) }, class_name: 'CartItem'
@@ -123,9 +123,11 @@ class Cart < ApplicationRecord
   # @return [order]  return order because teh order returned has a diffent quantity
   def add_items_to_checkout(order)
     if order.in_progress?
-      order.order_items.map(&:destroy)
-      order.order_items.reload
-      items_to_add(order, shopping_cart_items)
+      Order.transaction do
+        order.order_items.destroy_all
+        order.order_items.reload
+        items_to_add(order, shopping_cart_items)
+      end
     end
     order
   end
@@ -155,6 +157,7 @@ class Cart < ApplicationRecord
   def add_variant(variant_id, customer, qty = 1, cart_item_type_id = ItemType::SHOPPING_CART_ID, admin_purchase = false)
     items = shopping_cart_items.where(variant_id: variant_id).to_a
     variant = Variant.find_by(id: variant_id)
+    return nil unless variant
     quantity_to_purchase = variant.quantity_purchaseable_if_user_wants(qty.to_i, admin_purchase)
     if admin_purchase && (quantity_to_purchase > 0)
       cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
@@ -196,7 +199,7 @@ class Cart < ApplicationRecord
   #
   # @param [Order]
   def mark_items_purchased(order)
-    CartItem.where(id: (self.cart_item_ids + self.shopping_cart_item_ids).uniq).
+    CartItem.where(id: self.shopping_cart_item_ids).
              where(variant_id: order.variant_ids).
              update_all("item_type_id = #{ItemType::PURCHASED_ID}") if !order.variant_ids.empty?
   end

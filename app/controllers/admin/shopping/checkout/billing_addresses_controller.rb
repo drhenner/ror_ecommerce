@@ -24,13 +24,13 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
   def create
     if params[:address].present?
       @billing_address = checkout_user.addresses.new(allowed_params)
-      @billing_address.default = true          if checkout_user.default_billing_address.nil?
+      @billing_address.default = true          if checkout_user.default_shipping_address.nil?
       @billing_address.billing_default = true  if checkout_user.default_billing_address.nil?
       @billing_address.save
     elsif params[:billing_address_id].present?
       @billing_address = checkout_user.addresses.find(params[:billing_address_id])
     end
-    if @billing_address.id
+    if @billing_address&.id
       update_order_address_id(@billing_address.id)
       redirect_to(next_admin_order_form_url, :notice => 'Address was successfully created.')
     else

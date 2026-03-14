@@ -7,6 +7,10 @@ class Customer::ActivationsController < ApplicationController
     @user = User.find_by_perishable_token(params[:a])
     if @user && (@user.active? || @user.activate!)
       UserSession.create(@user, true)
+      cookies[:hadean_uid] = @user.access_token
+      session[:authenticated_at] = Time.now.to_i
+      set_user_to_cart_items(@user)
+      merge_carts
       flash[:notice] = "Welcome back #{@user.name}"
     else
       flash[:notice] = "Invalid Activation URL!"

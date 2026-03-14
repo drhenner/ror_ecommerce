@@ -86,7 +86,7 @@ class Referral < ApplicationRecord
     elsif registered?
       registered_at
     else
-      referral_user.created_at
+      referral_user&.created_at || created_at
     end
   end
 
@@ -138,6 +138,6 @@ class Referral < ApplicationRecord
     end
 
     def assign_referral_program
-      self.referral_program_id ||= ReferralProgram.current_program.id
+      self.referral_program_id ||= ReferralProgram.current_program&.id
     end
 end

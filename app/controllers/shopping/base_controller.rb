@@ -20,17 +20,18 @@ class Shopping::BaseController < ApplicationController
     if session_cart.shopping_cart_items.empty?
       flash[:notice] = I18n.t('do_not_have_anything_in_your_cart')
       return products_url
-    elsif !session_cart.shopping_cart_items_equal_order_items?(session_order)
+    elsif !session_cart.shopping_cart_items_equal_order_items?(order)
       flash[:alert] = I18n.t('shopping_cart_items_do_not_match_order_items')
       return shopping_cart_items_url
-    ## If we are insecure
     elsif not_secure?
       session[:return_to] = shopping_orders_url
       return login_url()
-    elsif session_order.ship_address_id.nil?
+    elsif order.ship_address_id.nil?
       return shopping_addresses_url()
-    elsif !session_order.all_order_items_have_a_shipping_rate?
+    elsif !order.all_order_items_have_a_shipping_rate?
       return shopping_shipping_methods_url()
+    elsif order.bill_address_id.nil?
+      return shopping_billing_addresses_url()
     end
   end
 
@@ -39,7 +40,7 @@ class Shopping::BaseController < ApplicationController
   end
 
   def has_not_logged_in_recently?(minutes = 20)
-    session[:authenticated_at].nil? || Time.now - session[:authenticated_at] > (60 * minutes)
+    session[:authenticated_at].nil? || (Time.now.to_i - session[:authenticated_at].to_i) > (60 * minutes)
   end
 
   def session_order
@@ -53,8 +54,11 @@ class Shopping::BaseController < ApplicationController
   def find_or_create_order
     return @session_order if @session_order
     if session[:order_id]
-      @session_order = current_user.orders.include_checkout_objects.find(session[:order_id])
-      create_order if !@session_order.in_progress?
+      @session_order = current_user.orders.include_checkout_objects.find_by(id: session[:order_id])
+      if @session_order.nil? || !@session_order.in_progress?
+        session[:order_id] = nil
+        create_order
+      end
     else
       create_order
     end
@@ -71,6 +75,7 @@ class Shopping::BaseController < ApplicationController
 
   def add_new_cart_items(items)
     items.each do |item|
+      next unless item.variant
       @session_order.add_items(item.variant, item.quantity)
     end
   end

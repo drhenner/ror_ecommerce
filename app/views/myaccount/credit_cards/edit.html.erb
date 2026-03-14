@@ -1,10 +1,10 @@
-<div class='nine large-9 columns'>
-  <h3> Edit Credit Card </h3>
+<h3 class="text-xl font-medium mb-6">Edit Credit Card</h3>
 
-  <%= form_for(@credit_card, :url => myaccount_credit_card_path(@credit_card)) do |f| %>
-    <%= render :partial => 'form', :locals => {:f => f} %>
-  <% end %>
+<%= form_for(@credit_card, as: :credit_card, url: myaccount_credit_card_path(@credit_card), method: :patch) do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+<% end %>
 
-  <%= link_to 'Show', myaccount_credit_card_path( @credit_card ), :class => 'button' %> |
-  <%= link_to 'View All', myaccount_credit_cards_path, :class => 'button' %>
+<div class="flex items-center gap-3 mt-4">
+  <%= link_to 'Show', myaccount_credit_card_path(@credit_card), class: "text-sm text-[var(--color-accent)] hover:underline" %>
+  <%= link_to 'View All', myaccount_credit_cards_path, class: "text-sm text-[var(--color-accent)] hover:underline" %>
 </div>

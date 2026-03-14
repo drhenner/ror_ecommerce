@@ -55,11 +55,11 @@ class OrderItem < ApplicationRecord
   end
 
   def product_type
-    variant.product.product_type
+    variant&.product&.product_type
   end
 
   def product_type_ids
-    product_type.self_and_ancestors.map(&:id)
+    product_type&.self_and_ancestors&.map(&:id) || []
   end
 
  # if the order item has been shipped it will return true
@@ -79,7 +79,7 @@ class OrderItem < ApplicationRecord
   # @param [none]
   # @return [ShippingMethod]
   def shipping_method
-    shipping_rate.shipping_method
+    shipping_rate&.shipping_method
   end
 
   # shipping method id for the order item (use to reduce SQL calls)
@@ -88,14 +88,15 @@ class OrderItem < ApplicationRecord
   # @param [none]
   # @return [Integer] ShippingMethod id
   def shipping_method_id
-    shipping_rate.shipping_method_id
+    shipping_rate&.shipping_method_id
   end
 
   def ship_category_id
-    variant.product.shipping_category_id
+    variant&.product&.shipping_category_id
   end
 
   def shipping_rate_options(total_charge)
+    return ShippingRate.none unless order.ship_address
     ShippingRate.joins(:shipping_method).where(['shipping_rates.shipping_category_id = ?
                         AND shipping_methods.shipping_zone_id = ?
                         AND shipping_rates.minimum_charge <= ?', ship_category_id, order.ship_address.shipping_zone_id, total_charge])
@@ -206,7 +207,7 @@ class OrderItem < ApplicationRecord
   # @param [none]
   # @return [Float] tax charge on the item.
   def tax_charge
-    tax_percentage = tax_rate.try(:tax_percentage) ? tax_rate.tax_percentage : 0.0
+    tax_percentage = tax_rate.try(:tax_percentage) || 0.0
     adjusted_price * tax_percentage / 100.0
   end
 

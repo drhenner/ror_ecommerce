@@ -75,7 +75,9 @@ class Deal < ApplicationRecord
     if get_amount && get_amount > 0.0
       get_amount.to_f / 100.0
     else
-      ((product_type_prices.sort.reverse[0..(buy_quantity - 1)].min) * get_percentage).to_f / 100.0
+      eligible_prices = product_type_prices.sort.reverse[0..([buy_quantity, 1].max - 1)]
+      return 0.0 if eligible_prices.blank?
+      (eligible_prices.min * get_percentage).to_f / 100.0
     end
   end
 

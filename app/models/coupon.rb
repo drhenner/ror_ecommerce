@@ -63,7 +63,7 @@ class Coupon < ApplicationRecord
   # Does the coupon meet the criteria to apply it.  (is the order price total over the coupon's minimum value)
   def qualified?(item_prices, order, at = nil)
     at ||= order.completed_at || Time.zone.now
-    item_prices.sum > minimum_value && eligible?(order, at)
+    item_prices.sum >= minimum_value && eligible?(order, at)
   end
 
   def eligible?(order, at = nil)
@@ -90,6 +90,7 @@ class Coupon < ApplicationRecord
   # for combine coupons you apply coupon to all the items
   # otherwise only apply the coupon to the max priced item
   def value_of_items_to_apply(item_prices)
+    return 0.0 if item_prices.blank?
     combine ? item_prices.sum : item_prices.max
   end
 end

@@ -1,8 +1,5 @@
+<h3 class="text-xl font-medium mb-6">Edit Profile</h3>
 
-<div class=' large-9 columns'>
-  <h3> Edit Profile </h3>
-
-  <%= form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f| %>
-    <%=  render :partial => 'form', :locals => {:f => f} %>
-  <% end %>
-</div>
+<%= form_for current_user, url: myaccount_overview_path, method: 'PUT' do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+<% end %>

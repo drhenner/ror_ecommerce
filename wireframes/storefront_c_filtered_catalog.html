@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option C: Filtered Catalog Storefront</title>
+<style>
+  :root {
+    --max-width: 1400px;
+    --utility-height: 36px;
+    --nav-height: 56px;
+    --mega-nav-height: 44px;
+    --color-bg: #f5f5f5;
+    --color-surface: #ffffff;
+    --color-border: #e0e0e0;
+    --color-border-light: #eeeeee;
+    --color-text: #111111;
+    --color-text-muted: #555555;
+    --color-text-light: #888888;
+    --color-primary: #0066cc;
+    --color-primary-hover: #0052a3;
+    --color-primary-bg: #eef5ff;
+    --color-cta: #e47911;
+    --color-cta-hover: #c76d0f;
+    --color-success: #067d62;
+    --color-sale: #cc0c39;
+    --color-star: #de7921;
+    --color-badge-bg: #fef3cd;
+    --color-badge-text: #856404;
+    --radius: 4px;
+    --radius-lg: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,.08);
+    --shadow-lg: 0 2px 8px rgba(0,0,0,.1);
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --transition: .15s ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); -webkit-font-smoothing: antialiased; font-size: 14px; }
+  a { color: var(--color-primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ========== UTILITY BAR ========== */
+  .utility-bar {
+    height: var(--utility-height);
+    background: #232f3e; color: #ccc;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding: 0 24px; gap: 20px; font-size: 12px;
+  }
+  .utility-bar a { color: #ddd; text-decoration: none; }
+  .utility-bar a:hover { color: #fff; text-decoration: underline; }
+
+  /* ========== MAIN NAV ========== */
+  .main-nav {
+    height: var(--nav-height);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex; align-items: center;
+    padding: 0 24px; gap: 20px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  }
+  .main-nav-logo {
+    font-size: 20px; font-weight: 800; color: var(--color-text);
+    letter-spacing: -.5px; text-decoration: none; flex-shrink: 0;
+  }
+  .main-nav-search {
+    flex: 1; max-width: 620px; display: flex;
+  }
+  .main-nav-search select {
+    padding: 8px 8px; border: 1px solid var(--color-border);
+    border-right: none; border-radius: var(--radius) 0 0 var(--radius);
+    background: var(--color-bg); font-size: 12px; color: var(--color-text-muted);
+    outline: none; cursor: pointer;
+  }
+  .main-nav-search input {
+    flex: 1; padding: 8px 12px;
+    border: 1px solid var(--color-border); border-right: none;
+    font-size: 14px; outline: none;
+  }
+  .main-nav-search input:focus { border-color: var(--color-cta); box-shadow: 0 0 0 2px rgba(228,121,17,.15); }
+  .main-nav-search button {
+    padding: 8px 16px; background: var(--color-cta); color: #fff;
+    border: 1px solid var(--color-cta); border-radius: 0 var(--radius) var(--radius) 0;
+    cursor: pointer; font-size: 16px;
+    transition: background var(--transition);
+  }
+  .main-nav-search button:hover { background: var(--color-cta-hover); }
+
+  .main-nav-actions { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+  .nav-action {
+    display: flex; flex-direction: column; align-items: center;
+    font-size: 11px; color: var(--color-text-muted);
+    cursor: pointer; text-decoration: none; gap: 2px;
+    transition: color var(--transition);
+  }
+  .nav-action:hover { color: var(--color-text); text-decoration: none; }
+  .nav-action .nav-action-icon { font-size: 20px; }
+  .nav-action .nav-action-label { font-weight: 500; }
+  .nav-action-cart {
+    position: relative;
+  }
+  .nav-action-cart .cart-badge {
+    position: absolute; top: -4px; right: -8px;
+    background: var(--color-cta); color: #fff;
+    font-size: 10px; font-weight: 700; min-width: 18px; height: 18px;
+    border-radius: 9px; display: flex; align-items: center; justify-content: center;
+    padding: 0 4px;
+  }
+
+  /* ========== CATEGORY NAV ========== */
+  .cat-nav {
+    height: var(--mega-nav-height);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex; align-items: center;
+    padding: 0 24px; gap: 0;
+    overflow-x: auto;
+  }
+  .cat-nav a {
+    padding: 0 14px; height: var(--mega-nav-height);
+    display: flex; align-items: center;
+    font-size: 13px; font-weight: 500; color: var(--color-text);
+    white-space: nowrap; text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition);
+  }
+  .cat-nav a:hover { border-bottom-color: var(--color-cta); color: var(--color-cta); }
+  .cat-nav a.active { border-bottom-color: var(--color-cta); color: var(--color-cta); font-weight: 600; }
+
+  /* ========== PROMO BANNER ========== */
+  .promo-banner {
+    background: linear-gradient(90deg, #232f3e 0%, #37475a 100%);
+    color: #fff; text-align: center; padding: 14px 24px;
+    font-size: 14px; font-weight: 500;
+  }
+  .promo-banner .highlight { color: var(--color-cta); font-weight: 700; }
+
+  /* ========== HERO DEALS ========== */
+  .hero-section {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 16px 24px;
+    display: grid; grid-template-columns: 3fr 1fr; gap: 16px;
+  }
+  .hero-main {
+    background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%);
+    border-radius: var(--radius-lg); overflow: hidden;
+    display: flex; align-items: center;
+    padding: 40px; min-height: 320px;
+    position: relative;
+  }
+  .hero-main-placeholder {
+    position: absolute; top: 50%; right: 40px; transform: translateY(-50%);
+    font-size: 12px; color: var(--color-text-light);
+    background: rgba(255,255,255,.6); padding: 6px 12px; border-radius: 4px;
+  }
+  .hero-main-content { max-width: 380px; position: relative; z-index: 1; }
+  .hero-main-content .deal-tag {
+    display: inline-block; background: var(--color-sale);
+    color: #fff; font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 3px; margin-bottom: 12px;
+    text-transform: uppercase; letter-spacing: .5px;
+  }
+  .hero-main-content h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; line-height: 1.2; }
+  .hero-main-content p { font-size: 14px; color: var(--color-text-muted); margin-bottom: 16px; line-height: 1.5; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px; font-size: 13px; font-weight: 600;
+    border-radius: var(--radius); border: none; cursor: pointer;
+    transition: all var(--transition); text-decoration: none;
+  }
+  .btn-primary { background: var(--color-cta); color: #fff; }
+  .btn-primary:hover { background: var(--color-cta-hover); text-decoration: none; }
+  .btn-outline { background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text); }
+  .btn-outline:hover { background: var(--color-bg); text-decoration: none; }
+
+  .hero-side {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .hero-side-card {
+    flex: 1; background: var(--color-surface); border-radius: var(--radius-lg);
+    padding: 20px; border: 1px solid var(--color-border);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-side-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .hero-side-card p { font-size: 12px; color: var(--color-text-muted); margin-bottom: 8px; }
+  .hero-side-card .deal-price { font-size: 22px; font-weight: 800; color: var(--color-sale); }
+
+  /* ========== PRODUCT CATALOG ========== */
+  .catalog {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 16px 24px 40px;
+    display: grid; grid-template-columns: 240px 1fr; gap: 20px;
+  }
+
+  /* SIDEBAR */
+  .sidebar { display: flex; flex-direction: column; gap: 0; }
+  .filter-group {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); margin-bottom: 12px; overflow: hidden;
+  }
+  .filter-group-header {
+    padding: 12px 16px; font-size: 13px; font-weight: 700;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; user-select: none;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  .filter-group-header .toggle { font-size: 12px; color: var(--color-text-light); }
+  .filter-group-body { padding: 12px 16px; }
+  .filter-option {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 0; font-size: 13px; cursor: pointer;
+  }
+  .filter-option input { accent-color: var(--color-cta); }
+  .filter-option .count { margin-left: auto; font-size: 11px; color: var(--color-text-light); }
+  .filter-range {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 4px;
+  }
+  .filter-range input {
+    width: 80px; padding: 6px 8px; border: 1px solid var(--color-border);
+    border-radius: var(--radius); font-size: 12px;
+  }
+  .filter-range span { font-size: 12px; color: var(--color-text-light); }
+  .filter-range button {
+    padding: 6px 12px; background: var(--color-primary-bg); color: var(--color-primary);
+    border: 1px solid var(--color-primary); border-radius: var(--radius);
+    font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+
+  .rating-stars { color: var(--color-star); font-size: 13px; letter-spacing: 1px; }
+  .rating-text { font-size: 12px; color: var(--color-primary); }
+
+  /* MAIN CONTENT */
+  .catalog-main {}
+  .catalog-toolbar {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 10px 16px; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px;
+  }
+  .catalog-toolbar .results-count { color: var(--color-text-muted); }
+  .catalog-toolbar .results-count strong { color: var(--color-text); }
+  .catalog-toolbar .sort-group { display: flex; align-items: center; gap: 8px; }
+  .catalog-toolbar select {
+    padding: 5px 8px; border: 1px solid var(--color-border);
+    border-radius: var(--radius); font-size: 12px; cursor: pointer;
+  }
+  .view-toggle { display: flex; gap: 4px; }
+  .view-toggle button {
+    width: 32px; height: 32px; border: 1px solid var(--color-border);
+    background: var(--color-surface); cursor: pointer;
+    border-radius: var(--radius); font-size: 14px; color: var(--color-text-light);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .view-toggle button.active { border-color: var(--color-cta); color: var(--color-cta); background: #fff8f0; }
+
+  .product-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .product-card {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); overflow: hidden;
+    transition: box-shadow var(--transition);
+    cursor: pointer;
+  }
+  .product-card:hover { box-shadow: var(--shadow-lg); }
+  .product-card-image {
+    aspect-ratio: 1/1; background: #f0ece7;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .product-card-image .placeholder {
+    font-size: 11px; color: var(--color-text-light);
+  }
+  .product-card-image .badge {
+    position: absolute; top: 8px; left: 8px;
+    font-size: 10px; font-weight: 700; padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .badge-deal { background: var(--color-sale); color: #fff; }
+  .badge-bestseller { background: var(--color-badge-bg); color: var(--color-badge-text); }
+  .badge-prime { background: #232f3e; color: #fff; }
+  .product-card-body { padding: 12px; }
+  .product-card-name {
+    font-size: 13px; font-weight: 400; line-height: 1.4;
+    margin-bottom: 6px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .product-card-rating {
+    display: flex; align-items: center; gap: 4px;
+    margin-bottom: 6px;
+  }
+  .product-card-rating .stars { color: var(--color-star); font-size: 12px; }
+  .product-card-rating .count { font-size: 11px; color: var(--color-primary); }
+  .product-card-price { margin-bottom: 6px; }
+  .product-card-price .current { font-size: 18px; font-weight: 700; }
+  .product-card-price .original {
+    font-size: 12px; color: var(--color-text-light);
+    text-decoration: line-through; margin-left: 6px;
+  }
+  .product-card-price .discount { font-size: 12px; color: var(--color-sale); font-weight: 600; margin-left: 4px; }
+  .product-card-shipping { font-size: 11px; color: var(--color-success); font-weight: 500; }
+  .product-card-variants { font-size: 11px; color: var(--color-text-light); margin-top: 4px; }
+
+  /* ========== BREADCRUMBS ========== */
+  .breadcrumbs {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 12px 24px 0;
+    font-size: 12px; color: var(--color-text-light);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .breadcrumbs a { color: var(--color-primary); text-decoration: none; }
+  .breadcrumbs a:hover { text-decoration: underline; }
+
+  /* ========== DEALS ROW ========== */
+  .deals-section {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 16px 24px;
+  }
+  .deals-section h3 {
+    font-size: 18px; font-weight: 800; margin-bottom: 12px;
+  }
+  .deals-row {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+  .deal-card {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); overflow: hidden;
+    cursor: pointer; transition: box-shadow var(--transition);
+  }
+  .deal-card:hover { box-shadow: var(--shadow-lg); }
+  .deal-card-image {
+    aspect-ratio: 1/1; background: #f0ece7;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--color-text-light);
+  }
+  .deal-card-body { padding: 10px; }
+  .deal-card-body .price { font-size: 15px; font-weight: 700; }
+  .deal-card-body .save { font-size: 11px; color: var(--color-sale); font-weight: 600; }
+  .deal-card-body .name { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+
+  /* ========== TRUST BAR ========== */
+  .trust-bar {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 24px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .trust-item {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); padding: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .trust-icon { font-size: 24px; flex-shrink: 0; }
+  .trust-text h4 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .trust-text p { font-size: 11px; color: var(--color-text-muted); }
+
+  /* ========== PAGINATION ========== */
+  .pagination {
+    display: flex; justify-content: center; align-items: center;
+    gap: 4px; padding: 24px 0;
+  }
+  .pagination a, .pagination span {
+    display: flex; align-items: center; justify-content: center;
+    min-width: 36px; height: 36px; padding: 0 10px;
+    border: 1px solid var(--color-border); border-radius: var(--radius);
+    font-size: 13px; font-weight: 500; background: var(--color-surface);
+    color: var(--color-text); text-decoration: none;
+    transition: all var(--transition);
+  }
+  .pagination a:hover { border-color: var(--color-cta); text-decoration: none; }
+  .pagination .active { background: var(--color-cta); color: #fff; border-color: var(--color-cta); }
+  .pagination .dots { border: none; background: none; }
+
+  /* ========== FOOTER ========== */
+  .footer { background: #232f3e; color: #ddd; padding: 48px 24px 0; }
+  .footer-top {
+    max-width: var(--max-width); margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 32px; padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .footer h4 {
+    font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 12px;
+  }
+  .footer ul { list-style: none; }
+  .footer li { margin-bottom: 8px; }
+  .footer a { font-size: 13px; color: #aaa; text-decoration: none; }
+  .footer a:hover { color: #fff; text-decoration: underline; }
+  .footer-bottom {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 16px 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: #777;
+  }
+  .footer-bottom .logo { font-size: 18px; font-weight: 800; color: #fff; }
+
+  /* ========== ANNOTATIONS ========== */
+  .annotation {
+    max-width: var(--max-width); margin: 0 auto; padding: 40px 24px;
+  }
+  .annotation-box {
+    padding: 24px; background: #fffbeb; border: 1px solid #fde68a;
+    border-radius: 8px; font-size: 13px; line-height: 1.7;
+  }
+  .annotation-box strong { color: #92400e; }
+  .annotation-box code { background: #fef3c7; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+  .annotation-box ul { margin-top: 8px; padding-left: 20px; list-style: disc; }
+  .annotation-box li { margin-bottom: 6px; }
+  .annotation-box h4 { margin-top: 16px; margin-bottom: 6px; color: #78350f; font-size: 14px; }
+
+  .wireframe-label {
+    text-align: center; padding: 16px; background: #232f3e; color: #fff;
+    font-size: 13px; letter-spacing: .5px;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+  }
+  .wireframe-label strong { color: var(--color-cta); }
+</style>
+</head>
+<body>
+
+<!-- ===== UTILITY BAR ===== -->
+<div class="utility-bar">
+  <a href="#">Help &amp; FAQ</a>
+  <a href="#">Order Tracking</a>
+  <a href="#">My Account</a>
+  <a href="#">Sign In</a>
+</div>
+
+<!-- ===== MAIN NAV ===== -->
+<nav class="main-nav">
+  <a class="main-nav-logo" href="#">RoR Commerce</a>
+  <div class="main-nav-search">
+    <select>
+      <option>All Categories</option>
+      <option>Women</option>
+      <option>Men</option>
+      <option>Accessories</option>
+      <option>Home</option>
+    </select>
+    <input type="text" placeholder="Search products, brands, and more...">
+    <button>&#8981;</button>
+  </div>
+  <div class="main-nav-actions">
+    <a class="nav-action" href="#">
+      <span class="nav-action-icon">&#9862;</span>
+      <span class="nav-action-label">Account</span>
+    </a>
+    <a class="nav-action" href="#">
+      <span class="nav-action-icon">&#9993;</span>
+      <span class="nav-action-label">Orders</span>
+    </a>
+    <a class="nav-action" href="#">
+      <span class="nav-action-icon">&#9825;</span>
+      <span class="nav-action-label">Wishlist</span>
+    </a>
+    <a class="nav-action nav-action-cart" href="#">
+      <span class="nav-action-icon">&#9776;</span>
+      <span class="cart-badge">4</span>
+      <span class="nav-action-label">Cart</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===== CATEGORY NAV ===== -->
+<div class="cat-nav">
+  <a href="#" class="active">All</a>
+  <a href="#">Today's Deals</a>
+  <a href="#">New Arrivals</a>
+  <a href="#">Women's Clothing</a>
+  <a href="#">Men's Clothing</a>
+  <a href="#">Accessories</a>
+  <a href="#">Shoes</a>
+  <a href="#">Home &amp; Living</a>
+  <a href="#">Electronics</a>
+  <a href="#">Brands</a>
+  <a href="#">Clearance</a>
+</div>
+
+<!-- ===== PROMO BANNER ===== -->
+<div class="promo-banner">
+  Spring Sale: <span class="highlight">Up to 40% off</span> select styles &mdash; Limited time only
+</div>
+
+<!-- ===== HERO DEALS ===== -->
+<div class="hero-section">
+  <div class="hero-main">
+    <div class="hero-main-placeholder">Hero banner image &mdash; 960&times;320</div>
+    <div class="hero-main-content">
+      <span class="deal-tag">Deal of the Day</span>
+      <h2>Premium Leather Collection</h2>
+      <p>Handcrafted bags and accessories at unbeatable prices. Up to 50% off while supplies last.</p>
+      <a href="#" class="btn btn-primary">Shop the Deal</a>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="hero-side-card">
+      <h4>Lightning Deal</h4>
+      <p>Organic Cotton Basics</p>
+      <div class="deal-price">$24.99</div>
+    </div>
+    <div class="hero-side-card">
+      <h4>Top Pick</h4>
+      <p>Wireless Earbuds</p>
+      <div class="deal-price">$49.99</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DEALS ROW ===== -->
+<div class="deals-section">
+  <h3>Today's Best Deals</h3>
+  <div class="deals-row">
+    <div class="deal-card">
+      <div class="deal-card-image">Deal 1</div>
+      <div class="deal-card-body">
+        <div class="price">$29.99</div>
+        <div class="save">Save 45%</div>
+        <div class="name">Merino Wool Crew Socks (6-Pack)</div>
+      </div>
+    </div>
+    <div class="deal-card">
+      <div class="deal-card-image">Deal 2</div>
+      <div class="deal-card-body">
+        <div class="price">$59.99</div>
+        <div class="save">Save 30%</div>
+        <div class="name">Canvas Messenger Bag</div>
+      </div>
+    </div>
+    <div class="deal-card">
+      <div class="deal-card-image">Deal 3</div>
+      <div class="deal-card-body">
+        <div class="price">$89.00</div>
+        <div class="save">Save 25%</div>
+        <div class="name">Recycled Down Vest</div>
+      </div>
+    </div>
+    <div class="deal-card">
+      <div class="deal-card-image">Deal 4</div>
+      <div class="deal-card-body">
+        <div class="price">$42.00</div>
+        <div class="save">Save 35%</div>
+        <div class="name">Linen Button-Down Shirt</div>
+      </div>
+    </div>
+    <div class="deal-card">
+      <div class="deal-card-image">Deal 5</div>
+      <div class="deal-card-body">
+        <div class="price">$19.99</div>
+        <div class="save">Save 50%</div>
+        <div class="name">Organic Cotton Tee (2-Pack)</div>
+      </div>
+    </div>
+    <div class="deal-card">
+      <div class="deal-card-image">Deal 6</div>
+      <div class="deal-card-body">
+        <div class="price">$74.99</div>
+        <div class="save">Save 40%</div>
+        <div class="name">Cashmere Blend Scarf</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-icon">&#9992;</div>
+    <div class="trust-text">
+      <h4>Free Shipping</h4>
+      <p>On orders over $50</p>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">&#8634;</div>
+    <div class="trust-text">
+      <h4>30-Day Returns</h4>
+      <p>Hassle-free returns</p>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">&#9733;</div>
+    <div class="trust-text">
+      <h4>Verified Reviews</h4>
+      <p>Real customer ratings</p>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">&#128274;</div>
+    <div class="trust-text">
+      <h4>Secure Checkout</h4>
+      <p>SSL encrypted payments</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BREADCRUMBS ===== -->
+<div class="breadcrumbs">
+  <a href="#">Home</a> <span>&#8250;</span>
+  <a href="#">All Products</a> <span>&#8250;</span>
+  <span>Women's Clothing</span>
+</div>
+
+<!-- ===== CATALOG (SIDEBAR + GRID) ===== -->
+<div class="catalog">
+  <!-- SIDEBAR FILTERS -->
+  <aside class="sidebar">
+    <div class="filter-group">
+      <div class="filter-group-header">
+        Category <span class="toggle">&#9660;</span>
+      </div>
+      <div class="filter-group-body">
+        <label class="filter-option"><input type="checkbox"> Tops <span class="count">124</span></label>
+        <label class="filter-option"><input type="checkbox"> Dresses <span class="count">87</span></label>
+        <label class="filter-option"><input type="checkbox"> Pants <span class="count">65</span></label>
+        <label class="filter-option"><input type="checkbox"> Outerwear <span class="count">43</span></label>
+        <label class="filter-option"><input type="checkbox"> Accessories <span class="count">92</span></label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-header">
+        Price Range <span class="toggle">&#9660;</span>
+      </div>
+      <div class="filter-group-body">
+        <label class="filter-option"><input type="checkbox"> Under $25 <span class="count">45</span></label>
+        <label class="filter-option"><input type="checkbox"> $25 &ndash; $50 <span class="count">89</span></label>
+        <label class="filter-option"><input type="checkbox"> $50 &ndash; $100 <span class="count">112</span></label>
+        <label class="filter-option"><input type="checkbox"> $100 &ndash; $200 <span class="count">67</span></label>
+        <label class="filter-option"><input type="checkbox"> Over $200 <span class="count">31</span></label>
+        <div class="filter-range">
+          <input type="text" placeholder="$ Min">
+          <span>&ndash;</span>
+          <input type="text" placeholder="$ Max">
+          <button>Go</button>
+        </div>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-header">
+        Brand <span class="toggle">&#9660;</span>
+      </div>
+      <div class="filter-group-body">
+        <label class="filter-option"><input type="checkbox"> Nordic Essentials <span class="count">34</span></label>
+        <label class="filter-option"><input type="checkbox"> Artisan Collective <span class="count">28</span></label>
+        <label class="filter-option"><input type="checkbox"> Terra &amp; Co <span class="count">22</span></label>
+        <label class="filter-option"><input type="checkbox"> Studio Linen <span class="count">19</span></label>
+        <label class="filter-option"><input type="checkbox"> Maison Roux <span class="count">15</span></label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-header">
+        Rating <span class="toggle">&#9660;</span>
+      </div>
+      <div class="filter-group-body">
+        <label class="filter-option"><span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="rating-text">&amp; up</span></label>
+        <label class="filter-option"><span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> <span class="rating-text">&amp; up</span></label>
+        <label class="filter-option"><span class="rating-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span> <span class="rating-text">&amp; up</span></label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-header">
+        Availability <span class="toggle">&#9660;</span>
+      </div>
+      <div class="filter-group-body">
+        <label class="filter-option"><input type="checkbox" checked> In Stock <span class="count">298</span></label>
+        <label class="filter-option"><input type="checkbox"> Include Out of Stock <span class="count">344</span></label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN PRODUCTS -->
+  <div class="catalog-main">
+    <div class="catalog-toolbar">
+      <span class="results-count">Showing <strong>1&ndash;24</strong> of <strong>344</strong> results for "Women's Clothing"</span>
+      <div class="sort-group">
+        <label style="font-size:12px;color:var(--color-text-muted);">Sort by:</label>
+        <select>
+          <option>Featured</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest</option>
+          <option>Avg. Rating</option>
+          <option>Best Sellers</option>
+        </select>
+        <div class="view-toggle">
+          <button class="active" title="Grid">&#9638;</button>
+          <button title="List">&#9776;</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-card-image">
+          <div class="placeholder">280&times;280</div>
+          <span class="badge badge-bestseller">Best Seller</span>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">Organic Cotton Classic Tee &mdash; Relaxed Fit</div>
+          <div class="product-card-rating">
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            <span class="count">1,247</span>
+          </div>
+          <div class="product-card-price">
+            <span class="current">$38.00</span>
+          </div>
+          <div class="product-card-shipping">Free shipping</div>
+          <div class="product-card-variants">8 colors available</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image">
+          <div class="placeholder">280&times;280</div>
+          <span class="badge badge-deal">-30%</span>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">Merino Wool Cardigan &mdash; Oversized</div>
+          <div class="product-card-rating">
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="count">892</span>
+          </div>
+          <div class="product-card-price">
+            <span class="current">$83.30</span>
+            <span class="original">$119.00</span>
+            <span class="discount">(-30%)</span>
+          </div>
+          <div class="product-card-shipping">Free shipping</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image">
+          <div class="placeholder">280&times;280</div>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">Linen Blend Wide-Leg Trousers</div>
+          <div class="product-card-rating">
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            <span class="count">456</span>
+          </div>
+          <div class="product-card-price">
+            <span class="current">$68.00</span>
+            <span class="original">$72.00</span>
+          </div>
+          <div class="product-card-shipping">Free shipping</div>
+          <div class="product-card-variants">3 colors available</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image">
+          <div class="placeholder">280&times;280</div>
+          <span class="badge badge-prime">Featured</span>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">Recycled Down Puffer Jacket</div>
+          <div class="product-card-rating">
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="count">2,108</span>
+          </div>
+          <div class="product-card-price">
+            <span class="current">$195.00</span>
+          </div>
+          <div class="product-card-shipping">Free shipping</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image"><div class="placeholder">280&times;280</div></div>
+        <div class="product-card-body">
+          <div class="product-card-name">Silk Camisole &mdash; Adjustable Straps</div>
+          <div class="product-card-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="count">318</span></div>
+          <div class="product-card-price"><span class="current">$54.00</span></div>
+          <div class="product-card-shipping">Free shipping</div>
+          <div class="product-card-variants">5 colors</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image"><div class="placeholder">280&times;280</div><span class="badge badge-deal">-25%</span></div>
+        <div class="product-card-body">
+          <div class="product-card-name">Cashmere Blend Wrap Scarf</div>
+          <div class="product-card-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="count">674</span></div>
+          <div class="product-card-price"><span class="current">$90.00</span><span class="original">$120.00</span><span class="discount">(-25%)</span></div>
+          <div class="product-card-shipping">Free shipping</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image"><div class="placeholder">280&times;280</div></div>
+        <div class="product-card-body">
+          <div class="product-card-name">Canvas Weekender Duffle Bag</div>
+          <div class="product-card-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="count">521</span></div>
+          <div class="product-card-price"><span class="current">$145.00</span></div>
+          <div class="product-card-shipping">Free shipping</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-image"><div class="placeholder">280&times;280</div><span class="badge badge-bestseller">Best Seller</span></div>
+        <div class="product-card-body">
+          <div class="product-card-name">Stretch Ponte Ankle Pants</div>
+          <div class="product-card-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="count">1,834</span></div>
+          <div class="product-card-price"><span class="current">$58.00</span></div>
+          <div class="product-card-shipping">Free shipping</div>
+          <div class="product-card-variants">4 colors</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <span class="active">1</span>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <span class="dots">...</span>
+      <a href="#">15</a>
+      <a href="#">Next &raquo;</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <h4>Shop by Category</h4>
+      <ul>
+        <li><a href="#">Women's Clothing</a></li>
+        <li><a href="#">Men's Clothing</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Shoes</a></li>
+        <li><a href="#">Home &amp; Living</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Your Account</h4>
+      <ul>
+        <li><a href="#">My Orders</a></li>
+        <li><a href="#">Addresses</a></li>
+        <li><a href="#">Payment Methods</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">Store Credit</a></li>
+        <li><a href="#">Referrals</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Size Guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>About Us</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Terms &amp; Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="logo">RoR Commerce</span>
+    <span>&copy; 2026 RoR Commerce. All rights reserved. Built with Ruby on Rails.</span>
+  </div>
+</footer>
+
+<!-- ===== ANNOTATIONS ===== -->
+<div class="annotation" style="background:#f5f5f5;">
+  <div class="annotation-box">
+    <strong>Option C: Filtered Catalog Storefront</strong> &mdash; Design decisions &amp; implementation notes:
+    <ul>
+      <li><strong>Three-tier navigation:</strong> utility bar (account/help links), main nav (logo, category-scoped search, cart), category bar (product types). Maps cleanly to existing <code>_welcome_header.html.erb</code> structure with <code>product_types</code> helper populating the category nav.</li>
+      <li><strong>Prominent search</strong> with category dropdown &mdash; posts to <code>products#create</code> (existing search action). Category dropdown populated from <code>ProductType.all</code>.</li>
+      <li><strong>Left sidebar filters</strong> for category, price, brand, rating, availability. Filter changes use <code>Turbo Frames</code> to reload only the product grid, not the whole page. Filters map to existing <code>ProductFilters</code> concern on <code>Product</code> model.</li>
+      <li><strong>4-column product grid</strong> with rich info: name, star rating, price (with sale/discount), shipping status, variant count. All data available from existing <code>Product</code>, <code>Variant</code>, and <code>Brand</code> models.</li>
+      <li><strong>Pagination</strong> using <code>will_paginate</code> (already in the project).</li>
+
+      <h4>Product Detail Page</h4>
+      <li>Large image gallery on left, details panel on right. Below: tabbed sections for Description (from <code>product.description</code>), Properties (from <code>product.product_properties</code>), and Reviews. Related products carousel at bottom.</li>
+      <li>Variant selector shows individual variant prices, stock status (<code>variant.sold_out?</code>, <code>variant.low_stock?</code>), and updates dynamically via <code>Stimulus</code>.</li>
+
+      <h4>Cart Page</h4>
+      <li>Full page with modernized table layout (no inline styles). Product images, variant details, quantity selectors, line totals. Right sidebar: order summary with subtotal, shipping estimate, coupon code input (<code>shopping/coupons#create</code>), and checkout button.</li>
+
+      <h4>Checkout</h4>
+      <li>Multi-step flow matching existing controllers: addresses &rarr; shipping methods &rarr; payment &rarr; confirmation. Each step in a <code>Turbo Frame</code> with progress indicator. Order summary sidebar persists across steps.</li>
+
+      <h4>My Account</h4>
+      <li>Left sidebar navigation (matching the filter sidebar pattern) with links to all myaccount sections. Content area on right loads via <code>Turbo Frames</code>.</li>
+
+      <h4>Tech Stack</h4>
+      <li>Custom CSS, <strong>no framework dependency</strong>. Information-dense layout using CSS Grid.</li>
+      <li><strong>Turbo Drive</strong> for all navigations. <strong>Turbo Frames</strong> for filters, cart updates, checkout steps, account sections.</li>
+      <li><strong>Stimulus</strong> for: search autocomplete, filter toggle/collapse, sort, view toggle (grid/list), variant selection, quantity stepper.</li>
+      <li>All existing controllers and routes <strong>unchanged</strong>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="wireframe-label">
+  <strong>WIREFRAME &mdash; Option C: Filtered Catalog Storefront</strong> &nbsp;|&nbsp; Information-dense, sidebar filters, power-shopper friendly &nbsp;|&nbsp; Amazon / REI inspired
+</div>
+
+</body>
+</html>

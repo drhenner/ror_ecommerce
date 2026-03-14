@@ -6,11 +6,11 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
       redirect_to admin_shopping_checkout_shipping_addresses_url
     else
       ##  TODO  refactopr this method... it seems a bit lengthy
-      if @shipping_method_ids = session_admin_order.ship_address.shipping_method_ids.empty?
+      @shipping_method_ids = session_admin_order.ship_address.shipping_method_ids
+      if @shipping_method_ids.empty?
         flash[:alert] = "The Admin has not set up Shipping Zones / Shipping Methods correctly for #{session_admin_order.ship_address.state_country_name }."
         redirect_to admin_config_shipping_zones_url
       else
-        @shipping_method_ids = session_admin_order.ship_address.shipping_method_ids
         session_admin_order.find_sub_total
         @order_items = OrderItem.includes({:variant => {:product => :shipping_category}}).order_items_in_cart(session_admin_order.id)
         #session_order.order_
@@ -28,7 +28,7 @@ class Admin::Shopping::Checkout::ShippingMethodsController < Admin::Shopping::Ch
         if rate_id.present?
           item_ids = order_item_ids_with_category(category_id)
 
-          OrderItem.where(id: item_ids).update_all("shipping_rate_id = #{rate_id}")
+          OrderItem.where(id: item_ids).update_all(shipping_rate_id: rate_id)
         else
           all_selected = false
         end

@@ -1,19 +1,26 @@
-<div class='nine large-9 columns'>
-  <h3>Orders</h3>
+<h3 class="text-xl font-medium mb-6">Orders</h3>
 
-  <% unless @orders.length > 0 %>
-    You currently do not have any orders.
-  <% end %>
-
-  <% @orders.each do |order| %>
-    <div class='order-list-item ten'>
-      <ul>
-        <li><label>Number:</label>        <%= link_to order.number, myaccount_order_path(order) %></li>
-        <li><label>Amount:</label>        <%= number_to_currency( order.first_invoice_amount ) %></li>
-        <li><label>Status:</label>        <%= order.status %></li>
-        <li><label>Completed at:</label>  <%= order.display_completed_at %></li>
-      </ul>
-    </div>
-    <hr/>
-  <% end %>
-</div>
+<% if @orders.empty? %>
+  <p class="text-sm text-[var(--color-text-muted)]">You currently do not have any orders.</p>
+<% else %>
+  <div class="space-y-0">
+    <% @orders.each do |order| %>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[var(--color-border)] gap-2">
+        <div class="space-y-1 text-sm">
+          <p>
+            <span class="text-[var(--color-text-muted)]">Number:</span>
+            <%= link_to order.number, myaccount_order_path(order), class: "font-medium text-[var(--color-accent)] hover:underline" %>
+          </p>
+          <p>
+            <span class="text-[var(--color-text-muted)]">Amount:</span>
+            <%= order.first_invoice_amount.present? ? number_to_currency(order.first_invoice_amount) : 'N/A' %>
+          </p>
+        </div>
+        <div class="text-sm text-[var(--color-text-muted)]">
+          <p><%= order.status %></p>
+          <p class="text-xs"><%= order.display_completed_at %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

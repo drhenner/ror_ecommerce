@@ -141,7 +141,7 @@ class Variant < ApplicationRecord
   # @param [Optional String]
   # @return [Array]
   def property_details(separator = ': ')
-    variant_properties.collect {|vp| [vp.property.display_name ,vp.description].join(separator) }
+    variant_properties.collect {|vp| [vp.property&.display_name, vp.description].compact.join(separator) }
   end
 
   # returns a string the display name and description of all the variant properties
@@ -159,7 +159,9 @@ class Variant < ApplicationRecord
   # @param [none]
   # @return [String]
   def product_name
-    name? ? name : [product.name, sub_name].reject{ |a| a.strip.length == 0 }.join(' - ')
+    return name if name?
+    return 'Unknown Product' unless product
+    [product.name, sub_name].reject{ |a| a.to_s.strip.length == 0 }.join(' - ')
   end
 
   # returns the primary_property's description or a blank string
@@ -177,7 +179,7 @@ class Variant < ApplicationRecord
   # @param [none]
   # @return [String]
   def brand_name
-    product.brand_name
+    product&.brand_name || ''
   end
 
   # The variant has many properties.  but only one is the primary property
@@ -229,9 +231,8 @@ class Variant < ApplicationRecord
   # @param [Integer] number of variants to add
   # @return [none]
   def add_pending_to_customer(num = 1)
-    ### don't lock if we have plenty of stock.
+    return unless inventory
     if low_stock?
-      # If the stock is low lock the inventory.  This ensures
       inventory.lock!
       self.inventory.count_pending_to_customer = inventory.count_pending_to_customer.to_i + num.to_i
       inventory.save!

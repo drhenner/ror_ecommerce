@@ -35,14 +35,15 @@ class Phone < ApplicationRecord
   private
 
     def default_phone_check
-        Phone.update_all(["phones.primary = ?", false],
-                          ["phones.phoneable_id = ? AND phones.phoneable_type = ? AND id <> ?",
-                            phoneable_id, phoneable_type, id]) if self.primary
+      if self.primary
+        Phone.where(phoneable_id: phoneable_id, phoneable_type: phoneable_type)
+             .where.not(id: id)
+             .update_all(primary: false)
+      end
     end
 
     def sanitize_data
-      #  remove non-digits
-      self.number = self.number.gsub!(/\W+/, '') if number
+      self.number = self.number.gsub(/\W+/, '') if number
     end
 
 end

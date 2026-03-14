@@ -58,14 +58,15 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    redirect_to login_url and store_return_location and return if logged_out?
+    if logged_out?
+      store_return_location
+      redirect_to login_url
+    end
   end
 
   def store_return_location
-    # disallow return to login, logout, signup pages
-    disallowed_urls = [ login_url, logout_url ]
-    disallowed_urls.map!{|url| url[/\/\w+$/]}
-    unless disallowed_urls.include?(request.url)
+    disallowed_paths = [login_path, logout_path]
+    unless disallowed_paths.include?(request.path)
       session[:return_to] = request.url
     end
   end
@@ -90,15 +91,22 @@ class ApplicationController < ActionController::Base
   def session_cart!
     if cookies[:cart_id]
       @session_cart = Cart.includes(shopping_cart_items: { variant: :product }).find_by_id(cookies[:cart_id])
+      if @session_cart && current_user && @session_cart.user_id && @session_cart.user_id != current_user.id
+        @session_cart = nil
+      end
       unless @session_cart
-        @session_cart = Cart.create(:user_id => current_user_id)
+        if current_user&.current_cart
+          @session_cart = current_user.current_cart
+        else
+          @session_cart = Cart.create(user_id: current_user_id)
+        end
         cookies[:cart_id] = @session_cart.id
       end
     elsif current_user && current_user.current_cart
       @session_cart = current_user.current_cart
       cookies[:cart_id] = @session_cart.id
     else
-      @session_cart = Cart.create
+      @session_cart = Cart.create(user_id: current_user_id)
       cookies[:cart_id] = @session_cart.id
     end
     @session_cart
@@ -110,14 +118,14 @@ class ApplicationController < ActionController::Base
     current_user ? current_user : random_user
   end
 
-  ## TODO cookie[:hadean_user_id] value needs to be encrypted ### Authlogic persistence_token might work here
   def random_user
     return @random_user if defined?(@random_user)
-    @random_user = cookies[:hadean_uid] ? User.find_by_persistence_token(cookies[:hadean_uid]) : nil
+    @random_user = cookies[:hadean_uid] ? User.find_by_access_token(cookies[:hadean_uid]) : nil
   end
 
-  def merge_carts
-    if !!current_user
+  def merge_carts(user = nil)
+    user ||= current_user
+    if user
       session_cart.merge_with_previous_cart!
     end
   end
@@ -160,14 +168,15 @@ class ApplicationController < ActionController::Base
   end
 
   def cc_params
+    permitted = params.permit(:type, :number, :verification_value, :month, :year, :first_name, :last_name)
     {
-          :brand              => params[:type],
-          :number             => params[:number],
-          :verification_value => params[:verification_value],
-          :month              => params[:month],
-          :year               => params[:year],
-          :first_name         => params[:first_name],
-          :last_name          => params[:last_name]
+          :brand              => permitted[:type],
+          :number             => permitted[:number],
+          :verification_value => permitted[:verification_value],
+          :month              => permitted[:month],
+          :year               => permitted[:year],
+          :first_name         => permitted[:first_name],
+          :last_name          => permitted[:last_name]
     }
   end
 

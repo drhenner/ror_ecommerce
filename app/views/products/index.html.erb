@@ -1,53 +1,45 @@
-
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'products_page.css' %>
-<% end %>
-
-<div id='featured_item' class='nine columns'>
-
-  <div id='interesting_items' >
-    <ul id='interesting_items-list'>
-      <% @products.each_with_index do |product, i| %>
-        <li id='interesting_product_<%= i %>' class=''>
-          <div class='interesting_items-image'>
-
-            <%= link_to product_path(product), title: product.name do %>
-
-              <div class='no-hover-show'>
-                <% if product.hero_variant.try(:low_stock?) %>
-                  <%= image_tag("ribbons/#{product.stock_status}.png",
-                                 alt: "#{product.stock_status}",
-                                 width: 63, height: 62,
-                                 class: 'upper_left_overlay' ) %>
+<div class="py-10">
+  <div class="flex flex-col lg:flex-row gap-10">
+    <div class="flex-1">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <% @products.each do |product| %>
+          <%= link_to product_path(product), title: product.name, class: "product-card group" do %>
+            <div class="product-card-image">
+              <% if product.hero_variant.try(:low_stock?) %>
+                <%= image_tag("ribbons/#{product.stock_status}.png",
+                              alt: product.stock_status,
+                              width: 63, height: 62,
+                              class: "absolute top-2 left-2 z-10") %>
+              <% end %>
+              <%= image_tag(product.featured_image(:medium),
+                            alt: product.name,
+                            class: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]") %>
+            </div>
+            <div class="product-card-info">
+              <div class="product-card-name"><%= product.name %></div>
+              <div class="product-card-price">
+                <%= number_to_currency product.price_range.first %>
+                <% if product.price_range? %>
+                  &ndash; <%= number_to_currency product.price_range.last %>
                 <% end %>
-                <div class='hover-details unfade'>
-                  <p class='bottom-hover-details'>
-                    <%= number_to_currency product.price_range.first %>
-                    <% if product.price_range? %>
-                        to
-                        <%= number_to_currency product.price_range.last %>
-                    <% end %>
-                  </p>
-                </div>
               </div>
-              <%= link_to image_tag(product.featured_image(:medium), alt: product.name), product_path(product), title: product.name, class:  'clearfix' %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
-          <div class='interesting_items-details'><%= product.name %><br/>
+      <div class="mt-10">
+        <%= will_paginate @products, class: "flex items-center gap-2 justify-center" %>
+      </div>
+    </div>
 
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <div class='clearfix'></div>
-  </div>
-  <%= will_paginate @products %>
-
-</div>
-
-<div id='right_side_panel' class='three columns last'>
-  <div id='right_side_panel_promo' class=''>
-    Join our web site and get additional Savings....  <%= image_tag "logos/#{Image::MAIN_LOGO}.png", :alt => 'hadean image.'%>
+    <aside class="w-full lg:w-64 shrink-0">
+      <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-6">
+        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          Join our web site and get additional savings...
+        </p>
+        <%= image_tag "logos/#{Image::MAIN_LOGO}.png", alt: site_name, class: "mt-4 max-w-full" %>
+      </div>
+    </aside>
   </div>
 </div>

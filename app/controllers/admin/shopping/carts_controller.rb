@@ -13,7 +13,7 @@ class Admin::Shopping::CartsController < Admin::Shopping::BaseController
 
   # DELETE /admin/order/carts/1
   def destroy
-    session_admin_cart = nil
+    session[:admin_cart_id] = nil
     redirect_to(admin_shopping_carts_url)
   end
 

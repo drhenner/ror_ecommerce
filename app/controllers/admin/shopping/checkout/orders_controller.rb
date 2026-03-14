@@ -38,6 +38,11 @@ class Admin::Shopping::Checkout::OrdersController < Admin::Shopping::Checkout::B
 
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
 
+    if @order.bill_address.nil?
+      flash[:alert] = I18n.t('billing_address_required', default: 'Please add a billing address before completing the order.')
+      redirect_to admin_shopping_checkout_billing_addresses_url and return
+    end
+
     address = @order.bill_address.cc_params
 
     if @order.complete?

@@ -34,7 +34,7 @@ class Admin::Shopping::BaseController < Admin::BaseController
      # if cart is empty
     if !session_admin_cart.customer_id
       return admin_shopping_users_url
-    elsif !session_admin_cart.shopping_cart_items
+    elsif session_admin_cart.shopping_cart_items.empty?
       return admin_shopping_products_url()
     #elsif session_admin_cart[:shipping_address].nil?
     #  return admin_shopping_shipping_addresses_url

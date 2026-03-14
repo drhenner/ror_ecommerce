@@ -44,6 +44,8 @@ class Address < ApplicationRecord
   has_many     :phones, :as => :phoneable
   has_many     :shipments
 
+  accepts_nested_attributes_for :phones, reject_if: :all_blank
+
   validates :first_name,  :presence => true,
                           :format   => { :with => CustomValidators::Names.name_validator },       :length => { :maximum => 25 }
   validates :last_name,   :presence => true,
@@ -100,19 +102,20 @@ class Address < ApplicationRecord
       :address1 => address1,
       :address2 => address2,
       :city     => city,
-      :state    => state.abbreviation,
-      :country  => state.country_id == Country::USA_ID ? 'US' : 'CAN',
-      :zip      => zip_code#,
-      #:phone    => phone
+      :state    => state ? state.abbreviation : state_name,
+      :country  => state ? (state.country_id == Country::USA_ID ? 'US' : 'CAN') : country&.abbreviation,
+      :zip      => zip_code
     }
   end
 
   # Method used to determine the shipping methods ids available for this address
   def shipping_method_ids
-    if state_id && state.shipping_zone
+    if state_id && state&.shipping_zone
       state.shipping_zone.shipping_method_ids
+    elsif country&.shipping_zone_id
+      country.shipping_zone.shipping_method_ids
     else
-      country.shipping_zone_id ? country.shipping_zone.shipping_method_ids : []
+      []
     end
   end
   # Method used to determine the shipping_zone_id for this address
