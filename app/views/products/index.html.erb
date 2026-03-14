@@ -1,45 +1,43 @@
+<% content_for(:title) { "Products" } %>
+
 <div class="py-10">
-  <div class="flex flex-col lg:flex-row gap-10">
-    <div class="flex-1">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        <% @products.each do |product| %>
-          <%= link_to product_path(product), title: product.name, class: "product-card group" do %>
-            <div class="product-card-image">
-              <% if product.hero_variant.try(:low_stock?) %>
-                <%= image_tag("ribbons/#{product.stock_status}.png",
-                              alt: product.stock_status,
-                              width: 63, height: 62,
-                              class: "absolute top-2 left-2 z-10") %>
-              <% end %>
-              <%= image_tag(product.featured_image(:medium),
-                            alt: product.name,
-                            class: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]") %>
-            </div>
-            <div class="product-card-info">
-              <div class="product-card-name"><%= product.name %></div>
-              <div class="product-card-price">
-                <%= number_to_currency product.price_range.first %>
-                <% if product.price_range? %>
-                  &ndash; <%= number_to_currency product.price_range.last %>
-                <% end %>
-              </div>
-            </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    <% @products.each do |product| %>
+      <%= link_to product_path(product), title: product.name, class: "product-card group" do %>
+        <div class="product-card-image">
+          <% if product.hero_variant.try(:low_stock?) %>
+            <%= image_tag("ribbons/#{product.stock_status}.png",
+                          alt: product.stock_status,
+                          width: 63, height: 62,
+                          class: "absolute top-2 left-2 z-10") %>
           <% end %>
-        <% end %>
-      </div>
+          <%= image_tag(product.featured_image(:medium),
+                        alt: product.name,
+                        class: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]") %>
+        </div>
+        <div class="product-card-info">
+          <div class="product-card-name"><%= product.name %></div>
+          <div class="product-card-price">
+            <%= number_to_currency product.price_range.first %>
+            <% if product.price_range? %>
+              &ndash; <%= number_to_currency product.price_range.last %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 
-      <div class="mt-10">
-        <%== pagy_nav(@pagy) %>
-      </div>
+  <div class="mt-10">
+    <%== pagy_nav(@pagy) %>
+  </div>
+
+  <div class="mt-12 max-w-md mx-auto">
+    <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-6 text-center">
+      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+        Join our web site and get additional savings...
+      </p>
+      <%= image_tag "logos/#{Image::MAIN_LOGO}.png", alt: site_name, class: "mt-4 max-w-full mx-auto" %>
     </div>
-
-    <aside class="w-full lg:w-64 shrink-0">
-      <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-6">
-        <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
-          Join our web site and get additional savings...
-        </p>
-        <%= image_tag "logos/#{Image::MAIN_LOGO}.png", alt: site_name, class: "mt-4 max-w-full" %>
-      </div>
-    </aside>
   </div>
 </div>
