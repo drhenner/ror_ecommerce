@@ -30,7 +30,7 @@ class Admin::Generic::SalesController < Admin::Generic::BaseController
 
   def update
     @sale = Sale.find(params[:id])
-    if @sale.update_attributes(allowed_params)
+    if @sale.update(allowed_params)
       redirect_to [:admin, :generic, @sale], :notice  => "Successfully updated sale."
     else
       render :edit

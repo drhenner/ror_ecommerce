@@ -6,7 +6,7 @@ class Admin::Merchandise::Changes::PropertiesController < Admin::BaseController
   end
 
   def update
-    if @product.update_attributes(allowed_params)
+    if @product.update(allowed_params)
       flash[:notice] = "Successfully updated properties."
       redirect_to admin_merchandise_product_url(@product.id)
     else

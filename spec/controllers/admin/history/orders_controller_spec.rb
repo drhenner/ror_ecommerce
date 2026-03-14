@@ -10,7 +10,7 @@ describe Admin::History::OrdersController do
   end
 
   it "show action should render show template" do
-    @order = FactoryGirl.create(:order)
+    @order = FactoryBot.create(:order)
     get :show, params: { :id => @order.number }
     expect(response).to render_template(:show)
   end

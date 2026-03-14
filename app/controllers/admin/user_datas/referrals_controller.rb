@@ -50,7 +50,7 @@ class Admin::UserDatas::ReferralsController < Admin::UserDatas::BaseController
 
   def update
     @referral = Referral.find(params[:id])
-    if @referral.update_attributes(allowed_params)
+    if @referral.update(allowed_params)
       redirect_to [:admin, :user_datas, @referral], :notice  => "Successfully updated referral."
     else
       form_info

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :variant do
     sku           '345-98765-0987'
     product       { |c| c.association(:product) }

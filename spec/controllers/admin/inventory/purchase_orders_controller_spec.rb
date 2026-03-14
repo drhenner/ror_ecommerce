@@ -3,7 +3,7 @@ require  'spec_helper'
 describe Admin::Inventory::PurchaseOrdersController do
   render_views
 
-  let(:variant) { FactoryGirl.create(:variant) }
+  let(:variant) { FactoryBot.create(:variant) }
 
   before(:each) do
     activate_authlogic
@@ -19,13 +19,13 @@ describe Admin::Inventory::PurchaseOrdersController do
   end
 
   #it "show action should render show template" do
-  #  @purchase_order = FactoryGirl.create(:purchase_order)
+  #  @purchase_order = FactoryBot.create(:purchase_order)
   #  get :show, :id => @purchase_order.id
   #  expect(response).to render_template(:show)
   #end
 
   it "new action should render new template" do
-    FactoryGirl.create(:supplier)
+    FactoryBot.create(:supplier)
     get :new
     expect(response).to render_template(:new)
   end
@@ -49,27 +49,27 @@ describe Admin::Inventory::PurchaseOrdersController do
   end
 
   it "edit action should render edit template" do
-    @purchase_order = FactoryGirl.create(:purchase_order)
+    @purchase_order = FactoryBot.create(:purchase_order)
     get :edit, params: { :id => @purchase_order.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @purchase_order = FactoryGirl.create(:purchase_order)
+    @purchase_order = FactoryBot.create(:purchase_order)
     PurchaseOrder.any_instance.stubs(:valid?).returns(false)
     put :update, params: { :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @purchase_order = FactoryGirl.create(:purchase_order)
+    @purchase_order = FactoryBot.create(:purchase_order)
     PurchaseOrder.any_instance.stubs(:valid?).returns(true)
     put :update, params: { :id => @purchase_order.id, :purchase_order => {:ordered_at => Time.now.to_s(:db), :supplier_id => '1'} }
     expect(response).to redirect_to(admin_inventory_purchase_orders_url(:notice => 'Purchase order was successfully updated.'))
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @purchase_order = FactoryGirl.create(:purchase_order)
+    @purchase_order = FactoryBot.create(:purchase_order)
     delete :destroy, params: { :id => @purchase_order.id }
     expect(response).to redirect_to(admin_inventory_purchase_orders_url)
     expect(PurchaseOrder.exists?(@purchase_order.id)).to eq false

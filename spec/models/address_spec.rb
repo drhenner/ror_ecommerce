@@ -17,7 +17,7 @@ describe Address, "methods" do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
     state = State.find_by_abbreviation('CA')
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     @address = @user.addresses.new(:first_name => 'Perez',
                           :last_name  => 'Hilton',
                           :address1   => '7th street',
@@ -102,7 +102,7 @@ describe Address, "methods" do
       shipping_zone.stubs(:shipping_method_ids).returns([2,4])
       state = State.first
       state.stubs(:shipping_zone).returns(shipping_zone)
-      address = FactoryGirl.create(:address, :state => state)
+      address = FactoryBot.create(:address, :state => state)
       expect(address.shipping_method_ids).to eq [2,4]
     end
 
@@ -114,7 +114,7 @@ describe Address, "methods" do
       shipping_zone = ShippingZone.find(1)
       shipping_zone.stubs(:shipping_method_ids).returns([2,3])
       @finland.stubs(:shipping_zone).returns(shipping_zone)
-      address = FactoryGirl.create(:address, :country => @finland, :state => nil)
+      address = FactoryBot.create(:address, :country => @finland, :state => nil)
       expect(address.shipping_method_ids).to eq [2,3]
       Settings.require_state_in_address = true
     end
@@ -163,15 +163,15 @@ end
 describe Address, "#save" do
 
   before(:each) do
-    @user     = FactoryGirl.create(:user)
-    @address  = FactoryGirl.create(:address, addressable: @user)
+    @user     = FactoryBot.create(:user)
+    @address  = FactoryBot.create(:address, addressable: @user)
   end
 
   it "should only the last default address should be the default address" do
-    @address3   = FactoryGirl.create(:address)
+    @address3   = FactoryBot.create(:address)
     @address3.default = true
     @address3.save
-    @address2   = FactoryGirl.create(:address, :addressable => @user)
+    @address2   = FactoryBot.create(:address, :addressable => @user)
     @address2.default = true
     @address2.save
     @address.default = true
@@ -185,7 +185,7 @@ end
 describe Address do
   describe "before save" do
     it "#invalidates_old_defaults" do
-      old_address = FactoryGirl.create(:address, default: true, billing_default: true)
+      old_address = FactoryBot.create(:address, default: true, billing_default: true)
       new_address = old_address.dup
       new_address.save
       old_address.reload
@@ -195,7 +195,7 @@ describe Address do
 
     context "when #replace_address_id is set" do
       it "replaces the address" do
-        old_address = FactoryGirl.create(:address)
+        old_address = FactoryBot.create(:address)
         expect(old_address).to be_active
         new_address = old_address.dup
         new_address.replace_address_id = old_address.id

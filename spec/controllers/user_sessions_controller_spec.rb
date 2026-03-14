@@ -12,7 +12,7 @@ describe UserSessionsController do
   end
 
   describe "#destroy" do
-    let(:user)         { FactoryGirl.create(:user) }
+    let(:user)         { FactoryBot.create(:user) }
     let(:user_session) { UserSession.create email: user.email, password: 'password' }
 
     before do

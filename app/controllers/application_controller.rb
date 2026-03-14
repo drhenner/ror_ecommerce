@@ -19,14 +19,14 @@ class ApplicationController < ActionController::Base
     flash[:error] = "Access denied."
     flash[:alert] = 'Sorry you are not allowed to do that.'
     if current_user && current_user.admin?
-      redirect_to :back
+      redirect_back(fallback_location: root_url)
     else
       redirect_to root_url
     end
   end
 
   rescue_from ActiveRecord::DeleteRestrictionError do |exception|
-    redirect_to :back, alert: exception.message
+    redirect_back(fallback_location: root_url, alert: exception.message)
   end
 
   def current_ability

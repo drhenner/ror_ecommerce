@@ -14,7 +14,7 @@ class Admin::Inventory::OverviewsController < Admin::BaseController
   def update
     @product = Product.friendly.find(params[:id])
 
-    if @product.update_attributes(allowed_params)
+    if @product.update(allowed_params)
       redirect_to action: :index
     else
       render action: :edit

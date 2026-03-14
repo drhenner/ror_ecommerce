@@ -65,7 +65,7 @@ class Shopping::AddressesController < Shopping::BaseController
 
   def destroy
     @shopping_address = Address.find(params[:id])
-    @shopping_address.update_attributes(:active => false)
+    @shopping_address.update(:active => false)
 
     redirect_to(shopping_addresses_url)
   end
@@ -82,7 +82,7 @@ class Shopping::AddressesController < Shopping::BaseController
   end
 
   def update_order_address_id(id)
-    session_order.update_attributes(
+    session_order.update(
                           ship_address_id: id ,
                           bill_address_id: (session_order.bill_address_id ? session_order.bill_address_id : id)
                                     )

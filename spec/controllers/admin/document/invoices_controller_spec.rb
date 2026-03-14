@@ -15,7 +15,7 @@ describe Admin::Document::InvoicesController do
   end
 
   it "show action should render show template" do
-    invoice = FactoryGirl.create(:invoice)
+    invoice = FactoryBot.create(:invoice)
     get :show, params: { id: invoice.id }
     expect(response).to render_template(:show)
   end

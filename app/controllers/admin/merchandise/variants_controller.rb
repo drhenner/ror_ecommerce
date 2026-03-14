@@ -44,7 +44,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
   def update
     @variant = Variant.includes( :product ).find(params[:id])
 
-    if @variant.update_attributes(allowed_params)
+    if @variant.update(allowed_params)
       redirect_to admin_merchandise_product_variants_url(@variant.product)
     else
       form_info

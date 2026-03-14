@@ -7,7 +7,7 @@ module StringExtensions
   end
 
   def is_numeric?
-      Float self rescue false
+      Float(self) rescue false
   end
 end
 

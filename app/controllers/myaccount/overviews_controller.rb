@@ -9,7 +9,7 @@ class Myaccount::OverviewsController < Myaccount::BaseController
 
   def update
     @user = current_user
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       redirect_to myaccount_overview_url(), :notice  => "Successfully updated user."
     else
       render :edit

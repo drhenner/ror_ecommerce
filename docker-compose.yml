@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3307:3306"
+    tmpfs:
+      - /var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    platform: linux/amd64
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: test
+      DATABASE_HOST: db
+      AUTHNET_LOGIN: test
+      AUTHNET_PASSWORD: test
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      FOG_DIRECTORY: test
+      S3_BUCKET_NAME: test
+      AWS_REGION: us-east-1
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    command: >
+      bash -c "
+        until mysqladmin ping -h db --silent; do sleep 1; done &&
+        cp config/database.yml.docker config/database.yml &&
+        bundle install --jobs 4 &&
+        bundle exec rake db:create db:migrate &&
+        bundle exec rspec
+      "
+
+volumes:
+  bundle_cache:

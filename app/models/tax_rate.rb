@@ -36,7 +36,7 @@ class TaxRate < ApplicationRecord
   end
 
   def inactivate!
-    self.update_attributes(:active => false)
+    self.update(:active => false)
   end
 
   def self.at(time = Time.zone.now)

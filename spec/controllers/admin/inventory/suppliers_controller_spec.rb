@@ -16,7 +16,7 @@ describe Admin::Inventory::SuppliersController do
   end
 
   it "show action should render show template" do
-    @supplier = FactoryGirl.create(:supplier)
+    @supplier = FactoryBot.create(:supplier)
     get :show, params: {id: @supplier.id}
     expect(response).to render_template(:show)
   end
@@ -39,20 +39,20 @@ describe Admin::Inventory::SuppliersController do
   end
 
   it "edit action should render edit template" do
-    @supplier = FactoryGirl.create(:supplier)
+    @supplier = FactoryBot.create(:supplier)
     get :edit, params: { id: @supplier.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @supplier = FactoryGirl.create(:supplier)
+    @supplier = FactoryBot.create(:supplier)
     Supplier.any_instance.stubs(:valid?).returns(false)
     put :update, params: { id: @supplier.id, :supplier => {:name => 'John', :email => 'test@test.com'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @supplier = FactoryGirl.create(:supplier)
+    @supplier = FactoryBot.create(:supplier)
     Supplier.any_instance.stubs(:valid?).returns(true)
     put :update, params: { id: @supplier.id, :supplier => {:name => 'John', :email => 'test@test.com'} }
     expect(response).to redirect_to(admin_inventory_suppliers_url())

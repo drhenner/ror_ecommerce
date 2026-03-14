@@ -16,7 +16,7 @@ describe Admin::Merchandise::BrandsController do
   end
 
   it "show action should render show template" do
-    @brand = FactoryGirl.create(:brand)
+    @brand = FactoryBot.create(:brand)
     get :show, params: { id: @brand.id }
     expect(response).to render_template(:show)
   end
@@ -39,20 +39,20 @@ describe Admin::Merchandise::BrandsController do
   end
 
   it "edit action should render edit template" do
-    @brand = FactoryGirl.create(:brand)
+    @brand = FactoryBot.create(:brand)
     get :edit, params: { :id => @brand.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @brand = FactoryGirl.create(:brand)
+    @brand = FactoryBot.create(:brand)
     Brand.any_instance.stubs(:valid?).returns(false)
     put :update, params: { :id => @brand.id, :brand => {:name => 'RoR ecommerce'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @brand = FactoryGirl.create(:brand)
+    @brand = FactoryBot.create(:brand)
     Brand.any_instance.stubs(:valid?).returns(true)
     put :update, params: { :id => @brand.id, :brand => {:name => 'RoR ecommerce'} }
     expect(response).to redirect_to(admin_merchandise_brand_url(assigns[:brand]))

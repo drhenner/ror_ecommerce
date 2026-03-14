@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::BaseController
     params[:user][:role_ids] ||= []
     @user = User.includes(:roles).find(params[:id])
     authorize! :create_users, current_user
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:notice] = "#{@user.name} has been updated."
       redirect_to admin_users_url
     else

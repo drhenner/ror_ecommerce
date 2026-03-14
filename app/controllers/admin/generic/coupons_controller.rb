@@ -32,7 +32,7 @@ class Admin::Generic::CouponsController < Admin::Generic::BaseController
 
   def update
       @coupon = Coupon.find(params[:id])
-    if @coupon.update_attributes(allowed_params)
+    if @coupon.update(allowed_params)
       flash[:notice] = "Successfully updated coupon."
       redirect_to admin_generic_coupon_url(@coupon)
     else

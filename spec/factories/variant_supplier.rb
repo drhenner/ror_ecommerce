@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :variant_supplier do
     variant_id    1#       { |c| c.association(:variant) }
     supplier      { |c| c.association(:supplier) }

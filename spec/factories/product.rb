@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :product do
     sequence(:name)      { |i| "Product Name #{i}" }
     description          'Describe Product'

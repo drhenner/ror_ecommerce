@@ -27,7 +27,7 @@ class Admin::Inventory::SuppliersController < Admin::BaseController
 
   def update
     @supplier = Supplier.find(params[:id])
-    if @supplier.update_attributes(allowed_params)
+    if @supplier.update(allowed_params)
       redirect_to :action => :index
     else
       render :action => :edit

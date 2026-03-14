@@ -5,7 +5,7 @@ describe Admin::Shopping::UsersController do
   render_views
   before(:each) do
     activate_authlogic
-    @customer = FactoryGirl.build(:user)
+    @customer = FactoryBot.build(:user)
     @user = create_admin_user
     login_as(@user)
     @controller.stubs(:authorize!)

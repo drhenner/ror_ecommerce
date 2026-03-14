@@ -2,14 +2,14 @@ require 'spec_helper'
 
 RSpec.describe InStockNotification, type: :model do
 
-  let(:non_variant)               { FactoryGirl.create(:variant) }
-  let(:req_variant)               { FactoryGirl.create(:variant) }
-  let(:non_requested_user)        { FactoryGirl.create(:user) }
-  let(:requested_user)            { FactoryGirl.create(:user) }
-  let(:previously_requested_user) { FactoryGirl.create(:user) }
-  let!(:notification1)            { FactoryGirl.create(:in_stock_notification, sent_at: Time.now, user: previously_requested_user, notifiable: req_variant) }
-  let!(:notification2)            { FactoryGirl.create(:in_stock_notification, sent_at: nil, user: requested_user, notifiable: req_variant) }
-  let!(:notification3)            { FactoryGirl.create(:in_stock_notification, sent_at: nil, user: non_requested_user, notifiable: non_variant) }
+  let(:non_variant)               { FactoryBot.create(:variant) }
+  let(:req_variant)               { FactoryBot.create(:variant) }
+  let(:non_requested_user)        { FactoryBot.create(:user) }
+  let(:requested_user)            { FactoryBot.create(:user) }
+  let(:previously_requested_user) { FactoryBot.create(:user) }
+  let!(:notification1)            { FactoryBot.create(:in_stock_notification, sent_at: Time.now, user: previously_requested_user, notifiable: req_variant) }
+  let!(:notification2)            { FactoryBot.create(:in_stock_notification, sent_at: nil, user: requested_user, notifiable: req_variant) }
+  let!(:notification3)            { FactoryBot.create(:in_stock_notification, sent_at: nil, user: non_requested_user, notifiable: non_variant) }
 
   describe '#send!' do
     it 'should send an in stock message to all users that requested' do
@@ -30,14 +30,14 @@ RSpec.describe InStockNotification, type: :model do
 end
 
 RSpec.describe LowStockNotification, type: :model do
-  let(:non_variant)               { FactoryGirl.create(:variant) }
-  let(:req_variant)               { FactoryGirl.create(:variant) }
-  let(:non_admin_user)            { FactoryGirl.create(:admin_user) }
-  let(:inactive_user)             { FactoryGirl.create(:admin_user) }
-  let(:admin_user)                { FactoryGirl.create(:admin_user) }
-  let!(:notification1)            { FactoryGirl.create(:low_stock_notification, sent_at: nil, user: inactive_user, notifiable: req_variant) }
-  let!(:notification2)            { FactoryGirl.create(:low_stock_notification, sent_at: nil, user: admin_user, notifiable: req_variant) }
-  let!(:notification3)            { FactoryGirl.create(:low_stock_notification, sent_at: nil, user: non_admin_user, notifiable: non_variant) }
+  let(:non_variant)               { FactoryBot.create(:variant) }
+  let(:req_variant)               { FactoryBot.create(:variant) }
+  let(:non_admin_user)            { FactoryBot.create(:admin_user) }
+  let(:inactive_user)             { FactoryBot.create(:admin_user) }
+  let(:admin_user)                { FactoryBot.create(:admin_user) }
+  let!(:notification1)            { FactoryBot.create(:low_stock_notification, sent_at: nil, user: inactive_user, notifiable: req_variant) }
+  let!(:notification2)            { FactoryBot.create(:low_stock_notification, sent_at: nil, user: admin_user, notifiable: req_variant) }
+  let!(:notification3)            { FactoryBot.create(:low_stock_notification, sent_at: nil, user: non_admin_user, notifiable: non_variant) }
 
   describe '#send!' do
     it 'should send an in stock message to all users that requested' do
@@ -63,14 +63,14 @@ RSpec.describe LowStockNotification, type: :model do
 end
 
 RSpec.describe OutOfStockNotification, type: :model do
-  let(:non_variant)               { FactoryGirl.create(:variant) }
-  let(:req_variant)               { FactoryGirl.create(:variant) }
-  let(:non_admin_user)            { FactoryGirl.create(:admin_user) }
-  let(:inactive_user)             { FactoryGirl.create(:admin_user) }
-  let(:admin_user)                { FactoryGirl.create(:admin_user) }
-  let!(:notification1)            { FactoryGirl.create(:out_of_stock_notification, sent_at: nil, user: inactive_user, notifiable: req_variant) }
-  let!(:notification2)            { FactoryGirl.create(:out_of_stock_notification, sent_at: nil, user: admin_user, notifiable: req_variant) }
-  let!(:notification3)            { FactoryGirl.create(:out_of_stock_notification, sent_at: nil, user: non_admin_user, notifiable: non_variant) }
+  let(:non_variant)               { FactoryBot.create(:variant) }
+  let(:req_variant)               { FactoryBot.create(:variant) }
+  let(:non_admin_user)            { FactoryBot.create(:admin_user) }
+  let(:inactive_user)             { FactoryBot.create(:admin_user) }
+  let(:admin_user)                { FactoryBot.create(:admin_user) }
+  let!(:notification1)            { FactoryBot.create(:out_of_stock_notification, sent_at: nil, user: inactive_user, notifiable: req_variant) }
+  let!(:notification2)            { FactoryBot.create(:out_of_stock_notification, sent_at: nil, user: admin_user, notifiable: req_variant) }
+  let!(:notification3)            { FactoryBot.create(:out_of_stock_notification, sent_at: nil, user: non_admin_user, notifiable: non_variant) }
 
   describe '#send!' do
     it 'should send an out of stock message to all users that requested' do

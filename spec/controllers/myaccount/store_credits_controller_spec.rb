@@ -7,12 +7,12 @@ describe Myaccount::StoreCreditsController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user)
   end
 
   it "show action should render show template" do
-    @store_credit = FactoryGirl.create(:store_credit, user: @user)
+    @store_credit = FactoryBot.create(:store_credit, user: @user)
     get :show, params: { id: @store_credit.id }
     expect(response).to render_template(:show)
   end

@@ -5,10 +5,10 @@ describe Admin::Fulfillment::Partial::ShipmentsController, type: :controller do
   render_views
 
   before(:each) do
-    @order = FactoryGirl.create(:order)
-    @order_item = FactoryGirl.create(:order_item, :order => @order)
+    @order = FactoryBot.create(:order)
+    @order_item = FactoryBot.create(:order_item, :order => @order)
     activate_authlogic
-    @user = FactoryGirl.create(:admin_user)
+    @user = FactoryBot.create(:admin_user)
     login_as(@user)
   end
 

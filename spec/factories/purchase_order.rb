@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :purchase_order do
     invoice_number 'John'
     tracking_number nil

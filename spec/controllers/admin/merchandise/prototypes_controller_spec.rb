@@ -5,13 +5,13 @@ describe Admin::Merchandise::PrototypesController do
 
   before(:each) do
     activate_authlogic
-    @property  = FactoryGirl.create(:property)
+    @property  = FactoryBot.create(:property)
     @user = create_admin_user
     login_as(@user)
   end
 
   it "index action should render index template" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = FactoryBot.create(:prototype)
     get :index
     expect(response).to render_template(:index)
   end
@@ -41,20 +41,20 @@ describe Admin::Merchandise::PrototypesController do
   end
 
   it "edit action should render edit template" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = FactoryBot.create(:prototype)
     get :edit, params: { id: @prototype.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = FactoryBot.create(:prototype)
     Prototype.any_instance.stubs(:valid?).returns(false)
     put :update, params: { :id => @prototype.id, :prototype => {:name => 'Tes', :property_ids => [@property.id]} }
     expect(response).to render_template(:edit)
   end
 # ( :name, :active, :property_ids )
   it "update action should redirect when model is valid" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = FactoryBot.create(:prototype)
     Prototype.any_instance.stubs(:valid?).returns(true)
     put :update, params: { id: @prototype.id, prototype: {:name => 'Tes', :property_ids => [@property.id]} }
     @prototype.reload
@@ -63,7 +63,7 @@ describe Admin::Merchandise::PrototypesController do
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @prototype = FactoryGirl.create(:prototype)
+    @prototype = FactoryBot.create(:prototype)
     delete :destroy, params: { id: @prototype.id }
     expect(response).to redirect_to(admin_merchandise_prototypes_url)
     expect(Prototype.find(@prototype.id).active).to eq false

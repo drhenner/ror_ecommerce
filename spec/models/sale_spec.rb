@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Sale, '#for(product_id, at)' do
   it "should return sale" do
-    product = FactoryGirl.create(:product)
-    new_sale = FactoryGirl.create(:sale,
+    product = FactoryBot.create(:product)
+    new_sale = FactoryBot.create(:sale,
                                   :product_id   => product.id,
                                   :starts_at    => (Time.zone.now - 1.days),
                                   :ends_at      => (Time.zone.now + 1.days),

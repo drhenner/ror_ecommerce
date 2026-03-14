@@ -56,6 +56,6 @@ class Admin::Shopping::Checkout::BillingAddressesController < Admin::Shopping::C
     @states     = State.form_selector
   end
   def update_order_address_id(id)
-    session_admin_order.update_attributes( :bill_address_id => id )
+    session_admin_order.update( :bill_address_id => id )
   end
 end

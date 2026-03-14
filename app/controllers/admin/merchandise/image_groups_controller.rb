@@ -30,7 +30,7 @@ class Admin::Merchandise::ImageGroupsController < Admin::BaseController
 
   def update
     @image_group = ImageGroup.find(params[:id])
-    if @image_group.update_attributes(allowed_params)
+    if @image_group.update(allowed_params)
       redirect_to [:admin, :merchandise, @image_group], notice: "Successfully updated image group."
     else
       render :edit

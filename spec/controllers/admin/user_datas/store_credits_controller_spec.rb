@@ -5,9 +5,9 @@ describe Admin::UserDatas::StoreCreditsController do
   render_views
   before(:each) do
     activate_authlogic
-    @cur_user = FactoryGirl.create(:admin_user)
+    @cur_user = FactoryBot.create(:admin_user)
     login_as(@cur_user)
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
   end
 
   it "show action should render show template" do

@@ -32,14 +32,14 @@ describe Admin::Merchandise::Wizards::ShippingCategoriesController do
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_category = FactoryGirl.create(:shipping_category)
+    @shipping_category = FactoryBot.create(:shipping_category)
     ShippingCategory.stubs(:find_by_id).returns(nil)
     put :update, params: { id: @shipping_category.id }
     expect(response).to render_template(:index)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_category = FactoryGirl.create(:shipping_category)
+    @shipping_category = FactoryBot.create(:shipping_category)
     put :update, params: { id: @shipping_category.id }
     expect(controller.session[:product_wizard][:shipping_category_id]).to eq @shipping_category.id
     expect(response).to redirect_to(new_admin_merchandise_wizards_product_url)

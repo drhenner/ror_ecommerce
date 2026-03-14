@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :accounting_adjustment do
       adjustable_id 1
       adjustable_type "MyString"

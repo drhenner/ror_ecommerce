@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :notification do
     user       { |c| c.association(:user) }
     type       "OutOfStockNotification"

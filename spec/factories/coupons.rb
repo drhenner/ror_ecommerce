@@ -6,7 +6,7 @@
 #:percent       =>  nil,
 #:description   =>  "Describe my coupon",
 #:combine       =>  false
-FactoryGirl.define do
+FactoryBot.define do
   factory :coupon do
     type          "CouponValue"
     code          "TEST COUPON"

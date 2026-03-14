@@ -4,7 +4,7 @@
 #
 # There really isn't anything special about addresses themselves.
 # However PLEASE PLEASE PLEASE never ever implement @address.delete or @address.destroy or
-#   even @address.update_attributes.  You should only create and inactivate addresses.
+#   even @address.update.  You should only create and inactivate addresses.
 #   This means EDIT == create and inactivate the old address.
 #
 #  Please read the following blog to understand the logic.  THIS IS EXTREMELY IMPORTANT!

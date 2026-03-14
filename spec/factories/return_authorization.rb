@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :return_authorization do
     number          "34567kjhgf"
     amount          "9.99"

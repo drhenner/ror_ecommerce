@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :shipment do
     order           { |c| c.association(:order) }
     address         { |c| c.association(:address) }

@@ -7,7 +7,7 @@ class Admin::Merchandise::Images::ProductsController < Admin::BaseController
   def update
     @product  = Product.friendly.find(params[:id])
 
-    if @product.update_attributes(allowed_params)
+    if @product.update(allowed_params)
       redirect_to action: :edit
     else
       render action: :edit

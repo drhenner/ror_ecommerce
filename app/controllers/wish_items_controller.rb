@@ -8,7 +8,7 @@ class WishItemsController < ApplicationController
   def destroy
     if params[:variant_id].present?
       item = current_user.wish_list_items.find_by(variant_id: params[:variant_id])
-      item.update_attributes( active: false )
+      item.update( active: false )
     end
     render  action: :index
   end

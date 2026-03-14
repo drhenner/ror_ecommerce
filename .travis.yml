@@ -8,8 +8,7 @@ branches:
   only:
     - 'master'
 rvm:
-  - 1.9.2
-  - 1.9.3
+  - 2.4.0
 services:
   - mysql
 before_script:

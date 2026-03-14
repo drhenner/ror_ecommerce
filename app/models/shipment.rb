@@ -79,7 +79,7 @@ class Shipment < ApplicationRecord
   # @param [none]
   # @return [ none ]
   def mark_order_as_shipped
-    order.update_attributes(:shipped => true)
+    order.update(:shipped => true)
   end
 
   # when the order has been shipped the inventory must be updated

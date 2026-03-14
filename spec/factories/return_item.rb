@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :return_item do
     order_item       { |c| c.association(:order_item) }
     return_condition { ReturnCondition.first }

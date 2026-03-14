@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :variant_property do
     description   'variant property description'
     variant       { |c| c.association(:variant) }

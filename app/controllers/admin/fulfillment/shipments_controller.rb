@@ -53,7 +53,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
     @shipment = Shipment.find(params[:id])
 
     respond_to do |format|
-      if @shipment.update_attributes(allowed_params)
+      if @shipment.update(allowed_params)
         format.html { redirect_to(admin_fulfillment_shipment_path(@shipment, :order_id => @shipment.order.number), :notice => 'Shipment was successfully updated.') }
       else
         form_info
@@ -82,7 +82,7 @@ class Admin::Fulfillment::ShipmentsController < Admin::Fulfillment::BaseControll
   def destroy
     @shipment = Shipment.find(params[:id])
     raise error
-    @shipment.update_attributes(:active => false)
+    @shipment.update(:active => false)
 
 
     # We need to add capability to refund and return to stock in one large destroy form

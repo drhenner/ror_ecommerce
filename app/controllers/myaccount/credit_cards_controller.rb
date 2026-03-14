@@ -27,7 +27,7 @@ class Myaccount::CreditCardsController < Myaccount::BaseController
 
   def update
     @credit_card = current_user.payment_profiles.find(params[:id])
-    if @credit_card.update_attributes(allowed_params)
+    if @credit_card.update(allowed_params)
       flash[:notice] = "Successfully updated credit card."
       redirect_to myaccount_credit_card_url(@credit_card)
     else

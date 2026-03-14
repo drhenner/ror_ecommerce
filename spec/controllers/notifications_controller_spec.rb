@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe NotificationsController do
   render_views
 
-  let(:user)    { FactoryGirl.create(:user) }
-  let(:variant) { FactoryGirl.create(:variant) }
+  let(:user)    { FactoryBot.create(:user) }
+  let(:variant) { FactoryBot.create(:variant) }
 
   before(:each) do
     activate_authlogic
@@ -31,7 +31,7 @@ describe NotificationsController do
   end
 
   it "create action should redirect to product when model is already sent previously" do
-    notification = FactoryGirl.create(:notification, type: InStockNotification, user: user, sent_at: Time.now - 1.day, notifiable: variant)
+    notification = FactoryBot.create(:notification, type: InStockNotification, user: user, sent_at: Time.now - 1.day, notifiable: variant)
     put :update, params: { id: variant.id }
     notification.reload
 

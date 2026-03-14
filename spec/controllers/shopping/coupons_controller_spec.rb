@@ -6,17 +6,17 @@ describe Shopping::CouponsController do
   before(:each) do
     activate_authlogic
 
-    @cur_user = FactoryGirl.create(:user)
+    @cur_user = FactoryBot.create(:user)
     login_as(@cur_user)
 
     #stylist_cart
-    @variant  = FactoryGirl.create(:variant)
+    @variant  = FactoryBot.create(:variant)
 
     create_cart(@cur_user, @cur_user, [@variant])
 
-    @address      = FactoryGirl.create(:address)
-    @order        = FactoryGirl.create(:order, :ship_address_id => @address.id)
-    @order_item   = FactoryGirl.create(:order_item, :order => @order, :variant => @variant)
+    @address      = FactoryBot.create(:address)
+    @order        = FactoryBot.create(:order, :ship_address_id => @address.id)
+    @order_item   = FactoryBot.create(:order_item, :order => @order, :variant => @variant)
     @order.stubs(:order_items).returns([@order_item])
     @controller.stubs(:find_or_create_order).returns(@order)
   end
@@ -33,7 +33,7 @@ describe Shopping::CouponsController do
   end
 
   it "create action should redirect when model is valid" do
-    FactoryGirl.create(:coupon_value, :code => 'qwerty' )
+    FactoryBot.create(:coupon_value, :code => 'qwerty' )
     CouponValue.any_instance.stubs(:eligible?).returns(true)
     Shopping::CouponsController.any_instance.stubs(:update_order_coupon_id).returns(true)
     @controller.expects(:next_form_url).returns(shopping_orders_url)

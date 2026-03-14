@@ -23,7 +23,7 @@ class Shopping::CouponsController < Shopping::BaseController
   end
 
   def update_order_coupon_id(id)
-    session_order.update_attributes(
+    session_order.update(
                           :coupon_id => id
                                     )
   end

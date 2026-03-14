@@ -28,7 +28,7 @@ class Admin::Generic::DealsController < Admin::Generic::BaseController
 
   def update
     @deal = Deal.find(params[:id])
-    if @deal.update_attributes(allowed_params)
+    if @deal.update(allowed_params)
       redirect_to [:admin, :generic, @deal], :notice  => "Successfully updated deal."
     else
       render :edit

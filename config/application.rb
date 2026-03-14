@@ -50,7 +50,7 @@ module Hadean
     # Configure generators values
     config.generators do |g|
       g.test_framework  :rspec, :fixture => true
-      g.fixture_replacement :factory_girl , :dir=>"spec/factories"
+      g.fixture_replacement :factory_bot , :dir=>"spec/factories"
     end
 
     #config.session_store = ::Ripple::SessionStore

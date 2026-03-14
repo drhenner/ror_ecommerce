@@ -30,14 +30,14 @@ describe Admin::Merchandise::Wizards::ProductTypesController do
   end
 
   it "update action should render edit template when model is invalid" do
-    @product_type = FactoryGirl.create(:product_type)
+    @product_type = FactoryBot.create(:product_type)
     ProductType.stubs(:find_by_id).returns(nil)
     put :update, params: { id: @product_type.id }
     expect(response).to render_template(:index)
   end
 
   it "update action should redirect when model is valid" do
-    @product_type = FactoryGirl.create(:product_type)
+    @product_type = FactoryBot.create(:product_type)
     #ProductType.any_instance.stubs(:valid?).returns(true)
     put :update, params: { id: @product_type.id }
     expect(controller.session[:product_wizard][:product_type_id]).to eq @product_type.id

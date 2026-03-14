@@ -3,9 +3,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ProductsController do
   render_views
 
-  let(:user)             { FactoryGirl.create(:user) }
-  let(:product)          { FactoryGirl.create(:product) }
-  let!(:instock_variant) { FactoryGirl.create(:variant, product: product) }
+  let(:user)             { FactoryBot.create(:user) }
+  let(:product)          { FactoryBot.create(:product) }
+  let!(:instock_variant) { FactoryBot.create(:variant, product: product) }
 
   before(:each) do
     instock_variant.stubs(:primary_property).returns(nil)
@@ -17,8 +17,8 @@ describe ProductsController do
 
 
   context 'instock variant' do
-    let(:inventory) { FactoryGirl.create(:inventory, count_on_hand: 10000, count_pending_to_customer: 0) }
-    let!(:variant)  { FactoryGirl.create(:variant, inventory: inventory, product: product) }
+    let(:inventory) { FactoryBot.create(:inventory, count_on_hand: 10000, count_pending_to_customer: 0) }
+    let!(:variant)  { FactoryBot.create(:variant, inventory: inventory, product: product) }
 
     it "index action should render index template" do
       get :index
@@ -49,8 +49,8 @@ describe ProductsController do
   end
 
   context 'out of stock variant' do
-    let(:inventory)        { FactoryGirl.create(:inventory, count_on_hand: 10, count_pending_to_customer: 10) }
-    let!(:variant)         { FactoryGirl.create(:variant, inventory: inventory, product: product) }
+    let(:inventory)        { FactoryBot.create(:inventory, count_on_hand: 10, count_pending_to_customer: 10) }
+    let!(:variant)         { FactoryBot.create(:variant, inventory: inventory, product: product) }
 
     it "index action should render index template" do
       get :index

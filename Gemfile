@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.4.0"
+ruby "~> 2.4.0"
 
 ## Bundle rails:
 gem 'rails', '~> 5.1.3'
@@ -27,8 +27,6 @@ gem 'aws-sdk',        '~> 2.3.21'
 gem 'bluecloth',      '~> 2.2.0'
 gem 'cancancan',      '~> 1.15.0'
 gem 'chronic'
-# Use https if you are pushing to HEROKU
-gem 'compass-rails', ref: '3861c9d9956dd1a5f4290ea87e9d90ba7fe44394'
 
 
 gem 'dynamic_form'
@@ -39,11 +37,12 @@ gem 'jquery-ui-rails', '~> 6.0.1'
 gem 'json',           '~> 2.1.0'
 
 # gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
-gem 'nokogiri',     '~> 1.6.5'
+gem 'nokogiri',              '~> 1.6.5'
+gem 'loofah',                '~> 2.2.0'
+gem 'rails-html-sanitizer',  '~> 1.0.4'
 gem 'paperclip',    '~> 5.0.0'
 gem 'prawn',        '>= 0.12.0'
 
-gem "rails3-generators", "~> 1.0.0"
 #git: "https://github.com/neocoin/rails3-generators.git"
 gem "config"
 gem 'rmagick',    '= 2.15.4', require: false
@@ -90,8 +89,8 @@ group :test, :development do
 end
 
 group :test do
-  gem 'factory_girl',       "~> 4.5.0"
-  gem 'factory_girl_rails', "~> 4.5.0"
+  gem 'factory_bot',       "~> 4.8"
+  gem 'factory_bot_rails', "~> 4.8"
   gem 'mocha',              '~> 0.13.3', :require => false
   gem 'rails-controller-testing'
   gem 'rspec-rails-mocha'

@@ -2,7 +2,7 @@ module Hadean
   module TestHelpers
 
     def create_admin_user(args = {})
-      @uusseerr = FactoryGirl.build(:user, args)
+      @uusseerr = FactoryBot.build(:user, args)
       @uusseerr.stubs(:set_referral_registered_at).returns(false)
       @uusseerr.save
       @uusseerr.stubs(:roles).returns([Role.find_by_name(Role::ADMIN)])
@@ -10,7 +10,7 @@ module Hadean
     end
 
     def create_real_admin_user(args = {})
-      @uusseerr = FactoryGirl.build(:user, args)
+      @uusseerr = FactoryBot.build(:user, args)
       @uusseerr.stubs(:set_referral_registered_at).returns(false)
       @uusseerr.save
       @uusseerr.role_ids = [Role.find_by_name(Role::ADMIN).id]
@@ -18,7 +18,7 @@ module Hadean
       @uusseerr
     end
     def create_super_admin_user(args = {})
-      @uusseerr = FactoryGirl.build(:user, args)
+      @uusseerr = FactoryBot.build(:user, args)
       @uusseerr.stubs(:set_referral_registered_at).returns(false)
       #@uusseerr.stubs(:admin?).returns(true)
       #@uusseerr.stubs(:super_admin?).returns(false)
@@ -53,9 +53,9 @@ module Hadean
     end
 
     def setup_10_dollar_referral(referring_user, referral_email, referral_user = nil, quantity_needed = 2)
-      referral_bonus    = FactoryGirl.create(:referral_bonus, :amount => 1000, :quantity_needed => quantity_needed)
-      referral_program  = FactoryGirl.create(:referral_program, :referral_bonus => referral_bonus)# refer 2 get $10
-      referral          = FactoryGirl.create(:referral,
+      referral_bonus    = FactoryBot.create(:referral_bonus, :amount => 1000, :quantity_needed => quantity_needed)
+      referral_program  = FactoryBot.create(:referral_program, :referral_bonus => referral_bonus)# refer 2 get $10
+      referral          = FactoryBot.create(:referral,
                           :email            => referral_email,
                           :referring_user   => referring_user,
                           :referral_user    => referral_user,

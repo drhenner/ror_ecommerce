@@ -4,7 +4,7 @@ describe Order, "instance methods" do
   before(:each) do
     User.any_instance.stubs(:subscribe_to_newsletters).returns(true)
     User.any_instance.stubs(:set_referral_registered_at).returns(true)
-    @order = FactoryGirl.create(:order)
+    @order = FactoryBot.create(:order)
   end
 
   context 'no need for store credits' do
@@ -14,9 +14,9 @@ describe Order, "instance methods" do
 
     context ".name" do
       it 'should return the users name' do
-        user = FactoryGirl.create(:user)
+        user = FactoryBot.create(:user)
         user.stubs(:name).returns('Freddy Boy')
-        order = FactoryGirl.create(:order, user: user)
+        order = FactoryBot.create(:order, user: user)
         expect(order.name).to eq 'Freddy Boy'
       end
     end
@@ -39,7 +39,7 @@ describe Order, "instance methods" do
         expect(@order.first_invoice_amount).to eq ""
       end
       it 'should return "Not Finished."' do
-        @invoice = FactoryGirl.create(:invoice, :amount => 13.49)
+        @invoice = FactoryBot.create(:invoice, :amount => 13.49)
         @order.stubs(:completed_invoices).returns([@invoice])
         expect(@order.first_invoice_amount).to eq 13.49
       end
@@ -47,8 +47,8 @@ describe Order, "instance methods" do
 
     context ".cancel_unshipped_order(invoice)" do
       it 'should return ""' do
-        @invoice = FactoryGirl.create(:invoice, :amount => 13.49)
-        @order   = FactoryGirl.create(:order)
+        @invoice = FactoryBot.create(:invoice, :amount => 13.49)
+        @order   = FactoryBot.create(:order)
         @invoice.stubs(:cancel_authorized_payment).returns(true)
         expect(@order.cancel_unshipped_order(@invoice)).to be true
         expect(@order.active).to be false
@@ -57,7 +57,7 @@ describe Order, "instance methods" do
 
     context ".status" do
       it 'should return "payment_declined"' do
-        @invoice = FactoryGirl.create(:invoice, :state => 'payment_declined')
+        @invoice = FactoryBot.create(:invoice, :state => 'payment_declined')
         @order.stubs(:invoices).returns([@invoice])
         expect(@order.status).to eq 'payment_declined'
       end
@@ -73,8 +73,8 @@ describe Order, "instance methods" do
     it 'should calculate credited_total' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
-      tax_rate   = FactoryGirl.create(:tax_rate, :percentage => 10.0 )
-      order_item = FactoryGirl.create(:order_item, :total => 5.52, :tax_rate => tax_rate )
+      tax_rate   = FactoryBot.create(:tax_rate, :percentage => 10.0 )
+      order_item = FactoryBot.create(:order_item, :total => 5.52, :tax_rate => tax_rate )
 
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(100.00)
@@ -93,7 +93,7 @@ describe Order, "instance methods" do
     it 'should calculate credited_total' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
-      order_item = FactoryGirl.create(:order_item, :total => 5.52 )
+      order_item = FactoryBot.create(:order_item, :total => 5.52 )
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(10.00)
 
@@ -109,7 +109,7 @@ describe Order, "instance methods" do
     it 'should remove store_credits.amount' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
-      order_item = FactoryGirl.create(:order_item, :total => 5.52 )
+      order_item = FactoryBot.create(:order_item, :total => 5.52 )
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(100.00)
       #expect(@order.find_total).to eq 111.04
@@ -123,16 +123,16 @@ describe Order, "instance methods" do
     end
 
     it 'should calculate credited_total with a coupon' do
-      user   = FactoryGirl.create(:user)
-      coupon = FactoryGirl.create(:coupon, :amount => 15.00, :expires_at => (Time.zone.now + 1.days), :starts_at => (Time.zone.now - 1.days) )
-      order  = FactoryGirl.create(:order, :user => user, :coupon => coupon)
+      user   = FactoryBot.create(:user)
+      coupon = FactoryBot.create(:coupon, :amount => 15.00, :expires_at => (Time.zone.now + 1.days), :starts_at => (Time.zone.now - 1.days) )
+      order  = FactoryBot.create(:order, :user => user, :coupon => coupon)
 
       order.stubs(:calculate_totals).returns( true )
       order.stubs(:calculated_at).returns(nil)
 
-      tax_rate    = FactoryGirl.create(:tax_rate, :percentage => 10.0 )
-      order_item1 = FactoryGirl.create(:order_item, :price => 20.00, :total => 20.00, :tax_rate => tax_rate, :order => order )
-      order_item2 = FactoryGirl.create(:order_item, :price => 20.00, :total => 20.00, :tax_rate => tax_rate, :order => order )
+      tax_rate    = FactoryBot.create(:tax_rate, :percentage => 10.0 )
+      order_item1 = FactoryBot.create(:order_item, :price => 20.00, :total => 20.00, :tax_rate => tax_rate, :order => order )
+      order_item2 = FactoryBot.create(:order_item, :price => 20.00, :total => 20.00, :tax_rate => tax_rate, :order => order )
 
       #@order.stubs(:order_items).returns([order_item1, order_item2])
       order.stubs(:coupon).returns(coupon)
@@ -153,8 +153,8 @@ describe Order, "instance methods" do
     it 'should remove store_credits.amount' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
-      tax_rate   = FactoryGirl.create(:tax_rate, :percentage => 10.0 )
-      order_item = FactoryGirl.create(:order_item, :total => 5.52, :tax_rate => tax_rate )
+      tax_rate   = FactoryBot.create(:tax_rate, :percentage => 10.0 )
+      order_item = FactoryBot.create(:order_item, :total => 5.52, :tax_rate => tax_rate )
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(5.00)
       # shippping ==                5.00
@@ -175,7 +175,7 @@ describe Order, "instance methods" do
   context ".capture_invoice(invoice)" do
     it 'should return an payment object' do
       ##  Create fake admin_cart object in memcached
-      @invoice  = FactoryGirl.create(:invoice)
+      @invoice  = FactoryBot.create(:invoice)
       payment   = @order.capture_invoice(@invoice)
       expect(payment.class.to_s).to eq 'Payment'
       expect(@invoice.state).to     eq 'paid'
@@ -246,9 +246,9 @@ describe Order, "instance methods" do
 
   context ".update_tax_rates" do
     it 'should set the beginning address id after find' do
-      order_item = FactoryGirl.create(:order_item)
-      tax_rate   = FactoryGirl.create(:tax_rate, :percentage => 5.5 )
-      @order.ship_address_id = FactoryGirl.create(:address).id
+      order_item = FactoryBot.create(:order_item)
+      tax_rate   = FactoryBot.create(:tax_rate, :percentage => 5.5 )
+      @order.ship_address_id = FactoryBot.create(:address).id
       Product.any_instance.stubs(:tax_rate).returns(tax_rate)
       @order.stubs(:order_items).returns([order_item])
       @order.send(:update_tax_rates)
@@ -259,7 +259,7 @@ describe Order, "instance methods" do
   context ".calculate_totals(force = false)" do
     it 'should set the beginning address id after find' do
       #@order.stubs(:calculated_at).returns(nil)
-      order_item = FactoryGirl.create(:order_item)
+      order_item = FactoryBot.create(:order_item)
       @order.stubs(:order_items).returns([order_item])
       @order.calculated_at = nil
       @order.total = nil
@@ -274,8 +274,8 @@ describe Order, "instance methods" do
     it 'should calculate the order totals with shipping charges' do
       @order.stubs(:calculate_totals).returns( true )
       @order.stubs(:calculated_at).returns(nil)
-      tax_rate = FactoryGirl.create(:tax_rate, :percentage => 10.0 )
-      order_item = FactoryGirl.create(:order_item, :total => 5.52, :tax_rate => tax_rate )
+      tax_rate = FactoryBot.create(:tax_rate, :percentage => 10.0 )
+      order_item = FactoryBot.create(:order_item, :total => 5.52, :tax_rate => tax_rate )
       @order.stubs(:order_items).returns([order_item, order_item])
       @order.stubs(:shipping_charges).returns(100.00)
       # shippping == 100
@@ -289,14 +289,14 @@ describe Order, "instance methods" do
 
   context ".ready_to_checkout?" do
     it 'should be ready to checkout' do
-      order_item = FactoryGirl.create(:order_item )
+      order_item = FactoryBot.create(:order_item )
       order_item.stubs(:ready_to_calculate?).returns(true)
       @order.stubs(:order_items).returns([order_item, order_item])
       expect(@order.ready_to_checkout?).to eq true
     end
 
     it 'should not be ready to checkout' do
-      order_item = FactoryGirl.create(:order_item )
+      order_item = FactoryBot.create(:order_item )
       order_item.stubs(:ready_to_calculate?).returns(false)
       @order.stubs(:order_items).returns([order_item, order_item])
       expect(@order.ready_to_checkout?).to eq false
@@ -305,7 +305,7 @@ describe Order, "instance methods" do
 
   context ".shipping_charges" do
     it 'should return one shippoing rate that all items fall under' do
-        order_item = FactoryGirl.create(:order_item )
+        order_item = FactoryBot.create(:order_item )
         ShippingRate.any_instance.stubs(:individual?).returns(false)
         ShippingRate.any_instance.stubs(:rate).returns(1.01)
 
@@ -315,7 +315,7 @@ describe Order, "instance methods" do
     end
 
     it 'should return one shipping rate that all items fall under' do
-        order_item = FactoryGirl.create(:order_item )
+        order_item = FactoryBot.create(:order_item )
         ShippingRate.any_instance.stubs(:individual?).returns(true)
         ShippingRate.any_instance.stubs(:rate).returns(1.01)
 
@@ -327,7 +327,7 @@ describe Order, "instance methods" do
 
   context ".add_items(variant, quantity, state_id = nil)" do
     it 'should add a new variant to order items ' do
-      variant = FactoryGirl.create(:variant)
+      variant = FactoryBot.create(:variant)
       order_items_size = @order.order_items.size
       @order.add_items(variant, 2)
       expect(@order.order_items.size).to eq order_items_size + 2
@@ -336,7 +336,7 @@ describe Order, "instance methods" do
 
   context ".remove_items(variant, final_quantity)" do
     it 'should remove variant from order items ' do
-      variant = FactoryGirl.create(:variant)
+      variant = FactoryBot.create(:variant)
       order_items_size = @order.order_items.size
       @order.add_items(variant, 3)
       @order.remove_items(variant, 1)
@@ -367,7 +367,7 @@ describe Order, "instance methods" do
     end
 
     it 'should set number not to be nil' do
-      order = FactoryGirl.build(:order)
+      order = FactoryBot.build(:order)
       order.send(:set_number)
       expect(order.number).not_to be_nil
     end
@@ -375,7 +375,7 @@ describe Order, "instance methods" do
 
   context ".set_order_number" do
     it 'should set number ' do
-      order = FactoryGirl.create(:order)
+      order = FactoryBot.create(:order)
       order.number = nil
       order.send(:set_order_number)
       expect(order.number).not_to be_nil
@@ -384,7 +384,7 @@ describe Order, "instance methods" do
 
   context ".save_order_number" do
     it 'should set number and save' do
-      order = FactoryGirl.create(:order)
+      order = FactoryBot.create(:order)
       order.number = nil
       expect(order.send(:save_order_number)).to be true
       expect(order.number).not_to eq (Order::NUMBER_SEED + @order.id).to_s(Order::CHARACTERS_SEED)
@@ -395,7 +395,7 @@ describe Order, "instance methods" do
     #self.order_items.each {|item| item.variant.add_pending_to_customer(1) }
     it 'should call add_pending_to_customer for each variant' do
       variant     = mock()#create(:variant )
-      order_item  = FactoryGirl.create(:order_item)
+      order_item  = FactoryBot.create(:order_item)
       order_item.stubs(:variant).returns(variant)
       @order.order_items.push([order_item])
       variant.expects(:add_pending_to_customer).once
@@ -406,8 +406,8 @@ describe Order, "instance methods" do
   context ".variant_ids" do
     #order_items.collect{|oi| oi.variant_id }
     it 'should return each  variant_id' do
-      variant     = FactoryGirl.create(:variant )
-      order_item  = FactoryGirl.create(:order_item)
+      variant     = FactoryBot.create(:variant )
+      order_item  = FactoryBot.create(:order_item)
       order_item.stubs(:variant_id).returns(variant.id)
       @order.stubs(:order_items).returns([order_item, order_item])
       expect(@order.variant_ids).to eq [variant.id, variant.id]
@@ -420,22 +420,22 @@ describe Order, "instance methods" do
       expect(@order.has_shipment?).to be false
     end
     it 'should return true' do
-      FactoryGirl.create(:shipment, :order => @order)
+      FactoryBot.create(:shipment, :order => @order)
       expect(Order.find(@order.id).has_shipment?).to be true
     end
   end
 
   context ".create_shipments_with_order_item_ids(order_item_ids)" do
     it "should return false if there aren't any ids" do
-      @order_item = FactoryGirl.create(:order_item, :order => @order)
+      @order_item = FactoryBot.create(:order_item, :order => @order)
       expect(@order.create_shipments_with_order_item_ids([])).to be false
     end
     it "should return false if the ids cant be shipped" do
-      @order_item = FactoryGirl.create(:order_item, :order => @order, :state => 'unpaid')
+      @order_item = FactoryBot.create(:order_item, :order => @order, :state => 'unpaid')
       expect(@order.create_shipments_with_order_item_ids([@order_item.id])).to be false
     end
     it "should return true if the ids can be shipped" do
-      @order_item = FactoryGirl.build(:order_item, :order => @order)
+      @order_item = FactoryBot.build(:order_item, :order => @order)
       @order_item.state = 'paid'
       @order_item.save
       expect(@order.create_shipments_with_order_item_ids([@order_item.id])).to be true
@@ -445,8 +445,8 @@ describe Order, "instance methods" do
   context '.item_prices' do
 
     it 'should return an Array of prices' do
-      order_item1 = FactoryGirl.create(:order_item, :order => @order, :price => 2.01)
-      order_item2 = FactoryGirl.create(:order_item, :order => @order, :price => 9.00)
+      order_item1 = FactoryBot.create(:order_item, :order => @order, :price => 2.01)
+      order_item2 = FactoryBot.create(:order_item, :order => @order, :price => 9.00)
       @order.stubs(:order_items).returns([order_item1, order_item2])
       expect(@order.send(:item_prices).class).to eq Array
       expect(@order.send(:item_prices).include?(2.01)).to be true
@@ -463,8 +463,8 @@ describe Order, "instance methods" do
     end
 
     it 'should return call coupon.value' do
-      coupon  = FactoryGirl.create(:coupon_value)
-      order   = FactoryGirl.create(:order, :coupon => coupon)
+      coupon  = FactoryBot.create(:coupon_value)
+      order   = FactoryBot.create(:order, :coupon => coupon)
       order.stubs(:coupon_id).returns(2)
       order.coupon.expects(:value).once
       order.coupon_amount
@@ -479,12 +479,12 @@ RSpec.describe Order do
     User.any_instance.stubs(:start_store_credits).returns(true)
     User.any_instance.stubs(:set_referral_registered_at).returns(true)
 
-    @order = FactoryGirl.create(:order)
+    @order = FactoryBot.create(:order)
 
-    @tax_rate    = FactoryGirl.create(:tax_rate, :percentage => 10.0)
-    @tax_rate5   = FactoryGirl.create(:tax_rate, :percentage => 5.0)
-    @order_item  = FactoryGirl.create(:order_item, :tax_rate => @tax_rate,  :price => 20.00, order: @order)
-    @order_item5 = FactoryGirl.create(:order_item, :tax_rate => @tax_rate5, :price => 10.00, order: @order)
+    @tax_rate    = FactoryBot.create(:tax_rate, :percentage => 10.0)
+    @tax_rate5   = FactoryBot.create(:tax_rate, :percentage => 5.0)
+    @order_item  = FactoryBot.create(:order_item, :tax_rate => @tax_rate,  :price => 20.00, order: @order)
+    @order_item5 = FactoryBot.create(:order_item, :tax_rate => @tax_rate5, :price => 10.00, order: @order)
 
   end
 
@@ -532,7 +532,7 @@ end
 
 describe Order, "#find_myaccount_details" do
   it 'should return have invoices and completed_invoices associations' do
-    @order = FactoryGirl.create(:order)
+    @order = FactoryBot.create(:order)
     expect(@order.completed_invoices).to eq []
     expect(@order.invoices).to           eq []
   end
@@ -540,7 +540,7 @@ end
 
 describe Order, "#id_from_number(num)" do
   it 'should return the order id' do
-    order     = FactoryGirl.create(:order)
+    order     = FactoryBot.create(:order)
     order_id  = Order.id_from_number(order.number)
     expect(order_id).to eq order.id
   end
@@ -548,7 +548,7 @@ end
 
 describe Order, "#find_by_number(num)" do
   it 'should find the order by number' do
-    order = FactoryGirl.create(:order)
+    order = FactoryBot.create(:order)
     find_order = Order.find_by_number(order.number)
     expect(find_order.id).to eq order.id
   end
@@ -557,8 +557,8 @@ end
 
 describe Order, "#find_finished_order_grid(params = {})", type: :model do
   it "should return finished Orders " do
-    order1 = FactoryGirl.create(:order, :completed_at => nil)
-    order2 = FactoryGirl.create(:order, :completed_at => Time.now)
+    order1 = FactoryBot.create(:order, :completed_at => nil)
+    order2 = FactoryBot.create(:order, :completed_at => Time.now)
     admin_grid = Order.find_finished_order_grid
     expect(admin_grid.size).to eq 1
     expect(admin_grid.include?(order1)).to be false
@@ -568,8 +568,8 @@ end
 
 describe Order, "#fulfillment_grid(params = {})" do
   it "should return Orders " do
-    order1 = FactoryGirl.create(:order, :shipped => false)
-    order2 = FactoryGirl.create(:order, :shipped => true)
+    order1 = FactoryBot.create(:order, :shipped => false)
+    order2 = FactoryBot.create(:order, :shipped => true)
     admin_grid = Order.fulfillment_grid
     expect(admin_grid.size).to eq 1
     expect(admin_grid.include?(order1)).to be true

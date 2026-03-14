@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :payment do
     invoice         { |c| c.association(:invoice) }
     confirmation_id  123456789

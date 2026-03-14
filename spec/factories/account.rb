@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :account do
     name            'Free'
     account_type    'Free'

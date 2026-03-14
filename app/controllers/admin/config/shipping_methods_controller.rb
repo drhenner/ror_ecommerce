@@ -37,7 +37,7 @@ class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
   # PUT /admin/config/shipping_methods/1
   def update
     @shipping_method = ShippingMethod.find(params[:id])
-    if @shipping_method.update_attributes(allowed_params)
+    if @shipping_method.update(allowed_params)
       redirect_to(admin_config_shipping_methods_url, notice: 'Shipping method was successfully updated.')
     else
       form_info

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :invoice do
     order           { |c| c.association(:order) }
     amount          20.13

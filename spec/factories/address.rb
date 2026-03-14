@@ -7,7 +7,7 @@
 # #zip_code    { Sham.zipcode }
 # phone       { Sham.phone_number }
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :address do
     first_name 'John'
     last_name  'Doe'

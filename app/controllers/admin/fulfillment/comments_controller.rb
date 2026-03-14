@@ -43,7 +43,7 @@ class Admin::Fulfillment::CommentsController < Admin::Fulfillment::BaseControlle
   def update
     @comment = Comment.find(params[:id])
     respond_to do |format|
-      if @comment.update_attributes(allowed_params)
+      if @comment.update(allowed_params)
         flash[:notice] = "Successfully updated comment."
         format.json { render json: @comment.to_json}
         format.html { redirect_to admin_fulfillment_order_comment_url(order, @comment) }

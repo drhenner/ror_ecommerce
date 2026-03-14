@@ -21,7 +21,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
     @prototype = Prototype.new(allowed_params)
 
     if @prototype.save
-      @prototype.update_attributes(property_ids: params[:prototype][:property_ids])
+      @prototype.update(property_ids: params[:prototype][:property_ids])
       redirect_to action: :index
     else
       @all_properties = Property.all
@@ -38,7 +38,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   def update
     @prototype = Prototype.find(params[:id])
 @prototype.property_ids = params[:prototype][:property_ids]
-    if @prototype.update_attributes(allowed_params)
+    if @prototype.update(allowed_params)
       redirect_to action: :index
     else
       @all_properties = Property.all

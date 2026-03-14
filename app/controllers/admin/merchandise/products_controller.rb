@@ -40,7 +40,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       render action: :new
     end
   rescue
-    render :text => "Please make sure you have solr started... Run this in the command line => bundle exec rake sunspot:solr:start"
+    render plain: "Please make sure you have solr started... Run this in the command line => bundle exec rake sunspot:solr:start"
   end
 
   def edit
@@ -51,7 +51,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   def update
     @product = Product.friendly.find(params[:id])
 
-    if @product.update_attributes(allowed_params)
+    if @product.update(allowed_params)
       redirect_to admin_merchandise_product_url(@product)
     else
       form_info

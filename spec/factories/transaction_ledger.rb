@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :transaction_ledger do
     accountable         { |c| c.association(:user) }
     transactionn        { |c| c.association(:transaction) }

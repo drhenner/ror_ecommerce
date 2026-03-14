@@ -34,7 +34,7 @@ class Admin::Config::AccountsController < Admin::Config::BaseController
   def update
     @account = Account.find(params[:id])
 
-      if @account.update_attributes(allowed_params)
+      if @account.update(allowed_params)
         redirect_to(admin_config_accounts_url(), :notice => 'Account was successfully updated.')
       else
         render :action => "edit"

@@ -44,7 +44,7 @@ module PaymentProfileCim
                 }
     response = @gateway.create_customer_payment_profile(@profile)
     if response.success? and response.params['customer_payment_profile_id']
-      update_attributes({:payment_cim_id => response.params['customer_payment_profile_id']})
+      update({:payment_cim_id => response.params['customer_payment_profile_id']})
       self.credit_card = {}
       return true
     end
@@ -76,7 +76,7 @@ module PaymentProfileCim
     response = @gateway.delete_customer_payment_profile(:customer_profile_id => self.user.customer_cim_id,
                                                         :customer_payment_profile_id => self.payment_cim_id)
     if response.success?
-      self.user.update_attributes({:payment_profile_id => nil})
+      self.user.update({:payment_profile_id => nil})
       return true
     end
     return false

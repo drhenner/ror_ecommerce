@@ -26,7 +26,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
 
   def update
     @property = Property.find(params[:id])
-    if @property.update_attributes(allowed_params)
+    if @property.update(allowed_params)
       redirect_to action: :index
     else
       render action: :edit

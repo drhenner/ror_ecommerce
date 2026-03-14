@@ -11,7 +11,7 @@ class Admin::Config::CountriesController < Admin::Config::BaseController
 
   def update
     @country = Country.find(params[:id])
-    if @country.update_attributes(allowed_params)
+    if @country.update(allowed_params)
       redirect_to admin_config_countries_url, :notice  => "Successfully activated country."
     else
       render :edit

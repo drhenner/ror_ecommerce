@@ -3,15 +3,26 @@
 @import "site/cart";
 @import "site/panel";
 @import "site/header";
-@import "compass/layout/sticky-footer";
-@import "compass/utilities/general/clearfix";
 
 // RoR eCommerce Customer-Facing Styles
 
-@include sticky-footer(54px, "#body_wrapper", "#prefooter_wrapper", "#footer_wrapper");
+html, body {
+  height: 100%;
+}
+#body_wrapper {
+  min-height: 100%;
+  margin-bottom: -54px;
+}
+#prefooter_wrapper {
+  height: 54px;
+}
 
 .clearfix {
-  @include clearfix();
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 .flash_messages {

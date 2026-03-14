@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :tax_rate do
     percentage      7.25
     state           { State.first }

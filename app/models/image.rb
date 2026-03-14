@@ -18,6 +18,7 @@
 #
 
 require 'paperclip'
+require 'open-uri'
 
 class Image < ApplicationRecord
   belongs_to :imageable, :polymorphic => true
@@ -43,7 +44,7 @@ class Image < ApplicationRecord
   def photo_from_link=(val)
     if !val.blank?
       self.photo_link = val
-      self.photo = open(val)
+      self.photo = URI.open(val)
     end
   end
 

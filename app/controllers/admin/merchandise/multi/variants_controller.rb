@@ -9,7 +9,7 @@ class Admin::Merchandise::Multi::VariantsController < Admin::BaseController
   def update
     @product = Product.friendly.find(params[:product_id])
 
-    if @product.update_attributes(allowed_params)
+    if @product.update(allowed_params)
       flash[:notice] = "Successfully updated variants"
       redirect_to admin_merchandise_product_url(@product)
     else

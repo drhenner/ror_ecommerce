@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Product, ".instance methods with images" do
   before(:each) do
-    @product = FactoryGirl.create(:product_with_image)
+    @product = FactoryBot.create(:product_with_image)
   end
 
   context "featured_image" do
@@ -38,72 +38,72 @@ describe Product, ".tax_rate" do
   # use case tax rate end date is nil and the start_date < now
   it 'should return the tax rate' do
     Settings.tax_per_state_id = true
-    tax_rate    = FactoryGirl.create(:tax_rate,
+    tax_rate    = FactoryBot.create(:tax_rate,
                           :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => nil)
-    product  = FactoryGirl.create(:product)
+    product  = FactoryBot.create(:product)
     expect(product.tax_rate(1, Time.zone.now)).to eq tax_rate
   end
   # use case tax rate end date is next month and the start_date < now
   it 'should return the tax rate' do
-    tax_rate    = FactoryGirl.create(:tax_rate,
+    tax_rate    = FactoryBot.create(:tax_rate,
                           :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => (Time.zone.now + 1.month))
-    product  = FactoryGirl.create(:product)
+    product  = FactoryBot.create(:product)
     expect(product.tax_rate(1, Time.zone.now)).to eq tax_rate
   end
   # use case tax rate end date is one month ago and the start_date < now but the time was 2 months ago
   it 'should return the tax rate' do
-    tax_rate    = FactoryGirl.create(:tax_rate,
+    tax_rate    = FactoryBot.create(:tax_rate,
                           :state_id => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date => (Time.zone.now - 1.month))
     Rails.cache.delete("TaxRate-active_at_ids-#{(Time.zone.now - 2.month).to_date}")
-    product  = FactoryGirl.create(:product)
+    product  = FactoryBot.create(:product)
     expect(product.tax_rate(1, (Time.zone.now - 2.month))).to eq tax_rate
   end
   # there are no tax rates
   it 'should not return the tax rate' do
-    product  = FactoryGirl.create(:product)
+    product  = FactoryBot.create(:product)
     expect(product.tax_rate(1, (Time.zone.now - 2.month))).to be_nil
   end
   # the tax rate starts next month
   it 'should not return any tax rates' do
-    tax_rate    = FactoryGirl.create(:tax_rate,
+    tax_rate    = FactoryBot.create(:tax_rate,
                           :state_id   => 1,
                           :start_date => (Time.zone.now - 1.month),
                           :end_date   => nil)
-    product  = FactoryGirl.create(:product)
+    product  = FactoryBot.create(:product)
     expect(product.tax_rate(1, (Time.zone.now - 2.month))).to be_nil
   end
   # the tax rate changes next month but is 5% now and next month will be 10%
   it 'should return any tax rates of 5%' do
     Settings.tax_per_state_id = true
-    tax_rate    = FactoryGirl.create(:tax_rate,
+    tax_rate    = FactoryBot.create(:tax_rate,
                           :percentage => 5.0,
                           :state_id   => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date   => (Time.zone.now + 1.month))
 
-    tax_rate2    = FactoryGirl.create(:tax_rate,
+    tax_rate2    = FactoryBot.create(:tax_rate,
                           :percentage => 10.0,
                           :state_id   => 1,
                           :start_date => (Time.zone.now + 1.month),
                           :end_date   => (Time.zone.now + 1.year))
-    product  = FactoryGirl.create(:product)
+    product  = FactoryBot.create(:product)
     expect(product.tax_rate(1)).to eq tax_rate
   end
 
   it 'should tax the countries tax rate' do
     Settings.tax_per_state_id = false
-    tax_rate    = FactoryGirl.create(:tax_rate,
+    tax_rate    = FactoryBot.create(:tax_rate,
                           :percentage => 5.0,
                           :country_id   => 1,
                           :start_date => (Time.zone.now - 1.year),
                           :end_date   => (Time.zone.now + 1.month))
-    product  = FactoryGirl.create(:product)
+    product  = FactoryBot.create(:product)
     expect(product.tax_rate(1)).to eq tax_rate
     Settings.tax_per_state_id = true
   end
@@ -113,10 +113,10 @@ end
 describe Product, ".instance methods" do
   context 'with three variants' do
     before(:each) do
-      product  = FactoryGirl.create(:product)
-      @previous_master = FactoryGirl.create(:variant, :product => product, :master => true, :price => 15.05, :deleted_at => (Time.zone.now - 1.day ))
-      FactoryGirl.create(:variant, :product => product, :master => true, :price => 15.01)
-      FactoryGirl.create(:variant, :product => product, :master => false, :price => 10.00)
+      product  = FactoryBot.create(:product)
+      @previous_master = FactoryBot.create(:variant, :product => product, :master => true, :price => 15.05, :deleted_at => (Time.zone.now - 1.day ))
+      FactoryBot.create(:variant, :product => product, :master => true, :price => 15.01)
+      FactoryBot.create(:variant, :product => product, :master => false, :price => 10.00)
       @product  = Product.find(product.id)
     end
 
@@ -164,32 +164,32 @@ describe Product, ".instance methods" do
 
   context 'without variants' do
     before(:each) do
-      @product  = FactoryGirl.create(:product)
+      @product  = FactoryBot.create(:product)
     end
 
     context '.available?' do
       context 'with a shipping rate but no inventory' do
         it 'should be false' do
-          inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 100)
-          @variant    = FactoryGirl.create(:variant, product: @product, inventory: inventory)
-          FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
+          inventory   = FactoryBot.create(:inventory, count_on_hand: 100, count_pending_to_customer: 100)
+          @variant    = FactoryBot.create(:variant, product: @product, inventory: inventory)
+          FactoryBot.create(:shipping_rate, shipping_category: @product.shipping_category)
           expect(@product.available?).to be false
         end
       end
 
       context 'with inventory but no shipping rate' do
         it 'should be false' do
-          inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
-          @variant    = FactoryGirl.create(:variant, product: @product, inventory: inventory)
+          inventory   = FactoryBot.create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
+          @variant    = FactoryBot.create(:variant, product: @product, inventory: inventory)
           expect(@product.available?).to be false
         end
       end
 
       context 'with a shipping rate & inventory' do
         it 'should be true' do
-          inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
-          @variant    = FactoryGirl.create(:variant, product: @product, inventory: inventory)
-          FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
+          inventory   = FactoryBot.create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
+          @variant    = FactoryBot.create(:variant, product: @product, inventory: inventory)
+          FactoryBot.create(:shipping_rate, shipping_category: @product.shipping_category)
           expect(@product.available?).to be true
         end
       end
@@ -201,9 +201,9 @@ describe Product, ".instance methods" do
       end
 
       it 'should be true with a shipping rate' do
-        inventory   = FactoryGirl.create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
-        @variant    = FactoryGirl.create(:variant, product: @product, inventory: inventory)
-        FactoryGirl.create(:shipping_rate, shipping_category: @product.shipping_category)
+        inventory   = FactoryBot.create(:inventory, count_on_hand: 100, count_pending_to_customer: 90)
+        @variant    = FactoryBot.create(:variant, product: @product, inventory: inventory)
+        FactoryBot.create(:shipping_rate, shipping_category: @product.shipping_category)
         expect(@product.has_shipping_method?).to be true
       end
     end
@@ -215,8 +215,8 @@ describe Product, "class methods" do
 
   context "#standard_search(args)" do
     it "should search products" do
-      product1  = FactoryGirl.create(:product, meta_keywords: 'no blah', name: 'blah')
-      product2  = FactoryGirl.create(:product, meta_keywords: 'tester blah')
+      product1  = FactoryBot.create(:product, meta_keywords: 'no blah', name: 'blah')
+      product2  = FactoryBot.create(:product, meta_keywords: 'tester blah')
       Product.any_instance.stubs(:ensure_available).returns(true)
       product1.activate!
       product2.activate!
@@ -229,8 +229,8 @@ describe Product, "class methods" do
 
   context '.activate!' do
     it "should activate the product " do
-      product = FactoryGirl.create(:product)
-      variant = FactoryGirl.create(:variant, product: product)
+      product = FactoryBot.create(:product)
+      variant = FactoryBot.create(:variant, product: product)
       variant.add_count_on_hand(1)
       product.activate!
       product.reload
@@ -238,15 +238,15 @@ describe Product, "class methods" do
     end
 
     it "should not activate a product without variants" do
-      product = FactoryGirl.create(:product)
+      product = FactoryBot.create(:product)
       product.activate!
       product.reload
       expect(product.active?).to be false
     end
 
     it "should not activate a product without inventory" do
-      product = FactoryGirl.create(:product)
-      variant = FactoryGirl.create(:variant, product: product)
+      product = FactoryBot.create(:product)
+      variant = FactoryBot.create(:variant, product: product)
       variant.inventory.count_on_hand = 0
       variant.inventory.count_pending_to_customer = 0
       variant.inventory.save!
@@ -263,8 +263,8 @@ describe Product, "class methods" do
   context "#admin_grid(params = {}, active_state = nil)" do
 
     it "should return Products " do
-      product1 = FactoryGirl.create(:product, deleted_at: (Time.zone.now - 2.second))
-      product2 = FactoryGirl.create(:product, deleted_at: (Time.zone.now - 2.second))
+      product1 = FactoryBot.create(:product, deleted_at: (Time.zone.now - 2.second))
+      product2 = FactoryBot.create(:product, deleted_at: (Time.zone.now - 2.second))
       Product.any_instance.stubs(:ensure_available).returns(true)
       product1.activate!
       product2.activate!
@@ -274,8 +274,8 @@ describe Product, "class methods" do
       expect(admin_grid.include?(product2)).to be true
     end
     it "should return deleted Products " do
-      product1 = FactoryGirl.create(:product, deleted_at: (Time.zone.now - 2.seconds))
-      product2 = FactoryGirl.create(:product, deleted_at: (Time.zone.now - 2.seconds))
+      product1 = FactoryBot.create(:product, deleted_at: (Time.zone.now - 2.seconds))
+      product2 = FactoryBot.create(:product, deleted_at: (Time.zone.now - 2.seconds))
       admin_grid = Product.admin_grid({}, false)
       expect(admin_grid.size).to eq 2
       expect(admin_grid.include?(product1)).to be true

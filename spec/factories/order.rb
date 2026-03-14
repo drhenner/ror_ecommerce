@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :order do
     sequence(:number)
     email           'email@e.com'

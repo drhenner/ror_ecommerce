@@ -27,7 +27,7 @@ class Admin::Merchandise::BrandsController < Admin::BaseController
 
   def update
     @brand = Brand.find(params[:id])
-    if @brand.update_attributes(allowed_params)
+    if @brand.update(allowed_params)
       flash[:notice] = "Successfully updated brand."
       redirect_to admin_merchandise_brand_url(@brand)
     else

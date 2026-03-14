@@ -222,9 +222,9 @@ class Cart < ApplicationRecord
 
   def update_shopping_cart(cart_item,customer, qty = 1)
     if customer
-      self.shopping_cart_items.find(cart_item.id).update_attributes(:quantity => (cart_item.quantity + qty), :user_id => customer.id)
+      self.shopping_cart_items.find(cart_item.id).update(:quantity => (cart_item.quantity + qty), :user_id => customer.id)
     else
-      self.shopping_cart_items.find(cart_item.id).update_attributes(:quantity => (cart_item.quantity + qty))
+      self.shopping_cart_items.find(cart_item.id).update(:quantity => (cart_item.quantity + qty))
     end
   end
 

@@ -54,7 +54,7 @@ class Admin::Config::ShippingRatesController < Admin::Config::BaseController
     @shipping_rate = ShippingRate.find(params[:id])
 
     respond_to do |format|
-      if @shipping_rate.update_attributes(allowed_params)
+      if @shipping_rate.update(allowed_params)
         format.html { redirect_to(admin_config_shipping_rate_url(@shipping_rate), notice: 'Shipping rate was successfully updated.') }
       else
         form_info

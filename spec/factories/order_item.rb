@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :order_item do
     price         3.00
     total         3.15

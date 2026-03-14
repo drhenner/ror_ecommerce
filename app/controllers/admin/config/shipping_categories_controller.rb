@@ -34,7 +34,7 @@ class Admin::Config::ShippingCategoriesController < Admin::Config::BaseControlle
   def update
     @shipping_category = ShippingCategory.find(params[:id])
 
-    if @shipping_category.update_attributes(allowed_params)
+    if @shipping_category.update(allowed_params)
       redirect_to(admin_config_shipping_rates_url(), notice: 'Shipping category was successfully updated.')
     else
       render :action => "edit"

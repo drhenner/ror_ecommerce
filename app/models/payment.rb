@@ -60,10 +60,10 @@ class Payment < ApplicationRecord
                            :customer_payment_profile_id => self.invoice.order.user.payment_profile.payment_cim_id}})
 
     if response.success? and response.authorization
-      update_attributes({:confirmation_id => response.authorization})
+      update({:confirmation_id => response.authorization})
       return true
     else
-      update_attributes({:error => !response.success?,
+      update({:error => !response.success?,
                          :error_code => response.params['messages']['message']['code'],
                          :error_message => response.params['messages']['message']['text']})
       return false

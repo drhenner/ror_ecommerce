@@ -11,20 +11,20 @@ describe Admin::Merchandise::Products::DescriptionsController do
   end
 
   it "edit action should render edit template" do
-    @product = FactoryGirl.create(:product, :deleted_at => (Time.zone.now - 1.day), :description_markup => nil, :description => nil)
+    @product = FactoryBot.create(:product, :deleted_at => (Time.zone.now - 1.day), :description_markup => nil, :description => nil)
     get :edit, params: { id: @product.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @product = FactoryGirl.create(:product)
+    @product = FactoryBot.create(:product)
     Product.any_instance.stubs(:valid?).returns(false)
     put :update, params: { :id => @product.id, :product => {:name => 'test', :description_markup => 'mark it up'} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @product = FactoryGirl.create(:product, :deleted_at => (Time.zone.now - 1.day), :description_markup => nil, :description => nil)
+    @product = FactoryBot.create(:product, :deleted_at => (Time.zone.now - 1.day), :description_markup => nil, :description => nil)
     Product.any_instance.stubs(:valid?).returns(true)
     put :update, params: { :id => @product.id, :product => {:description_markup => '**Hi Everybody**'} }
     @product.reload

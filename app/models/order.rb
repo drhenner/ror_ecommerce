@@ -125,7 +125,7 @@ class Order < ApplicationRecord
   # @return [none]
   def cancel_unshipped_order(invoice)
     transaction do
-      self.update_attributes(active: false)
+      self.update(active: false)
       invoice.cancel_authorized_payment
     end
   end

@@ -8,6 +8,6 @@ class InStockNotification < Notification
     stock_notifications = stock_notifications.select{ |sn| sn.user.try(:active?) }
     user_ids            = stock_notifications.map(&:user_id)
     Notifier.in_stock_message(user_ids, Array(variant_ids)).deliver_later
-    stock_notifications.each{ |sn| sn.update_attributes(sent_at: Time.zone.now) }
+    stock_notifications.each{ |sn| sn.update(sent_at: Time.zone.now) }
   end
 end

@@ -11,16 +11,16 @@ describe Admin::Shopping::Checkout::OrdersController do
     controller.stubs(:verify_admin).returns(@admin_user)
     controller.stubs(:current_user).returns(@admin_user)
 
-    @user  = FactoryGirl.create(:user)
-    @cart  = FactoryGirl.create(:cart, :user=> @admin_user, :customer => @user)
-    @cart_item = FactoryGirl.create(:cart_item, :cart => @cart)
+    @user  = FactoryBot.create(:user)
+    @cart  = FactoryBot.create(:cart, :user=> @admin_user, :customer => @user)
+    @cart_item = FactoryBot.create(:cart_item, :cart => @cart)
     @cart.stubs(:cart_items).returns([@cart_item])
     #@cart.stubs(:customer).returns(@user)
 
     controller.session[:admin_cart_id] = @cart.id
     @shipping_address = create(:address, :addressable_id => @user.id, :addressable_type => 'User')
 
-    @order = FactoryGirl.create(:order, :user => @user, :ship_address => @shipping_address)
+    @order = FactoryBot.create(:order, :user => @user, :ship_address => @shipping_address)
     controller.stubs(:session_admin_order).returns(@order)
     controller.session[:order_admin_id] = @order.id
 
@@ -36,7 +36,7 @@ describe Admin::Shopping::Checkout::OrdersController do
     expect(response).to redirect_to admin_shopping_products_url
   end
   it "show action should render show template" do
-    @order_item = FactoryGirl.create(:order_item, :order => @order)
+    @order_item = FactoryBot.create(:order_item, :order => @order)
     @order.stubs(:order_items).returns([])
     get :show
     expect(response).to render_template(:show)

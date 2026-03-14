@@ -27,7 +27,7 @@ class Shopping::CartItemsController < Shopping::BaseController
 
   # PUT /carts/1
   def update
-    if session_cart.update_attributes(allowed_params)
+    if session_cart.update(allowed_params)
       if params[:commit] && params[:commit] == "checkout"
         redirect_to( checkout_shopping_order_url('checkout'))
       else
@@ -44,7 +44,7 @@ class Shopping::CartItemsController < Shopping::BaseController
   #   method => PUT
   def move_to
     @cart_item = session_cart.cart_items.find(params[:id])
-    if @cart_item.update_attributes(:item_type_id => params[:item_type_id])
+    if @cart_item.update(:item_type_id => params[:item_type_id])
       redirect_to(shopping_cart_items_url() )
     else
       redirect_to(shopping_cart_items_url(), notice: I18n.t('item_failed_update') )

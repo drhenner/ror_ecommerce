@@ -39,7 +39,7 @@ class Admin::Merchandise::ProductTypesController < Admin::BaseController
   def update
     @product_type = ProductType.find(params[:id])
 
-    if @product_type.update_attributes(allowed_params)
+    if @product_type.update(allowed_params)
       redirect_to :action => :index
     else
       form_info

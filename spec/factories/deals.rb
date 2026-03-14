@@ -1,6 +1,6 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :deal do
       buy_quantity  3
       get_percentage 50

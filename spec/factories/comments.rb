@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :comment do
     note "My Note"
     commentable { |c| c.association(:return_authorization) }

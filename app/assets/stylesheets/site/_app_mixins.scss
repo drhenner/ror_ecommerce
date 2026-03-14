@@ -1,6 +1,3 @@
-@import "compass/css3";
-@import "compass/utilities";
-
 @font-face {
   font-family: "Economica";
   src: font_url("Economica-Regular-OTF.otf") format('opentype');
@@ -17,7 +14,7 @@
 }
 
 @mixin rounded($radius: 4px) {
-  @include border-radius($radius);
+  border-radius: $radius;
 }
 
 @mixin gradient($start_color: #E6E6E6, $end_color: #FFFFFF) {

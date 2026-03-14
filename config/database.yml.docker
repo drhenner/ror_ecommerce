@@ -1,0 +1,29 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: ror_ecommerce_development
+  pool: 5
+  username: root
+  password:
+  host: db
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: ror_ecommerce_test
+  pool: 5
+  username: root
+  password:
+  host: db
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: ror_ecommerce_production
+  pool: 5
+  username: root
+  password:
+  host: db

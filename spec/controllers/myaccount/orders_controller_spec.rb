@@ -6,18 +6,18 @@ describe Myaccount::OrdersController do
   before(:each) do
     activate_authlogic
 
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     login_as(@user)
   end
 
   it "index action should render index template" do
-    @order = FactoryGirl.create(:order, user: @user)
+    @order = FactoryBot.create(:order, user: @user)
     get :index
     expect(response).to render_template(:index)
   end
 
   it "show action should render show template" do
-    @order = FactoryGirl.build(:order, user: @user )
+    @order = FactoryBot.build(:order, user: @user )
     @order.state = 'complete'
     @order.save
     get :show, params: {id: @order.number}
@@ -35,7 +35,7 @@ describe Myaccount::OrdersController do
   end
 
   it "show action should go to login page" do
-    @order = FactoryGirl.create(:order)
+    @order = FactoryBot.create(:order)
     @order.state = 'complete'
     @order.save
     get :show, params: {id: @order.id}

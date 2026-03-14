@@ -15,7 +15,7 @@ describe Admin::Config::AccountsController, type: :controller do
   end
 
   #it "show action should render show template" do
-  #  @account = FactoryGirl.create(:account)
+  #  @account = FactoryBot.create(:account)
   #  get :show, :id => @account.id
   #  expect(response).to render_template(:show)
   #end
@@ -32,34 +32,34 @@ describe Admin::Config::AccountsController, type: :controller do
   end
 
   it "create action should redirect when model is valid" do
-    @account = FactoryGirl.build(:account)
+    @account = FactoryBot.build(:account)
     Account.any_instance.stubs(:valid?).returns(true)
     post :create, params: { account: {:name => 'Tests', :account_type => 'Free2You', :monthly_charge => 10, :active => true} }
     expect(response).to redirect_to(admin_config_accounts_url())
   end
 
   it "edit action should render edit template" do
-    @account = FactoryGirl.create(:account)
+    @account = FactoryBot.create(:account)
     get :edit, params: { id: @account.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @account = FactoryGirl.create(:account)
+    @account = FactoryBot.create(:account)
     Account.any_instance.stubs(:valid?).returns(false)
     put :update, params: { id: @account.id, account: {:name => 'Tests', :account_type => 'Free2You', :monthly_charge => 10, :active => true} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @account = FactoryGirl.create(:account)
+    @account = FactoryBot.create(:account)
     Account.any_instance.stubs(:valid?).returns(true)
     put :update, params: { id: @account.id, account: {:name => 'Tests', :account_type => 'Free2You', :monthly_charge => 10, :active => true} }
     expect(response).to redirect_to(admin_config_accounts_url())
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    @account = FactoryGirl.create(:account)
+    @account = FactoryBot.create(:account)
     delete :destroy, params: { id: @account.id }
     expect(response).to redirect_to(admin_config_accounts_url)
     expect(Account.exists?(@account.id)).to be false

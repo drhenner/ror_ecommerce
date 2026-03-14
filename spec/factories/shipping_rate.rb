@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :shipping_rate do
     rate                  21.08
     shipping_method       { |c| c.association(:shipping_method) }

@@ -52,7 +52,7 @@ class Admin::Rma::ReturnAuthorizationsController < Admin::Rma::BaseController
     load_info
     @return_authorization = ReturnAuthorization.find(params[:id])
 
-      if @return_authorization.update_attributes(allowed_params)
+      if @return_authorization.update(allowed_params)
         redirect_to(admin_rma_order_return_authorization_url(@order, @return_authorization), :notice => 'Return authorization was successfully updated.')
       else
         form_info

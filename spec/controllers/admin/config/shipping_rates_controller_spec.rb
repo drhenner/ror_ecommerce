@@ -16,14 +16,14 @@ describe Admin::Config::ShippingRatesController, type: :controller do
   end
 
   it "index action should render index template" do
-    shipping_method = FactoryGirl.create(:shipping_method)
+    shipping_method = FactoryBot.create(:shipping_method)
     ShippingMethod.stubs(:all).returns([shipping_method])
     get :index
     expect(response).to render_template(:index)
   end
 
   it "show action should render show template" do
-    @shipping_rate = FactoryGirl.create(:shipping_rate)
+    @shipping_rate = FactoryBot.create(:shipping_rate)
     get :show, params: { id: @shipping_rate.id }
     expect(response).to render_template(:show)
   end
@@ -35,7 +35,7 @@ describe Admin::Config::ShippingRatesController, type: :controller do
   end
 
   it "new action should render new template" do
-    shipping_category = FactoryGirl.create(:shipping_category)
+    shipping_category = FactoryBot.create(:shipping_category)
     ShippingCategory.stubs(:all).returns([shipping_category])
     ShippingMethod.stubs(:all).returns([])
     get :new
@@ -43,9 +43,9 @@ describe Admin::Config::ShippingRatesController, type: :controller do
   end
 
   it "new action should render new template" do
-    shipping_category = FactoryGirl.create(:shipping_category)
+    shipping_category = FactoryBot.create(:shipping_category)
     ShippingCategory.stubs(:all).returns([shipping_category])
-    shipping_method = FactoryGirl.create(:shipping_method)
+    shipping_method = FactoryBot.create(:shipping_method)
     ShippingMethod.stubs(:all).returns([shipping_method])
     get :new
     expect(response).to render_template(:new)
@@ -64,20 +64,20 @@ describe Admin::Config::ShippingRatesController, type: :controller do
   end
 
   it "edit action should render edit template" do
-    @shipping_rate = FactoryGirl.create(:shipping_rate)
+    @shipping_rate = FactoryBot.create(:shipping_rate)
     get :edit, params: { id: @shipping_rate.id }
     expect(response).to render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    @shipping_rate = FactoryGirl.create(:shipping_rate)
+    @shipping_rate = FactoryBot.create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(false)
     put :update, params: { :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1} }
     expect(response).to render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    @shipping_rate = FactoryGirl.create(:shipping_rate)
+    @shipping_rate = FactoryBot.create(:shipping_rate)
     ShippingRate.any_instance.stubs(:valid?).returns(true)
     put :update, params: { :id => @shipping_rate.id, :shipping_rate =>  {:shipping_category_id => 1, :shipping_method_id => 1, :shipping_rate_type_id => 1}}
     expect(response).to redirect_to(admin_config_shipping_rate_url(assigns[:shipping_rate]))

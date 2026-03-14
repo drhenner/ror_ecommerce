@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :purchase_order_variant do
     purchase_order  { |c| c.association(:purchase_order) }
     variant         { |c| c.association(:variant) }

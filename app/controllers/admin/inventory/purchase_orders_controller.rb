@@ -43,7 +43,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   # PUT /purchase_orders/1
   def update
     @purchase_order = PurchaseOrder.find(params[:id])
-    if @purchase_order.update_attributes(allowed_params)
+    if @purchase_order.update(allowed_params)
       redirect_to(:action => :index, :notice => 'Purchase order was successfully updated.')
     else
       form_info

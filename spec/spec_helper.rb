@@ -7,7 +7,7 @@ require 'rspec/rails'
 require "authlogic/test_case"
 require "email_spec"
 require "mocha/setup"
-require "factory_girl_rails"
+require "factory_bot_rails"
 #require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -36,7 +36,7 @@ RSpec.configure do |config|
   config.include Rails::Controller::Testing::TemplateAssertions
   config.include Rails::Controller::Testing::Integration
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
   config.include Capybara::DSL

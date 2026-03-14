@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :payment_profile do
     user            { |c| c.association(:user) }
     address         { |c| c.association(:address) }

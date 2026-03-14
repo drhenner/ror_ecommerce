@@ -5,12 +5,12 @@ describe Shopping::BillingAddressesController do
 
   before(:each) do
     activate_authlogic
-    @cur_user = FactoryGirl.create(:user)
+    @cur_user = FactoryBot.create(:user)
     login_as(@cur_user)
 
-    @variant  = FactoryGirl.create(:variant)
+    @variant  = FactoryBot.create(:variant)
     create_cart(@cur_user, @cur_user, [@variant])
-    @billing_address = FactoryGirl.create(:address, :addressable_id => @cur_user.id, :addressable_type => 'User')
+    @billing_address = FactoryBot.create(:address, :addressable_id => @cur_user.id, :addressable_type => 'User')
   end
 
   it "index action should render index template" do

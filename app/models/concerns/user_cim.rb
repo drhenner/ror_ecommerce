@@ -24,7 +24,7 @@ module UserCim
   #  response = @gateway.create_customer_profile(@user)
   #
   #  if response.success? and response.authorization
-  #    update_attributes({:customer_cim_id => response.authorization})
+  #    update({:customer_cim_id => response.authorization})
   #    return true
   #  end
   #  return false
@@ -77,7 +77,7 @@ module UserCim
     response = @gateway.create_customer_profile(@user)
 
     if response.success? and response.authorization
-      update_attributes({:customer_cim_id => response.authorization})
+      update({:customer_cim_id => response.authorization})
       return true
     end
     return false

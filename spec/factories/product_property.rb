@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :product_property do
     product         { |c| c.association(:product) }
     property        { |c| c.association(:property) }

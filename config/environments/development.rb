@@ -1,5 +1,4 @@
 Hadean::Application.configure do
-  # Rails 4
   config.eager_load = false
 
   # Settings specified here will take precedence over those in config/environment.rb
@@ -16,9 +15,6 @@ Hadean::Application.configure do
   # since you don't have to restart the webserver when you make code changes.
   config.cache_classes = false
 
-  # Do not compress assets
-  config.assets.compress = false
-
   # Expands the lines which load the assets
   config.assets.debug = true
 
@@ -34,8 +30,6 @@ Hadean::Application.configure do
   config.active_support.deprecation = :log
 
   # Only use best-standards-support built into browsers
-  config.action_dispatch.best_standards_support = :builtin
-
   config.cache_store = :memory_store
 
   #config.cache_store = :dalli_store

@@ -18,7 +18,7 @@ class Myaccount::ReferralsController < Myaccount::BaseController
 
   def update
     @referral = current_user.referrals.find(params[:id])
-    if @referral.update_attributes(allowed_params)
+    if @referral.update(allowed_params)
       redirect_to myaccount_referrals_url, :notice  => "Successfully updated referral."
     else
       @referrals = current_user.referrals.order(sort_column + " " + sort_direction)

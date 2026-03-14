@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :cart_item do |ci|
     item_type_id     ItemType::SHOPPING_CART_ID#{ ItemType.first }

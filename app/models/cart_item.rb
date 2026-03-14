@@ -53,7 +53,7 @@ class CartItem < ApplicationRecord
   # @param [none]
   # @return [Boolean]
   def inactivate!
-    self.update_attributes(active: false)
+    self.update(active: false)
   end
 
   # Call this method to determine if an item is in the shopping cart and active
