@@ -245,6 +245,23 @@ The application was upgraded from Rails 8.0 to Rails 8.1.2. Key changes:
 - **Open redirects**: `raise_on_open_redirects` was deprecated in favor of `action_on_open_redirect`.
 - **Removed defaults files**: `new_framework_defaults_7_0.rb` and `new_framework_defaults_8_0.rb` have been removed; their overrides are consolidated in `config/application.rb`.
 
+## Wireframes
+
+The `wireframes/` directory contains standalone HTML mockups for anyone looking to give the app a fresh look and feel. Open them directly in a browser for a quick preview.
+
+**Admin layouts:**
+
+- [Option A — Sidebar Dashboard](wireframes/option_a_sidebar_dashboard.html) — collapsible left sidebar with icon+label navigation
+- [Option B — Top-Nav Command Palette](wireframes/option_b_topnav_command_palette.html) — horizontal top nav with a spotlight-style search
+- [Option C — Two-Tier Hybrid](wireframes/option_c_two_tier_hybrid.html) — slim icon sidebar + horizontal sub-nav tabs
+
+**Storefront layouts:**
+
+- [Storefront A — Minimal Editorial](wireframes/storefront_a_minimal_editorial.html) — clean, whitespace-driven product grid
+- [Storefront B — Magazine Storytelling](wireframes/storefront_b_magazine_storytelling.html) — hero-image-forward, editorial-style layout
+
+These are starting points for inspiration — pick one, remix it, or build your own.
+
 ## TODO:
 
 * more documentation

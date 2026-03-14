@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option D: Mobile-First Card-Based Storefront</title>
+<style>
+  :root {
+    --max-width: 1280px;
+    --nav-height: 60px;
+    --bottom-bar-height: 56px;
+    --color-bg: #f9fafb;
+    --color-surface: #ffffff;
+    --color-border: #e5e7eb;
+    --color-border-light: #f3f4f6;
+    --color-text: #111827;
+    --color-text-muted: #6b7280;
+    --color-text-light: #9ca3af;
+    --color-primary: #4f46e5;
+    --color-primary-light: #eef2ff;
+    --color-primary-hover: #4338ca;
+    --color-cta: #4f46e5;
+    --color-cta-text: #ffffff;
+    --color-success: #059669;
+    --color-success-bg: #ecfdf5;
+    --color-warning: #d97706;
+    --color-warning-bg: #fffbeb;
+    --color-sale: #dc2626;
+    --color-sale-bg: #fef2f2;
+    --color-pink: #ec4899;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --radius-full: 9999px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,.07);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,.1);
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --transition: .2s ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ========== DESKTOP NAV ========== */
+  .desktop-nav {
+    height: var(--nav-height); background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex; align-items: center;
+    padding: 0 24px; gap: 16px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: var(--shadow);
+  }
+  .nav-logo {
+    font-size: 20px; font-weight: 800; color: var(--color-primary);
+    letter-spacing: -.5px; flex-shrink: 0;
+  }
+  .nav-search {
+    flex: 1; max-width: 480px; position: relative;
+    margin: 0 16px;
+  }
+  .nav-search input {
+    width: 100%; padding: 10px 16px 10px 40px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: 14px; background: var(--color-bg);
+    outline: none; transition: all var(--transition);
+  }
+  .nav-search input:focus { border-color: var(--color-primary); background: var(--color-surface); box-shadow: 0 0 0 3px rgba(79,70,229,.1); }
+  .nav-search .icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    font-size: 15px; color: var(--color-text-light);
+  }
+  .nav-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: var(--radius-full);
+    border: none; background: none; cursor: pointer;
+    font-size: 13px; font-weight: 500; color: var(--color-text-muted);
+    transition: all var(--transition); font-family: var(--font-sans);
+  }
+  .nav-btn:hover { background: var(--color-bg); color: var(--color-text); }
+  .nav-btn .icon { font-size: 18px; }
+  .nav-btn-primary {
+    background: var(--color-primary); color: #fff;
+  }
+  .nav-btn-primary:hover { background: var(--color-primary-hover); color: #fff; }
+  .nav-cart-badge {
+    background: var(--color-sale); color: #fff; font-size: 10px;
+    font-weight: 700; min-width: 18px; height: 18px;
+    border-radius: 9px; display: inline-flex;
+    align-items: center; justify-content: center; padding: 0 4px;
+  }
+
+  /* ========== CATEGORY PILLS ========== */
+  .category-pills-wrapper {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 12px 0;
+  }
+  .category-pills {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 0 24px;
+    display: flex; gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .category-pills::-webkit-scrollbar { display: none; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: 13px; font-weight: 500;
+    white-space: nowrap; cursor: pointer;
+    transition: all var(--transition);
+    color: var(--color-text-muted);
+  }
+  .pill:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .pill.active {
+    background: var(--color-primary); color: #fff;
+    border-color: var(--color-primary);
+  }
+  .pill .pill-icon { font-size: 16px; }
+  .pill .pill-count {
+    background: rgba(0,0,0,.08); padding: 1px 7px;
+    border-radius: 10px; font-size: 11px; font-weight: 600;
+  }
+  .pill.active .pill-count { background: rgba(255,255,255,.25); }
+
+  /* ========== HERO CAROUSEL ========== */
+  .hero-carousel {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 20px 24px;
+  }
+  .hero-slide {
+    border-radius: var(--radius);
+    overflow: hidden; position: relative;
+    background: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #4f46e5 100%);
+    padding: 48px;
+    display: flex; align-items: center; min-height: 340px;
+  }
+  .hero-slide-content { max-width: 420px; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(255,255,255,.2); color: #fff;
+    padding: 5px 12px; border-radius: var(--radius-full);
+    font-size: 12px; font-weight: 600; margin-bottom: 16px;
+    backdrop-filter: blur(4px);
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; }
+  .hero-slide h1 {
+    font-size: 36px; font-weight: 800; color: #fff;
+    line-height: 1.15; margin-bottom: 12px;
+  }
+  .hero-slide p {
+    font-size: 16px; color: rgba(255,255,255,.8);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+  .hero-slide-actions { display: flex; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 12px 24px; border-radius: var(--radius-full);
+    font-size: 14px; font-weight: 600; border: none;
+    cursor: pointer; transition: all var(--transition);
+    text-decoration: none; font-family: var(--font-sans);
+  }
+  .btn-white { background: #fff; color: var(--color-primary); }
+  .btn-white:hover { background: #f5f5ff; }
+  .btn-ghost-white { background: rgba(255,255,255,.15); color: #fff; backdrop-filter: blur(4px); }
+  .btn-ghost-white:hover { background: rgba(255,255,255,.25); }
+  .btn-primary { background: var(--color-cta); color: var(--color-cta-text); }
+  .btn-primary:hover { background: var(--color-primary-hover); }
+  .btn-outline { background: var(--color-surface); border: 1.5px solid var(--color-border); color: var(--color-text); }
+  .btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  .hero-image-area {
+    position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+    font-size: 12px; color: rgba(255,255,255,.4);
+    background: rgba(255,255,255,.08); padding: 10px 18px;
+    border-radius: var(--radius-sm);
+  }
+  .hero-dots {
+    display: flex; justify-content: center; gap: 8px;
+    margin-top: 16px;
+  }
+  .hero-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--color-border); cursor: pointer;
+    transition: all var(--transition);
+  }
+  .hero-dot.active { background: var(--color-primary); width: 24px; border-radius: 4px; }
+
+  /* ========== SECTIONS ========== */
+  .section {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .section-title { font-size: 22px; font-weight: 800; }
+  .section-subtitle { font-size: 14px; color: var(--color-text-muted); margin-top: 2px; }
+  .section-see-all {
+    font-size: 14px; font-weight: 600; color: var(--color-primary);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* ========== PRODUCT CARD (card-based) ========== */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .product-card {
+    background: var(--color-surface); border-radius: var(--radius);
+    overflow: hidden; cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all var(--transition);
+    border: 1px solid var(--color-border-light);
+  }
+  .product-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .product-card-image {
+    aspect-ratio: 1/1; background: var(--color-bg);
+    position: relative; overflow: hidden;
+  }
+  .product-card-image .placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--color-text-light);
+  }
+  .product-card-image .wishlist-btn {
+    position: absolute; top: 10px; right: 10px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--color-surface); border: none;
+    box-shadow: var(--shadow); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: var(--color-text-light);
+    transition: all var(--transition);
+    opacity: 0;
+  }
+  .product-card:hover .wishlist-btn { opacity: 1; }
+  .wishlist-btn:hover { color: var(--color-pink); transform: scale(1.1); }
+  .product-card-image .card-badge {
+    position: absolute; top: 10px; left: 10px;
+    padding: 4px 10px; border-radius: var(--radius-full);
+    font-size: 11px; font-weight: 700;
+  }
+  .card-badge-new { background: var(--color-primary); color: #fff; }
+  .card-badge-sale { background: var(--color-sale); color: #fff; }
+  .card-badge-low { background: var(--color-warning-bg); color: var(--color-warning); }
+  .card-badge-hot { background: var(--color-sale-bg); color: var(--color-sale); }
+  .product-card-body { padding: 14px; }
+  .product-card-brand {
+    font-size: 11px; font-weight: 600; color: var(--color-text-light);
+    text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px;
+  }
+  .product-card-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; line-height: 1.3; }
+  .product-card-price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+  .product-card-price { font-size: 17px; font-weight: 800; }
+  .product-card-price-original {
+    font-size: 13px; color: var(--color-text-light);
+    text-decoration: line-through;
+  }
+  .product-card-price-discount { font-size: 12px; color: var(--color-sale); font-weight: 700; }
+  .product-card-rating {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px;
+  }
+  .product-card-stars { color: #fbbf24; }
+  .product-card-rating-count { color: var(--color-text-light); }
+  .product-card-tags {
+    display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap;
+  }
+  .card-tag {
+    padding: 3px 8px; border-radius: var(--radius-full);
+    font-size: 10px; font-weight: 600;
+  }
+  .card-tag-free-ship { background: var(--color-success-bg); color: var(--color-success); }
+  .card-tag-colors { background: var(--color-primary-light); color: var(--color-primary); }
+
+  /* ========== QUICK-SHOP CARDS (horizontal scroll) ========== */
+  .quick-shop-scroll {
+    display: flex; gap: 12px; overflow-x: auto;
+    padding-bottom: 8px; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .quick-shop-scroll::-webkit-scrollbar { display: none; }
+  .quick-shop-card {
+    flex-shrink: 0; width: 160px;
+    scroll-snap-align: start;
+    background: var(--color-surface); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+    border: 1px solid var(--color-border-light);
+    cursor: pointer; transition: all var(--transition);
+  }
+  .quick-shop-card:hover { box-shadow: var(--shadow-md); }
+  .quick-shop-image {
+    aspect-ratio: 1/1;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--color-text-light);
+  }
+  .quick-shop-info { padding: 10px; }
+  .quick-shop-name { font-size: 12px; font-weight: 600; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .quick-shop-price { font-size: 14px; font-weight: 800; }
+
+  /* ========== COLLECTION CARDS ========== */
+  .collection-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .collection-card {
+    border-radius: var(--radius); overflow: hidden;
+    position: relative; cursor: pointer;
+    min-height: 220px;
+    display: flex; align-items: flex-end;
+  }
+  .collection-card-bg {
+    position: absolute; inset: 0;
+    transition: transform .4s ease;
+  }
+  .collection-card:hover .collection-card-bg { transform: scale(1.03); }
+  .collection-1 .collection-card-bg { background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%); }
+  .collection-2 .collection-card-bg { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); }
+  .collection-3 .collection-card-bg { background: linear-gradient(135deg, #34d399 0%, #059669 100%); }
+  .collection-4 .collection-card-bg { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); }
+  .collection-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 60%);
+  }
+  .collection-card-content {
+    position: relative; z-index: 1; padding: 24px;
+    width: 100%;
+  }
+  .collection-card-label {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,.7); font-weight: 600; margin-bottom: 6px;
+  }
+  .collection-card-title { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .collection-card-count { font-size: 13px; color: rgba(255,255,255,.7); }
+
+  /* ========== FEATURES STRIP ========== */
+  .features-strip {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 0 24px 40px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .feature-card {
+    background: var(--color-surface); border-radius: var(--radius);
+    padding: 20px; text-align: center;
+    box-shadow: var(--shadow); border: 1px solid var(--color-border-light);
+  }
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: var(--radius-sm);
+    background: var(--color-primary-light); color: var(--color-primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin: 0 auto 12px;
+  }
+  .feature-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .feature-desc { font-size: 12px; color: var(--color-text-muted); line-height: 1.4; }
+
+  /* ========== NEWSLETTER ========== */
+  .newsletter {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 0 24px 48px;
+  }
+  .newsletter-card {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    border-radius: var(--radius); padding: 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 40px;
+  }
+  .newsletter-text h3 { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .newsletter-text p { font-size: 15px; color: rgba(255,255,255,.7); }
+  .newsletter-form { display: flex; gap: 8px; }
+  .newsletter-form input {
+    padding: 12px 18px; border-radius: var(--radius-full);
+    border: 2px solid rgba(255,255,255,.2); background: rgba(255,255,255,.1);
+    color: #fff; font-size: 14px; width: 280px;
+    outline: none; backdrop-filter: blur(4px);
+  }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,.5); }
+  .newsletter-form input:focus { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.15); }
+  .newsletter-form button {
+    padding: 12px 24px; border-radius: var(--radius-full);
+    background: #fff; color: var(--color-primary);
+    border: none; font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all var(--transition);
+    font-family: var(--font-sans);
+  }
+  .newsletter-form button:hover { background: #eef2ff; }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: 48px 24px 32px;
+  }
+  .footer-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .footer-brand .nav-logo { margin-bottom: 12px; }
+  .footer-brand p { font-size: 13px; color: var(--color-text-muted); line-height: 1.6; max-width: 280px; }
+  .footer-social { display: flex; gap: 8px; margin-top: 16px; }
+  .footer-social a {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--color-bg); border: 1px solid var(--color-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--color-text-muted);
+    transition: all var(--transition);
+  }
+  .footer-social a:hover { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+  .footer-col h4 {
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 16px; color: var(--color-text);
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { font-size: 13px; color: var(--color-text-muted); transition: color var(--transition); }
+  .footer-col a:hover { color: var(--color-primary); }
+  .footer-bottom-bar {
+    max-width: var(--max-width); margin: 32px auto 0;
+    padding-top: 20px; border-top: 1px solid var(--color-border);
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--color-text-light);
+  }
+
+  /* ========== MOBILE BOTTOM BAR ========== */
+  .mobile-bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: var(--bottom-bar-height);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    display: none; /* shown via media query */
+    align-items: center; justify-content: space-around;
+    z-index: 200; box-shadow: 0 -2px 8px rgba(0,0,0,.06);
+    padding: 0 8px;
+  }
+  .bottom-tab {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 2px; font-size: 10px; font-weight: 500;
+    color: var(--color-text-muted); cursor: pointer;
+    padding: 4px 8px; border-radius: 8px;
+    transition: all var(--transition); position: relative;
+    border: none; background: none; font-family: var(--font-sans);
+  }
+  .bottom-tab.active { color: var(--color-primary); }
+  .bottom-tab .tab-icon { font-size: 20px; }
+  .bottom-tab .tab-badge {
+    position: absolute; top: 0; right: 2px;
+    background: var(--color-sale); color: #fff;
+    font-size: 9px; font-weight: 700;
+    min-width: 16px; height: 16px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ========== STICKY ADD-TO-CART (product detail preview) ========== */
+  .sticky-atc-preview {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    background: var(--color-surface); border-radius: var(--radius-full);
+    padding: 10px 10px 10px 20px;
+    box-shadow: var(--shadow-lg); border: 1px solid var(--color-border);
+    display: none; /* would show on product detail page */
+    align-items: center; gap: 12px; z-index: 150;
+    font-size: 14px; font-weight: 600;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .collection-grid { grid-template-columns: 1fr; }
+    .features-strip { grid-template-columns: repeat(2, 1fr); }
+    .hero-slide { padding: 28px; min-height: 260px; }
+    .hero-slide h1 { font-size: 24px; }
+    .hero-slide p { font-size: 14px; }
+    .hero-image-area { display: none; }
+    .newsletter-card { flex-direction: column; padding: 32px; text-align: center; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input { width: 100%; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .desktop-nav { padding: 0 16px; }
+    .mobile-bottom-bar { display: flex; }
+    body { padding-bottom: var(--bottom-bar-height); }
+    .section { padding: 24px 16px; }
+    .hero-carousel { padding: 12px 16px; }
+  }
+
+  /* ========== ANNOTATIONS ========== */
+  .annotation {
+    max-width: var(--max-width); margin: 0 auto; padding: 40px 24px;
+  }
+  .annotation-box {
+    padding: 24px; background: #fffbeb; border: 1px solid #fde68a;
+    border-radius: var(--radius-sm); font-size: 13px; line-height: 1.7;
+  }
+  .annotation-box strong { color: #92400e; }
+  .annotation-box code { background: #fef3c7; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+  .annotation-box ul { margin-top: 8px; padding-left: 20px; list-style: disc; }
+  .annotation-box li { margin-bottom: 6px; }
+  .annotation-box h4 { margin-top: 16px; margin-bottom: 6px; color: #78350f; font-size: 14px; }
+
+  .wireframe-label {
+    text-align: center; padding: 16px; background: var(--color-text);
+    color: #fff; font-size: 13px; letter-spacing: .5px;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+  }
+  .wireframe-label strong { color: #818cf8; }
+</style>
+</head>
+<body>
+
+<!-- ===== DESKTOP NAV ===== -->
+<nav class="desktop-nav">
+  <span class="nav-logo">RoR Commerce</span>
+  <div class="nav-search">
+    <span class="icon">&#8981;</span>
+    <input type="text" placeholder="Search for anything...">
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn"><span class="icon">&#9825;</span> Wishlist</button>
+    <button class="nav-btn"><span class="icon">&#9862;</span> Account</button>
+    <button class="nav-btn">
+      <span class="icon">&#128722;</span>
+      <span class="nav-cart-badge">3</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== CATEGORY PILLS ===== -->
+<div class="category-pills-wrapper">
+  <div class="category-pills">
+    <span class="pill active"><span class="pill-icon">&#9733;</span> All</span>
+    <span class="pill"><span class="pill-icon">&#10024;</span> New Arrivals <span class="pill-count">42</span></span>
+    <span class="pill"><span class="pill-icon">&#128293;</span> Trending</span>
+    <span class="pill">Women</span>
+    <span class="pill">Men</span>
+    <span class="pill">Accessories</span>
+    <span class="pill">Shoes</span>
+    <span class="pill">Home</span>
+    <span class="pill"><span class="pill-icon">&#127991;</span> Sale <span class="pill-count">18</span></span>
+  </div>
+</div>
+
+<!-- ===== HERO CAROUSEL ===== -->
+<div class="hero-carousel">
+  <div class="hero-slide">
+    <div class="hero-image-area">Product/lifestyle image &mdash; 600&times;340</div>
+    <div class="hero-slide-content">
+      <div class="hero-badge"><span class="dot"></span> Spring Collection</div>
+      <h1>Fresh starts, fresh style</h1>
+      <p>Discover our Spring 2026 collection. Sustainable fabrics, modern silhouettes, made to move with you.</p>
+      <div class="hero-slide-actions">
+        <a href="#" class="btn btn-white">Shop Collection</a>
+        <a href="#" class="btn btn-ghost-white">Watch Lookbook</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="hero-dot active"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+  </div>
+</div>
+
+<!-- ===== COLLECTIONS ===== -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Shop by Collection</div>
+      <div class="section-subtitle">Explore curated picks for every mood</div>
+    </div>
+    <a href="#" class="section-see-all">See all &rarr;</a>
+  </div>
+  <div class="collection-grid">
+    <div class="collection-card collection-1">
+      <div class="collection-card-bg"></div>
+      <div class="collection-card-overlay"></div>
+      <div class="collection-card-content">
+        <div class="collection-card-label">Curated</div>
+        <div class="collection-card-title">Spring Essentials</div>
+        <div class="collection-card-count">24 products</div>
+      </div>
+    </div>
+    <div class="collection-card collection-2">
+      <div class="collection-card-bg"></div>
+      <div class="collection-card-overlay"></div>
+      <div class="collection-card-content">
+        <div class="collection-card-label">New Season</div>
+        <div class="collection-card-title">Weekend Getaway</div>
+        <div class="collection-card-count">18 products</div>
+      </div>
+    </div>
+    <div class="collection-card collection-3">
+      <div class="collection-card-bg"></div>
+      <div class="collection-card-overlay"></div>
+      <div class="collection-card-content">
+        <div class="collection-card-label">Sustainable</div>
+        <div class="collection-card-title">Eco-Friendly Picks</div>
+        <div class="collection-card-count">31 products</div>
+      </div>
+    </div>
+    <div class="collection-card collection-4">
+      <div class="collection-card-bg"></div>
+      <div class="collection-card-overlay"></div>
+      <div class="collection-card-content">
+        <div class="collection-card-label">Best Sellers</div>
+        <div class="collection-card-title">Fan Favorites</div>
+        <div class="collection-card-count">45 products</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TRENDING PRODUCTS ===== -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Trending Now</div>
+      <div class="section-subtitle">What everyone's adding to cart</div>
+    </div>
+    <a href="#" class="section-see-all">See all &rarr;</a>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">300&times;300</div>
+        <button class="wishlist-btn">&#9825;</button>
+        <span class="card-badge card-badge-hot">&#128293; Hot</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-brand">Nordic Essentials</div>
+        <div class="product-card-name">Merino Wool Crew Sweater</div>
+        <div class="product-card-price-row">
+          <span class="product-card-price">$95.00</span>
+        </div>
+        <div class="product-card-rating">
+          <span class="product-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="product-card-rating-count">(892)</span>
+        </div>
+        <div class="product-card-tags">
+          <span class="card-tag card-tag-free-ship">Free Shipping</span>
+          <span class="card-tag card-tag-colors">6 colors</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">300&times;300</div>
+        <button class="wishlist-btn">&#9825;</button>
+        <span class="card-badge card-badge-new">New</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-brand">Studio Linen</div>
+        <div class="product-card-name">Relaxed Wide-Leg Trousers</div>
+        <div class="product-card-price-row">
+          <span class="product-card-price">$68.00</span>
+          <span class="product-card-price-original">$72.00</span>
+        </div>
+        <div class="product-card-rating">
+          <span class="product-card-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="product-card-rating-count">(456)</span>
+        </div>
+        <div class="product-card-tags">
+          <span class="card-tag card-tag-free-ship">Free Shipping</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">300&times;300</div>
+        <button class="wishlist-btn">&#9825;</button>
+        <span class="card-badge card-badge-sale">-25%</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-brand">Artisan Collective</div>
+        <div class="product-card-name">Hand-Stitched Leather Tote</div>
+        <div class="product-card-price-row">
+          <span class="product-card-price">$255.00</span>
+          <span class="product-card-price-original">$340.00</span>
+          <span class="product-card-price-discount">-25%</span>
+        </div>
+        <div class="product-card-rating">
+          <span class="product-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="product-card-rating-count">(1,247)</span>
+        </div>
+        <div class="product-card-tags">
+          <span class="card-tag card-tag-free-ship">Free Shipping</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">300&times;300</div>
+        <button class="wishlist-btn">&#9825;</button>
+        <span class="card-badge card-badge-low">Low Stock</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-brand">Terra &amp; Co</div>
+        <div class="product-card-name">Organic Cotton Hoodie</div>
+        <div class="product-card-price-row">
+          <span class="product-card-price">$78.00</span>
+        </div>
+        <div class="product-card-rating">
+          <span class="product-card-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="product-card-rating-count">(318)</span>
+        </div>
+        <div class="product-card-tags">
+          <span class="card-tag card-tag-free-ship">Free Shipping</span>
+          <span class="card-tag card-tag-colors">4 colors</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RECENTLY VIEWED (horizontal scroll) ===== -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Quick Shop</div>
+      <div class="section-subtitle">Popular picks, one tap away</div>
+    </div>
+  </div>
+  <div class="quick-shop-scroll">
+    <div class="quick-shop-card">
+      <div class="quick-shop-image">160&times;160</div>
+      <div class="quick-shop-info">
+        <div class="quick-shop-name">Cashmere Scarf</div>
+        <div class="quick-shop-price">$120</div>
+      </div>
+    </div>
+    <div class="quick-shop-card">
+      <div class="quick-shop-image">160&times;160</div>
+      <div class="quick-shop-info">
+        <div class="quick-shop-name">Canvas Weekender</div>
+        <div class="quick-shop-price">$145</div>
+      </div>
+    </div>
+    <div class="quick-shop-card">
+      <div class="quick-shop-image">160&times;160</div>
+      <div class="quick-shop-info">
+        <div class="quick-shop-name">Linen Button-Down</div>
+        <div class="quick-shop-price">$58</div>
+      </div>
+    </div>
+    <div class="quick-shop-card">
+      <div class="quick-shop-image">160&times;160</div>
+      <div class="quick-shop-info">
+        <div class="quick-shop-name">Wool Beanie</div>
+        <div class="quick-shop-price">$32</div>
+      </div>
+    </div>
+    <div class="quick-shop-card">
+      <div class="quick-shop-image">160&times;160</div>
+      <div class="quick-shop-info">
+        <div class="quick-shop-name">Silk Camisole</div>
+        <div class="quick-shop-price">$54</div>
+      </div>
+    </div>
+    <div class="quick-shop-card">
+      <div class="quick-shop-image">160&times;160</div>
+      <div class="quick-shop-info">
+        <div class="quick-shop-name">Down Vest</div>
+        <div class="quick-shop-price">$89</div>
+      </div>
+    </div>
+    <div class="quick-shop-card">
+      <div class="quick-shop-image">160&times;160</div>
+      <div class="quick-shop-info">
+        <div class="quick-shop-name">Crew Socks 6-pk</div>
+        <div class="quick-shop-price">$30</div>
+      </div>
+    </div>
+    <div class="quick-shop-card">
+      <div class="quick-shop-image">160&times;160</div>
+      <div class="quick-shop-info">
+        <div class="quick-shop-name">Leather Belt</div>
+        <div class="quick-shop-price">$48</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NEW ARRIVALS GRID ===== -->
+<div class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-title">Just Dropped</div>
+      <div class="section-subtitle">The latest additions to the shop</div>
+    </div>
+    <a href="#" class="section-see-all">See all &rarr;</a>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">300&times;300</div>
+        <button class="wishlist-btn">&#9825;</button>
+        <span class="card-badge card-badge-new">New</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-brand">Maison Roux</div>
+        <div class="product-card-name">Silk Blend Blouse</div>
+        <div class="product-card-price-row"><span class="product-card-price">$185.00</span></div>
+        <div class="product-card-rating"><span class="product-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="product-card-rating-count">(12)</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">300&times;300</div>
+        <button class="wishlist-btn">&#9825;</button>
+        <span class="card-badge card-badge-new">New</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-brand">Nordic Essentials</div>
+        <div class="product-card-name">Recycled Fleece Quarter-Zip</div>
+        <div class="product-card-price-row"><span class="product-card-price">$110.00</span></div>
+        <div class="product-card-rating"><span class="product-card-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="product-card-rating-count">(8)</span></div>
+        <div class="product-card-tags"><span class="card-tag card-tag-colors">3 colors</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">300&times;300</div>
+        <button class="wishlist-btn">&#9825;</button>
+        <span class="card-badge card-badge-new">New</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-brand">Terra &amp; Co</div>
+        <div class="product-card-name">Linen Shirt Dress</div>
+        <div class="product-card-price-row"><span class="product-card-price">$128.00</span></div>
+        <div class="product-card-rating"><span class="product-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="product-card-rating-count">(5)</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-image">
+        <div class="placeholder">300&times;300</div>
+        <button class="wishlist-btn">&#9825;</button>
+        <span class="card-badge card-badge-new">New</span>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-brand">Studio Linen</div>
+        <div class="product-card-name">Tapered Chinos</div>
+        <div class="product-card-price-row"><span class="product-card-price">$72.00</span></div>
+        <div class="product-card-rating"><span class="product-card-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="product-card-rating-count">(3)</span></div>
+        <div class="product-card-tags"><span class="card-tag card-tag-colors">5 colors</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FEATURES ===== -->
+<div class="features-strip">
+  <div class="feature-card">
+    <div class="feature-icon">&#9992;</div>
+    <div class="feature-title">Free Shipping</div>
+    <div class="feature-desc">On orders over $75</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">&#8634;</div>
+    <div class="feature-title">Easy Returns</div>
+    <div class="feature-desc">30-day free returns</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">&#128274;</div>
+    <div class="feature-title">Secure Checkout</div>
+    <div class="feature-desc">Encrypted payments</div>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">&#128172;</div>
+    <div class="feature-title">Live Support</div>
+    <div class="feature-desc">Chat with us anytime</div>
+  </div>
+</div>
+
+<!-- ===== NEWSLETTER ===== -->
+<div class="newsletter">
+  <div class="newsletter-card">
+    <div class="newsletter-text">
+      <h3>Get 10% off your first order</h3>
+      <p>Plus early access to new drops and exclusive deals.</p>
+    </div>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address">
+      <button>Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">RoR Commerce</div>
+      <p>Modern shopping, made simple. Quality products, transparent pricing, and a seamless experience on every device.</p>
+      <div class="footer-social">
+        <a href="#">&#9733;</a>
+        <a href="#">&#9829;</a>
+        <a href="#">&#9728;</a>
+        <a href="#">&#9992;</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Account</h4>
+      <ul>
+        <li><a href="#">My Orders</a></li>
+        <li><a href="#">Wishlist</a></li>
+        <li><a href="#">Addresses</a></li>
+        <li><a href="#">Payment</a></li>
+        <li><a href="#">Referrals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom-bar">
+    <span>&copy; 2026 RoR Commerce. All rights reserved.</span>
+    <span>Built with Ruby on Rails</span>
+  </div>
+</footer>
+
+<!-- ===== MOBILE BOTTOM BAR ===== -->
+<nav class="mobile-bottom-bar">
+  <button class="bottom-tab active">
+    <span class="tab-icon">&#9750;</span>
+    Home
+  </button>
+  <button class="bottom-tab">
+    <span class="tab-icon">&#8981;</span>
+    Search
+  </button>
+  <button class="bottom-tab">
+    <span class="tab-icon">&#9733;</span>
+    Categories
+  </button>
+  <button class="bottom-tab">
+    <span class="tab-icon">&#9825;</span>
+    Wishlist
+  </button>
+  <button class="bottom-tab">
+    <span class="tab-icon">&#128722;</span>
+    <span class="tab-badge">3</span>
+    Cart
+  </button>
+</nav>
+
+<!-- ===== ANNOTATIONS ===== -->
+<div class="annotation">
+  <div class="annotation-box">
+    <strong>Option D: Mobile-First Card-Based Storefront</strong> &mdash; Design decisions &amp; implementation notes:
+    <ul>
+      <li><strong>Mobile-first responsive design</strong> with actual CSS <code>@media</code> queries built in. Product grid shifts from 4 columns (desktop) to 2 columns (mobile). Resize this wireframe to see the responsive behavior.</li>
+      <li><strong>Bottom tab bar on mobile</strong> (Home, Search, Categories, Wishlist, Cart) provides thumb-friendly navigation. Hidden on desktop. A <code>Stimulus</code> controller manages active state and swaps content.</li>
+      <li><strong>Swipeable category pills</strong> at top &mdash; horizontal scrollable bar populated from <code>ProductType.all</code>. Uses native overflow-x scrolling (no JS needed), or a <code>Stimulus</code> controller for snap behavior.</li>
+      <li><strong>Card-based product UI</strong> with rounded corners, soft shadows, hover lift animation, and reveal-on-hover wishlist button. Each card links to <code>products#show</code>.</li>
+      <li><strong>Horizontal scroll "Quick Shop" row</strong> for recently viewed or popular items &mdash; native touch scrolling works perfectly on mobile.</li>
+      <li><strong>Collection cards</strong> with gradient backgrounds act as visual entry points to filtered product lists (<code>products_path(product_type_id: ...)</code>).</li>
+
+      <h4>Product Detail Page</h4>
+      <li>Full-width swipeable image carousel (touch-native on mobile). Sticky bottom "Add to Cart" bar appears on scroll with product name, price, and CTA button. Variant selection as tappable chips.</li>
+      <li>On mobile, the add-to-cart bar sits above the bottom tab bar. On desktop, it's inline.</li>
+
+      <h4>Cart</h4>
+      <li><strong>Mobile:</strong> bottom sheet that slides up from the cart tab, showing card-style items with swipe-to-remove.</li>
+      <li><strong>Desktop:</strong> slide-out drawer from right (similar to Option A) or full page with card layout.</li>
+
+      <h4>Checkout</h4>
+      <li>Single-page checkout on mobile with accordion sections (address, shipping, payment). On desktop, two-column layout with form left and order summary right.</li>
+
+      <h4>My Account</h4>
+      <li>Grid of icon cards on mobile (Orders, Addresses, Cards, Profile, Referrals, Credit) that link to individual pages. On desktop, standard tab layout.</li>
+
+      <h4>Tech Stack</h4>
+      <li>Custom CSS with <strong>CSS custom properties</strong> + real <code>@media</code> breakpoints. No framework dependency.</li>
+      <li><strong>Turbo Drive</strong> for SPA-like page transitions.</li>
+      <li><strong>Turbo Frames</strong> for: product grid infinite scroll (append more cards), cart drawer, variant selection, checkout accordion sections.</li>
+      <li><strong>Stimulus</strong> for: bottom tab bar, category pill selection, image carousel, sticky add-to-cart, wishlist toggle, cart drawer/sheet.</li>
+      <li>All existing controllers and routes <strong>unchanged</strong>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="wireframe-label">
+  <strong>WIREFRAME &mdash; Option D: Mobile-First Card-Based Storefront</strong> &nbsp;|&nbsp; Touch-optimized, card UI, social-commerce feel &nbsp;|&nbsp; Shopify Dawn / Instagram Shopping inspired
+</div>
+
+</body>
+</html>
