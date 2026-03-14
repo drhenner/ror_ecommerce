@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :newsletter do
-    name "MyString"
-    autosubscribe false
+    name { "MyString" }
+    autosubscribe { false }
   end
 end

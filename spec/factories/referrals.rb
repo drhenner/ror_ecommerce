@@ -6,18 +6,17 @@ FactoryBot.define do
   end
 
   factory :referral do
-    applied false
-    clicked_at "2013-04-14 20:40:44"
+    applied { false }
+    clicked_at { "2013-04-14 20:40:44" }
     email { FactoryBot.generate(:email) }
-    name "John Doe"
-    purchased_at "2013-04-14 20:40:44"
-
+    name { "John Doe" }
+    purchased_at { "2013-04-14 20:40:44" }
     referring_user      { |c| c.association(:user) }
     referral_program    { ReferralProgram.first }
     referral_user       { |c| c.association(:user) }
     referral_type       { |c| c.association(:referral_type) }
 
-    registered_at "2013-04-14 20:40:44"
-    sent_at       "2013-04-14 20:40:44"
+    registered_at { "2013-04-14 20:40:44" }
+    sent_at { "2013-04-14 20:40:44" }
   end
 end

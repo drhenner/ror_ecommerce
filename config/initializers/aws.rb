@@ -1,10 +1,10 @@
-require 'aws-sdk'
-
-config_path = File.expand_path(File.dirname(__FILE__)+"/../aws.yml")
-config_hash = YAML.load(File.read(config_path))
+require 'aws-sdk-s3'
 
 Aws.config.update({
   logger: Rails.logger,
-  region: 'us-west-2',
-  credentials: Aws::Credentials.new(config_hash[Rails.env]['access_key_id'], config_hash[Rails.env]['secret_access_key'])
+  region: ENV.fetch('AWS_REGION', 'us-west-2'),
+  credentials: Aws::Credentials.new(
+    ENV.fetch('AWS_ACCESS_KEY_ID', 'test'),
+    ENV.fetch('AWS_SECRET_ACCESS_KEY', 'test')
+  )
 })

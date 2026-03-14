@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :image_group do
-    name "MyString"
+    name { "MyString" }
     product { |c| c.association(:product) }
   end
 end

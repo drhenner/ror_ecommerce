@@ -56,9 +56,9 @@ module Hadean
     end
 
     def truncate table
-      config = ActiveRecord::Base.configurations[Rails.env]
+      config = ActiveRecord::Base.connection_db_config.configuration_hash
 
-      if config['adapter'] == 'sqlite3'
+      if config[:adapter] == 'sqlite3'
         ActiveRecord::Base.connection.execute "DELETE FROM #{table}"
       else
         ActiveRecord::Base.connection.execute "TRUNCATE TABLE #{table}"

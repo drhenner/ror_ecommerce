@@ -1,101 +1,74 @@
 source 'https://rubygems.org'
-ruby "~> 2.4.0"
+ruby "3.1.4"
 
-## Bundle rails:
-gem 'rails', '~> 5.1.3'
+gem 'rails', '~> 7.0.0'
+gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'uglifier',     '>= 1.3.0'
-# gem 'sass-rails',   '~> 6.0.0.beta1'
-gem 'sass-rails',   '~> 5.0.6'
+gem 'sassc-rails',  '~> 2.1'
+gem 'sprockets-rails', '~> 3.4'
+gem 'sprockets',    '~> 4.0'
 
-#gem 'actionpack-page_caching', '~> 1.0'
-gem "activemerchant", '~> 1.48'#, :lib => 'active_merchant'
-gem "american_date",  '~> 1.1.1'
+gem "activemerchant", '~> 1.126'
+gem "american_date",  '~> 1.2'
 
-# Use https if you are pushing to HEROKU
-##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
-# gem 'authlogic', '~> 3.4.6'#,          "~> 3.3.0"
+gem 'authlogic', '~> 6.4'
+gem 'scrypt',    '~> 3.0'
 
-gem 'authlogic',   '~> 3.6.0'
+gem "asset_sync",         '~> 2.15'
+gem 'awesome_nested_set', '~> 3.6'
 
-#gem 'scrypt', '~> 2.0.0'
-
-gem "asset_sync",         '~> 2.2.0'
-gem 'awesome_nested_set', '~> 3.1.3'
-
-gem 'aws-sdk',        '~> 2.3.21'
-gem 'bluecloth',      '~> 2.2.0'
-gem 'cancancan',      '~> 1.15.0'
+gem 'aws-sdk-s3', '~> 1.0'
+gem 'bluecloth',  '~> 2.2.0'
+gem 'cancancan',  '~> 3.5'
 gem 'chronic'
 
-
 gem 'dynamic_form'
-gem 'jbuilder'
-gem "friendly_id",     '~> 5.1.0'#, :git => "git@github.com:FriendlyId/friendly_id.git", :branch => 'rails4'
-gem "jquery-rails",    '~> 4.3.1'
-gem 'jquery-ui-rails', '~> 6.0.1'
-gem 'json',           '~> 2.1.0'
+gem 'jbuilder', '~> 2.11'
+gem "friendly_id", '~> 5.5'
+gem "jquery-rails", '~> 4.5'
+gem 'jquery-ui-rails', '~> 7.0'
 
-# gem "nifty-generators", :git => 'git://github.com/drhenner/nifty-generators.git'
-gem 'nokogiri',              '~> 1.6.5'
-gem 'loofah',                '~> 2.2.0'
-gem 'rails-html-sanitizer',  '~> 1.0.4'
-gem 'paperclip',    '~> 5.0.0'
-gem 'prawn',        '>= 0.12.0'
+gem 'nokogiri', '>= 1.13'
+gem 'prawn', '>= 2.0'
 
-#git: "https://github.com/neocoin/rails3-generators.git"
-gem "config"
-gem 'rmagick',    '= 2.15.4', require: false
+gem "config", '~> 4.0'
+gem 'rmagick', '~> 5.0', require: false
 
-gem 'rake', '~> 10.1'
+gem 'rake', '>= 13.0'
 
-# gem 'resque', require: 'resque/server'
+gem 'aasm', '~> 5.5'
+gem 'will_paginate', '~> 4.0'
+gem 'foundation-rails', '~> 6.6'
 
-# gem "sprockets",       "4.0.0.beta2"
-gem "sprockets",       "~> 3.7.0"
-gem 'aasm',            '~> 4.12.2'
-#gem 'sunspot_solr',   '~> 2.0.0'
-#gem 'sunspot_rails',  '~> 2.0.0'
-gem 'will_paginate',   '~> 3.1.6'
-# gem 'zurb-foundation', '~> 4.3.2'
-gem 'foundation-rails', '6.2.3.0'
+gem 'image_processing', '~> 1.2'
 
 group :production do
-  # gem 'mysql2', '~> 0.4.4'
-#  gem 'pg'
-#  gem 'rails_12factor'
+  # gem 'pg'
 end
 
 group :development do
-  # gem 'sqlite3'
   gem 'railroady'
-  #gem 'awesome_print'
-  #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
-  gem "autotest-rails-pure"
-  gem "better_errors", '~> 2.3.0'
-  gem "binding_of_caller", '~> 0.7.2'
-  # gem "rails-erd"
-
-  # YARD AND REDCLOTH are for generating yardocs
+  gem "better_errors", '~> 2.10'
+  gem "binding_of_caller", '~> 1.0'
   gem 'yard'
   gem 'RedCloth'
 end
+
 group :test, :development do
   gem 'byebug'
-  gem 'mysql2',   '~> 0.4.8'
-  gem 'capybara', '~> 2.7.1'
+  gem 'mysql2', '~> 0.5'
+  gem 'capybara', '~> 3.39'
   gem 'launchy'
-  gem 'database_cleaner', "~> 1.6.1"
+  gem 'database_cleaner-active_record', '~> 2.1'
 end
 
 group :test do
-  gem 'factory_bot',       "~> 4.8"
-  gem 'factory_bot_rails', "~> 4.8"
-  gem 'mocha',              '~> 0.13.3', :require => false
+  gem 'factory_bot', '~> 6.2'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'mocha', '~> 2.1', require: false
   gem 'rails-controller-testing'
-  gem 'rspec-rails-mocha'
-  gem 'rspec-rails',        '~> 3.5'
-  gem 'email_spec'
+  gem 'rspec-rails', '~> 6.0'
+  gem 'email_spec', '~> 2.2'
   gem "faker"
-
 end

@@ -90,13 +90,13 @@ class Product < ApplicationRecord
   # @return [String] name of the file to show from the public folder
   def featured_image(image_size = :small)
     Rails.cache.fetch("Product-featured_image-#{id}-#{image_size}", expires_in: 3.hours) do
-      images.first ? images.first.photo.url(image_size) : "no_image_#{image_size.to_s}.jpg"
+      images.first ? images.first.photo_url(image_size) : "no_image_#{image_size.to_s}.jpg"
     end
   end
 
   def image_urls(image_size = :small)
     Rails.cache.fetch("Product-image_urls-#{id}-#{image_size}", expires_in: 3.hours) do
-      images.empty? ? ["no_image_#{image_size.to_s}.jpg"] : images.map{|i| i.photo.url(image_size) }
+      images.empty? ? ["no_image_#{image_size.to_s}.jpg"] : images.map{|i| i.photo_url(image_size) }
     end
   end
 

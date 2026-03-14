@@ -23,13 +23,13 @@ class ImageGroup < ApplicationRecord
 
   def image_urls(image_size = :small)
     Rails.cache.fetch("ImageGroup-image_urls-#{id}-#{image_size}", :expires_in => 3.hours) do
-      images.empty? ? product.image_urls(image_size) : images.map{|i| i.photo.url(image_size)}
+      images.empty? ? product.image_urls(image_size) : images.map{|i| i.photo_url(image_size)}
     end
   end
 
   private
     def expire_cache
-      PAPERCLIP_STORAGE_OPTS[:styles].each_pair do |image_size, value|
+      Image::IMAGE_STYLES.each_pair do |image_size, value|
         Rails.cache.delete("ImageGroup-image_urls-#{id}-#{image_size}")
       end
     end

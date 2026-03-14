@@ -4,7 +4,7 @@ FactoryBot.define do
     return_condition { ReturnCondition.first }
     return_reason    { ReturnReason.first }
     return_authorization { |c| c.association(:return_authorization) }
-    returned false
-    updated_by 1
+    returned { false }
+    updated_by { 1 }
   end
 end

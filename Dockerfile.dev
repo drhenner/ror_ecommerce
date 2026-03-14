@@ -1,11 +1,7 @@
-FROM ruby:2.4-stretch
-
-# Stretch repos are archived
-RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list && \
-    echo "deb http://archive.debian.org/debian-security stretch/updates main" >> /etc/apt/sources.list
+FROM ruby:3.1.4
 
 RUN apt-get update -qq && \
-    apt-get install -y --no-install-recommends --allow-unauthenticated \
+    apt-get install -y --no-install-recommends \
       build-essential default-libmysqlclient-dev nodejs imagemagick libmagickwand-dev && \
     rm -rf /var/lib/apt/lists/*
 

@@ -17,62 +17,68 @@
 #  created_at         :datetime
 #
 
-require 'paperclip'
 require 'open-uri'
 
 class Image < ApplicationRecord
   belongs_to :imageable, :polymorphic => true
 
-  has_attached_file :photo, PAPERCLIP_STORAGE_OPTS ##  this constant is in /config/environments/*.rb
+  has_one_attached :photo
 
-  validates_attachment_presence :photo
-  validates_attachment_size     :photo, less_than: 8.megabytes
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+  IMAGE_STYLES = {
+    mini:    { resize_to_limit: [48, 48] },
+    small:   { resize_to_limit: [100, 100] },
+    medium:  { resize_to_limit: [200, 200] },
+    product: { resize_to_limit: [320, 320] },
+    large:   { resize_to_limit: [600, 600] }
+  }.freeze
 
-  validates :imageable_type,  presence: true
-  validates :imageable_id,    presence: true
-  validate :validate_photo
+  validates :imageable_type, presence: true
+  validates :imageable_id,   presence: true
+  validate  :validate_photo
 
   attr_accessor :photo_link
 
   default_scope -> { order('position') }
 
-  # save the w,h of the original image (from which others can be calculated)
-  after_post_process :find_dimensions
+  after_save :find_dimensions, if: -> { photo.attached? && photo.blob.previously_new_record? }
+
   MAIN_LOGO = 'logo'
 
   def photo_from_link=(val)
     if !val.blank?
       self.photo_link = val
-      self.photo = URI.open(val)
+      downloaded = URI.open(val)
+      photo.attach(io: downloaded, filename: File.basename(val))
     end
   end
 
   def photo_from_link
     self.photo_link || ''
   end
-  # this will be called after an image is uploaded.
-  # => it will set the width and height of the image.
-  # => It will not save the object
-  #
-  # @param [none]
-  # @return [none] but does set the height and width
-  def find_dimensions
-    temporary = photo.queued_for_write[:original]
-    filename = temporary.path unless temporary.nil?
-    filename = photo.path if filename.blank?
-    geometry = Paperclip::Geometry.from_file(filename)
-    self.image_width  = geometry.width
-    self.image_height = geometry.height
+
+  def photo_url(size = :product)
+    return nil unless photo.attached?
+    if IMAGE_STYLES.key?(size)
+      photo.variant(IMAGE_STYLES[size])
+    else
+      photo
+    end
   end
 
-  # if there are errors from the plugin, then add a more meaningful message
+  private
+
+  def find_dimensions
+    return unless photo.attached?
+    photo.blob.analyze unless photo.blob.analyzed?
+    metadata = photo.blob.metadata
+    if metadata[:width] && metadata[:height]
+      update_columns(image_width: metadata[:width], image_height: metadata[:height])
+    end
+  end
+
   def validate_photo
-    unless photo.errors.empty?
-      # uncomment this to get rid of the less-than-useful interrim messages
-      # errors.clear
-      errors.add :attachment, "Paperclip returned errors for file '#{photo_file_name}' - check ImageMagick installation or image source file."
-      false
+    unless photo.attached?
+      errors.add(:photo, "must be attached")
     end
   end
 end

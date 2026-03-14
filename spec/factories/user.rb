@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :user do
-    first_name  'John'
-    last_name   'Doe'
+    first_name { 'John' }
+    last_name { 'Doe' }
     sequence(:email)      { |n| "person#{n}@example.com" }
-    password              'pasword'
-    password_confirmation "pasword"
+    password { 'pasword' }
+    password_confirmation { "pasword" }
     #after(:build) {|user| user.send(:initialize_state_machines, dynamic: :force)}
   end
 

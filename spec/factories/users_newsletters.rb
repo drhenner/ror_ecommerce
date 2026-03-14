@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :users_newsletter do
     user { |c| c.association(:user) }
-    newsletter_id 1#{ Newsletter.first }
+    newsletter_id { 1 }
   end
 end

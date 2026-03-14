@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :prototype do
-    name 'John'
+    name { 'John' }
   end
 end

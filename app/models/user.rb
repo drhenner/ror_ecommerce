@@ -39,17 +39,11 @@ class User < ApplicationRecord
   acts_as_authentic do |config|
     config.session_class = UserSession
     config.login_field = :email
-
-    config.validate_email_field
-    config.validates_length_of_password_field_options( :minimum => 6, :on => :update, :if => :password_changed? )
-
-    # So that Authlogic will not use the LOWER() function when checking login, allowing for benefit of column index.
-    config.validates_uniqueness_of_login_field_options :case_sensitive => true
-    config.validates_uniqueness_of_email_field_options :case_sensitive => true
-
-    config.validate_login_field = true;
-    config.validate_email_field = true;
+    config.crypto_provider = Authlogic::CryptoProviders::SCrypt
+    config.require_password_confirmation = false
   end
+
+  attr_accessor :password_confirmation
 
   before_validation :sanitize_data
   before_validation :before_validation_on_create, :on => :create

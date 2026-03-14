@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :batch do
     batchable       { |c| c.association(:order) }
-    name            'Blah'
+    name { 'Blah' }
   end
 end

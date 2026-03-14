@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :cart do
-    user_id 1
+    user_id { 1 }
   end
 
   factory :cart_with_user, :parent => :cart do

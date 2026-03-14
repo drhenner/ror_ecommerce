@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :transaction do
-    type      'CreditCardPurchase'
+    type { 'CreditCardPurchase' }
     batch     { |c| c.association(:batch) }
   end
 end

@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :referral_type do
-    name "MyString"
+    name { "MyString" }
   end
 end
