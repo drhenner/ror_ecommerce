@@ -214,16 +214,39 @@ end
 describe Product, "class methods" do
 
   context "#standard_search(args)" do
-    it "should search products" do
+    it "should find products matching by name" do
       product1  = FactoryBot.create(:product, meta_keywords: 'no blah', name: 'blah')
       product2  = FactoryBot.create(:product, meta_keywords: 'tester blah')
       Product.any_instance.stubs(:ensure_available).returns(true)
       product1.activate!
       product2.activate!
-      args = 'tester'
-      products = Product.standard_search(args)
+      products = Product.standard_search('tester')
       expect(products.include?(product1)).to be false
       expect(products.include?(product2)).to be true
+    end
+
+    it "should respect pagination params" do
+      Product.any_instance.stubs(:ensure_available).returns(true)
+      3.times { |i| FactoryBot.create(:product, meta_keywords: "searchterm #{i}").activate! }
+      products = Product.standard_search('searchterm', page: 1, per_page: 2)
+      expect(products.size).to eq 2
+    end
+
+    it "should not return deleted products" do
+      product = FactoryBot.create(:product, name: 'deleted widget', deleted_at: Time.zone.now - 1.day)
+      products = Product.standard_search('deleted widget')
+      expect(products.include?(product)).to be false
+    end
+  end
+
+  context "#search_data" do
+    it "should index description_markup instead of description" do
+      product = FactoryBot.create(:product, description_markup: '**bold text**')
+      data = product.search_data
+      expect(data[:description]).to eq '**bold text**'
+      expect(data[:name]).to eq product.name
+      expect(data[:product_keywords]).to eq product.product_keywords
+      expect(data[:deleted_at]).to eq product.deleted_at
     end
   end
 

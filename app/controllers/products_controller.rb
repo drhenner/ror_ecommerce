@@ -16,13 +16,14 @@ class ProductsController < ApplicationController
   end
 
   def create
-    if params[:q] && params[:q].present?
-      @products = Product.standard_search(params[:q]).results
+    if params[:q].present?
+      query = params[:q].to_s.truncate(200, omission: "")
+      @products = Product.standard_search(query, page: pagination_page, per_page: pagination_rows)
     else
-      @products = Product.where('deleted_at IS NULL OR deleted_at > ?', Time.zone.now )
+      @products = Product.active.paginate(page: pagination_page, per_page: pagination_rows)
     end
 
-    render :template => '/products/index'
+    render template: '/products/index'
   end
 
   def show
@@ -42,7 +43,6 @@ class ProductsController < ApplicationController
   end
 
   def pagination_rows
-    params[:rows] ||= 60
-    params[:rows].to_i
+    [(params[:rows] || 60).to_i, 100].min
   end
 end

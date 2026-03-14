@@ -29,7 +29,7 @@ class Product < ApplicationRecord
   friendly_id :permalink, use: :finders
   include Presentation::ProductPresenter
   include ProductFilters
-  #include ProductSolr # If you want to use SOLR search uncomment
+  include ProductSearch
 
   serialize :product_keywords, type: Array, coder: YAML
 
@@ -142,17 +142,6 @@ class Product < ApplicationRecord
   # @return [Boolean] true == there is more than one price
   def price_range?
     !(price_range.first == price_range.last)
-  end
-
-  # Solr searching for products
-  #
-  # @param [args]
-  # @param [params]  :rows, :page
-  # @return [ Product ]
-  def self.standard_search(args, params = {page: 1, per_page: 15})
-      Product.includes( [:properties, :images]).active.
-              where(['products.name LIKE ? OR products.meta_keywords LIKE ?', "%#{args}%", "%#{args}%"]).
-              paginate(params)
   end
 
   # This returns the first featured product in the database,
