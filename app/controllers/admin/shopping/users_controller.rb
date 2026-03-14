@@ -3,9 +3,7 @@ class Admin::Shopping::UsersController < Admin::Shopping::BaseController
 
   # GET /admin/shopping/users
   def index
-   params[:page] ||= 1
-    @users = User.admin_grid(params).order(sort_column + " " + sort_direction).
-                                    paginate(:per_page => 25, :page => params[:page].to_i)
+    @pagy, @users = pagy(User.admin_grid(params).order(sort_column + " " + sort_direction), limit: 25)
   end
 
   # POST /admin/shopping/users

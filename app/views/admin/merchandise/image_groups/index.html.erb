@@ -23,7 +23,7 @@
   </table>
 </div>
 
-<%= will_paginate @image_groups %>
+<%== pagy_nav(@pagy) %>
 
 <p class="mt-3">
   <%= link_to "New Image Group", new_admin_merchandise_image_group_path, class: 'btn btn-primary' %>

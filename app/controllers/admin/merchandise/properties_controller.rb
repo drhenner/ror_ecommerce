@@ -2,8 +2,7 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
 
   def index
-    @properties = Property.admin_grid(params).order(sort_column + " " + sort_direction).
-                                              paginate(page: pagination_page, per_page: pagination_rows)
+    @pagy, @properties = pagy(Property.admin_grid(params).order(sort_column + " " + sort_direction), limit: pagination_rows)
   end
 
   def new

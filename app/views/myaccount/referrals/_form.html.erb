@@ -1,4 +1,4 @@
-<%= f.error_messages %>
+<%= render 'shared/error_messages', object: f.object %>
 <div class="max-w-md space-y-4">
   <div>
     <%= f.label :name, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>

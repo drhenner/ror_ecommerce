@@ -2,8 +2,7 @@ class Admin::Inventory::PurchaseOrdersController < Admin::BaseController
   helper_method :sort_column, :sort_direction
   # GET /purchase_orders
   def index
-    @purchase_orders = PurchaseOrder.admin_grid(params).order(sort_column + " " + sort_direction).
-                                                        paginate(:page => pagination_page, :per_page => pagination_rows)
+    @pagy, @purchase_orders = pagy(PurchaseOrder.admin_grid(params).order(sort_column + " " + sort_direction), limit: pagination_rows)
 
   end
 

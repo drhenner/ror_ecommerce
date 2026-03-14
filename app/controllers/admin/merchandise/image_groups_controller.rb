@@ -3,8 +3,7 @@
 class Admin::Merchandise::ImageGroupsController < Admin::BaseController
   helper_method :sort_column, :sort_direction, :products
   def index
-    @image_groups = ImageGroup.order(sort_column + " " + sort_direction).
-                                     paginate(page: pagination_page, per_page: pagination_rows)
+    @pagy, @image_groups = pagy(ImageGroup.order(sort_column + " " + sort_direction), limit: pagination_rows)
   end
 
   def show

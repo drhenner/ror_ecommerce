@@ -2,6 +2,10 @@ module ProductSearch
   extend ActiveSupport::Concern
 
   included do
+    # Searchkick 6.x stores :class_name in model_options internally, which
+    # leaks across Zeitwerk class reloads in development and fails the
+    # keyword allowlist check on the next load.  Scrub it pre-emptively.
+    Searchkick.model_options.delete(:class_name) if Searchkick.model_options.key?(:class_name)
     searchkick word_start: [:name]
   end
 
@@ -28,9 +32,11 @@ module ProductSearch
       relation.results
       relation
     rescue Elastic::Transport::Transport::Error
+      page = params[:page].to_i
+      per_page = params[:per_page].to_i
       Product.includes(:properties, :images, :active_variants).active
              .where("products.name LIKE :q OR products.meta_keywords LIKE :q", q: "%#{args}%")
-             .paginate(page: params[:page].to_i, per_page: params[:per_page].to_i)
+             .limit(per_page).offset((page - 1) * per_page)
     end
   end
 end

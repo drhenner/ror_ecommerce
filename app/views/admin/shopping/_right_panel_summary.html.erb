@@ -1,49 +1,71 @@
 <% if @session_admin_order %>
   <%= render partial: '/admin/shopping/checkout/right_panel_summary'%>
 <% else %>
-<div class="card mb-3">
-  <div class="card-body">
-    <h3>
-      <%= session_admin_cart.customer_id && session_admin_cart.customer ? session_admin_cart.customer.name : 'No Customer' %>
-    </h3>
-    <%= link_to 'change customer', admin_shopping_users_path, class: 'btn btn-outline btn-sm' %>
-    <table class="admin-table mt-3">
-      <thead>
-        <tr class='odd'>
-          <th class='column1_header'>
-            Item
-          </th><th>Price:</th><th>Qty</th><th>Price + Tax</th>
+<div id="admin-cart-summary">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3>
+        <%= session_admin_cart.customer_id && session_admin_cart.customer ? session_admin_cart.customer.name : 'No Customer' %>
+      </h3>
+      <%= link_to 'change customer', admin_shopping_users_path, class: 'btn btn-outline btn-sm' %>
+      <table class="admin-table mt-3">
+        <thead>
+          <tr class='odd'>
+            <th class='column1_header'>Item</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% session_admin_cart.shopping_cart_items.each do |item| %>
+            <tr data-controller="cart-qty"
+                data-cart-qty-url-value="<%= admin_shopping_cart_item_path(item) %>"
+                data-cart-qty-current-value="<%= item.quantity %>">
+              <td><%= item.variant.product_name %></td>
+              <td><%= number_to_currency(item.variant.price) %></td>
+              <td style="white-space: nowrap;">
+                <div style="display: inline-flex; align-items: center; gap: 0;">
+                  <button type="button" data-action="cart-qty#decrement"
+                    style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 1px solid var(--color-border); border-right: none; border-radius: var(--radius-sm) 0 0 var(--radius-sm); background: var(--color-bg); color: var(--color-text); cursor: pointer; font-size: 14px; font-weight: 700; line-height: 1; padding: 0;">
+                    &minus;
+                  </button>
+                  <span data-cart-qty-target="quantity"
+                    style="display: flex; align-items: center; justify-content: center; min-width: 28px; height: 24px; border: 1px solid var(--color-border); background: var(--color-surface); font-size: 13px; font-weight: 600; text-align: center; padding: 0 4px;">
+                    <%= item.quantity %>
+                  </span>
+                  <button type="button" data-action="cart-qty#increment"
+                    style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 1px solid var(--color-accent); border-left: none; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; background: var(--color-accent); color: #fff; cursor: pointer; font-size: 14px; font-weight: 700; line-height: 1; padding: 0;">
+                    +
+                  </button>
+                </div>
+              </td>
+              <td><%= number_to_currency(item.quantity.to_f * item.variant.price) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <tr class='odd top_border'>
+          <td></td>
+          <td>Sub-total:</td>
+          <td></td>
+          <td><%= number_to_currency(session_admin_cart.sub_total) %></td>
         </tr>
-      </thead>
-      <% session_admin_cart.shopping_cart_items.each do |item| %>
-        <tr class='<%= cycle("odd", "")%> '>
-          <td><%= item.variant.product_name %></td>
-          <td><%= item.variant.price %></td>
-          <td><%= item.quantity %></td>
-          <td><%= item.quantity.to_f * item.variant.price %></td>
+        <tr>
+          <td></td>
+          <td>Shipping:</td>
+          <td></td>
+          <td>TBD</td>
         </tr>
+        <tfoot>
+          <tr class='even'>
+            <td></td><td>Total:</td><td></td><td><em>TBD</em></td>
+          </tr>
+        </tfoot>
+      </table>
+      <% unless session_admin_cart.shopping_cart_items.empty? %>
+        <%= link_to 'Checkout', start_checkout_process_admin_shopping_checkout_order_path, class: 'btn btn-primary btn-sm mt-2', data: { turbo_method: :post } %>
       <% end %>
-      <tr class='odd top_border'>
-        <td></td>
-        <td>Sub-total:</td>
-        <td></td>
-        <td><%= sub_total = session_admin_cart.shopping_cart_items.inject(0) {|total,i| (i.quantity.to_f * i.variant.price) + total } %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Shipping Charges:</td>
-        <td></td>
-        <td> TBD </td>
-      </tr>
-      <tfoot>
-        <tr class='even'>
-          <td></td><td>Total:</td><td></td><td><em>TBD</em></td>
-        </tr>
-      </tfoot>
-    </table>
-    <% unless session_admin_cart.shopping_cart_items.empty? %>
-      <%= link_to 'Checkout', start_checkout_process_admin_shopping_checkout_order_path, class: 'btn btn-primary btn-sm mt-2', data: { turbo_method: :post } %>
-    <% end %>
+    </div>
   </div>
 </div>
 <% end %>

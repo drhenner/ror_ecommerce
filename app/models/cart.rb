@@ -174,6 +174,24 @@ class Cart < ApplicationRecord
   end
 
 
+  # Sets the absolute quantity for a cart item (unlike add_variant which is additive).
+  # Inactivates the item when quantity drops to zero or below.
+  #
+  # @param [Integer] cart_item_id
+  # @param [Integer] quantity
+  # @return [CartItem, nil]
+  def set_cart_item_quantity(cart_item_id, quantity)
+    item = shopping_cart_items.find_by(id: cart_item_id)
+    return nil unless item
+
+    if quantity <= 0
+      item.inactivate!
+    else
+      item.update(quantity: quantity)
+    end
+    item
+  end
+
   # Call this method when you want to remove an item from the shopping cart
   #   The CartItem will not delete.  Instead it is just inactivated
   #

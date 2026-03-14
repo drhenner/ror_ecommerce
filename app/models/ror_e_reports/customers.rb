@@ -1,4 +1,3 @@
-require 'chronic'
 module RorEReports
   class Customers
     def initialize(start__time, end__time)

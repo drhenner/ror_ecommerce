@@ -1,5 +1,3 @@
-require 'chronic'
-
 module RorEReports
   class Sales
     def initialize(start_time, number_of_weeks)

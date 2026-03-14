@@ -21,10 +21,9 @@ class Admin::Reports::GraphsController < Admin::Reports::BaseController
 
   def set_graph_time_range
     if params[:start_date].present?
-      @graph_start_time = Time.parse(params[:start_date])
+      @graph_start_time = Time.zone.parse(params[:start_date])
     else
-      Chronic.time_class = Time.zone
-      @graph_start_time = Chronic.parse("#{number_of_graph_weeks} weeks ago").beginning_of_week
+      @graph_start_time = number_of_graph_weeks.weeks.ago.beginning_of_week
     end
   end
 

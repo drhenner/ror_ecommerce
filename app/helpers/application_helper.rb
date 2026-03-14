@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
 
   ### The next three helpers are great to use to add and remove nested attributes in forms.
   #  LOK AT THIS WEBPAGE FOR REFERENCE

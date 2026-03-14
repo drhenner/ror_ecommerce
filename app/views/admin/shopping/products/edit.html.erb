@@ -12,7 +12,11 @@
     </div>
   </div>
 <% else %>
-  <%= form_tag admin_shopping_product_path(@product), method: 'put' do %>
+  <%= form_tag admin_shopping_product_path(@product), method: 'put', id: 'add-items-form' do %>
+    <div class="card mb-3" style="background: var(--color-accent-light); border: 1px solid var(--color-accent); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 20px;">
+      <span style="font-size: 14px; color: var(--color-info-text);">Enter a quantity next to each variant you'd like to add, then click <strong>Add Items</strong>.</span>
+    </div>
+
     <% @product.variants.each_with_index do |variant, i| %>
       <div class="card mb-3">
         <div class="card-body">
@@ -27,10 +31,29 @@
               <span class="text-sm text-muted">Qty in Stock:</span>
               <span class="status-badge status-info"><%= variant.display_stock_status %> (<%= variant.quantity_available %>)</span>
             </div>
-            <div style="flex:1;min-width:100px">
+            <div style="flex:1;min-width:180px">
               <div class="form-group mb-0">
-                <label class="form-label">Quantity</label>
-                <%= text_field_tag("variant[#{variant.id}]", nil, style: 'width:70px;') %>
+                <label class="form-label" for="variant_qty_<%= variant.id %>" style="font-size: 13px; font-weight: 700; color: var(--color-text);">Qty to Add</label>
+                <div style="display: inline-flex; align-items: center; gap: 0;">
+                  <button type="button" class="qty-clear-btn" data-target="variant_qty_<%= variant.id %>" title="Clear quantity"
+                    style="display: flex; align-items: center; justify-content: center; width: 38px; height: 44px; border: 2px solid var(--color-border); border-right: none; border-radius: var(--radius) 0 0 var(--radius); background: var(--color-bg); color: var(--color-text-muted); cursor: pointer; transition: all 0.15s ease; font-size: 16px;"
+                    onmouseover="this.style.background='var(--color-danger-light)';this.style.color='var(--color-danger)';this.style.borderColor='var(--color-danger)'"
+                    onmouseout="this.style.background='var(--color-bg)';this.style.color='var(--color-text-muted)';this.style.borderColor='var(--color-border)'">
+                    &#x1F5D1;
+                  </button>
+                  <%= number_field_tag("variant[#{variant.id}]", nil,
+                        id: "variant_qty_#{variant.id}",
+                        class: 'variant-qty-input',
+                        placeholder: '0',
+                        min: 0,
+                        style: 'width: 70px; padding: 10px 8px; font-size: 18px; font-weight: 600; text-align: center; border: 2px solid var(--color-accent); border-radius: 0; background: var(--color-surface); color: var(--color-text);') %>
+                  <button type="button" class="qty-plus-btn" data-target="variant_qty_<%= variant.id %>" title="Add 1"
+                    style="display: flex; align-items: center; justify-content: center; width: 38px; height: 44px; border: 2px solid var(--color-accent); border-left: none; border-radius: 0 var(--radius) var(--radius) 0; background: var(--color-accent); color: #fff; cursor: pointer; transition: all 0.15s ease; font-size: 20px; font-weight: 700;"
+                    onmouseover="this.style.background='var(--color-accent-hover)'"
+                    onmouseout="this.style.background='var(--color-accent)'">
+                    +
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -39,7 +62,58 @@
     <% end %>
 
     <div class="form-actions">
-      <%= submit_tag 'Add Items', class: 'btn btn-primary' %>
+      <%= submit_tag 'Add Items', id: 'add-items-btn', class: 'btn btn-primary btn-lg', disabled: true,
+            style: 'opacity: 0.4; cursor: not-allowed;' %>
+      <span id="add-items-hint" class="text-sm text-muted" style="align-self: center; margin-left: 8px;">
+        Enter a quantity above to enable this button
+      </span>
     </div>
   <% end %>
+
+  <script>
+    (function() {
+      var form = document.getElementById('add-items-form');
+      var btn = document.getElementById('add-items-btn');
+      var hint = document.getElementById('add-items-hint');
+      var inputs = form.querySelectorAll('.variant-qty-input');
+
+      function checkQuantities() {
+        var hasQty = false;
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].value !== '' && parseInt(inputs[i].value, 10) > 0) {
+            hasQty = true;
+            break;
+          }
+        }
+        btn.disabled = !hasQty;
+        btn.style.opacity = hasQty ? '1' : '0.4';
+        btn.style.cursor = hasQty ? 'pointer' : 'not-allowed';
+        hint.style.display = hasQty ? 'none' : '';
+      }
+
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('input', checkQuantities);
+        inputs[i].addEventListener('change', checkQuantities);
+      }
+
+      var plusBtns = form.querySelectorAll('.qty-plus-btn');
+      for (var i = 0; i < plusBtns.length; i++) {
+        plusBtns[i].addEventListener('click', function() {
+          var input = document.getElementById(this.getAttribute('data-target'));
+          var current = parseInt(input.value, 10);
+          input.value = isNaN(current) ? 1 : current + 1;
+          checkQuantities();
+        });
+      }
+
+      var clearBtns = form.querySelectorAll('.qty-clear-btn');
+      for (var i = 0; i < clearBtns.length; i++) {
+        clearBtns[i].addEventListener('click', function() {
+          var input = document.getElementById(this.getAttribute('data-target'));
+          input.value = '';
+          checkQuantities();
+        });
+      }
+    })();
+  </script>
 <% end %>

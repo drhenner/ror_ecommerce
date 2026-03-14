@@ -1,5 +1,3 @@
-require 'chronic'
-
 module RorEReports
   class Orders
     def initialize(start__time, end__time)

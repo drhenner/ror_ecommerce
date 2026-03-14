@@ -2,6 +2,9 @@
   <div>
     <h1 class="page-title">Editing credit_card</h1>
   </div>
+  <div class="page-actions">
+    <%= link_to "Back to #{truncate(session_admin_cart.customer&.name || 'Customer', length: 35)}'s Cart", admin_shopping_products_path, class: 'btn btn-outline btn-sm' %>
+  </div>
 </div>
 
 <div class="card">

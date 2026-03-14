@@ -9,10 +9,9 @@ class Admin::Reports::WeeklyChartsController < Admin::Reports::BaseController
 
   def set_time_range
     if params[:start_date].present?
-      @start_time = Time.parse(params[:start_date])
+      @start_time = Time.zone.parse(params[:start_date])
     else
-      Chronic.time_class = Time.zone
-      @start_time = Chronic.parse("#{number_of_data_points} weeks ago").beginning_of_week
+      @start_time = number_of_data_points.weeks.ago.beginning_of_week
     end
     set_end_time
   end
