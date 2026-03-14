@@ -31,7 +31,7 @@ class Product < ApplicationRecord
   include ProductFilters
   #include ProductSolr # If you want to use SOLR search uncomment
 
-  serialize :product_keywords, Array
+  serialize :product_keywords, type: Array, coder: YAML
 
   attr_accessor :available_shipping_rates # these the the shipping rates per the shipping address on the order
 
@@ -226,7 +226,7 @@ class Product < ApplicationRecord
     end
 
     def create_content
-      self.description = BlueCloth.new(self.description_markup).to_html unless self.description_markup.blank?
+      self.description = Kramdown::Document.new(self.description_markup).to_html unless self.description_markup.blank?
     end
 
     def not_active_on_create!

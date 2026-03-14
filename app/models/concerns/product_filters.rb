@@ -66,7 +66,7 @@ module ProductFilters
         if active_state
           active
         elsif active_state == false##  note nil != false
-          where(['products.deleted_at IS NOT NULL AND products.deleted_at <= ?', Time.zone.now.to_s(:db)])
+          where(['products.deleted_at IS NOT NULL AND products.deleted_at <= ?', Time.zone.now.to_fs(:db)])
         else
           all
         end

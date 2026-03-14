@@ -51,7 +51,7 @@ class TaxRate < ApplicationRecord
   def self.active_at_ids(date = Time.zone.now.to_date)
     #Rails.cache.fetch("TaxRate-#{I18n.t(:company)}-active_at_ids-#{date}", :expires_in => 23.hours) do
       TaxRate.where(["tax_rates.start_date <= ? AND
-             (end_date > ? OR end_date IS NULL)", date.to_s(:db), date.to_s(:db)]).pluck(:id)
+             (end_date > ? OR end_date IS NULL)", date.to_fs(:db), date.to_fs(:db)]).pluck(:id)
     #end
   end
 

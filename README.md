@@ -5,11 +5,6 @@
 Please create a ticket on github if you have issues.
 They will be addressed ASAP.
 
-Please look at the [homepage](http://www.ror-e.com) for more details.  Or take a look at the [github page](http://drhenner.github.com/ror_ecommerce/index.html)
-
-![RoR Ecommerce](http://ror-e.com/images/logo.png "ROR Ecommerce").
-[![Code Climate](https://codeclimate.com/github/drhenner/ror_ecommerce.png)](https://codeclimate.com/github/drhenner/ror_ecommerce)
-
 This is a Rails e-commerce platform.
 ROR Ecommerce is a *Rails 7.0 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
@@ -143,45 +138,6 @@ brew install vips
 brew install imagemagick
 ```
 
-## Adding Dalli For Cache and the Session Store
-
-While optional, for a speedy site, using memcached is a good idea.
-
-Install memcached.
-If you're on a Mac, the easiest way to install Memcached is to use [homebrew](http://mxcl.github.com/homebrew/):
-
-    brew install memcached
-
-    memcached -vv
-
-#### To Turn On the Dalli Cookie Store
-
-Remove the cookie store on line one of `config/initializers/session_store.rb`.
-In your Gemfile add:
-
-```ruby
-gem 'dalli'
-```
-
-then:
-
-    bundle install
-
-Finally uncomment the next two lines in `config/initializers/session_store.rb`
-
-```ruby
-require 'action_dispatch/middleware/session/dalli_store'
-Hadean::Application.config.session_store :dalli_store, :key => '_hadean_session_ugrdr6765745ce4vy'
-```
-
-#### To Turn On the Dalli Cache Store
-
-It is also recommended to change the cache store in config/environments/*.rb
-
-```ruby
-config.cache_store = :dalli_store
-```
-
 ## Adding Solr Search (Optional)
 
 Solr search is **not enabled by default**. The Sunspot gems are not in the Gemfile. To add Solr search:
@@ -235,6 +191,7 @@ bundle exec rspec
 ## TODO:
 
 * more documentation
+* Add Solid Cache support when upgrading to Rails 8
 
 
 ## SETUP assets on S3 with CORS

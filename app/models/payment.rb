@@ -20,7 +20,7 @@
 class Payment < ApplicationRecord
   belongs_to :invoice
 
-  serialize :params
+  serialize :params, type: Hash, coder: YAML
   # this is initialized to an instance of ActiveMerchant::Billing::Base.gateway
   #cattr_accessor :gateway
 
