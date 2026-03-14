@@ -7,6 +7,8 @@ nbproject
 .powrc
 .vim
 .sass-cache/
+/app/assets/builds/*
+!/app/assets/builds/.keep
 /.bundle
 .yardoc/*
 

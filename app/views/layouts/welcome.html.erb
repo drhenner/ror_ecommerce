@@ -53,7 +53,7 @@
   <%= render 'shared/google_analytics' unless @disable_ga %>
   <%= yield :bottom %>
 
-  <%= javascript_include_tag 'application' %>
+  <%= render 'shared/javascript_includes' %>
   <script>
   jQuery(window).ready(
     function() {

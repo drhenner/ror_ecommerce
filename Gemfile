@@ -1,21 +1,20 @@
 source 'https://rubygems.org'
 ruby "3.3.8"
 
-gem 'rails', '~> 7.2.0'
+gem 'rails', '~> 8.0.0'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'puma', '~> 6.0'
 
-gem 'terser'
-gem 'sass-embedded'
-gem 'sprockets-rails', '~> 3.4'
-gem 'sprockets',    '~> 4.0'
+gem 'propshaft'
+gem 'importmap-rails'
+gem 'dartsass-rails'
 
 gem "activemerchant", '~> 1.137'
 gem "american_date",  '~> 1.2'
 
-gem 'authlogic', '~> 6.5'
+gem 'authlogic', '~> 6.6'
 gem 'scrypt',    '~> 3.0'
 
-gem "asset_sync",         '~> 2.15'
 gem 'awesome_nested_set', '~> 3.9'
 
 gem 'aws-sdk-s3', '~> 1.0'
@@ -26,8 +25,6 @@ gem 'chronic'
 gem 'dynamic_form'
 gem 'jbuilder', '~> 2.14'
 gem "friendly_id", '~> 5.5'
-gem "jquery-rails", '~> 4.5'
-gem 'jquery-ui-rails', '~> 7.0'
 
 gem 'nokogiri', '>= 1.13'
 gem 'prawn', '>= 2.0'
@@ -67,7 +64,7 @@ group :test do
   gem 'factory_bot_rails', '~> 6.5'
   gem 'mocha', '~> 2.1', require: false
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 6.1'
+  gem 'rspec-rails', '~> 7.0'
   gem 'email_spec', '~> 2.2'
   gem "faker"
 end

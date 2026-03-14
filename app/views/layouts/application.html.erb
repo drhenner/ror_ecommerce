@@ -63,7 +63,7 @@
   <%= render 'shared/main_footer' %>
   <%= render 'shared/google_analytics' unless @disable_ga %>
 
-  <%= javascript_include_tag 'application' %>
+  <%= render 'shared/javascript_includes' %>
   <%= yield :bottom %>
 
   <script>

@@ -1,13 +1,13 @@
-FROM ruby:3.1.4
+FROM ruby:3.3.8
 
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
-      build-essential default-libmysqlclient-dev nodejs imagemagick libmagickwand-dev && \
+      build-essential default-libmysqlclient-dev imagemagick libmagickwand-dev && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY Gemfile ./
+COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 4
 
 COPY . .

@@ -102,6 +102,9 @@ Every test stubs CIM profile methods on `User` and `PaymentProfile` via Mocha in
 ### ReferralProgram.current_program
 Several specs rely on `ReferralProgram.current_program` returning a record. If this is nil, seed data is missing.
 
+### Asset pipeline (Rails 8 / Propshaft)
+The app uses Propshaft (not Sprockets) for serving assets, dartsass-rails for SCSS compilation, and importmap-rails. Before running specs after SCSS changes, rebuild CSS with `bundle exec rails dartsass:build`. Compiled CSS is output to `app/assets/builds/`.
+
 ### Deprecated `be_success` matcher
 Rails removed `response.success?`. Specs using `expect(response).to be_success` need to be updated to `expect(response).to be_successful` (or `have_http_status(:ok)`).
 
@@ -109,7 +112,7 @@ Rails removed `response.success?`. Specs using `expect(response).to be_success` 
 Rails 7 deprecates `to_s(:format)` in favor of `to_fs(:format)`. Many specs and models still use the old syntax (e.g. `Time.zone.now.to_s(:db)`). Update to `to_fs(:db)` when touching affected code. Common locations: `TaxRate.active_at_ids`, `ProductFilters#deleted_at_filter`, and controller specs for `TaxRatesController` / `PurchaseOrdersController`.
 
 ### FactoryBot `build` does not persist association FKs
-`FactoryBot.build(:model)` may leave foreign-key columns nil when associations are defined with the block syntax (`product { |c| c.association(:product) }`). If a spec builds a record, extracts `.attributes`, and posts them to a controller, the FK will be nil and MySQL NOT NULL constraints will reject the insert (even if `valid?` is stubbed to true). Use `FactoryBot.create` instead when you need FK IDs in the attributes hash.
+`FactoryBot.build(:model)` may leave foreign-key columns nil when associations are defined with the block syntax (`product { |c| c.association(:product) }`). If a spec builds a record, extracts `.attributes`, and posts them to a controller, the FK will be nil and MySQL NOT NULL constraints will reject the insert (even if `valid?` is stubbed to true). Use `FactoryBot.create` instead when you need FK IDs in the attributes hash. (The original `build(:product)` failure in `admin/merchandise/products_controller_spec.rb` has been fixed.)
 
 ### Capybara `click_button` — no extra hash argument
 Capybara's `click_button` accepts at most one positional argument (the locator). Do NOT pass an empty hash as a second argument:

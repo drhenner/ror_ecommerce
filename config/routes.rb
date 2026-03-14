@@ -140,18 +140,18 @@ Hadean::Application.routes.draw do
       resources :products
       resources :users
       namespace :checkout do
-        resources :billing_addresses, only: [:index, :update, :new, :create, :select_address] do
+        resources :billing_addresses, only: [:index, :update, :new, :create] do
           member do
             put :select_address
           end
         end
         resources :credit_cards
-        resource  :order, only: [:show, :update, :start_checkout_process] do
+        resource  :order, only: [:show, :update] do
           member do
             post :start_checkout_process
           end
         end
-        resources :shipping_addresses, only: [:index, :update, :new, :create, :select_address] do
+        resources :shipping_addresses, only: [:index, :update, :new, :create] do
           member do
             put :select_address
           end

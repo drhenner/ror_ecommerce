@@ -6,7 +6,7 @@ Please create a ticket on github if you have issues.
 They will be addressed ASAP.
 
 This is a Rails e-commerce platform.
-ROR Ecommerce is a *Rails 7.2 application* with the intent to allow developers to create an ecommerce solution easily.
+ROR Ecommerce is a *Rails 8.0 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
@@ -14,7 +14,7 @@ The cart allows you to track your customers' *cart history* and includes a *doub
 The project has *Searchkick-powered product search* (backed by Elasticsearch), *Zurb Foundation for CSS*, and uses *jQuery*.
 Currently the most complete Rails solution for your small business.
 
-Please use *Ruby 3.3.8* and enjoy *Rails 7.2*.
+Please use *Ruby 3.3.8* and enjoy *Rails 8.0*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
@@ -53,6 +53,7 @@ Install gems and build the app
     rails secret # copy/paste the output as `encryption_key` in `config/settings.yml`
     rails db:create:all
     rails db:migrate db:seed
+    rails dartsass:build
     RAILS_ENV=test rails db:test:prepare
     RAILS_ENV=test rails db:seed
 
@@ -177,6 +178,7 @@ The test suite uses RSpec with a MySQL test database. Before running tests for t
 
 ```bash
 RAILS_ENV=test rails db:create db:migrate db:seed
+rails dartsass:build
 ```
 
 Then run the full suite:
@@ -203,37 +205,49 @@ it "returns matching products from Elasticsearch" do
 end
 ```
 
+## Admin Roles & Permissions
+
+The admin area uses [CanCanCan](https://github.com/CanCanCommunity/cancancan) for authorization, defined in `app/models/admin_ability.rb`. There are two admin roles:
+
+| Role | Tabs Visible | Permissions |
+|------|-------------|-------------|
+| **Super Admin** (`super_administrator`) | All tabs, including **Config** | Full read/write access to everything |
+| **Admin** (`administrator`) | All tabs except **Config** | Read-only, plus view users and create orders |
+
+### What regular admins *cannot* do
+
+- Access the **Config** section (accounts, countries, shipping, tax)
+- Create, edit, or delete **users**
+- Create, edit, or delete **products** (read-only via `authorize_resource`)
+
+### What regular admins *can* do (beyond read-only)
+
+- View the users list (`view_users`)
+- Create orders through the admin shopping cart (`create_orders`)
+
+### Adding new admin abilities
+
+Edit `app/models/admin_ability.rb` and add `can` rules under the appropriate role block. Controllers that need explicit checks should call `authorize!` or use `authorize_resource`. See the [CanCanCan docs](https://github.com/CanCanCommunity/cancancan/blob/develop/docs/README.md) for details.
+
+## Asset Pipeline
+
+The app uses **Propshaft** for serving assets, **dartsass-rails** for compiling SCSS to CSS, and **importmap-rails** for future JavaScript module support. jQuery and its plugins are loaded as traditional script tags.
+
+After changing any `.scss` file, rebuild CSS with:
+
+    rails dartsass:build
+
+In development, you can run the watcher to auto-compile on save:
+
+    rails dartsass:watch
+
+Compiled CSS is output to `app/assets/builds/` (gitignored). Propshaft serves these alongside static assets from `app/assets/`, `vendor/assets/`, and `vendor/javascript/`.
+
 ## TODO:
 
 * more documentation
 * Evaluate migrating from Authlogic to Rails' built-in `has_secure_password` + `authenticate_by`
-* Add Solid Cache support when upgrading to Rails 8
-
-
-## SETUP assets on S3 with CORS
-
-Putting assets on S3 can cause issues with FireFox/IE.  You can read about the issue if you search for "S3 & CORS".  Basically FF & IE are keeping things more secure but in the process you are required to do some setup.
-
-I ran into the same thing with assets not being public for IE and FireFox but Chrome seemed to work fine. There is a work around for this though. There is something called a CORS Config that opens up your assets to whatever domains you specify.
-
-Here's how to open up your assets to your website.  (Thanks @DTwigs)
-
-* Click on your bucket.
-* Click on the properties button to open the properties tab.
-* Expand the "Permissions" accordion and click " Add CORS Configuration"
-
-Now paste this code in there:
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-    <CORSRule>
-    <AllowedOrigin>*</AllowedOrigin>
-    <AllowedMethod>GET</AllowedMethod>
-    <MaxAgeSeconds>3000</MaxAgeSeconds>
-    <AllowedHeader>Content-*</AllowedHeader>
-    <AllowedHeader>Host</AllowedHeader>
-    </CORSRule>
-    </CORSConfiguration>
+* Evaluate Solid Cache / Solid Queue for background jobs and caching
 
 ## Image Groups
 

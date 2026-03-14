@@ -6,10 +6,7 @@ Bundler.require(*Rails.groups)
 
 module Hadean
   class Application < Rails::Application
-    config.load_defaults 7.2
-
-    config.assets.enabled = true
-    config.assets.version = '0.11.0'
+    config.load_defaults 8.0
 
     config.time_zone = 'Eastern Time (US & Canada)'
     config.encoding = "utf-8"
