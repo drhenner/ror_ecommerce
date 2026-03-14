@@ -1,7 +1,14 @@
-<h1>New Billing Address</h1>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">New Billing Address</h1>
+  </div>
+</div>
 
-<%= form_for( @billing_address, url: admin_shopping_checkout_billing_addresses_path(@billing_address)) do |f| %>
-  <%= render partial: 'form', locals: { f: f } %>
-<% end %>
-
-<%= link_to 'Back', admin_shopping_checkout_billing_addresses_path %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for( @billing_address, url: admin_shopping_checkout_billing_addresses_path(@billing_address)) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
+    <%= link_to 'Back', admin_shopping_checkout_billing_addresses_path, class: 'btn btn-outline btn-sm mt-3' %>
+  </div>
+</div>

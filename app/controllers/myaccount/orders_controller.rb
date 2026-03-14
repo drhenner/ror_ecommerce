@@ -8,7 +8,7 @@ class Myaccount::OrdersController < Myaccount::BaseController
   # GET /myaccount/orders/1
   # GET /myaccount/orders/1.xml
   def show
-    @order = current_user.finished_orders.includes([:invoices]).find_by_number(params[:id])
+    @order = current_user.finished_orders.includes(:invoices, order_items: { variant: :product }).find_by_number(params[:id])
   end
   private
 

@@ -1,46 +1,51 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<% content_for :sidemenu do %>
-  <div class='admin_filters'>
-    <%= form_tag admin_merchandise_properties_path, method: 'get', id: "products_search" do %>
+<% content_for :sidebar_panel do %>
+  <div class="admin_filters">
+    <%= form_tag admin_merchandise_properties_path, method: 'get', id: "properties_search" do %>
       <%= hidden_field_tag :direction, params[:direction] %>
       <%= hidden_field_tag :sort, params[:sort] %>
-
-      <label>Indentifing Name</label>
-      <%= text_field_tag :identifing_name, params[:identifing_name] %>
-
-      <label>Display Name</label>
-      <%= text_field_tag :display_name, params[:display_name] %>
-      <div style='text-align:center'>
-        <%= submit_tag "Search", name: nil, class: "button red-button alert" %>
+      <div class="form-group">
+        <label class="form-label">Identifying Name</label>
+        <%= text_field_tag :identifing_name, params[:identifing_name], class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Display Name</label>
+        <%= text_field_tag :display_name, params[:display_name], class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>
 <% end %>
 
-
-<div class='admin_title_header'>
-  <h3>Properties</h3>
-  <%= link_to "New Property", new_admin_merchandise_property_path, class: "button", id: "new_property_button" %>
+<div class="page-header">
+  <h1 class="page-title">Properties</h1>
+  <div class="page-actions">
+    <%= link_to "New Property", new_admin_merchandise_property_path, class: "btn btn-primary", id: "new_property_button" %>
+  </div>
 </div>
 
-<div class="admin_properties">
-  <table class='hover'>
+<div class="data-table">
+  <table class="admin-table">
     <thead>
-    <tr class='odd'>
-        <th class='column1_header'><%= sortable 'identifing_name',"ID name" %></th>
+      <tr>
+        <th><%= sortable 'identifing_name', "ID name" %></th>
         <th><%= sortable "display_name" %></th>
         <th>Active</th>
-    </tr>
-    </thead>
-    <% @properties.each do |property| %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to property.identifing_name, edit_admin_merchandise_property_path(property) %></td>
-        <td><%= property.display_name %></td>
-        <td><%= property.display_active %></td>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @properties.each do |property| %>
+        <tr>
+          <td><%= link_to property.identifing_name, edit_admin_merchandise_property_path(property) %></td>
+          <td><%= property.display_name %></td>
+          <td><%= property.display_active %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-
-  <%= will_paginate @properties %>
 </div>
+
+<%= will_paginate @properties %>

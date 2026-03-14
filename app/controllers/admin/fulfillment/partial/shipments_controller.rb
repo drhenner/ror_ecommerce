@@ -10,7 +10,7 @@ class Admin::Fulfillment::Partial::ShipmentsController < Admin::Fulfillment::Bas
   end
 
   def new
-    @order = Order.includes({:order_items => {:variant => :product}}).find_by_number(params[:order_id])
+    @order = Order.includes(order_items: [{ variant: :product }, { shipping_rate: :shipping_method }]).find_by_number(params[:order_id])
   end
 
   def update

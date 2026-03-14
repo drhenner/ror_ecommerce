@@ -18,7 +18,7 @@
     <th></th>
   </tr>
   </thead>
-
+  <tbody>
 <% @shipments.each do |shipment| %>
   <% if shipment.has_items? %>
       <tr class='<%= cycle("odd", "")%>'>
@@ -28,7 +28,7 @@
         <td><%= shipment.tracking %></td>
         <td><%= shipment.state %></td>
         <td>
-          <%= raw shipment.order_items.collect {|item| item.variant.product_name }.join('<br/>')  %>
+          <%= safe_join(shipment.order_items.collect {|item| item.variant.product_name }, tag.br)  %>
 
         </td>
         <td><%= link_to 'Show', admin_fulfillment_shipment_path(shipment) %></td>
@@ -44,4 +44,5 @@
       </tr>
   <% end %>
 <% end %>
+  </tbody>
 </table>

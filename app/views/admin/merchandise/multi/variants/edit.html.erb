@@ -1,23 +1,20 @@
-<%= render partial: '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<h2> <%= @product.name %> </h2>
+<div class="page-header">
+  <h1 class="page-title"><%= @product.name %></h1>
+</div>
 
-<%= form_for @product, url:  admin_merchandise_multi_product_variant_path(@product),
-                       html: { class: '' }  do |form| %>
-  <div id='variants_container' class='row'>
-    <%= render :partial => '/admin/merchandise/multi/variants/form', locals: { form: form }%>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @product, url: admin_merchandise_multi_product_variant_path(@product), html: { class: '' }, data: { controller: "nested-form" } do |form| %>
+      <div id='variants_container' class="d-flex flex-wrap gap-3">
+        <%= render partial: '/admin/merchandise/multi/variants/form', locals: { form: form } %>
+      </div>
+      <div class="form-group d-flex gap-2 mt-3">
+        <%= link_to "New Variant", "#", class: "btn btn-outline btn-sm", data: { association: "variants", action: "click->nested-form#add" } %>
+        <%= submit_tag "Update", class: "btn btn-primary btn-sm", id: "update_product_button" %>
+        <%= link_to 'Back to Product', admin_merchandise_product_path(@product), class: 'btn btn-outline btn-sm' %>
+      </div>
+    <% end %>
   </div>
-  <div class='clearfix'></div>
-  <div class=" generic_submit_button">
-    <%= link_to("New Variant", "javascript:void(0);", class: "add_variant_child button small secondary", "data-association" => :variants) %>
-    <%= submit_tag "Update",
-                    class:  "button small",
-                    id:     "update_product_button" %>
-    <%= link_to 'Back to Product',     admin_merchandise_product_path(@product), class: 'button small secondary' %>
-  </div>
-
-<% end %>
-
-<% content_for :bottom do -%>
-  <%= javascript_include_tag 'admin/edit_variants' %>
-<% end %>
+</div>

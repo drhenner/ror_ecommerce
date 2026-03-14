@@ -1,9 +1,16 @@
-<%= render partial: '/admin/merchandise/wizards/sub_header'%>
-<h3>New Product</h3>
+<%= render partial: '/admin/merchandise/wizards/sub_header' %>
 
-<%= form_for(@product, url: admin_merchandise_wizards_products_path()) do |f| %>
-  <%= render partial: 'form', locals: { form: f } %>
-  <%= submit_tag "Create", class: "button" %>
-<% end %>
+<div class="page-header">
+  <h1 class="page-title">New Product</h1>
+</div>
 
-<div class='clearfix'></div>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @product, url: admin_merchandise_wizards_products_path do |f| %>
+      <%= render partial: 'form', locals: { form: f } %>
+      <div class="form-group">
+        <%= submit_tag "Create", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

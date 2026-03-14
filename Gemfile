@@ -8,6 +8,8 @@ gem 'puma', '~> 6.0'
 gem 'propshaft'
 gem 'importmap-rails'
 gem 'dartsass-rails'
+gem 'turbo-rails'
+gem 'stimulus-rails'
 
 gem "activemerchant", '~> 1.137'
 gem "american_date",  '~> 1.2'

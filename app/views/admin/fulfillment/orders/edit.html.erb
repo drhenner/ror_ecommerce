@@ -1,96 +1,85 @@
-<h2>New shipment for Order # <%= @order.number %>  </h2>
-<div class='' >
-  <b>Shipment for <%= link_to @order.user.name, admin_user_path(@order.user) %></b>
+<div class="page-header">
+  <h1 class="page-title">New shipment for Order # <%= @order.number %></h1>
+  <p class="page-subtitle"><b>Shipment for <%= link_to @order.user.name, admin_user_path(@order.user) %></b></p>
 </div>
-<div class='clear'></div>
-<div id='order-shipment-items' class=' large-4 column'>
-  <div class='panel callout'>
-    <h4>Order Items</h4>
-    <% @order.order_items.each_with_index do |item,i| %>
-      <ul class='vertical-list compact'>
-        <li> <b><%= item.variant.product_name %></b> </li>
-        <li> <label>SKU:</label> <%= item.variant.sku %> </li>
-        <li> <label>Price:</label> <%= number_to_currency item.variant.price %> </li>
-        <% if item.shipped? %>
-          <li> <label>Shipped:</label> <%= item.shipment.display_shipped_at %> </li>
-          <li> <label>Shipping #:</label> <%= item.shipment.number %> </li>
-        <% else %>
-          <li>Not Shipped Yet,  <%= item.shipping_rate.shipping_method.name %></li>
+
+<div class="flex flex-wrap gap-4">
+  <div class="card flex-1 min-w-0">
+    <div class="card-header">
+      <h3 class="card-title">Order Items</h3>
+    </div>
+    <div class="card-body">
+      <% @order.order_items.each_with_index do |item, i| %>
+        <ul class="vertical-list compact mb-3">
+          <li><b><%= item.variant.product_name %></b></li>
+          <li><label class="form-label">SKU:</label> <%= item.variant.sku %></li>
+          <li><label class="form-label">Price:</label> <%= number_to_currency item.variant.price %></li>
+          <% if item.shipped? %>
+            <li><label class="form-label">Shipped:</label> <%= item.shipment.display_shipped_at %></li>
+            <li><label class="form-label">Shipping #:</label> <%= item.shipment.number %></li>
+          <% else %>
+            <li>Not Shipped Yet, <%= item.shipping_rate.shipping_method.name %></li>
+          <% end %>
+        </ul>
+
+        <b><%= item.state.upcase %></b>
+        <% if item.paid? && !item.shipped? %>
+          <%= link_to 'Ship Individually!',
+                admin_fulfillment_partial_order_shipments_path(@order, order_item_ids: [item.id]),
+                data: { turbo_method: :post },
+                class: "btn btn-primary btn-sm" %>
         <% end %>
-      </ul>
-
-      <b><%= item.state.upcase %></b>
-      <% if item.paid? && !item.shipped? %>
-        <%= link_to 'Ship Individually!',
-                    admin_fulfillment_partial_order_shipments_path( @order, :order_item_ids => [item.id]),
-                    method: 'POST', class: 'button' %>
       <% end %>
-    <% end %>
 
-    <% if @order.paid? && @order.order_items.any?(&:unshipped?) %>
-      <%= link_to 'New Shipment',
-                    new_admin_fulfillment_partial_order_shipment_path( @order ),
-                    class: 'button' %>
-    <% end %>
+      <% if @order.paid? && @order.order_items.any?(&:unshipped?) %>
+        <%= link_to 'New Shipment',
+              new_admin_fulfillment_partial_order_shipment_path(@order),
+              class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class=' large-4 column' >
-  <div class='panel callout'>
-    <h4>Shipping address</h4>
-    <div class='well'>
+
+  <div class="card flex-1 min-w-0">
+    <div class="card-header">
+      <h3 class="card-title">Shipping address</h3>
+    </div>
+    <div class="card-body">
       <%= render partial: '/shared/compact_address', locals: { shopping_address: @order.ship_address } %>
     </div>
   </div>
-</div>
-<div id="shipment-details-box" class=' large-4 column'>
-    <%= render partial: 'admin/fulfillment/orders/shipment_details', locals: { order: @order } %>
-</div>
-<div class='clearfix'></div>
 
-<div class='row'>
-  <div class=' large-6 column' style='text-align:left;'>
+  <div id="shipment-details-box" class="card flex-1 min-w-0" data-controller="create-shipment">
+    <%= render partial: 'admin/fulfillment/orders/shipment_details', locals: { order: @order } %>
+  </div>
+</div>
+
+<div class="flex flex-wrap gap-4 mt-4">
+  <div class="card flex-1 min-w-0">
     <% @order.invoices.each do |invoice| %>
-      <div class='panel callout'>
-        <h4>Invoice</h4>
+      <div class="card-body">
+        <h4 class="card-title">Invoice</h4>
         <div id='invoice-line-<%= invoice.id %>'
-             class='order-invoice'
-             data-invoice_id='<%= invoice.id %>'
-             data-order_id='<%= @order.id %>'>
-          <%= render partial: 'invoice_details', locals: { invoice: invoice } %>
+             class="order-invoice"
+             data-controller="fulfillment-invoice"
+             data-fulfillment-invoice-invoice-id-value="<%= invoice.id %>"
+             data-fulfillment-invoice-order-id-value="<%= @order.id %>"
+             data-fulfillment-invoice-order-url-value="<%= admin_fulfillment_order_path(@order) %>">
+          <%= render partial: 'invoice_details', locals: { invoice: invoice, order: @order } %>
         </div>
       </div>
     <% end %>
   </div>
-  <div class=' six large-6 column'>
-    <div class=' panel callout'>
-      <h4>Return Merchandise Authorization:</h4>
+
+  <div class="card flex-1 min-w-0">
+    <div class="card-header">
+      <h3 class="card-title">Return Merchandise Authorization</h3>
+    </div>
+    <div class="card-body">
       <% if @order.return_authorizations.size > 0 %>
-         <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order),
-                                  :class => 'button ' %>
-         <br/><br/>
+        <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order), class: "btn btn-outline" %>
       <% else %>
-        <%= link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order),
-                                  :class => 'button ' %>
+        <%= link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order), class: "btn btn-outline" %>
       <% end %>
     </div>
   </div>
 </div>
-
-<div id="dialog" title="Cancel Invoice">
-  <div id='dialog-message'>
-    <p>Are you sure you want to Cancel the Order and Shipment? </p>
-  </div>
-</div>
-
-<% content_for :head do -%>
-  <%= stylesheet_link_tag "cupertino/jquery-ui-1.8.12.custom" %>
-<% end %>
-
-<% content_for :bottom do -%>
-  <%= javascript_include_tag "admin/fulfillment" %>
-  <script>
-    <% @order.invoices.each do |invoice| %>
-     // Hadean.Utility.registerOnLoadHandler(Hadean.Fulfillment.initialize(<%= invoice.id %>, <%= @order.id %> ));
-    <% end %>
-  </script>
-<% end %>

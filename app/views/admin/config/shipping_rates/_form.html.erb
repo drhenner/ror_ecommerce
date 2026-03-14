@@ -10,21 +10,29 @@
   </div>
 <% end %>
 
-<fieldset>
-  <label>Shipping Method</label>
-  <%= f.select :shipping_method_id, @shipping_methods %>
+<div class="form-group">
+  <label class="form-label">Shipping Method</label>
+  <%= f.select :shipping_method_id, @shipping_methods, {}, class: "form-control" %>
+</div>
 
-  <label>Rate</label>
-  <%= f.text_field :rate %>
+<div class="form-group">
+  <label class="form-label">Rate</label>
+  <%= f.text_field :rate, class: "form-control" %>
+</div>
 
-  <label>Minimum Charge</label>
-  <%= f.text_field :minimum_charge %>
+<div class="form-group">
+  <label class="form-label">Minimum Charge</label>
+  <%= f.text_field :minimum_charge, class: "form-control" %>
+</div>
 
-  <label>Shipping Rate Type</label>
-  <%= f.select :shipping_rate_type_id, @shipping_rate_types %>
+<div class="form-group">
+  <label class="form-label">Shipping Rate Type</label>
+  <%= f.select :shipping_rate_type_id, @shipping_rate_types, {}, class: "form-control" %>
+</div>
 
-  <label>Shipping Category</label>
-  <%= f.select :shipping_category_id, @shipping_categories %>
-</fieldset>
+<div class="form-group">
+  <label class="form-label">Shipping Category</label>
+  <%= f.select :shipping_category_id, @shipping_categories, {}, class: "form-control" %>
+</div>
 
-<%= f.submit "Create", :class => "button" %>
+<%= f.submit @shipping_rate.new_record? ? "Create" : "Update", class: "btn btn-primary" %>

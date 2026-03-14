@@ -1,8 +1,18 @@
-<h1>Change Address</h1>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Change Address</h1>
+  </div>
+</div>
 
-<%= form_for(@address, url: admin_history_order_address_path(@order, @address)) do |f| %>
-  <%= render partial: '/admin/history/addresses/form', locals: { f: f } %>
-<% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@address, url: admin_history_order_address_path(@order, @address)) do |f| %>
+      <%= render partial: '/admin/history/addresses/form', locals: { f: f } %>
+    <% end %>
 
-<%= link_to 'Show', admin_history_order_address_path(@order, @address), class: 'button secondary' %>
-<%= link_to 'Back', admin_history_orders_path(), class: 'button secondary' %>
+    <div class="d-flex gap-2 mt-3">
+      <%= link_to 'Show', admin_history_order_address_path(@order, @address), class: 'btn btn-outline btn-sm' %>
+      <%= link_to 'Back', admin_history_orders_path(), class: 'btn btn-outline btn-sm' %>
+    </div>
+  </div>
+</div>

@@ -16,6 +16,7 @@
               <div class='no-hover-show'>
                 <% if product.hero_variant.try(:low_stock?) %>
                   <%= image_tag("ribbons/#{product.stock_status}.png",
+                                 alt: "#{product.stock_status}",
                                  width: 63, height: 62,
                                  class: 'upper_left_overlay' ) %>
                 <% end %>
@@ -29,7 +30,7 @@
                   </p>
                 </div>
               </div>
-              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
+              <%= link_to image_tag(product.featured_image(:medium), alt: product.name), product_path(product), title: product.name, class:  'clearfix' %>
             <% end %>
           </div>
 

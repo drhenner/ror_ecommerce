@@ -1,19 +1,30 @@
-<h2>Select Shipping Address</h2>
-
-<div class='clearfix'>
-<%= form_tag admin_shopping_checkout_shipping_addresses_path do %>
-
-  <% @shipping_addresses.each_with_index do |shipping_address, i| %>
-    <% selected = session_admin_order.ship_address_id == shipping_address.id %>
-    <div  id='select-address-<%= i %>'
-          class='panel callout five large-5 columns <%= 'address_selected' if selected %>'>
-      <%= render partial: '/shared/compact_address', locals: { shopping_address: shipping_address } %>
-      <%= link_to 'Use', select_address_admin_shopping_checkout_shipping_address_path(shipping_address), method: 'put' %> |
-      <%= link_to 'Edit', new_admin_shopping_checkout_shipping_address_path(:old_address_id => shipping_address.id) %>
-    </div>
-  <% end %>
-<% end %>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Select Shipping Address</h1>
+  </div>
+  <div class="page-actions">
+    <%= link_to 'New Shipping address', new_admin_shopping_checkout_shipping_address_path, class: 'btn btn-primary btn-sm' %>
+  </div>
 </div>
-<br />
 
-<%= link_to 'New Shipping address', new_admin_shopping_checkout_shipping_address_path, class: 'button' %>
+<div class="card">
+  <div class="card-body">
+    <%= form_tag admin_shopping_checkout_shipping_addresses_path do %>
+      <div class='d-flex flex-wrap gap-3'>
+        <% @shipping_addresses.each_with_index do |shipping_address, i| %>
+          <% selected = session_admin_order.ship_address_id == shipping_address.id %>
+          <div id='select-address-<%= i %>'
+               class='card flex-grow-1 <%= 'address_selected' if selected %>'>
+            <div class="card-body">
+              <%= render partial: '/shared/compact_address', locals: { shopping_address: shipping_address } %>
+              <div class="d-flex gap-2 mt-2">
+                <%= link_to 'Use', select_address_admin_shopping_checkout_shipping_address_path(shipping_address), data: { turbo_method: 'put' }, class: 'btn btn-primary btn-sm' %>
+                <%= link_to 'Edit', new_admin_shopping_checkout_shipping_address_path(:old_address_id => shipping_address.id), class: 'btn btn-outline btn-sm' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

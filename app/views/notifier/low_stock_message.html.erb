@@ -14,7 +14,7 @@
 
     <li><b>Name</b> <%= variant.name || variant.product_name %></li>
     <li><b>SKU</b> <%= variant.sku %></li>
-    <li><%= raw variant.display_property_details %></li>
+    <li><%= sanitize variant.display_property_details %></li>
   <% end %>
 </ul>
 

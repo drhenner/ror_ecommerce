@@ -1,68 +1,56 @@
-<%= render partial: '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<h2> Product: <%= @product.name %> (<%= '*' if @variant.master %><%= @variant.sku %>)</h2>
-
-<%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'button small' %>
-<%= link_to 'Edit Variant', edit_admin_merchandise_product_variant_path(@product, @variant), class: 'button' %>
-
-<fieldset id="admin-product-names">
-
-<div class='clear'></div>
-<div>
-  <%= label :variant, :sku %>
-</div>
-<div>
-  <%= @variant.sku %>
-</div>
-<div class='clear'></div>
-<div>
-  <%= label :variant, :price %>
-</div>
-<div>
-  <%= @variant.price %>
+<div class="page-header">
+  <h1 class="page-title">Product: <%= @product.name %> (<%= '*' if @variant.master %><%= @variant.sku %>)</h1>
+  <div class="page-actions">
+    <%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'btn btn-outline btn-sm' %>
+    <%= link_to 'Edit Variant', edit_admin_merchandise_product_variant_path(@product, @variant), class: 'btn btn-primary' %>
+  </div>
 </div>
 
-<div class='clear'></div>
-<div>
-  <%= label :variant, :cost %>
-</div>
-<div>
-  <%= @variant.cost %>
+<div class="card" id="admin-product-names">
+  <div class="card-body">
+    <div class="form-group">
+      <%= label :variant, :sku, class: "form-label" %>
+      <p><%= @variant.sku %></p>
+    </div>
+    <div class="form-group">
+      <%= label :variant, :price, class: "form-label" %>
+      <p><%= @variant.price %></p>
+    </div>
+    <div class="form-group">
+      <%= label :variant, :cost, class: "form-label" %>
+      <p><%= @variant.cost %></p>
+    </div>
+    <div class="form-group">
+      <%= label :variant, :count_on_hand, class: "form-label" %>
+      <p><%= @variant.count_on_hand %></p>
+    </div>
+    <div class="form-group">
+      <%= label :variant, :count_pending_to_customer, class: "form-label" %>
+      <p><%= @variant.count_pending_to_customer %></p>
+    </div>
+    <div class="form-group">
+      <%= label :variant, :count_pending_from_supplier, class: "form-label" %>
+      <p><%= @variant.count_pending_from_supplier %></p>
+    </div>
+  </div>
 </div>
 
-<div class='clear'></div>
-<div>
-  <%= label :variant, :count_on_hand %>
-</div>
-<div>
-  <%= @variant.count_on_hand %>
-</div>
-
-<div class='clear'></div>
-<div>
-  <%= label :variant, :count_pending_to_customer %>
-</div>
-<div>
-  <%= @variant.count_pending_to_customer %>
+<div class="card" id="admin-product-properties">
+  <div class="card-header">
+    <h3 class="card-title">Properties</h3>
+  </div>
+  <div class="card-body">
+    <% @variant.variant_properties.each do |variant_prop| %>
+      <%= variant_prop.property.identifing_name %>: <%= variant_prop.description %> <br/>
+    <% end %>
+  </div>
 </div>
 
-<div class='clear'></div>
-<div>
-  <%= label :variant, :count_pending_from_supplier %>
-</div>
-<div>
-  <%= @variant.count_pending_from_supplier %>
-</div>
-</fieldset>
-
-<fieldset id="admin-product-properties">
-  <legend>Properties</legend>
-  <% @variant.variant_properties.each do |variant_prop|  %>
-    <%= variant_prop.property.identifing_name %>: <%= variant_prop.description %> <br/>
-  <% end %>
-</fieldset>
 <% if @variant.active? %>
   <%= link_to 'Inactivate Variant',
               admin_merchandise_product_variant_path(@product, @variant),
-              class: 'button red-button alert', method: :delete, data: { confirm: "Are you sure?" } %>
+              class: 'btn btn-danger',
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
 <% end %>

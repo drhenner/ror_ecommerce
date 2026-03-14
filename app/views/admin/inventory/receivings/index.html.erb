@@ -1,48 +1,63 @@
-<% content_for :sidemenu do %>
-  <div class='admin_filters'>
-    <%= form_tag admin_inventory_receivings_path, method: 'get', id: "purchase_orders_search" do %>
-      <%= hidden_field_tag :direction, params[:direction] %>
-      <%= hidden_field_tag :sort, params[:sort] %>
+<% content_for :sidebar_panel do %>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Filters</h3>
+    </div>
+    <div class="card-body">
+      <%= form_tag admin_inventory_receivings_path, method: 'get', id: "purchase_orders_search" do %>
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
 
-      <label>Supplier Name</label>
-      <%= text_field_tag :supplier_name, params[:supplier_name] %>
-
-      <label>Invoice Number</label>
-      <%= text_field_tag :invoice_number, params[:invoice_number] %>
-
-      <label>Tracking Number</label>
-      <%= text_field_tag :tracking_number, params[:tracking_number] %>
-
-      <div style='text-align:center'>
-        <%= submit_tag "Search", name: nil, class: 'button red-button alert' %>
-      </div>
-    <% end %>
+        <div class="form-group">
+          <label class="form-label">Supplier Name</label>
+          <%= text_field_tag :supplier_name, params[:supplier_name], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Invoice Number</label>
+          <%= text_field_tag :invoice_number, params[:invoice_number], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tracking Number</label>
+          <%= text_field_tag :tracking_number, params[:tracking_number], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
-<h3>Purchase Orders to be Received</h3>
+<div class="page-header">
+  <h1 class="page-title">Purchase Orders to be Received</h1>
+</div>
 
-<div class="admin_purchase_orders">
-  <table>
-    <thead>
-    <tr class='odd'>
-      <th class='column1_header'><%= sortable "supplier_name" %></th>
-      <th><%= sortable "invoice_number" %></th>
-      <th><%= sortable "tracking_number" %></th>
-      <th><%= label_tag "estimated_arrival" %></th>
-      <th><%= "Received" %></th>
-    </tr>
-    </thead>
-    <% @purchase_orders.each do |order| %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to order.supplier_name, edit_admin_inventory_receiving_path(order) %></td>
-        <td><%= order.invoice_number %></td>
-        <td><%= order.tracking_number %></td>
-        <td><%= order.display_estimated_arrival_on %></td>
-        <td><%= order.display_received %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <%= will_paginate @purchase_orders %>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th><%= sortable "supplier_name" %></th>
+            <th><%= sortable "invoice_number" %></th>
+            <th><%= sortable "tracking_number" %></th>
+            <th><%= label_tag "estimated_arrival" %></th>
+            <th><%= "Received" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @purchase_orders.each do |order| %>
+            <tr>
+              <td><%= link_to order.supplier_name, edit_admin_inventory_receiving_path(order) %></td>
+              <td><%= order.invoice_number %></td>
+              <td><%= order.tracking_number %></td>
+              <td><%= order.display_estimated_arrival_on %></td>
+              <td><%= order.display_received %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @purchase_orders %>
+  </div>
 </div>

@@ -1,9 +1,6 @@
-<% content_for :head do -%>
-  <%#= javascript_include_tag "admin/index_grid" %>
-<% end %>
-
-<% content_for :right_side_bar do %>
-  <div class='admin_filters'>
+<% content_for :sidebar_panel do %>
+  <%= render partial: '/admin/shopping/right_panel_summary' %>
+  <div class='admin_filters mt-3'>
     <%= form_tag admin_shopping_products_path, method: 'get', :id => "products_search" do %>
       <p>
         <ul class=' search_boxes'>
@@ -12,8 +9,8 @@
               <%= select_tag "product_type_id", options_from_collection_for_select(product_types, "id", "name"), { include_blank: true, class: 'auto_width'} %>
           </li>
         </ul>
-        <div style='text-align:center'>
-          <%= submit_tag "Search", name: nil, class: 'button red-button alert' %>
+        <div class="d-flex justify-content-center">
+          <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
         </div>
       </p>
       <div id="order_hidden">
@@ -21,23 +18,28 @@
         <%= hidden_field_tag :sort, params[:sort] %>
       </div>
     <% end %>
-    <div class='clearfix'></div>
   </div>
 <% end %>
 
-<h2> Products </h2>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Products</h1>
+  </div>
+</div>
 
-<div id="admin_shopping_products_page_wrapper">
-  <div id="admin_shopping_products_grid_wrapper" class='column pretty_table'>
-      <table class='hover'>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
         <thead>
-        <tr class='odd'>
+          <tr class='odd'>
             <th class='column1_header'><%= sortable "name" %></th>
             <th>Available</th>
             <th><%= 'Product Type' %></th>
             <th> Price Range </th>
-        </tr>
+          </tr>
         </thead>
+        <tbody>
         <% @products.each do |product| %>
           <tr class='<%= cycle("odd", "")%>'>
             <td><%= link_to product.name, edit_admin_shopping_product_path(product) %></td>
@@ -46,9 +48,9 @@
             <td><%= product.display_price_range %></td>
           </tr>
         <% end %>
+        </tbody>
       </table>
-
+    </div>
     <%= will_paginate @products %>
-
   </div>
 </div>

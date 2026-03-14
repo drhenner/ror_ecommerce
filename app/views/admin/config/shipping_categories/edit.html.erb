@@ -1,8 +1,15 @@
-<h3>Editing Shipping Category <%= @shipping_category.name %> </h3>
+<div class="page-header">
+  <h1 class="page-title">Editing Shipping Category <%= @shipping_category.name %></h1>
+  <div class="page-actions">
+    <%= link_to 'Show', admin_config_shipping_category_path(@shipping_category), class: 'btn btn-outline' %>
+    <%= link_to 'Back', admin_config_shipping_categories_path, class: 'btn btn-outline' %>
+  </div>
+</div>
 
-<%= form_for(@shipping_category, url: admin_config_shipping_category_path(@shipping_category)) do |f| %>
-  <%= render partial: 'form', locals: { f: f } %>
-<% end %>
-
-<%= link_to 'Show', admin_config_shipping_category_path(@shipping_category), class: 'button' %>
-<%= link_to 'Back', admin_config_shipping_categories_path, class: 'button' %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@shipping_category, url: admin_config_shipping_category_path(@shipping_category)) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
+  </div>
+</div>

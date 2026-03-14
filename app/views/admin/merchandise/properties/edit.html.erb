@@ -1,11 +1,16 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<h3>Edit Property</h3>
+<div class="page-header">
+  <h1 class="page-title">Edit Property</h1>
+</div>
 
-<%= form_for @property, url: admin_merchandise_property_path(@property),
-                        html: { class: 'prepend-6' } do |form| %>
-  <%= render partial: '/admin/merchandise/properties/form', locals: { form: form } %>
-  <div class=" generic_submit_button">
-    <%= submit_tag "Update", class: "button", id: "update_property_button" %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @property, url: admin_merchandise_property_path(@property), html: { class: '' } do |form| %>
+      <%= render partial: '/admin/merchandise/properties/form', locals: { form: form } %>
+      <div class="form-group">
+        <%= submit_tag "Update", class: "btn btn-primary", id: "update_property_button" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -1,11 +1,6 @@
-<h2>RMAs</h2>
-
-<% content_for :head do -%>
-  <%#= javascript_include_tag "admin/index_grid" %>
-<% end %>
 <%= render :partial => '/admin/rma/sub_header'%>
 
-<% content_for :sidemenu do %>
+<% content_for :sidebar_panel do %>
   <div class='admin_filters'>
     <%= form_tag admin_rma_order_return_authorizations_path(@order), :method => 'get', :id => "products_search" do %>
       <p>
@@ -13,8 +8,8 @@
           <li><%= label_tag 'RMA #' %> <%= text_field_tag :number, params[:number] %></li>
           <li><%= label_tag 'Status' %> <%= text_field_tag :state, params[:state] %></li>
         </ul>
-        <div style='text-align:center'>
-          <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+        <div class="d-flex justify-content-center">
+          <%= submit_tag "Search", :name => nil, :class => 'btn btn-primary' %>
         </div>
       </p>
       <div id="order_hidden">
@@ -22,23 +17,29 @@
         <%= hidden_field_tag :sort, params[:sort] %>
       </div>
     <% end %>
-    <div class='clearfix'></div>
   </div>
 <% end %>
 
-<div id="admin_rma_page_wrapper">
-  <div id="admin_rma_grid_wrapper" class='column pretty_table'>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">RMAs</h1>
+  </div>
+</div>
 
-      <table class='hover'>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
         <thead>
-        <tr>
-          <th><%= sortable "number" %></th>
-          <th><%= sortable "amount" %></th>
+          <tr>
+            <th><%= sortable "number" %></th>
+            <th><%= sortable "amount" %></th>
             <th><%= sortable "User" %></th>
             <th><%=  "order_number" %></th>
             <th>Status</th>
-        </tr>
+          </tr>
         </thead>
+        <tbody>
         <% @return_authorizations.each do |return_authorization| %>
           <tr>
             <td><%= link_to return_authorization.number, edit_admin_rma_order_return_authorization_path(@order, return_authorization) %></td>
@@ -48,30 +49,9 @@
             <td><%= return_authorization.state %></td>
           </tr>
         <% end %>
+        </tbody>
       </table>
-
+    </div>
     <%= will_paginate @return_authorizations %>
   </div>
-
-  <div id="admin_new_rma_button" class="admin_new_button last">
-    <%#= link_to 'New Return authorization',
-                new_admin_rma_return_authorization_path,
-                :class => "button",
-                :id => "new_rma_button" %>
-  </div>
 </div>
-
-<div>
-
-  <%= link_to 'Order Info',
-              admin_history_order_path(@order),
-              :class => 'button heart' %>
-</div>
-
-
-
-
-
-
-
-

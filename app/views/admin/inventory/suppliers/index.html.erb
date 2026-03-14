@@ -1,42 +1,56 @@
-<% content_for :sidemenu do %>
-  <div class='admin_filters'>
-    <%= form_tag admin_inventory_suppliers_path, method: 'get', id: "suppliers_search" do %>
-      <%= hidden_field_tag :direction, params[:direction] %>
-      <%= hidden_field_tag :sort, params[:sort] %>
+<% content_for :sidebar_panel do %>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Filters</h3>
+    </div>
+    <div class="card-body">
+      <%= form_tag admin_inventory_suppliers_path, method: 'get', id: "suppliers_search" do %>
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
 
-      <label>Name</label>
-      <%= text_field_tag :name, params[:name] %>
-
-      <label>Email</label>
-      <%= text_field_tag :email, params[:email] %>
-
-      <div style='text-align:center'>
-        <%= submit_tag "Search", name: nil, class: 'button red-button alert' %>
-      </div>
-    <% end %>
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <%= text_field_tag :name, params[:name], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <%= text_field_tag :email, params[:email], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
-<div class="admin_title_header">
-  <h3>Suppliers</h3>
-  <%= link_to "New Supplier", new_admin_inventory_supplier_path, class: "button" %>
+<div class="page-header">
+  <h1 class="page-title">Suppliers</h1>
+  <div class="page-actions">
+    <%= link_to "New Supplier", new_admin_inventory_supplier_path, class: "btn btn-primary" %>
+  </div>
 </div>
 
-<div class="admin_suppliers">
-  <table class='hover'>
-    <thead>
-    <tr class='odd'>
-      <th class='column1_header'><%= sortable "name", "Name" %></th>
-      <th><%= sortable "email" %></th>
-    </tr>
-    </thead>
-    <% @suppliers.each do |supplier| %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to supplier.name, edit_admin_inventory_supplier_path(supplier) %></td>
-        <td><%= supplier.email %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <%= will_paginate @suppliers %>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th><%= sortable "name", "Name" %></th>
+            <th><%= sortable "email" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @suppliers.each do |supplier| %>
+            <tr>
+              <td><%= link_to supplier.name, edit_admin_inventory_supplier_path(supplier) %></td>
+              <td><%= supplier.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @suppliers %>
+  </div>
 </div>

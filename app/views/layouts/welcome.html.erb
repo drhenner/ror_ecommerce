@@ -9,7 +9,7 @@
   <title>
     <%= content_for?(:title) ? "#{site_name}: #{yield(:title)}" : site_name %>
   </title>
-  <link rel="shortcut icon" href="/assets/favicon.ico" />
+  <%= favicon_link_tag 'favicon.ico' %>
 
   <%= stylesheet_link_tag "normalize.css" %>
   <%= stylesheet_link_tag "application.css" %>
@@ -21,7 +21,7 @@
   <!--[if lt IE 7]
       <%= stylesheet_link_tag 'ie6.css', :media => 'screen, projection' %>
   <![endif]-->
-  <%= csrf_meta_tag %>
+  <%= csrf_meta_tags %>
 
   <%= yield :head %>
 
@@ -35,12 +35,20 @@
 
   <% if notice || alert %>
     <div class="row">
-      <% if notice || alert %>
-        <div class="flash_messages">
-          <%= raw "<div data-alert class='alert-box warning'> #{notice} <a href='' class='close'>&times;</a></div>"  if notice %>
-          <%= raw "<div data-alert class='alert-box alert'>#{alert} <a href='' class='close'>&times;</a></div>"     if alert %>
-        </div>
-      <% end %>
+      <div class="flash_messages">
+        <% if notice %>
+          <div data-alert class="alert-box warning">
+            <%= notice %>
+            <a href="" class="close">&times;</a>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div data-alert class="alert-box alert">
+            <%= alert %>
+            <a href="" class="close">&times;</a>
+          </div>
+        <% end %>
+      </div>
     </div>
   <% end %>
 
@@ -51,9 +59,9 @@
 </div>
   <%= render 'shared/main_footer' %>
   <%= render 'shared/google_analytics' unless @disable_ga %>
-  <%= yield :bottom %>
 
   <%= render 'shared/javascript_includes' %>
+  <%= yield :bottom %>
   <script>
   jQuery(window).ready(
     function() {
@@ -63,6 +71,6 @@
   );
   </script>
 
-</body>
   <%= yield :below_body %>
+</body>
 </html>

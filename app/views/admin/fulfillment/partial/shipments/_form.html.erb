@@ -1,18 +1,16 @@
-<div class='six large-6'>
-  <% @order.order_items.each do |item| %><%# .select(&:paid?).select(&:unshipped?)%>
+<div class="mb-4">
+  <% @order.order_items.each do |item| %>
     <% if item.paid? && item.unshipped? %>
-      <div class="property_form left last">
-        <% checked = false %>
-        <%= check_box_tag "order[order_item_ids][]", item.id, checked %>
+      <div class="form-group">
+        <%= check_box_tag "order[order_item_ids][]", item.id, false %>
         <%= item.variant.product_name %>
       </div>
     <% else %>
       <%= item.variant.product_name %><br/>
     <% end %>
   <% end %>
-  <div class='clearfix'> </div>
-  <p>&nbsp;</p>
-  <div class="actions">
-    <%= f.submit 'Ship checked items.' %>
-  </div>
+</div>
+
+<div class="form-group">
+  <%= f.submit 'Ship checked items.', class: "btn btn-primary" %>
 </div>

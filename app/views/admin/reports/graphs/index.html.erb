@@ -1,10 +1,23 @@
-<% content_for :head do -%>
-  <%= javascript_include_tag 'admin/reports/weekly_chart' %>
-<% end %>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Weekly Charts</h1>
+  </div>
+</div>
 
-<h2> Weekly Charts </h2>
+<div class="card mb-4">
+  <div class="card-header">
+    <h3 class="card-title">Sales</h3>
+  </div>
+  <div class="card-body">
+    <%= tag.div nil, data: { controller: "chart", chart_data_value: @sales_chart_data }, style: "height: 250px;" %>
+  </div>
+</div>
 
-<h3> Sales </h3>
-<div id="weekly-sales-graph" style="height: 250px;"></div>
-<h3> Earnings </h3>
-<div id="weekly-earnings-graph" style="height: 250px;"></div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Earnings</h3>
+  </div>
+  <div class="card-body">
+    <%= tag.div nil, data: { controller: "chart", chart_data_value: @earnings_chart_data }, style: "height: 250px;" %>
+  </div>
+</div>

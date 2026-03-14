@@ -1,12 +1,18 @@
-<h1> Comment </h1>
+<div class="page-header">
+  <h1 class="page-title">Comment</h1>
+</div>
 
-<p>
-  <strong>Note:</strong>
-  <%= @comment.note %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <p>
+      <strong>Note:</strong>
+      <%= @comment.note %>
+    </p>
 
-<p>
-  <%= link_to "Edit", edit_admin_fulfillment_order_comment_path(order, @comment), :class => 'button' %> |
-  <%= link_to "Destroy", admin_fulfillment_order_comment_path(order, @comment), :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button' %> |
-  <%= link_to "View All", admin_fulfillment_order_comments_path(order), :class => 'button' %>
-</p>
+    <div class="flex gap-2 mt-4">
+      <%= link_to "Edit", edit_admin_fulfillment_order_comment_path(order, @comment), class: "btn btn-outline" %>
+      <%= link_to "Destroy", admin_fulfillment_order_comment_path(order, @comment), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "btn btn-danger" %>
+      <%= link_to "View All", admin_fulfillment_order_comments_path(order), class: "btn btn-outline" %>
+    </div>
+  </div>
+</div>

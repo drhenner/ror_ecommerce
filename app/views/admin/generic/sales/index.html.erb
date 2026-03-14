@@ -1,36 +1,40 @@
-<% content_for :head do -%>
-
-<% end %>
-
-<h1> Sales </h1>
-
-<div id="admin_sale_grid_wrapper" class='pretty_table'>
-  <table class='hover'>
-    <tr class='odd'>
-
-        <th  class='column1_header'><%= sortable 'product_id', 'Product' %></th>
-        <th>Percent Off</th>
-        <th>Starts At</th>
-        <th>Ends At</th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tbody>
-    <% for sale in @sales %>
-      <tr  class='<%= cycle("odd", "")%>'>
-
-          <td><%= link_to sale.product_id, [:admin, :generic, sale] %></td>
-          <td><%= sale.percent_off %></td>
-          <td><%= sale.starts_at %></td>
-          <td><%= sale.ends_at %></td>
-        <td><%= link_to "edit", edit_admin_generic_sale_path(sale) %></td>
-        <td><%= link_to "inactivate", [:admin, :generic, sale], data: { confirm: 'Are you sure?' }, method: :delete %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Sales</h1>
+  </div>
+  <div class="page-actions">
+    <%= link_to "New Sale", new_admin_generic_sale_path, class: 'btn btn-primary btn-sm' %>
+  </div>
 </div>
 
-<%= will_paginate @sales %>
-
-<p><%= link_to "New Sale", new_admin_generic_sale_path, class: 'button' %></p>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
+        <thead>
+          <tr class='odd'>
+            <th class='column1_header'><%= sortable 'product_id', 'Product' %></th>
+            <th>Percent Off</th>
+            <th>Starts At</th>
+            <th>Ends At</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for sale in @sales %>
+            <tr class='<%= cycle("odd", "")%>'>
+              <td><%= link_to sale.product_id, [:admin, :generic, sale] %></td>
+              <td><%= sale.percent_off %></td>
+              <td><%= sale.starts_at %></td>
+              <td><%= sale.ends_at %></td>
+              <td><%= link_to "edit", edit_admin_generic_sale_path(sale), class: 'btn btn-outline btn-sm' %></td>
+              <td><%= link_to "inactivate", [:admin, :generic, sale], data: { confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-danger btn-sm' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @sales %>
+  </div>
+</div>

@@ -1,9 +1,9 @@
 
 <% @saved_cart_items.each_with_index do |item, i| %>
   <tr>
-    <td width="20%" valign="top" align="right">
+    <td style="width:20%;vertical-align:top;text-align:right;">
       <div class="tiny">
-        <b name="s<%= i %>">Item added on <br/><%= item.created_at.strftime(I18n.translate('time.formats.long_date')) %></b>
+        <b>Item added on <br/><%= item.created_at.strftime(I18n.translate('time.formats.long_date')) %></b>
       </div>
 
       <div id='add_<%= i %>_to_cart' class="small-gradientbuttons small-redtheme ready-to-add-to-cart">
@@ -25,7 +25,7 @@
       </div>
 
     </td>
-    <td valign="top" style="padding-right: 20px;">
+    <td style="vertical-align:top;padding-right: 20px;">
       <div class="small">
         <b>
           <%= link_to item.variant.product_name, product_path(item.variant.product) %>
@@ -35,7 +35,7 @@
         <br/>
       </div>
     </td>
-    <td valign="top" class="small">
+    <td style="vertical-align:top;" class="small">
       <b class="price"><%= number_to_currency item.price %></b><br/>
     </td>
 
@@ -43,7 +43,7 @@
 
   <tr>
     <td colspan="5">
-      <hr color='#aac'/>
+      <hr style="border-color:#aac;"/>
     </td>
   </tr>
 <% end %>

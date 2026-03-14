@@ -1,47 +1,54 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Coupon</h1>
+  </div>
+</div>
 
-<h1> Coupon </h1>
+<div class="card">
+  <div class="card-body">
+    <p>
+      <strong>Code:</strong>
+      <%= @coupon.code %>
+    </p>
 
-<p>
-  <strong>Code:</strong>
-  <%= @coupon.code %>
-</p>
+    <p>
+      <strong>Amount:</strong>
+      <%= @coupon.amount %>
+    </p>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @coupon.amount %>
-</p>
+    <p>
+      <strong>Minimum Value:</strong>
+      <%= @coupon.minimum_value %>
+    </p>
 
-<p>
-  <strong>Minimum Value:</strong>
-  <%= @coupon.minimum_value %>
-</p>
+    <p>
+      <strong>Percent:</strong>
+      <%= @coupon.percent %>
+    </p>
 
-<p>
-  <strong>Percent:</strong>
-  <%= @coupon.percent %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @coupon.description %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @coupon.description %>
-</p>
+    <p>
+      <strong>combine:</strong>
+      <%= @coupon.combine.to_s %>
+    </p>
 
-<p>
-  <strong>combine:</strong>
-  <%= @coupon.combine.to_s %>
-</p>
+    <p>
+      <strong>Starts at:</strong>
+      <%= @coupon.display_start_time %>
+    </p>
 
-<p>
-  <strong>Starts at:</strong>
-  <%= @coupon.display_start_time %>
-</p>
+    <p>
+      <strong>Expires at:</strong>
+      <%= @coupon.display_expires_time %>
+    </p>
 
-<p>
-  <strong>Expires at:</strong>
-  <%= @coupon.display_expires_time %>
-</p>
-
-<p>
-  <%= link_to "Edit", edit_admin_generic_coupon_path(@coupon), :class => 'button' %> |
-  <%= link_to "View All", admin_generic_coupons_path, :class => 'button' %>
-</p>
+    <div class="d-flex gap-2 mt-3">
+      <%= link_to "Edit", edit_admin_generic_coupon_path(@coupon), :class => 'btn btn-primary btn-sm' %>
+      <%= link_to "View All", admin_generic_coupons_path, :class => 'btn btn-outline btn-sm' %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "name": "@acemir/cssom",
+  "description": "CSS Object Model implementation and CSS parser",
+  "keywords": [
+    "CSS",
+    "CSSOM",
+    "parser",
+    "styleSheet"
+  ],
+  "version": "0.9.31",
+  "author": "Nikita Vasilyev <me@elv1s.ru>",
+  "contributors": [
+    "Acemir Sousa Mendes <acemirsm@gmail.com>"
+  ],
+  "repository": "acemir/CSSOM",
+  "files": [
+    "lib/",
+    "build/"
+  ],
+  "browser": "./build/CSSOM.js",
+  "main": "./lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.js",
+    "release": "npm run build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
+    "@changesets/get-release-plan": "^4.0.14"
+  }
+}

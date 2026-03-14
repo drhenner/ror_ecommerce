@@ -1,18 +1,13 @@
-    <div>
-      <%= form.label :identifing_name %>
-    </div>
-    <div class='last'>
-      <%= form.text_field :identifing_name %>
-    </div>
-  <p class='clear'>
-    <div>
-      <%= form.label :display_name %>
-    </div>
-    <div class=' last'>
-      <%= form.text_field :display_name %>
-    </div>
-  </p>
+<div class="form-group">
+  <%= form.label :identifing_name, class: 'form-label' %>
+  <%= form.text_field :identifing_name %>
+</div>
 
-<div class=" generic_submit_button">
-  <%= submit_tag "Create", class: "button", id: "create_product_type_button" %>
+<div class="form-group">
+  <%= form.label :display_name, class: 'form-label' %>
+  <%= form.text_field :display_name %>
+</div>
+
+<div class="form-actions">
+  <%= submit_tag "Create", class: "btn btn-primary", id: "create_product_type_button" %>
 </div>

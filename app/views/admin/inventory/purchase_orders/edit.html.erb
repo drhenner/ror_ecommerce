@@ -1,21 +1,21 @@
-<h3>Edit Purchase Order</h3>
+<div class="page-header">
+  <h1 class="page-title">Edit Purchase Order</h1>
+</div>
 
-<%= form_for @purchase_order, :url  => admin_inventory_purchase_order_path(@purchase_order) do |form| %>
-  <%= render :partial => '/admin/inventory/purchase_orders/form', :locals => {:form => form} %>
-  <div class='row'>
-    <%= submit_tag "Update", class: "button float-right" %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @purchase_order, url: admin_inventory_purchase_order_path(@purchase_order), data: { controller: "nested-form variant-cost", variant_cost_url_value: "/admin/merchandise/products/0/variants" } do |form| %>
+      <%= render partial: '/admin/inventory/purchase_orders/form', locals: { form: form } %>
+      <div class="flex gap-2 mt-4">
+        <%= submit_tag "Update", class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-<% if !@purchase_order.receive_po %>
-  <%= link_to 'Receive PO', edit_admin_inventory_receiving_path(@purchase_order) %> |
-<% end %>
-<%= link_to 'Back', admin_inventory_purchase_orders_path %>
+</div>
 
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'chosen.css' %>
-<% end %>
-
-<% content_for :below_body do -%>
-  <%= javascript_include_tag 'chosen/chosen.jquery.min.js' %>
-  <%= javascript_include_tag 'admin/purchase_orders' %>
-<% end %>
+<div class="mt-3 flex gap-2">
+  <% if !@purchase_order.receive_po %>
+    <%= link_to 'Receive PO', edit_admin_inventory_receiving_path(@purchase_order), class: "btn btn-outline" %>
+  <% end %>
+  <%= link_to 'Back', admin_inventory_purchase_orders_path, class: "btn btn-outline" %>
+</div>

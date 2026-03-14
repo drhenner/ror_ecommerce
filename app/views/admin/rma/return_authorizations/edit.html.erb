@@ -1,8 +1,17 @@
-<h2>Edit RMA</h2>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Edit RMA</h1>
+  </div>
+</div>
 
-<%= form_for(@return_authorization, url: admin_rma_order_return_authorization_path(@order, @return_authorization)) do |f| %>
-  <%= render partial: '/admin/rma/return_authorizations/form', locals: { f: f } %>
-<% end %>
-
-<%= link_to 'Show', admin_rma_order_return_authorization_path(@order, @return_authorization), class: 'button' %> |
-<%= link_to 'Back', admin_rma_order_return_authorizations_path(@order), class: 'button' %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@return_authorization, url: admin_rma_order_return_authorization_path(@order, @return_authorization), data: { controller: "nested-form" }) do |f| %>
+      <%= render partial: '/admin/rma/return_authorizations/form', locals: { f: f } %>
+    <% end %>
+    <div class="d-flex gap-2 mt-3">
+      <%= link_to 'Show', admin_rma_order_return_authorization_path(@order, @return_authorization), class: 'btn btn-outline btn-sm' %>
+      <%= link_to 'Back', admin_rma_order_return_authorizations_path(@order), class: 'btn btn-outline btn-sm' %>
+    </div>
+  </div>
+</div>

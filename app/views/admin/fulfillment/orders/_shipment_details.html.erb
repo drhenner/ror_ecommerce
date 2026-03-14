@@ -1,23 +1,32 @@
-<div class='panel callout'>
-  <h4>Shipment Details</h4>
-  <% if order.shipments.empty? %>
-      <div class='well'>
-        No Shipments have been made on this order.<br />
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Shipment Details</h3>
+  </div>
+  <div class="card-body">
+    <% if order.shipments.empty? %>
+      <div class="mb-3">
+        No Shipments have been made on this order.<br/>
         <% if order.paid? %>
-        <a id='create-shipment-button' data-url='<%= create_shipment_admin_fulfillment_order_path(order.id) %>' class='tiny button'> <%= t("label_create_shipment_button") %> </a>
+          <a id="create-shipment-button"
+             data-url="<%= create_shipment_admin_fulfillment_order_path(order.id) %>"
+             data-action="click->create-shipment#create"
+             class="btn btn-primary btn-sm"><%= t("label_create_shipment_button") %></a>
         <% end %>
       </div>
-  <% else %>
-    <% order.shipments.each do |shipment| %>
-      <ul class='vertical-list vertical menu'>
-        <li> <label>Shipping Method:</label> <%= shipment.shipping_method.name %></li>
-        <li> <label>Shipping #:</label> <%= shipment.number %> </li>
-        <li> <label>Tracking:</label> <%= shipment.tracking %> </li>
-        <li> <label>State:</label> <%= shipment.state %></li>
-      </ul>
+    <% else %>
+      <% order.shipments.each do |shipment| %>
+        <ul class="vertical-list mb-3">
+          <li><label class="form-label">Shipping Method:</label> <%= shipment.shipping_method.name %></li>
+          <li><label class="form-label">Shipping #:</label> <%= shipment.number %></li>
+          <li><label class="form-label">Tracking:</label> <%= shipment.tracking %></li>
+          <li><label class="form-label">State:</label> <%= shipment.state %></li>
+        </ul>
+      <% end %>
+      <div class="card">
+        <div class="card-body">
+          <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(order_id: order.number), class: "btn btn-outline btn-sm" %>
+        </div>
+      </div>
     <% end %>
-    <div class='panel callout'>
-      <%= link_to 'View Shipments for this order.', admin_fulfillment_shipments_path(order_id: order.number) %>
-    </div>
-  <% end %>
+  </div>
 </div>

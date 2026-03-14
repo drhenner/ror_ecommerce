@@ -10,58 +10,60 @@
   </div>
 <% end %>
 
-<div class='row'>
-  <ul class='column large-5'>
-    <li class="field">
-      <label>Code</label>
+<div class="d-flex flex-wrap gap-4">
+  <div class="flex-grow-1">
+    <div class="form-group">
+      <label class="form-label">Code</label>
       <%= f.text_field :code %>
-    </li>
+    </div>
     <% unless @coupon.id %>
-      <li class="field">
-        <label>Type</label>
-        <%= select_tag :c_type, @coupon_types.map{|ct| "<option>#{ct}</option>"}.join().html_safe , { include_blank: true } %>
-      </li>
+      <div class="form-group">
+        <label class="form-label">Type</label>
+        <%= select_tag :c_type, options_for_select(@coupon_types), include_blank: true %>
+      </div>
     <% end %>
 
-    <li class="field">
-      <label>Amount</label>
+    <div class="form-group">
+      <label class="form-label">Amount</label>
       <%= f.text_field :amount %>
-    </li>
+    </div>
 
-    <li class="field">
-      <label>Minimum Value</label>
+    <div class="form-group">
+      <label class="form-label">Minimum Value</label>
       <%= f.text_field :minimum_value %>
-    </li>
+    </div>
 
-    <li class="field">
-      <label>Percent</label>
+    <div class="form-group">
+      <label class="form-label">Percent</label>
       <%= f.text_field :percent %>
-    </li>
-  </ul>
-  <ul class='column large-5 float-left'>
-    <li class="field">
-      <label>Description</label>
+    </div>
+  </div>
+  <div class="flex-grow-1">
+    <div class="form-group">
+      <label class="form-label">Description</label>
       <%= f.text_area :description %>
-    </li>
+    </div>
 
-    <li class="field">
-      <label>Combine</label>
+    <div class="form-group">
+      <label class="form-label">Combine</label>
       <%= f.check_box :combine %>
-    </li>
+    </div>
 
-    <li class="field">
-      <label>Starts at</label>
+    <div class="form-group">
+      <label class="form-label">Starts at</label>
       <div class='date-select'>
         <%= f.date_select :starts_at %>
       </div>
-    </li>
+    </div>
 
-    <li class="field">
-      <label>Expires at</label>
+    <div class="form-group">
+      <label class="form-label">Expires at</label>
       <div class='date-select'>
         <%= f.date_select :expires_at %>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
-<%= f.submit "Create", class: "button float-right" %>
+<div class="form-group">
+  <%= f.submit "Create", class: "btn btn-primary" %>
+</div>

@@ -1,22 +1,20 @@
-<div class=" large-11 columns <%= po_form.object.new_record? ? 'new_fields' : 'fields' %>">
-  <div style='float:right;'>
+<div class="variant-row <%= po_form.object.new_record? ? 'new_fields' : 'fields' %> mb-4 p-4" style="background-color:#F6F6F6;border: solid 1px #666; border-radius: 4px;">
+  <div class="flex justify-end mb-2">
     <%= remove_child_link('remove', po_form) %>
   </div>
-  <label>Variant</label>
-  <% if po_form.object.id %>
-    <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "chzn-select select_variants large-8" %>
-  <% else %>
-    <%= po_form.select :variant_id, @select_variants, { :include_blank => true }, :class => "select_variants large-8 " %>
-  <% end %>
-
-  <div class=" large-6 ">
-    <label>Quantity</label>
-    <%= po_form.text_field :quantity %>
+  <div class="form-group">
+    <label class="form-label">Variant</label>
+    <%= po_form.select :variant_id, @select_variants, { include_blank: true }, class: "form-control select_variants", data: { action: "change->variant-cost#change" } %>
   </div>
-  <div class=" large-6 ">
-    <label>Cost</label>
-    <%= po_form.text_field :cost %>
+  <div class="flex gap-4">
+    <div class="form-group flex-1">
+      <label class="form-label">Quantity</label>
+      <%= po_form.text_field :quantity, class: "form-control" %>
+    </div>
+    <div class="form-group flex-1">
+      <label class="form-label">Cost</label>
+      <%= po_form.text_field :cost, class: "form-control" %>
+    </div>
   </div>
   <hr/>
 </div>
-

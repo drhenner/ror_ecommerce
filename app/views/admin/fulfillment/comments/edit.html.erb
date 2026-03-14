@@ -1,8 +1,16 @@
-<h1> Edit Comment </h1>
+<div class="page-header">
+  <h1 class="page-title">Edit Comment</h1>
+</div>
 
-<%= form_for(@comment, :url => admin_fulfillment_order_comment_path(order, @comment)) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
-<% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@comment, url: admin_fulfillment_order_comment_path(order, @comment)) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
+  </div>
+</div>
 
-  <%= link_to 'Show', admin_fulfillment_order_comment_path(order, @comment ), :class => 'button' %> |
-  <%= link_to 'View All', admin_fulfillment_order_comments_path(order), :class => 'button' %>
+<div class="flex gap-2 mt-4">
+  <%= link_to "Show", admin_fulfillment_order_comment_path(order, @comment), class: "btn btn-outline" %>
+  <%= link_to "View All", admin_fulfillment_order_comments_path(order), class: "btn btn-outline" %>
+</div>

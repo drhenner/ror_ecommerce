@@ -1,7 +1,6 @@
 <% if @address.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation" class="mb-4 p-4 bg-red-50 border border-red-200 rounded">
     <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
-
     <ul>
     <% @address.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -10,6 +9,6 @@
   </div>
 <% end %>
 
-<div class="actions">
-  <%= f.submit %>
+<div class="form-group">
+  <%= f.submit class: "btn btn-primary" %>
 </div>

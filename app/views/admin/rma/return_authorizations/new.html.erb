@@ -1,41 +1,46 @@
-
-<div class=' row' style='margin-top:10px;'>
-  <div class=' large-4  column '>
-    <div class=' callout'>
-      <b>Invoices:</b>
+<div class="d-flex flex-wrap gap-4 mb-4">
+  <div class="card flex-grow-1">
+    <div class="card-header">
+      <h3 class="card-title">Invoices</h3>
+    </div>
+    <div class="card-body">
       <% @order.invoices.each do |invoice| %>
-          <div  id='order-invoices'
-                class='rounded-10 '>
-              Number: <%= invoice.number %> <br/>
-              State: <%= invoice.state %> <br/>
-              at: <%= I18n.localize(invoice.updated_at, :format => :us_time)%><br/>
-              Amount: <%= number_to_currency invoice.amount %>
-          </div>
+        <div id='order-invoices' class='rounded-10 mb-2'>
+          Number: <%= invoice.number %> <br/>
+          State: <%= invoice.state %> <br/>
+          at: <%= I18n.localize(invoice.updated_at, :format => :us_time)%><br/>
+          Amount: <%= number_to_currency invoice.amount %>
+        </div>
       <% end %>
     </div>
   </div>
-  <div class=' large-4  column'>
-    <div class='callout'>
-      <b>Items</b>
-      <div  id='order-items'
-            class=' rounded-10'>
-
-              <% @order.order_items.each do |item| %>
-                <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
-              <% end %>
+  <div class="card flex-grow-1">
+    <div class="card-header">
+      <h3 class="card-title">Items</h3>
+    </div>
+    <div class="card-body">
+      <div id='order-items' class='rounded-10'>
+        <% @order.order_items.each do |item| %>
+          <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
 
-<h2>New RMA</h2>
-
-<div class=' large-8 float-left column '>
-<%= form_for(@return_authorization, :url => admin_rma_order_return_authorizations_path(@order)) do |f| %>
-  <%= render partial: '/admin/rma/return_authorizations/form', locals: { f: f } %>
-<% end %>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">New RMA</h1>
+  </div>
 </div>
 
-<% if @order.return_authorizations.size > 0 %>
-  <%= link_to 'Back', admin_rma_order_return_authorizations_path(@order), class: 'button' %>
-<% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@return_authorization, url: admin_rma_order_return_authorizations_path(@order), data: { controller: "nested-form" }) do |f| %>
+      <%= render partial: '/admin/rma/return_authorizations/form', locals: { f: f } %>
+    <% end %>
+    <% if @order.return_authorizations.size > 0 %>
+      <%= link_to 'Back', admin_rma_order_return_authorizations_path(@order), class: 'btn btn-outline btn-sm mt-3' %>
+    <% end %>
+  </div>
+</div>

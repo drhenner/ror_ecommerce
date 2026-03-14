@@ -1,24 +1,32 @@
-<h1> Comment </h1>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Comment</h1>
+  </div>
+</div>
 
-<ul>
-  <li>
-    <label>Note:</label>
-    <%= @comment.note %>
-  </li>
-  <li>
-    <label>Commentable Type:</label>
-    <%= @comment.commentable_type %>
-  </li>
-  <li>
-    <label>Author:</label>
-    <%= @comment.author.try(:name) %>
-  </li>
-  <li>
-    <label>User:</label>
-    <%= @comment.user.try(:name) %>
-  </li>
-</ul>
-<p>
-  <%= link_to "View All", admin_customer_service_user_comments_path(customer), class: 'button' %>
-  <%= link_to "Back to #{customer.name}", admin_user_path(customer), class: 'small button'  %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <ul>
+      <li>
+        <label>Note:</label>
+        <%= @comment.note %>
+      </li>
+      <li>
+        <label>Commentable Type:</label>
+        <%= @comment.commentable_type %>
+      </li>
+      <li>
+        <label>Author:</label>
+        <%= @comment.author.try(:name) %>
+      </li>
+      <li>
+        <label>User:</label>
+        <%= @comment.user.try(:name) %>
+      </li>
+    </ul>
+    <div class="d-flex gap-2 mt-3">
+      <%= link_to "View All", admin_customer_service_user_comments_path(customer), class: 'btn btn-primary btn-sm' %>
+      <%= link_to "Back to #{customer.name}", admin_user_path(customer), class: 'btn btn-outline btn-sm' %>
+    </div>
+  </div>
+</div>

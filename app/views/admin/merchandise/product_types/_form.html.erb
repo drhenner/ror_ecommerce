@@ -1,15 +1,18 @@
-<fieldset id="admin-product_type-names">
-  <div class="six large-6 columns">
-    <label>Name</label>
-    <%= form.text_field :name %>
-  </div>
-  <div class="six large-6 columns">
-    <label>Parent</label>
-    <%= form.select :parent_id,
+<div class="card" id="admin-product_type-names">
+  <div class="card-body">
+    <div class="form-group">
+      <label class="form-label">Name</label>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Parent</label>
+      <%= form.select :parent_id,
                       nested_set_options(ProductType, @product_type) {|i| "#{'-' * i.level} #{i.name}" },
-                      { include_blank: true } %>
+                      { include_blank: true },
+                      class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= submit_tag button_action, class: "btn btn-primary", id: "create_product_type_button" %>
+    </div>
   </div>
-</fieldset>
-<div class=" generic_submit_button">
-  <%= submit_tag button_action, class: "button", id: "create_product_type_button" %>
 </div>

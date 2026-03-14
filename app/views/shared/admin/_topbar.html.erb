@@ -1,0 +1,17 @@
+<button class="topbar-toggle" data-action="click->sidebar#toggle" aria-label="Toggle sidebar">
+  &#9776;
+</button>
+
+<div class="topbar-search">
+  <span class="topbar-search-icon">&#128269;</span>
+  <input type="text" placeholder="Search orders, products, users..." aria-label="Search">
+  <span class="topbar-search-shortcut">&#8984;K</span>
+</div>
+
+<div class="topbar-actions">
+  <%= link_to "Visit Store", root_path, class: "btn btn-ghost btn-sm", target: "_blank", rel: "noopener noreferrer" %>
+  <% if current_user %>
+    <span class="text-sm text-muted"><%= current_user.name %></span>
+    <%= link_to "Logout", logout_path, class: "btn btn-ghost btn-sm", data: { turbo_method: :delete } %>
+  <% end %>
+</div>

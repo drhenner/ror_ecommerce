@@ -1,7 +1,12 @@
-<fieldset id="admin-property-names">
-  <label>Identifing Name</label>
-  <%= form.text_field :identifing_name %>
-
-  <label>Display Name</label>
-  <%= form.text_field :display_name %>
-</fieldset>
+<div class="card" id="admin-property-names">
+  <div class="card-body">
+    <div class="form-group">
+      <label class="form-label">Identifing Name</label>
+      <%= form.text_field :identifing_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Display Name</label>
+      <%= form.text_field :display_name, class: "form-control" %>
+    </div>
+  </div>
+</div>

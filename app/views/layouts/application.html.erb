@@ -5,12 +5,11 @@
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<html>
 <head>
   <title>
     <%= content_for?(:title) ? "#{site_name}: #{yield(:title)}" : site_name %>
   </title>
-  <link rel="shortcut icon" href="/assets/favicon.ico" />
+  <%= favicon_link_tag 'favicon.ico' %>
 
   <%= stylesheet_link_tag "normalize.css" %>
   <%= stylesheet_link_tag "application.css" %>
@@ -22,7 +21,7 @@
   <!--[if lt IE 7]
   <%= stylesheet_link_tag('ie6.css', media: 'screen, projection') %>
   <![endif]-->
-  <%= csrf_meta_tag %>
+  <%= csrf_meta_tags %>
 
   <%= yield :head %>
 
@@ -75,6 +74,6 @@
   );
   </script>
 
-</body>
   <%= yield :below_body %>
+</body>
 </html>

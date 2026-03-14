@@ -9,8 +9,6 @@
 class Admin::Shopping::BaseController < Admin::BaseController
   helper_method :session_admin_cart, :reset_admin_cart#, :new_admin_cart#
 
-  layout 'admin_cart'
-
   private
 
   def reset_admin_cart

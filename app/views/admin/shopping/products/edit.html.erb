@@ -1,34 +1,45 @@
-<h2>Add Products</h2>
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1 class="page-title">Add Products</h1>
+  <div class="page-actions">
+    <%= link_to 'Back', admin_shopping_products_path, class: 'btn btn-outline' %>
+  </div>
+</div>
 
 <% if @product.variants.empty? %>
-  Sorry This product has no variants
+  <div class="card">
+    <div class="card-body text-center text-muted">
+      Sorry, this product has no variants.
+    </div>
+  </div>
 <% else %>
   <%= form_tag admin_shopping_product_path(@product), method: 'put' do %>
     <% @product.variants.each_with_index do |variant, i| %>
-      <div class='panel callout product_admin_panel'>
-        <ul  id='variant-<%= i %>'
-              class='<%= cycle("odd", "even") %> clear  clearfix panel callout radius' style='margin-bottom:20px;'>
-          <li id='' class='six large-6 columns'>
-            <%#= raw variant.display_property_details %>
-            <% variant.variant_properties.each do |vp| %>
-              <label><%= vp.property.display_name %></label> <%= vp.description %><br/>
-            <% end %>
-            <b><%= number_to_currency( variant.price ) %></b>
-          </li>
-          <li class='four large-4 columns'>
-            Qty in Stock: <%= variant.display_stock_status %>(<%= variant.quantity_available %>)
-          </li>
-          <li id='variant-qty-<%= i %>' class='two large-2 columns' style='diplay:inline-block;'>
-            Quantity: <%= text_field_tag("variant[#{ variant.id }]", nil, :class => 'one large-1', :style => 'width:50px;') %>
-          </li>
-
-        </ul>
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="flex gap-4 items-center flex-wrap">
+            <div style="flex:3;min-width:200px">
+              <% variant.variant_properties.each do |vp| %>
+                <span class="font-semibold"><%= vp.property.display_name %></span>: <%= vp.description %><br/>
+              <% end %>
+              <span class="font-bold mt-2" style="display:inline-block"><%= number_to_currency(variant.price) %></span>
+            </div>
+            <div style="flex:2;min-width:150px">
+              <span class="text-sm text-muted">Qty in Stock:</span>
+              <span class="status-badge status-info"><%= variant.display_stock_status %> (<%= variant.quantity_available %>)</span>
+            </div>
+            <div style="flex:1;min-width:100px">
+              <div class="form-group mb-0">
+                <label class="form-label">Quantity</label>
+                <%= text_field_tag("variant[#{variant.id}]", nil, style: 'width:70px;') %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
 
-    <%= submit_tag 'Add Items' %>
+    <div class="form-actions">
+      <%= submit_tag 'Add Items', class: 'btn btn-primary' %>
+    </div>
   <% end %>
 <% end %>
-
-<%= link_to 'Back', admin_shopping_products_path %>

@@ -1,15 +1,20 @@
-<%= render partial: '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<h3>Brand - <%= @brand.name %></h3>
+<div class="page-header">
+  <h1 class="page-title">Brand - <%= @brand.name %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @brand.name %>
-</p>
-
-<p>
-  <%= link_to "Edit", edit_admin_merchandise_brand_path(@brand), class: 'button' %>
-  <%= link_to "Delete", admin_merchandise_brand_path(@brand), data: { confirm: 'Are you sure?' }, method: :delete, class: 'button' %>
-  <%= link_to "New Brand", new_admin_merchandise_brand_path, class: 'button' %>
-  <%= link_to "View All", admin_merchandise_brands_path, class: 'button' %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <div class="form-group">
+      <strong>Name:</strong>
+      <%= @brand.name %>
+    </div>
+    <div class="page-actions mt-3">
+      <%= link_to "Edit", edit_admin_merchandise_brand_path(@brand), class: 'btn btn-primary' %>
+      <%= link_to "Delete", admin_merchandise_brand_path(@brand), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-danger' %>
+      <%= link_to "New Brand", new_admin_merchandise_brand_path, class: 'btn btn-outline' %>
+      <%= link_to "View All", admin_merchandise_brands_path, class: 'btn btn-outline' %>
+    </div>
+  </div>
+</div>

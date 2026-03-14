@@ -1,117 +1,88 @@
-
-<% content_for :bottom do -%>
-  <%= javascript_include_tag 'admin/merchandise_product' %>
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
-
-<% content_for :below_body do -%>
-  <script>
-    Hadean.AdminMerchandiseProductForm.initialize(<%= @product.id %>);
-  </script>
-<% end %>
-
-  <%= error_messages_for 'product' %>
-<fieldset id="admin-product-general-info" class='four large-4 column' style='margin-right:25px'>
-  <legend>General Info</legend>
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :name %>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">General Info</h3>
   </div>
-  <div class='span-6 last'>
-    <%= form.text_field :name %>
+  <div class="card-body">
+    <div class="form-group">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :permalink, class: "form-label" %>
+      <%= form.text_field :permalink, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :set_keywords, 'Search keywords', class: "form-label" %>
+      <span class="text-muted">(separate with a comma)</span>
+      <%= form.text_field :set_keywords, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :meta_keywords, class: "form-label" %>
+      <%= form.text_field :meta_keywords, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :meta_description, class: "form-label" %>
+      <%= form.text_field :meta_description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :product_type, class: "form-label" %>
+      <%= form.select :product_type_id,
+                      nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
+                      { include_blank: true },
+                      class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :shipping_category, class: "form-label" %>
+      <%= form.select :shipping_category_id, @select_shipping_category, {}, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :brand, class: "form-label" %>
+      <%= form.select :brand_id, @brands, {}, class: "form-control" %>
+    </div>
   </div>
+</div>
 
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :permalink %>
+<div class="card" id="admin-product-properties">
+  <div class="card-header">
+    <h3 class="card-title">Properties</h3>
   </div>
-  <div class='span-6 last'>
-    <%= form.text_field :permalink %>
-  </div>
-
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :set_keywords, 'Search keywords' %><br/> (separate with a comma)
-  </div>
-  <div class='span-6 last'>
-    <%= form.text_field :set_keywords %>
-  </div>
-
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :meta_keywords %>
-  </div>
-  <div class='span-6 last'>
-    <%= form.text_field :meta_keywords %>
-  </div>
-
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :meta_description %>
-  </div>
-  <div class='span-6 last'>
-    <%= form.text_field :meta_description %>
-  </div>
-
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :product_type %>
-  </div>
-  <div class='span-6 last'>
-    <%#= form.select :product_type_id, @select_product_types %>
-    <%= form.select :product_type_id,
-                    nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
-                    { include_blank: true } %>
-  </div>
-
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :shipping_category %>
-  </div>
-
-  <div class='span-6 last'>
-    <%= form.select :shipping_category_id, @select_shipping_category %>
-  </div>
-
-<div class='clear'></div>
-  <div class='span-3'>
-    <%= form.label :brand %>
-  </div>
-
-  <div class='span-6 last'>
-    <%= form.select :brand_id, @brands %>
-  </div>
-  <%#= render :partial => 'admin/merchandise/products/shipping_rates_form'  %>
-</fieldset>
-
-
-
-<fieldset id="admin-product-properties" class='seven large-7 column last'>
-  <legend>Properties</legend>
-
-  <div id='select-product-prototype'>
-    <% select_prototypes = [] << Prototype.new %>
-    Prototype: <%= form.select :prototype_id,
-                              @prototypes,
-                              { include_blank: true }, data: { 'product_id' => @product.id} %>
-  </div>
-
-  <div id="product_properties" class=' '>
-    <% @all_properties.each do |property| %>
-      <div  id='property_<%= property.id %>'
-            class="property_form "
-            <%= "style=display:none;" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
-        <%= form.fields_for :product_properties,
-                            property.product_properties.find_or_initialize_by(product_id: @product.id) do |product_property_form|%>
-          <div class='six'>
-            <%= property.identifing_name %>:
-
-            <%= product_property_form.hidden_field  :property_id %>
-            <%= product_property_form.text_field    :description %><br/>
-          </div>
-        <% end %>
+  <div class="card-body">
+    <div id='select-product-prototype'>
+      <% select_prototypes = [] << Prototype.new %>
+      <div class="form-group">
+        <label class="form-label">Prototype</label>
+        <%= form.select :prototype_id,
+                        @prototypes,
+                        { include_blank: true },
+                        { class: "form-control", data: { product_id: @product.id } } %>
       </div>
-    <% end %>
+    </div>
+    <div id="product_properties">
+      <% @all_properties.each do |property| %>
+        <div id='property_<%= property.id %>'
+             class="property_form"
+             <%= "style=\"display:none;\"".html_safe if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
+          <%= form.fields_for :product_properties,
+                              property.product_properties.find_or_initialize_by(product_id: @product.id) do |product_property_form| %>
+            <div class="form-group">
+              <label class="form-label"><%= property.identifing_name %>:</label>
+              <%= product_property_form.hidden_field :property_id %>
+              <%= product_property_form.text_field :description, class: "form-control" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-</fieldset>
+</div>

@@ -1,0 +1,26 @@
+export { A as AgentReporter, D as DefaultReporter, a as DotReporter, G as GithubActionsReporter, H as HangingProcessReporter, J as JUnitReporter, b as JsonReporter, R as ReportersMap, T as TapFlatReporter, c as TapReporter, V as VerboseReporter } from './chunks/index.DXMFO5MJ.js';
+export { B as BenchmarkReporter, a as BenchmarkReportsMap, V as VerboseBenchmarkReporter } from './chunks/index.CEzQDJGb.js';
+import 'node:fs';
+import 'node:perf_hooks';
+import '@vitest/runner/utils';
+import '@vitest/utils/helpers';
+import '@vitest/utils/source-map';
+import 'pathe';
+import 'tinyrainbow';
+import './chunks/env.D4Lgay0q.js';
+import 'std-env';
+import 'node:console';
+import 'node:stream';
+import 'node:util';
+import '@vitest/utils/display';
+import 'node:os';
+import 'tinyexec';
+import './path.js';
+import 'node:path';
+import 'node:url';
+import 'vite';
+import '@vitest/utils/offset';
+import 'node:fs/promises';
+import 'node:module';
+
+console.warn("Importing from \"vitest/reporters\" is deprecated since Vitest 4.1. Please use \"vitest/node\" instead.");

@@ -1,50 +1,59 @@
-<% content_for :sidemenu do %>
-
+<% content_for :sidebar_panel do %>
   <div class='admin_filters'>
     <%= form_tag admin_document_invoices_path, :method => 'get', :id => "invoices_search" do %>
-      <label>Order #</label>
-      <%= text_field_tag :order_number, params[:order_number] %>
-
-      <div style="text-align:center; margin-top: 15px">
-        <%= submit_tag "Search", :name => nil, :class => 'button red-button' %>
+      <div class="form-group">
+        <label class="form-label">Order #</label>
+        <%= text_field_tag :order_number, params[:order_number] %>
       </div>
-      </p>
+      <div class="d-flex justify-content-center mt-3">
+        <%= submit_tag "Search", :name => nil, :class => 'btn btn-primary' %>
+      </div>
       <div id="order_hidden">
         <%= hidden_field_tag :direction, params[:direction] %>
         <%= hidden_field_tag :sort, params[:sort] %>
       </div>
     <% end %>
-    <div class='clearfix'></div>
   </div>
 <% end %>
 
-<h3>Invoices</h3>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Invoices</h1>
+  </div>
+</div>
 
-<table>
-  <thead>
-  <tr class='odd'>
-    <th class='column1_header'>Amount</th>
-    <th>State</th>
-    <th>Order</th>
-    <th>Type</th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-  <% for invoice in @invoices %>
-    <tr class='<%= cycle("odd", "")%>'>
-      <td><%= invoice.amount %></td>
-      <td><%= invoice.state %></td>
-      <td><%= invoice.order.number %></td>
-      <td><%= invoice.invoice_type %></td>
-      <td><%= link_to "Show", admin_document_invoice_path(invoice) %></td>
-      <td>
-        <% if invoice.authorized? %>
-          <%= link_to "Cancel", admin_document_invoice_path(invoice), :confirm => 'Are you sure?', :method => :delete %>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
+        <thead>
+          <tr class='odd'>
+            <th class='column1_header'>Amount</th>
+            <th>State</th>
+            <th>Order</th>
+            <th>Type</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% for invoice in @invoices %>
+          <tr class='<%= cycle("odd", "")%>'>
+            <td><%= invoice.amount %></td>
+            <td><%= invoice.state %></td>
+            <td><%= invoice.order.number %></td>
+            <td><%= invoice.invoice_type %></td>
+            <td><%= link_to "Show", admin_document_invoice_path(invoice), class: 'btn btn-outline btn-sm' %></td>
+            <td>
+              <% if invoice.authorized? %>
+                <%= link_to "Cancel", admin_document_invoice_path(invoice), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
-
-<%= will_paginate @invoices %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @invoices %>
+  </div>
+</div>

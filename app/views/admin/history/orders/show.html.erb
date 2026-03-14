@@ -1,88 +1,104 @@
 <p id="notice"><%= notice %></p>
-<div class=' ten large-10 column'>
-  <b>Order Information:</b>
-  <div  id='order-items'
-        class='panel callout'>
-      <ul class='vertical-list '>
-            <li><label>Order Number:</label> <%= @order.number %></li>
-            <li><label>Customer:    </label> <%= @order.name %></li>
-            <li><label>Email:       </label> <%= @order.email %></li>
-            <li><label>Completed at:</label> <%= @order.completed_at ? I18n.localize(@order.completed_at, :format => :us_time) : '' %></li>
-            <li><label>Shipped:     </label> <%= @order.has_shipment? ? 'Yes' : 'No' %></li>
+
+<div class="card mb-4">
+  <div class="card-header">
+    <h3 class="card-title">Order Information</h3>
+  </div>
+  <div class="card-body">
+    <div id='order-items'>
+      <ul class='vertical-list'>
+        <li><label>Order Number:</label> <%= @order.number %></li>
+        <li><label>Customer:    </label> <%= @order.name %></li>
+        <li><label>Email:       </label> <%= @order.email %></li>
+        <li><label>Completed at:</label> <%= @order.completed_at ? I18n.localize(@order.completed_at, :format => :us_time) : '' %></li>
+        <li><label>Shipped:     </label> <%= @order.has_shipment? ? 'Yes' : 'No' %></li>
       </ul>
+    </div>
   </div>
 </div>
 
 <% if @order.order_items.size > 0 %>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="card-title">Items</h3>
+    </div>
+    <div class="card-body">
+      <div id='order-items'>
+        <% @order.order_items.each do |item| %>
+          <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
-  <div class=' six large-6 column'>
-  <b>Items</b>
-    <div  id='order-items'
-          class=' panel callout'>
-
-            <% @order.order_items.each do |item| %>
-              <%= item.variant.product_name %> <%= number_to_currency item.total %><br/>
-            <% end %>
+<div class="d-flex flex-wrap gap-4">
+  <div class="card mb-4 flex-grow-1">
+    <div class="card-header">
+      <h3 class="card-title">Shipping Address</h3>
+    </div>
+    <div class="card-body">
+      <div id='order-address'>
+        <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+        <br>
+        <p><%= link_to 'Change Address', admin_history_order_addresses_path(@order), :class => 'btn btn-primary' %> <br>
+        (This will not change the shipments that have already been placed)</p>
+      </div>
     </div>
   </div>
 
-<% end %>
-<div class=' six large-6 column'>
-  <b>Shipping Address</b>
-  <div  id='order-address'
-        class='panel callout'>
-            <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
-            <br>
-            <p><%= link_to 'Change Address', admin_history_order_addresses_path(@order), :class => 'button green' %> <br>
-            (This will not change the shipments that have already been placed)</p>
-  </div>
-</div>
-
-<div class=' six large-6 column '>
-  <b>Shipments:</b>
-  <% @order.shipments.each do |shipment| %>
-      <div  id='order-shipment-items'
-            class='panel callout'>
+  <div class="card mb-4 flex-grow-1">
+    <div class="card-header">
+      <h3 class="card-title">Shipments</h3>
+    </div>
+    <div class="card-body">
+      <% @order.shipments.each do |shipment| %>
+        <div id='order-shipment-items' class="mb-3">
           State: <%= shipment.state.humanize %> <br/>
           Shipping Method: <%= shipment.shipping_method.name %> <br/>
           Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %>
-      </div>
-  <% end %>
-  <% if @order.shipments.empty? %>
-    <div  id='order-shipment-items'
-          class=' panel callout'>
-      No Shipments have been made for this Order.
+        </div>
+      <% end %>
+      <% if @order.shipments.empty? %>
+        <div id='order-shipment-items'>
+          No Shipments have been made for this Order.
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
 
-
-<div class=' span-7 six large-6 column'>
-  <b>Invoices:</b>
-  <% @order.invoices.each do |invoice| %>
-      <div  id='order-invoices'
-            class=' panel callout'>
+<div class="d-flex flex-wrap gap-4">
+  <div class="card mb-4 flex-grow-1">
+    <div class="card-header">
+      <h3 class="card-title">Invoices</h3>
+    </div>
+    <div class="card-body">
+      <% @order.invoices.each do |invoice| %>
+        <div id='order-invoices' class="mb-3">
           <ul class='vertical-list'>
             <li><label>Number:</label> <%= invoice.number %> </li>
             <li><label>State: </label><%= invoice.state %></li>
             <li><label>at:</label> <%= I18n.localize(invoice.updated_at, :format => :us_time)%></li>
             <li><label>Amount:</label> <%= number_to_currency invoice.amount %></li>
           </ul>
-      </div>
-  <% end %>
-</div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<div class=' six large-6 column'>
-  <b>Return Merchandise Authorization:</b>
-  <div class=' panel callout'>
-    <% if @order.return_authorizations.size > 0 %>
-       <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order),
-                                :class => 'button ' %>
-       <br/><br/>
-    <% else %>
-      <%= link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order),
-                                :class => 'button ' %>
-    <% end %>
+  <div class="card mb-4 flex-grow-1">
+    <div class="card-header">
+      <h3 class="card-title">Return Merchandise Authorization</h3>
+    </div>
+    <div class="card-body">
+      <% if @order.return_authorizations.size > 0 %>
+        <%= link_to 'View RMAs', admin_rma_order_return_authorizations_path(@order), :class => 'btn btn-primary' %>
+        <br/><br/>
+      <% else %>
+        <%= link_to 'Create RMA', new_admin_rma_order_return_authorization_path(@order), :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
 </div>
 <%#= link_to 'Edit', edit_admin_history_order_path(@order) %>

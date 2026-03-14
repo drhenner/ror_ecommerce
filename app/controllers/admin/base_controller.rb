@@ -31,7 +31,7 @@ class Admin::BaseController < ApplicationController
   end
 
   def verify_admin
-    redirect_to root_url if !current_user || !current_user.admin?
+    redirect_to root_url if !current_user || !current_user.admin_access?
   end
 
   def verify_super_admin

@@ -1,48 +1,43 @@
-<fieldset>
-  <legend>New User</legend>
+<div class="form-group">
+  <label class="form-label">First Name</label>
+  <%= form.text_field :first_name, class: "form-control" %>
+</div>
 
-  <div class="row">
-    <div class="six large-6 columns">
-      <label>First Name</label>
-      <%= form.text_field :first_name %>
+<div class="form-group">
+  <label class="form-label">Last Name</label>
+  <%= form.text_field :last_name, class: "form-control" %>
+</div>
 
-      <label>Email Address</label>
-      <%= form.text_field :email %>
+<div class="form-group">
+  <label class="form-label">Email Address</label>
+  <%= form.text_field :email, class: "form-control" %>
+</div>
 
-    </div>
-
-    <div class="six large-6 columns">
-      <label>Last Name</label>
-      <%= form.text_field :last_name %>
-
-      <label>State</label>
-      <%= form.select :state, @states %>
-    </div>
-  </div>
-</fieldset>
+<div class="form-group">
+  <label class="form-label">State</label>
+  <%= form.select :state, @states, {}, class: "form-control" %>
+</div>
 
 <% if current_user.super_admin? %>
-  <fieldset id="admin-password">
+  <fieldset id="admin-password" class="form-group">
     <p>Leave blank if you don't want to change the password.</p>
-    <ul>
-      <li>
-        <%= form.label :password %>
-        <%= form.password_field :password %>
-      </li>
-      <li>
-        <%= form.label :password_confirmation %>
-        <%= form.password_field :password_confirmation %>
-      </li>
-    </ul>
+    <div class="form-group">
+      <%= form.label :password, class: "form-label" %>
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :password_confirmation, class: "form-label" %>
+      <%= form.password_field :password_confirmation, class: "form-control" %>
+    </div>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="form-group">
     <legend>User Roles</legend>
     <% @all_roles.each do |role| %>
-      <div class="property_form left span-9 last">
+      <div class="form-group flex items-center">
         <% checked = @user.id && @user.roles.include?(role)%>
         <%= check_box_tag "user[role_ids][]", role.id, checked %>
-        <%= role.name %>
+        <span class="ml-2"><%= role.name %></span>
       </div>
     <% end %>
   </fieldset>

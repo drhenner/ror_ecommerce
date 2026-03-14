@@ -1,64 +1,76 @@
-
-<h2>New shipment for Order # <%= @order.number %>  </h2>
-<div class='' >
-  Shipment for <%= @order.user.name %>
+<div class="page-header">
+  <h1 class="page-title">New Shipment for Order #<%= @order.number %></h1>
+  <p class="page-subtitle">Shipment for <%= @order.user.name %></p>
 </div>
-<div class='clear'></div>
-<div id='order-shipment-items' class='span-7 last float-left'>
-<h4>Order Items</h4>
-  <% @order.order_items.each_with_index do |item,i| %>
-    <div  id='order-shipment-item<%= i %>'
-          class='span-6 rounded-4 line_item_yellow'>
 
-        <%= item.variant.product_name %> <%= item.variant.sku %> <%= number_to_currency item.variant.price %> <br/>
-        <% if item.shipped? %>
-          Shipped: <%= item.shipment.display_shipped_at %> => Shipping #: <%= item.shipment.number %>
-        <% else %>
-          Not Shipped Yet.
-          <%= item.shipping_rate.shipping_method.name %>
-        <% end %>
-
+<div class="flex flex-wrap gap-4">
+  <div class="card flex-1 min-w-0">
+    <div class="card-header">
+      <h3 class="card-title">Order Items</h3>
     </div>
-  <% end %>
-</div>
-<div class='span-7 last float-left' >
-<h4>Shipping address</h4>
-  <div  id='order-ship-address'
-        class='span-6 rounded-4 line_item_yellow'>
-    <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+    <div class="card-body">
+      <% @order.order_items.each_with_index do |item, i| %>
+        <div class="line_item_yellow mb-3" id="order-shipment-item<%= i %>">
+          <b><%= item.variant.product_name %></b>
+          <span class="text-muted text-sm"><%= item.variant.sku %></span>
+          <span><%= number_to_currency item.variant.price %></span>
+          <br/>
+          <% if item.shipped? %>
+            <span class="text-sm">Shipped: <%= item.shipment.display_shipped_at %> &mdash; Shipping #: <%= item.shipment.number %></span>
+          <% else %>
+            <span class="text-sm">Not Shipped Yet. <%= item.shipping_rate.shipping_method.name %></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card flex-1 min-w-0">
+    <div class="card-header">
+      <h3 class="card-title">Shipping Address</h3>
+    </div>
+    <div class="card-body">
+      <%= render partial: '/shared/compact_address', locals: { shopping_address: @order.ship_address } %>
+    </div>
+  </div>
+
+  <div class="card flex-1 min-w-0">
+    <div class="card-header">
+      <h3 class="card-title">Shipment Details</h3>
+    </div>
+    <div class="card-body">
+      <% if @order.shipments.empty? %>
+        <p class="text-muted">No Shipments have been made on this order.</p>
+      <% end %>
+      <% @order.shipments.each do |shipment| %>
+        <div class="<%= cycle('line_item_yellow', 'line_item_gray') %> mb-2">
+          <b>Shipping Method:</b> <%= shipment.shipping_method.name %><br/>
+          <b>Shipping #:</b> <%= shipment.number %>
+          <b>Tracking:</b> <%= shipment.tracking %>
+          <b>State:</b> <%= shipment.state %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-<div class='span-7 last float-left'>
-<h4>Shipment Details</h4>
-  <% if @order.shipments.empty? %>
-    No Shipments have been made on this order.
-  <% end %>
-  <% @order.shipments.each do |shipment| %>
-      <div  id='order-shipment-items'
-            class='span-6 rounded-4 <%= cycle("line_item_yellow", "line_item_gray") %>'>
-          Shipping Method: <%= shipment.shipping_method.name %> <br/>
-          Shipping #: <%= shipment.number %> Tracking:<%= shipment.tracking %> State:<%= shipment.state %>
+
+<div class="card mt-4">
+  <div class="card-header">
+    <h3 class="card-title">Invoices</h3>
+  </div>
+  <div class="card-body">
+    <% @order.invoices.each do |invoice| %>
+      <div class="flex items-center gap-3 mb-2">
+        <span class="status-badge status-<%= invoice.state %>"><%= invoice.state %></span>
+        <span>Invoice: <%= invoice.number %> &mdash; <%= number_to_currency invoice.amount %></span>
+        <% if invoice.authorized? %>
+          <span class="btn btn-primary btn-sm" id="capture-invoice-button">Collect</span>
+        <% end %>
       </div>
-  <% end %>
-</div>
-<div class='clear'></div>
-Ask if you want to authorize full amount of partial with reason<br/>
-<div class='span-12 last'>
-  <% @order.invoices.each do |invoice| %>
-    <div style='display:inline-block;' class='line_item_gray'> <%= invoice.state %> Invoice:</div>
-    <%=  invoice.number %> => <%= number_to_currency invoice.amount %>
-    <% if invoice.authorized? %>
-      <a id='capture-invoice-button' style='display:inline-block;' class='line_item_blue'>
-        Collect
-      </a>
     <% end %>
-    <br/>
-  <% end %>
+  </div>
 </div>
 
-
-AUTHORIZE AND SHIP BUTTON.<br/>  AUTHORIZE PARTIAL AND CANCEL items.<br/>
-CANCEL BUTTON. (put this button in a place not easily clicked.)
-<%#= render 'form' %>
-
-<%= link_to 'All Shipments', admin_fulfillment_shipments_path(:order_id => @shipment.order_id) %>
+<div class="mt-4">
+  <%= link_to 'All Shipments', admin_fulfillment_shipments_path(order_id: @shipment.order_id), class: "btn btn-outline" %>
+</div>

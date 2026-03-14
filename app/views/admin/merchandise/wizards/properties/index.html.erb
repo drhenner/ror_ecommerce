@@ -1,52 +1,63 @@
 <%= render partial: '/admin/merchandise/wizards/sub_header'%>
 
-<% if  @properties.empty? %>
-  <h3>New Property</h3>
-<% else %>
-  <h3>Pick a Property</h3>
-<% end %>
+<div class="card mb-5">
+  <div class="card-body">
+    <% if @properties.empty? %>
+      <h3>New Property</h3>
+    <% else %>
+      <h3>Pick a Property</h3>
+    <% end %>
 
-<%= form_for @property, url: admin_merchandise_wizards_property_path(:id => 0), method: 'PUT' do |product_form| %>
-  <div id='properties_selections' class='four large-4 last'>
-    <%= select_tag 'property[ids][]',
-                    options_from_collection_for_select(@properties, "id", "full_name", @selected),
-                    :class => 'chzn-select  column',
-                    :multiple => 'true',
-                    :style    => 'overflow:scroll; width: 350px',
-                    'data-placeholder' => 'Choose Properties' %>
-  </div>
-  <%= product_form.submit 'Use Properties', :class => 'button' %>
-<% end %>
-
-<% unless  @properties.empty? %>
-  <h2>New Property</h2>
-  <p>If all the you want properties don't exist, create it now.</p>
-<% end %>
-<%= form_for @property, url: admin_merchandise_wizards_properties_path do |property_form| %>
-  <%= render partial: 'form', locals: { form: property_form } %>
-<% end %>
-
-<% unless  @prototypes.empty? %>
-  <div class='nine large-9 last column'>
-    <h3>New Prototype</h3>
-    <p>If you have a prototype created, select it here.</p>
-    <% @prototypes.each do |prototype|%>
-      <div class='six large-6 column <%= cycle '', '', 'last' %>'>
-        <label><%= prototype.name %></label>
-        <%= button_to 'Use', admin_merchandise_wizards_prototype_path(prototype),
-                      :class => 'button secondary inline-block',
-                      :method => :put %>
+    <%= form_for @property, url: admin_merchandise_wizards_property_path(:id => 0), method: 'PUT' do |product_form| %>
+      <div class="form-group">
+        <%= select_tag 'property[ids][]',
+                        options_from_collection_for_select(@properties, "id", "full_name", @selected),
+                        :multiple => 'true',
+                        :style => 'overflow:scroll; width: 350px; min-height: 120px',
+                        'data-placeholder' => 'Choose Properties' %>
       </div>
-
+      <%= product_form.submit 'Use Properties', class: 'btn btn-primary' %>
     <% end %>
   </div>
+</div>
+
+<% unless @properties.empty? %>
+  <div class="card mb-5">
+    <div class="card-header">
+      <h3 class="card-title">New Property</h3>
+    </div>
+    <div class="card-body">
+      <p class="text-muted">If the properties you want don't exist, create one now.</p>
+      <%= form_for @property, url: admin_merchandise_wizards_properties_path do |property_form| %>
+        <%= render partial: 'form', locals: { form: property_form } %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'chosen.css' %>
+<% if @properties.empty? %>
+  <%= form_for @property, url: admin_merchandise_wizards_properties_path do |property_form| %>
+    <%= render partial: 'form', locals: { form: property_form } %>
+  <% end %>
 <% end %>
 
-<% content_for :below_body do -%>
-  <%= javascript_include_tag 'chosen/chosen.jquery.min.js' %>
-  <%= javascript_include_tag 'admin/wizards/properties.js' %>
+<% unless @prototypes.empty? %>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">New Prototype</h3>
+    </div>
+    <div class="card-body">
+      <p class="text-muted mb-4">If you have a prototype created, select it here.</p>
+      <div class="grid-2">
+        <% @prototypes.each do |prototype| %>
+          <div class="flex items-center justify-between p-3" style="border:1px solid var(--color-border);border-radius:var(--radius)">
+            <span class="font-semibold"><%= prototype.name %></span>
+            <%= button_to 'Use', admin_merchandise_wizards_prototype_path(prototype),
+                          class: 'btn btn-outline btn-sm',
+                          method: :put %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>

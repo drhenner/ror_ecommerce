@@ -1,20 +1,25 @@
-<div class='large-6 column <%=  image_form.object.new_record? ? "new_fields" : "fields" %>' >
+<div class="form-group <%= image_form.object.new_record? ? 'new_fields' : 'fields' %>">
   <% if !image_form.object.new_record? && image_form.object.photo.attached? %>
-    <%= image_tag image_form.object.photo_url(:small) %>
+    <%= image_tag image_form.object.photo_url(:small), alt: image_form.object.caption || image_form.object.photo_filename %>
   <% end %>
-  <div style='float:right;'>
+  <div class="d-flex justify-end">
     <%= remove_child_link('remove', image_form) %>
   </div>
-  <label>Position</label>
-  <%= image_form.select       :position, [1,2,3,4,5,6,7,8,9] %>
-
-  <label>Caption</label>
-  <%= image_form.text_field   :caption %>
-
-  <label>Photo</label>
-  <%= image_form.file_field   :photo %>
-
-  <label>Link to image</label>
-  <%= image_form.text_field   :photo_from_link %>
+  <div class="form-group">
+    <label class="form-label">Position</label>
+    <%= image_form.select :position, [1,2,3,4,5,6,7,8,9], {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Caption</label>
+    <%= image_form.text_field :caption, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Photo</label>
+    <%= image_form.file_field :photo %>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Link to image</label>
+    <%= image_form.text_field :photo_from_link, class: "form-control" %>
+  </div>
 </div>
 <hr/>

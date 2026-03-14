@@ -1,9 +1,17 @@
-<h3>New Deal</h3>
-
-<%= form_for @deal, url: admin_generic_deals_path(@deal) do |f| %>
-  <%=  render partial: 'form', locals: { f: f } %>
-  <div class="actions float-right">
-    <%= f.submit 'Create', class: "button" %>
-    <%= link_to "Back to List", admin_generic_deals_path, class: "button secondary" %>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">New Deal</h1>
   </div>
-<% end %>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <%= form_for @deal, url: admin_generic_deals_path(@deal) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+      <div class="form-group d-flex gap-2">
+        <%= f.submit 'Create', class: "btn btn-primary" %>
+        <%= link_to "Back to List", admin_generic_deals_path, class: "btn btn-outline btn-sm" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 <% if @purchase_order.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@purchase_order.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
-
     <ul>
     <% @purchase_order.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -10,39 +9,48 @@
   </div>
 <% end %>
 
-<fieldset>
-  <div class="six large-4 columns">
-    <label>Supplier</label>
-    <%= form.select :supplier_id, @select_suppliers, { include_blank: true }, class: "large-10 " %>
-
-    <label>Invoice Number</label>
-    <%= form.text_field :invoice_number %>
-
-    <label>Total Cost</label>
-    <%= form.text_field :total_cost %>
-
-    <label>Tracking Number</label>
-    <%= form.text_field :tracking_number %>
-
-    <label>Notes</label>
-    <%= form.text_field :notes %>
-
-    <label>Ordered At</label>
-    <div class='date-select'>
-      <%= form.datetime_select :ordered_at %>
+<div class="flex flex-wrap gap-4 mb-4">
+  <div class="flex-1 min-w-0">
+    <div class="form-group">
+      <label class="form-label">Supplier</label>
+      <%= form.select :supplier_id, @select_suppliers, { include_blank: true }, class: "form-control" %>
     </div>
-
-    <label>Estimated Arrival on</label>
-    <div class='date-select'>
-      <%= form.date_select :estimated_arrival_on %>
+    <div class="form-group">
+      <label class="form-label">Invoice Number</label>
+      <%= form.text_field :invoice_number, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Total Cost</label>
+      <%= form.text_field :total_cost, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tracking Number</label>
+      <%= form.text_field :tracking_number, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notes</label>
+      <%= form.text_field :notes, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Ordered At</label>
+      <div class='date-select'>
+        <%= form.datetime_select :ordered_at %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Estimated Arrival on</label>
+      <div class='date-select'>
+        <%= form.date_select :estimated_arrival_on %>
+      </div>
     </div>
   </div>
-
-  <div class=" large-8 columns" style="background-color:#F6F6F6;border: solid 1px #666;">
+  <div class="flex-1 min-w-0 p-4" style="background-color:#F6F6F6;border: solid 1px #666; border-radius: 4px;">
     <%= form.fields_for :purchase_order_variants, @purchase_order.purchase_order_variants do |po_variant_form| %>
       <%= render partial: 'purchase_order_variant', locals: { po_form: po_variant_form } %>
     <% end %>
-    <p><%= link_to "New Variant", '#add_variant', class: 'add_variant tiny button secondary', 'data-association' => "purchase_order_variants" %></p>
+    <p>
+      <%= link_to "New Variant", '#add_variant', class: 'btn btn-outline btn-sm add_child', 'data-association' => "purchase_order_variants", data: { action: "click->nested-form#add" } %>
+    </p>
     <%= new_child_fields_template form, :purchase_order_variants, form_builder_local: :po_form %>
   </div>
-</fieldset>
+</div>

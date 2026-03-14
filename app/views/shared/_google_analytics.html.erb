@@ -3,7 +3,7 @@
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', '<%= tracker %>']);
-    _gaq.push(['_setDomainName', 'ufcfit.com']);
+    _gaq.push(['_setDomainName', '<%= Settings.google.analytics_domain || "auto" %>']);
     _gaq.push(['_setAllowLinker', true]);
 
     <% if flash[:analytics] -%>
@@ -45,11 +45,13 @@
       _gaq.push(['_trackTrans']);
     <% end %>
 
-    $(document).on('click', ' a.checkout-button', function() {
-      _gaq.push(['_trackEvent', 'beginCheckout', 'clicked'])
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a.checkout-button');
+      if (link) { _gaq.push(['_trackEvent', 'beginCheckout', 'clicked']); }
     });
-    $(document).on('click', ' a.add-to-cart-button', function() {
-      _gaq.push(['_trackEvent', 'addToCart', 'clicked'])
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a.add-to-cart-button');
+      if (link) { _gaq.push(['_trackEvent', 'addToCart', 'clicked']); }
     });
   </script>
 <% end %> <%# END if tracker %>

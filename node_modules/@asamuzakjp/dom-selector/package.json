@@ -1,0 +1,81 @@
+{
+  "name": "@asamuzakjp/dom-selector",
+  "description": "A CSS selector engine.",
+  "author": "asamuzaK",
+  "license": "MIT",
+  "homepage": "https://github.com/asamuzaK/domSelector#readme",
+  "bugs": {
+    "url": "https://github.com/asamuzaK/domSelector/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asamuzaK/domSelector.git"
+  },
+  "files": [
+    "dist",
+    "src",
+    "types"
+  ],
+  "type": "module",
+  "exports": {
+    "import": {
+      "types": "./types/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "require": {
+      "types": "./dist/cjs/index.d.cts",
+      "default": "./dist/cjs/index.cjs"
+    },
+    "default": {
+      "types": "./dist/cjs/types/index.d.cts",
+      "default": "./dist/cjs/index.cjs"
+    }
+  },
+  "types": "types/index.d.ts",
+  "dependencies": {
+    "@asamuzakjp/nwsapi": "^2.3.9",
+    "bidi-js": "^1.0.3",
+    "css-tree": "^3.1.0",
+    "is-potential-custom-element-name": "^1.0.1",
+    "lru-cache": "^11.2.6"
+  },
+  "devDependencies": {
+    "@types/css-tree": "^2.3.11",
+    "benchmark": "^2.1.4",
+    "c8": "^10.1.3",
+    "chai": "^6.2.2",
+    "commander": "^14.0.3",
+    "esbuild": "^0.27.3",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsdoc": "^62.5.4",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-regexp": "^3.0.0",
+    "eslint-plugin-unicorn": "^63.0.0",
+    "globals": "^17.3.0",
+    "jsdom": "^28.0.0",
+    "mocha": "^11.7.5",
+    "neostandard": "^0.12.2",
+    "prettier": "^3.8.1",
+    "sinon": "^21.0.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "wpt-runner": "^6.1.0"
+  },
+  "overrides": {
+    "jsdom": "$jsdom"
+  },
+  "scripts": {
+    "bench": "node benchmark/bench.js",
+    "bench:sizzle": "node benchmark/bench-sizzle.js",
+    "build": "npm run tsc && npm run lint && npm test && npm run bundle && npm run test:cjs",
+    "bundle": "tsup src/index.js --format=cjs --platform=node --outDir=dist/cjs/ --sourcemap --dts",
+    "lint": "eslint --fix .",
+    "test": "c8 --reporter=text mocha --parallel --exit test/**/*.test.js",
+    "test:cjs": "mocha --exit test/index.test.cjs",
+    "test:wpt": "node test/wpt/wpt-runner.js",
+    "tsc": "node scripts/index clean --dir=types -i && npx tsc",
+    "update:wpt": "git submodule update --init --recursive --remote"
+  },
+  "version": "6.8.1"
+}

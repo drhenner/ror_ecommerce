@@ -1,7 +1,6 @@
 <% if @comment.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation" class="mb-4 p-4 bg-red-50 border border-red-200 rounded">
     <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
     <ul>
     <% @comment.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -10,10 +9,10 @@
   </div>
 <% end %>
 
-<div class="field">
-  <%= f.label :note %><br />
-  <%= f.text_field :note %>
+<div class="form-group">
+  <%= f.label :note, class: "form-label" %>
+  <%= f.text_field :note, class: "form-control" %>
 </div>
-<div class="actions">
-  <%= f.submit %>
+<div class="form-group">
+  <%= f.submit class: "btn btn-primary" %>
 </div>

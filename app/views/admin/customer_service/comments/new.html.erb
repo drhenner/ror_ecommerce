@@ -1,11 +1,16 @@
-<h1> New Comment </h1>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">New Comment</h1>
+    <p class="page-subtitle"><%= customer.name %></p>
+  </div>
+</div>
 
-<p>
-  <%= customer.name %>
-</p>
-<%= form_for @comment, url: admin_customer_service_user_comments_path(customer, @comment) do |f| %>
-  <%=  render partial: 'form', locals: { f: f } %>
-  <div class="actions"><%= f.submit 'Create' , class: 'button' %></div>
-<% end %>
-
-<p><%= link_to "Back to List", admin_customer_service_user_comments_path(customer), class: 'button' %></p>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @comment, url: admin_customer_service_user_comments_path(customer, @comment) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+      <div class="form-group"><%= f.submit 'Create', class: 'btn btn-primary' %></div>
+    <% end %>
+    <%= link_to "Back to List", admin_customer_service_user_comments_path(customer), class: 'btn btn-outline btn-sm mt-3' %>
+  </div>
+</div>

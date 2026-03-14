@@ -9,7 +9,7 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
 
   # GET /admin/fulfillment/orders/1
   def show
-    @order = Order.includes([:user, :shipments, {:order_items => [:shipment, :variant]}]).find(params[:id])
+    @order = Order.includes(:user, :shipments, order_items: [:shipment, { variant: :product }, { shipping_rate: :shipping_method }]).find(params[:id])
     add_to_recent_user(@order.user)
     respond_to do |format|
       format.html # show.html.erb
@@ -19,16 +19,22 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
 
   # GET /admin/fulfillment/orders/1/edit
   def edit
-    @order = Order.includes([:user, :shipments, {:order_items => [:shipment, :variant]}]).find(params[:id])
+    @order = Order.includes(:user, :shipments, order_items: [:shipment, { variant: :product }, { shipping_rate: :shipping_method }]).find(params[:id])
     add_to_recent_user(@order.user)
   end
 
 
   def create_shipment
     @order = Order.find_by_id(params[:id])
-    if @order
-      Shipment.create_shipments_with_items(@order)
-      @order.reload
+    unless @order
+      head :not_found
+      return
+    end
+    Shipment.create_shipments_with_items(@order)
+    @order.reload
+    respond_to do |format|
+      format.turbo_stream
+      format.html { render partial: "admin/fulfillment/orders/shipment_details", locals: { order: @order }, layout: false }
     end
   end
 

@@ -1,7 +1,7 @@
-<div class="field">
-  <%= f.text_area :note %>
+<div class="form-group">
+  <%= f.text_area :note, class: "form-control", id: "comment_note" %>
 </div>
 
-<div class="actions">
-  <%= f.submit "Add a Note", :class => 'comment-submit-button' %>
+<div class="form-group">
+  <%= f.submit "Add a Note", class: "btn btn-primary btn-sm comment-submit-button" %>
 </div>

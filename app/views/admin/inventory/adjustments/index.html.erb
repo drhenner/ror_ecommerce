@@ -1,17 +1,25 @@
-<h3>Inventory Adjustments</h3>
+<div class="page-header">
+  <h1 class="page-title">Inventory Adjustments</h1>
+</div>
 
-<div class="admin_adjustments">
-  <table class='hover'>
-    <thead>
-    <tr class='odd'>
-      <th class='column1_header'>Name</th>
-    </tr>
-    </thead>
-    <% for product in @products %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to product.name, admin_inventory_adjustment_path(product) %></td>
-      </tr>
-    <% end %>
-  </table>
-  <%= will_paginate @products %>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for product in @products %>
+            <tr>
+              <td><%= link_to product.name, admin_inventory_adjustment_path(product) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @products %>
+  </div>
 </div>

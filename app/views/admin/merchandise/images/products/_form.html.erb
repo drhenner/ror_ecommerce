@@ -2,23 +2,23 @@
   <div id="error_explanation">
     <h2><%= pluralize(@product.errors.count, "error") %> prohibited the images from being saved:</h2>
     <ul>
-    <% @product.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
 
 <div>
   <div id="product_images">
-    <%= new_child_fields_template form, :images, :form_builder_local => :image_form %>
+    <%= new_child_fields_template form, :images, form_builder_local: :image_form %>
     <% @product.images.each do |image| %>
-      <div id='image_<%= image.id %>'  style='padding-bottom:10px;'>
-        <%= form.fields_for :images, image do |image_form|%>
+      <div id='image_<%= image.id %>' class="form-group">
+        <%= form.fields_for :images, image do |image_form| %>
           <%= render partial: 'image', locals: { image_form: image_form } %>
         <% end %>
       </div>
     <% end %>
   </div>
-  <strong><%= add_child_button "New Image", :images, 'float-right small' %></strong>
+  <strong><%= add_child_button "New Image", :images, 'btn btn-outline btn-sm' %></strong>
 </div>
