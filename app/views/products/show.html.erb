@@ -21,7 +21,7 @@
                 <button class="orbit-next"><span class="show-for-sr">Next</span>&#9654;&#xFE0E;</button>
                 <% @product.images.each_with_index do |image, i|%>
                   <li class="<%= 'is-active' if i == 0 %> orbit-slide">
-                    <%= image_tag(image.photo.url(:large)) %>
+                    <%= image_tag(image.photo_url(:large)) %>
                     <figcaption class="orbit-caption"><%= image.caption || @product.name %></figcaption>
                   </li>
                 <% end %>

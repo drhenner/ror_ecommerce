@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe StoreCredit do
   it "should be valid" do
-    expect(FactoryBot.build(:store_credit)).to be_valid
+    expect(FactoryBot.create(:store_credit)).to be_valid
   end
 end
 

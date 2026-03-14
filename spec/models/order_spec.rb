@@ -435,9 +435,8 @@ describe Order, "instance methods" do
       expect(@order.create_shipments_with_order_item_ids([@order_item.id])).to be false
     end
     it "should return true if the ids can be shipped" do
-      @order_item = FactoryBot.build(:order_item, :order => @order)
-      @order_item.state = 'paid'
-      @order_item.save
+      @order_item = FactoryBot.create(:order_item, :order => @order)
+      @order_item.pay!
       expect(@order.create_shipments_with_order_item_ids([@order_item.id])).to be true
     end
   end

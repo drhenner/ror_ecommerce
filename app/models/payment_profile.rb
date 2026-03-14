@@ -67,10 +67,7 @@ class PaymentProfile < ApplicationRecord
   def save_default_profile(cc_user)
     PaymentProfile.transaction do
       if self.default == true
-        PaymentProfile.update_all( { default: false },
-                            { payment_profiles: {
-                                  user_id: cc_user.id,
-                                            } }) if cc_user
+        PaymentProfile.where(user_id: cc_user.id).update_all(default: false) if cc_user
       end
       self.user = cc_user
       self.save

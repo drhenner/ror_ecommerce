@@ -2,19 +2,17 @@
 #
 # Table name: images
 #
-#  id                 :integer(4)      not null, primary key
-#  imageable_id       :integer(4)
-#  imageable_type     :string(255)
-#  image_height       :integer(4)
-#  image_width        :integer(4)
-#  position           :integer(4)
-#  caption            :string(255)
-#  photo_file_name    :string(255)
-#  photo_content_type :string(255)
-#  photo_file_size    :integer(4)
-#  photo_updated_at   :datetime
-#  updated_at         :datetime
-#  created_at         :datetime
+#  id             :integer(4)      not null, primary key
+#  imageable_id   :integer(4)
+#  imageable_type :string(255)
+#  image_height   :integer(4)
+#  image_width    :integer(4)
+#  position       :integer(4)
+#  caption        :string(255)
+#  updated_at     :datetime
+#  created_at     :datetime
+#
+# Photo is stored via ActiveStorage (has_one_attached :photo).
 #
 
 require 'open-uri'
@@ -35,6 +33,7 @@ class Image < ApplicationRecord
   validates :imageable_type, presence: true
   validates :imageable_id,   presence: true
   validate  :validate_photo
+  validate  :acceptable_photo
 
   attr_accessor :photo_link
 
@@ -65,6 +64,10 @@ class Image < ApplicationRecord
     end
   end
 
+  def photo_filename
+    photo.attached? ? photo.filename.to_s : nil
+  end
+
   private
 
   def find_dimensions
@@ -79,6 +82,21 @@ class Image < ApplicationRecord
   def validate_photo
     unless photo.attached?
       errors.add(:photo, "must be attached")
+    end
+  end
+
+  ALLOWED_CONTENT_TYPES = %w[image/jpeg image/jpg image/png image/gif].freeze
+  MAX_FILE_SIZE = 8.megabytes
+
+  def acceptable_photo
+    return unless photo.attached?
+
+    unless ALLOWED_CONTENT_TYPES.include?(photo.blob.content_type)
+      errors.add(:photo, "must be a JPEG, PNG, or GIF")
+    end
+
+    if photo.blob.byte_size > MAX_FILE_SIZE
+      errors.add(:photo, "is too large (max is 8 MB)")
     end
   end
 end

@@ -11,15 +11,15 @@ Please look at the [homepage](http://www.ror-e.com) for more details.  Or take a
 [![Code Climate](https://codeclimate.com/github/drhenner/ror_ecommerce.png)](https://codeclimate.com/github/drhenner/ror_ecommerce)
 
 This is a Rails e-commerce platform.
-ROR Ecommerce is a *Rails 5.1 application* with the intent to allow developers to create an ecommerce solution easily.
+ROR Ecommerce is a *Rails 7.0 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
 
-The project has *Solr searching*, *Compass* and *Zurb Foundation for CSS* and uses *jQuery*.
+The project has *Solr searching* and *Zurb Foundation for CSS* and uses *jQuery*.
 Currently the most complete Rails solution for your small business.
 
-Please use *Ruby 2.4* and enjoy *Rails 5.1*.
+Please use *Ruby 3.1.4* and enjoy *Rails 7.0*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
@@ -40,8 +40,8 @@ NOTE: Given that everyone has admin rights to the demo it is frequently looking 
 
 Please feel free to ask/answer questions in our [Google Group](http://groups.google.com/group/ror_ecommerce).
 
-Install RVM with Ruby 2.4.
-If you have 2.4 on your system you're good to go.
+Install RVM with Ruby 3.1.4.
+If you have 3.1.4 on your system you're good to go.
 Please refer to the [RVM](http://beginrescueend.com/rvm/basics/) site for more details.
 
 Copy the `database.yml` for your setup.
@@ -56,11 +56,11 @@ Install gems and build the app
 
     gem install bundler
     bundle install
-    rake secret # copy/paste the output as `encryption_key` in `config/settings.yml`
-    rake db:create:all
-    rake db:migrate db:seed
-    RAILS_ENV=test rake db:test:prepare
-    RAILS_ENV=test rake db:seed
+    rails secret # copy/paste the output as `encryption_key` in `config/settings.yml`
+    rails db:create:all
+    rails db:migrate db:seed
+    RAILS_ENV=test rails db:test:prepare
+    RAILS_ENV=test rails db:seed
 
 Once everything is set up, start the server with `rails server` and direct your web browser to [localhost:3000/admin/overviews](http://localhost:3000/admin/overviews).
 Write down the username/password (these are only shown once) and follow the directions.
@@ -71,61 +71,48 @@ Most users are using Amazon S3 or Heroku.
 Thus we have decided to have a setup easy to get your site up and running as quickly as possible
 in this production environment.  Hence you should add the following ENV variables:
 
-    FOG_DIRECTORY     => your bucket on AWS
-    AWS_ACCESS_KEY_ID => your access key on AWS
+    S3_BUCKET_NAME        => your bucket on AWS (or FOG_DIRECTORY for backward compat)
+    AWS_ACCESS_KEY_ID     => your access key on AWS
     AWS_SECRET_ACCESS_KEY => your secret key on AWS
-    AUTHNET_LOGIN     => if you use authorize.net otherwise change config/settings.yml && config/environments/*.rb
-    AUTHNET_PASSWORD  => if you use authorize.net otherwise change config/settings.yml && config/environments/*.rb
+    AWS_REGION            => your AWS region (defaults to us-east-1)
+    AUTHNET_LOGIN         => if you use authorize.net otherwise change config/settings.yml && config/environments/*.rb
+    AUTHNET_PASSWORD      => if you use authorize.net otherwise change config/settings.yml && config/environments/*.rb
 
 On linux:
 
-    export FOG_DIRECTORY=xxxxxxxxxxxxxxx
+    export S3_BUCKET_NAME=xxxxxxxxxxxxxxx
     export AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxx
     export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    export AWS_REGION=us-east-1
     export AUTHNET_LOGIN=xxxxxxxxxxx
     export AUTHNET_PASSWORD=xxxxxxxxxxxxxxx
 
 On Heroku:
 
-    heroku config:add FOG_DIRECTORY=xxxxxxxxxxxxxxx
-    heroku config:add AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxx
-    heroku config:add AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    heroku config:add AUTHNET_LOGIN=xxxxxxxxxxx
-    heroku config:add AUTHNET_PASSWORD=xxxxxxxxxxxxxxx
-
-    heroku labs:enable user-env-compile -a myapp
+    heroku config:set S3_BUCKET_NAME=xxxxxxxxxxxxxxx
+    heroku config:set AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxx
+    heroku config:set AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    heroku config:set AWS_REGION=us-east-1
+    heroku config:set AUTHNET_LOGIN=xxxxxxxxxxx
+    heroku config:set AUTHNET_PASSWORD=xxxxxxxxxxxxxxx
 
 This is needed for using sendgrid on heroku(config/initializers/mail.rb):
 
-    heroku config:add SENDGRID_USERNAME=xxxxxxxxxxx
-    heroku config:add SENDGRID_PASSWORD=xxxxxxxxxxxxxxx
+    heroku config:set SENDGRID_USERNAME=xxxxxxxxxxx
+    heroku config:set SENDGRID_PASSWORD=xxxxxxxxxxxxxxx
 
 
 ## Quick Evaluation
 
 If you just want to see what ror_ecommerce looks like, before you enter any products into the database, run the following command:
 
-    rake db:seed_fake
+    rails db:seed_fake
 
 If you have not already done so point your browser to http://lvh.me:3000/admin/overviews and set up the admin user.
 
 You should now have a minimal dataset, and be able to see a demo of the various parts of the app.
 Note: make sure you have `config/settings.yml` set up correctly before you try to checkout.
 Also, please take a look at [The 15 minute e-commerce video](http://www.ror-e.com/info/videos/7).
-
-## ImageMagick and rMagick on OS X 10.8
-------------------------------------
-
-If installing rMagick on OS X 10.8 and using Homebrew to install ImageMagick, you will need to symlink across some files or rMagick will not be able to build.
-
-Do the following in the case of a Homebrew installed ImageMagick(and homebrew had issues):
-
-    * cd /usr/local/Cellar/imagemagick/6.8.9-8/lib
-    * ln -s libMagick++-6.Q16.5.dylib   libMagick++.dylib
-    * ln -s libMagickCore-6.Q16.2.dylib libMagickCore.dylib
-    * ln -s libMagickWand-6.Q16.2.dylib libMagickWand.dylib
-
-    * you may need to change the version path if the imagemagick has been updated
 
 ## YARDOCS
 
@@ -140,30 +127,20 @@ You can also change `config/settings.yml.example` to `config/settings.yml` until
 
 To change from authlogic to any other gateway look at the documentation [HERE](http://drhenner.github.com/ror_ecommerce/config.html)
 
-## Paperclip
+## Image Uploads (Active Storage)
 
-Paperclip will throw errors if not configured correctly.
-You will need to find out where Imagemagick is installed.
-Type: `which identify` in the terminal and set
+Product images are handled by Active Storage. Storage backends are configured in `config/storage.yml` (disk for development/test, S3 for production).
 
-```ruby
-Paperclip.options[:command_path]
-```
+The `Image` model uses `has_one_attached :photo` and provides variant sizes via `Image::IMAGE_STYLES`. Use `image.photo_url(:small)` to get a resized variant.
 
-equal to that path in `config/initializers/paperclip.rb`.
+For image processing to work, you need the `image_processing` gem (included in the Gemfile) and either `libvips` or ImageMagick installed locally:
 
-Example:
+```bash
+# macOS (libvips recommended)
+brew install vips
 
-Change:
-
-```ruby
-Paperclip.options[:command_path] = "/usr/local/bin"
-```
-
-Into:
-
-```ruby
-Paperclip.options[:command_path] = "/usr/bin"
+# or ImageMagick
+brew install imagemagick
 ```
 
 ## Adding Dalli For Cache and the Session Store
@@ -222,7 +199,7 @@ then:
 
 Start Solr before starting your server:
 
-    rake sunspot:solr:start
+    rails sunspot:solr:start
 
 Go to `product.rb` and uncomment:
 
@@ -238,9 +215,9 @@ def self.standard_search
 Take a look at setting up Solr - [Solr in 5 minutes](http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less)
 
 If you get the error, `Errno::ECONNREFUSED (Connection refused - connect(2)):` when you try to create a product or upload an image, you have not started Solr search.
-You need to run `rake sunspot:solr:start`, or remove Solr completely.
+You need to run `rails sunspot:solr:start`, or remove Solr completely.
 
-Remember to run `rake sunspot:reindex` before doing your search if you already have data in the DB
+Remember to run `rails sunspot:reindex` before doing your search if you already have data in the DB
 
 ## TODO:
 

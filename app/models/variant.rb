@@ -75,7 +75,7 @@ class Variant < ApplicationRecord
   end
 
   def image_urls(image_size = :small)
-    Rails.cache.fetch("variant-image_urls-#{self}-#{image_size}", expires_in: 3.hours) do
+    Rails.cache.fetch("Variant-image_urls-#{id}-#{image_size}", expires_in: 3.hours) do
       image_group ? image_group.image_urls(image_size) : product.image_urls(image_size)
     end
   end

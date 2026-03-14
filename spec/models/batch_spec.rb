@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Batch do
   context " Batch" do
     before(:each) do
-      @batch = FactoryBot.build(:batch)
+      @batch = FactoryBot.create(:batch)
     end
 
     it "should be valid with minimum attribues" do

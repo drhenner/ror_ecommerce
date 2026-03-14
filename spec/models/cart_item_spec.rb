@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CartItem do
   context "CartItem" do
     before(:each) do
-      @cart_item = FactoryBot.build(:cart_item)
+      @cart_item = FactoryBot.create(:cart_item)
     end
 
     it "should be valid with minimum attributes" do

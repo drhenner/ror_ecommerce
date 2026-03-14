@@ -3,8 +3,10 @@
 <h3>Images for '<%= @product.name %>'</h3>
 
 <% @product.images.each do |image| %>
-  <label><%= image.photo_file_name %></label>
-  <%= image_tag image.photo.url(:small) %>
+  <% if image.photo.attached? %>
+    <label><%= image.photo_filename %></label>
+    <%= image_tag image.photo_url(:small) %>
+  <% end %>
 <% end %>
 
 <p style="margin-top: 30px">

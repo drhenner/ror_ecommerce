@@ -11,10 +11,11 @@ class Ability
     elsif user.admin?
       can :manage, :all
     else
-      can :read, Order, :user_id => user.id
-      can :manage, Order do |action, order|
-        action != :destroy && order.state != 'complete' && order.user_id == user.id
+      can :read, Order, user_id: user.id
+      can [:create, :update], Order do |order|
+        order.state != 'complete' && order.user_id == user.id
       end
+      cannot :destroy, Order
 
     end
   end

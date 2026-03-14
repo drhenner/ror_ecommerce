@@ -9,9 +9,8 @@ describe ReturnAuthorization, 'instance methods' do
 
   context '.mark_items_returned' do
     it 'should mark items returned' do
-      order_item                = build(:order_item, :order => @order)
-      order_item.state = 'paid'
-      order_item.save
+      order_item                = create(:order_item, :order => @order)
+      order_item.pay!
       return_item               = FactoryBot.create(:return_item, :order_item => order_item, :return_authorization => @return_authorization)
       @return_authorization.mark_items_returned
       expect(order_item.reload.state).to eq 'returned'
