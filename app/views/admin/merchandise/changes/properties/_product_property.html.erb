@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
       <label class="form-label">Position:</label>
-      <%= product_property_form.number_field :position, { step: 1 }, class: "form-control" %>
+      <%= product_property_form.number_field :position, step: 1, class: "form-control" %>
     </div>
   </div>
   <% if product_property_form.object.new_record? %>

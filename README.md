@@ -6,7 +6,7 @@ Please create a ticket on github if you have issues.
 They will be addressed ASAP.
 
 This is a Rails e-commerce platform.
-ROR Ecommerce is a *Rails 8.0 application* with the intent to allow developers to create an ecommerce solution easily.
+ROR Ecommerce is a *Rails 8.1 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
@@ -14,7 +14,7 @@ The cart allows you to track your customers' *cart history* and includes a *doub
 The project has *Searchkick-powered product search* (backed by Elasticsearch), *Zurb Foundation for CSS*, and uses *jQuery*.
 Currently the most complete Rails solution for your small business.
 
-Please use *Ruby 3.3.8* and enjoy *Rails 8.0*.
+Please use *Ruby 3.3.8* and enjoy *Rails 8.1*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
@@ -118,7 +118,7 @@ If you would like to read the docs, you can generate them with the following com
 #### Payment Gateways
 
 First, create `config/settings.yml` and change the encryption key and paypal/auth.net information.
-You can also change `config/settings.yml.example` to `config/settings.yml` until you get your real info.
+You can also change `config/settings.example.yml` to `config/settings.yml` until you get your real info.
 
 To change from authlogic to any other gateway look at the documentation [HERE](http://drhenner.github.com/ror_ecommerce/config.html)
 
@@ -207,23 +207,15 @@ end
 
 ## Admin Roles & Permissions
 
-The admin area uses [CanCanCan](https://github.com/CanCanCommunity/cancancan) for authorization, defined in `app/models/admin_ability.rb`. There are two admin roles:
+The admin area uses [CanCanCan](https://github.com/CanCanCommunity/cancancan) for authorization, defined in `app/models/admin_ability.rb`. There are five admin roles:
 
-| Role | Tabs Visible | Permissions |
-|------|-------------|-------------|
-| **Super Admin** (`super_administrator`) | All tabs, including **Config** | Full read/write access to everything |
-| **Admin** (`administrator`) | All tabs except **Config** | Read-only, plus view users and create orders |
-
-### What regular admins *cannot* do
-
-- Access the **Config** section (accounts, countries, shipping, tax)
-- Create, edit, or delete **users**
-- Create, edit, or delete **products** (read-only via `authorize_resource`)
-
-### What regular admins *can* do (beyond read-only)
-
-- View the users list (`view_users`)
-- Create orders through the admin shopping cart (`create_orders`)
+| Role | Key Permissions |
+|------|----------------|
+| **Super Admin** (`super_admin?`) | Full read/write access to everything (`can :manage, :all`) |
+| **Admin** (`admin?`) | Read-only on all resources, plus view users, create orders, manage fulfillment, and manage coupons |
+| **Warehouse** (`warehouse?`) | Read products/variants, manage purchase orders, manage fulfillment, read orders |
+| **Customer Service** (`customer_service?`) | Read orders and users, view users, manage return authorizations |
+| **Report** (`report?`) | Read-only access to reports |
 
 ### Adding new admin abilities
 
@@ -242,6 +234,16 @@ In development, you can run the watcher to auto-compile on save:
     rails dartsass:watch
 
 Compiled CSS is output to `app/assets/builds/` (gitignored). Propshaft serves these alongside static assets from `app/assets/`, `vendor/assets/`, and `vendor/javascript/`.
+
+## Rails 8.1 Upgrade Notes
+
+The application was upgraded from Rails 8.0 to Rails 8.1.2. Key changes:
+
+- **Framework defaults**: `config.load_defaults 8.1` with two legacy overrides in `config/application.rb` (`belongs_to_required_by_default = false` and `action_on_open_redirect = :log`).
+- **Schema sorting**: `db/schema.rb` columns are now sorted alphabetically (Rails 8.1 default).
+- **Form helpers**: `number_field` and `number_field_tag` no longer accept a separate HTML options hash as a third argument. All options must be merged into a single hash (e.g. `f.number_field :qty, step: 1, class: "form-control"`).
+- **Open redirects**: `raise_on_open_redirects` was deprecated in favor of `action_on_open_redirect`.
+- **Removed defaults files**: `new_framework_defaults_7_0.rb` and `new_framework_defaults_8_0.rb` have been removed; their overrides are consolidated in `config/application.rb`.
 
 ## TODO:
 

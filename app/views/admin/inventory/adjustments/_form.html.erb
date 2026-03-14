@@ -12,10 +12,10 @@
 <div class="flex flex-wrap gap-4">
   <div class="form-group flex-1">
     <%= f.label :qty_to_add, class: "form-label" %>
-    <%= f.number_field :qty_to_add, { step: 1 }, class: "form-control" %>
+    <%= f.number_field :qty_to_add, step: 1, class: "form-control" %>
   </div>
   <div class="form-group flex-1">
     <label class="form-label">Amount ($$$) Refunded by the Supplier</label>
-    <%= number_field_tag :refund, 0.00, { step: 0.01 }, class: "form-control" %>
+    <%= number_field_tag :refund, 0.00, step: 0.01, class: "form-control" %>
   </div>
 </div>
