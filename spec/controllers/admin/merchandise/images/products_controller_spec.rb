@@ -1,6 +1,6 @@
 require  'spec_helper'
 
-describe Admin::Merchandise::ProductsController do
+describe Admin::Merchandise::Images::ProductsController do
   render_views
 
   before(:each) do

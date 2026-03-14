@@ -35,7 +35,7 @@ describe Admin::Generic::DealsController do
   end
 
   it "create action should redirect when model is valid" do
-    deal = FactoryBot.build(:deal)
+    deal = FactoryBot.create(:deal)
     Deal.any_instance.stubs(:valid?).returns(true)
     post :create, params: { deal: deal.attributes.except('id', 'deleted_at', 'created_at', 'updated_at') }
     expect(response).to redirect_to(admin_generic_deal_url(assigns[:deal]))

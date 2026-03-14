@@ -8,7 +8,7 @@ require 'spec_helper'
 describe PrototypeProperty do
   context "Valid ProductProperty" do
     before(:each) do
-      @prototype_property = FactoryBot.build(:prototype_property)
+      @prototype_property = FactoryBot.create(:prototype_property)
     end
 
     it "should be valid with minimum attributes" do

@@ -73,26 +73,23 @@ describe Variant, " instance methods" do
   end
 
   context ".display_property_details(separator = '<br/>')" do
-    # variant_properties.collect {|vp| [vp.property.display_name ,vp.description].join(separator) }
     it 'should show all property details' do
-      property      = FactoryBot.create(:property)
-      property.stubs(:display_name).returns('Color')
-      variant_prop1 = FactoryBot.create(:variant_property, property: property, :description => 'red')
-      variant_prop2 = FactoryBot.create(:variant_property, property: property, :description => 'blue')
-      @variant.variant_properties.push(variant_prop1)
-      @variant.variant_properties.push(variant_prop2)
+      property1     = FactoryBot.create(:property, display_name: 'Color')
+      property2     = FactoryBot.create(:property, display_name: 'Color')
+      FactoryBot.create(:variant_property, variant: @variant, property: property1, :description => 'red')
+      FactoryBot.create(:variant_property, variant: @variant, property: property2, :description => 'blue')
+      @variant.reload
       expect(@variant.display_property_details).to eq 'Color: red<br/>Color: blue'
     end
   end
 
   context ".property_details(separator = ': ')" do
     it 'should show the property details' do
-      property      = FactoryBot.create(:property)
-      property.stubs(:display_name).returns('Color')
-      variant_prop1 = FactoryBot.create(:variant_property, property: property, :description => 'red')
-      variant_prop2 = FactoryBot.create(:variant_property, property: property, :description => 'blue')
-      @variant.variant_properties.push(variant_prop1)
-      @variant.variant_properties.push(variant_prop2)
+      property1     = FactoryBot.create(:property, display_name: 'Color')
+      property2     = FactoryBot.create(:property, display_name: 'Color')
+      FactoryBot.create(:variant_property, variant: @variant, property: property1, :description => 'red')
+      FactoryBot.create(:variant_property, variant: @variant, property: property2, :description => 'blue')
+      @variant.reload
       expect(@variant.property_details).to eq ['Color: red', 'Color: blue']
     end
     it 'should show the property details without properties' do

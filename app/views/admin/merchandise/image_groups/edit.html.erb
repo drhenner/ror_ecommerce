@@ -2,7 +2,7 @@
 
 <p><strong><%= @image_group.product.name.possessive %> Image group</strong></p>
 
-<%= form_for @image_group, url: [:admin, :merchandise, @image_group] do |f| %>
+<%= form_for @image_group, url: [:admin, :merchandise, @image_group], html: { multipart: true } do |f| %>
   <%=  render partial: 'form', locals: { form: f} %>
   <div class="actions large-10">
     <%= link_to "Show", [:admin, :merchandise, @image_group], class: 'button secondary small' %>

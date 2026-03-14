@@ -16,8 +16,8 @@ module PaymentProfileCim
     end
   end
 
-  def update
-    if super and update_payment_profile
+  def update(attributes = {})
+    if super(attributes) and update_payment_profile
       return true
     end
     return false

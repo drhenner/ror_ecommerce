@@ -99,8 +99,10 @@
   <legend>Images (<%= link_to 'edit', edit_admin_merchandise_images_product_path(@product) %>)</legend>
 
   <% @product.images.each do |image| %>
-    <label><%= image.photo_file_name %></label>
-    <%= image_tag image.photo.url(:small) %>
+    <% if image.photo.attached? %>
+      <label><%= image.photo_filename %></label>
+      <%= image_tag image.photo_url(:small) %>
+    <% end %>
   <% end %>
   <p></p>
 </fieldset>

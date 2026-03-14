@@ -1,6 +1,6 @@
 <div class='large-6 column <%=  image_form.object.new_record? ? "new_fields" : "fields" %>' >
-  <% if !image_form.object.new_record? %>
-    <%= image_tag image_form.object.photo.url(:small) %>
+  <% if !image_form.object.new_record? && image_form.object.photo.attached? %>
+    <%= image_tag image_form.object.photo_url(:small) %>
   <% end %>
   <div style='float:right;'>
     <%= remove_child_link('remove', image_form) %>

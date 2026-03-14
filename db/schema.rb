@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_03_14_045422) do
+ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   create_table "accounting_adjustments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "adjustable_id", null: false
     t.string "adjustable_type", null: false
@@ -202,10 +202,6 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_045422) do
     t.integer "image_width"
     t.integer "position"
     t.string "caption"
-    t.string "photo_file_name"
-    t.string "photo_content_type"
-    t.integer "photo_file_size"
-    t.datetime "photo_updated_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.datetime "created_at", precision: nil
     t.index ["imageable_id"], name: "index_images_on_imageable_id"

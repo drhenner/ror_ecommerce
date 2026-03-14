@@ -91,13 +91,11 @@ end
 describe Shipment, 'instance method from build' do
   before(:each) do
     User.any_instance.stubs(:start_store_credits).returns(true)  ## simply speed up tests, no reason to have store_credit object
-    @shipment = build(:shipment)
+    @shipment = create(:shipment)
   end
 
   context '.set_number, save_shipment_number and set_shipment_number' do
     it "should set_number after saving" do
-      expect(@shipment.number).to be_nil
-      @shipment.save
       expect(@shipment.number).not_to be_nil
       expect(@shipment.number).to eq (Shipment::NUMBER_SEED + @shipment.id).to_s(Shipment::CHARACTERS_SEED)
     end

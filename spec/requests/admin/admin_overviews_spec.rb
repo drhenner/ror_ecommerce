@@ -8,7 +8,7 @@ def cookied_admin_login
    within("#login") do
      fill_in 'Email',    :with => 'test@admin.com'
      fill_in 'Password', :with => 'secret1'
-     click_button 'Log In', {}
+     click_button 'Log In'
    end
 end
 def cookied_login
@@ -19,7 +19,7 @@ def cookied_login
    within("#login") do
      fill_in 'Email',    :with => 'test@nonadmin.com'
      fill_in 'Password', :with => 'secret1'
-     click_button 'Log In', {}
+     click_button 'Log In'
    end
 end
 

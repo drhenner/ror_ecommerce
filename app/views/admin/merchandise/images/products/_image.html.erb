@@ -1,7 +1,7 @@
 <fieldset class='row <%=  image_form.object.new_record? ? "new_fields" : "fields" %>'>
-  <% if !image_form.object.new_record? %>
+  <% if !image_form.object.new_record? && image_form.object.photo.attached? %>
     <div class='large-4 column'>
-      <%= image_tag image_form.object.photo.url(:small) %>
+      <%= image_tag image_form.object.photo_url(:small) %>
     </div>
   <% end %>
   <div class='large-8 column'>
