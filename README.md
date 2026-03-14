@@ -182,42 +182,55 @@ It is also recommended to change the cache store in config/environments/*.rb
 config.cache_store = :dalli_store
 ```
 
-## Adding Solr Search
+## Adding Solr Search (Optional)
 
-    brew install solr
+Solr search is **not enabled by default**. The Sunspot gems are not in the Gemfile. To add Solr search:
 
-Uncomment the following in your gemfile:
+1. Add the gems to your Gemfile:
 
 ```ruby
-#gem 'sunspot_solr'
-#gem 'sunspot_rails'
+gem 'sunspot_solr'
+gem 'sunspot_rails'
 ```
 
-then:
+2. Install and start Solr:
 
-    bundle install
+```bash
+brew install solr
+bundle install
+bundle exec rake sunspot:solr:start
+```
 
-Start Solr before starting your server:
-
-    rails sunspot:solr:start
-
-Go to `product.rb` and uncomment:
+3. In `app/models/product.rb`, uncomment:
 
 ```ruby
 #include ProductSolr
 ```
 
-Also remove the method:
-```ruby
-def self.standard_search
-```
+and remove the `self.standard_search` method.
 
 Take a look at setting up Solr - [Solr in 5 minutes](http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less)
 
-If you get the error, `Errno::ECONNREFUSED (Connection refused - connect(2)):` when you try to create a product or upload an image, you have not started Solr search.
-You need to run `rails sunspot:solr:start`, or remove Solr completely.
+If you get the error `Errno::ECONNREFUSED (Connection refused - connect(2)):` when you try to create a product, you have not started Solr search.
+Run `bundle exec rake sunspot:solr:start`, or remove Solr completely.
 
-Remember to run `rails sunspot:reindex` before doing your search if you already have data in the DB
+Remember to run `bundle exec rake sunspot:reindex` before doing your search if you already have data in the DB
+
+## Running Tests
+
+The test suite uses RSpec with a MySQL test database. Before running tests for the first time:
+
+```bash
+RAILS_ENV=test rails db:create db:migrate db:seed
+```
+
+Then run the full suite:
+
+```bash
+bundle exec rspec
+```
+
+**Note:** One product-creation spec requires Solr to be running (`bundle exec rake sunspot:solr:start`). All other specs pass without Solr.
 
 ## TODO:
 
