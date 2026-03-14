@@ -1,8 +1,15 @@
-<h2> New Address (<%= customer.name %>) </h2>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">New Address (<%= customer.name %>)</h1>
+  </div>
+</div>
 
-<%= form_for @form_address, url: admin_user_datas_user_addresses_path(customer, @form_address) do |f| %>
-  <%=  render partial: 'form', locals: { f: f } %>
-  <div class="actions"><%= f.submit 'Create' , class: 'button' %></div>
-<% end %>
-
-<p><%= link_to "Back to List", admin_user_datas_user_addresses_path(customer), class: 'button' %></p>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @form_address, url: admin_user_datas_user_addresses_path(customer, @form_address) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+      <div class="form-group"><%= f.submit 'Create', class: 'btn btn-primary' %></div>
+    <% end %>
+    <%= link_to "Back to List", admin_user_datas_user_addresses_path(customer), class: 'btn btn-outline btn-sm mt-3' %>
+  </div>
+</div>

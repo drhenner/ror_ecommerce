@@ -1,95 +1,95 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'cupertino/jquery-ui-1.8.12.custom.css' %>
-<% end %>
-<% content_for :below_body do -%>
-  <%= javascript_include_tag 'datePickerInitialize' %>
-<% end %>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Reports</h1>
+  </div>
+</div>
 
-<h1> Reports </h1>
-
-<div class='row'>
-  <div class='large-12 '>
-    <div class='panel callout'>
-      <div class='row'>
-        <div class='large-6 column'>
-          <h4 > Start <%= I18n.localize(start_time,  :format => :us_time) %> </h4>
-        </div>
-        <div class='large-6 column'>
-          <h4 > End <%= I18n.localize(end_time,  :format => :us_time) %> </h4>
-        </div>
+<div class="card mb-4">
+  <div class="card-body">
+    <div class="d-flex flex-wrap gap-4 mb-3">
+      <div class="flex-grow-1">
+        <h4> Start <%= I18n.localize(start_time,  :format => :us_time) %> </h4>
       </div>
-      <ul class='vertical-list long'>
-        <li><label># of cart items added</label><%= @final_number_of_cart_items - @beginning_number_of_cart_items %></li>
-        <li><label>Total # of cart items</label><%= @final_number_of_cart_items %></li>
-        <li><label># of Orders      </label><%= @orders_report.quantity        %></li>
+      <div class="flex-grow-1">
+        <h4> End <%= I18n.localize(end_time,  :format => :us_time) %> </h4>
+      </div>
+    </div>
+    <ul class='vertical-list long'>
+      <li><label># of cart items added</label><%= @final_number_of_cart_items - @beginning_number_of_cart_items %></li>
+      <li><label>Total # of cart items</label><%= @final_number_of_cart_items %></li>
+      <li><label># of Orders      </label><%= @orders_report.quantity        %></li>
+    </ul>
+  </div>
+</div>
+
+<div class="d-flex flex-wrap gap-4">
+  <div class="card flex-grow-1">
+    <div class="card-header">
+      <h4 class="card-title">Accounting</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><label>Revenue              </label><%= number_to_currency @accounting_report.revenue             %></li>
+        <li><label>Cash                 </label><%= number_to_currency @accounting_report.cash                %></li>
+        <li><label>Accounts Receivable  </label><%= number_to_currency @accounting_report.accounts_receivable %></li>
+        <li><label>Accounts Payable     </label><%= number_to_currency @accounting_report.accounts_payable    %></li>
       </ul>
     </div>
   </div>
-</div>
-<div class='row'>
-  <div class=' large-3 column'>
-    <div class='callout'>
-    <h4>Accounting </h4>
-    <ul>
-      <li><label>Revenue              </label><%= number_to_currency @accounting_report.revenue             %></li>
-      <li><label>Cash                 </label><%= number_to_currency @accounting_report.cash                %></li>
-      <li><label>Accounts Receivable  </label><%= number_to_currency @accounting_report.accounts_receivable %></li>
-      <li><label>Accounts Payable     </label><%= number_to_currency @accounting_report.accounts_payable    %></li>
-    </ul>
+  <div class="card flex-grow-1">
+    <div class="card-header">
+      <h4 class="card-title">Orders</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><label>Amount           </label><%= number_to_currency @orders_report.total_amount    %></li>
+        <li><label>Amount Returned  </label><%= number_to_currency @orders_report.amount_returned %></li>
+      </ul>
     </div>
   </div>
-  <div class=' large-3 column'>
-    <div class='callout'>
-    <h4>Orders </h4>
-    <ul>
-      <li><label>Amount           </label><%= number_to_currency @orders_report.total_amount    %></li>
-      <li><label>Amount Returned  </label><%= number_to_currency @orders_report.amount_returned %></li>
-    </ul>
+  <div class="card flex-grow-1">
+    <div class="card-header">
+      <h4 class="card-title">Customers</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>
+          <label>Final # of Users </label>
+          <%= @customers_report.total_users %>
+        </li>
+        <li><label>New Users in TimeFrame  </label><%= @customers_report.users_in_timeframe     %></li>
+        <li>
+          <label>Final # of Customers </label>
+          <%= @customers_report.total_customers        %>
+        </li>
+        <li><label> Customers in TimeFrame </label><%= @customers_report.customers_in_timeframe %></li>
+      </ul>
     </div>
   </div>
-  <div class='large-3 column'>
-    <div class='panel callout'>
-    <h4>Customers </h4>
-    <ul>
-      <li>
-        <label>Final # of Users </label>
-        <%= @customers_report.total_users %>
-      </li>
-      <li><label>New Users in TimeFrame  </label><%= @customers_report.users_in_timeframe     %></li>
-      <li>
-        <label>Final # of Customers </label>
-        <%= @customers_report.total_customers        %>
-      </li>
-      <li><label> Customers in TimeFrame </label><%= @customers_report.customers_in_timeframe %></li>
-    </ul>
+  <div class="card flex-grow-1">
+    <div class="card-header">
+      <h4 class="card-title">Filter</h4>
     </div>
-  </div>
-  <div id='' class=' large-3 column'>
-    <div class='callout graceful'>
-      <h4>Filter </h4>
-      <%= form_tag(  admin_reports_overview_path(),
+    <div class="card-body">
+      <%= form_tag( admin_reports_overview_path(),
                                     :method => :get,
                                     :id   => 'request_report_form') do  %>
         <%= hidden_field_tag('schedule', nil) %>
         <ul id='report-filters'>
-          <li>
-            <label>Start Date       </label>
-            <%= text_field_tag 'start_date', nil, :placeholder => 'dd/mm/yyyy', :class => 'ui-datepicker' %>
+          <li class="form-group">
+            <label class="form-label">Start Date</label>
+            <%= text_field_tag 'start_date', nil, :placeholder => 'dd/mm/yyyy', type: 'date' %>
           </li>
-          <li>
+          <li class="d-flex gap-2 mt-2">
             <%= submit_tag 'Daily',
                                     :data  => { disable_with: 'Please wait...' },
-                                    :class => 'button small report-submit-button' %>
-          </li>
-          <li>
+                                    :class => 'btn btn-primary btn-sm report-submit-button' %>
             <%= submit_tag 'Weekly',
                                       :data  => { disable_with: 'Please wait...' },
-                                      :class => 'button small report-submit-button' %>
-          </li>
-          <li>
+                                      :class => 'btn btn-primary btn-sm report-submit-button' %>
             <%= submit_tag 'Monthly',
                                       :data  => { disable_with: 'Please wait...' },
-                                      :class => 'button small report-submit-button' %>
+                                      :class => 'btn btn-primary btn-sm report-submit-button' %>
           </li>
         </ul>
       <% end %>

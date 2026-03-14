@@ -1,27 +1,29 @@
-<h1> Image Group </h1>
+<div class="page-header">
+  <h1 class="page-title">Image Group</h1>
+</div>
 
-<ul>
-  <li class='row'>
-    <label class='large-2 column'>Name:</label>
-    <%= @image_group.name %>
-  </li>
-  <li class='row'>
-    <label class='large-2 column'>Product:</label>
-    <%= @image_group.product.name %>
-  </li>
-  <li>
-    <br/>
-    <div class='row'>
-      <% @image_group.image_urls.each do |image_url|%>
-        <div class=' large-3 columns'>
-          <%= image_tag image_url %>
-        </div>
-      <% end %>
+<div class="card">
+  <div class="card-body">
+    <div class="form-group">
+      <label class="form-label">Name:</label>
+      <p><%= @image_group.name %></p>
     </div>
-  </li>
-</ul>
-
-<p>
-  <%= link_to "Edit", edit_admin_merchandise_image_group_path(@image_group), class: 'button secondary' %>
-  <%= link_to "View All", admin_merchandise_image_groups_path, class: 'button secondary' %>
-</p>
+    <div class="form-group">
+      <label class="form-label">Product:</label>
+      <p><%= @image_group.product.name %></p>
+    </div>
+    <div class="form-group">
+      <div class="d-flex flex-wrap gap-2">
+        <% @image_group.image_urls.each do |image_url| %>
+          <div>
+            <%= image_tag image_url %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="page-actions mt-3">
+      <%= link_to "Edit", edit_admin_merchandise_image_group_path(@image_group), class: 'btn btn-outline' %>
+      <%= link_to "View All", admin_merchandise_image_groups_path, class: 'btn btn-outline' %>
+    </div>
+  </div>
+</div>

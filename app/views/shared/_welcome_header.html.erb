@@ -81,7 +81,7 @@
                 <label>Account</label>
               <% end %>
             </li>
-            <li><%= link_to raw('Orders &rarr;' ), myaccount_orders_path %></li>
+            <li><%= link_to 'Orders &rarr;'.html_safe, myaccount_orders_path %></li>
             <li><%= link_to 'Addresses', myaccount_addresses_path %></li>
             <li><%= link_to 'Credit Cards', myaccount_credit_cards_path %></li>
             <li><%= link_to 'Credits', myaccount_store_credit_path %></li>

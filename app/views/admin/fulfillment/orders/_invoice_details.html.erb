@@ -1,25 +1,19 @@
-
-<div style='display:inline-block;' class=''>
-  <ul class='vertical-list'>
-    <li><label class=' '>State: </label>       <span class=''> <%= invoice.state %> </span></li>
-    <li><label class=' '>Invoice #:</label>    <span class=''> <%=  invoice.number %> </span></li>
-    <li><label class=' '>Charge Amount:</label><span class=''> <%= number_to_currency invoice.amount %> </span></li>
+<div class="mb-3">
+  <ul class="vertical-list">
+    <li><label class="form-label">State:</label> <span><%= invoice.state %></span></li>
+    <li><label class="form-label">Invoice #:</label> <span><%= invoice.number %></span></li>
+    <li><label class="form-label">Charge Amount:</label> <span><%= number_to_currency invoice.amount %></span></li>
   </ul>
 </div>
 
 <% if invoice.authorized? %>
-  <a id='capture-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='button success'>
-    Collect
-  </a>
-  <!--
-  <a id='capture-partial-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='line_item_blue'>
-    Collect Partial
-  </a>
-  -->
-  <a id='cancel-invoice-button-<%= invoice.id %>' style='display:inline-block;' class='button alert'>
-    CANCEL
-  </a>
+  <a href="#"
+     data-action="click->fulfillment-invoice#capture"
+     class="btn btn-primary btn-sm">Collect</a>
+  <a href="#"
+     data-action="click->fulfillment-invoice#cancel"
+     class="btn btn-danger btn-sm">CANCEL</a>
 <% end %>
-<% if invoice.paid? && @order && @order.shipments.count == 0 %>
-  <%= link_to 'Create New Shipment', admin_fulfillment_shipments_path(order_number: @order.number), method: 'POST' %> for all items.
+<% if invoice.paid? && order && order.shipments.count == 0 %>
+  <%= link_to 'Create New Shipment', admin_fulfillment_shipments_path(order_number: order.number), data: { turbo_method: :post }, class: "btn btn-outline btn-sm" %> for all items.
 <% end %>

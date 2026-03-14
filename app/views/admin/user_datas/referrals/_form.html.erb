@@ -1,26 +1,26 @@
 <%= f.error_messages %>
 
-<div id='admin_referral_form' class='admin-standard_form large-6'>
-  <div class="field">
-    <%= label :referring_user_email, "Person giving Referral's Email" %>
+<div id='admin_referral_form' class='admin-standard_form'>
+  <div class="form-group">
+    <%= label :referring_user_email, "Person giving Referral's Email", class: 'form-label' %>
     <%= text_field_tag :referring_user_email %>
   </div>
-  <div class="field">
-    <%= f.label :name, "New User's Name" %>
+  <div class="form-group">
+    <%= f.label :name, "New User's Name", class: 'form-label' %>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :email, "New User's Email *" %>
+  <div class="form-group">
+    <%= f.label :email, "New User's Email *", class: 'form-label' %>
     <%= f.email_field :email %>
   </div>
 
-  <div class="field">
-    <%= f.label :referral_program_id, "Referral Program *" %>
+  <div class="form-group">
+    <%= f.label :referral_program_id, "Referral Program *", class: 'form-label' %>
     <%= f.select :referral_program_id, referral_programs, { include_blank: true } %>
   </div>
 
-  <div class="field">
-    <%= f.label :referral_type_id, "Referral Type *" %>
+  <div class="form-group">
+    <%= f.label :referral_type_id, "Referral Type *", class: 'form-label' %>
     <%= f.select :referral_type_id, referral_types %>
   </div>
 </div>

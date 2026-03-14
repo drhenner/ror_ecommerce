@@ -5,7 +5,7 @@
 
 
 
-<div id='cart-items-wrapper' class='items-wrapper large-9 coloumns last'>
+<div id='cart-items-wrapper' class='items-wrapper large-9 columns last'>
   <% if  @cart_items.blank? && @saved_cart_items.empty? %>
     <h2 style='text-align:center;'> <%= I18n.t(:nothing_in_cart) %></h2>
   <% elsif  @cart_items.blank? %>
@@ -76,7 +76,7 @@
                 <table width="100%" cellspacing="0" cellpadding="10" style='border: 0px solid #FFF;'>
                   <tbody>
                     <tr valign="top" bgcolor="#eeeecc">
-                        <td bgcolor="#eeeecc" colspan="2"><a name="savedforlater"><b>Saved Items--To Buy Later</b></a></td>
+                        <td bgcolor="#eeeecc" colspan="2"><b id="savedforlater">Saved Items--To Buy Later</b></td>
                         <td bgcolor="#eeeecc" colspan="2" class="small"><b>Price:</b></td>
                     </tr>
 

@@ -1,9 +1,9 @@
-<div class='span-11 <%= po_variant_form.object.is_received? ? 'received_po' : 'not_received_po'  %>' >
+<div class='<%= po_variant_form.object.is_received? ? 'received_po' : 'not_received_po' %> mb-3 p-3' style='background-color: #f6f6f6; border-radius: 4px;'>
   <% po_variant = po_variant_form.object %>
   <%= po_variant.variant.name_with_sku %>
   Qty: <%= po_variant.quantity %>
   Cost: <%= po_variant.cost %>
-  <div class='last' style='float:right;'>
+  <div class='float-right'>
     <% unless po_variant_form.object.is_received? %>
       <%#= po_variant_form.check_box :receive_po %>
     <% end %>

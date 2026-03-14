@@ -44,6 +44,7 @@
   text-align: center;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
+  border-radius: 10px;
   padding-top: 0.5em;
   padding-bottom: 0.9em;
 }
@@ -317,6 +318,7 @@
   font-weight: bold;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .post p.full-post a:hover {
@@ -386,6 +388,7 @@
   text-shadow: 0 1px 0 #CCC;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .comments_canvas h2.plain {
@@ -518,6 +521,7 @@ h3 span.date {
   cursor: pointer;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  border-radius: 5px;
   margin: 0 0 15px 0;
 }
 

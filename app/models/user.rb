@@ -175,6 +175,23 @@ class User < ApplicationRecord
     role?(:super_administrator)
   end
 
+  def warehouse?
+    role?(:warehouse)
+  end
+
+  def customer_service?
+    role?(:customer_service)
+  end
+
+  def report?
+    role?(:report)
+  end
+
+  # Returns true if the user can access the admin area at all
+  def admin_access?
+    admin? || warehouse? || customer_service? || report?
+  end
+
   # returns true or false if the user is a registered user or not
   #
   # @param [none]

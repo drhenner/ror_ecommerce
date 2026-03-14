@@ -1,14 +1,20 @@
-<h1> Edit <%= @image_group.name %> </h1>
+<div class="page-header">
+  <h1 class="page-title">Edit <%= @image_group.name %></h1>
+</div>
 
-<p><strong><%= @image_group.product.name.possessive %> Image group</strong></p>
+<p class="mb-3"><strong><%= @image_group.product.name.possessive %> Image group</strong></p>
 
-<%= form_for @image_group, url: [:admin, :merchandise, @image_group], html: { multipart: true } do |f| %>
-  <%=  render partial: 'form', locals: { form: f} %>
-  <div class="actions large-10">
-    <%= link_to "Show", [:admin, :merchandise, @image_group], class: 'button secondary small' %>
-    <%= link_to "Back to List", admin_merchandise_image_groups_path, class: 'button secondary small' %>
-    <%= f.submit 'Update' , class: 'button float-right' %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @image_group, url: [:admin, :merchandise, @image_group], html: { multipart: true }, data: { controller: "nested-form" } do |f| %>
+      <%= render partial: 'form', locals: { form: f } %>
+      <div class="d-flex gap-2 mt-3">
+        <%= link_to "Show", [:admin, :merchandise, @image_group], class: 'btn btn-outline' %>
+        <%= link_to "Back to List", admin_merchandise_image_groups_path, class: 'btn btn-outline' %>
+        <%= f.submit 'Update', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 
 <%= render partial: 'how_image_groups_work' %>

@@ -1,23 +1,29 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<div class='admin_title_header'>
-  <h3>Brands</h3>
-  <%= link_to "New Brand", new_admin_merchandise_brand_path, class: 'button' %>
+<div class="page-header">
+  <h1 class="page-title">Brands</h1>
+  <div class="page-actions">
+    <%= link_to "New Brand", new_admin_merchandise_brand_path, class: "btn btn-primary" %>
+  </div>
 </div>
 
-<div class="admin_brands">
-  <table class='hover'>
+<div class="data-table">
+  <table class="admin-table">
     <thead>
-    <tr class='odd'>
-      <th class='column1_header'>Name</th><th></th><th></th>
-    </tr>
-    </thead>
-    <% for brand in @brands %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to brand.name, admin_merchandise_brand_path(brand) %></td>
-        <td><%= link_to "Edit", edit_admin_merchandise_brand_path(brand) %></td>
-        <td><%= link_to "Delete", admin_merchandise_brand_path(brand),  data: { confirm: 'Are you sure?' }, method: :delete %></td>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% for brand in @brands %>
+        <tr>
+          <td><%= link_to brand.name, admin_merchandise_brand_path(brand) %></td>
+          <td><%= link_to "Edit", edit_admin_merchandise_brand_path(brand) %></td>
+          <td><%= link_to "Delete", admin_merchandise_brand_path(brand), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: "btn btn-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>

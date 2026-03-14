@@ -1,69 +1,52 @@
-
-<% content_for :head do -%>
-  <%#= javascript_include_tag 'admin/merchandise_product' %>
+<% if @variant.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@variant.errors.count, "error") %> prohibited this variant from being saved:</h2>
+    <ul>
+      <% @variant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
-
-<% content_for :below_body do -%>
-  <script>
-    //Hadean.AdminMerchandiseProductForm.initialize(<%= @variant.id %>);
-  </script>
-<% end %>
-
-  <%= error_messages_for 'variant' %>
-
-<fieldset id="admin-product-names">
-<div class='clear'></div>
-  <div>
-    <%= form.label :sku %>
+<div class="card" id="admin-product-names">
+  <div class="card-body">
+    <div class="form-group">
+      <%= form.label :sku, class: "form-label" %>
+      <%= form.text_field :sku, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :price, class: "form-label" %>
+      <%= form.text_field :price, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :cost, class: "form-label" %>
+      <%= form.text_field :cost, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :master, class: "form-label" %>
+      <%= form.check_box :master %>
+    </div>
   </div>
-  <div>
-    <%= form.text_field :sku %>
-  </div>
+</div>
 
-<div class='clear'></div>
-  <div>
-    <%= form.label :price %>
+<div class="card" id="admin-product-properties">
+  <div class="card-header">
+    <h3 class="card-title">Properties</h3>
   </div>
-  <div>
-    <%= form.text_field :price %>
+  <div class="card-body">
+    <div id="variant_properties">
+      <% @product.properties.each do |property| %>
+        <div id='variant_<%= property.id %>' class="form-group">
+          <%= form.fields_for :variant_properties,
+                              property.variant_properties.find_or_initialize_by(variant_id: @variant.id) do |variant_property_form| %>
+            <label class="form-label"><%= property.display_name %>:</label>
+            Primary?: <%= variant_property_form.check_box :primary %> <br/>
+            <%= variant_property_form.hidden_field :property_id %>
+            Description: <%= variant_property_form.text_field :description, class: "form-control" %> <br/>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<div class='clear'></div>
-  <div>
-    <%= form.label :cost %>
-  </div>
-  <div>
-    <%= form.text_field :cost %>
-  </div>
-
-<div class='clear'></div>
-  <div>
-    <%= form.label :master %>
-  </div>
-  <div>
-    <%= form.check_box :master %>
-  </div>
-
-</fieldset>
-
-<fieldset id="admin-product-properties">
-  <legend>Properties</legend>
-
-  <div id="variant_properties" class='last'>
-    <% @product.properties.each do |property| %>
-      <div  id='variant_<%= property.id %>'
-            class="variant_form left last">
-        <%= form.fields_for :variant_properties,
-                            property.variant_properties.find_or_initialize_by(variant_id: @variant.id) do |variant_property_form|%>
-          <div class='left'>
-            <%= property.display_name %>:
-          </div>
-          Primary?: <%= variant_property_form.check_box  :primary %> <br/>
-          <%= variant_property_form.hidden_field  :property_id %>
-          Description: <%= variant_property_form.text_field    :description %><br/>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
-</fieldset>
+</div>

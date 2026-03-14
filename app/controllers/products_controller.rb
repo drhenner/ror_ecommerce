@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    products = Product.active.includes(:variants)
+    products = Product.active.includes(:images, :active_variants)
 
     product_types = nil
     if params[:product_type_id].present? && product_type = ProductType.find_by_id(params[:product_type_id])
@@ -20,14 +20,16 @@ class ProductsController < ApplicationController
       query = params[:q].to_s.truncate(200, omission: "")
       @products = Product.standard_search(query, page: pagination_page, per_page: pagination_rows)
     else
-      @products = Product.active.paginate(page: pagination_page, per_page: pagination_rows)
+      @products = Product.active.includes(:images, :active_variants).paginate(page: pagination_page, per_page: pagination_rows)
     end
 
     render template: '/products/index'
   end
 
   def show
-    @product = Product.friendly.active.find(params[:id])
+    @product = Product.friendly.active
+                .includes(:images, active_variants: :variant_properties)
+                .find(params[:id])
     form_info
     @cart_item.variant_id = @product.active_variants.first.try(:id)
   end

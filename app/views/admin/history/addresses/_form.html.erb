@@ -10,34 +10,34 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
+  <div class="form-group">
+    <%= f.label :first_name, class: 'form-label' %><br />
     <%= f.text_field :first_name %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
+  <div class="form-group">
+    <%= f.label :last_name, class: 'form-label' %><br />
     <%= f.text_field :last_name %>
   </div>
-  <div class="field">
-    <%= f.label :address1 %><br />
+  <div class="form-group">
+    <%= f.label :address1, class: 'form-label' %><br />
     <%= f.text_field :address1 %>
   </div>
-  <div class="field">
-    <%= f.label :address2 %><br />
+  <div class="form-group">
+    <%= f.label :address2, class: 'form-label' %><br />
     <%= f.text_field :address2 %>
   </div>
-  <div class="field">
-    <%= f.label :city %><br />
+  <div class="form-group">
+    <%= f.label :city, class: 'form-label' %><br />
     <%= f.text_field :city %>
   </div>
-  <div class="field">
-    <%= f.label :state_id %><br />
+  <div class="form-group">
+    <%= f.label :state_id, class: 'form-label' %><br />
     <%= f.select :state_id, states %>
   </div>
-  <div class="field">
-    <%= f.label :zip_code %><br />
+  <div class="form-group">
+    <%= f.label :zip_code, class: 'form-label' %><br />
     <%= f.text_field :zip_code %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
   </div>

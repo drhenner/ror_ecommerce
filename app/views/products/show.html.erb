@@ -21,7 +21,7 @@
                 <button class="orbit-next"><span class="show-for-sr">Next</span>&#9654;&#xFE0E;</button>
                 <% @product.images.each_with_index do |image, i|%>
                   <li class="<%= 'is-active' if i == 0 %> orbit-slide">
-                    <%= image_tag(image.photo_url(:large)) %>
+                    <%= image_tag(image.photo_url(:large), alt: image.caption || @product.name) %>
                     <figcaption class="orbit-caption"><%= image.caption || @product.name %></figcaption>
                   </li>
                 <% end %>
@@ -40,7 +40,7 @@
           <% elsif @product.images.size == 0 %>
             <ul>
               <li>
-                <a><%= image_tag(@product.featured_image(:large)) %></a>
+                <%= image_tag(@product.featured_image(:large), alt: @product.name) %>
               </li>
             </ul>
           <% end %>
@@ -63,7 +63,7 @@
                   <div id='variant_<%= variant.id %>'
                        class='tiny button variant_select <%= 'secondary' if i != 0 %> <%= 'selected_variant success' if i == 0 %>'
                        data-variant_id='<%= variant.id %>'>
-                    <%= raw variant.product_name %>
+                    <%= variant.product_name %>
                   </div>
                 <% end %>
                   <div  class='properties_inner_wrapper ' >
@@ -96,8 +96,8 @@
                     <% if variant.low_stock? || variant.sold_out? %>
                       <div  class='variant_stock variant_stock_<%= variant.id %> <%= 'is-hidden' if i != 0 %>'>
                         <%= image_tag("ribbons/#{variant.stock_status}_upper_right.png",
+                                      :alt => "#{variant.stock_status}",
                                       :width => 63, :height => 62,
-                                      :style => 'border:none;',
                                       :class => 'upper_right_overlay float-right'
                                        ) %>
                         <% if variant.sold_out? && (!current_user || !current_user.requested_to_be_notified?(variant.id)) %>
@@ -115,7 +115,7 @@
                       </div>
                     <% end %>
                   <% end %>
-                  <div><%= raw @product.description %></div>
+                  <div><%= sanitize @product.description %></div>
                 </div>
                 <div class="tabs-panel" id="product-properties">
                   <% @product.active_variants.each_with_index do |var, i| %>
@@ -123,8 +123,8 @@
                       <% if var.low_stock? || var.sold_out? %>
                         <div class='variant_stock variant_stock_<%= var.id %> <%= 'is-hidden' if i != 0 %>'>
                           <%= image_tag("ribbons/#{var.stock_status}_upper_right.png",
+                                        :alt => "#{var.stock_status}",
                                         :width => 63, :height => 62,
-                                        :style => 'border:none;',
                                         :class => 'upper_right_overlay float-right'
                                          ) %>
                         </div>
@@ -159,7 +159,7 @@
   </div>
 
 </div>
-&nbsp;<div class='clearfix' style='height:50px;'>&nbsp</div>
+<div class='clearfix' style='height:50px;'>&nbsp;</div>
 </div>
 <div id='generic-dialog'></div>
 

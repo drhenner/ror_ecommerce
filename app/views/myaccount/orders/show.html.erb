@@ -31,11 +31,11 @@
         </tr>
 
         <tr>
-          <td COLSPAN=2> <strong>Items</strong> </td>
+          <td colspan="2"> <strong>Items</strong> </td>
         </tr>
         <% @order.order_items.each do |item| %>
           <tr>
-            <td class='text-left' COLSPAN=2>
+            <td class='text-left' colspan="2">
               <%= link_to item.variant.product_name, product_path(item.variant.product) %>
             </td>
           </tr>

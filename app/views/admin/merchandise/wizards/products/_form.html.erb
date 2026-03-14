@@ -1,53 +1,67 @@
-<% content_for :bottom do -%>
-  <%= javascript_include_tag 'admin/merchandise_product' %>
-<% end %>
-
-<% content_for :below_body do -%>
-  <script>
-    Hadean.AdminMerchandiseProductForm.initialize(<%= @product.id %>);
-  </script>
-<% end %>
-
-<%= error_messages_for 'product' %>
-
-<label>Name</label>
-<%= form.text_field :name %>
-
-<label>Permalink</label>
-<%= form.text_field :permalink %>
-
-<label>Search Keywords</label>
-<%= form.text_field :set_keywords, :placeholder => "separate keywords with a comma" %>
-
-<label>Meta Keywords</label>
-<%= form.text_field :meta_keywords %>
-
-<label>Meta Description</label>
-<%= form.text_field :meta_description %>
-
-<label>Product Type</label>
-<%= form.select :product_type_id, @select_product_types %>
-
-<label>Shipping Category</label>
-<%= form.select :shipping_category_id, @select_shipping_category %>
-
-<label>Brand</label>
-<%= form.select :brand_id, @brands %>
-
-<fieldset>
-  <legend>Properties</legend>
-
-  <div id="product_properties" class='six large-6 '>
-    <% @all_properties.each do |property| %>
-      <div id='property_<%= property.id %>'
-            class="property_form left last"
-            <%= "style='display:none;'" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
-        <%= form.fields_for :product_properties, property.product_properties.find_or_initialize_by(product_id: @product.id) do |product_property_form|%>
-          <label><%= property.full_name %></label>
-          <%= product_property_form.hidden_field :property_id %>
-          <label>Description:</label> <%= product_property_form.text_field :description %>
-        <% end %>
-      </div>
-    <% end %>
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
-</fieldset>
+<% end %>
+
+<div class="form-group">
+  <label class="form-label">Name</label>
+  <%= form.text_field :name, class: "form-control" %>
+</div>
+<div class="form-group">
+  <label class="form-label">Permalink</label>
+  <%= form.text_field :permalink, class: "form-control" %>
+</div>
+<div class="form-group">
+  <label class="form-label">Search Keywords</label>
+  <%= form.text_field :set_keywords, placeholder: "separate keywords with a comma", class: "form-control" %>
+</div>
+<div class="form-group">
+  <label class="form-label">Meta Keywords</label>
+  <%= form.text_field :meta_keywords, class: "form-control" %>
+</div>
+<div class="form-group">
+  <label class="form-label">Meta Description</label>
+  <%= form.text_field :meta_description, class: "form-control" %>
+</div>
+<div class="form-group">
+  <label class="form-label">Product Type</label>
+  <%= form.select :product_type_id, @select_product_types, {}, class: "form-control" %>
+</div>
+<div class="form-group">
+  <label class="form-label">Shipping Category</label>
+  <%= form.select :shipping_category_id, @select_shipping_category, {}, class: "form-control" %>
+</div>
+<div class="form-group">
+  <label class="form-label">Brand</label>
+  <%= form.select :brand_id, @brands, {}, class: "form-control" %>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Properties</h3>
+  </div>
+  <div class="card-body">
+    <div id="product_properties">
+      <% @all_properties.each do |property| %>
+        <div id='property_<%= property.id %>'
+             class="property_form"
+             <%= "style='display:none;'".html_safe if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
+          <%= form.fields_for :product_properties, property.product_properties.find_or_initialize_by(product_id: @product.id) do |product_property_form| %>
+            <div class="form-group">
+              <label class="form-label"><%= property.full_name %></label>
+              <%= product_property_form.hidden_field :property_id %>
+              <label class="form-label">Description:</label>
+              <%= product_property_form.text_field :description, class: "form-control" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

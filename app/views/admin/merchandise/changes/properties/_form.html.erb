@@ -1,35 +1,29 @@
-
 <% if @product.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@product.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
-
     <ul>
-    <% @product.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
 
-
-<fieldset id="admin-product-properties" style='padding-bottom:10px;'>
-  <legend>Properties</legend>
-
-  <div id="product_properties" class='span-14'>
-    <%# @product.product_properties.each do |product_property| %>
-
-      <%= f.fields_for :product_properties do |product_property_form|%>
-        <div class="variant_form left six large-6 last" style='margin-bottom:20px;'>
+<div class="card" id="admin-product-properties">
+  <div class="card-header">
+    <h3 class="card-title">Properties</h3>
+  </div>
+  <div class="card-body">
+    <div id="product_properties">
+      <%= f.fields_for :product_properties do |product_property_form| %>
+        <div class="form-group">
           <%= render partial: 'product_property', locals: { product_property_form: product_property_form } %>
         </div>
       <% end %>
-
-    <%# end %>
+    </div>
+    <div class="mt-3">
+      <%= add_child_button "New Property", :product_properties %>
+      <%= new_child_fields_template f, :product_properties, form_builder_local: :product_property_form %>
+    </div>
   </div>
-
-</fieldset>
-
-<div class='' style='margin-top:20px;'>
-  <%= add_child_button "New Property", :product_properties %>
-  <%= new_child_fields_template f, :product_properties, form_builder_local: :product_property_form %>
 </div>

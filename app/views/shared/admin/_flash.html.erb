@@ -1,0 +1,7 @@
+<% flash.each do |type, message| %>
+  <% next if message.blank? %>
+  <div class="flash-message flash-<%= type %>" role="alert" data-controller="flash">
+    <span class="flash-message-text"><%= message %></span>
+    <button class="flash-dismiss" data-action="click->flash#dismiss" aria-label="Dismiss">&times;</button>
+  </div>
+<% end %>

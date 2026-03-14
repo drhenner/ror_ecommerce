@@ -1,29 +1,37 @@
-<h3>Inventory Adjustment for <%= @product.name %></h3>
-
-<div class="admin_adjustments">
-  <table class='hover'>
-    <thead>
-      <tr>
-        <th>SKU</th>
-        <th>count on hand</th>
-        <th>pending to customer</th>
-        <th>count pending from supplier</th>
-        <th></th>
-      </tr>
-    </thead>
-    <% @product.variants.each do |variant| %>
-      <tr>
-        <td><%= variant.sku %></td>
-        <td><%= variant.inventory.count_on_hand %></td>
-        <td><%= variant.inventory.count_pending_to_customer %></td>
-        <td><%= variant.inventory.count_pending_from_supplier %></td>
-        <td><%= link_to "Change", edit_admin_inventory_adjustment_path(variant) %></td>
-      </tr>
-    <% end %>
-  </table>
+<div class="page-header">
+  <h1 class="page-title">Inventory Adjustment for <%= @product.name %></h1>
 </div>
 
-<p>
-  <%= link_to "View Other Product", admin_inventory_adjustments_path, class: 'button secondary' %>
-  <%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'button secondary' %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>count on hand</th>
+            <th>pending to customer</th>
+            <th>count pending from supplier</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @product.variants.each do |variant| %>
+            <tr>
+              <td><%= variant.sku %></td>
+              <td><%= variant.inventory.count_on_hand %></td>
+              <td><%= variant.inventory.count_pending_to_customer %></td>
+              <td><%= variant.inventory.count_pending_from_supplier %></td>
+              <td><%= link_to "Change", edit_admin_inventory_adjustment_path(variant), class: "btn btn-outline btn-sm" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="flex gap-2 mt-4">
+  <%= link_to "View Other Product", admin_inventory_adjustments_path, class: "btn btn-outline" %>
+  <%= link_to "Back to Product", admin_merchandise_product_path(@product), class: "btn btn-outline" %>
+</div>

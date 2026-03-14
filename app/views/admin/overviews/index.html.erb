@@ -1,36 +1,53 @@
-<h2 style="text-align:center">Welcome to RoR Ecommerce!</h2>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Dashboard</h1>
+    <p class="page-subtitle">Welcome to RoR Ecommerce!</p>
+  </div>
+</div>
 
 <% if @password %>
-  <p> Welcome, You are the Super Admin user. </p>
-  <p>Your email and login is: <%= @user.email %> </p>
-  <p>Your password is: <%= @password %> </p>
-  <p>PLEASE WRITE THIS INFORMATION DOWN.</p>
+  <div class="card mb-5">
+    <div class="card-body">
+      <h3>Super Admin Setup</h3>
+      <p>Welcome, You are the Super Admin user.</p>
+      <ul class="vertical-list">
+        <li><label>Email</label> <%= @user.email %></li>
+        <li><label>Password</label> <%= @password %></li>
+      </ul>
+      <p class="mt-3"><strong>PLEASE WRITE THIS INFORMATION DOWN.</strong></p>
+    </div>
+  </div>
 <% end %>
 
 <% if @no_roles %>
-  <p>
-    <b>You need to run rake db:seed</b>
-  </p>
+  <div class="flash-message flash-warning">
+    <span class="flash-message-text"><strong>You need to run rake db:seed</strong></span>
+  </div>
 <% else %>
-  <b>Best to go through the list below in separate tabs</b>
-  <ol>
-    <li>Go to <%= link_to 'Admin Users', admin_users_path, 'data-popup' => true %> and change your password and email to something you remember.</li>
-    <li>Go to each of the config sections <%= link_to 'Accounts', admin_config_accounts_path, 'data-popup' => true %> ,
-        <%= link_to 'Accounts', admin_config_accounts_path, 'data-popup' => true %>,
-        <%= link_to 'Countries', admin_config_countries_path, 'data-popup' => true %>,
-        <%= link_to 'Shipping Zones', admin_config_shipping_zones_path, 'data-popup' => true %>,
-        <%= link_to 'Shipping Rates', admin_config_shipping_rates_path, 'data-popup' => true %>,
-        <%= link_to 'Shipping Categories', admin_config_shipping_categories_path, 'data-popup' => true %>,
-        <%= link_to 'Tax Rates', admin_config_tax_rates_path, 'data-popup' => true %>.</li>
-    <li>Then create <%= link_to 'Properties', admin_merchandise_properties_path, 'data-popup' => true %>.  A property is just a characteristic that your products have.</li>
-    <li>Add <%= link_to 'Product Type', admin_merchandise_product_types_path, 'data-popup' => true %></li>
-    <li>Next create a <%= link_to 'Prototype', admin_merchandise_prototypes_path, 'data-popup' => true %>.  A prototype is the building block of a product.  The prototype is used to inherit the types of properties that your products will have.</li>
-    <li>You should create a shipping category by going to <%= link_to 'Shipping Categories', admin_config_shipping_categories_path, 'data-popup' => true %>.</li>
-    <li>Next create a <%= link_to 'Product', admin_merchandise_products_path, 'data-popup' => true %></li>
-    <li>Next create a Variant.  A variant is a specific type of product.  If Diet Gatorade is your product, Fruit Punch Gatorage might be your variant. To
-      do this click to edit your product and then click add variant.</li>
-    <li>Next you need to upload Images.  To do this click to edit your product and then click add image.</li>
-    <li>You need inventory .  To do this click <%= link_to 'Inventory', admin_inventory_overviews_path, 'data-popup' => true %>.  Then click purchase order and follow the step to create a purchase order.  Once the purchase order is complete, you need to click receive for the inventory to be in stock.
-    </li>
-  </ol>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Getting Started</h3>
+    </div>
+    <div class="card-body">
+      <p class="text-muted mb-4">Best to go through the list below in separate tabs</p>
+      <ol style="padding-left:20px;list-style:decimal">
+        <li class="mb-2">Go to <%= link_to 'Admin Users', admin_users_path %> and change your password and email to something you remember.</li>
+        <li class="mb-2">Go to each of the config sections:
+            <%= link_to 'Accounts', admin_config_accounts_path %>,
+            <%= link_to 'Countries', admin_config_countries_path %>,
+            <%= link_to 'Shipping Zones', admin_config_shipping_zones_path %>,
+            <%= link_to 'Shipping Rates', admin_config_shipping_rates_path %>,
+            <%= link_to 'Shipping Categories', admin_config_shipping_categories_path %>,
+            <%= link_to 'Tax Rates', admin_config_tax_rates_path %>.</li>
+        <li class="mb-2">Create <%= link_to 'Properties', admin_merchandise_properties_path %>. A property is a characteristic that your products have.</li>
+        <li class="mb-2">Add a <%= link_to 'Product Type', admin_merchandise_product_types_path %></li>
+        <li class="mb-2">Create a <%= link_to 'Prototype', admin_merchandise_prototypes_path %>. A prototype is the building block of a product and is used to inherit the types of properties that your products will have.</li>
+        <li class="mb-2">Create a shipping category at <%= link_to 'Shipping Categories', admin_config_shipping_categories_path %>.</li>
+        <li class="mb-2">Create a <%= link_to 'Product', admin_merchandise_products_path %></li>
+        <li class="mb-2">Create a Variant. A variant is a specific type of product. To do this, click edit on your product and then click add variant.</li>
+        <li class="mb-2">Upload Images. Click edit on your product and then click add image.</li>
+        <li class="mb-2">Add inventory via <%= link_to 'Inventory', admin_inventory_overviews_path %>. Click purchase order and follow the steps. Once complete, click receive for the inventory to be in stock.</li>
+      </ol>
+    </div>
+  </div>
 <% end %>

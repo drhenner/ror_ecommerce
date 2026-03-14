@@ -1,15 +1,22 @@
-<%= render partial: '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<h3>Images for '<%= @product.name %>'</h3>
+<div class="page-header">
+  <h1 class="page-title">Images for '<%= @product.name %>'</h1>
+</div>
 
-<% @product.images.each do |image| %>
-  <% if image.photo.attached? %>
-    <label><%= image.photo_filename %></label>
-    <%= image_tag image.photo_url(:small) %>
-  <% end %>
-<% end %>
-
-<p style="margin-top: 30px">
-  <%= link_to 'Edit Images', edit_admin_merchandise_images_product_path(@product), class: "button"%>
-  <%= link_to 'Product Details', admin_merchandise_product_path(@product), class: "button"%>
-</p>
+<div class="card">
+  <div class="card-body">
+    <% @product.images.each do |image| %>
+      <% if image.photo.attached? %>
+        <div class="form-group">
+          <label class="form-label"><%= image.photo_filename %></label>
+          <%= image_tag image.photo_url(:small) %>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="page-actions mt-4">
+      <%= link_to 'Edit Images', edit_admin_merchandise_images_product_path(@product), class: "btn btn-primary" %>
+      <%= link_to 'Product Details', admin_merchandise_product_path(@product), class: "btn btn-outline" %>
+    </div>
+  </div>
+</div>

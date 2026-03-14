@@ -1,14 +1,17 @@
-<%= render partial: '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<h1> Edit Property </h1>
+<div class="page-header">
+  <h1 class="page-title">Edit Property</h1>
+</div>
 
-<%= form_for(@product, url: admin_merchandise_changes_product_property_path(@product.id)) do |f| %>
-  <%= render partial: 'form', locals: { f: f } %>
-  <div class=" generic_submit_button">
-    <%= f.submit "Update",
-                    class: "button",
-                    id:    "update_product_properties_button" %>
-    <%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'button' %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @product, url: admin_merchandise_changes_product_property_path(@product.id), data: { controller: "nested-form" } do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+      <div class="form-group d-flex gap-2">
+        <%= f.submit "Update", class: "btn btn-primary", id: "update_product_properties_button" %>
+        <%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'btn btn-outline' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-
+</div>

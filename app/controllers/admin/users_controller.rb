@@ -8,7 +8,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
-    @user = User.includes([:shipments, :finished_orders, :return_authorizations]).find(params[:id])
+    @user = User.includes(:shipments, :finished_orders, :addresses, { return_authorizations: [:order, :author] }, { comments: :author }).find(params[:id])
     add_to_recent_user(@user)
   end
 

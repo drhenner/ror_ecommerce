@@ -17,28 +17,15 @@
   margin-right: $pad;
 }
 @mixin top-rounded($radius: 4px) {
-  -moz-border-radius:$radius $radius 0px 0px;
-  -webkit-border-radius:$radius $radius 0px 0px;
-  -khtml-border-radius:$radius $radius 0px 0px;
   border-radius:$radius $radius 0px 0px;
-  behavior:url(border-radius.htc);
 }
 
-
 @mixin bottom-rounded($radius: 4px) {
-  -moz-border-radius:0px 0px $radius $radius;
-  -webkit-border-radius:0px 0px $radius $radius;
-  -khtml-border-radius:0px 0px $radius $radius;
   border-radius:0px 0px $radius $radius;
-  behavior:url(border-radius.htc);
 }
 
 @mixin rounded($radius: 4px) {
-  -moz-border-radius:$radius;
-  -webkit-border-radius:$radius;
-  -khtml-border-radius:$radius;
   border-radius:$radius;
-  behavior:url(border-radius.htc);
 }
 
 @mixin admin-page-wrapper($width: 24) {
@@ -68,5 +55,5 @@
   background-image: -o-linear-gradient(top, $start_color 0%, $end_color 100%);
   background-image: -ms-linear-gradient(top, $start_color 0%,$end_color 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E6E6E6', endColorstr='#FFFFFF',GradientType=0 );
-  background-image: linear-gradient(bottom, $start_color 0%,$end_color 100%);
+  background-image: linear-gradient(to bottom, $start_color 0%,$end_color 100%);
 }

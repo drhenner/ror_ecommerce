@@ -10,10 +10,9 @@
   </div>
 <% end %>
 
-<ul>
-  <li class='field large-4 '>
-    <label>Shipping Zone</label>
-    <%= f.select :shipping_zone_id, shipping_zones, include_blank: true %>
-  </li>
-</ul>
-<%= f.submit "Update", class: "button" %>
+<div class="form-group">
+  <label class="form-label">Shipping Zone</label>
+  <%= f.select :shipping_zone_id, shipping_zones, { include_blank: true }, class: "form-control" %>
+</div>
+
+<%= f.submit "Update", class: "btn btn-primary" %>

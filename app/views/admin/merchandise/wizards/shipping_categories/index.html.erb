@@ -1,21 +1,30 @@
-<%= render partial: '/admin/merchandise/wizards/sub_header'%>
-<% if  @shipping_categories.empty? %>
-  <h3>New Shipping Category</h3>
-<% else %>
-  <h3>Pick a Shipping Category</h3>
-<% end %>
+<%= render partial: '/admin/merchandise/wizards/sub_header' %>
 
-<div class='clearfix'>
-<% @shipping_categories.each do |shipping_category| %>
-  <div class='four large-4 column box <%= cycle( '', 'last') %> <%= selected?(shipping_category.id)  %>'>
-    <label><%= shipping_category.name %></label><br/>
-    <%= button_to 'Use', admin_merchandise_wizards_shipping_category_path(shipping_category),
-                   class: "button secondary inline-block",
-                   method: :put %>
-  </div>
-<% end %>
+<div class="page-header">
+  <h1 class="page-title"><%= @shipping_categories.empty? ? 'New Shipping Category' : 'Pick a Shipping Category' %></h1>
 </div>
 
-<%= form_for @shipping_category, url: admin_merchandise_wizards_shipping_categories_path do |shipping_category_form| %>
-  <%= render partial: 'form', locals: { f: shipping_category_form }  %>
-<% end %>
+<div class="card mb-4">
+  <div class="card-body">
+    <div class="d-flex flex-wrap gap-3">
+      <% @shipping_categories.each do |shipping_category| %>
+        <div class="card <%= selected?(shipping_category.id) %>" style="min-width: 150px;">
+          <div class="card-body">
+            <label class="form-label"><%= shipping_category.name %></label>
+            <%= button_to 'Use', admin_merchandise_wizards_shipping_category_path(shipping_category),
+                       class: "btn btn-outline btn-sm",
+                       method: :put %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <%= form_for @shipping_category, url: admin_merchandise_wizards_shipping_categories_path do |shipping_category_form| %>
+      <%= render partial: 'form', locals: { f: shipping_category_form } %>
+    <% end %>
+  </div>
+</div>

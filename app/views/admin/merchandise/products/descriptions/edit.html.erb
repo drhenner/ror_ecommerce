@@ -1,30 +1,26 @@
-<%= render partial: '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<h3>Edit Product Description</h3>
-
-<div class='large-10'>
-<%= link_to 'Back to Product', admin_merchandise_product_path(@product), class: 'button secondary float-right small', style: "margin-top:-5px" %>
+<div class="page-header">
+  <h1 class="page-title">Edit Product Description</h1>
+  <div class="page-actions">
+    <%= link_to 'Back to Product', admin_merchandise_product_path(@product), class: 'btn btn-outline btn-sm' %>
+  </div>
 </div>
 
-<div id="article-sidebar" class="sidebar">
-  <%= form_for @product, url: admin_merchandise_products_description_path(@product) do |f| %>
-    <%= f.text_field :name %>
-    <%= f.text_area :description_markup, id: "markItUp", cols: "92", rows: "15" %>
-    <%= f.submit "Update", class: "button" %>
-  <% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @product, url: admin_merchandise_products_description_path(@product) do |f| %>
+      <div class="form-group">
+        <%= f.label :name, class: "form-label" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description_markup, class: "form-label" %>
+        <%= f.text_area :description_markup, id: "markItUp", cols: "92", rows: "15", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Update", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<% content_for :head do %>
-  <%= stylesheet_link_tag "markitup/skins/markitup/style" %>
-  <%= stylesheet_link_tag "markitup/sets/default/style" %>
-<% end %>
-<% content_for :bottom do %>
-  <%= javascript_include_tag "markitup/jquery.markitup" %>
-  <%= javascript_include_tag "markitup/sets/default/set" %>
-
-  <script type="text/javascript" >
-     $(document).ready(function() {
-        $("#markItUp").markItUp(mySettings);
-     });
-  </script>
-<% end %>

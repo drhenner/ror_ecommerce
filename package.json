@@ -1,0 +1,32 @@
+{
+  "name": "ror_ecommerce",
+  "version": "1.0.0",
+  "description": "Please create a ticket on github if you have issues. They will be addressed ASAP.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test:js": "vitest run",
+    "test:js:watch": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drhenner/ror_ecommerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/drhenner/ror_ecommerce/issues"
+  },
+  "homepage": "https://github.com/drhenner/ror_ecommerce#readme",
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "jsdom": "^28.1.0",
+    "vitest": "^4.1.0"
+  }
+}

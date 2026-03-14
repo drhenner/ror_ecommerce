@@ -1,12 +1,19 @@
-<%= error_messages_for 'supplier' %>
+<% if @supplier.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
+    <ul>
+      <% @supplier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-<ul id="admin-supplier-names" class='large-5'>
-  <li>
-    <label>Name</label>
-    <%= form.text_field :name %>
-  </li>
-  <li>
-    <label>Email</label>
-    <%= form.text_field :email %>
-  </li>
-</ul>
+<div class="form-group">
+  <label class="form-label">Name</label>
+  <%= form.text_field :name, class: "form-control" %>
+</div>
+<div class="form-group">
+  <label class="form-label">Email</label>
+  <%= form.text_field :email, class: "form-control" %>
+</div>

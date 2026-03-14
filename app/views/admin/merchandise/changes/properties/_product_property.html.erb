@@ -1,12 +1,18 @@
-<div id="admin-product-properties"
-          class=' <%= product_property_form.object.new_record? ? 'new_fields' : 'fields' %>  '>
-  <div class='field six large-6 '>
-    <div style='float:right;'>
+<div id="admin-product-properties" class="<%= product_property_form.object.new_record? ? 'new_fields' : 'fields' %>">
+  <div class="form-group">
+    <div class="d-flex justify-content-end">
       <%= remove_child_link('remove', product_property_form) %>
     </div>
-    <label> Property:</label>     <%= product_property_form.select       :property_id, all_properties %><br/>
-    Description:  <%= product_property_form.text_field   :description %>
-    Position:     <%= product_property_form.number_field  :position, { step: 1 } %>
+    <label class="form-label">Property:</label>
+    <%= product_property_form.select :property_id, all_properties, {}, class: "form-control" %>
+    <div class="form-group">
+      <label class="form-label">Description:</label>
+      <%= product_property_form.text_field :description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Position:</label>
+      <%= product_property_form.number_field :position, { step: 1 }, class: "form-control" %>
+    </div>
   </div>
   <% if product_property_form.object.new_record? %>
     <hr/>

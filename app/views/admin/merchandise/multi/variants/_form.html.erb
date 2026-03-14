@@ -1,93 +1,112 @@
 <%= form.fields_for :variants, Variant.new(product_id: @product.id), child_index: "new_variants" do |ff| %>
   <div id='variants_fields_template' style='display:none;'>
-    <div class='three large-3  columns new_variant_container'  style='float: left;' >
-      <table class=' ar-sidebar' style='width:240px;' >
-        <tr>
-          <td></td>
-          <td style='float:right;'> <%= link_to 'remove', '#remove', :class => 'remove_variant_child' %> </td>
-        </tr>
-        <tr>
-          <td>SKU   </td><td> <%= ff.text_field :sku %> </td>
-        </tr><tr>
-          <td>Price </td><td> <%= ff.text_field :price %> </td>
-        </tr><tr>
-          <td>Cost  </td><td> <%= ff.text_field :cost %> </td>
-        </tr><tr>
-          <td>Name  </td><td> <%= ff.text_field :name %> </td>
-        </tr><tr>
-          <td>Images  </td><td> <%= ff.select :image_group_id, image_groups,{ include_blank: true, prompt: "Defaults to product's images" } %> </td>
-        </tr><tr>
-          <td>&nbsp; </td><td> &nbsp; </td>
-        </tr><tr>
-
+    <div class="card new_fields" style="width:240px;">
+      <div class="card-body">
+        <table class="admin-table">
+          <tr>
+            <td></td>
+            <td><%= link_to 'remove', '#', class: 'btn btn-sm btn-danger', data: { action: "click->nested-form#remove" } %></td>
+          </tr>
+          <tr>
+            <td>SKU</td>
+            <td><%= ff.text_field :sku, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td><%= ff.text_field :price, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td><%= ff.text_field :cost, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td><%= ff.text_field :name, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>Images</td>
+            <td><%= ff.select :image_group_id, image_groups, { include_blank: true, prompt: "Defaults to product's images" }, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
           <% @product.properties.each do |property| %>
-            <tr style='background:#ACF;text-align:center;'> <th colspan=2> <%= property.display_name %> </th> </tr>
-            <% variant_id = variant.id rescue nil %>
-            <% variant_property = property.variant_properties.find_or_initialize_by(variant_id: variant_id) if variant_id %>
-            <% variant_property ||= VariantProperty.new(:property_id => property.id) %>
-              <%= ff.fields_for :variant_properties,
-                               variant_property  do |variant_property_form|%>
-                <tr>
-                  <td>
-                    Primary? <%= variant_property_form.check_box  :primary %>
-                  </td>
-                  <td >
-                      <%= variant_property_form.hidden_field  :property_id %>
-                      <%= variant_property_form.text_field    :description %>
-                  </td >
-                </tr>
-              <% end %>
+            <tr class="line_item_blue text-center">
+              <th colspan="2"><%= property.display_name %></th>
+            </tr>
+            <% variant_property = VariantProperty.new(property_id: property.id) %>
+            <%= ff.fields_for :variant_properties, variant_property do |variant_property_form| %>
+              <tr>
+                <td>Primary? <%= variant_property_form.check_box :primary %></td>
+                <td>
+                  <%= variant_property_form.hidden_field :property_id %>
+                  <%= variant_property_form.text_field :description, class: "form-control" %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
-        </tr>
-      </table>
+        </table>
+      </div>
     </div>
   </div>
 <% end %>
 
 <% @product.variants.each do |variant| %>
-  <div class=' three large-3 column ' >
-    <%= form.fields_for :variants, variant do |ff|%>
-      <table class='span-6 ar-sidebar' style='width:240px;'>
-        <thead>
-          <tr>
-            <th colspan=2> <%= variant.sku %>  </th>
-          </tr>
-        </thead>
-        <tr>
-          <td>SKU   </td><td> <%= ff.text_field :sku %> </td>
-        </tr><tr>
-          <td>Price </td><td> <%= ff.text_field :price %> </td>
-        </tr><tr>
-          <td>Cost  </td><td> <%= ff.text_field :cost %> </td>
-        </tr><tr>
-          <td>Name  </td><td> <%= ff.text_field :name %> </td>
-        </tr><tr>
-          <td>Images  </td><td> <%= ff.select :image_group_id, image_groups,{ include_blank: true, prompt: "Defaults to product's images" } %> </td>
-        </tr>
-        <tr>
-          <td>Inactivate </td><td> <%= ff.check_box :inactivate %> </td>
-        </tr>
-          <% @product.properties.each do |property| %>
-            <tr style='background:#ACF;text-align:center;'> <th colspan=2> <%= property.display_name %> </th> </tr>
-            <% variant_id = variant.id rescue nil %>
-            <% variant_property = property.variant_properties.find_or_initialize_by(variant_id: variant_id) if variant_id %>
-            <% variant_property ||= VariantProperty.new( property_id: property.id ) %>
-            <% variant_property.errors.add(:description, "can't be blank.") unless variant_id %>
-              <%= ff.fields_for :variant_properties,
-                               variant_property  do |variant_property_form|%>
+  <div class="card" style="width:240px;">
+    <%= form.fields_for :variants, variant do |ff| %>
+      <div class="card-body">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th colspan="2"><%= variant.sku %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SKU</td>
+              <td><%= ff.text_field :sku, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>Price</td>
+              <td><%= ff.text_field :price, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>Cost</td>
+              <td><%= ff.text_field :cost, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td><%= ff.text_field :name, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>Images</td>
+              <td><%= ff.select :image_group_id, image_groups, { include_blank: true, prompt: "Defaults to product's images" }, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>Inactivate</td>
+              <td><%= ff.check_box :inactivate %></td>
+            </tr>
+            <% @product.properties.each do |property| %>
+              <tr class="line_item_blue text-center">
+                <th colspan="2"><%= property.display_name %></th>
+              </tr>
+              <% variant_id = variant.id rescue nil %>
+              <% variant_property = property.variant_properties.find_or_initialize_by(variant_id: variant_id) if variant_id %>
+              <% variant_property ||= VariantProperty.new( property_id: property.id ) %>
+              <%= ff.fields_for :variant_properties, variant_property do |variant_property_form| %>
                 <tr>
+                  <td>Primary? <%= variant_property_form.check_box :primary %></td>
                   <td>
-                    Primary? <%= variant_property_form.check_box  :primary %>
+                    <%= variant_property_form.hidden_field :property_id %>
+                    <%= variant_property_form.text_field :description, class: "form-control" %>
                   </td>
-                  <td >
-                      <%= variant_property_form.hidden_field  :property_id %>
-                      <%= variant_property_form.text_field    :description %>
-                  </td >
                 </tr>
               <% end %>
-          <% end %>
-
-      </table>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     <% end %>
   </div>
 <% end %>

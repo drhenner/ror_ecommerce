@@ -17,7 +17,7 @@
       </td>
       <td>
       <%= link_to variant_name, product_url(variant.product) %> <br/>
-      <%= raw variant.display_property_details %>
+      <%= sanitize variant.display_property_details %>
       </td>
     </tr>
   <% end %>

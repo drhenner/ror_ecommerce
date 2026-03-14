@@ -1,90 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title><%= site_name %></title>
-  <link rel="shortcut icon" href="/assets/favicon.ico" />
+  <title><%= site_name %> Admin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= favicon_link_tag 'favicon.ico' %>
 
-  <%= stylesheet_link_tag "normalize.css" %>
-  <%= stylesheet_link_tag "application.css" %>
-  <%= stylesheet_link_tag 'admin/app.css' %>
-  <!--[if lt IE 8]
-    <%= stylesheet_link_tag "admin/ie.css" %>
-  <![endif]-->
-  <%= csrf_meta_tag %>
-
-  <%#= javascript_include_tag 'application' %>
-  <%#= javascript_include_tag "admin/app" %>
-  <%#= javascript_include_tag "admin/jquery.customforms" %>
-  <%#= javascript_include_tag "admin/jquery.placeholder.min" %>
-  <%#= javascript_include_tag "admin/jquery.reveal" %>
-  <%#= javascript_include_tag "admin/jquery.tooltips" %>
-  <%#= javascript_include_tag "admin/modernizr.foundation" %>
-
+  <%= stylesheet_link_tag "admin_new", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= csrf_meta_tags %>
   <%= yield :head %>
 </head>
-<body class="bp">
-  <div class="container">
-    <div class="row">
-      <% if notice || alert %>
-          <div class="flash_notice callout <%= !!alert ? 'alert' : 'warning' %>" data-closable>
-            <div>
-            <% if alert %>
-              <%= alert %>
-            <% elsif notice %>
-              <%= notice %>
-            <% end %>
-            </div>
-            <button class="close-button" aria-label="Close alert" type="button"  data-close>
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-      <% end %>
+<body class="admin-body" data-controller="sidebar">
+  <div class="sidebar-overlay" data-sidebar-target="overlay" data-action="click->sidebar#close"></div>
 
-      <%= render :partial => "shared/admin/header_bar" %>
+  <nav class="admin-sidebar" data-sidebar-target="nav">
+    <%= render "shared/admin/sidebar" %>
+  </nav>
 
-      <% if content_for? :header_sub_bar %>
-        <div id='header_sub_bar'>
-          <%= yield :header_sub_bar %>
-        </div>
-      <% end %>
+  <div class="main-wrapper">
+    <header class="admin-topbar">
+      <%= render "shared/admin/topbar" %>
+    </header>
 
-      <% if content_for?(:sidemenu) %>
-        <div class="admin_main_content  large-9 columns">
-          <%= yield %>
-        </div>
-        <div class=" large-3 columns sidebar" >
-          <%= yield :sidemenu %>
+    <main class="main-content">
+      <%= render "shared/admin/flash" %>
+
+      <% if content_for?(:sidebar_panel) %>
+        <div class="two-column-layout">
+          <div><%= yield %></div>
+          <aside class="sidebar-panel"><%= yield :sidebar_panel %></aside>
         </div>
       <% else %>
-        <div class='admin_main_content'>
-          <%= yield %>
-        </div>
+        <%= yield %>
       <% end %>
-    </div>
-    <div class="footer">
-      <p class="left"><%= site_name %></p>
-      <p class="right">Powered by <%= link_to "RoR eCommerce", "http://ror-e.com" %>. v<%= RoReCommerce::Version %></p>
-    </div>
+    </main>
   </div>
 
-  <%= render 'shared/javascript_includes' %>
   <%= yield :bottom %>
-
-  <script>
-  jQuery(window).ready(
-    function() {
-      jQuery('.flash_notice').delay(6000).slideUp( 'slow');
-      jQuery('.flash_error').delay(6000).slideUp( 'slow');
-    }
-  );
-  </script>
-
-<% if Rails.env.development? %>
-  <script>
-    //document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
-  </script>
-<% end %>
-
 </body>
-  <%= yield :below_body %>
 </html>

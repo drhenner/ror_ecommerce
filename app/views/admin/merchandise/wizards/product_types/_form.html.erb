@@ -1,21 +1,25 @@
 <% if @product_type.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@product_type.errors.count, "error") %> prohibited this product_type from being saved:</h2>
-
     <ul>
-    <% @product_type.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% @product_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
 
-<label>Name</label>
-<%= form.text_field :name %>
+<div class="form-group">
+  <label class="form-label">Name</label>
+  <%= form.text_field :name, class: "form-control" %>
+</div>
 
-<label>Parent</label>
+<div class="form-group">
+  <label class="form-label">Parent</label>
   <%= form.select :parent_id,
                   nested_set_options(ProductType, ProductType.new) {|i| "#{'-' * i.level} #{i.name}" },
-                  { :include_blank => true } %>
+                  { include_blank: true },
+                  class: "form-control" %>
+</div>
 
-<%= form.submit 'Create', class: 'button', style: "margin-top: 10px" %>
+<%= form.submit 'Create', class: "btn btn-primary", style: "margin-top: 10px" %>

@@ -1,0 +1,43 @@
+{
+  "name": "cssstyle",
+  "description": "An implementation of the CSSStyleDeclaration class from the CSS Object Model specification",
+  "keywords": [
+    "CSS",
+    "CSSStyleDeclaration",
+    "StyleSheet"
+  ],
+  "version": "6.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsdom/cssstyle.git"
+  },
+  "files": [
+    "lib/"
+  ],
+  "main": "./lib/index.js",
+  "dependencies": {
+    "@asamuzakjp/css-color": "^5.0.1",
+    "@csstools/css-syntax-patches-for-csstree": "^1.0.28",
+    "css-tree": "^3.1.0",
+    "lru-cache": "^11.2.6"
+  },
+  "devDependencies": {
+    "@domenic/eslint-config": "^4.1.0",
+    "@webref/css": "^8.3.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.3.0",
+    "prettier": "^3.8.1"
+  },
+  "scripts": {
+    "lint": "eslint --max-warnings 0",
+    "lint:fix": "eslint --fix --max-warnings 0",
+    "prepare": "node ./scripts/prepare.mjs",
+    "test": "node --test"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

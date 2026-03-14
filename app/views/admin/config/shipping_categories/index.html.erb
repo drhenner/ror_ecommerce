@@ -1,22 +1,29 @@
-<div class="admin_title_header">
-  <h3>Shipping Categories</h3>
-  <%= link_to 'New Shipping Category', new_admin_config_shipping_category_path, class: 'button' %>
+<div class="page-header">
+  <h1 class="page-title">Shipping Categories</h1>
+  <div class="page-actions">
+    <%= link_to 'New Shipping Category', new_admin_config_shipping_category_path, class: 'btn btn-primary' %>
+  </div>
 </div>
 
-<div class="admin_shipping_categories">
-  <table class='hover'>
-    <thead>
-    <tr class='odd'>
-      <th class='column1_header'>Name</th>
-      <th></th>
-    </tr>
-    </thead>
-
-  <% @shipping_categories.each do |shipping_category| %>
-    <tr class='<%= cycle("odd", "")%>'>
-      <td><%= shipping_category.name %></td>
-      <td><%= link_to 'Edit', edit_admin_config_shipping_category_path(shipping_category) %></td>
-    </tr>
-  <% end %>
-  </table>
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shipping_categories.each do |shipping_category| %>
+            <tr>
+              <td><%= shipping_category.name %></td>
+              <td><%= link_to 'Edit', edit_admin_config_shipping_category_path(shipping_category), class: 'btn btn-sm btn-outline' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

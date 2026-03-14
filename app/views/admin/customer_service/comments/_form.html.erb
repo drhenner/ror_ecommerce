@@ -1,8 +1,5 @@
 <%= f.error_messages %>
-<ul>
-  <li class="field">
-    <%= f.label :note %>
-    <%= f.text_area :note %>
-  </li>
-
-</ul>
+<div class="form-group">
+  <%= f.label :note, class: 'form-label' %>
+  <%= f.text_area :note %>
+</div>

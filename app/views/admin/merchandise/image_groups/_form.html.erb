@@ -1,37 +1,36 @@
-
 <% if @image_group.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@image_group.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+    <h2><%= pluralize(@image_group.errors.count, "error") %> prohibited this image group from being saved:</h2>
     <ul>
-    <% @image_group.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% @image_group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
 
-<fieldset>
-  <div class="field large-6">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <% has_images_already = @image_group.images.size > 0 %>
-  <legend>Images - <%= add_child_button "New Image", :images, " #{has_images_already ? 'success small' : 'alert' }" %></legend>
-
-  <% unless has_images_already %>
-    <br/><br/>
-  <% end %>
-
-  <%= new_child_fields_template form, :images, form_builder_local: :image_form %>
-
-  <div id="image_group_images" class='span-16'>
-    <% @image_group.images.each do |image| %>
-      <div id='image_<%= image.id %>' class="variant_form left span-16 last">
-        <%= form.fields_for :images, image do |image_form|%>
-          <%= render partial: 'image', locals: { image_form: image_form } %>
-        <% end %>
-      </div>
+<div class="card">
+  <div class="card-body">
+    <div class="form-group">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <% has_images_already = @image_group.images.size > 0 %>
+    <div class="form-group">
+      <label class="form-label">Images - <%= add_child_button "New Image", :images, (has_images_already ? 'btn btn-primary btn-sm' : 'btn btn-danger btn-sm') %></label>
+    </div>
+    <% unless has_images_already %>
+      <br/><br/>
     <% end %>
+    <%= new_child_fields_template form, :images, form_builder_local: :image_form %>
+    <div id="image_group_images">
+      <% @image_group.images.each do |image| %>
+        <div id='image_<%= image.id %>' class="form-group">
+          <%= form.fields_for :images, image do |image_form| %>
+            <%= render partial: 'image', locals: { image_form: image_form } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</fieldset>
+</div>

@@ -1,0 +1,93 @@
+<div class="sidebar-brand">
+  <div class="sidebar-brand-icon">R</div>
+  <span><%= site_name %></span>
+</div>
+
+<div class="sidebar-nav">
+  <%= admin_nav_section("Main") do %>
+    <%= admin_nav_item "Dashboard", admin_overviews_path, icon: "\u25A0" %>
+
+    <% if can?(:read, Order) %>
+      <%= admin_nav_group "Orders", admin_history_orders_path, icon: "\u2750" do %>
+        <% if can?(:create_orders, current_user) %>
+          <%= admin_nav_item "Create Order", admin_shopping_carts_path %>
+        <% end %>
+        <%= admin_nav_item "Order History", admin_history_orders_path %>
+        <%= admin_nav_item "Shipments", admin_fulfillment_shipments_path %>
+      <% end %>
+    <% end %>
+
+    <% if can?(:read, Product) %>
+      <%= admin_nav_group "Merchandise", admin_merchandise_products_path, icon: "\u2605" do %>
+        <%= admin_nav_item "Products", admin_merchandise_products_path %>
+        <%= admin_nav_item "Properties", admin_merchandise_properties_path %>
+        <%= admin_nav_item "Product Types", admin_merchandise_product_types_path %>
+        <%= admin_nav_item "Prototypes", admin_merchandise_prototypes_path %>
+        <%= admin_nav_item "Image Groups", admin_merchandise_image_groups_path %>
+        <%= admin_nav_item "Brands", admin_merchandise_brands_path %>
+      <% end %>
+    <% end %>
+
+    <% if can?(:read, Product) %>
+      <%= admin_nav_group "Inventory", admin_inventory_overviews_path, icon: "\u2699" do %>
+        <%= admin_nav_item "Overview", admin_inventory_overviews_path %>
+        <%= admin_nav_item "Suppliers", admin_inventory_suppliers_path %>
+        <%= admin_nav_item "Purchase Orders", admin_inventory_purchase_orders_path %>
+        <%= admin_nav_item "Receive PO", admin_inventory_receivings_path %>
+        <%= admin_nav_item "Adjustments", admin_inventory_adjustments_path %>
+      <% end %>
+    <% end %>
+
+    <% if can?(:view_users, current_user) %>
+      <%= admin_nav_group "Users", admin_users_path, icon: "\u263A" do %>
+        <%= admin_nav_item "All Users", admin_users_path %>
+        <%= admin_nav_item "Referrals", admin_user_datas_referrals_path %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= admin_nav_section("Operations") do %>
+    <% if can?(:read, Order) %>
+      <%= admin_nav_group "Fulfillment", admin_fulfillment_orders_path, icon: "\u2692" do %>
+        <%= admin_nav_item "Orders", admin_fulfillment_orders_path %>
+        <%= admin_nav_item "Shipments", admin_fulfillment_shipments_path %>
+        <%= admin_nav_item "Invoices", admin_document_invoices_path %>
+      <% end %>
+    <% end %>
+
+    <% if current_user.admin? %>
+      <%= admin_nav_group "Coupons & Deals", admin_generic_coupons_path, icon: "\u2707" do %>
+        <%= admin_nav_item "Coupons", admin_generic_coupons_path %>
+        <%= admin_nav_item "Deals", admin_generic_deals_path %>
+        <%= admin_nav_item "Sales", admin_generic_sales_path %>
+      <% end %>
+    <% end %>
+
+    <% if current_user.admin? || (current_user.respond_to?(:report?) && current_user.report?) %>
+      <%= admin_nav_item "Reports", admin_reports_overview_path, icon: "\u2630" %>
+    <% end %>
+  <% end %>
+
+  <% if current_user.super_admin? %>
+    <%= admin_nav_section("System") do %>
+      <%= admin_nav_group "Config", admin_config_accounts_path, icon: "\u2699" do %>
+        <%= admin_nav_item "Accounts", admin_config_accounts_path %>
+        <%= admin_nav_item "Countries", admin_config_countries_path %>
+        <%= admin_nav_item "Shipping Zones", admin_config_shipping_zones_path %>
+        <%= admin_nav_item "Shipping Methods", admin_config_shipping_methods_path %>
+        <%= admin_nav_item "Shipping Rates", admin_config_shipping_rates_path %>
+        <%= admin_nav_item "Tax Rates", admin_config_tax_rates_path %>
+        <%= admin_nav_item "Shipping Categories", admin_config_shipping_categories_path %>
+      <% end %>
+      <%= admin_nav_item "Help", admin_help_path, icon: "\u24D8" %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="sidebar-footer">
+  <div class="sidebar-footer-avatar"><%= admin_user_initials %></div>
+  <div class="user-info">
+    <div class="user-name"><%= current_user.name %></div>
+    <div class="user-role"><%= admin_user_role_label %></div>
+  </div>
+</div>

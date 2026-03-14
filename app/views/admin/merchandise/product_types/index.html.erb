@@ -1,40 +1,46 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<% content_for :sidemenu do %>
-
-  <div class='admin_filters'>
-    <%= form_tag admin_merchandise_product_types_path, method: 'get', id: "product_types_search" do %>
-      <%= hidden_field_tag :direction, params[:direction] %>
-      <%= hidden_field_tag :sort, params[:sort] %>
-
-      <label>Name</label>
-      <%= text_field_tag :name, params[:name] %>
-      <div style='text-align:center'>
-        <%= submit_tag "Search", name: nil, class: 'button red-button' %>
-      </div>
-    <% end %>
-    <div class='clearfix'></div>
+<% content_for :sidebar_panel do %>
+  <div class="card">
+    <div class="card-header"><h3 class="card-title">Filters</h3></div>
+    <div class="card-body">
+      <%= form_tag admin_merchandise_product_types_path, method: 'get', id: "product_types_search" do %>
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <%= text_field_tag :name, params[:name] %>
+        </div>
+        <div class="text-center">
+          <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
-<div class='admin_title_header'>
-  <h3>Product Types</h3>
-  <%= link_to "New Type", new_admin_merchandise_product_type_path, class: "button" %>
+<div class="page-header">
+  <h1 class="page-title">Product Types</h1>
+  <div class="page-actions">
+    <%= link_to "New Type", new_admin_merchandise_product_type_path, class: "btn btn-primary" %>
+  </div>
 </div>
 
-<div class="admin_product_types">
-  <table class='hover'>
+<div class="data-table">
+  <table class="admin-table">
     <thead>
-    <tr class='odd'>
-      <th class='column1_header' ><%= sortable "name" %></th>
-    </tr>
-    </thead>
-    <% @product_types.each do |product_type| %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to product_type.name, edit_admin_merchandise_product_type_path(product_type) %></td>
+      <tr>
+        <th><%= sortable "name" %></th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @product_types.each do |product_type| %>
+        <tr>
+          <td><%= link_to product_type.name, edit_admin_merchandise_product_type_path(product_type) %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-
-  <%= will_paginate @product_types %>
 </div>
+
+<%= will_paginate @product_types %>

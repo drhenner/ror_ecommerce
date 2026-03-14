@@ -10,33 +10,44 @@
   </div>
 <% end %>
 
-<fieldset>
-  <label>Percentage</label>
-  <%= f.text_field :percentage %>
+<div class="form-group">
+  <label class="form-label">Percentage</label>
+  <%= f.text_field :percentage, class: "form-control" %>
+</div>
 
-  <label>Country</label>
-
-  <% if Settings.tax_per_state_id %>
-    <%= select_tag :select_country, options_from_collection_for_select(countries, "second", "first"), { include_blank: true } %>
-    <label>State</label>
-    <%= f.select :state_id, @states, { include_blank: true } %>
-  <% else %>
-    <label>Country</label>
-    <%= f.select :country_id, countries, { include_blank: true } %>
-  <% end %>
-
-  <label>Start Date</label>
-  <div class='date-select'>
-    <%= f.date_select :start_date, { start_year: Time.zone.now.year, end_year: Time.zone.now.year + 12} %>
+<% if Settings.tax_per_state_id %>
+  <div class="form-group">
+    <label class="form-label">Country</label>
+    <%= select_tag :select_country, options_from_collection_for_select(countries, "second", "first"), { include_blank: true, class: "form-control" } %>
   </div>
-
-  <label>End Date</label>
-  <div class='date-select'>
-    <%= f.date_select :end_date, { include_blank: true, start_year: Time.zone.now.year, end_year: Time.zone.now.year + 12} %>
+  <div class="form-group">
+    <label class="form-label">State</label>
+    <%= f.select :state_id, @states, { include_blank: true }, class: "form-control" %>
   </div>
+<% else %>
+  <div class="form-group">
+    <label class="form-label">Country</label>
+    <%= f.select :country_id, countries, { include_blank: true }, class: "form-control" %>
+  </div>
+<% end %>
 
-  <label>Active</label>
+<div class="form-group">
+  <label class="form-label">Start Date</label>
+  <div class="date-select">
+    <%= f.date_select :start_date, { start_year: Time.zone.now.year, end_year: Time.zone.now.year + 12 } %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="form-label">End Date</label>
+  <div class="date-select">
+    <%= f.date_select :end_date, { include_blank: true, start_year: Time.zone.now.year, end_year: Time.zone.now.year + 12 } %>
+  </div>
+</div>
+
+<div class="form-group">
   <%= f.check_box :active %>
-</fieldset>
+  <label class="form-label ml-2">Active</label>
+</div>
 
-<%= f.submit "Create", :class => "button" %>
+<%= f.submit @tax_rate.new_record? ? "Create" : "Update", class: "btn btn-primary" %>

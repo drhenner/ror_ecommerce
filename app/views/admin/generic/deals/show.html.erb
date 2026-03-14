@@ -1,34 +1,42 @@
-<h3>Deal</h3>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Deal</h1>
+  </div>
+</div>
 
-<ul>
-  <li>
-    <label>Buy Quantity:</label>
-    <%= @deal.buy_quantity %>
-  </li>
-  <li>
-    <label>Get Percentage:</label>
-    <%= @deal.get_percentage %>
-  </li>
-  <li>
-    <label>Deal Type:</label>
-    <%= @deal.deal_type.name %>
-  </li>
-  <li>
-    <label>Product Type:</label>
-    <%= @deal.product_type.name %>
-  </li>
-  <li>
-    <label>Get Amount:</label>
-    <%= @deal.get_amount %>
-  </li>
-  <li>
-    <label>Deleted At:</label>
-    <%= @deal.deleted_at %>
-  </li>
-</ul>
-<p>
-  <%#  YOU SHOULD NOT EDIT THIS..  OLD ORDERS WILL NO LONGER CALCULATE CORRECTLY.  set Deleted_at and create a new promotion %>
-  <%#= link_to "Edit", edit_admin_generic_deal_path(@deal), :class => 'button' %> |
-  <%= link_to "Destroy", [:admin, :generic, @deal], :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button' %> |
-  <%= link_to "View All", admin_generic_deals_path, :class => 'button' %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <ul>
+      <li>
+        <label>Buy Quantity:</label>
+        <%= @deal.buy_quantity %>
+      </li>
+      <li>
+        <label>Get Percentage:</label>
+        <%= @deal.get_percentage %>
+      </li>
+      <li>
+        <label>Deal Type:</label>
+        <%= @deal.deal_type.name %>
+      </li>
+      <li>
+        <label>Product Type:</label>
+        <%= @deal.product_type.name %>
+      </li>
+      <li>
+        <label>Get Amount:</label>
+        <%= @deal.get_amount %>
+      </li>
+      <li>
+        <label>Deleted At:</label>
+        <%= @deal.deleted_at %>
+      </li>
+    </ul>
+    <div class="d-flex gap-2 mt-3">
+      <%#  YOU SHOULD NOT EDIT THIS..  OLD ORDERS WILL NO LONGER CALCULATE CORRECTLY.  set Deleted_at and create a new promotion %>
+      <%#= link_to "Edit", edit_admin_generic_deal_path(@deal), :class => 'button' %> |
+      <%= link_to "Destroy", [:admin, :generic, @deal], data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-sm' %> |
+      <%= link_to "View All", admin_generic_deals_path, :class => 'btn btn-outline btn-sm' %>
+    </div>
+  </div>
+</div>

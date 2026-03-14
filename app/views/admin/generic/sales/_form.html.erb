@@ -1,20 +1,19 @@
-
-  <%= f.error_messages %>
-<ul>
-  <li class="field three large-3">
-    <%= f.label :product_id %>
+<%= f.error_messages %>
+<div class="d-flex flex-wrap gap-4">
+  <div class="form-group">
+    <%= f.label :product_id, class: 'form-label' %>
     <%= f.select :product_id, products, include_blank: true %>
-  </li>
-  <li class="field three large-3">
-    <%= f.label :percent_off %>
+  </div>
+  <div class="form-group">
+    <%= f.label :percent_off, class: 'form-label' %>
     <%= f.text_field :percent_off %>
-  </li>
-  <li class="field date-select">
-    <%= f.label :starts_at %>
+  </div>
+  <div class="form-group date-select">
+    <%= f.label :starts_at, class: 'form-label' %>
     <%= f.datetime_select :starts_at %>
-  </li>
-  <li class="field date-select">
-    <%= f.label :ends_at %>
+  </div>
+  <div class="form-group date-select">
+    <%= f.label :ends_at, class: 'form-label' %>
     <%= f.datetime_select :ends_at %>
-  </li>
-</ul>
+  </div>
+</div>

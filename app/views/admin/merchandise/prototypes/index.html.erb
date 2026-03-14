@@ -1,38 +1,46 @@
-<%= render :partial => '/admin/merchandise/sub_header'%>
+<%= render partial: '/admin/merchandise/sub_header' %>
 
-<% content_for :sidemenu do %>
-  <div class='admin_filters'>
-    <%= form_tag admin_merchandise_prototypes_path, method: 'get', id: "products_search" do %>
-      <%= hidden_field_tag :direction, params[:direction] %>
-      <%= hidden_field_tag :sort, params[:sort] %>
-
-      <label>Name</label>
-      <%= text_field_tag :name, params[:name] %>
-      <div style="text-align:center">
-        <%= submit_tag "Search", name: nil, class: 'button red-button alert' %>
-      </div>
-    <% end %>
+<% content_for :sidebar_panel do %>
+  <div class="card">
+    <div class="card-header"><h3 class="card-title">Filters</h3></div>
+    <div class="card-body">
+      <%= form_tag admin_merchandise_prototypes_path, method: 'get', id: "prototypes_search" do %>
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <%= text_field_tag :name, params[:name] %>
+        </div>
+        <div class="text-center">
+          <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
-<div class='admin_title_header'>
-  <h3>Prototypes</h3>
-  <%= link_to "New Prototype", new_admin_merchandise_prototype_path, class: "button"%>
+<div class="page-header">
+  <h1 class="page-title">Prototypes</h1>
+  <div class="page-actions">
+    <%= link_to "New Prototype", new_admin_merchandise_prototype_path, class: "btn btn-primary" %>
+  </div>
 </div>
 
-<div class="admin_prototypes">
-  <table class='hover'>
+<div class="data-table">
+  <table class="admin-table">
     <thead>
-    <tr class='odd'>
-      <th class='column1_header'><%= sortable "name" %></th>
-    </tr>
-    </thead>
-    <% @prototypes.each do |prototype| %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to prototype.name, edit_admin_merchandise_prototype_path(prototype) %></td>
+      <tr>
+        <th><%= sortable "name" %></th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @prototypes.each do |prototype| %>
+        <tr>
+          <td><%= link_to prototype.name, edit_admin_merchandise_prototype_path(prototype) %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-
-  <%= will_paginate @prototypes %>
 </div>
+
+<%= will_paginate @prototypes %>

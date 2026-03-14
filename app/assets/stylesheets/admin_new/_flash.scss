@@ -1,0 +1,79 @@
+.flash-message {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  font-size: 14px;
+  margin-bottom: var(--space-4);
+  animation: flash-in 0.3s ease;
+
+  &.flash-notice,
+  &.flash-success {
+    background: var(--color-success-light);
+    color: var(--color-success-text);
+    border: 1px solid #bbf7d0;
+  }
+
+  &.flash-alert,
+  &.flash-error {
+    background: var(--color-danger-light);
+    color: var(--color-danger-text);
+    border: 1px solid #fecaca;
+  }
+
+  &.flash-warning {
+    background: var(--color-warning-light);
+    color: var(--color-warning-text);
+    border: 1px solid #fde68a;
+  }
+
+  &.flash-info {
+    background: var(--color-info-light);
+    color: var(--color-info-text);
+    border: 1px solid #93c5fd;
+  }
+}
+
+.flash-message-text {
+  flex: 1;
+}
+
+.flash-dismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  padding: 0;
+
+  &:hover { opacity: 1; }
+}
+
+@keyframes flash-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.flash-out {
+  animation: flash-out 0.3s ease forwards;
+}
+
+@keyframes flash-out {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+}

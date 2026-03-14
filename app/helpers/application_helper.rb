@@ -24,15 +24,18 @@ EXAMPLE USAGE!!
   end
 
   def remove_child_link(name, f)
-    f.hidden_field(:_destroy) + link_to(name, "javascript:void(0)", :class => "remove_child")
+    f.hidden_field(:_destroy) + link_to(name, "#", class: "remove_child btn btn-sm btn-danger",
+      data: { action: "click->nested-form#remove" })
   end
 
   def add_child_link(name, association, classes = '')
-    link_to(name, "javascript:void(0);", class: "add_child #{classes}", :"data-association" => association)
+    link_to(name, "#", class: "add_child #{classes}",
+      data: { association: association, action: "click->nested-form#add" })
   end
 
   def add_child_button(name, association, classes = '')
-    link_to(name, "javascript:void(0);", class: "add_child button #{classes}", :"data-association" => association)
+    link_to(name, "#", class: "add_child button #{classes}",
+      data: { association: association, action: "click->nested-form#add" })
   end
 
   def new_child_fields_template(form_builder, association, options = {})

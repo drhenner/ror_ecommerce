@@ -10,9 +10,9 @@
   </div>
 <% end %>
 
-<fieldset>
-  <label>Name</label>
-  <%= f.text_field :name %>
-</fieldset>
+<div class="form-group">
+  <label class="form-label">Name</label>
+  <%= f.text_field :name, class: "form-control" %>
+</div>
 
-<%= f.submit "Create", :class => "button" %>
+<%= f.submit @shipping_category.new_record? ? "Create" : "Update", class: "btn btn-primary" %>

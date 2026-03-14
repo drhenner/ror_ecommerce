@@ -1,12 +1,8 @@
-# This is how cancan controls authorization.  For more details look at https://github.com/ryanb/cancan
-
 class AdminAbility
   include CanCan::Ability
 
-  # This method sets up the user's abilities to view admin pages
-  #   look at https://github.com/ryanb/cancan for more info
   def initialize(user)
-    user ||= User.new # guest user will not be allowed in the admin section
+    user ||= User.new
 
     if user.super_admin?
       can :manage, :all
@@ -14,8 +10,21 @@ class AdminAbility
       can :read, :all
       can :view_users, User
       can :create_orders, User
-    else
-
+      can :manage_fulfillment, Order
+      can :manage_generic, :coupon
+    elsif user.warehouse?
+      can :read, Product
+      can :read, Variant
+      can :manage, PurchaseOrder
+      can :manage_fulfillment, Order
+      can :read, Order
+    elsif user.customer_service?
+      can :read, Order
+      can :read, User
+      can :view_users, User
+      can :manage, ReturnAuthorization
+    elsif user.report?
+      can :read_reports, :all
     end
   end
 end

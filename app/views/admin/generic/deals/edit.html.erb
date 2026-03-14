@@ -1,11 +1,18 @@
-<h3>Edit Deal</h3>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Edit Deal</h1>
+  </div>
+</div>
 
-<%= form_for @deal, :url => [:admin, :generic, @deal] do |f| %>
-  <%=  render :partial => 'form', :locals => {:f => f} %>
-  <div class="actions"><%= f.submit 'Update' , :class => 'button' %></div>
-<% end %>
-
-<p>
-  <%= link_to "Show", [:admin, :generic, @deal], :class => 'button secondary' %>
-  <%= link_to "View All", admin_generic_deals_path, :class => 'button secondary' %>
-</p>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @deal, :url => [:admin, :generic, @deal] do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+      <div class="form-group"><%= f.submit 'Update' , :class => 'btn btn-primary' %></div>
+    <% end %>
+    <div class="d-flex gap-2 mt-3">
+      <%= link_to "Show", [:admin, :generic, @deal], :class => 'btn btn-outline btn-sm' %>
+      <%= link_to "View All", admin_generic_deals_path, :class => 'btn btn-outline btn-sm' %>
+    </div>
+  </div>
+</div>

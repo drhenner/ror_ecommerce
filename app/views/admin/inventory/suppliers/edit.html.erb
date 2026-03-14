@@ -1,6 +1,12 @@
-<h3>Editing Supplier - <%= @supplier.name %></h3>
+<div class="page-header">
+  <h1 class="page-title">Editing Supplier - <%= @supplier.name %></h1>
+</div>
 
-<%= form_for @supplier, url: admin_inventory_supplier_path(@supplier) do |form| %>
-  <%= render partial: '/admin/inventory/suppliers/form', locals: { form: form } %>
-  <%= submit_tag "Update", class: "button" %>
-<% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @supplier, url: admin_inventory_supplier_path(@supplier) do |form| %>
+      <%= render partial: '/admin/inventory/suppliers/form', locals: { form: form } %>
+      <%= submit_tag "Update", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

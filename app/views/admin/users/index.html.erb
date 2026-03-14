@@ -1,51 +1,61 @@
-<h3>Users</h3>
-
-<% content_for :sidemenu do %>
-  <div style="text-align:right">
-    <%= link_to "New User", new_admin_user_path, class: "button", id: "new_user_button" %>
-  </div>
-  <div class="admin_filters">
-    <%= form_tag admin_users_path, method: 'get', id: "users_search" do %>
-      <label>First Name</label>
-      <%= text_field_tag :first_name, params[:first_name] %>
-
-      <label>Last Name</label>
-      <%= text_field_tag :last_name, params[:last_name] %>
-
-      <label>Email</label>
-      <%= text_field_tag :email, params[:email] %>
-
-      <div style='text-align:center'>
-        <%= submit_tag "Search", name: nil, class: "button" %>
-      </div>
-      <div id="users">
-        <%= render 'users' %>
-      </div>
-    <% end %>
+<% content_for :sidebar_panel do %>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Filters</h3>
+    </div>
+    <div class="card-body">
+      <%= form_tag admin_users_path, method: 'get', id: "users_search" do %>
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <%= text_field_tag :first_name, params[:first_name], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <%= text_field_tag :last_name, params[:last_name], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <%= text_field_tag :email, params[:email], class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
-
-<div class="admin_users">
-  <table class='hover'>
-    <thead>
-    <tr class='odd'>
-      <th  class='column1_header'><%= sortable "first_name" %></th>
-      <th><%= sortable "last_name" %></th>
-      <th><%= sortable "email" %></th>
-      <th>Status</th>
-    </tr>
-    </thead>
-    <% @users.each do |user| %>
-      <tr class='<%= cycle("odd", "")%>'>
-        <td><%= link_to user.first_name, admin_user_path(user) %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.state %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <%= will_paginate @users %>
+<div class="page-header">
+  <h1 class="page-title">Users</h1>
+  <div class="page-actions">
+    <%= link_to "New User", new_admin_user_path, class: "btn btn-primary", id: "new_user_button" %>
+  </div>
 </div>
 
+<div class="card">
+  <div class="card-body">
+    <div class="data-table">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th><%= sortable "first_name" %></th>
+            <th><%= sortable "last_name" %></th>
+            <th><%= sortable "email" %></th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.first_name, admin_user_path(user) %></td>
+              <td><%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.state %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @users %>
+  </div>
+</div>

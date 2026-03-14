@@ -1,8 +1,15 @@
-<h1> New Sale </h1>
+<div class="page-header">
+  <div>
+    <h1 class="page-title">New Sale</h1>
+  </div>
+</div>
 
-<%= form_for @sale, :url => admin_generic_sales_path(@sale) do |f| %>
-  <%=  render :partial => 'form', :locals => {:f => f} %>
-  <div class="actions"><%= f.submit 'Create' , class: 'button float-right' %></div>
-<% end %>
-
-<p><%= link_to "Back to List", admin_generic_sales_path, class: 'button secondary' %></p>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @sale, :url => admin_generic_sales_path(@sale) do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+      <div class="form-group"><%= f.submit 'Create' , class: 'btn btn-primary' %></div>
+    <% end %>
+    <%= link_to "Back to List", admin_generic_sales_path, class: 'btn btn-outline btn-sm mt-3' %>
+  </div>
+</div>

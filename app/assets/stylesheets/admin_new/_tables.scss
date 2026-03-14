@@ -1,0 +1,225 @@
+.data-table {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+table.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    padding: 10px var(--space-4);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #f8fafc;
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover { color: var(--color-text); }
+    }
+  }
+
+  td {
+    padding: var(--space-3) var(--space-4);
+    font-size: 14px;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover td {
+    background: #f8fafc;
+  }
+}
+
+.table-actions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.table-action-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+.table-empty {
+  padding: var(--space-10) var(--space-5);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  font-size: 13px;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.pagination-btn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  padding: 0 var(--space-2);
+
+  &:hover { background: var(--color-bg); }
+
+  &.active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.filter-input {
+  padding: 7px var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  background: var(--color-surface);
+  min-width: 200px;
+  outline: none;
+  color: var(--color-text);
+
+  &:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+  }
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 12px;
+  cursor: pointer;
+
+  &:hover { background: var(--color-bg); }
+
+  &.active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+}
+
+table.admin-table {
+  tr.odd td {
+    background: transparent;
+  }
+
+  th.column1_header {
+    min-width: 100px;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+  padding: var(--space-3) 0;
+  margin: 0;
+  flex-wrap: wrap;
+
+  li {
+    display: inline-block;
+  }
+
+  a, span, em {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 var(--space-2);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: 13px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-style: normal;
+  }
+
+  a:hover {
+    background: var(--color-bg);
+    text-decoration: none;
+  }
+
+  .current, em.current {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .disabled, span.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .previous_page, .next_page {
+    font-weight: 500;
+  }
+}

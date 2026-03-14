@@ -1,16 +1,15 @@
-<h3>Editing (<%= @tax_rate.state.abbreviation %>) Tax Rate</h3>
+<div class="page-header">
+  <h1 class="page-title">Editing (<%= @tax_rate.state&.abbreviation || @tax_rate.country&.name %>) Tax Rate</h1>
+  <div class="page-actions">
+    <%= link_to 'Show', admin_config_tax_rate_path(@tax_rate), class: 'btn btn-outline' %>
+    <%= link_to 'Back', admin_config_tax_rates_path, class: 'btn btn-outline' %>
+  </div>
+</div>
 
-<%= form_for(@tax_rate, url: admin_config_tax_rate_path(@tax_rate)) do |f| %>
-  <%= render partial: 'form', locals: { f: f } %>
-<% end %>
-
-<%= link_to 'Show', admin_config_tax_rate_path(@tax_rate), class: 'button' %>
-<%= link_to 'Back', admin_config_tax_rates_path, class: 'button' %>
-
-<% content_for :bottom do -%>
-  <%= javascript_include_tag "admin/config_tax_rate" %>
-
-  <script>
-    Hadean.Utility.registerOnLoadHandler(Hadean.TaxRateForm.initialize());
-  </script>
-<% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@tax_rate, url: admin_config_tax_rate_path(@tax_rate)) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
+  </div>
+</div>

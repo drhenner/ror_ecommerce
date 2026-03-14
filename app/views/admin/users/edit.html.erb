@@ -1,8 +1,15 @@
-<h3>Edit <%= @user.name %> </h3>
+<div class="page-header">
+  <h1 class="page-title">Edit <%= @user.name %></h1>
+  <div class="page-actions">
+    <%= link_to "Show #{@user.name}", admin_user_path(@user), class: 'btn btn-outline' %>
+  </div>
+</div>
 
-<%= link_to "Show #{@user.name}", admin_user_path(@user), class: 'tiny success button' %>
-
-<%= form_for @user, url: admin_user_path(@user)  do |form| %>
-  <%= render partial: '/admin/users/form', locals: { form: form } %>
-  <%= form.submit "Update", class: 'button' %>
-<% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for @user, url: admin_user_path(@user) do |form| %>
+      <%= render partial: '/admin/users/form', locals: { form: form } %>
+      <%= form.submit "Update", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
