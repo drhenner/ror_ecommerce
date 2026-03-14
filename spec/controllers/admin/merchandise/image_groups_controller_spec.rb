@@ -34,7 +34,7 @@ describe Admin::Merchandise::ImageGroupsController do
   end
 
   it "create action should redirect when model is valid" do
-    image_group = FactoryBot.build(:image_group)
+    image_group = FactoryBot.create(:image_group)
     ImageGroup.any_instance.stubs(:valid?).returns(true)
     post :create, params: { :image_group => image_group.attributes.reject {|k,v| ['id', 'created_at', 'updated_at'].include?(k)} }
     expect(response).to redirect_to(edit_admin_merchandise_image_group_url(assigns[:image_group]))

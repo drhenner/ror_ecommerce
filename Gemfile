@@ -5,7 +5,7 @@ gem 'rails', '~> 7.0.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'uglifier',     '>= 1.3.0'
-gem 'sassc-rails',  '~> 2.1'
+gem 'sass-embedded'
 gem 'sprockets-rails', '~> 3.4'
 gem 'sprockets',    '~> 4.0'
 
@@ -39,7 +39,6 @@ gem 'rake', '>= 13.0'
 
 gem 'aasm', '~> 5.5'
 gem 'will_paginate', '~> 4.0'
-gem 'foundation-rails', '~> 6.6'
 
 gem 'image_processing', '~> 1.2'
 

@@ -57,19 +57,19 @@ These are populated by `db/seeds.rb` and the test suite assumes they exist:
 
 If specs fail with "must exist" errors on `State`, `Country`, `Role`, `ItemType`, `ReferralProgram`, etc. — seed data is missing. Re-run `RAILS_ENV=test rake db:seed`.
 
-## Known Failures — Foundation SCSS + sassc incompatibility (244 of 280 failures)
+### 4. Solr required for product search specs
 
-`foundation-rails 6.9.0.0` uses Dart Sass module syntax (`math.abs()`) in its SCSS, but `sassc 2.4.0` uses LibSass which does not support Sass modules. This causes **every test that renders a view** (controller specs, request specs) to fail with:
-
-```
-ActionView::Template::Error:
-  Error: Invalid CSS after "    @return math": expected expression (e.g. 1px, bold), was ".abs($a);"
-```
-
-This is a gem-level incompatibility, NOT a test or application code bug. **Model specs are unaffected.** Until this is resolved (by replacing sassc with dartsass-rails, or downgrading foundation-rails), focus testing on model specs and non-view-rendering specs:
+The `Admin::Merchandise::ProductsController` create spec (and any spec that triggers Sunspot indexing on product save) requires Solr to be running. Without it the controller rescues the connection error and renders a "Please make sure you have solr started" message instead of redirecting.
 
 ```bash
-bundle exec rspec spec/models/
+bundle exec rake sunspot:solr:start
+```
+
+If you cannot start Solr, exclude the spec or stub Sunspot:
+
+```ruby
+Sunspot.stubs(:index).returns(true)
+Sunspot.stubs(:index!).returns(true)
 ```
 
 ## Test Architecture
@@ -104,14 +104,31 @@ Several specs rely on `ReferralProgram.current_program` returning a record. If t
 ### Deprecated `be_success` matcher
 Rails removed `response.success?`. Specs using `expect(response).to be_success` need to be updated to `expect(response).to be_successful` (or `have_http_status(:ok)`).
 
+### Deprecated `Time#to_s(:db)` / `Date#to_s(:db)`
+Rails 7 deprecates `to_s(:format)` in favor of `to_fs(:format)`. Many specs and models still use the old syntax (e.g. `Time.zone.now.to_s(:db)`). Update to `to_fs(:db)` when touching affected code. Common locations: `TaxRate.active_at_ids`, `ProductFilters#deleted_at_filter`, and controller specs for `TaxRatesController` / `PurchaseOrdersController`.
+
+### FactoryBot `build` does not persist association FKs
+`FactoryBot.build(:model)` may leave foreign-key columns nil when associations are defined with the block syntax (`product { |c| c.association(:product) }`). If a spec builds a record, extracts `.attributes`, and posts them to a controller, the FK will be nil and MySQL NOT NULL constraints will reject the insert (even if `valid?` is stubbed to true). Use `FactoryBot.create` instead when you need FK IDs in the attributes hash.
+
+### Capybara `click_button` — no extra hash argument
+Capybara's `click_button` accepts at most one positional argument (the locator). Do NOT pass an empty hash as a second argument:
+
+```ruby
+# Bad — raises ArgumentError in newer Capybara
+click_button 'Log In', {}
+
+# Good
+click_button 'Log In'
+```
+
+### `PaymentProfileCim#update` must accept attributes
+`PaymentProfileCim` overrides `update`. The override must accept an `attributes` parameter and forward it to `super(attributes)` to match Rails 7's `ActiveRecord::Persistence#update(attributes)` signature.
+
 ## Running Specs
 
 ```bash
 # Full suite (from Cursor, always use required_permissions: ["all"])
 bundle exec rspec
-
-# Model specs only (avoids SCSS compilation failures)
-bundle exec rspec spec/models/
 
 # Single file
 bundle exec rspec spec/models/user_spec.rb

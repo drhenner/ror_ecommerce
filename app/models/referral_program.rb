@@ -6,7 +6,7 @@ class ReferralProgram < ApplicationRecord
   validates :description, presence: true,       length: { maximum: 600 }
   validates :referral_bonus_id, presence: true
 
-  delegate :decimal_amount, :to => :referral_bonus
+  delegate :decimal_amount, :to => :referral_bonus, allow_nil: true
 
   PROGRAMS = [
       { :name         => '$5 per Referral',
