@@ -10,45 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_14_053953) do
   create_table "accounting_adjustments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "adjustable_id", null: false
     t.string "adjustable_type", null: false
-    t.string "notes"
     t.decimal "amount", precision: 8, scale: 2, null: false
     t.datetime "created_at", precision: nil
+    t.string "notes"
     t.datetime "updated_at", precision: nil
     t.index ["adjustable_id"], name: "index_accounting_adjustments_on_adjustable_id"
   end
 
   create_table "accounts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", null: false
     t.string "account_type", null: false
-    t.decimal "monthly_charge", precision: 8, scale: 2, default: "0.0", null: false
     t.boolean "active", default: true, null: false
     t.datetime "created_at", precision: nil
+    t.decimal "monthly_charge", precision: 8, scale: 2, default: "0.0", null: false
+    t.string "name", null: false
     t.datetime "updated_at", precision: nil
   end
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", charset: "utf8mb3", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
+    t.string "content_type"
     t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -59,41 +59,41 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "address_types", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
     t.string "description"
+    t.string "name", limit: 64, null: false
     t.index ["name"], name: "index_address_types_on_name"
   end
 
   create_table "addresses", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "address_type_id"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "addressable_type", null: false
-    t.integer "addressable_id", null: false
+    t.boolean "active", default: true
     t.string "address1", null: false
     t.string "address2"
+    t.integer "address_type_id"
+    t.integer "addressable_id", null: false
+    t.string "addressable_type", null: false
+    t.string "alternative_phone"
+    t.boolean "billing_default", default: false
     t.string "city", null: false
+    t.integer "country_id"
+    t.datetime "created_at", precision: nil
+    t.boolean "default", default: false
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "phone_id"
     t.integer "state_id"
     t.string "state_name"
-    t.string "zip_code", null: false
-    t.integer "phone_id"
-    t.string "alternative_phone"
-    t.boolean "default", default: false
-    t.boolean "billing_default", default: false
-    t.boolean "active", default: true
-    t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.integer "country_id"
+    t.string "zip_code", null: false
     t.index ["addressable_id"], name: "index_addresses_on_addressable_id"
     t.index ["addressable_type"], name: "index_addresses_on_addressable_type"
     t.index ["state_id"], name: "index_addresses_on_state_id"
   end
 
   create_table "batches", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "batchable_type"
     t.integer "batchable_id"
-    t.string "name"
+    t.string "batchable_type"
     t.datetime "created_at", precision: nil
+    t.string "name"
     t.datetime "updated_at", precision: nil
     t.index ["batchable_id"], name: "index_batches_on_batchable_id"
     t.index ["batchable_type"], name: "index_batches_on_batchable_type"
@@ -104,14 +104,14 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "cart_items", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "cart_id"
-    t.integer "variant_id", null: false
-    t.integer "quantity", default: 1
     t.boolean "active", default: true
-    t.integer "item_type_id", null: false
+    t.integer "cart_id"
     t.datetime "created_at", precision: nil
+    t.integer "item_type_id", null: false
+    t.integer "quantity", default: 1
     t.datetime "updated_at", precision: nil
+    t.integer "user_id"
+    t.integer "variant_id", null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["item_type_id"], name: "index_cart_items_on_item_type_id"
     t.index ["user_id"], name: "index_cart_items_on_user_id"
@@ -119,22 +119,22 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "carts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id"
     t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
     t.integer "customer_id"
+    t.datetime "updated_at", precision: nil
+    t.integer "user_id"
     t.index ["customer_id"], name: "index_carts_on_customer_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "comments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.text "note"
-    t.string "commentable_type"
     t.integer "commentable_id"
-    t.integer "created_by"
-    t.integer "user_id"
+    t.string "commentable_type"
     t.datetime "created_at", precision: nil
+    t.integer "created_by"
+    t.text "note"
     t.datetime "updated_at", precision: nil
+    t.integer "user_id"
     t.index ["commentable_id"], name: "index_comments_on_commentable_id"
     t.index ["commentable_type"], name: "index_comments_on_commentable_type"
     t.index ["created_by"], name: "index_comments_on_created_by"
@@ -142,45 +142,45 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "countries", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name"
     t.string "abbreviation", limit: 5
-    t.integer "shipping_zone_id"
     t.boolean "active", default: false
+    t.string "name"
+    t.integer "shipping_zone_id"
     t.index ["active"], name: "index_countries_on_active"
     t.index ["name"], name: "index_countries_on_name"
     t.index ["shipping_zone_id", "active"], name: "index_countries_on_shipping_zone_id_and_active"
   end
 
   create_table "coupons", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "type", null: false
-    t.string "code", null: false
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
+    t.string "code", null: false
+    t.boolean "combine", default: false
+    t.datetime "created_at", precision: nil
+    t.text "description", null: false
+    t.datetime "expires_at", precision: nil
     t.decimal "minimum_value", precision: 8, scale: 2
     t.integer "percent", default: 0
-    t.text "description", null: false
-    t.boolean "combine", default: false
     t.datetime "starts_at", precision: nil
-    t.datetime "expires_at", precision: nil
-    t.datetime "created_at", precision: nil
+    t.string "type", null: false
     t.datetime "updated_at", precision: nil
     t.index ["code"], name: "index_coupons_on_code"
     t.index ["expires_at"], name: "index_coupons_on_expires_at"
   end
 
   create_table "deal_types", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", null: false
     t.datetime "created_at", precision: nil
+    t.string "name", null: false
     t.datetime "updated_at", precision: nil
   end
 
   create_table "deals", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "buy_quantity", null: false
-    t.integer "get_percentage"
-    t.integer "deal_type_id", null: false
-    t.integer "product_type_id", null: false
-    t.integer "get_amount"
-    t.datetime "deleted_at", precision: nil
     t.datetime "created_at", precision: nil
+    t.integer "deal_type_id", null: false
+    t.datetime "deleted_at", precision: nil
+    t.integer "get_amount"
+    t.integer "get_percentage"
+    t.integer "product_type_id", null: false
     t.datetime "updated_at", precision: nil
     t.index ["buy_quantity"], name: "index_deals_on_buy_quantity"
     t.index ["deal_type_id"], name: "index_deals_on_deal_type_id"
@@ -188,22 +188,22 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "image_groups", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
     t.string "name", null: false
     t.integer "product_id", null: false
-    t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.index ["product_id"], name: "index_image_groups_on_product_id"
   end
 
   create_table "images", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "imageable_id"
-    t.string "imageable_type"
+    t.string "caption"
+    t.datetime "created_at", precision: nil
     t.integer "image_height"
     t.integer "image_width"
+    t.integer "imageable_id"
+    t.string "imageable_type"
     t.integer "position"
-    t.string "caption"
     t.datetime "updated_at", precision: nil
-    t.datetime "created_at", precision: nil
     t.index ["imageable_id"], name: "index_images_on_imageable_id"
     t.index ["imageable_type"], name: "index_images_on_imageable_type"
     t.index ["position"], name: "index_images_on_position"
@@ -211,19 +211,19 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
 
   create_table "inventories", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "count_on_hand", default: 0
-    t.integer "count_pending_to_customer", default: 0
     t.integer "count_pending_from_supplier", default: 0
+    t.integer "count_pending_to_customer", default: 0
   end
 
   create_table "invoices", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.decimal "amount", precision: 8, scale: 2, null: false
-    t.string "invoice_type", default: "Purchase", null: false
-    t.string "state", null: false
     t.boolean "active", default: true, null: false
+    t.decimal "amount", precision: 8, scale: 2, null: false
     t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
     t.decimal "credited_amount", precision: 8, scale: 2, default: "0.0"
+    t.string "invoice_type", default: "Purchase", null: false
+    t.integer "order_id", null: false
+    t.string "state", null: false
+    t.datetime "updated_at", precision: nil
     t.index ["order_id"], name: "index_invoices_on_order_id"
   end
 
@@ -232,34 +232,34 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "newsletters", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", null: false
     t.boolean "autosubscribe", null: false
+    t.string "name", null: false
   end
 
   create_table "notifications", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "type", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.integer "notifiable_id", null: false
     t.string "notifiable_type", null: false
     t.datetime "send_at", precision: nil
     t.datetime "sent_at", precision: nil
-    t.datetime "created_at", precision: nil, null: false
+    t.string "type", null: false
+    t.integer "user_id"
     t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
     t.index ["type", "user_id"], name: "index_notifications_on_type_and_user_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "order_items", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.decimal "price", precision: 8, scale: 2
-    t.decimal "total", precision: 8, scale: 2
+    t.datetime "created_at", precision: nil
     t.integer "order_id", null: false
-    t.integer "variant_id", null: false
+    t.decimal "price", precision: 8, scale: 2
+    t.integer "shipment_id"
+    t.integer "shipping_rate_id"
     t.string "state", null: false
     t.integer "tax_rate_id"
-    t.integer "shipping_rate_id"
-    t.integer "shipment_id"
-    t.datetime "created_at", precision: nil
+    t.decimal "total", precision: 8, scale: 2
     t.datetime "updated_at", precision: nil
+    t.integer "variant_id", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["shipment_id"], name: "index_order_items_on_shipment_id"
     t.index ["shipping_rate_id"], name: "index_order_items_on_shipping_rate_id"
@@ -268,22 +268,22 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "orders", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "number"
-    t.string "ip_address"
-    t.string "email"
-    t.string "state"
-    t.integer "user_id"
-    t.integer "bill_address_id"
-    t.integer "ship_address_id"
-    t.integer "coupon_id"
     t.boolean "active", default: true, null: false
-    t.boolean "shipped", default: false, null: false
-    t.integer "shipments_count", default: 0
+    t.integer "bill_address_id"
     t.datetime "calculated_at", precision: nil
     t.datetime "completed_at", precision: nil
+    t.integer "coupon_id"
     t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
     t.decimal "credited_amount", precision: 8, scale: 2, default: "0.0"
+    t.string "email"
+    t.string "ip_address"
+    t.string "number"
+    t.integer "ship_address_id"
+    t.integer "shipments_count", default: 0
+    t.boolean "shipped", default: false, null: false
+    t.string "state"
+    t.datetime "updated_at", precision: nil
+    t.integer "user_id"
     t.index ["bill_address_id"], name: "index_orders_on_bill_address_id"
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
     t.index ["email"], name: "index_orders_on_email"
@@ -293,36 +293,36 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "payment_profiles", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "address_id"
-    t.string "payment_cim_id"
-    t.boolean "default"
     t.boolean "active"
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
-    t.string "last_digits"
-    t.string "month"
-    t.string "year"
-    t.string "cc_type"
-    t.string "first_name"
-    t.string "last_name"
+    t.integer "address_id"
     t.string "card_name"
+    t.string "cc_type"
+    t.datetime "created_at", precision: nil
+    t.boolean "default"
+    t.string "first_name"
+    t.string "last_digits"
+    t.string "last_name"
+    t.string "month"
+    t.string "payment_cim_id"
+    t.datetime "updated_at", precision: nil
+    t.integer "user_id"
+    t.string "year"
     t.index ["address_id"], name: "index_payment_profiles_on_address_id"
     t.index ["user_id"], name: "index_payment_profiles_on_user_id"
   end
 
   create_table "payments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "invoice_id"
-    t.string "confirmation_id"
+    t.string "action"
     t.integer "amount"
+    t.string "confirmation_id"
+    t.datetime "created_at", precision: nil
     t.string "error"
     t.string "error_code"
+    t.integer "invoice_id"
     t.string "message"
-    t.string "action"
     t.text "params"
     t.boolean "success"
     t.boolean "test"
-    t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.index ["invoice_id"], name: "index_payments_on_invoice_id"
   end
@@ -332,12 +332,12 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "phones", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "phone_type_id"
-    t.string "number", null: false
-    t.string "phoneable_type", null: false
-    t.integer "phoneable_id", null: false
-    t.boolean "primary", default: false
     t.datetime "created_at", precision: nil
+    t.string "number", null: false
+    t.integer "phone_type_id"
+    t.integer "phoneable_id", null: false
+    t.string "phoneable_type", null: false
+    t.boolean "primary", default: false
     t.datetime "updated_at", precision: nil
     t.index ["phone_type_id"], name: "index_phones_on_phone_type_id"
     t.index ["phoneable_id"], name: "index_phones_on_phoneable_id"
@@ -345,42 +345,42 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "product_properties", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.string "description", null: false
+    t.integer "position"
     t.integer "product_id", null: false
     t.integer "property_id", null: false
-    t.integer "position"
-    t.string "description", null: false
     t.index ["product_id"], name: "index_product_properties_on_product_id"
     t.index ["property_id"], name: "index_product_properties_on_property_id"
   end
 
   create_table "product_types", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.boolean "active", default: true
+    t.integer "lft"
     t.string "name", null: false
     t.integer "parent_id"
-    t.boolean "active", default: true
     t.integer "rgt"
-    t.integer "lft"
     t.index ["lft"], name: "index_product_types_on_lft"
     t.index ["parent_id"], name: "index_product_types_on_parent_id"
     t.index ["rgt"], name: "index_product_types_on_rgt"
   end
 
   create_table "products", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", null: false
+    t.datetime "available_at", precision: nil
+    t.integer "brand_id"
+    t.datetime "created_at", precision: nil
+    t.datetime "deleted_at", precision: nil
     t.text "description"
+    t.text "description_markup"
+    t.boolean "featured", default: false
+    t.string "meta_description"
+    t.string "meta_keywords"
+    t.string "name", null: false
+    t.string "permalink", null: false
     t.text "product_keywords"
     t.integer "product_type_id", null: false
     t.integer "prototype_id"
     t.integer "shipping_category_id", null: false
-    t.string "permalink", null: false
-    t.datetime "available_at", precision: nil
-    t.datetime "deleted_at", precision: nil
-    t.string "meta_keywords"
-    t.string "meta_description"
-    t.boolean "featured", default: false
-    t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.text "description_markup"
-    t.integer "brand_id"
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["name"], name: "index_products_on_name"
@@ -391,63 +391,63 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "properties", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "identifing_name", null: false
-    t.string "display_name"
     t.boolean "active", default: true
+    t.string "display_name"
+    t.string "identifing_name", null: false
   end
 
   create_table "prototype_properties", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "prototype_id", null: false
     t.integer "property_id", null: false
+    t.integer "prototype_id", null: false
     t.index ["property_id"], name: "index_prototype_properties_on_property_id"
     t.index ["prototype_id"], name: "index_prototype_properties_on_prototype_id"
   end
 
   create_table "prototypes", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", null: false
     t.boolean "active", default: true, null: false
+    t.string "name", null: false
   end
 
   create_table "purchase_order_variants", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "purchase_order_id", null: false
-    t.integer "variant_id", null: false
-    t.integer "quantity", null: false
     t.decimal "cost", precision: 8, scale: 2, null: false
-    t.boolean "is_received", default: false
     t.datetime "created_at", precision: nil
+    t.boolean "is_received", default: false
+    t.integer "purchase_order_id", null: false
+    t.integer "quantity", null: false
     t.datetime "updated_at", precision: nil
+    t.integer "variant_id", null: false
     t.index ["purchase_order_id"], name: "index_purchase_order_variants_on_purchase_order_id"
     t.index ["variant_id"], name: "index_purchase_order_variants_on_variant_id"
   end
 
   create_table "purchase_orders", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "supplier_id", null: false
-    t.string "invoice_number"
-    t.string "tracking_number"
-    t.string "notes"
-    t.string "state"
-    t.datetime "ordered_at", precision: nil, null: false
-    t.date "estimated_arrival_on"
     t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
+    t.date "estimated_arrival_on"
+    t.string "invoice_number"
+    t.string "notes"
+    t.datetime "ordered_at", precision: nil, null: false
+    t.string "state"
+    t.integer "supplier_id", null: false
     t.decimal "total_cost", precision: 8, scale: 2, default: "0.0", null: false
+    t.string "tracking_number"
+    t.datetime "updated_at", precision: nil
     t.index ["supplier_id"], name: "index_purchase_orders_on_supplier_id"
     t.index ["tracking_number"], name: "index_purchase_orders_on_tracking_number"
   end
 
   create_table "referral_bonuses", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "amount", null: false
-    t.string "name", null: false
     t.datetime "created_at", precision: nil
+    t.string "name", null: false
     t.datetime "updated_at", precision: nil
   end
 
   create_table "referral_programs", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.boolean "active", null: false
+    t.datetime "created_at", precision: nil
     t.text "description"
     t.string "name", null: false
     t.integer "referral_bonus_id", null: false
-    t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.index ["referral_bonus_id"], name: "index_referral_programs_on_referral_bonus_id"
   end
@@ -459,6 +459,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   create_table "referrals", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.boolean "applied", default: false
     t.datetime "clicked_at", precision: nil
+    t.datetime "created_at", precision: nil
     t.string "email", null: false
     t.string "name"
     t.datetime "purchased_at", precision: nil
@@ -468,7 +469,6 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
     t.integer "referring_user_id", null: false
     t.datetime "registered_at", precision: nil
     t.datetime "sent_at", precision: nil
-    t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.index ["email"], name: "index_referrals_on_email", length: 6
     t.index ["referral_program_id"], name: "index_referrals_on_referral_program_id"
@@ -478,16 +478,16 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "return_authorizations", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "number"
-    t.decimal "amount", precision: 8, scale: 2, null: false
-    t.decimal "restocking_fee", precision: 8, scale: 2, default: "0.0"
-    t.integer "order_id", null: false
-    t.integer "user_id", null: false
-    t.string "state", null: false
-    t.integer "created_by"
     t.boolean "active", default: true
+    t.decimal "amount", precision: 8, scale: 2, null: false
     t.datetime "created_at", precision: nil
+    t.integer "created_by"
+    t.string "number"
+    t.integer "order_id", null: false
+    t.decimal "restocking_fee", precision: 8, scale: 2, default: "0.0"
+    t.string "state", null: false
     t.datetime "updated_at", precision: nil
+    t.integer "user_id", null: false
     t.index ["created_by"], name: "index_return_authorizations_on_created_by"
     t.index ["number"], name: "index_return_authorizations_on_number"
     t.index ["order_id"], name: "index_return_authorizations_on_order_id"
@@ -495,19 +495,19 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "return_conditions", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "label"
     t.string "description"
+    t.string "label"
   end
 
   create_table "return_items", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "return_authorization_id", null: false
+    t.datetime "created_at", precision: nil
     t.integer "order_item_id", null: false
+    t.integer "return_authorization_id", null: false
     t.integer "return_condition_id"
     t.integer "return_reason_id"
     t.boolean "returned", default: false
-    t.integer "updated_by"
-    t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
+    t.integer "updated_by"
     t.index ["order_item_id"], name: "index_return_items_on_order_item_id"
     t.index ["return_authorization_id"], name: "index_return_items_on_return_authorization_id"
     t.index ["return_condition_id"], name: "index_return_items_on_return_condition_id"
@@ -516,8 +516,8 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "return_reasons", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "label"
     t.string "description"
+    t.string "label"
   end
 
   create_table "roles", id: :integer, charset: "utf8mb3", force: :cascade do |t|
@@ -526,25 +526,25 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "sales", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "product_id"
-    t.decimal "percent_off", precision: 8, scale: 2, default: "0.0"
-    t.datetime "starts_at", precision: nil
-    t.datetime "ends_at", precision: nil
     t.datetime "created_at", precision: nil
+    t.datetime "ends_at", precision: nil
+    t.decimal "percent_off", precision: 8, scale: 2, default: "0.0"
+    t.integer "product_id"
+    t.datetime "starts_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.index ["product_id"], name: "index_sales_on_product_id"
   end
 
   create_table "shipments", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "shipping_method_id", null: false
-    t.integer "address_id", null: false
-    t.string "tracking"
-    t.string "number", null: false
-    t.string "state", null: false
-    t.datetime "shipped_at", precision: nil
     t.boolean "active", default: true, null: false
+    t.integer "address_id", null: false
     t.datetime "created_at", precision: nil
+    t.string "number", null: false
+    t.integer "order_id"
+    t.datetime "shipped_at", precision: nil
+    t.integer "shipping_method_id", null: false
+    t.string "state", null: false
+    t.string "tracking"
     t.datetime "updated_at", precision: nil
     t.index ["address_id"], name: "index_shipments_on_address_id"
     t.index ["number"], name: "index_shipments_on_number"
@@ -557,9 +557,9 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "shipping_methods", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.datetime "created_at", precision: nil
     t.string "name", null: false
     t.integer "shipping_zone_id", null: false
-    t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.index ["shipping_zone_id"], name: "index_shipping_methods_on_shipping_zone_id"
   end
@@ -569,14 +569,14 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "shipping_rates", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "shipping_method_id", null: false
-    t.decimal "rate", precision: 8, scale: 2, default: "0.0", null: false
-    t.integer "shipping_rate_type_id", null: false
-    t.integer "shipping_category_id", null: false
-    t.decimal "minimum_charge", precision: 8, scale: 2, default: "0.0", null: false
-    t.integer "position"
     t.boolean "active", default: true
     t.datetime "created_at", precision: nil
+    t.decimal "minimum_charge", precision: 8, scale: 2, default: "0.0", null: false
+    t.integer "position"
+    t.decimal "rate", precision: 8, scale: 2, default: "0.0", null: false
+    t.integer "shipping_category_id", null: false
+    t.integer "shipping_method_id", null: false
+    t.integer "shipping_rate_type_id", null: false
     t.datetime "updated_at", precision: nil
     t.index ["shipping_category_id"], name: "index_shipping_rates_on_shipping_category_id"
     t.index ["shipping_method_id"], name: "index_shipping_rates_on_shipping_method_id"
@@ -588,21 +588,21 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "slugs", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name"
-    t.integer "sluggable_id"
-    t.integer "sequence", default: 1, null: false
-    t.string "sluggable_type", limit: 40
-    t.string "scope"
     t.datetime "created_at", precision: nil
+    t.string "name"
+    t.string "scope"
+    t.integer "sequence", default: 1, null: false
+    t.integer "sluggable_id"
+    t.string "sluggable_type", limit: 40
     t.index ["name", "sluggable_type", "sequence", "scope"], name: "index_slugs_on_n_s_s_and_s", unique: true
     t.index ["sluggable_id"], name: "index_slugs_on_sluggable_id"
   end
 
   create_table "states", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", null: false
     t.string "abbreviation", limit: 5, null: false
-    t.string "described_as"
     t.integer "country_id", null: false
+    t.string "described_as"
+    t.string "name", null: false
     t.integer "shipping_zone_id", null: false
     t.index ["abbreviation"], name: "index_states_on_abbreviation"
     t.index ["country_id"], name: "index_states_on_country_id"
@@ -611,26 +611,26 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
 
   create_table "store_credits", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_store_credits_on_user_id"
   end
 
   create_table "suppliers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email"
     t.datetime "created_at", precision: nil
+    t.string "email"
+    t.string "name", null: false
     t.datetime "updated_at", precision: nil
   end
 
   create_table "tax_rates", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.decimal "percentage", precision: 8, scale: 2, default: "0.0", null: false
-    t.integer "state_id"
-    t.integer "country_id"
-    t.date "start_date", null: false
-    t.date "end_date"
     t.boolean "active", default: true
+    t.integer "country_id"
+    t.date "end_date"
+    t.decimal "percentage", precision: 8, scale: 2, default: "0.0", null: false
+    t.date "start_date", null: false
+    t.integer "state_id"
     t.index ["state_id"], name: "index_tax_rates_on_state_id"
   end
 
@@ -639,21 +639,21 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "transaction_accounts", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: nil
+    t.string "name"
     t.datetime "updated_at", precision: nil
   end
 
   create_table "transaction_ledgers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "accountable_type"
     t.integer "accountable_id"
-    t.integer "transaction_id"
-    t.integer "transaction_account_id"
-    t.decimal "tax_amount", precision: 8, scale: 2, default: "0.0"
-    t.decimal "debit", precision: 8, scale: 2, null: false
-    t.decimal "credit", precision: 8, scale: 2, null: false
-    t.string "period"
+    t.string "accountable_type"
     t.datetime "created_at", precision: nil
+    t.decimal "credit", precision: 8, scale: 2, null: false
+    t.decimal "debit", precision: 8, scale: 2, null: false
+    t.string "period"
+    t.decimal "tax_amount", precision: 8, scale: 2, default: "0.0"
+    t.integer "transaction_account_id"
+    t.integer "transaction_id"
     t.datetime "updated_at", precision: nil
     t.index ["accountable_id"], name: "index_transaction_ledgers_on_accountable_id"
     t.index ["transaction_account_id"], name: "index_transaction_ledgers_on_transaction_account_id"
@@ -661,9 +661,9 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "transactions", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "type"
     t.integer "batch_id"
     t.datetime "created_at", precision: nil
+    t.string "type"
     t.datetime "updated_at", precision: nil
     t.index ["batch_id"], name: "index_transactions_on_batch_id"
   end
@@ -676,19 +676,19 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "users", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "state"
-    t.integer "account_id"
-    t.string "customer_cim_id"
-    t.string "password_salt"
-    t.string "crypted_password"
-    t.string "perishable_token"
-    t.string "persistence_token"
     t.string "access_token"
+    t.integer "account_id"
     t.integer "comments_count", default: 0
     t.datetime "created_at", precision: nil
+    t.string "crypted_password"
+    t.string "customer_cim_id"
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "password_salt"
+    t.string "perishable_token"
+    t.string "persistence_token"
+    t.string "state"
     t.datetime "updated_at", precision: nil
     t.index ["access_token"], name: "index_users_on_access_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -699,48 +699,48 @@ ActiveRecord::Schema[7.0].define(version: 2026_03_14_053953) do
   end
 
   create_table "users_newsletters", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "newsletter_id"
     t.datetime "updated_at", precision: nil, null: false
+    t.integer "user_id"
     t.index ["newsletter_id"], name: "index_users_newsletters_on_newsletter_id"
     t.index ["user_id"], name: "index_users_newsletters_on_user_id"
   end
 
   create_table "variant_properties", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "variant_id", null: false
-    t.integer "property_id", null: false
     t.string "description", null: false
     t.boolean "primary", default: false
+    t.integer "property_id", null: false
+    t.integer "variant_id", null: false
     t.index ["property_id"], name: "index_variant_properties_on_property_id"
     t.index ["variant_id"], name: "index_variant_properties_on_variant_id"
   end
 
   create_table "variant_suppliers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "variant_id", null: false
-    t.integer "supplier_id", null: false
-    t.decimal "cost", precision: 8, scale: 2, default: "0.0", null: false
-    t.integer "total_quantity_supplied", default: 0
-    t.integer "min_quantity", default: 1
-    t.integer "max_quantity", default: 10000
     t.boolean "active", default: true
+    t.decimal "cost", precision: 8, scale: 2, default: "0.0", null: false
     t.datetime "created_at", precision: nil
+    t.integer "max_quantity", default: 10000
+    t.integer "min_quantity", default: 1
+    t.integer "supplier_id", null: false
+    t.integer "total_quantity_supplied", default: 0
     t.datetime "updated_at", precision: nil
+    t.integer "variant_id", null: false
     t.index ["supplier_id"], name: "index_variant_suppliers_on_supplier_id"
     t.index ["variant_id"], name: "index_variant_suppliers_on_variant_id"
   end
 
   create_table "variants", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.string "sku", null: false
+    t.decimal "cost", precision: 8, scale: 2, default: "0.0", null: false
+    t.datetime "created_at", precision: nil
+    t.datetime "deleted_at", precision: nil
+    t.integer "image_group_id"
+    t.integer "inventory_id"
+    t.boolean "master", default: false, null: false
     t.string "name"
     t.decimal "price", precision: 8, scale: 2, default: "0.0", null: false
-    t.decimal "cost", precision: 8, scale: 2, default: "0.0", null: false
-    t.datetime "deleted_at", precision: nil
-    t.boolean "master", default: false, null: false
-    t.datetime "created_at", precision: nil
+    t.integer "product_id", null: false
+    t.string "sku", null: false
     t.datetime "updated_at", precision: nil
-    t.integer "inventory_id"
-    t.integer "image_group_id"
     t.index ["inventory_id"], name: "index_variants_on_inventory_id"
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["sku"], name: "index_variants_on_sku"
