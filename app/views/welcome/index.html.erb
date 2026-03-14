@@ -1,13 +1,34 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'home_page.css' %>
-<% end %>
+<%# Hero section matching the wireframe design %>
+<section class="relative w-full h-[80vh] min-h-[500px] overflow-hidden flex items-end -mt-[72px]"
+         data-nav-scroll-hero>
+  <div class="absolute inset-0 bg-gradient-to-br from-[#3a3028] via-[#2a2420] to-[#1a1815]"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
 
+  <div class="relative z-10 max-w-[var(--max-width)] mx-auto px-6 md:px-12 pb-16 w-full">
+    <div class="inline-block px-3.5 py-1.5 bg-[var(--color-accent)] text-white text-[11px] tracking-[1.5px] uppercase font-semibold mb-5">
+      Editor's Pick
+    </div>
+    <h1 class="text-4xl md:text-6xl font-normal text-white leading-tight max-w-xl mb-4" style="font-family: var(--font-display); letter-spacing: -1px">
+      The Art of Understated Luxury
+    </h1>
+    <p class="text-base md:text-lg text-white/70 max-w-md leading-relaxed mb-8">
+      Our curators handpick the season's most compelling pieces. Discover the collection that defines modern elegance.
+    </p>
+    <div class="flex gap-3">
+      <%= link_to 'Shop Now', products_path, class: 'btn btn-white' %>
+    </div>
+  </div>
+</section>
 
-<div id='left_side_panel' class='span-6 last'>
-&nbsp;
+<%# Featured products %>
+<div class="max-w-[var(--max-width)] mx-auto px-6 md:px-12 py-16">
+  <div class="flex justify-between items-end mb-10">
+    <div>
+      <div class="section-eyebrow">Just Landed</div>
+      <h2 class="section-title">What's New</h2>
+    </div>
+    <%= link_to "View all products", products_path, class: "btn-link" %>
+  </div>
+
+  <%= image_tag 'home.png', alt: "Welcome to #{site_name}", class: 'w-full' %>
 </div>
-
-<div id='featured_item' class='span-18 last'>
-  <%= image_tag 'home.png', alt: 'Welcome to our store' %>
-</div>
-

@@ -29,7 +29,7 @@
               <td><%= sale.starts_at %></td>
               <td><%= sale.ends_at %></td>
               <td><%= link_to "edit", edit_admin_generic_sale_path(sale), class: 'btn btn-outline btn-sm' %></td>
-              <td><%= link_to "inactivate", [:admin, :generic, sale], data: { confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-danger btn-sm' %></td>
+              <td><%= link_to "inactivate", [:admin, :generic, sale], data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-danger btn-sm' %></td>
             </tr>
           <% end %>
         </tbody>

@@ -30,7 +30,7 @@ class Admin::Shopping::Checkout::ShippingAddressesController < Admin::Shopping::
     elsif params[:shipping_address_id].present?
       @shipping_address = checkout_user.addresses.find(params[:shipping_address_id])
     end
-    if @shipping_address.id
+    if @shipping_address&.id
       update_order_address_id(@shipping_address.id)
       redirect_to(admin_shopping_checkout_shipping_methods_url, :notice => 'Address was successfully created.')
     else

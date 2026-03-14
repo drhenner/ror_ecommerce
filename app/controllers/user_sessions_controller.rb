@@ -7,11 +7,14 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(user_params.to_h)
     if @user_session.save
+      return_to = session[:return_to]
+      reset_session
+      session[:return_to] = return_to
       cookies[:hadean_uid] = @user_session.record.access_token
-      session[:authenticated_at] = Time.now
+      session[:authenticated_at] = Time.now.to_i
       ## if there is a cart make sure the user_id is correct
       set_user_to_cart_items(@user_session.record)
-      merge_carts
+      merge_carts(@user_session.record)
       flash[:notice] = I18n.t('login_successful')
       if @user_session.record.admin?
         redirect_back_or_default admin_users_url
@@ -19,15 +22,17 @@ class UserSessionsController < ApplicationController
         redirect_back_or_default root_url
       end
     else
-      @user = User.new(user_params)
-      redirect_to login_url, alert: I18n.t('login_failure')
+      @user = User.new
+      flash.now[:alert] = I18n.t('login_failure')
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    current_user_session.destroy
+    current_user_session&.destroy
     reset_session
     cookies.delete(:hadean_uid)
+    cookies.delete(:cart_id)
     redirect_to login_url, notice: I18n.t('logout_successful')
   end
 

@@ -1,29 +1,35 @@
-<h1>Wish List</h1>
+<div class="py-10">
+  <h1 class="text-3xl font-normal mb-8" style="font-family: var(--font-display)">Wish List</h1>
 
-<% current_user.wish_list_items do |item| %>
-  <%= item %>
-<% end %>
-
-<% if current_user.wish_list_items.empty? %>
-  <h5> You currently don't have any items in your wish list.</h5>
-  <%= render :partial => '/shopping/cart_items/saved_items' unless current_user.saved_cart_items.empty? %>
-<% else %>
-  <div class='span-18 last'>
-    <div class='span-9 rounded-10 line_item_blue'>
-      <ul>
-      <% current_user.wish_list_items.each_with_index do |item, i| %>
-        <li id='cart-item-<%= i %>' class='individual-cart-item'>
-        <% photo_url = item.variant.product.featured_image %>
-            <%= image_tag(photo_url) if photo_url %>
-            <%= item.variant.product_name %> 
-            <%= link_to 'remove', wish_item_path(item, :variant_id => item.variant_id), 
-                                  :method => :delete %>
-        </li>
+  <% if current_user.wish_list_items.empty? %>
+    <p class="text-sm text-[var(--color-text-muted)] mb-6">You currently don't have any items in your wish list.</p>
+    <% unless current_user.saved_cart_items.empty? %>
+      <h3 class="text-lg font-medium mb-4">Saved Items</h3>
+      <%= render partial: '/shopping/cart_items/saved_items' %>
+    <% end %>
+  <% else %>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-10">
+      <% current_user.wish_list_items.each do |item| %>
+        <div class="product-card group">
+          <div class="product-card-image">
+            <% photo_url = item.variant.product.featured_image %>
+            <% if photo_url %>
+              <%= image_tag(photo_url, alt: item.variant.product_name, class: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]") %>
+            <% end %>
+          </div>
+          <div class="product-card-info flex justify-between items-start">
+            <div class="product-card-name"><%= item.variant.product_name %></div>
+            <%= link_to 'Remove', wish_item_path(item, variant_id: item.variant_id),
+                data: { turbo_method: :delete },
+                class: "text-xs text-[var(--color-sale)] hover:underline shrink-0" %>
+          </div>
+        </div>
       <% end %>
-      </ul>
     </div>
-    <%= render :partial => '/shopping/cart_items/saved_items' unless current_user.saved_cart_items.empty? %>
 
-  </div>
-
-<% end %>
+    <% unless current_user.saved_cart_items.empty? %>
+      <h3 class="text-lg font-medium mb-4">Saved Items</h3>
+      <%= render partial: '/shopping/cart_items/saved_items' %>
+    <% end %>
+  <% end %>
+</div>

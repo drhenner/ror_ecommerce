@@ -1,4 +1,5 @@
 class Shopping::AddressesController < Shopping::BaseController
+  before_action :require_user
   helper_method :countries
   # GET /shopping/addresses
   def index
@@ -12,7 +13,7 @@ class Shopping::AddressesController < Shopping::BaseController
   # GET /shopping/addresses/1/edit
   def edit
     form_info
-    @form_address = @shopping_address = Address.find(params[:id])
+    @form_address = @shopping_address = current_user.addresses.find(params[:id])
   end
 
   # POST /shopping/addresses
@@ -27,10 +28,11 @@ class Shopping::AddressesController < Shopping::BaseController
       @shopping_address = current_user.addresses.find(params[:shopping_address_id])
     end
 
-      if @shopping_address.id
+      if @shopping_address&.id
         update_order_address_id(@shopping_address.id)
         redirect_to(shopping_shipping_methods_url, :notice => 'Address was successfully created.')
       else
+        @form_address = @shopping_address ||= Address.new
         form_info
         render :action => "index"
       end
@@ -64,7 +66,7 @@ class Shopping::AddressesController < Shopping::BaseController
   end
 
   def destroy
-    @shopping_address = Address.find(params[:id])
+    @shopping_address = current_user.addresses.find(params[:id])
     @shopping_address.update(:active => false)
 
     redirect_to(shopping_addresses_url)

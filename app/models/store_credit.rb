@@ -22,13 +22,12 @@ class StoreCredit < ApplicationRecord
   # @param [Float] amount to remove
   # @return [none]
   def remove_credit(amount_to_remove)
-    sql = "UPDATE store_credits SET amount = (amount - #{amount_to_remove.to_f.round_at(2)}) WHERE id = #{self.id}"
-    ActiveRecord::Base.connection.execute(sql)
+    return if amount_to_remove.to_f <= 0
+    StoreCredit.where(id: id).update_all(["amount = GREATEST(amount - ?, 0)", amount_to_remove.to_f.round_at(2)])
   end
 
   def add_credit(amount_to_add)
-    sql = "UPDATE store_credits SET amount = (amount + #{amount_to_add}) WHERE id = #{self.id}"
-    ActiveRecord::Base.connection.execute(sql)
+    StoreCredit.where(id: id).update_all(["amount = amount + ?", amount_to_add.to_f.round_at(2)])
   end
 
   private

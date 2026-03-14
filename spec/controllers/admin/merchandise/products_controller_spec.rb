@@ -45,7 +45,8 @@ describe Admin::Merchandise::ProductsController do
   it "create action should redirect when model is valid" do
     @product = FactoryBot.create(:product, :description_markup => nil, :deleted_at => (Time.zone.now - 1.day))
     Product.any_instance.stubs(:valid?).returns(true)
-    post :create, params: { product: @product.attributes }
+    attrs = @product.attributes.merge('permalink' => "unique-permalink-#{SecureRandom.hex(6)}")
+    post :create, params: { product: attrs }
     expect(response).to redirect_to(edit_admin_merchandise_products_description_url(assigns[:product]))
   end
 

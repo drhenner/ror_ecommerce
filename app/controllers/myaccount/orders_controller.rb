@@ -8,7 +8,12 @@ class Myaccount::OrdersController < Myaccount::BaseController
   # GET /myaccount/orders/1
   # GET /myaccount/orders/1.xml
   def show
-    @order = current_user.finished_orders.includes(:invoices, order_items: { variant: :product }).find_by_number(params[:id])
+    order_id = Order.id_from_number(params[:id])
+    @order = current_user.finished_orders.includes(:invoices, order_items: { variant: :product }).find_by(id: order_id)
+    unless @order
+      redirect_to myaccount_orders_path, alert: "Order not found."
+      return
+    end
   end
   private
 

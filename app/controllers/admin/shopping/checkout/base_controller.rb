@@ -15,7 +15,7 @@ class Admin::Shopping::Checkout::BaseController < Admin::Shopping::BaseControlle
      # if cart is empty
     if !session_admin_cart.customer_id
       return admin_shopping_users_url
-    elsif !session_admin_cart.shopping_cart_items
+    elsif session_admin_cart.shopping_cart_items.empty?
       return admin_shopping_products_url()
     elsif session_admin_order.ship_address_id.nil?
       return admin_shopping_checkout_shipping_addresses_url
@@ -54,7 +54,7 @@ class Admin::Shopping::Checkout::BaseController < Admin::Shopping::BaseControlle
     @session_admin_order = checkout_user.orders.create(:number       => Time.now.to_i,
                                                 :ip_address   => request.env['REMOTE_ADDR'],
                                                 :bill_address => checkout_user.billing_address  )
-    add_new_cart_items(session_cart.shopping_cart_items)
+    add_new_cart_items(session_admin_cart.shopping_cart_items)
     session[:order_admin_id] = @session_admin_order.id
   end
 

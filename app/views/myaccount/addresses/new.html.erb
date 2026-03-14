@@ -1,8 +1,5 @@
-<div class='large-9 columns'>
-  <h3> New Address </h3>
+<h3 class="text-xl font-medium mb-6">New Address</h3>
 
-  <%= form_for(@address, url: myaccount_addresses_path(@address), html: {class: 'custom'}) do |f| %>
-    <%= render partial: 'form', locals: { f: f } %>
-  <% end %>
-
-</div>
+<%= form_for(@address, url: myaccount_addresses_path) do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+<% end %>

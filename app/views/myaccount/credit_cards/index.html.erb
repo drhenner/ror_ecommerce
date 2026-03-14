@@ -1,23 +1,30 @@
-<div class='nine large-9 columns'>
-  <h3> Credit Cards </h3>
-  <% if @credit_cards.empty? %>
-    <p>
-      You do not have a Credit Card on File
-    </p>
-  <% else %>
-    <table>
-      <tr>
-        <th>Name</th>
-      </tr>
-      <% for credit_card in @credit_cards %>
-        <tr>
-          <td><%= credit_card.name %></td>
-          <td><%= link_to "Show", myaccount_credit_card_path(credit_card) %></td>
-          <td><%= link_to "Edit", edit_myaccount_credit_card_path(credit_card) %></td>
-          <td><%= link_to "Remove", myaccount_credit_card_path(credit_card), :confirm => 'Are you sure?', :method => :delete %></td>
+<h3 class="text-xl font-medium mb-6">Credit Cards</h3>
+
+<% if @credit_cards.empty? %>
+  <p class="text-sm text-[var(--color-text-muted)] mb-4">You do not have a credit card on file.</p>
+<% else %>
+  <div class="bg-[var(--color-surface)] border border-[var(--color-border)] overflow-hidden mb-6">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="bg-[var(--color-highlight)] border-b border-[var(--color-border)]">
+          <th class="text-left px-4 py-3 font-medium">Name</th>
+          <th class="px-4 py-3"></th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody>
+        <% @credit_cards.each do |credit_card| %>
+          <tr class="border-b border-[var(--color-border)]/50">
+            <td class="px-4 py-3"><%= credit_card.name %></td>
+            <td class="px-4 py-3 text-right space-x-3">
+              <%= link_to "Show", myaccount_credit_card_path(credit_card), class: "text-[var(--color-accent)] hover:underline text-xs" %>
+              <%= link_to "Edit", edit_myaccount_credit_card_path(credit_card), class: "text-[var(--color-accent)] hover:underline text-xs" %>
+              <%= link_to "Remove", myaccount_credit_card_path(credit_card), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: "text-[var(--color-sale)] hover:underline text-xs" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
-  <% end %>
-  <p><%= link_to "New Credit Card", new_myaccount_credit_card_path, :class => 'button' %></p>
-</div>
+  </div>
+<% end %>
+
+<%= link_to "New Credit Card", new_myaccount_credit_card_path, class: "btn btn-dark" %>

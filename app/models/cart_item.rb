@@ -33,11 +33,11 @@ class CartItem < ApplicationRecord
   # @param [none]
   # @return [Float] price of the variant in the cart
   def price
-    self.variant.price
+    variant&.price || 0
   end
 
   def name
-    variant.product_name
+    variant&.product_name || 'Unknown Item'
   end
 
   # Call this method if you need the price of an item before taxes
@@ -64,8 +64,8 @@ class CartItem < ApplicationRecord
     item_type_id == ItemType::SHOPPING_CART_ID && active?
   end
 
-  def shipping_rate
-    variant.product.shipping_rate
+  def shipping_category
+    variant&.product&.shipping_category
   end
 
   def self.before(at)

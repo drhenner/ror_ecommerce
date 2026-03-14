@@ -1,21 +1,26 @@
-<h2> Coupon </h2>
+<div class="py-10 max-w-md">
+  <h2 class="text-2xl font-normal mb-6" style="font-family: var(--font-display)">Coupon</h2>
 
-<% unless @coupon.errors.empty? %>
-  <ul>
-  <% @coupon.errors.full_messages.each do |msg| %>
-    <li><strong><%= msg %></strong></li>
+  <% unless @coupon.errors.empty? %>
+    <div class="bg-red-50 border border-red-200 text-red-800 px-5 py-4 mb-6 text-sm rounded">
+      <ul class="list-disc pl-5 space-y-1">
+        <% @coupon.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-  </ul>
-<% end %>
 
-<%= form_for(@coupon, :url => shopping_coupon_path(@coupon)) do |f| %>
-  <div class="field">
-    <%= f.label :code %>
-    <%= f.text_field :code %>
-  </div>
-
-  <div style='display:inline;'>
-    <%= submit_tag "Save", class: 'button small' %> &nbsp; &nbsp; &nbsp;
-    <%= link_to 'Skip Coupon', shopping_orders_path, class: ' button small' %>
-  </div>
-<% end %>
+  <%= form_for(@coupon, url: shopping_coupon_path) do |f| %>
+    <div class="space-y-4">
+      <div>
+        <%= f.label :code, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+        <%= f.text_field :code, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+      </div>
+      <div class="flex items-center gap-3">
+        <%= submit_tag "Apply Coupon", class: 'btn btn-dark' %>
+        <%= link_to 'Skip', shopping_orders_path, class: 'text-sm text-[var(--color-accent)] hover:underline' %>
+      </div>
+    </div>
+  <% end %>
+</div>

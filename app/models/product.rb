@@ -201,7 +201,7 @@ class Product < ApplicationRecord
   # @param [none]
   # @return [String]
   def brand_name
-    brand_id ? brand.name : ''
+    brand_id ? brand&.name.to_s : ''
   end
 
   def has_shipping_method?

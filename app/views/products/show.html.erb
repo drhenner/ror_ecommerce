@@ -1,169 +1,191 @@
-
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'product_page.css' %>
-<% end %>
-<div class=''>
-<div id='product' class=''>
-
-  <div class=' clearfix'>
-    <% if @product.active_variants.empty? %>
-      <div id='no-variant-available' class=' four large-4 last'>
-        Sorry this product is not currently available.
-      </div>
-    <% else %>
-
-      <div id='left_product_wrapper' class='columns five large-5'>
-
-          <% if @product.images.size >= 1 %>
-            <div class="orbit" role="region" aria-label="<%=@product.name %>" data-orbit data-use-m-u-i="false">
-              <ul class="orbit-container">
-                <button class="orbit-previous"><span class="show-for-sr">Previous</span>&#9664;&#xFE0E;</button>
-                <button class="orbit-next"><span class="show-for-sr">Next</span>&#9654;&#xFE0E;</button>
-                <% @product.images.each_with_index do |image, i|%>
-                  <li class="<%= 'is-active' if i == 0 %> orbit-slide">
-                    <%= image_tag(image.photo_url(:large), alt: image.caption || @product.name) %>
-                    <figcaption class="orbit-caption"><%= image.caption || @product.name %></figcaption>
-                  </li>
-                <% end %>
-              </ul>
-              <nav class="orbit-bullets">
-                <% @product.images.each_with_index do |image, i|%>
-                  <button class="<%= 'is-active' if i == 0 %>" data-slide="<%= i %>">
-                    <span data-slide="<%= i %>" class="show-for-sr"><%= i %></span>
-                    <% if i == 0 %>
-                      <span class="show-for-sr">Current Slide</span>
-                    <% end %>
-                  </button>
-                <% end %>
-              </nav>
-            </div>
-          <% elsif @product.images.size == 0 %>
-            <ul>
-              <li>
-                <%= image_tag(@product.featured_image(:large), alt: @product.name) %>
-              </li>
-            </ul>
-          <% end %>
-
-      </div>
-      <div id='right_2_product_wrapper' class='six columns large-6 last'>
-          <div id='right_product_wrapper' class=''>
-            <div class='product_title_name'>
-              <%= @product.name %>
-            </div>
-            <% if @product.active_variants.count > 0 %>
-              <div class='product_content'>
-                <div class='product_content_price'>
-                  <%= number_to_currency @product.active_variants.first.price %>
-                </div>
-
+<div class="py-10" data-controller="variant-select">
+  <% if @product.active_variants.empty? %>
+    <div class="text-center py-20">
+      <p class="text-lg text-[var(--color-text-muted)]">Sorry, this product is not currently available.</p>
+    </div>
+  <% else %>
+    <div class="flex flex-col lg:flex-row gap-10">
+      <%# Image gallery %>
+      <div class="lg:w-1/2" data-controller="image-gallery">
+        <% if @product.images.size >= 1 %>
+          <div class="relative aspect-square bg-[var(--color-highlight)] overflow-hidden">
+            <% @product.images.each_with_index do |image, i| %>
+              <div class="<%= 'hidden' unless i == 0 %> absolute inset-0"
+                   data-image-gallery-target="slide">
+                <%= image_tag(image.photo_url(:large),
+                              alt: image.caption || @product.name,
+                              class: "w-full h-full object-contain") %>
               </div>
-              <div id='your_product' class='panel'>
-                <% @product.active_variants.each_with_index do |variant, i| %>
-                  <div id='variant_<%= variant.id %>'
-                       class='tiny button variant_select <%= 'secondary' if i != 0 %> <%= 'selected_variant success' if i == 0 %>'
-                       data-variant_id='<%= variant.id %>'>
-                    <%= variant.product_name %>
-                  </div>
-                <% end %>
-                  <div  class='properties_inner_wrapper ' >
-                    <hr/>
-                    <%= form_for  @cart_item,
-                                  :url  => shopping_cart_items_path(@cart_item),
-                                  :html => { :id => 'new_cart_item', :class => 'custom' } do |f| %>
-                        <%= f.hidden_field :variant_id %>
-                        <div class='four'>
-                        Quantity:
-                        <%= f.select :quantity, [1,2,3,4], { include_blank: false }, { class: ' ' } %>
-                        </div>
-                        <div class='add_to_cart_wrapper '>
-                          <% unless @product.active_variants.empty? %>
-                            <%= link_to 'Add to Cart', '#', id: 'submit_add_to_cart', class: 'small button' %>
-                          <% end %>
-                        </div>
-                    <% end %>
-                  </div>
-                  <div  class='clearfix' style='margin-bottom:20px;' >&nbsp;</div>
-              </div>
-
-              <ul id='product-tabs' class='tabs' data-tabs>
-                <li class="tabs-title is-active"><a href="#product-description" aria-selected="true">Product</a></li>
-                <li class="tabs-title"><a href="#product-properties">Properties</a></li>
-              </ul>
-              <div class="tabs-content" data-tabs-content="product-tabs">
-                <div class="tabs-panel is-active" id="product-description">
-                  <% @product.active_variants.each_with_index do |variant, i| %>
-                    <% if variant.low_stock? || variant.sold_out? %>
-                      <div  class='variant_stock variant_stock_<%= variant.id %> <%= 'is-hidden' if i != 0 %>'>
-                        <%= image_tag("ribbons/#{variant.stock_status}_upper_right.png",
-                                      :alt => "#{variant.stock_status}",
-                                      :width => 63, :height => 62,
-                                      :class => 'upper_right_overlay float-right'
-                                       ) %>
-                        <% if variant.sold_out? && (!current_user || !current_user.requested_to_be_notified?(variant.id)) %>
-                          <p>
-                          <% if current_user %>
-                            <%= link_to 'Notify me', notification_path(variant), data: { confirm: 'Click OK and you will get an email when this product is back in stock.' }, class: 'button tiny alert', style: 'margin-top:15px;', method: :put %> when this product is back in stock.
-                          <% else %>
-                            <%= link_to 'Notify me', '#', disabled: true, class: 'button tiny disabled', style: 'margin-top:15px;' %><br/>
-                            Login to be notified when this product is back in stock.
-                          <% end %>
-                          </p>
-                        <% elsif variant.sold_out? && (current_user && current_user.requested_to_be_notified?(variant.id)) %>
-                          <p class='alert callout'><em>You will be notified when this product is back in stock.</em></p>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  <% end %>
-                  <div><%= sanitize @product.description %></div>
-                </div>
-                <div class="tabs-panel" id="product-properties">
-                  <% @product.active_variants.each_with_index do |var, i| %>
-                    <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'is-hidden' if i != 0 %>'>
-                      <% if var.low_stock? || var.sold_out? %>
-                        <div class='variant_stock variant_stock_<%= var.id %> <%= 'is-hidden' if i != 0 %>'>
-                          <%= image_tag("ribbons/#{var.stock_status}_upper_right.png",
-                                        :alt => "#{var.stock_status}",
-                                        :width => 63, :height => 62,
-                                        :class => 'upper_right_overlay float-right'
-                                         ) %>
-                        </div>
-                      <% end %>
-                      <ul class='vertical-list'>
-                        <% var.variant_properties.each do |prop| %>
-                          <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
-                        <% end %>
-
-                          <% if var.sold_out? && (!current_user || !current_user.requested_to_be_notified?(var.id)) %>
-                            <li>
-                            <% if current_user %>
-                              <%= link_to 'Notify me', notification_path(var), data: { confirm: 'Click OK and you will get an email when this product is back in stock.' }, class: 'button tiny alert', style: 'margin-top:15px;', method: :put %> when this product is back in stock.
-                            <% else %>
-                              <%= link_to 'Notify me', '#', disabled: true, class: 'button tiny', style: 'margin-top:15px;' %><br/>
-                              Login to be notified when this product is back in stock.
-                            <% end %>
-                            </li>
-                          <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-
             <% end %>
+
+            <% if @product.images.size > 1 %>
+              <button type="button" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow transition"
+                      data-action="image-gallery#previous" aria-label="Previous">
+                &#9664;&#xFE0E;
+              </button>
+              <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow transition"
+                      data-action="image-gallery#next" aria-label="Next">
+                &#9654;&#xFE0E;
+              </button>
+            <% end %>
+          </div>
+
+          <% if @product.images.size > 1 %>
+            <div class="flex gap-2 mt-3">
+              <% @product.images.each_with_index do |image, i| %>
+                <button type="button" class="w-16 h-16 overflow-hidden cursor-pointer transition-opacity <%= i == 0 ? 'ring-2 ring-[var(--color-accent)]' : 'opacity-50' %>"
+                        data-image-gallery-target="thumbnail"
+                        data-action="image-gallery#goTo"
+                        data-index="<%= i %>">
+                  <%= image_tag(image.photo_url(:small),
+                                alt: image.caption || @product.name,
+                                class: "w-full h-full object-cover") %>
+                </button>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="aspect-square bg-[var(--color-highlight)]">
+            <%= image_tag(@product.featured_image(:large),
+                          alt: @product.name,
+                          class: "w-full h-full object-contain") %>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Product details %>
+      <div class="lg:w-1/2">
+        <h1 class="text-3xl font-normal mb-3" style="font-family: var(--font-display)"><%= @product.name %></h1>
+
+        <% if @product.active_variants.count > 0 %>
+          <p class="text-2xl font-light mb-6">
+            <%= number_to_currency @product.active_variants.first.price %>
+          </p>
+
+          <%# Variant selector %>
+          <div class="mb-6">
+            <div class="flex flex-wrap gap-2">
+              <% @product.active_variants.each_with_index do |variant, i| %>
+                <button type="button" class="px-4 py-2 text-sm font-medium border border-[var(--color-border)] cursor-pointer transition-colors <%= i == 0 ? 'bg-[var(--color-accent)] text-white' : 'bg-[var(--color-highlight)] text-[var(--color-text)]' %>"
+                        data-variant-select-target="variantButton"
+                        data-action="variant-select#select"
+                        data-variant-id="<%= variant.id %>">
+                  <%= variant.product_name %>
+                </button>
+              <% end %>
             </div>
           </div>
+
+          <%# Add to cart %>
+          <div class="border-t border-[var(--color-border)] pt-6 mb-8">
+            <%= form_for @cart_item,
+                         url: shopping_cart_items_path(@cart_item),
+                         html: { id: 'new_cart_item', data: { variant_select_target: "form" } } do |f| %>
+              <%= f.hidden_field :variant_id, data: { variant_select_target: "variantId" } %>
+              <div class="flex items-center gap-4">
+                <label class="text-sm font-medium">Quantity:</label>
+                <%= f.select :quantity, [1, 2, 3, 4],
+                    { include_blank: false },
+                    { class: "border border-[var(--color-border)] px-3 py-2 text-sm bg-white" } %>
+                <% unless @product.active_variants.empty? %>
+                  <button type="button" class="btn btn-dark" data-action="variant-select#addToCart">
+                    Add to Bag
+                  </button>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <%# Tabs: Description / Properties %>
+          <div data-controller="tabs">
+            <div class="flex border-b border-[var(--color-border)] mb-6">
+              <button type="button" class="px-4 py-3 text-sm font-medium border-b-2 border-[var(--color-accent)] text-[var(--color-text)] transition-colors"
+                      data-tabs-target="tab"
+                      data-action="tabs#select"
+                      data-index="0">
+                Description
+              </button>
+              <button type="button" class="px-4 py-3 text-sm font-medium border-b-2 border-transparent text-[var(--color-text-muted)] transition-colors"
+                      data-tabs-target="tab"
+                      data-action="tabs#select"
+                      data-index="1">
+                Properties
+              </button>
+            </div>
+
+            <%# Description panel %>
+            <div data-tabs-target="panel">
+              <% @product.active_variants.each_with_index do |variant, i| %>
+                <% if variant.low_stock? || variant.sold_out? %>
+                  <div class="<%= 'hidden' if i != 0 %> mb-4"
+                       data-variant-select-target="stock"
+                       data-variant-id="<%= variant.id %>">
+                    <%= image_tag("ribbons/#{variant.stock_status}_upper_right.png",
+                                  alt: variant.stock_status,
+                                  width: 63, height: 62,
+                                  class: "float-right") %>
+                    <% if variant.sold_out? && (!current_user || !current_user.requested_to_be_notified?(variant.id)) %>
+                      <p class="mt-4">
+                        <% if current_user %>
+                          <%= link_to 'Notify me', notification_path(variant),
+                              data: { turbo_confirm: 'Click OK and you will get an email when this product is back in stock.', turbo_method: :put },
+                              class: 'btn btn-accent text-xs' %> when this product is back in stock.
+                        <% else %>
+                          <span class="text-sm text-[var(--color-text-muted)]">Login to be notified when this product is back in stock.</span>
+                        <% end %>
+                      </p>
+                    <% elsif variant.sold_out? && current_user&.requested_to_be_notified?(variant.id) %>
+                      <p class="bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 text-sm rounded">
+                        <em>You will be notified when this product is back in stock.</em>
+                      </p>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+              <div class="text-sm text-[var(--color-text-muted)] leading-relaxed [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:text-[var(--color-text)] [&_h2]:mt-4 [&_h2]:mb-2 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-[var(--color-text)] [&_h3]:mt-3 [&_h3]:mb-1">
+                <%= sanitize @product.description %>
+              </div>
+            </div>
+
+            <%# Properties panel %>
+            <div class="hidden" data-tabs-target="panel">
+              <% @product.active_variants.each_with_index do |var, i| %>
+                <div class="<%= 'hidden' if i != 0 %>"
+                     data-variant-select-target="properties"
+                     data-variant-id="<%= var.id %>">
+                  <% if var.low_stock? || var.sold_out? %>
+                    <div class="mb-4">
+                      <%= image_tag("ribbons/#{var.stock_status}_upper_right.png",
+                                    alt: var.stock_status,
+                                    width: 63, height: 62,
+                                    class: "float-right") %>
+                    </div>
+                  <% end %>
+                  <ul class="space-y-2">
+                    <% var.variant_properties.each do |prop| %>
+                      <li class="text-sm">
+                        <span class="font-medium"><%= prop.property_name %>:</span>
+                        <span class="text-[var(--color-text-muted)]"><%= prop.description %></span>
+                      </li>
+                    <% end %>
+                    <% if var.sold_out? && (!current_user || !current_user.requested_to_be_notified?(var.id)) %>
+                      <li class="mt-4">
+                        <% if current_user %>
+                          <%= link_to 'Notify me', notification_path(var),
+                              data: { turbo_confirm: 'Click OK and you will get an email when this product is back in stock.', turbo_method: :put },
+                              class: 'btn btn-accent text-xs' %> when this product is back in stock.
+                        <% else %>
+                          <span class="text-sm text-[var(--color-text-muted)]">Login to be notified when this product is back in stock.</span>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-
-    <% end %>
-  </div>
-
+    </div>
+  <% end %>
 </div>
-<div class='clearfix' style='height:50px;'>&nbsp;</div>
-</div>
-<div id='generic-dialog'></div>
-
-<% content_for :below_body do -%>
-  <%= javascript_include_tag 'shopping/cart.js' %>
-  <%= javascript_include_tag 'product_page.js' %>
-<% end %>

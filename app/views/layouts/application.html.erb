@@ -1,79 +1,53 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>
     <%= content_for?(:title) ? "#{site_name}: #{yield(:title)}" : site_name %>
   </title>
   <%= favicon_link_tag 'favicon.ico' %>
-
-  <%= stylesheet_link_tag "normalize.css" %>
-  <%= stylesheet_link_tag "application.css" %>
-  <%= stylesheet_link_tag 'site/app.css' %>
-
-  <!--[if lt IE 8]
-  <%= stylesheet_link_tag('ie.css', media: 'screen, projection')%>
-  <![endif]-->
-  <!--[if lt IE 7]
-  <%= stylesheet_link_tag('ie6.css', media: 'screen, projection') %>
-  <![endif]-->
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
   <%= csrf_meta_tags %>
-
   <%= yield :head %>
-
   <%= render 'shared/metadata' %>
-
 </head>
-<body >
-<div id='body_wrapper'>
+<body>
+  <%= render partial: '/shared/welcome_header' %>
 
-  <%= render partial: '/shared/welcome_header'%>
-
-  <% if notice || alert %>
-      <div class="flash_notice callout <%= !!alert ? 'alert' : 'warning' %>" data-closable>
-        <div>
-        <% if alert %>
-          <%= alert %>
-        <% elsif notice %>
-          <%= notice %>
-        <% end %>
-        </div>
-        <button class="close-button" aria-label="Close alert" type="button"  data-close>
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+  <% if notice || alert || flash[:error] %>
+    <div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 text-sm font-medium shadow-md <%= (alert || flash[:error]) ? 'bg-red-50 text-red-800 border-b border-red-200' : 'bg-amber-50 text-amber-800 border-b border-amber-200' %>"
+         role="alert"
+         data-controller="flash">
+      <span>
+        <%= alert || flash[:error] || notice %>
+      </span>
+      <button type="button" class="ml-4 text-current opacity-60 hover:opacity-100 text-lg leading-none" data-action="flash#dismiss" aria-label="Close">
+        &times;
+      </button>
+    </div>
   <% end %>
 
-    <div id='content_wrapper' class='row <%= "myaccount" if myaccount_tab %> '>
-      <% if myaccount_tab %>
-        <h1 style='text-align:center;'><%= site_name %></h1>
-        <hr class="first_double_hr">
-        <hr class="second_double_hr">
-        <%= render :partial => '/shared/myaccount_subheader' %>
-      <% end %>
+  <main class="max-w-[var(--max-width)] mx-auto px-6 md:px-12 pt-[72px]">
+    <% if myaccount_tab %>
+      <h1 class="text-center text-3xl font-light mt-10 mb-4" style="font-family: var(--font-display)"><%= site_name %></h1>
+      <hr class="border-[var(--color-border)] mb-1">
+      <hr class="border-[var(--color-border)] mb-8">
+      <div class="flex flex-col md:flex-row gap-10">
+        <%= render partial: '/shared/myaccount_subheader' %>
+        <div class="flex-1">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
       <%= yield %>
-    </div>
-    <div id='prefooter_wrapper'>&nbsp;</div>
-</div>
+    <% end %>
+  </main>
+
   <%= render 'shared/main_footer' %>
   <%= render 'shared/google_analytics' unless @disable_ga %>
-
-  <%= render 'shared/javascript_includes' %>
   <%= yield :bottom %>
-
-  <script>
-  jQuery(window).ready(
-    function() {
-      jQuery('.flash_notice').delay(6000).slideUp( 'slow');
-      jQuery('.flash_error').delay(6000).slideUp( 'slow');
-    }
-  );
-  </script>
-
   <%= yield :below_body %>
 </body>
 </html>

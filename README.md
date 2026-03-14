@@ -11,7 +11,7 @@ This solution includes an Admin for *Purchase Orders*, *Product creation*, *Ship
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
 
-The project has *Searchkick-powered product search* (backed by Elasticsearch), *Zurb Foundation for CSS*, and uses *jQuery*.
+The project has *Searchkick-powered product search* (backed by Elasticsearch), *Tailwind CSS* for storefront styling, and *Turbo + Stimulus* via *Import Maps* for modern JavaScript.
 Currently the most complete Rails solution for your small business.
 
 Please use *Ruby 3.3.8* and enjoy *Rails 8.1*.
@@ -54,6 +54,7 @@ Install gems and build the app
     rails db:create:all
     rails db:migrate db:seed
     rails dartsass:build
+    rails tailwindcss:build
     RAILS_ENV=test rails db:test:prepare
     RAILS_ENV=test rails db:seed
 
@@ -223,17 +224,22 @@ Edit `app/models/admin_ability.rb` and add `can` rules under the appropriate rol
 
 ## Asset Pipeline
 
-The app uses **Propshaft** for serving assets, **dartsass-rails** for compiling SCSS to CSS, and **importmap-rails** for future JavaScript module support. jQuery and its plugins are loaded as traditional script tags.
+The app uses **Propshaft** for serving assets and three CSS/JS tools:
 
-After changing any `.scss` file, rebuild CSS with:
+- **Tailwind CSS** (`tailwindcss-rails`) for storefront styling. Design tokens live in `app/assets/tailwind/application.css` using Tailwind v4's `@theme` block.
+- **dartsass-rails** for admin SCSS compilation (`admin_new.scss` and related admin stylesheets).
+- **importmap-rails** with **Turbo** and **Stimulus** for all JavaScript (both admin and storefront).
 
-    rails dartsass:build
+After changing stylesheets, rebuild with:
 
-In development, you can run the watcher to auto-compile on save:
+    rails dartsass:build      # admin SCSS
+    rails tailwindcss:build   # storefront Tailwind
 
-    rails dartsass:watch
+In development, use `bin/dev` (powered by `Procfile.dev`) to auto-compile both on save:
 
-Compiled CSS is output to `app/assets/builds/` (gitignored). Propshaft serves these alongside static assets from `app/assets/`, `vendor/assets/`, and `vendor/javascript/`.
+    bin/dev
+
+Compiled CSS is output to `app/assets/builds/` (gitignored). Propshaft serves these alongside static assets.
 
 ## Rails 8.1 Upgrade Notes
 

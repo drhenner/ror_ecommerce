@@ -8,6 +8,7 @@ gem 'puma', '~> 6.0'
 gem 'propshaft'
 gem 'importmap-rails'
 gem 'dartsass-rails'
+gem 'tailwindcss-rails'
 gem 'turbo-rails'
 gem 'stimulus-rails'
 

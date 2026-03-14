@@ -22,7 +22,7 @@
 
 <div class="page-header">
   <div>
-    <h1 class="page-title">Shipping Method</h1>
+    <h1 class="page-title">Order Summary</h1>
   </div>
 </div>
 
@@ -76,8 +76,8 @@
 
       <div class="d-flex flex-wrap gap-3">
         <div class="form-group <%= 'form-field error' if @credit_card.errors['brand'].present? %>">
-          <%= label_tag :brand, 'Type'%>
-          <%= select_tag(:brand, options_for_select(['visa', 'mastercard']), :class => " #{'form-field error' if @credit_card.errors['brand'].present?}" ) %>
+          <%= label_tag :type, 'Type'%>
+          <%= select_tag(:type, options_for_select(['visa', 'mastercard']), :class => " #{'form-field error' if @credit_card.errors['brand'].present?}" ) %>
         </div>
 
         <div class="form-group <%= 'form-field error' if @credit_card.errors['month'].present? %>">

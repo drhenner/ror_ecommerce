@@ -3,7 +3,7 @@
   <% if session_admin_cart.customer_id %>
     |
     <%= link_to 'Products', admin_shopping_products_path() %>
-    <% if !session_admin_cart.cart_items.empty? %>
+    <% if !session_admin_cart.shopping_cart_items.empty? %>
       |
       <%= link_to 'Shipping', admin_shopping_checkout_shipping_addresses_path %> |
       <%= link_to 'Billing', admin_shopping_checkout_billing_addresses_path %> |

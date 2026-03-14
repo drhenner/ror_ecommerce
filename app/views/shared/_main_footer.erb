@@ -1,17 +1,54 @@
 <%
 loop_footer_tabs = {
   'Terms & Conditions'  => terms_path,
-  'About'               => about_path#,
-  #'Customer Service'    => faq_customer_service_path
+  'About'               => about_path
 }
 %>
 
-<div id="footer_wrapper" class='row'>
-  <div  class='nine large-9 columns'>
-    <ul id='main-footer-tabs' class='menu '>
-      <% loop_footer_tabs.each_pair do |tab_name, tab_path| %>
-        <li> <%= link_to_unless_current tab_name, tab_path %> </li>
-      <% end %>
-    </ul>
+<footer class="bg-[var(--color-text)] text-white/70 pt-16 pb-8 px-6 md:px-12 mt-20">
+  <div class="max-w-[var(--max-width)] mx-auto grid grid-cols-2 md:grid-cols-5 gap-10">
+    <div class="col-span-2 md:col-span-2">
+      <div class="text-xl font-bold text-white tracking-tight mb-3" style="font-family: var(--font-display)">
+        <%= site_name %>
+      </div>
+      <p class="text-[13px] leading-relaxed max-w-[260px]">
+        A curated marketplace for modern living. Quality over quantity, and stories behind every product.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="text-[11px] tracking-[1.5px] uppercase text-white/40 font-semibold mb-4">Shop</h4>
+      <ul class="space-y-2.5">
+        <li><%= link_to 'All Products', products_path, class: "text-[13px] text-white/60 hover:text-white transition-colors" %></li>
+        <% product_types.first(5).each do |pt| %>
+          <li><%= link_to pt.name.capitalize, products_path(product_type_id: pt.id), class: "text-[13px] text-white/60 hover:text-white transition-colors" %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <% if current_user %>
+      <div>
+        <h4 class="text-[11px] tracking-[1.5px] uppercase text-white/40 font-semibold mb-4">Account</h4>
+        <ul class="space-y-2.5">
+          <li><%= link_to 'My Orders', myaccount_orders_path, class: "text-[13px] text-white/60 hover:text-white transition-colors" %></li>
+          <li><%= link_to 'Addresses', myaccount_addresses_path, class: "text-[13px] text-white/60 hover:text-white transition-colors" %></li>
+          <li><%= link_to 'Store Credit', myaccount_store_credit_path, class: "text-[13px] text-white/60 hover:text-white transition-colors" %></li>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <h4 class="text-[11px] tracking-[1.5px] uppercase text-white/40 font-semibold mb-4">Info</h4>
+      <ul class="space-y-2.5">
+        <% loop_footer_tabs.each_pair do |tab_name, tab_path| %>
+          <li><%= link_to tab_name, tab_path, class: "text-[13px] text-white/60 hover:text-white transition-colors" %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
+
+  <div class="max-w-[var(--max-width)] mx-auto mt-10 pt-5 border-t border-white/10 flex justify-between text-[12px] text-white/30">
+    <span>&copy; <%= Date.current.year %> <%= site_name %></span>
+    <span>Built with Ruby on Rails</span>
+  </div>
+</footer>

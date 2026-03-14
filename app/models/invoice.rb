@@ -160,7 +160,7 @@ class Invoice < ApplicationRecord
       batch.transactions.push(CreditCardPayment.new_authorized_payment(order.user, amount))
       batch.save
     else
-      raise error ###  something messed up I think
+      raise StandardError, "Invoice already has batches — duplicate payment attempt"
     end
   end
 
@@ -213,8 +213,7 @@ class Invoice < ApplicationRecord
   # @param [none]
   # @return [Integer] amount of the invoice in cents
   def integer_amount
-    times_x_amount = amount.integer? ? 1 : 100
-    (amount * times_x_amount).to_i
+    ((amount || 0) * 100).round
   end
 
   def authorize_payment(credit_card, options = {})

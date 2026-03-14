@@ -11,6 +11,9 @@ class Admin::Shopping::UsersController < Admin::Shopping::BaseController
   # POST /admin/shopping/users
   def create
     @customer = User.find_by_id(params[:user_id])
+    if @customer.nil?
+      redirect_to admin_shopping_users_url, alert: 'Customer not found.' and return
+    end
     session_admin_cart.customer = @customer
     add_to_recent_user(@customer)
     if session_admin_cart.save

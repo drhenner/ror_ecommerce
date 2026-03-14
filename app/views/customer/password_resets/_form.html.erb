@@ -1,29 +1,24 @@
 <% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this password_reset from being saved:</h2>
-
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+  <div class="bg-red-50 border border-red-200 text-red-800 px-5 py-4 mb-6 text-sm rounded">
+    <h3 class="font-semibold mb-2"><%= pluralize(@user.errors.count, "error") %> prohibited this password from being saved:</h3>
+    <ul class="list-disc pl-5 space-y-1">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
 
-  <p>
-    Please enter your new password.
-  </p>
+<p class="text-sm text-[var(--color-text-muted)] mb-6">Please enter your new password.</p>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+<div class="space-y-4">
+  <div>
+    <%= f.label :password, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+    <%= f.password_field :password, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+  <div>
+    <%= f.label :password_confirmation, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+    <%= f.password_field :password_confirmation, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
   </div>
-
-  <div class="actions">
-    <%= f.submit 'Change Password', class: 'button' %>
-  </div>
+  <%= f.submit 'Change Password', class: 'btn btn-dark' %>
+</div>

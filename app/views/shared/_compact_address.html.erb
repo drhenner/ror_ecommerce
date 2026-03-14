@@ -1,6 +1,9 @@
-
+<% if shopping_address.present? %>
   <%= shopping_address.name %><br/>
   <% shopping_address.address_lines_array.each do |line| %>
     <%= line %><br/>
   <% end %>
   <%= shopping_address.city_state_zip %><br/>
+<% else %>
+  <em class="text-[var(--color-text-muted)]">No address on file</em>
+<% end %>

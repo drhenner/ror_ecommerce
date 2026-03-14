@@ -1,7 +1,5 @@
-<div class=' large-9 columns'>
-  <h3> Store Credits </h3>
+<h3 class="text-xl font-medium mb-6">Store Credits</h3>
 
-  <p id='users-credits' class=''>
-    You currently have <strong><%= number_to_currency @store_credit.amount %></strong> worth of credits.
-  </p>
-</div>
+<p class="text-sm text-[var(--color-text-muted)]">
+  You currently have <strong class="text-[var(--color-text)] text-lg"><%= number_to_currency(@store_credit&.amount || 0.0) %></strong> worth of credits.
+</p>

@@ -1,24 +1,40 @@
-<% if  @shopping_addresses.empty? %>
-  <h2>New Address</h2>
-<% else %>
-  <h3>Pick a Shipping Address</h3>
-<% end %>
+<div class="py-10">
+  <% if @shopping_addresses.empty? %>
+    <h2 class="text-2xl font-normal mb-6" style="font-family: var(--font-display)">New Shipping Address</h2>
+  <% else %>
+    <h2 class="text-2xl font-normal mb-6" style="font-family: var(--font-display)">Shipping Address</h2>
 
-<div id='shopping_addresses_selections' class='large-12 last'>
-  <% @shopping_addresses.each do |shopping_address| %>
-    <div class='large-4 columns last box'>
-      <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address} %>
-      <%= button_to 'Use', select_address_shopping_address_path(shopping_address), :class => 'button spade inline-block', :method => :put %>
-      <%= link_to 'Edit', edit_shopping_address_path(shopping_address) %>
-      <%= link_to 'Delete', shopping_address_path(shopping_address), :data => {:confirm => 'Are you sure?'}, :method => :delete %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <% @shopping_addresses.each do |shopping_address| %>
+        <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-5">
+          <div class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+            <%= render partial: '/shared/compact_address', locals: { shopping_address: shopping_address } %>
+          </div>
+          <div class="flex items-center gap-3">
+            <%= button_to 'Use', select_address_shopping_address_path(shopping_address),
+                method: :put,
+                class: 'btn btn-dark text-xs py-2 px-4' %>
+            <%= link_to 'Edit', edit_shopping_address_path(shopping_address),
+                class: 'text-xs text-[var(--color-accent)] hover:underline' %>
+            <%= link_to 'Delete', shopping_address_path(shopping_address),
+                data: { turbo_confirm: 'Are you sure?', turbo_method: :delete },
+                class: 'text-xs text-[var(--color-sale)] hover:underline' %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <hr style='color:#aac'/>
+
+    <% if session_order.ready_to_checkout? %>
+      <div class="mb-8">
+        <%= link_to 'Order Summary', shopping_orders_path, class: 'btn btn-accent' %>
+      </div>
+    <% end %>
   <% end %>
-  <% if session_order.ready_to_checkout? %>
-    <%= link_to 'Order Summary', shopping_orders_path, :class => 'button success' %>
+
+  <% unless @shopping_addresses.empty? %>
+    <h3 class="text-lg font-medium mb-4">Or add a new address</h3>
+  <% end %>
+  <%= form_for @shopping_address, url: shopping_addresses_path do |address_form| %>
+    <%= render partial: 'form', locals: { f: address_form } %>
   <% end %>
 </div>
-<br />
-<%= form_for @shopping_address, url: shopping_addresses_path, html: {class: 'custom'} do |address_form| %>
-  <%= render :partial =>  'form', :locals => {:f => address_form}  %>
-<% end %>

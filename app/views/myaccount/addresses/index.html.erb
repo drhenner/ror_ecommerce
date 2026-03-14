@@ -1,20 +1,21 @@
-<div class='nine large-9 columns'>
-  <h3> Addresses </h3>
-  <% if @addresses.empty? %>
-    <p>
-      <%= I18n.t(:no_addresses_saved) %>
-    </p>
-  <% else %>
-    <ul>
-      <% for address in @addresses %>
-        <li><br/>
-          <%= render :partial => '/shared/compact_address', locals: { shopping_address: address } %>
-          <%= link_to "Edit", edit_myaccount_address_path(address) %> |
-          <%= link_to "Remove", myaccount_address_path(address), data: { confirm: 'Are you sure?' }, method: :delete %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+<h3 class="text-xl font-medium mb-6">Addresses</h3>
 
-  <p><%= link_to "New Address", new_myaccount_address_path, class: "button" %></p>
-</div>
+<% if @addresses.empty? %>
+  <p class="text-sm text-[var(--color-text-muted)] mb-4"><%= I18n.t(:no_addresses_saved) %></p>
+<% else %>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+    <% @addresses.each do |address| %>
+      <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-5">
+        <div class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+          <%= render partial: '/shared/compact_address', locals: { shopping_address: address } %>
+        </div>
+        <div class="flex items-center gap-3 text-xs">
+          <%= link_to "Edit", edit_myaccount_address_path(address), class: "text-[var(--color-accent)] hover:underline" %>
+          <%= link_to "Remove", myaccount_address_path(address), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: "text-[var(--color-sale)] hover:underline" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to "New Address", new_myaccount_address_path, class: "btn btn-dark" %>

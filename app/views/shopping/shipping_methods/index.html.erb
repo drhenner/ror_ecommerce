@@ -1,33 +1,39 @@
-<h1>Pick a Shipping Method</h1>
+<div class="py-10 max-w-3xl">
+  <h1 class="text-3xl font-normal mb-8" style="font-family: var(--font-display)">Shipping Method</h1>
 
-<div class='clearfix'>
-  <%= form_tag(shopping_shipping_method_path(session_order.id), html: {class: 'custom'}, method: :put) do -%>
-
-      <% @order_items.group_by(&:shipping_category_id).each do |shipping_category_id, items| %>
-        <ul class='vertical menu'>
+  <%= form_tag(shopping_shipping_method_path(session_order.id), method: :put) do %>
+    <% @order_items.group_by(&:shipping_category_id).each do |shipping_category_id, items| %>
+      <div class="mb-8">
+        <div class="space-y-4 mb-4">
           <% items.each do |item| %>
-            <li class=' large-10 clearfix panel callout'>
-              <div class=' large-6 columns'>
-                <%= image_tag(item.variant.product.featured_image(:small), alt: item.variant.product.name) %>
-                <%= item.variant.product.name %> Quantity: <%= item.quantity %>
+            <div class="flex gap-4 items-center bg-[var(--color-surface)] border border-[var(--color-border)] p-4">
+              <div class="w-16 h-16 shrink-0 bg-[var(--color-highlight)] overflow-hidden">
+                <%= image_tag(item.variant.product.featured_image(:small),
+                              alt: item.variant.product.name,
+                              class: "w-full h-full object-cover") %>
               </div>
-              <div class=' large-4 columns last' style='text-align:left;'>
+              <div class="flex-1">
+                <p class="text-sm font-medium"><%= item.variant.product.name %></p>
+                <p class="text-xs text-[var(--color-text-muted)]">Qty: <%= item.quantity %></p>
+              </div>
+              <div class="text-xs text-[var(--color-text-muted)]">
                 <%= sanitize item.variant.display_property_details %>
               </div>
-            </li>
+            </div>
           <% end %>
-        </ul>
-        <ul class=' large-10 callout secondary'>
-        <% items.first.shipping_rate_options(session_order.sub_total).each do |rate| %>
-          <li><%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %> <%= rate.name_rate_min %></li>
-        <% end %>
-        </ul>
+        </div>
 
-      <% end %>
+        <div class="bg-[var(--color-highlight)] border border-[var(--color-border)] p-4 space-y-2">
+          <% items.first.shipping_rate_options(session_order.sub_total).each do |rate| %>
+            <label class="flex items-center gap-3 cursor-pointer text-sm">
+              <%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id, false, class: "accent-[var(--color-accent)]" %>
+              <span><%= rate.name_rate_min %></span>
+            </label>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
 
-    <div class=' large-10 clearfix offset-by-two'>
-      <%= submit_tag 'continue', :class => 'button' %>
-    </div>
-
+    <%= submit_tag 'Continue', class: 'btn btn-dark' %>
   <% end %>
 </div>

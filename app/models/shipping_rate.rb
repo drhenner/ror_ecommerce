@@ -50,7 +50,7 @@ class ShippingRate < ApplicationRecord
   # @param [none]
   # @return [ String ]
   def name
-    [shipping_method.name, shipping_method.shipping_zone.name, sub_name].join(', ')
+    [shipping_method&.name, shipping_method&.shipping_zone&.name, sub_name].compact.join(', ')
   end
 
   # the shipping rate type and $$$ rate  separated by ' - '
@@ -59,7 +59,7 @@ class ShippingRate < ApplicationRecord
   # @param [none]
   # @return [ String ]
   def sub_name
-    '(' + [shipping_rate_type.name, rate ].join(' - ') + ')'
+    '(' + [shipping_rate_type&.name, rate ].compact.join(' - ') + ')'
   end
 
   # the shipping method name, and $$$ rate
@@ -77,7 +77,7 @@ class ShippingRate < ApplicationRecord
   # @param [none]
   # @return [ String ]
   def name_with_rate
-    [shipping_method.name, charge_amount].compact.join(' - ')
+    [shipping_method&.name, charge_amount].compact.join(' - ')
   end
 
   private

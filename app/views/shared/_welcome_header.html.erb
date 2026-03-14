@@ -1,95 +1,116 @@
-<div class="top-bar">
-  <div class="top-bar-left">
+<header data-controller="nav-scroll mobile-menu"
+        data-nav-scroll-solid-class="solid">
+  <nav class="fixed top-0 left-0 right-0 z-40 h-[72px] flex items-center px-6 md:px-12 bg-transparent transition-all duration-300"
+       data-nav-scroll-target="bar">
+    <div class="flex items-center justify-between w-full max-w-[var(--max-width)] mx-auto">
+      <%# Logo %>
+      <div class="flex items-center gap-8">
+        <%= link_to site_name, root_path,
+            class: "font-bold text-xl tracking-tight text-[var(--color-text)]",
+            style: "font-family: var(--font-display)" %>
 
-    <ul class="dropdown menu" data-dropdown-menu>
-      <!-- Title Area -->
-      <li class="menu-text">
-        <h1 class="menu-text">
-          <%= link_to site_name, root_path %>
-        </h1>
-      </li>
-
-      <li class="divider"></li>
-      <li class="">
-        <%= link_to 'Products', products_path, class: 'active' %>
-        <ul class="menu vertical">
-          <%- if nil # This is how you add a dropdown that slides to the right %>
-            <li class="">
-              <a href="#" >Level 1 &rarr;</a>
-              <ul class="menu">
-                <li><a href="#">Add Link here</a></li>
-                <li><a href="#">Add Link 2 here</a></li>
-              </ul>
-            </li>
-          <%- end -%>
-          <% product_types.each do |pt_tab| %>
-            <li> <%= link_to pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id) %> </li>
-          <%- end -%>
-          <li class="divider"></li>
-          <li>
-            <%= link_to 'All Products', products_path %>
-          </li>
-        </ul>
-      </li>
-      <li class="divider hide-for-small"></li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <!-- Right Nav Section -->
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="divider show-for-medium-and-up"></li>
-      <li class="">
-        <%= link_to( 'Your Cart', shopping_cart_items_path) %>
-        <ul class="menu vertical">
-
-          <% if session_cart.shopping_cart_items.size > 0 %>
-            <li>
-            <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
-               <strong> Items </strong>
-            <% end %>
-            </li>
-            <li class="divider"></li>
-            <% session_cart.shopping_cart_items.each do |item| %>
-              <li>
-                <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
-                   <%= item.name %>
-                <% end %>
-              </li>
-            <% end %>
-          <% else %>
-            <li class="divider"></li>
-            <li>
-              <%= link_to( 'Your cart is Empty!', shopping_cart_items_path) %>
-            </li>
-          <% end %>
-        </ul>
-      </li>
-      <li class="">
-        <%= link_to myaccount_overview_path do %>
-          Your Account
-        <% end %>
-        <ul class="menu vertical">
-          <% unless current_user %>
-            <li><%= link_to 'Login',  login_path %></li>
-          <% else %>
-            <% if current_user.admin? %>
-              <li><%= link_to 'Admin', admin_users_path %></li>
-            <% end %>
-            <li class="divider"></li>
-            <li>
-              <%= link_to myaccount_overview_path do %>
-                <label>Account</label>
+        <%# Desktop nav links %>
+        <div class="hidden md:flex items-center gap-7">
+          <div class="relative" data-controller="dropdown-menu">
+            <button type="button" class="text-[13px] font-medium uppercase tracking-wider text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors py-1"
+                    data-action="click->dropdown-menu#toggle mouseenter->dropdown-menu#show mouseleave->dropdown-menu#hide">
+              Products
+            </button>
+            <div class="hidden absolute top-full left-0 mt-1 bg-white border border-[var(--color-border)] shadow-lg rounded min-w-[180px] py-2 z-50"
+                 data-dropdown-menu-target="menu"
+                 data-action="mouseenter->dropdown-menu#show mouseleave->dropdown-menu#hide">
+              <% product_types.each do |pt_tab| %>
+                <%= link_to pt_tab.name.capitalize, products_path(product_type_id: pt_tab.id),
+                    class: "block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-highlight)] transition-colors" %>
               <% end %>
-            </li>
-            <li><%= link_to 'Orders &rarr;'.html_safe, myaccount_orders_path %></li>
-            <li><%= link_to 'Addresses', myaccount_addresses_path %></li>
-            <li><%= link_to 'Credit Cards', myaccount_credit_cards_path %></li>
-            <li><%= link_to 'Credits', myaccount_store_credit_path %></li>
-            <li class="divider"></li>
-            <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
+              <hr class="my-1 border-[var(--color-border)]">
+              <%= link_to 'All Products', products_path,
+                  class: "block px-4 py-2 text-sm font-medium text-[var(--color-text)] hover:bg-[var(--color-highlight)] transition-colors" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# Right side - cart, account, mobile toggle %>
+      <div class="flex items-center gap-5">
+        <%= link_to shopping_cart_items_path, class: "hidden md:flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors" do %>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          Bag
+          <% if session_cart.shopping_cart_items.size > 0 %>
+            <span class="inline-flex items-center justify-center w-[18px] h-[18px] bg-[var(--color-accent)] text-white text-[10px] font-bold rounded-full">
+              <%= session_cart.shopping_cart_items.size %>
+            </span>
           <% end %>
-        </ul>
-      </li>
-    </ul>
+        <% end %>
+
+        <% if current_user %>
+          <div class="hidden md:block relative" data-controller="dropdown-menu">
+            <button type="button" class="text-[13px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors flex items-center gap-1"
+                    data-action="click->dropdown-menu#toggle">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              Account
+            </button>
+            <div class="hidden absolute right-0 top-full mt-2 bg-white border border-[var(--color-border)] shadow-lg rounded min-w-[180px] py-2 z-50"
+                 data-dropdown-menu-target="menu">
+              <% if current_user.admin? %>
+                <%= link_to 'Admin', admin_users_path, class: "block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-highlight)]" %>
+                <hr class="my-1 border-[var(--color-border)]">
+              <% end %>
+              <%= link_to 'Account', myaccount_overview_path, class: "block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-highlight)]" %>
+              <%= link_to 'Orders', myaccount_orders_path, class: "block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-highlight)]" %>
+              <%= link_to 'Addresses', myaccount_addresses_path, class: "block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-highlight)]" %>
+              <%= link_to 'Credit Cards', myaccount_credit_cards_path, class: "block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-highlight)]" %>
+              <%= link_to 'Credits', myaccount_store_credit_path, class: "block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-highlight)]" %>
+              <hr class="my-1 border-[var(--color-border)]">
+              <%= link_to 'Log Out', logout_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-sm text-[var(--color-sale)] hover:bg-red-50" %>
+            </div>
+          </div>
+        <% else %>
+          <%= link_to 'Login', login_path, class: "hidden md:inline-block text-[13px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] transition-colors" %>
+        <% end %>
+
+        <%# Mobile menu toggle %>
+        <button type="button" class="md:hidden text-[var(--color-text)]" data-action="mobile-menu#toggle" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <%# Mobile menu %>
+  <div class="hidden fixed inset-0 z-50 bg-white pt-20 px-6 md:hidden"
+       data-mobile-menu-target="menu">
+    <button type="button" class="absolute top-5 right-6 text-[var(--color-text)]" data-action="mobile-menu#close" aria-label="Close">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <nav class="flex flex-col gap-4">
+      <%= link_to 'Products', products_path, class: "text-lg font-medium" %>
+      <% product_types.each do |pt_tab| %>
+        <%= link_to pt_tab.name.capitalize, products_path(product_type_id: pt_tab.id), class: "text-base text-[var(--color-text-muted)] pl-4" %>
+      <% end %>
+      <hr class="border-[var(--color-border)]">
+      <%= link_to shopping_cart_items_path, class: "text-lg font-medium" do %>
+        Your Bag
+        <% if session_cart.shopping_cart_items.size > 0 %>
+          <span class="inline-flex items-center justify-center w-[18px] h-[18px] bg-[var(--color-accent)] text-white text-[10px] font-bold rounded-full ml-1">
+            <%= session_cart.shopping_cart_items.size %>
+          </span>
+        <% end %>
+      <% end %>
+      <% if current_user %>
+        <%= link_to 'Account', myaccount_overview_path, class: "text-lg font-medium" %>
+        <%= link_to 'Log Out', logout_path, data: { turbo_method: :delete }, class: "text-lg font-medium text-[var(--color-sale)]" %>
+      <% else %>
+        <%= link_to 'Login', login_path, class: "text-lg font-medium" %>
+      <% end %>
+    </nav>
   </div>
-</div>
+</header>

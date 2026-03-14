@@ -1,6 +1,6 @@
   <% if @billing_address.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@billing_address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
+      <h2><%= pluralize(@billing_address.errors.count, "error") %> prohibited this billing address from being saved:</h2>
 
       <ul>
       <% @billing_address.errors.full_messages.each do |msg| %>
@@ -64,7 +64,7 @@
   </div>
 
   <div class="form-group">
-    <%= check_box_tag :default, 1, f.object.default? %><%= f.label :default, "Make this my default billing method", :class => 'auto_width' %>
+    <%= f.check_box :billing_default %><%= f.label :billing_default, "Make this my default billing address", :class => 'auto_width' %>
   </div>
 
   <div class="form-group">

@@ -19,16 +19,17 @@ class Admin::Shopping::ProductsController < Admin::Shopping::BaseController
 
   # PUT /admin/order/products/1
   def update
+    unless params[:variant].present?
+      redirect_to(admin_shopping_products_url, alert: 'No items were selected.') and return
+    end
     params[:variant].each_pair do |variant_id, qty|
-      if (qty.first.blank? || (!qty.first.blank? && qty.first.to_i == 0))
+      if qty.blank? || qty.to_i == 0
         session_admin_cart.remove_variant(variant_id)
       else
-        session_admin_cart.add_variant(variant_id, session_admin_cart.customer, qty, ItemType::SHOPPING_CART_ID, true)
+        session_admin_cart.add_variant(variant_id, session_admin_cart.customer, qty.to_i, ItemType::SHOPPING_CART_ID, true)
       end
     end
-    respond_to do |format|
-      format.html { redirect_to(admin_shopping_products_url, :notice => 'Successfully added.  Ask the customer if they would like anything else.') }
-    end
+    redirect_to(admin_shopping_products_url, notice: 'Successfully added. Ask the customer if they would like anything else.')
   end
 
   private

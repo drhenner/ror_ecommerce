@@ -4,7 +4,7 @@
 <div class="card mb-3">
   <div class="card-body">
     <h3>
-      <%= session_admin_cart.customer_id ? session_admin_cart.customer.name : 'No Customer' %>
+      <%= session_admin_cart.customer_id && session_admin_cart.customer ? session_admin_cart.customer.name : 'No Customer' %>
     </h3>
     <%= link_to 'change customer', admin_shopping_users_path, class: 'btn btn-outline btn-sm' %>
     <table class="admin-table mt-3">
@@ -42,7 +42,7 @@
       </tfoot>
     </table>
     <% unless session_admin_cart.shopping_cart_items.empty? %>
-      <%= link_to 'Checkout', start_checkout_process_admin_shopping_checkout_order_path, class: 'btn btn-primary btn-sm mt-2', method: 'POST' %>
+      <%= link_to 'Checkout', start_checkout_process_admin_shopping_checkout_order_path, class: 'btn btn-primary btn-sm mt-2', data: { turbo_method: :post } %>
     <% end %>
   </div>
 </div>

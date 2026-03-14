@@ -96,7 +96,7 @@ class User < ApplicationRecord
   has_many    :cart_items
   has_many    :shopping_cart_items, -> { where(active: true, item_type_id: ItemType::SHOPPING_CART_ID) }, class_name: 'CartItem'
   has_many    :wish_list_items,     -> { where(active: true, item_type_id: ItemType::WISH_LIST_ID) },     class_name: 'CartItem'
-  has_many    :saved_cart_items,    -> { where(active: true, item_type_id: ItemType::SAVE_FOR_LATER) },   class_name: 'CartItem'
+  has_many    :saved_cart_items,    -> { where(active: true, item_type_id: ItemType::SAVE_FOR_LATER_ID) },   class_name: 'CartItem'
   has_many    :purchased_items,     -> { where(active: true, item_type_id: ItemType::PURCHASED_ID) },     class_name: 'CartItem'
   has_many    :deleted_cart_items,  -> { where( active: false) }, class_name: 'CartItem'
   has_many    :payment_profiles
@@ -120,8 +120,8 @@ class User < ApplicationRecord
                           length:    { maximum: 255 }
 
   accepts_nested_attributes_for :addresses, :user_roles
-  accepts_nested_attributes_for :phones, :reject_if => lambda { |t| ( t['display_number'].gsub(/\D+/, '').blank?) }
-  accepts_nested_attributes_for :customer_service_comments, :reject_if => proc { |attributes| attributes['note'].strip.blank? }
+  accepts_nested_attributes_for :phones, :reject_if => lambda { |t| t['display_number'].to_s.gsub(/\D+/, '').blank? }
+  accepts_nested_attributes_for :customer_service_comments, :reject_if => proc { |attributes| attributes['note'].to_s.strip.blank? }
 
   aasm column: :state do
     state :inactive
@@ -251,11 +251,11 @@ class User < ApplicationRecord
   end
 
   def number_of_finished_orders_at(at)
-    finished_orders.select{|o| o.completed_at < at }.size
+    finished_orders.select{|o| o.completed_at.present? && o.completed_at < at }.size
   end
 
   def store_credit_amount
-    store_credit.amount
+    store_credit&.amount || 0.0
   end
 
   def requested_to_be_notified?(variant_id)

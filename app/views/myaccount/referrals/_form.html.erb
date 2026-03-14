@@ -1,10 +1,11 @@
 <%= f.error_messages %>
-<div class="field large-6 ">
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-
-<div class="field large-6 ">
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+<div class="max-w-md space-y-4">
+  <div>
+    <%= f.label :name, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+    <%= f.text_field :name, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+  </div>
+  <div>
+    <%= f.label :email, class: 'block text-xs font-medium text-[var(--color-text-muted)] mb-1' %>
+    <%= f.text_field :email, class: 'w-full border border-[var(--color-border)] px-3 py-2 text-sm' %>
+  </div>
 </div>

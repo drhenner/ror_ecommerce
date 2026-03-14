@@ -1,10 +1,10 @@
 class Myaccount::CreditCardsController < Myaccount::BaseController
   def index
-    @credit_cards = current_user.payment_profiles
+    @credit_cards = active_payment_profiles
   end
 
   def show
-    @credit_card = current_user.payment_profiles.find(params[:id])
+    @credit_card = active_payment_profiles.find(params[:id])
   end
 
   def new
@@ -22,11 +22,11 @@ class Myaccount::CreditCardsController < Myaccount::BaseController
   end
 
   def edit
-    @credit_card = current_user.payment_profiles.find(params[:id])
+    @credit_card = active_payment_profiles.find(params[:id])
   end
 
   def update
-    @credit_card = current_user.payment_profiles.find(params[:id])
+    @credit_card = active_payment_profiles.find(params[:id])
     if @credit_card.update(allowed_params)
       flash[:notice] = "Successfully updated credit card."
       redirect_to myaccount_credit_card_url(@credit_card)
@@ -36,13 +36,17 @@ class Myaccount::CreditCardsController < Myaccount::BaseController
   end
 
   def destroy
-    @credit_card = current_user.payment_profiles.find(params[:id])
+    @credit_card = active_payment_profiles.find(params[:id])
     @credit_card.inactivate!
     flash[:notice] = "Successfully destroyed credit card."
     redirect_to myaccount_credit_cards_url
   end
 
   private
+
+  def active_payment_profiles
+    current_user.payment_profiles.where(active: true)
+  end
 
   def allowed_params
     params.require(:credit_card).permit(:address_id, :month, :year, :cc_type, :first_name, :last_name, :card_name)

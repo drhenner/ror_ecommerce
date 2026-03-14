@@ -1,32 +1,34 @@
-<div class='large-5 column'>
-  <h4> <strong><%= current_user.name.possessive %> Profile </strong></h4>
-
-  <ul id='profile_details' >
-    <li>
-      <label>Email:</label>
-      <%= current_user.email %>
-    </li>
-
-    <li>
-      <%= link_to "Edit", edit_myaccount_overview_path() %>
-    </li>
-  </ul>
-</div>
-
-<div class=' large-4 column'>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
   <div>
-    <h4> <strong>Address</strong> </h4>
-    <% if current_user.shipping_address %>
-      <%= render partial: '/shared/compact_address', locals: { shopping_address: current_user.shipping_address } %>
-      <%= link_to "Edit", edit_myaccount_address_path(current_user.shipping_address) %>
-    <% else %>
-      No Address Saved.<br/>
-      <%= link_to "New", new_myaccount_address_path() %>
-    <% end %>
+    <h4 class="text-base font-semibold mb-4"><%= current_user.name.possessive %> Profile</h4>
+    <ul class="space-y-2 text-sm">
+      <li>
+        <span class="text-[var(--color-text-muted)]">Email:</span>
+        <%= current_user.email %>
+      </li>
+      <li>
+        <%= link_to "Edit", edit_myaccount_overview_path, class: "text-[var(--color-accent)] hover:underline text-sm" %>
+      </li>
+    </ul>
   </div>
-  <br/>
-  <div>
-    <h4> <strong>Store Credits</strong> </h4>
-    <%= number_to_currency current_user.store_credit.amount %>
+
+  <div class="space-y-6">
+    <div>
+      <h4 class="text-base font-semibold mb-3">Address</h4>
+      <% if current_user.shipping_address %>
+        <div class="text-sm text-[var(--color-text-muted)] leading-relaxed mb-2">
+          <%= render partial: '/shared/compact_address', locals: { shopping_address: current_user.shipping_address } %>
+        </div>
+        <%= link_to "Edit", edit_myaccount_address_path(current_user.shipping_address), class: "text-[var(--color-accent)] hover:underline text-sm" %>
+      <% else %>
+        <p class="text-sm text-[var(--color-text-muted)]">No address saved.</p>
+        <%= link_to "Add Address", new_myaccount_address_path, class: "text-[var(--color-accent)] hover:underline text-sm" %>
+      <% end %>
+    </div>
+
+    <div>
+      <h4 class="text-base font-semibold mb-3">Store Credits</h4>
+      <p class="text-lg font-medium"><%= number_to_currency current_user.store_credit_amount %></p>
+    </div>
   </div>
 </div>

@@ -44,7 +44,7 @@
           <tr class='<%= cycle("odd", "")%>'>
             <td><%= link_to product.name, edit_admin_shopping_product_path(product) %></td>
             <td><%=  product.available? ? 'Yes' : 'No' %></td>
-            <td><%=  product.product_type.name %></td>
+            <td><%=  product.product_type&.name %></td>
             <td><%= product.display_price_range %></td>
           </tr>
         <% end %>
