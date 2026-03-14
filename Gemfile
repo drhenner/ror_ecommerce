@@ -37,6 +37,8 @@ gem "config", '~> 4.0'
 gem 'rake', '>= 13.0'
 
 gem 'aasm', '~> 5.5'
+gem 'searchkick'
+gem 'elasticsearch', '~> 8'
 gem 'will_paginate', '~> 4.0'
 
 gem 'image_processing', '~> 1.2'

@@ -39,8 +39,6 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
       flash[:error] = "The product could not be saved"
       render action: :new
     end
-  rescue
-    render plain: "Please make sure you have solr started... Run this in the command line => bundle exec rake sunspot:solr:start"
   end
 
   def edit

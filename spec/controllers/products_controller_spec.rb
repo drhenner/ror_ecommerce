@@ -48,6 +48,33 @@ describe ProductsController do
     end
   end
 
+  context 'search via create action' do
+    let(:inventory) { FactoryBot.create(:inventory, count_on_hand: 10000, count_pending_to_customer: 0) }
+    let!(:variant)  { FactoryBot.create(:variant, inventory: inventory, product: product) }
+
+    it "should render index template with search results" do
+      post :create, params: { q: product.name }
+      expect(response).to render_template(:index)
+    end
+
+    it "should render index template without a query" do
+      post :create
+      expect(response).to render_template(:index)
+      expect(assigns(:products)).not_to be_nil
+    end
+
+    it "should truncate very long queries" do
+      long_query = 'a' * 300
+      post :create, params: { q: long_query }
+      expect(response).to render_template(:index)
+    end
+
+    it "should cap rows at 100" do
+      post :create, params: { q: 'test', rows: 9999 }
+      expect(response).to render_template(:index)
+    end
+  end
+
   context 'out of stock variant' do
     let(:inventory)        { FactoryBot.create(:inventory, count_on_hand: 10, count_pending_to_customer: 10) }
     let!(:variant)         { FactoryBot.create(:variant, inventory: inventory, product: product) }

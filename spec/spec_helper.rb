@@ -60,26 +60,16 @@ RSpec.configure do |config|
     PaymentProfile.any_instance.stubs(:create_payment_profile).returns(true)
     PaymentProfile.any_instance.stubs(:update_payment_profile).returns(true)
     PaymentProfile.any_instance.stubs(:delete_payment_profile).returns(true)
-    if defined?(Sunspot)
-      ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
-    end
+    Searchkick.disable_callbacks
     Rails.cache.clear
     DatabaseCleaner.start
   end
 
   config.after(:each) do
-    if defined?(Sunspot)
-      ::Sunspot.session = ::Sunspot.session.original_session
-    end
+    Searchkick.enable_callbacks
     DatabaseCleaner.clean
   end
 
-end
-
-def with_solr
-  Product.configuration[:if] = 'true'
-  yield
-  Product.configuration[:if] = false
 end
 
   def credit_card_hash(options = {})

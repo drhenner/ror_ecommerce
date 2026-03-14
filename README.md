@@ -6,15 +6,15 @@ Please create a ticket on github if you have issues.
 They will be addressed ASAP.
 
 This is a Rails e-commerce platform.
-ROR Ecommerce is a *Rails 7.0 application* with the intent to allow developers to create an ecommerce solution easily.
+ROR Ecommerce is a *Rails 7.2 application* with the intent to allow developers to create an ecommerce solution easily.
 This solution includes an Admin for *Purchase Orders*, *Product creation*, *Shipments*, *Fulfillment* and *creating Orders*.
 There is a minimal customer facing shopping cart understanding that this will be customized.
 The cart allows you to track your customers' *cart history* and includes a *double entry accounting system*.
 
-The project has *Solr searching* and *Zurb Foundation for CSS* and uses *jQuery*.
+The project has *Searchkick-powered product search* (backed by Elasticsearch), *Zurb Foundation for CSS*, and uses *jQuery*.
 Currently the most complete Rails solution for your small business.
 
-Please use *Ruby 3.1.4* and enjoy *Rails 7.0*.
+Please use *Ruby 3.3.8* and enjoy *Rails 7.2*.
 
 ROR Ecommerce is designed so that if you understand Rails you will understand ROR_ecommerce.
 There is nothing in this project besides what you might see in a normal Rails application.
@@ -35,9 +35,8 @@ NOTE: Given that everyone has admin rights to the demo it is frequently looking 
 
 Please feel free to ask/answer questions in our [Google Group](http://groups.google.com/group/ror_ecommerce).
 
-Install RVM with Ruby 3.1.4.
-If you have 3.1.4 on your system you're good to go.
-Please refer to the [RVM](http://beginrescueend.com/rvm/basics/) site for more details.
+Install Ruby 3.3.8 using a version manager such as [rbenv](https://github.com/rbenv/rbenv) or [RVM](http://rvm.io/).
+If you already have 3.3.8 on your system you're good to go.
 
 Copy the `database.yml` for your setup.
 For SQLite3, `cp config/database.yml.sqlite3 config/database.yml`.
@@ -138,39 +137,39 @@ brew install vips
 brew install imagemagick
 ```
 
-## Adding Solr Search (Optional)
+## Product Search (Searchkick + Elasticsearch)
 
-Solr search is **not enabled by default**. The Sunspot gems are not in the Gemfile. To add Solr search:
+Product search is powered by [Searchkick](https://github.com/ankane/searchkick), which uses Elasticsearch under the hood. It provides typo-tolerant, relevance-ranked full-text search across product names, keywords, and descriptions.
 
-1. Add the gems to your Gemfile:
+### How it works
 
-```ruby
-gem 'sunspot_solr'
-gem 'sunspot_rails'
-```
+The `Product` model includes the `ProductSearch` concern (`app/models/concerns/product_search.rb`), which:
 
-2. Install and start Solr:
+- Declares `searchkick word_start: [:name]` for autocomplete-friendly matching on product names
+- Indexes `name` (boosted 2x), `product_keywords`, `description_markup`, and `deleted_at`
+- Provides `Product.standard_search(query, page:, per_page:)` used by the storefront search (`ProductsController#create`)
+- Falls back to a SQL `LIKE` query if Elasticsearch is unreachable, so the app remains functional without ES running
+
+### Setup
+
+1. Install and start Elasticsearch:
 
 ```bash
-brew install solr
-bundle install
-bundle exec rake sunspot:solr:start
+brew install elasticsearch
+brew services start elasticsearch
 ```
 
-3. In `app/models/product.rb`, uncomment:
+2. Reindex products (required after initial seed or any time you want to rebuild the index):
 
-```ruby
-#include ProductSolr
+```bash
+rails runner "Product.reindex"
 ```
 
-and remove the `self.standard_search` method.
+The `db:seed_fake` rake task automatically reindexes products after seeding.
 
-Take a look at setting up Solr - [Solr in 5 minutes](http://github.com/outoftime/sunspot/wiki/adding-sunspot-search-to-rails-in-5-minutes-or-less)
+### Elasticsearch is optional for development
 
-If you get the error `Errno::ECONNREFUSED (Connection refused - connect(2)):` when you try to create a product, you have not started Solr search.
-Run `bundle exec rake sunspot:solr:start`, or remove Solr completely.
-
-Remember to run `bundle exec rake sunspot:reindex` before doing your search if you already have data in the DB
+If Elasticsearch is not running, product search degrades gracefully to SQL `LIKE` queries on `products.name` and `products.meta_keywords`. Admin product grids (`Product.admin_grid`) do not use Elasticsearch at all.
 
 ## Running Tests
 
@@ -186,11 +185,28 @@ Then run the full suite:
 bundle exec rspec
 ```
 
-**Note:** One product-creation spec requires Solr to be running (`bundle exec rake sunspot:solr:start`). All other specs pass without Solr.
+### Searchkick in tests
+
+Searchkick callbacks are **disabled globally** in `spec_helper.rb` (`Searchkick.disable_callbacks` in `before(:each)`, re-enabled in `after(:each)`). This means:
+
+- **Elasticsearch does not need to be running** to run the test suite. Product saves skip indexing entirely.
+- Search specs exercise the SQL fallback path by default, which verifies that search degrades gracefully.
+- If you need to test actual Elasticsearch search behavior in a spec, enable callbacks and reindex within the test:
+
+```ruby
+it "returns matching products from Elasticsearch" do
+  Searchkick.enable_callbacks
+  product = FactoryBot.create(:product, name: "Red Widget")
+  Product.reindex
+  results = Product.standard_search("Red Widget")
+  expect(results).to include(product)
+end
+```
 
 ## TODO:
 
 * more documentation
+* Evaluate migrating from Authlogic to Rails' built-in `has_secure_password` + `authenticate_by`
 * Add Solid Cache support when upgrading to Rails 8
 
 

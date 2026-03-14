@@ -57,19 +57,20 @@ These are populated by `db/seeds.rb` and the test suite assumes they exist:
 
 If specs fail with "must exist" errors on `State`, `Country`, `Role`, `ItemType`, `ReferralProgram`, etc. — seed data is missing. Re-run `RAILS_ENV=test rake db:seed`.
 
-### 4. Solr required for product search specs
+### 4. Elasticsearch required for product search specs
 
-The `Admin::Merchandise::ProductsController` create spec (and any spec that triggers Sunspot indexing on product save) requires Solr to be running. Without it the controller rescues the connection error and renders a "Please make sure you have solr started" message instead of redirecting.
+Product search uses Searchkick (backed by Elasticsearch). For specs that exercise search, Elasticsearch must be running:
 
 ```bash
-bundle exec rake sunspot:solr:start
+brew services start elasticsearch
 ```
 
-If you cannot start Solr, exclude the spec or stub Sunspot:
+Searchkick callbacks are disabled globally in `spec_helper.rb` (`Searchkick.disable_callbacks` in `before(:each)`, re-enabled in `after(:each)`). For specs that need to test actual search results, enable callbacks and reindex within the test:
 
 ```ruby
-Sunspot.stubs(:index).returns(true)
-Sunspot.stubs(:index!).returns(true)
+Searchkick.enable_callbacks
+Product.reindex
+# ... perform search assertions ...
 ```
 
 ## Test Architecture
