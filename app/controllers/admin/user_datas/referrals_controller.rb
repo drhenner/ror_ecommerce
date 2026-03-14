@@ -1,8 +1,7 @@
 class Admin::UserDatas::ReferralsController < Admin::UserDatas::BaseController
   helper_method :sort_column, :sort_direction, :referral_types, :referral_programs
   def index
-    @referrals = Referral.order(sort_column + " " + sort_direction).
-                          paginate(:page => pagination_page, :per_page => pagination_rows)
+    @pagy, @referrals = pagy(Referral.order(sort_column + " " + sort_direction), limit: pagination_rows)
   end
 
   def show

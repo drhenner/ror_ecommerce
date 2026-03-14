@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+
   protect_from_forgery
   layout 'application'
 
@@ -44,8 +46,10 @@ class ApplicationController < ActionController::Base
   end
 
   def pagination_page
-    params[:page] ||= 1
-    params[:page].to_i
+    page = (params[:page] || 1).to_i
+    page = 1 if page < 1
+    params[:page] = page
+    page
   end
 
   def pagination_rows

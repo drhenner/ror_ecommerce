@@ -1,4 +1,3 @@
-require 'chronic'
 module RorEReports
   class Accounting
     def initialize(start_time, end_time)
@@ -35,9 +34,8 @@ module RorEReports
       [date.beginning_of_day, date.end_of_day]
     end
 
-    def self.weekly(week_of = 'last week')
-      report_week = Chronic.parse(week_of)
-      [report_week.beginning_of_week, report_week.end_of_week]
+    def self.weekly(report_time = 1.week.ago)
+      [report_time.beginning_of_week, report_time.end_of_week]
     end
   end
 end

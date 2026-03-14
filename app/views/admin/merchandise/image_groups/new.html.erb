@@ -7,7 +7,7 @@
 <div class="card">
   <div class="card-body">
     <%= form_for @image_group, url: admin_merchandise_image_groups_path(@image_group) do |f| %>
-      <%= f.error_messages %>
+      <%= render 'shared/error_messages', object: f.object %>
       <div class="form-group">
         <%= f.label :name, class: "form-label" %>
         <%= f.text_field :name, class: "form-control" %>

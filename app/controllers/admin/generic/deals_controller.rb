@@ -1,8 +1,7 @@
 class Admin::Generic::DealsController < Admin::Generic::BaseController
   helper_method :sort_column, :sort_direction, :product_types,:deal_types
   def index
-    @deals = Deal.order(sort_column + " " + sort_direction).
-                                              paginate(:page => pagination_page, :per_page => pagination_rows)
+    @pagy, @deals = pagy(Deal.order(sort_column + " " + sort_direction), limit: pagination_rows)
   end
 
   def show

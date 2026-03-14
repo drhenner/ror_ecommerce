@@ -3,8 +3,7 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
 
   def index
     @product = Product.friendly.find(params[:product_id])
-    @variants = @product.variants.admin_grid(@product, params).order(sort_column + " " + sort_direction).
-                                              paginate(:page => pagination_page, :per_page => pagination_rows)
+    @pagy, @variants = pagy(@product.variants.admin_grid(@product, params).order(sort_column + " " + sort_direction), limit: pagination_rows)
   end
 
   def show

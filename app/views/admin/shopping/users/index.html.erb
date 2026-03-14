@@ -15,7 +15,7 @@
       <div id="users">
         <%= hidden_field_tag :direction, params[:direction] %>
         <%= hidden_field_tag :sort, params[:sort] %>
-        <%= will_paginate @users %>
+        <%== pagy_nav(@pagy) %>
       </div>
     <% end %>
   </div>
@@ -51,7 +51,7 @@
         </tbody>
       </table>
     </div>
-    <%= will_paginate @users %>
+    <%== pagy_nav(@pagy) %>
   </div>
 </div>
 <%= form_tag admin_shopping_users_path, id: 'admin-user-form' do %>

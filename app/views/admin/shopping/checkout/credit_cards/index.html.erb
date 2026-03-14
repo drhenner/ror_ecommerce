@@ -3,6 +3,7 @@
     <h1 class="page-title">Listing credit_cards</h1>
   </div>
   <div class="page-actions">
+    <%= link_to "Back to #{truncate(session_admin_cart.customer&.name || 'Customer', length: 35)}'s Cart", admin_shopping_products_path, class: 'btn btn-outline btn-sm' %>
     <%= link_to 'New Credit card', new_admin_shopping_checkout_credit_card_path, class: 'btn btn-primary btn-sm' %>
   </div>
 </div>

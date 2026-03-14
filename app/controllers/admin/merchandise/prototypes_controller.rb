@@ -2,8 +2,7 @@ class Admin::Merchandise::PrototypesController < Admin::BaseController
   helper_method :sort_column, :sort_direction
 
   def index
-    @prototypes = Prototype.admin_grid(params).order(sort_column + " " + sort_direction).
-                                              paginate(page: pagination_page, per_page: pagination_rows)
+    @pagy, @prototypes = pagy(Prototype.admin_grid(params).order(sort_column + " " + sort_direction), limit: pagination_rows)
   end
 
   def new

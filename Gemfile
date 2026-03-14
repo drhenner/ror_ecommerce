@@ -23,9 +23,6 @@ gem 'awesome_nested_set', '~> 3.9'
 gem 'aws-sdk-s3', '~> 1.0'
 gem 'kramdown'
 gem 'cancancan',  '~> 3.6'
-gem 'chronic'
-
-gem 'dynamic_form'
 gem 'jbuilder', '~> 2.14'
 gem "friendly_id", '~> 5.5'
 
@@ -39,7 +36,7 @@ gem 'rake', '>= 13.0'
 gem 'aasm', '~> 5.5'
 gem 'searchkick'
 gem 'elasticsearch', '~> 8'
-gem 'will_paginate', '~> 4.0'
+gem 'pagy', '~> 9.0'
 
 gem 'image_processing', '~> 1.2'
 
@@ -48,15 +45,15 @@ group :production do
 end
 
 group :development do
-  gem 'railroady'
   gem "better_errors", '~> 2.10'
   gem "binding_of_caller", '~> 1.0'
   gem 'yard'
 end
 
+gem 'trilogy'
+
 group :test, :development do
   gem 'debug'
-  gem 'mysql2', '~> 0.5'
   gem 'capybara', '~> 3.40'
   gem 'launchy'
   gem 'database_cleaner-active_record', '~> 2.1'

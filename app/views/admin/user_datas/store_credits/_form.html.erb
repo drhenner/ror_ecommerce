@@ -1,4 +1,4 @@
-<%= f.error_messages %>
+<%= render 'shared/error_messages', object: f.object %>
 <div class="form-group">
   <%= label :amount_to_add, 'Amount to Add', class: 'form-label' %>
   <%= text_field_tag :amount_to_add %>

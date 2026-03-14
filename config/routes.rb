@@ -136,6 +136,7 @@ Hadean::Application.routes.draw do
       end
     end
     namespace :shopping do
+      resources :cart_items, only: [:update, :destroy]
       resources :carts
       resources :products
       resources :users

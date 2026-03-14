@@ -3,8 +3,7 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     authorize! :view_users, current_user
-    @users = User.admin_grid(params).order(sort_column + " " + sort_direction).
-                                    paginate(:page => pagination_page, :per_page => pagination_rows)
+    @pagy, @users = pagy(User.admin_grid(params).order(sort_column + " " + sort_direction), limit: pagination_rows)
   end
 
   def show

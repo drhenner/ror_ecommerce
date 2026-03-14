@@ -8,10 +8,9 @@ class ProductsController < ApplicationController
       product_types = product_type.self_and_descendants.map(&:id)
     end
     if product_types
-      @products = products.where(product_type_id: product_types).
-                           paginate(page: pagination_page, per_page: pagination_rows)
+      @pagy, @products = pagy(products.where(product_type_id: product_types), limit: pagination_rows)
     else
-      @products = products.paginate(page: pagination_page, per_page: pagination_rows)
+      @pagy, @products = pagy(products, limit: pagination_rows)
     end
   end
 
@@ -19,8 +18,14 @@ class ProductsController < ApplicationController
     if params[:q].present?
       query = params[:q].to_s.truncate(200, omission: "")
       @products = Product.standard_search(query, page: pagination_page, per_page: pagination_rows)
+      if @products.respond_to?(:total_count)
+        @pagy = Pagy.new(count: @products.total_count, page: pagination_page, limit: pagination_rows)
+      else
+        count = Product.active.where("products.name LIKE :q OR products.meta_keywords LIKE :q", q: "%#{query}%").count
+        @pagy = Pagy.new(count: count, page: pagination_page, limit: pagination_rows)
+      end
     else
-      @products = Product.active.includes(:images, :active_variants).paginate(page: pagination_page, per_page: pagination_rows)
+      @pagy, @products = pagy(Product.active.includes(:images, :active_variants), limit: pagination_rows)
     end
 
     render template: '/products/index'

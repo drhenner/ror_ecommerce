@@ -2,8 +2,7 @@ class Admin::Fulfillment::OrdersController < Admin::Fulfillment::BaseController
   helper_method :sort_column, :sort_direction
   # GET /admin/fulfillment/orders
   def index
-    @orders = Order.fulfillment_grid(params).order(sort_column + " " + sort_direction).
-                                            paginate(:page => pagination_page, :per_page => pagination_rows)
+    @pagy, @orders = pagy(Order.fulfillment_grid(params).order(sort_column + " " + sort_direction), limit: pagination_rows)
 
   end
 
