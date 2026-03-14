@@ -37,6 +37,7 @@ services:
         cp config/database.yml.docker config/database.yml &&
         bundle install --jobs 4 &&
         bundle exec rake db:create db:migrate &&
+        bundle exec rails dartsass:build &&
         bundle exec rspec
       "
 

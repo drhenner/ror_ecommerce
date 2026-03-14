@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option C: Two-Tier Hybrid Navigation — Admin Wireframe</title>
+<style>
+  :root {
+    --topbar-h: 48px;
+    --section-bar-h: 44px;
+    --color-bg: #f1f5f9;
+    --color-surface: #ffffff;
+    --color-border: #e2e8f0;
+    --color-text: #0f172a;
+    --color-text-muted: #64748b;
+    --color-primary: #6366f1;
+    --color-primary-light: #eef2ff;
+    --color-primary-dark: #4338ca;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; background: var(--color-bg); color: var(--color-text); }
+
+  /* PRIMARY TOP BAR */
+  .primary-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: var(--topbar-h);
+    background: #0f172a;
+    display: flex; align-items: center; padding: 0 16px;
+    z-index: 100;
+  }
+  .primary-brand { display: flex; align-items: center; gap: 8px; margin-right: 24px; }
+  .primary-brand .icon { width: 26px; height: 26px; background: var(--color-primary); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; font-weight: 700; }
+  .primary-brand span { font-weight: 700; font-size: 14px; color: #fff; }
+  .primary-links { display: flex; gap: 1px; }
+  .primary-link {
+    padding: 6px 14px; border-radius: 6px;
+    font-size: 13px; font-weight: 500; color: #94a3b8;
+    text-decoration: none; transition: all .15s;
+  }
+  .primary-link:hover { color: #e2e8f0; background: rgba(255,255,255,.08); }
+  .primary-link.active { color: #fff; background: rgba(255,255,255,.12); }
+  .primary-right { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  .primary-search {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 10px; border-radius: 5px;
+    background: rgba(255,255,255,.08); color: #64748b;
+    font-size: 12px; cursor: pointer; min-width: 160px;
+  }
+  .primary-search:hover { background: rgba(255,255,255,.12); }
+  .primary-search .keys { margin-left: auto; display: flex; gap: 2px; }
+  .primary-search .key { background: rgba(255,255,255,.1); border-radius: 3px; padding: 0 4px; font-size: 10px; line-height: 16px; }
+  .primary-icon-btn { width: 30px; height: 30px; border-radius: 5px; border: none; background: none; cursor: pointer; font-size: 15px; color: #94a3b8; display: flex; align-items: center; justify-content: center; }
+  .primary-icon-btn:hover { color: #e2e8f0; background: rgba(255,255,255,.08); }
+  .primary-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 600; cursor: pointer; margin-left: 4px; }
+
+  /* SECTION BAR (contextual sub-nav) */
+  .section-bar {
+    position: fixed; top: var(--topbar-h); left: 0; right: 0;
+    height: var(--section-bar-h);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex; align-items: center; padding: 0 16px;
+    z-index: 90;
+  }
+  .section-title { font-size: 14px; font-weight: 600; margin-right: 20px; padding-right: 20px; border-right: 1px solid var(--color-border); }
+  .section-links { display: flex; gap: 2px; }
+  .section-link {
+    padding: 5px 12px; border-radius: 6px;
+    font-size: 13px; font-weight: 500; color: var(--color-text-muted);
+    text-decoration: none; transition: all .12s;
+  }
+  .section-link:hover { color: var(--color-text); background: var(--color-bg); }
+  .section-link.active { color: var(--color-primary); background: var(--color-primary-light); }
+  .section-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+  /* MAIN */
+  .main { margin-top: calc(var(--topbar-h) + var(--section-bar-h)); padding: 20px; min-height: calc(100vh - var(--topbar-h) - var(--section-bar-h)); }
+
+  /* HOTWIRE INDICATORS */
+  .turbo-frame-indicator {
+    border: 2px dashed var(--color-primary); border-radius: var(--radius);
+    position: relative;
+  }
+  .turbo-frame-indicator::before {
+    content: attr(data-frame);
+    position: absolute; top: -10px; left: 12px;
+    background: var(--color-primary); color: #fff;
+    font-size: 10px; padding: 1px 8px; border-radius: 3px;
+    font-weight: 600; letter-spacing: .5px; z-index: 1;
+  }
+  .hotwire-note {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--color-primary-light); color: var(--color-primary);
+    font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500;
+    border: 1px solid #c7d2fe;
+  }
+
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; border: 1px solid transparent; cursor: pointer; transition: all .15s; text-decoration: none; }
+  .btn-primary { background: var(--color-primary); color: #fff; }
+  .btn-primary:hover { background: var(--color-primary-dark); }
+  .btn-outline { background: var(--color-surface); border-color: var(--color-border); color: var(--color-text); }
+  .btn-outline:hover { background: var(--color-bg); }
+  .btn-sm { padding: 4px 10px; font-size: 12px; }
+
+  /* GRID LAYOUT */
+  .dashboard-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+  .col-3 { grid-column: span 3; }
+  .col-4 { grid-column: span 4; }
+  .col-6 { grid-column: span 6; }
+  .col-8 { grid-column: span 8; }
+  .col-12 { grid-column: span 12; }
+
+  /* CARDS */
+  .card { background: var(--color-surface); border-radius: var(--radius); border: 1px solid var(--color-border); box-shadow: var(--shadow); }
+  .card-header { padding: 14px 16px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; }
+  .card-title { font-size: 14px; font-weight: 600; }
+  .card-body { padding: 16px; }
+  .card-body.flush { padding: 0; }
+
+  /* MINI STAT CARD */
+  .mini-stat { display: flex; align-items: center; gap: 14px; }
+  .mini-stat-icon { width: 42px; height: 42px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .mini-stat-icon.purple { background: #eef2ff; color: var(--color-primary); }
+  .mini-stat-icon.green { background: #ecfdf5; color: var(--color-success); }
+  .mini-stat-icon.amber { background: #fffbeb; color: var(--color-warning); }
+  .mini-stat-icon.blue { background: #eff6ff; color: #3b82f6; }
+  .mini-stat-value { font-size: 22px; font-weight: 700; }
+  .mini-stat-label { font-size: 12px; color: var(--color-text-muted); margin-top: 1px; }
+  .mini-stat-trend { font-size: 11px; margin-top: 2px; display: flex; align-items: center; gap: 3px; }
+  .mini-stat-trend.up { color: var(--color-success); }
+  .mini-stat-trend.down { color: var(--color-danger); }
+
+  /* ORDER DETAIL PANEL */
+  .order-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .detail-group { }
+  .detail-label { font-size: 11px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 4px; }
+  .detail-value { font-size: 14px; font-weight: 500; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; }
+  table th { text-align: left; padding: 8px 16px; font-size: 11px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: .5px; background: #f8fafc; border-bottom: 1px solid var(--color-border); }
+  table td { padding: 10px 16px; font-size: 13px; border-bottom: 1px solid var(--color-border); }
+  table tbody tr:last-child td { border-bottom: none; }
+  table tbody tr:hover td { background: #f8fafc; }
+  .status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; }
+  .status-pending { background: #fef3c7; color: #92400e; }
+  .status-processing { background: #dbeafe; color: #1e40af; }
+  .status-shipped { background: #e0e7ff; color: #3730a3; }
+  .status-paid { background: #dcfce7; color: #166534; }
+  .status-partial { background: #fef9c3; color: #854d0e; }
+
+  /* TIMELINE */
+  .timeline { padding: 0 16px 16px; }
+  .timeline-item { display: flex; gap: 12px; position: relative; padding-bottom: 16px; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before { content: ''; position: absolute; left: 11px; top: 24px; bottom: 0; width: 1px; background: var(--color-border); }
+  .timeline-item:last-child::before { display: none; }
+  .timeline-dot { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; z-index: 1; }
+  .timeline-dot.purple { background: var(--color-primary-light); color: var(--color-primary); border: 2px solid var(--color-primary); }
+  .timeline-dot.green { background: #ecfdf5; color: var(--color-success); border: 2px solid var(--color-success); }
+  .timeline-dot.gray { background: #f1f5f9; color: var(--color-text-muted); border: 2px solid var(--color-border); }
+  .timeline-content { padding-top: 2px; }
+  .timeline-title { font-size: 13px; font-weight: 500; }
+  .timeline-time { font-size: 11px; color: var(--color-text-muted); margin-top: 2px; }
+
+  /* CHART PLACEHOLDER */
+  .chart-placeholder {
+    height: 200px; background: linear-gradient(135deg, #f8fafc, #eef2ff);
+    border-radius: var(--radius); display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--color-text-muted); font-size: 13px;
+  }
+  .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 120px; margin-bottom: 12px; }
+  .chart-bar { width: 28px; border-radius: 4px 4px 0 0; background: var(--color-primary); opacity: .6; }
+  .chart-bar:nth-child(1) { height: 45%; }
+  .chart-bar:nth-child(2) { height: 60%; }
+  .chart-bar:nth-child(3) { height: 35%; }
+  .chart-bar:nth-child(4) { height: 80%; }
+  .chart-bar:nth-child(5) { height: 55%; opacity: .8; }
+  .chart-bar:nth-child(6) { height: 95%; opacity: 1; }
+  .chart-bar:nth-child(7) { height: 70%; }
+
+  /* ORDER LIST - left panel */
+  .order-list { max-height: 360px; overflow-y: auto; }
+  .order-list-item {
+    display: flex; align-items: center; padding: 10px 16px;
+    border-bottom: 1px solid var(--color-border); cursor: pointer;
+    transition: background .1s;
+  }
+  .order-list-item:hover { background: #f8fafc; }
+  .order-list-item.selected { background: var(--color-primary-light); border-left: 3px solid var(--color-primary); }
+  .order-id { font-weight: 600; font-size: 13px; }
+  .order-customer { font-size: 12px; color: var(--color-text-muted); margin-top: 1px; }
+  .order-amount { margin-left: auto; text-align: right; }
+  .order-amount .amount { font-weight: 600; font-size: 13px; }
+  .order-amount .date { font-size: 11px; color: var(--color-text-muted); }
+
+  .annotation {
+    margin-top: 32px; padding: 16px 20px;
+    background: #eef2ff; border: 1px solid #c7d2fe; border-radius: var(--radius);
+    font-size: 13px; line-height: 1.6;
+  }
+  .annotation strong { color: var(--color-primary-dark); }
+  .annotation code { background: #e0e7ff; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+  .wireframe-label {
+    text-align: center; padding: 20px; background: #0f172a; color: #fff;
+    font-size: 13px; letter-spacing: .5px;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  }
+  .wireframe-label strong { color: #a5b4fc; }
+</style>
+</head>
+<body>
+
+<!-- PRIMARY TOP BAR -->
+<nav class="primary-bar">
+  <div class="primary-brand">
+    <div class="icon">R</div>
+    <span>RoR Commerce</span>
+  </div>
+  <div class="primary-links">
+    <a class="primary-link" href="#">Dashboard</a>
+    <a class="primary-link active" href="#">Orders</a>
+    <a class="primary-link" href="#">Merchandise</a>
+    <a class="primary-link" href="#">Inventory</a>
+    <a class="primary-link" href="#">Customers</a>
+    <a class="primary-link" href="#">Config</a>
+  </div>
+  <div class="primary-right">
+    <div class="primary-search">
+      &#128269; Search...
+      <span class="keys"><span class="key">&#8984;</span><span class="key">K</span></span>
+    </div>
+    <button class="primary-icon-btn">&#128276;</button>
+    <button class="primary-icon-btn">&#127758;</button>
+    <div class="primary-avatar">DH</div>
+  </div>
+</nav>
+
+<!-- SECTION BAR (changes based on active primary link) -->
+<div class="turbo-frame-indicator" data-frame="turbo-frame: section_nav" style="position:fixed;top:48px;left:0;right:0;z-index:90;border:none;border-radius:0">
+  <div class="section-bar" style="position:relative;top:0">
+    <div class="section-title">Orders</div>
+    <div class="section-links">
+      <a class="section-link" href="#">Overview</a>
+      <a class="section-link active" href="#">Fulfillment</a>
+      <a class="section-link" href="#">History</a>
+      <a class="section-link" href="#">Shipments</a>
+      <a class="section-link" href="#">Returns (RMA)</a>
+      <a class="section-link" href="#">Invoices</a>
+    </div>
+    <div class="section-right">
+      <span class="hotwire-note">Turbo Frame — section nav swaps on primary click</span>
+      <button class="btn btn-primary btn-sm">+ New Order</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main" style="padding-bottom:80px">
+
+  <!-- STATS ROW -->
+  <div class="dashboard-grid" style="margin-bottom:20px">
+    <div class="col-3">
+      <div class="card"><div class="card-body">
+        <div class="mini-stat">
+          <div class="mini-stat-icon purple">&#9744;</div>
+          <div>
+            <div class="mini-stat-value">47</div>
+            <div class="mini-stat-label">Pending Orders</div>
+            <div class="mini-stat-trend up">&#9650; 12% this week</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    <div class="col-3">
+      <div class="card"><div class="card-body">
+        <div class="mini-stat">
+          <div class="mini-stat-icon green">&#10003;</div>
+          <div>
+            <div class="mini-stat-value">189</div>
+            <div class="mini-stat-label">Shipped This Week</div>
+            <div class="mini-stat-trend up">&#9650; 8%</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    <div class="col-3">
+      <div class="card"><div class="card-body">
+        <div class="mini-stat">
+          <div class="mini-stat-icon amber">!</div>
+          <div>
+            <div class="mini-stat-value">3</div>
+            <div class="mini-stat-label">Returns Pending</div>
+            <div class="mini-stat-trend down">&#9660; Needs review</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    <div class="col-3">
+      <div class="card"><div class="card-body">
+        <div class="mini-stat">
+          <div class="mini-stat-icon blue">$</div>
+          <div>
+            <div class="mini-stat-value">$18.4k</div>
+            <div class="mini-stat-label">Revenue This Week</div>
+            <div class="mini-stat-trend up">&#9650; 15%</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- MASTER-DETAIL LAYOUT -->
+  <div class="dashboard-grid">
+
+    <!-- LEFT: ORDER LIST -->
+    <div class="col-4">
+      <div class="turbo-frame-indicator" data-frame="turbo-frame: order_list">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Fulfillment Queue</span>
+            <span style="font-size:12px;color:var(--color-text-muted)">47 orders</span>
+          </div>
+          <div class="card-body flush">
+            <div style="padding:8px 12px;border-bottom:1px solid var(--color-border)">
+              <input type="text" placeholder="Filter orders..." style="width:100%;padding:6px 10px;border:1px solid var(--color-border);border-radius:5px;font-size:13px;outline:none">
+            </div>
+            <div class="order-list">
+              <div class="order-list-item selected">
+                <div>
+                  <div class="order-id">#1042</div>
+                  <div class="order-customer">Jane Cooper</div>
+                </div>
+                <div class="order-amount">
+                  <div class="amount">$129.99</div>
+                  <div class="date">2 min ago</div>
+                </div>
+              </div>
+              <div class="order-list-item">
+                <div>
+                  <div class="order-id">#1041</div>
+                  <div class="order-customer">Robert Fox</div>
+                </div>
+                <div class="order-amount">
+                  <div class="amount">$89.50</div>
+                  <div class="date">18 min ago</div>
+                </div>
+              </div>
+              <div class="order-list-item">
+                <div>
+                  <div class="order-id">#1040</div>
+                  <div class="order-customer">Esther Howard</div>
+                </div>
+                <div class="order-amount">
+                  <div class="amount">$249.00</div>
+                  <div class="date">45 min ago</div>
+                </div>
+              </div>
+              <div class="order-list-item">
+                <div>
+                  <div class="order-id">#1039</div>
+                  <div class="order-customer">Cameron Williamson</div>
+                </div>
+                <div class="order-amount">
+                  <div class="amount">$67.20</div>
+                  <div class="date">1 hr ago</div>
+                </div>
+              </div>
+              <div class="order-list-item">
+                <div>
+                  <div class="order-id">#1038</div>
+                  <div class="order-customer">Brooklyn Simmons</div>
+                </div>
+                <div class="order-amount">
+                  <div class="amount">$310.00</div>
+                  <div class="date">2 hr ago</div>
+                </div>
+              </div>
+              <div class="order-list-item">
+                <div>
+                  <div class="order-id">#1037</div>
+                  <div class="order-customer">Leslie Alexander</div>
+                </div>
+                <div class="order-amount">
+                  <div class="amount">$55.00</div>
+                  <div class="date">3 hr ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: ORDER DETAIL -->
+    <div class="col-8">
+      <div class="turbo-frame-indicator" data-frame="turbo-frame: order_detail" style="margin-bottom:16px">
+        <div class="card">
+          <div class="card-header">
+            <div style="display:flex;align-items:center;gap:12px">
+              <span class="card-title">Order #1042</span>
+              <span class="status status-pending">Pending</span>
+              <span class="hotwire-note">Clicking list item loads detail via Turbo Frame</span>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button class="btn btn-outline btn-sm">Print Invoice</button>
+              <button class="btn btn-primary btn-sm">Create Shipment</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="order-detail">
+              <div class="detail-group">
+                <div class="detail-label">Customer</div>
+                <div class="detail-value">Jane Cooper</div>
+                <div style="font-size:12px;color:var(--color-text-muted)">jane.cooper@email.com</div>
+              </div>
+              <div class="detail-group">
+                <div class="detail-label">Shipping Address</div>
+                <div class="detail-value">123 Main St, Apt 4B</div>
+                <div style="font-size:12px;color:var(--color-text-muted)">New York, NY 10001</div>
+              </div>
+              <div class="detail-group">
+                <div class="detail-label">Payment</div>
+                <div class="detail-value">Visa ending 4242</div>
+                <div style="font-size:12px;color:var(--color-text-muted)"><span class="status status-paid" style="margin-top:4px">Paid</span></div>
+              </div>
+              <div class="detail-group">
+                <div class="detail-label">Shipping Method</div>
+                <div class="detail-value">Standard Ground</div>
+                <div style="font-size:12px;color:var(--color-text-muted)">Est. delivery: Mar 18-20</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINE ITEMS -->
+      <div class="dashboard-grid" style="margin-bottom:0">
+        <div class="col-8">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Line Items</span>
+              <span style="font-size:12px;color:var(--color-text-muted)">3 items</span>
+            </div>
+            <div class="card-body flush">
+              <table>
+                <thead>
+                  <tr><th>Item</th><th>SKU</th><th>Qty</th><th>Price</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight:500">Classic Cotton Tee (M, Navy)</td>
+                    <td style="color:var(--color-text-muted)">SKU-001-M-NV</td>
+                    <td>2</td>
+                    <td>$59.98</td>
+                    <td><span class="status status-pending">Ready</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:500">Leather Wallet</td>
+                    <td style="color:var(--color-text-muted)">SKU-002</td>
+                    <td>1</td>
+                    <td>$59.00</td>
+                    <td><span class="status status-pending">Ready</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:500">Gift Wrapping</td>
+                    <td style="color:var(--color-text-muted)">SVC-GW</td>
+                    <td>1</td>
+                    <td>$5.00</td>
+                    <td><span class="status status-processing">Processing</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="padding:12px 16px;text-align:right;border-top:1px solid var(--color-border)">
+                <span style="color:var(--color-text-muted);font-size:13px">Subtotal: $123.98 &nbsp;&bull;&nbsp; Shipping: $6.01 &nbsp;&bull;&nbsp;</span>
+                <span style="font-weight:700;font-size:15px">Total: $129.99</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="col-4">
+          <div class="turbo-frame-indicator" data-frame="turbo-stream: order_timeline">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Timeline</span>
+                <span class="hotwire-note">Live via Turbo Stream</span>
+              </div>
+              <div class="card-body flush">
+                <div class="timeline" style="padding-top:16px">
+                  <div class="timeline-item">
+                    <div class="timeline-dot purple">&#9744;</div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Order placed</div>
+                      <div class="timeline-time">Today, 2:14 PM</div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot green">$</div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Payment captured</div>
+                      <div class="timeline-time">Today, 2:14 PM</div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot gray">&#9998;</div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Awaiting fulfillment</div>
+                      <div class="timeline-time">Now</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHART ROW -->
+  <div class="dashboard-grid" style="margin-top:20px">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Fulfillment Performance — Last 7 Days</span>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-outline btn-sm" style="font-size:11px">7D</button>
+            <button class="btn btn-outline btn-sm" style="font-size:11px">30D</button>
+            <button class="btn btn-outline btn-sm" style="font-size:11px">90D</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-placeholder">
+            <div class="chart-bars">
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+              <div class="chart-bar"></div>
+            </div>
+            <span>Chart area — would use Rails 8 native chart rendering or a Stimulus-wrapped library</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNOTATIONS -->
+  <div class="annotation">
+    <strong>Option C: Two-Tier Hybrid Navigation</strong> — Key design decisions:
+    <ul style="margin-top:8px;padding-left:20px;list-style:disc">
+      <li><strong>Two-tier navigation</strong> — dark primary bar for top-level sections (Orders, Merchandise, Inventory, etc.) + white contextual section bar that swaps sub-links based on the active section. The section bar is itself a <code>&lt;turbo-frame&gt;</code> that updates when you click a primary link.</li>
+      <li><strong>Master-detail pattern</strong> — the fulfillment view shows an order list on the left and detail on the right. Clicking an order loads the detail pane via a <code>Turbo Frame</code>, no full navigation. Perfect for high-volume order processing.</li>
+      <li><strong>Turbo Streams for timeline</strong> — the order timeline updates in real-time via <code>Action Cable + Turbo Streams</code>. When a shipment is created, the timeline item appears instantly for all admins viewing that order.</li>
+      <li><strong>Contextual actions</strong> — "Create Shipment" button in the detail header submits via Turbo Stream, updating both the order status badge and timeline simultaneously.</li>
+      <li><strong>12-column CSS Grid</strong> — a utility-free grid system using plain CSS. No framework dependency, responsive-ready, easily themed.</li>
+      <li><strong>Chart area</strong> — would replace the current Morris.js/Raphael charts with a <code>Stimulus</code> controller wrapping Chart.js or a lightweight alternative. Period selector buttons swap chart data via Turbo Frames.</li>
+      <li>This layout best suits <strong>high-throughput operations</strong> — the two-tier nav keeps context (you're always in "Orders") while the master-detail avoids constant back-and-forth navigation.</li>
+    </ul>
+  </div>
+</main>
+
+<div class="wireframe-label">
+  <strong>WIREFRAME — Option C: Two-Tier Hybrid Navigation</strong> &nbsp;|&nbsp; Rails 8 + Hotwire (Turbo Frames, Turbo Streams + Action Cable, Stimulus) &nbsp;|&nbsp; Master-detail for operational efficiency
+</div>
+
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option B: Top Nav + Command Palette — Admin Wireframe</title>
+<style>
+  :root {
+    --nav-height: 52px;
+    --color-bg: #fafafa;
+    --color-surface: #ffffff;
+    --color-border: #e5e5e5;
+    --color-text: #171717;
+    --color-text-muted: #737373;
+    --color-accent: #171717;
+    --color-accent-light: #f5f5f5;
+    --color-blue: #2563eb;
+    --color-success: #16a34a;
+    --color-warning: #d97706;
+    --color-danger: #dc2626;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --shadow: 0 1px 2px rgba(0,0,0,.05);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; background: var(--color-bg); color: var(--color-text); }
+
+  /* TOP NAV */
+  .topnav {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex; align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+  }
+  .topnav-brand { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; margin-right: 32px; }
+  .topnav-brand .logo { width: 24px; height: 24px; background: var(--color-accent); border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+  .topnav-links { display: flex; gap: 2px; }
+  .topnav-link {
+    padding: 6px 12px; border-radius: 6px;
+    font-size: 13px; font-weight: 500; color: var(--color-text-muted);
+    text-decoration: none; transition: all .15s;
+    position: relative;
+  }
+  .topnav-link:hover { color: var(--color-text); background: var(--color-accent-light); }
+  .topnav-link.active { color: var(--color-text); }
+  .topnav-link.active::after { content: ''; position: absolute; bottom: -14px; left: 12px; right: 12px; height: 2px; background: var(--color-accent); border-radius: 1px; }
+  .topnav-right { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  .cmd-trigger {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 6px;
+    border: 1px solid var(--color-border); background: var(--color-bg);
+    font-size: 13px; color: var(--color-text-muted); cursor: pointer;
+    min-width: 220px; transition: all .15s;
+  }
+  .cmd-trigger:hover { border-color: #a3a3a3; }
+  .cmd-trigger .icon { font-size: 14px; }
+  .cmd-trigger .keys { margin-left: auto; display: flex; gap: 3px; }
+  .cmd-trigger .key { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 3px; padding: 0 5px; font-size: 11px; line-height: 18px; font-weight: 500; }
+  .nav-icon-btn { width: 32px; height: 32px; border-radius: 6px; border: none; background: none; cursor: pointer; font-size: 16px; color: var(--color-text-muted); display: flex; align-items: center; justify-content: center; }
+  .nav-icon-btn:hover { background: var(--color-accent-light); }
+  .nav-avatar { width: 28px; height: 28px; border-radius: 50%; background: #e5e5e5; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; cursor: pointer; margin-left: 4px; }
+
+  /* COMMAND PALETTE OVERLAY */
+  .cmd-palette-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.4); backdrop-filter: blur(4px);
+    z-index: 200; justify-content: center; padding-top: 15vh;
+  }
+  .cmd-palette-overlay.open { display: flex; }
+  .cmd-palette {
+    width: 560px; max-height: 420px;
+    background: var(--color-surface); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg); overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .cmd-input-wrapper { padding: 12px 16px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: 10px; }
+  .cmd-input-wrapper .icon { font-size: 18px; color: var(--color-text-muted); }
+  .cmd-input { flex: 1; border: none; outline: none; font-size: 15px; background: none; }
+  .cmd-results { overflow-y: auto; padding: 8px; }
+  .cmd-group-label { font-size: 11px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: .8px; padding: 8px 8px 4px; }
+  .cmd-result { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+  .cmd-result:hover, .cmd-result.selected { background: var(--color-accent-light); }
+  .cmd-result .cmd-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--color-accent-light); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .cmd-result .cmd-label { flex: 1; }
+  .cmd-result .cmd-hint { font-size: 12px; color: var(--color-text-muted); }
+  .cmd-footer { padding: 8px 16px; border-top: 1px solid var(--color-border); font-size: 11px; color: var(--color-text-muted); display: flex; gap: 16px; }
+  .cmd-footer .key { background: var(--color-accent-light); border: 1px solid var(--color-border); border-radius: 3px; padding: 0 4px; font-size: 10px; }
+
+  /* MAIN */
+  .main { margin-top: var(--nav-height); max-width: 1200px; margin-left: auto; margin-right: auto; padding: 24px 32px; }
+
+  /* BREADCRUMB */
+  .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px; }
+  .breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-text); }
+
+  /* PAGE HEADER */
+  .page-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; }
+  .page-title { font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
+  .page-desc { font-size: 14px; color: var(--color-text-muted); margin-top: 4px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; border: 1px solid transparent; cursor: pointer; transition: all .15s; text-decoration: none; }
+  .btn-dark { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+  .btn-dark:hover { background: #404040; }
+  .btn-ghost { background: none; border-color: var(--color-border); color: var(--color-text); }
+  .btn-ghost:hover { background: var(--color-accent-light); }
+
+  /* TABS */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--color-border); margin-bottom: 20px; }
+  .tab { padding: 10px 16px; font-size: 13px; font-weight: 500; color: var(--color-text-muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s; }
+  .tab:hover { color: var(--color-text); }
+  .tab.active { color: var(--color-text); border-bottom-color: var(--color-accent); }
+
+  /* TURBO FRAME */
+  .turbo-frame-indicator {
+    border: 2px dashed var(--color-blue); border-radius: var(--radius);
+    position: relative; margin-bottom: 2px;
+  }
+  .turbo-frame-indicator::before {
+    content: attr(data-frame);
+    position: absolute; top: -10px; left: 12px;
+    background: var(--color-blue); color: #fff;
+    font-size: 10px; padding: 1px 8px; border-radius: 3px;
+    font-weight: 600; letter-spacing: .5px; z-index: 1;
+  }
+  .hotwire-note {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #eff6ff; color: #1d4ed8; font-size: 11px;
+    padding: 2px 8px; border-radius: 4px; font-weight: 500;
+    border: 1px solid #bfdbfe;
+  }
+
+  /* FILTER BAR */
+  .filter-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filter-input { padding: 7px 12px; border: 1px solid var(--color-border); border-radius: 6px; font-size: 13px; background: var(--color-surface); min-width: 200px; outline: none; }
+  .filter-input:focus { border-color: var(--color-accent); }
+  .filter-chip { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--color-border); background: var(--color-surface); font-size: 12px; cursor: pointer; }
+  .filter-chip:hover { background: var(--color-accent-light); }
+  .filter-chip.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+
+  /* TABLE */
+  .data-table { background: var(--color-surface); border-radius: var(--radius); border: 1px solid var(--color-border); overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; }
+  table th { text-align: left; padding: 10px 16px; font-size: 12px; font-weight: 500; color: var(--color-text-muted); background: #fafafa; border-bottom: 1px solid var(--color-border); }
+  table td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--color-border); }
+  table tbody tr:last-child td { border-bottom: none; }
+  table tbody tr:hover td { background: #fafafa; }
+  .checkbox { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid #d4d4d4; cursor: pointer; }
+  .product-cell { display: flex; align-items: center; gap: 10px; }
+  .product-thumb { width: 36px; height: 36px; border-radius: 6px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .product-name { font-weight: 500; }
+  .product-sku { font-size: 12px; color: var(--color-text-muted); }
+  .status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: 500; }
+  .status-active { background: #dcfce7; color: #166534; }
+  .status-draft { background: #f5f5f5; color: #737373; }
+  .status-low { background: #fef3c7; color: #92400e; }
+  .actions-cell { display: flex; gap: 4px; }
+  .action-btn { width: 28px; height: 28px; border-radius: 4px; border: none; background: none; cursor: pointer; font-size: 14px; color: var(--color-text-muted); }
+  .action-btn:hover { background: var(--color-accent-light); }
+
+  /* PAGINATION */
+  .pagination { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; font-size: 13px; color: var(--color-text-muted); }
+  .pagination-btns { display: flex; gap: 4px; }
+  .page-btn { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--color-border); background: var(--color-surface); cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  .page-btn:hover { background: var(--color-accent-light); }
+  .page-btn.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+
+  /* EMPTY SPACE PANEL */
+  .inline-panel {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: var(--radius); padding: 20px; margin-top: 20px;
+  }
+  .inline-panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .inline-panel-title { font-size: 15px; font-weight: 600; }
+
+  /* SLIDE-OVER */
+  .slideover-demo {
+    position: fixed; top: 0; right: 0; bottom: 0; width: 440px;
+    background: var(--color-surface); box-shadow: -4px 0 20px rgba(0,0,0,.1);
+    z-index: 150; display: none; flex-direction: column;
+    border-left: 1px solid var(--color-border);
+  }
+  .slideover-demo.open { display: flex; }
+  .slideover-header { padding: 16px 20px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; }
+  .slideover-title { font-size: 16px; font-weight: 600; }
+  .slideover-close { width: 32px; height: 32px; border-radius: 6px; border: none; background: none; cursor: pointer; font-size: 18px; }
+  .slideover-body { flex: 1; padding: 20px; overflow-y: auto; }
+  .form-group { margin-bottom: 16px; }
+  .form-label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+  .form-input { width: 100%; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 6px; font-size: 14px; outline: none; }
+  .form-input:focus { border-color: var(--color-accent); }
+  .slideover-footer { padding: 16px 20px; border-top: 1px solid var(--color-border); display: flex; gap: 8px; justify-content: flex-end; }
+
+  .annotation {
+    margin-top: 32px; padding: 16px 20px;
+    background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius);
+    font-size: 13px; line-height: 1.6;
+  }
+  .annotation strong { color: #1d4ed8; }
+  .annotation code { background: #dbeafe; padding: 1px 5px; border-radius: 3px; font-size: 12px; }
+
+  .wireframe-label {
+    text-align: center; padding: 20px; background: #171717; color: #fff;
+    font-size: 13px; letter-spacing: .5px;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  }
+  .wireframe-label strong { color: #60a5fa; }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-brand">
+    <div class="logo">R</div>
+    RoR Commerce
+  </div>
+  <div class="topnav-links">
+    <a class="topnav-link" href="#">Dashboard</a>
+    <a class="topnav-link" href="#">Orders</a>
+    <a class="topnav-link active" href="#">Products</a>
+    <a class="topnav-link" href="#">Inventory</a>
+    <a class="topnav-link" href="#">Customers</a>
+    <a class="topnav-link" href="#">Fulfillment</a>
+    <a class="topnav-link" href="#">Reports</a>
+  </div>
+  <div class="topnav-right">
+    <button class="cmd-trigger" onclick="document.querySelector('.cmd-palette-overlay').classList.toggle('open')">
+      <span class="icon">&#128269;</span>
+      Search...
+      <span class="keys"><span class="key">&#8984;</span><span class="key">K</span></span>
+    </button>
+    <button class="nav-icon-btn">&#128276;</button>
+    <button class="nav-icon-btn">&#9881;</button>
+    <div class="nav-avatar">DH</div>
+  </div>
+</nav>
+
+<!-- COMMAND PALETTE -->
+<div class="cmd-palette-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="cmd-palette">
+    <div class="cmd-input-wrapper">
+      <span class="icon">&#128269;</span>
+      <input class="cmd-input" type="text" placeholder="Search products, orders, customers..." autofocus>
+    </div>
+    <div class="cmd-results">
+      <div class="cmd-group-label">Quick Actions</div>
+      <div class="cmd-result selected">
+        <div class="cmd-icon">+</div>
+        <span class="cmd-label">Create New Product</span>
+        <span class="cmd-hint">Merchandise</span>
+      </div>
+      <div class="cmd-result">
+        <div class="cmd-icon">+</div>
+        <span class="cmd-label">Create New Order</span>
+        <span class="cmd-hint">Shopping</span>
+      </div>
+      <div class="cmd-result">
+        <div class="cmd-icon">&#9881;</div>
+        <span class="cmd-label">Shipping Rates</span>
+        <span class="cmd-hint">Config</span>
+      </div>
+      <div class="cmd-group-label">Navigation</div>
+      <div class="cmd-result">
+        <div class="cmd-icon">&#9744;</div>
+        <span class="cmd-label">Fulfillment &rarr; Orders</span>
+      </div>
+      <div class="cmd-result">
+        <div class="cmd-icon">&#9733;</div>
+        <span class="cmd-label">Merchandise &rarr; Brands</span>
+      </div>
+      <div class="cmd-result">
+        <div class="cmd-icon">&#9783;</div>
+        <span class="cmd-label">Coupons &rarr; Deals</span>
+      </div>
+      <div class="cmd-result">
+        <div class="cmd-icon">&#9854;</div>
+        <span class="cmd-label">Users &rarr; Referrals</span>
+      </div>
+    </div>
+    <div class="cmd-footer">
+      <span><span class="key">&uarr;</span><span class="key">&darr;</span> Navigate</span>
+      <span><span class="key">&#9166;</span> Open</span>
+      <span><span class="key">esc</span> Close</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main" style="padding-bottom:80px">
+  <div class="breadcrumb">
+    <a href="#">Admin</a> <span>&#8250;</span>
+    <a href="#">Merchandise</a> <span>&#8250;</span>
+    <span style="color:var(--color-text)">Products</span>
+  </div>
+
+  <div class="page-header">
+    <div>
+      <div class="page-title">Products</div>
+      <div class="page-desc">Manage your product catalog</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost">Import</button>
+      <button class="btn btn-ghost">Export</button>
+      <button class="btn btn-dark" onclick="document.querySelector('.slideover-demo').classList.toggle('open')">+ Add Product</button>
+    </div>
+  </div>
+
+  <!-- TABS (Turbo Frames for each tab content) -->
+  <div class="turbo-frame-indicator" data-frame="turbo-frame: product_tabs" style="margin-bottom:20px">
+    <div class="tabs">
+      <div class="tab active">All Products <span style="color:var(--color-text-muted);font-size:12px">(142)</span></div>
+      <div class="tab">Active <span style="color:var(--color-text-muted);font-size:12px">(98)</span></div>
+      <div class="tab">Draft <span style="color:var(--color-text-muted);font-size:12px">(31)</span></div>
+      <div class="tab">Low Stock <span style="color:var(--color-text-muted);font-size:12px">(13)</span></div>
+    </div>
+    <div style="padding:2px">
+      <div style="display:flex;align-items:center;gap:8px;padding:12px 0">
+        <span class="hotwire-note">Each tab is a Turbo Frame — no full reload</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <input class="filter-input" type="text" placeholder="Search products...">
+    <div class="filter-chip active">All</div>
+    <div class="filter-chip">Apparel</div>
+    <div class="filter-chip">Electronics</div>
+    <div class="filter-chip">Accessories</div>
+    <div class="filter-chip">Home</div>
+    <div style="margin-left:auto">
+      <span class="hotwire-note">Stimulus controller: auto-submit with debounce</span>
+    </div>
+  </div>
+
+  <!-- DATA TABLE -->
+  <div class="turbo-frame-indicator" data-frame="turbo-frame: products_list">
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:32px"><input type="checkbox" class="checkbox"></th>
+            <th>Product</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Inventory</th>
+            <th>Type</th>
+            <th style="width:80px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><div class="product-cell"><div class="product-thumb">&#128085;</div><div><div class="product-name">Classic Cotton Tee</div><div class="product-sku">SKU-001</div></div></div></td>
+            <td><span class="status status-active">Active</span></td>
+            <td>$29.99</td>
+            <td>342 in stock</td>
+            <td>Apparel</td>
+            <td><div class="actions-cell"><button class="action-btn" title="Edit">&#9998;</button><button class="action-btn" title="More">&#8943;</button></div></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><div class="product-cell"><div class="product-thumb">&#128274;</div><div><div class="product-name">Leather Wallet</div><div class="product-sku">SKU-002</div></div></div></td>
+            <td><span class="status status-active">Active</span></td>
+            <td>$59.00</td>
+            <td>128 in stock</td>
+            <td>Accessories</td>
+            <td><div class="actions-cell"><button class="action-btn" title="Edit">&#9998;</button><button class="action-btn" title="More">&#8943;</button></div></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><div class="product-cell"><div class="product-thumb">&#127911;</div><div><div class="product-name">Wireless Headphones</div><div class="product-sku">SKU-003</div></div></div></td>
+            <td><span class="status status-low">Low Stock</span></td>
+            <td>$149.99</td>
+            <td style="color:var(--color-warning);font-weight:500">4 in stock</td>
+            <td>Electronics</td>
+            <td><div class="actions-cell"><button class="action-btn" title="Edit">&#9998;</button><button class="action-btn" title="More">&#8943;</button></div></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><div class="product-cell"><div class="product-thumb">&#128218;</div><div><div class="product-name">Notebook Set</div><div class="product-sku">SKU-004</div></div></div></td>
+            <td><span class="status status-draft">Draft</span></td>
+            <td>$12.50</td>
+            <td>0 in stock</td>
+            <td>Home</td>
+            <td><div class="actions-cell"><button class="action-btn" title="Edit">&#9998;</button><button class="action-btn" title="More">&#8943;</button></div></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><div class="product-cell"><div class="product-thumb">&#9889;</div><div><div class="product-name">USB-C Charger</div><div class="product-sku">SKU-005</div></div></div></td>
+            <td><span class="status status-active">Active</span></td>
+            <td>$34.99</td>
+            <td>87 in stock</td>
+            <td>Electronics</td>
+            <td><div class="actions-cell"><button class="action-btn" title="Edit">&#9998;</button><button class="action-btn" title="More">&#8943;</button></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <span>Showing 1-5 of 142 products</span>
+        <div class="pagination-btns">
+          <button class="page-btn">&laquo;</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">...</button>
+          <button class="page-btn">29</button>
+          <button class="page-btn">&raquo;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNOTATIONS -->
+  <div class="annotation">
+    <strong>Option B: Top Nav + Command Palette</strong> — Key design decisions:
+    <ul style="margin-top:8px;padding-left:20px;list-style:disc">
+      <li><strong>Flat top nav</strong> with minimal primary links — the nav bar has only the top-level sections. Sub-pages are reached via the page itself or the command palette. Maximizes vertical content space.</li>
+      <li><strong>Command palette</strong> (&#8984;K) — a <code>Stimulus</code> controller provides instant fuzzy search across all 72 admin routes. Power users never need to click through menus. Backed by a JSON index endpoint.</li>
+      <li><strong>Turbo Frame tabs</strong> — switching between "All / Active / Draft / Low Stock" swaps just the table content via a <code>&lt;turbo-frame&gt;</code>, no full page load.</li>
+      <li><strong>Slide-over panel</strong> for quick create/edit — "Add Product" opens a slide-over (Stimulus controller) whose form submits via <code>Turbo Stream</code>, appending the new row to the table without navigation.</li>
+      <li><strong>Search filter with debounce</strong> — a <code>Stimulus</code> controller auto-submits the filter form after 300ms, fetching a Turbo Frame update for the table.</li>
+      <li><strong>Content-centric layout</strong> — generous whitespace, max-width container, no sidebar eating screen space. Great for data-heavy list views.</li>
+      <li>Uses <strong>Propshaft + plain CSS</strong> — no build step, no Tailwind, no Node.js. Pure Rails 8 asset pipeline.</li>
+    </ul>
+  </div>
+</main>
+
+<!-- SLIDE-OVER (Quick Create) -->
+<div class="slideover-demo">
+  <div class="slideover-header">
+    <span class="slideover-title">New Product</span>
+    <button class="slideover-close" onclick="this.closest('.slideover-demo').classList.remove('open')">&times;</button>
+  </div>
+  <div class="slideover-body">
+    <div style="margin-bottom:12px"><span class="hotwire-note">Turbo Frame — submits without navigation</span></div>
+    <div class="form-group">
+      <label class="form-label">Product Name</label>
+      <input class="form-input" type="text" placeholder="e.g. Classic Cotton Tee">
+    </div>
+    <div class="form-group">
+      <label class="form-label">SKU</label>
+      <input class="form-input" type="text" placeholder="e.g. SKU-006">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Price</label>
+      <input class="form-input" type="text" placeholder="$0.00">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Product Type</label>
+      <select class="form-input" style="appearance:auto">
+        <option>Select type...</option>
+        <option>Apparel</option>
+        <option>Electronics</option>
+        <option>Accessories</option>
+        <option>Home</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <textarea class="form-input" rows="4" placeholder="Product description..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Prototype</label>
+      <select class="form-input" style="appearance:auto">
+        <option>Select prototype...</option>
+      </select>
+    </div>
+  </div>
+  <div class="slideover-footer">
+    <button class="btn btn-ghost" onclick="this.closest('.slideover-demo').classList.remove('open')">Cancel</button>
+    <button class="btn btn-dark">Create Product</button>
+  </div>
+</div>
+
+<div class="wireframe-label">
+  <strong>WIREFRAME — Option B: Top Nav + Command Palette</strong> &nbsp;|&nbsp; Rails 8 + Hotwire (Turbo Frames, Stimulus Controllers, Turbo Streams) &nbsp;|&nbsp; Minimal, content-first design
+</div>
+
+</body>
+</html>
