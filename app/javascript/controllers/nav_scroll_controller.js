@@ -5,22 +5,25 @@ export default class extends Controller {
   static classes = ["solid"]
 
   connect() {
-    this.observer = new IntersectionObserver(
-      ([entry]) => {
-        this.barTarget.classList.toggle(this.solidClass, !entry.isIntersecting)
-      },
-      { threshold: 0.1 }
-    )
-
     const hero = document.querySelector("[data-nav-scroll-hero]")
     if (hero) {
+      this.barTarget.classList.remove("bg-white", "shadow-md")
+
+      this.observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            this.barTarget.classList.remove("bg-white", "shadow-md")
+          } else {
+            this.barTarget.classList.add("bg-white", "shadow-md")
+          }
+        },
+        { threshold: 0.1 }
+      )
       this.observer.observe(hero)
-    } else {
-      this.barTarget.classList.add(this.solidClass)
     }
   }
 
   disconnect() {
-    this.observer.disconnect()
+    if (this.observer) this.observer.disconnect()
   }
 }

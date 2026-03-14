@@ -36,6 +36,16 @@
 }
 
 @layer components {
+  .max-w-site {
+    max-width: var(--max-width);
+  }
+  .pt-header {
+    padding-top: 72px;
+  }
+  .-mt-header {
+    margin-top: -72px;
+  }
+
   .btn {
     @apply inline-flex items-center gap-2 px-7 py-3.5 text-[13px] font-semibold uppercase tracking-wider border-none cursor-pointer transition-all duration-250;
   }
@@ -117,11 +127,6 @@
   .product-card-price .sale-price {
     @apply font-semibold;
     color: var(--color-sale);
-  }
-
-  /* Nav bar when scrolled (used by nav_scroll_controller) */
-  .solid {
-    @apply bg-white shadow-md;
   }
 
   /* Flash message animations */
