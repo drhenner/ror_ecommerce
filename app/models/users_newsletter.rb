@@ -1,10 +1,9 @@
 class UsersNewsletter < ApplicationRecord
-  require 'digest'
   belongs_to :newsletter
   belongs_to :user
 
   def self.unsubscribe(email, key)
-    if unsubscribe_key(email) == key
+    if key.present? && ActiveSupport::SecurityUtils.secure_compare(unsubscribe_key(email), key.to_s)
       user = User.find_by(email: email)
       if user
         user.users_newsletters.map(&:destroy)
@@ -13,7 +12,6 @@ class UsersNewsletter < ApplicationRecord
   end
 
   def self.unsubscribe_key(email)
-    sha256 = Digest::SHA256.new
-    Base64.encode64(sha256.digest "UFCfit-#{email.to_s}")
+    OpenSSL::HMAC.hexdigest("SHA256", Rails.application.secret_key_base, "UFCfit-#{email.to_s}")
   end
 end
